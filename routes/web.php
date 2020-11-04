@@ -5,9 +5,10 @@ Route::get('file/{hash}',      'UploadFileController@download');
 Route::group(['middleware' => 'setLocale'], function () {
 
     if (App::environment('imetoffline')) {
-        Route::get('/', function () { return view('admin.imet.offline.welcome');});
-        Route::get('welcome', function () { return view('admin.imet.offline.welcome'); });
-        Route::get('admin', function () { return view('admin.imet.offline.welcome'); });
+        Route::get('/', function () { return Redirect::to('admin/imet'); });
+        Route::get('welcome', function () { return Redirect::to('admin/imet'); });
+        Route::get('admin', function () { return Redirect::to('admin/imet'); });
+
         Route::get('admin/imet/offline/close', function () { return view('admin.imet.offline.close'); });
         Route::get('admin/confirm_user', function () { return view('admin.imet.offline.confirm_user'); });
         Route::get('admin/offline_user', function () { return view('admin.imet.offline.edit_user'); });
