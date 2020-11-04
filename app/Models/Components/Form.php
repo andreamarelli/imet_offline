@@ -1,0 +1,257 @@
+<?php
+
+namespace App\Models\Components;
+
+use App\Library\Utils\PhpClass;
+use App\Models\Imet\v2\Imet_Eval;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Http\Request;
+
+class Form extends EntityModel
+{
+    use Sortable;
+
+    public static $modules = null;
+
+    public const ENCODE_PROGRESS = null;
+    public const VALID = null;
+
+    /**
+     * Return the models' array
+     * @return null
+     */
+    public static function modules()
+    {
+        return static::$modules;
+    }
+
+    /**
+     * Flatten modules into a plain array
+     * @return array|null
+     */
+    protected static function allModules()
+    {
+        $modules = static::modules();
+        $all_modules = null;
+        if ($modules !== null) {
+            $all_modules = [];
+            foreach ($modules as $step) {
+                if (gettype($step) === 'string') { // no steps
+                    $all_modules[] = $step;
+                } else {
+                    foreach ($step as $module) {
+                        $all_modules[] = $module;
+                    }
+                }
+            }
+        }
+        return array_unique($all_modules);
+    }
+
+    /**
+     * Default method for getting form list
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param Request $request
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFilterList($query, Request $request)
+    {
+        return $query;
+    }
+
+    public static function updateModuleAndForm($item, Request $request)
+    {
+        // update Module
+        $module_class = ModuleKey::KeyToClassName($request->input('module_key'));
+        PhpClass::ClassExist($module_class);
+        $return = $module_class::updateModule($request);
+
+        // update Form
+        $form = new static();
+        $form = $form->find($item);
+        $form->updateProgress();
+        $form->updateValid();
+        $form->touch(); // force timestamp update
+
+        return $return;
+    }
+
+    /**
+     * Administration: update form's module
+     * @param Request $request
+     * @return mixed|null
+     */
+    public function update_form(Request $request)
+    {
+        $module_key = $request->input('module_key');
+
+        $module_class = ModuleKey::KeyToClassName($module_key);
+        PhpClass::ClassExist($module_class);
+        return $module_class::updateModule($request);
+    }
+
+
+    /**
+     * Administration: create new form
+     * @param Request $request
+     * @return array
+     * @throws \Exception
+     */
+    public function store(Request $request)
+    {
+        /** @var \App\Models\Components\Module $module_class */
+
+        $records = json_decode($request->input('records_json'), true);
+        $module_key = $request->input('module_key');
+        $module_class = ModuleKey::KeyToClassName($module_key);
+        PhpClass::ClassExist($module_class);
+
+        // Validate data
+        if(!empty($messages = $module_class::validate($records[0]))){
+            return $module_class::validationErrorResponse($messages);
+        }
+
+        \DB::beginTransaction();
+
+        // Save new form
+        if (static::CREATED_BY !== null) {
+            $this->{static::CREATED_BY} = \Auth::user()->getKey();
+        }
+        $this->save();
+
+        // Inject form_id into request
+        $records[0][$this->getKeyName()] = $this->getKey();
+        $request->replace(['records_json' => json_encode($records)]);
+
+        // Update module
+        $result = $module_class::updateModule($request);
+
+        \DB::commit();
+
+        if ($result['status'] === 'success') {
+            $result['entity_id'] = $this->getKey();
+            $result['entity_label'] = null;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Administration: destroy (also delete the module's related records)
+     * @return bool|null|void
+     * @throws \Exception
+     */
+    public function delete()
+    {
+        foreach (static::allModules() as $module_class) {
+            $this->load($module_class);
+            $relation = $this->{$module_class}();
+            if ($relation instanceof HasMany) {
+                $this->{$module_class}()->delete();
+            }
+        }
+        parent::delete();
+    }
+
+    /**
+     * Export all modules data into array
+     * @param $form_id
+     * @return array
+     */
+    public static function exportModules($form_id)
+    {
+        $array = [];
+        foreach (static::allModules() as $module_class) {
+            $array[$module_class::getShortClassName()] = $module_class::exportModule($form_id);
+        }
+        return $array;
+    }
+
+    /**
+     * Import all modules from records array
+     *
+     * @param $records
+     * @param $formID
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws \ReflectionException
+     */
+    public static function importModules($records, $formID)
+    {
+        /** @var \App\Models\Imet\v2\Modules\Component\ImetModule $module_class */
+        foreach (static::allModules() as $module_class) {
+            if(array_key_exists($module_class::getShortClassName(), $records)){
+                foreach ($records[$module_class::getShortClassName()] as $record){
+                    $module_class::importModule($formID, $record);
+                }
+            }
+        }
+    }
+
+    /**
+     * @param string $method
+     * @param array $parameters
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany|mixed
+     */
+    public function __call($method, $parameters)
+    {
+        $allModules = static::allModules();
+        if ($allModules !== null && in_array($method, $allModules)) {
+            $module_class = new $method();
+            if ($module_class->getTable() === $this->getTable()) {
+                return $this->hasOne($method, $this->primaryKey, $this->primaryKey);
+            } else {
+                return $this->hasMany($method, $this->primaryKey);
+            }
+        }
+        return parent::__call($method, $parameters);
+    }
+
+    /**
+     * Update the "ENCODE_PROGRESS" status
+     */
+    public function updateProgress()
+    {
+        if ($this::ENCODE_PROGRESS !== null) {
+            $allModules = static::allModules();
+            $num_modules = count($allModules);
+            $num_encoded = 0;
+            foreach ($allModules as $module_class) {
+                $hasRecord = $module_class::hasRecord($this->getKey());
+                $num_encoded = $hasRecord ? $num_encoded + 1 : $num_encoded;
+            }
+            $this->{$this::ENCODE_PROGRESS} = intval(100 / $num_modules * $num_encoded);
+        }
+    }
+
+    /**
+     * Pass through each form's module and validate records according to defined rules
+     * @param null $modules
+     * @return array, array of errors
+     */
+    public function validateFormRules($modules = null)
+    {
+        $modules = $modules === null ? static::modules() : $modules;
+        $formID = $this->{$this->primaryKey};
+        $errors = [];
+        if ($formID != null) {
+            foreach ($modules as $current_step => $groupOfModules) {
+                foreach ($groupOfModules as $moduleClass) {
+                    $tmp = $moduleClass::validateRules($formID, $current_step);
+                    if ($tmp) $errors[] = $tmp;
+                }
+            }
+        }
+        return $errors;
+    }
+
+    /**
+     * Update the "VALID" status
+     */
+    public function updateValid()
+    {
+        if ($this::VALID !== null) {
+            $errors = $this->validateFormRules();
+            $this->{$this::VALID} = empty($errors) ? true : false;
+        }
+    }
+}

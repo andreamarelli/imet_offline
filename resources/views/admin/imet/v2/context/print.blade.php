@@ -1,0 +1,1 @@
+@include('admin.imet.v2.print')
