@@ -5,10 +5,10 @@
 /** @var String $vue_directives  */
 /** @var String $group_key (optional - only used with GROUP_ACCORDION or GROUP_TABLE) */
 
-$class =  isset($field['class']) ? $field['class']    : '';
-$rules = isset($field['rules']) ? $field['rules'] : '';
-$other = isset($field['other']) ? $field['other'] : '';
-$other .= isset($vue_directives) ? $vue_directives : '';
+$class =  $field['class'] ?? '';
+$rules =  $field['rules'] ?? '';
+$other =  $field['other'] ?? '';
+$other .= $vue_directives ?? '';
 
 $v_value = 'records['.$vue_record_index.'].'.$field['name'];
 $id = "'".$definitions['module_key']."_'+".$vue_record_index."+'_".$field['name']."'";

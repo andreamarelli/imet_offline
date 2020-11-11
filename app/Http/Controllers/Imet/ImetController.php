@@ -97,7 +97,7 @@ class ImetController extends FormController
             'countries' => array_map(function ($item){
                 return $item['name'];
             }, $countries),
-            'years' => range(min($years), max($years)),
+            'years' => !empty($years) ? range(min($years), max($years)) : array(Carbon::today()->year),
         ]);
     }
 
@@ -299,7 +299,7 @@ class ImetController extends FormController
         $source_form_id = $request->input('source_form');
         $destination_form_id = $request->input('destination_form');
 
-        $records = (new $module_class())->exportModule($source_form_id);
+        $records = $module_class::exportModule($source_form_id);
         $records = array_map(function($item) use($module_class, $destination_form_id) {
             $item[(new $module_class())->getKeyName()] = null;
             $item[$module_class::$foreign_key]         = $destination_form_id;

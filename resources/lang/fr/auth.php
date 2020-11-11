@@ -24,7 +24,7 @@ return [
     'captcha'               => 'vérification CAPTCHA',
 
     'username'              => 'pseudo',
-    'email'                 => 'adresse e-mail',
+    'email'                 => 'adresse email',
     'password'              => 'mot de passe',
     'password_confirmation' => 'confirmation du mot de passe',
     'password_update_required'          => 'nouveau mot de passe est requis',

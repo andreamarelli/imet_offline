@@ -4,7 +4,7 @@
 /** @var Mixed $vue_data */
 /** @var String $group_key (optional - only for GROUP_TABLE) */
 
-$group_key = isset($group_key) ? $group_key : '';
+$group_key = $group_key ?? '';
 
 $table_id = $definitions['module_type'] === 'GROUP_TABLE'
     ? 'group_table_' . $definitions['module_key'] . '_' . $group_key
@@ -23,7 +23,7 @@ $tr_record = $definitions['module_type'] === 'GROUP_TABLE'
         <tr>
             @foreach($definitions['fields'] as $index=>$field)
                 @if($field['type']!=='hidden')
-                    <th class="text-center">{{ isset($field['label']) ? ucfirst($field['label']) : '' }}</th>
+                    <th class="text-center">{{ ucfirst($field['label'] ?? '') }}</th>
                 @endif
                 @if($index==1)
                     <th class="text-center">@lang('form/imet/v2/context.Sectors.area_percentage')</th>

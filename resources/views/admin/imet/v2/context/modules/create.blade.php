@@ -14,7 +14,7 @@ $vue_record_index = 0;
 
         @component('admin.components.module.components.row', [
                 'name' => $field['name'],
-                'label' => isset($field['label']) ? $field['label'] : '',
+                'label' => $field['label'] ?? '',
                 'label_width' => $definitions['label_width']
             ])
 

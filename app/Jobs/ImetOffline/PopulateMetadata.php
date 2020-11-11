@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\ImetOffline;
 
+use App\Jobs\Utils;
 use App\Library\Ofac\Module;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -11,7 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class PopulateIMETMetadata implements ShouldQueue
+class PopulateMetadata implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
@@ -77,7 +78,7 @@ class PopulateIMETMetadata implements ShouldQueue
         $module      = new $moduleClass();
 
         DB::select(
-            "INSERT into imet.imet_metadata 
+            "INSERT into imet.imet_metadata
         (version, phase, code, db_table, title_fr, title_en)
           VALUES ('" . $args[0] . "',
               '" . $args[1] . "',
@@ -108,7 +109,7 @@ class PopulateIMETMetadata implements ShouldQueue
         $label_fr = str_replace("'", "''", trans('form/imet/' . $version . '/common.assessment.' . $code, [], 'fr')[1]);
 
         DB::select(
-            "INSERT into imet.imet_metadata_statistics 
+            "INSERT into imet.imet_metadata_statistics
           (version, code, code_label, title_fr, title_en)
           VALUES ('" . $version . "', '" . $code . "', '" . $labels[0] . "', '" . $label_fr . "', '" . $label_en . "');"
         );

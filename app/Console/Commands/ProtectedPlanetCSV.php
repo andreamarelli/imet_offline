@@ -1,33 +1,29 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Console\Commands;
 
 use App\Library\Utils\File\File;
 use App\Models\Country;
 use App\Models\Imet\Utils\ProtectedArea;
-use Illuminate\Bus\Queueable;
+use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
 
-/**
- * Read Protected Planet CSV (https://www.protectedplanet.net/), retrieve all the BIOPAMA related protected areas
- * (country based) and generate SQL INSERT file.
- *
- * Class ParseProtectedPlanetCSV
- * @package App\Jobs
- */
-class ParseProtectedPlanetCSV implements ShouldQueue
+class ProtectedPlanetCSV extends Command
 {
-    use Dispatchable;
-    use InteractsWithQueue;
-    use Queueable;
-    use SerializesModels;
-    use Utils;
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'retrieve:protected_planet';
 
-    public const description = 'Retrieve protected areas from Protected Planet CSV and generate a SQL INSERT file';
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Retrieve protected areas from Protected Planet CSV and generate a SQL INSERT file';
+
 
     public const protected_planet_csv = 'WDPA_Nov2019-csv.csv';
 
@@ -41,7 +37,7 @@ class ParseProtectedPlanetCSV implements ShouldQueue
     private $already_parsed = [];
 
     /**
-     * Create a new job instance.
+     * Create a new command instance.
      *
      * @return void
      */
@@ -51,13 +47,13 @@ class ParseProtectedPlanetCSV implements ShouldQueue
         $this->sql_file = self::protected_planet_csv.'.sql';
         $this->csv_path = $this->storage->path(self::protected_planet_csv);
         $this->sql_path = $this->storage->path($this->sql_file);
+        parent::__construct();
     }
 
-
     /**
-     * Execute the job.
+     * Execute the console command.
      *
-     * @return void
+     * @return int
      */
     public function handle()
     {
@@ -67,8 +63,8 @@ class ParseProtectedPlanetCSV implements ShouldQueue
                 throw new FileNotFoundException();
             }
         } catch (FileNotFoundException $e){
-            static::log('Protected Planet CSV file not found in: '.$this->storage->path(''));
-            return;
+            $this->error('Protected Planet CSV file not found in: '.$this->storage->path(''));
+            return 0;
         }
 
         // delete existing sql file
@@ -101,11 +97,12 @@ class ParseProtectedPlanetCSV implements ShouldQueue
         fclose($sql_file);
 
         // write output
-        static::log('Total protected areas in CSV: ' .$this->all_count);
-        static::log('BIOPAMA protected areas extracted: ' .$this->found_count);
-        static::log('File saved in : ' .$this->sql_path);
-    }
+        $this->info('Total protected areas in CSV: ' .$this->all_count);
+        $this->info('BIOPAMA protected areas extracted: ' .$this->found_count);
+        $this->info('File saved in : ' .$this->sql_path);
 
+        return 0;
+    }
 
     /**
      * Retrieve BIOPAMA countries (from IMET table)
@@ -155,5 +152,4 @@ class ParseProtectedPlanetCSV implements ShouldQueue
         $this->already_parsed[] = $global_id;
         return $global_id;
     }
-
 }

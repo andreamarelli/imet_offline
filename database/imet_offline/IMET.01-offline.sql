@@ -101,6 +101,13 @@ CREATE TABLE species
   last_update_date character varying(30)
 );
 
+CREATE TABLE cache
+(
+    key        varchar,
+    value      text,
+    expiration integer
+);
+
 CREATE SCHEMA imet;
 
 -- ### Utility tables ##

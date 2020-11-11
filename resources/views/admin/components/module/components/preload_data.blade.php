@@ -13,7 +13,7 @@
                 <tr>
                     <th></th>
                     @foreach($definitions['fields'] as $field)
-                        <th class="text-center">{{ isset($field['label']) ? ucfirst($field['label']) : '' }}</th>
+                        <th class="text-center">{{ ucfirst($field['label'] ?? '') }}</th>
                     @endforeach
                 </tr>
             </thead>
@@ -78,7 +78,7 @@
                         <thead>
                             <tr>
                                 @foreach($definitions['fields'] as $field)
-                                    <th class="text-center">{{ isset($field['label']) ? ucfirst($field['label']) : '' }}</th>
+                                    <th class="text-center">{{ ucfirst($field['label'] ?? '') }}</th>
                                 @endforeach
                                 <th></th>
                             </tr>

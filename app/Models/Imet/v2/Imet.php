@@ -2,18 +2,18 @@
 
 namespace App\Models\Imet\v2;
 
-use App\Models\Imet\Utils\ProtectedArea;
 use App\Models\Imet\v2\Modules\Context\FinancialAvailableResources;
 use App\Models\Imet\v2\Modules\Context\FinancialResourcesBudgetLines;
 use App\Models\Imet\v2\Modules\Context\FinancialResourcesPartners;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 
 class Imet extends \App\Models\Imet\Imet
 {
     public const version = 'v2';
-    public const imet_version = 'v2.0.9';
-    public const db_version = 'v2.1.2';
+    public const imet_version = 'v2.1';
+    public const db_version = 'v2.2';
 
     public static $modules = [
 
@@ -79,17 +79,17 @@ class Imet extends \App\Models\Imet\Imet
 
     /**
      * Override parent scopeFilterList()
+     *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param Request $request
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeFilterList($query, Request $request)
+    public function scopeFilterList(Builder $query, Request $request)
     {
         $query
             ->where('version', static::version)
             ->orderBy('Year', 'desc')
             ->orderBy('wdpa_id', 'desc');
-
         return $query;
     }
 

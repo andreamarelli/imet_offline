@@ -688,7 +688,7 @@ return [
         'title' => 'Renforcement des capacités du personnel',
         'fields' => [
             'Theme' => 'Critère — Concept mesuré — Variable',
-            'EvaluationScore' => 'A) Adéquation de l’analyse des capacités et des besoins du personnel et de la conception des programmes de formation',
+            'EvaluationScore' => 'A) Adéquation de l’analyse des capacités du personnel aux programmes de renforcement des capacités',
             'PercentageLevel' => 'B) Adéquation des activités de renforcement des capacités du personnel',
             'Comments' => 'Commentaires/Explication',
         ],
@@ -727,7 +727,7 @@ return [
             'Procédures de recrutement fondées sur le mérite',
             'Attribution du type de travail',
             'Affectation au milieu de travail',
-            'Santé, sûreté et sécurité',
+            'Santé, sécurité et sécurisation dans le travail',
             'Possibilités de carrière et de promotion',
             'Genre et équité ethnique',
             'Règles réduisant le favoritisme et la discrimination',
@@ -1300,8 +1300,8 @@ return [
             'Recherche et surveillance écologique à long terme des écosystèmes et des habitats',
             'Recherche et surveillance écologique à long terme de la couverture terrestre, utilisation et occupation des sols',
             'Recherche et surveillance écologique à long terme des écosystèmes d’eau douce (lacs, rivières, petits étangs et ruisseaux)',
-            'Recherche et surveillance écologique à long terme du bien-être humain de la population de l’aire protégée et de ses zons tampons',
-            'Recherche et surveillance écologique à long terme des menaces pour l’aire protégée',
+            'Recherche et surveillance à long terme du bien-être humain de la population de l’aire protégée et de ses zons tampons',
+            'Recherche et surveillance à long terme des menaces pour l’aire protégée',
             'Recherche et surveillance écologique à long terme des services écosystémiques fournis par l’aire protégée',
             'Recherche et surveillance écologique à long terme des effets du changement climatique sur les éléments clés de l’aire protégée'
 
@@ -1408,7 +1408,7 @@ return [
     ],
 
     'WorkProgramImplementation' => [
-        'title' => 'Mise en œuvre des actions du plan de travail/du plan d’action',
+        'title' => 'Mise en œuvre des activités du plan de travail/du plan d’action',
         'fields' => [
             'Category' => 'Catégories d’activités',
             'Activity' => 'Activités',
@@ -1441,7 +1441,7 @@ return [
         'fields' => [
             'Category' => 'Catégories d’activités',
             'Activity' => 'Activités',
-            'TargetedOutput' => 'Résultats escomptés',
+            'TargetedOutput' => 'Résultats attendus',
             'EvaluationScore' => 'Evaluation: Niveau d’atteinte des résultats',
             'Comments' => 'Commentaires/Explication',
         ],

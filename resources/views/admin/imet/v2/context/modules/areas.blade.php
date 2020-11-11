@@ -23,7 +23,7 @@ $vue_data['GISArea_km2'] = $vue_data['GISArea_km2_full'] = formatNum($vue_data['
 
     @component('admin.components.module.components.row', [
             'name' => $field['name'],
-            'label' => isset($field['label']) ? $field['label'] : '',
+            'label' => $field['label'] ?? '',
             'label_width' => $definitions['label_width']
         ])
 

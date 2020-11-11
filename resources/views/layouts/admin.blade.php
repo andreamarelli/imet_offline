@@ -5,11 +5,13 @@
 
     @include('layouts.components.header.header')
 
-    @component('layouts.components.main.title_ribbon')
-        <span class="page_title">
-            @yield('admin_page_title')
-        </span>
-    @endcomponent
+    @if(View::hasSection('admin_page_title'))
+        @component('layouts.components.main.title_ribbon')
+                <span class="page_title">
+                    @yield('admin_page_title')
+                </span>
+        @endcomponent
+    @endif
 
     <main class="container">
         <section class="main one-col row">

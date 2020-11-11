@@ -4,7 +4,7 @@ namespace App\Models\Person\Modules;
 
 use App\Models\Components\EntityModel;
 use App\Models\Components\Module;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Validator;

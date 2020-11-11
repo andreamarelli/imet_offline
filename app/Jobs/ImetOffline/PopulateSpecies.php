@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\ImetOffline;
 
+use App\Jobs\Utils;
 use App\Library\API\DOPA\DOPA;
 use App\Library\Utils\File\File;
 use App\Models\Country;
@@ -13,7 +14,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class PopulateIMETSpecies implements ShouldQueue
+class PopulateSpecies implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
@@ -26,6 +27,7 @@ class PopulateIMETSpecies implements ShouldQueue
     public const common_names_csv = 'species_names_crosstab.csv';
 
     private $storage;
+
     private $countries;
     private $common_names;
     private $all_count = 0;
@@ -49,6 +51,7 @@ class PopulateIMETSpecies implements ShouldQueue
      * Execute the job.
      *
      * @return void
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function handle()
     {
@@ -69,9 +72,17 @@ class PopulateIMETSpecies implements ShouldQueue
         // Execute requests and parse results (per country)
         foreach ($this->countries as $i => $iso3) {
 
-            // Execute request to DOPA API
-            $api_list = DOPA::get_country_redlist_th_list($iso3);
-            static::log('Species found in DOPA API for country ' . $iso3 . ': ' . count($api_list), 'info');
+            if($this->imet_offline){
+                $cache_filename = 'api_country_redlist_th_list_'.$iso3.'.json';
+                if($this->storage->exists($cache_filename)){
+                    $api_list = json_decode($this->storage->get($cache_filename));
+                } else {
+                    $api_list = $this->retrieve_species($iso3);
+                    $this->storage->put($cache_filename, json_encode($api_list));
+                }
+            } else {
+                $api_list = $this->retrieve_species($iso3);
+            }
 
             // Parse species list
             foreach ($api_list as $api_item) {
@@ -88,6 +99,18 @@ class PopulateIMETSpecies implements ShouldQueue
         static::log('Species added: ' . $this->added_count, 'info');
         static::log('Species update: ' . $this->changed_count, 'info');
         static::log('Species not changed: ' . $this->not_changed_count, 'info');
+    }
+
+    /**
+     * Execute request to DOPA API
+     *
+     * @param $iso3
+     * @return mixed
+     */
+    private function retrieve_species($iso3){
+        $api_list = DOPA::get_country_redlist_th_list($iso3);
+        static::log('Species found in DOPA API for country ' . $iso3 . ': ' . count($api_list), 'info');
+        return $api_list;
     }
 
     /**

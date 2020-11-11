@@ -3,9 +3,9 @@
 /** @var String $label */
 /** @var String $other */
 
-$class = isset($class) ? $class : '';
-$label = isset($label) ? $label : '';
-$other = isset($other) ? $other : '';
+$class = $class ?? '';
+$label = $label ?? '';
+$other = $other ?? '';
 
 ?>
 <div class="module-bar {{ $class }}" {!! $other !!} >

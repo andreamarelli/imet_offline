@@ -9,8 +9,9 @@ use Illuminate\Http\Testing\MimeType;
 class File
 {
 
-    public const PUBLIC_STORAGE = 'storage_public';
+    public const PUBLIC_STORAGE = 'public';
     public const PRIVATE_STORAGE = 'private';
+    public const PUBLIC_FOLDER = 'public_folder';
 
     use Export;
     use Hash;

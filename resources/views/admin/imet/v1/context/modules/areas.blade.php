@@ -18,7 +18,7 @@ $vue_data['GISArea_km2'] = $vue_data['records'][0]['GISArea']/100;
 
     @component('admin.components.module.components.row', [
             'name' => $field['name'],
-            'label' => isset($field['label']) ? $field['label'] : '',
+            'label' => $field['label'] ?? '',
             'label_width' => $definitions['label_width']
         ])
 

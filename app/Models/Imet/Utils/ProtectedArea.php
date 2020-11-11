@@ -3,6 +3,7 @@
 namespace App\Models\Imet\Utils;
 
 use App\Models\Components\EntityModel;
+use App\Models\Country;
 
 
 class ProtectedArea extends EntityModel {
@@ -12,15 +13,6 @@ class ProtectedArea extends EntityModel {
     public $incrementing = false; // required for textual primary_key
 
     public const LABEL = 'long_name';
-
-    /**
-     * Relation to country
-     * @return \Illuminate\Database\Eloquent\Relations\hasOne
-     */
-    public function country_rel()
-    {
-        return $this->hasOne(\App\Models\Country::class, 'iso3', 'country');
-    }
 
     /**
      * Scope a query by search key
@@ -69,21 +61,25 @@ class ProtectedArea extends EntityModel {
      */
     public static function searchByKeyOrCountry($search_key, $country = null)
     {
-        return static::
-            like($search_key)
+        $pas = static::like($search_key)
             ->where(function ($query) use($country) {
                 if($country!==null && $country!=='' && $country!=='null') {
                     $query->where('country', $country);
                 }
             })
             ->orderBy('name')
-            ->with('country_rel')
-            ->get()
-            ->map(function($item){
-                $item['country_name'] = $item['country_rel']['name_'.LOWER_LOCALE];
-                unset($item['country_rel']);
-                return $item;
-            });
+            ->get();
+
+        $countries = Country::select(['iso3', 'name_'.LOWER_LOCALE])
+            ->whereIn('iso3', array_values($pas->pluck('country')->unique()->toArray()))
+            ->pluck('name_'.LOWER_LOCALE, 'iso3')
+            ->sort()
+            ->toArray();
+
+        return $pas->map(function($item) use($countries){
+            $item['country_name'] = $countries[$item->country];
+            return $item;
+        })->toArray();
     }
 
     /**
@@ -92,16 +88,16 @@ class ProtectedArea extends EntityModel {
      */
     public static function getCountries()
     {
-        return static::select('country')
-            ->with('country_rel')
+        $countries = static::selectRaw('regexp_split_to_table(country, \'\;\') as iso3')
             ->distinct()
             ->get()
-            ->map(function($item){
-                $item['country_name'] = $item['country_rel']['name_'.LOWER_LOCALE];
-                unset($item['country_rel']);
-                return $item;
-            })
-            ->pluck('country_name', 'country')
+            ->pluck('iso3')
+            ->sort()
+            ->toArray();
+
+        return Country::select(['iso3', 'name_'.LOWER_LOCALE])
+            ->whereIn('iso3', array_values($countries))
+            ->pluck('name_'.LOWER_LOCALE, 'iso3')
             ->sort()
             ->toArray();
     }

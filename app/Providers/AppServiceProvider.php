@@ -57,6 +57,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // pagination views (exported with: php artisan vendor:publish --tag=laravel-pagination)
+        Paginator::useBootstrap();
         Paginator::defaultView('vendor.pagination');
         Paginator::defaultSimpleView('vendor.pagination');
     }

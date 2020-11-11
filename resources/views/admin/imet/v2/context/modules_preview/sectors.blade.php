@@ -18,7 +18,7 @@ $sumUnderControlArea = $UnderControlPatrolKm = $UnderControlPatrolManDay = 0
     <tr>
         @foreach($definitions['fields'] as $f_index=>$field)
             @if($field['type']!=='hidden')
-                <th class="text-center">{{ isset($field['label']) ? ucfirst($field['label']) : '' }}</th>
+                <th class="text-center">{{ ucfirst($field['label'] ?? '') }}</th>
             @endif
             @if($f_index==1)
                 <th class="text-center">@lang('form/imet/v2/context.Sectors.area_percentage')</th>

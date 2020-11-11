@@ -2,7 +2,7 @@
 
     <nav id="menu">
 
-        <ul>
+        <ul class="menu-header">
             <li>
                 <a href="{{ url('/') }}/admin">{!! \App\Library\Utils\Template::icon('user-circle', '', '1.2em') !!}&nbsp;&nbsp;&nbsp;{{ Auth::user()->getName() }}</a>
                 <ul>

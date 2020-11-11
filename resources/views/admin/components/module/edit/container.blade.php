@@ -15,7 +15,7 @@
         $collection = collect([new $module_class()]);
     }
 
-    unset($module_class);
+unset($module_class);
 ?>
 
 <div class="module-container" id="module_{{ $definitions['module_key'] }}">

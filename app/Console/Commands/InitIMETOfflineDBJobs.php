@@ -38,9 +38,9 @@ class InitIMETOfflineDBJobs extends Command
      */
     public function handle()
     {
-        $this->dispatch(Jobs\InitIMETOfflineDB::class);
-        $this->dispatch(Jobs\PopulateIMETMetadata::class);
-        $this->dispatch(Jobs\PopulateIMETSpecies::class);
+        $this->dispatch(Jobs\ImetOffline\InitDB::class);
+        $this->dispatch(Jobs\ImetOffline\PopulateMetadata::class);
+        $this->dispatch(Jobs\ImetOffline\PopulateSpecies::class);
     }
 
 

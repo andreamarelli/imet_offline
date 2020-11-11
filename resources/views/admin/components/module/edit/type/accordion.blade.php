@@ -4,7 +4,7 @@
 /** @var Mixed $vue_data */
 /** @var String $group_key (optional - only for GROUP_ACCORDION) */
 
-$group_key = isset($group_key) ? $group_key : '';
+$group_key = $group_key ?? '';
 
 if($definitions['module_type']==='GROUP_ACCORDION'){
     $accordion_id = 'group_accordion_'.$definitions['module_key'].'_'.$group_key;

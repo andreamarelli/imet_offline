@@ -22,7 +22,7 @@ $totalBudget = array_key_exists('FormID', $record) ? \App\Models\Imet\v2\Modules
         @foreach($definitions['fields'] as $field)
             @if($field['type']!=='hidden')
                 <th class="text-center">
-                    {{ isset($field['label']) ? ucfirst($field['label']) : '' }}
+                    {{ ucfirst($field['label'] ?? '') }}
                 </th>
             @endif
         @endforeach

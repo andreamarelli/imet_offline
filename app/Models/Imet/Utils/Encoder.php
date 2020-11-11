@@ -55,12 +55,14 @@ class Encoder extends Model
      */
     public static function getNames($form_id)
     {
-        return Encoder::where('FormID', $form_id)
-            ->orderBy('UpdateDate', 'desc')
-            ->get()
-            ->map->only(['name', 'organisation', 'function'])
-            ->unique()
-            ->toArray();
+        return array_values(
+            Encoder::where('FormID', $form_id)
+                ->orderBy('UpdateDate', 'desc')
+                ->get()
+                ->map->only(['name', 'organisation', 'function'])
+                ->unique()
+                ->toArray()
+        );
     }
 
 }

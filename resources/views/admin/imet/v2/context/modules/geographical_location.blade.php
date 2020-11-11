@@ -33,7 +33,7 @@ $vue_record_index = $definitions['module_type']==="ACCORDION" || $definitions['m
 
             @component('admin.components.module.components.row', [
                     'name' => $field['name'],
-                    'label' => isset($field['label']) ? $field['label'] : '',
+                    'label' => $field['label'] ?? '',
                     'label_width' => $definitions['label_width']
                 ])
 

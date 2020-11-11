@@ -4,7 +4,7 @@
 /** @var Mixed $vue_data */
 /** @var String $group_key (optional - only for GROUP_TABLE) */
 
-$group_key = isset($group_key) ? $group_key : '';
+$group_key = $group_key ?? '';
 
 $table_id = $definitions['module_type']==='GROUP_TABLE'
     ? 'group_table_'.$definitions['module_key'].'_'.$group_key
@@ -24,7 +24,7 @@ $tr_record = $definitions['module_type']==='GROUP_TABLE'
                 @foreach($definitions['fields'] as $field)
                     <th class="text-center">
                         @if($field['type']!=='hidden')
-                            {{ isset($field['label']) ? ucfirst($field['label']) : '' }}
+                            {{ ucfirst($field['label'] ?? '') }}
                         @endif
                     </th>
                 @endforeach

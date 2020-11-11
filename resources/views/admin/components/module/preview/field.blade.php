@@ -3,7 +3,7 @@
 /** @var String $value */
 /** @var bool $only_label */
 
-$only_label = isset($only_label) ? $only_label : false ;
+$only_label = $only_label ?? false ;
 $list = null;
 
 if($value!==null && $value!==''){

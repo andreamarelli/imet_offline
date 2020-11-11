@@ -39,7 +39,7 @@ return [
 
     'ObjectivesClassification' => [
         'module_info' => 'Establish and describe conservation objectives for <b>the current national, regional or international designation(s) </b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
-    
+
     ],
 
     'ImportanceSpecies' => [
@@ -72,7 +72,7 @@ return [
         ],
         'validation_3to10' => 'Please include in statistics not less than 3 and not more than 10 of the key species',
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following 
+            'WARNING!! <br /> Any modification may cause data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -115,7 +115,7 @@ return [
         ],
         'validation_3to10' => 'Please include in statistics not less than 3 and not more than 10 of the key species',
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following 
+            'WARNING!! <br /> Any modification may cause data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -148,7 +148,7 @@ return [
             'Evaluate the level of integration in the management of the protected area of the most important key elements (species, habitats, etc.) most vulnerable to climate change (based on the analysis of the Context of Intervention, points CTX6.1, automatically reported below)'
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following 
+            'WARNING!! <br /> Any modification may cause data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i>, <i>PR17</i> and <i>O/C2</i>'
     ],
 
@@ -181,7 +181,7 @@ return [
             'Evaluate the level of integration in the management of the protected area of the most important ecosystem services (based on the analysis of the Context of Intervention point CTX7.1, automatically reported below)'
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following 
+            'WARNING!! <br /> Any modification may cause data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i>, <i>PR18</i> and <i>O/C2</i>'
     ],
 
@@ -300,7 +300,7 @@ return [
             'Evaluate the level of integration in the management of the protected area of most important threats based on the analysis of the threats calculator at Context of intervention point CTX 5.1 and automatically reported below.'
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following 
+            'WARNING!! <br /> Any modification may cause data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -1320,8 +1320,8 @@ return [
             'Research and long-term ecological monitoring of terrestrial ecosystems and land use (land cover – land use – land take)',
             'Research and long-term ecological monitoring of marine ecosystems and habitats',
             'Research and long-term ecological monitoring of freshwater ecosystems (lakes, rivers, and the smaller ponds and streams)',
-            'Research and long-term ecological monitoring of human well-being of the communities in the protected area and in the buffer areas',
-            'Research and long-term ecological monitoring of threats to the protected area',
+            'Research and long-term monitoring of human well-being of the communities in the protected area and in the buffer areas',
+            'Research and long-term monitoring of threats to the protected area',
             'Research and long-term ecological monitoring of the ecosystem services provided by the protected area',
             'Research and long-term ecological monitoring of the effects of climate change on key elements of the protected area'
         ],
@@ -1427,7 +1427,7 @@ return [
     ],
 
     'WorkProgramImplementation' => [
-        'title' => 'Actions implementation of the work/action plan',
+        'title' => 'Activity implementation of the work/action plan',
         'fields' => [
             'Category' => 'Categories of activities',
             'Activity' => 'Activity',
@@ -1554,8 +1554,8 @@ return [
         'groups' => [
             'group0' => 'Conservation conditions and trends for key animal species',
             'group1' => 'Conservation conditions and trends for key plant species',
-            'group2' => 'Conservation conditions and trends for habitats, land cover – use – take',
-            'group3' => 'Situation and trends for threats to the protected are',
+            'group2' => 'Conservation conditions and trends for habitats, land cover-use–take',
+            'group3' => 'Situation and trends for threats to the protected area',
             'group4' => 'Adaptation to climate change',
             'group5' => 'Conservation conditions and trends for ecosystem services of the protected area '
         ],
@@ -1584,7 +1584,7 @@ return [
                 'High' => 'almost complete certainty about the values of condition and trends',
                 'Medium' => 'some possibility of mistake about the values of condition and trends',
                 'Poor' => 'high uncertainty about the values of condition and trends',
-            ]   
+            ]
         ],
         'module_info_EvaluationQuestion' => [
             'What are the conditions and trends for the key conservation elements of the protected area?',

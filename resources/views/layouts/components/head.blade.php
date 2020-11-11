@@ -19,7 +19,7 @@
 
 @if(Route::getCurrentRequest()
     && \Str::contains(Route::getCurrentRequest()->url(), 'admin/imet/')
-    && \Str::endsWith(Route::getCurrentRequest()->url(), '/report'))
+    && \Str::contains(Route::getCurrentRequest()->url(), 'report'))
     <script src="{{ asset(mix('vendor_mapping.js', 'assets')) }}"></script>
 @endif
 

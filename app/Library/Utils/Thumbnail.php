@@ -35,17 +35,13 @@ class Thumbnail {
      * Get thumbnail (file stream content) by hash
      * @param $hash
      * @return string|null
-     * @throws \ImagickException
      */
     public static function getByHash($hash)
     {
         $thumbnail_path = static::path($hash);
         $disk = \Storage::disk(File::PUBLIC_STORAGE);
         if(!$disk->exists($thumbnail_path)){
-            $thumb = static::generateByHash($hash);
-            if($thumb === null){
-                return null;
-            }
+            return null;
         }
         return $disk->path($thumbnail_path);
     }
@@ -54,7 +50,6 @@ class Thumbnail {
      * Generate thumbnail (by hash)
      * @param $hash
      * @return null
-     * @throws \ImagickException
      */
     public static function generateByHash($hash)
     {

@@ -3,11 +3,11 @@
 namespace App\Console;
 
 use App\Console\Commands\InitIMETOfflineDBJobs;
+use App\Jobs\GenerateThumbnails;
 use App\Jobs\RefreshCache;
-use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Illuminate\Support\Stringable;
+use Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -28,20 +28,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        /*$schedule->job(new RefreshCache)
-            ->dailyAt('03:00')
-            ->withoutOverlapping()
-            ->onSuccess(function () {
-                \Storage::disk('storage_public')
-                    ->append('scheduled_jobs.txt',
-                             "[".Carbon::now()->format('Y-m-d H:i:s')."] - RefreshCache: successfully executed.\n");
-            })
-            ->onFailure(function (Stringable $output) {
-                \Storage::disk('storage_public')
-                    ->append('scheduled_jobs.txt',
-                             "[".Carbon::now()->format('Y-m-d H:i:s')."] - RefreshCache: error. ".$output);
-            });
-        */
+        $schedule->job(new RefreshCache)->dailyAt('04:15');
+        $schedule->job(new GenerateThumbnails())->dailyAt('04:30');
     }
 
     /**

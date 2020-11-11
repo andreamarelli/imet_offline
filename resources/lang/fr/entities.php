@@ -5,7 +5,7 @@ return [
     'common' => [
         'id'                    => 'ID',
         'name'                  => 'nom',
-        'email'                 => 'adresse e-mail',
+        'email'                 => 'adresse email',
         'first_name'            => 'prénom',
         'last_name'             => 'nom',
         'user'                  => 'utilisateur|utilisateurs',

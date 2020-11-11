@@ -9,7 +9,7 @@ class Youtube
     {
         $re = '/https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z\d]*)&/m';
         preg_match($re, $url, $matches);
-        return isset($matches[1]) ? $matches[1] : null;
+        return $matches[1] ?? null;
     }
 
     public static function getThumbnailUrl($url)

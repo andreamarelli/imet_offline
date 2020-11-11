@@ -2,7 +2,13 @@
 
 return [
 
-    'imet' => 'Outil intégré sur l’efficacité de gestion (IMET)',
+    'languages' => [
+        'fr'        => 'français',
+        'en'        => 'anglais'
+    ],
+    'switch_language' => 'Changer la langue actuelle en',
+
+    'imet' => 'IMET: Outil intégré sur l’efficacité de gestion',
     'imet_short'        => 'IMET',
 
     'management'        => 'gestion des formulaires IMET',
@@ -19,11 +25,14 @@ return [
     'readonly'                 => 'Read-only',
 
     'encode'            => 'encoder',
+    'show'              => 'visualiser',
+
     'context'           => 'Contexte',
     'evaluation'        => 'Évaluation',
+    'report'            => 'rapport d\'analyse',
     'context_long'      => 'contexte d\'intervention',
     'evaluation_long'   => 'Évaluation de gestion',
-    'report'            => 'rapport d\'analyse',
+    'report_long'       => 'rapport d\'analyse',
 
     'import_imet'       => 'Importer un IMET à partir d\'un fichier',
     'merge_tool'        => 'Outil de fusion',

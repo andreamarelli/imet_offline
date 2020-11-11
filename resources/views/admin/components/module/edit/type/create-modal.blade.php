@@ -1,7 +1,7 @@
 <?php
 /** @var Mixed $definitions */
 /** @var Mixed $data [optional] */
-$data = isset($data) ? $data : [];
+$data = $data ?? [];
 
 ?>
 
@@ -10,7 +10,7 @@ $data = isset($data) ? $data : [];
 
     @component('admin.components.module.components.row', [
                'name' => $field['name'],
-               'label' => isset($field['label']) ? $field['label'] : '',
+               'label' => $field['label'] ?? '',
                'label_width' => $definitions['label_width']
            ])
 
@@ -18,7 +18,7 @@ $data = isset($data) ? $data : [];
         @include('admin.components.module.edit.field.field', [
             'type' => $field['type'],
             'id' => $field['name'],
-            'value' => isset($data[$field['name']]) ? $data[$field['name']] : ''
+            'value' => $data[$field['name']] ?? ''
         ])
 
     @endcomponent

@@ -8,10 +8,10 @@
     /** @var String $module_key */
 
     // Ensure at least empty strings
-    $id =       isset($id)      ? $id       : '';
-    $class =    isset($class)   ? $class    : '';
-    $rules =    isset($rules)   ? $rules    : '';
-    $other =    isset($other)   ? $other    : '';
+    $id = $id ?? '';
+    $class = $class ?? '';
+    $rules = $rules ?? '';
+    $other = $other ?? '';
 
     // Set Vue attributes
     $v_bind_id = $id!=='' ? 'v-bind:id="'.$id.'"' : '';

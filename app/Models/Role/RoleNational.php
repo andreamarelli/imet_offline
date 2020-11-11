@@ -5,7 +5,7 @@ namespace App\Models\Role;
 
 use App\Http\Controllers\Components\API;
 use App\Models\Country;
-use App\User;
+use App\Models\User;
 
 class RoleNational extends _Role
 {
@@ -145,7 +145,11 @@ class RoleNational extends _Role
             }
             // encoders
             foreach (static::getByCountryAndRole($country, static::ENCODER)->toArray() as $index => $enc) {
-                array_unshift($encoders[$enc['scope']], $enc);
+                if($encoders[$enc['scope']][0]===null){
+                    $encoders[$enc['scope']][0] = $enc;
+                } else {
+                    array_unshift($encoders[$enc['scope']], $enc);
+                }
             }
         }
 

@@ -13,7 +13,7 @@
         <tr>
             @foreach($definitions['fields'] as $field)
                 @if($field['type']!=='hidden')
-                    <th class="text-center">{{ isset($field['label']) ? ucfirst($field['label']) : '' }}</th>
+                    <th class="text-center">{{ ucfirst($field['label'] ?? '') }}</th>
                 @endif
             @endforeach
             <th></th>

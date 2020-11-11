@@ -17,7 +17,7 @@ class ModelRelatedModule extends Module
      * )
      **/
     protected static $RelationsStructure = [];
-    
+
     public static function getEmptyRecord($form_id = null) {
         $empty_record = parent::getEmptyRecord($form_id);
         foreach (ModelRelatedModule::$RelationsStructure as $relation) {
@@ -30,9 +30,9 @@ class ModelRelatedModule extends Module
     public static function getModule($form_id = null) {
         $model = parent::getModule($form_id);
         foreach(static::buildRelationStrings(static::$RelationsStructure, '.') as $relation) {
-            $module = $model->load($relation);
+            $model->load($relation);
         }
-        return isset($module) ? $module : $model;
+        return $model;
     }
 
     /**
@@ -185,7 +185,7 @@ class ModelRelatedModule extends Module
             static::cleanDeletedRelatedData($records_ids_to_keep, $related_model_class, $related_model_db_records, $record['id']);
         }
     }
-    
+
     /**
      * Determine if the given relationship (method) exists.
      *

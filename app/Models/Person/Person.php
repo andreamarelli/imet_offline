@@ -4,7 +4,7 @@ namespace App\Models\Person;
 
 use App\Models\Components\Form;
 use App\Models\Person\Modules\Responsibilities;
-use App\User;
+use App\Models\User;
 
 
 class Person extends Form

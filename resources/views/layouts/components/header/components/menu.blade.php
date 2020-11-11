@@ -6,7 +6,7 @@
 
 <nav id="menu">
 
-    <ul>
+    <ul class="menu-header">
 
         <li {!! ($breadcrumbs[0]=='ofac') ? 'class="selected"' : '' !!}>
             <a href="{{ url('/') }}/ofac/observatory">@lang('layout.menu.ofac.ofac')</a>
@@ -38,11 +38,12 @@
         </li>
 
         <li {!! ($breadcrumbs[0]=='monitoring_system') ? 'class="selected"' : '' !!}>
-            <a href="{{ url('/') }}/monitoring_system/monitoring_system">@lang('layout.menu.monitoring_system.monitoring_system')</a>
+            <a href="{{ url('/') }}/analytical_platform">@lang('layout.menu.monitoring_system.monitoring_system')</a>
             <ul>
                 <?php
                     echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'monitoring_system', 'introduction', url('/').'/monitoring_system/monitoring_system');
-                    echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'monitoring_system', 'national_indicators');
+                    echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'monitoring_system', 'analytical_platform', url('/').'/analytical_platform');
+                    echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'monitoring_system', 'national_indicators', url('/').'/monitoring_system/national_indicators/n1');
                     echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'monitoring_system', 'conservation');
                     echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'monitoring_system', 'concessions');
                     echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'monitoring_system', 'national_synthesis');
@@ -70,7 +71,7 @@
                     echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'publications', 'edf');
                     echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'publications', 'edap', '/publications/edap');
                     echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'publications', 'other_publications');
-                    echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'publications', 'library');
+                    echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'publications', 'library', url('/').'/library');
                     echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'publications', 'policy_briefs');
                     echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'publications', 'newsletter');
                 ?>

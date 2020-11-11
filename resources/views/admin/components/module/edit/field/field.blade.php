@@ -6,7 +6,7 @@
     /** @var bool  $disableJs [optional] */
 
     // Ensure at least empty strings
-    $class =        isset($class)       ? $class        : '';
+    $class = $class ?? '';
 
     // Set other attributes
     $class .= ' field-edit';

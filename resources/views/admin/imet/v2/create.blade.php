@@ -6,15 +6,13 @@
     ]])
 @endsection
 
-@section('admin_page_title')
-    @lang('form/imet/common.imet')
-@endsection
+@if(!App::environment('imetoffline'))
+    @section('admin_page_title')
+        @lang('form/imet/common.imet')
+    @endsection
+@endif
 
 @section('content')
-
-    <div class="entity-heading">
-        <div class="name">{{ ucfirst(trans('form/imet/common.create')) }}</div>
-    </div>
 
     @include('admin.components.module.edit.container', [
         'controller' => \App\Http\Controllers\Imet\ImetControllerV2::class,

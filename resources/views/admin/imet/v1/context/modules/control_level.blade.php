@@ -79,7 +79,7 @@ $area = \App\Models\Imet\v1\Modules\Context\Areas::getArea($vue_data['form_id'])
 
 @component('admin.components.module.components.row', [
                'name' => $definitions['fields'][4]['name'],
-               'label' => isset($definitions['fields'][4]['label']) ? $definitions['fields'][4]['label'] : '',
+               'label' => $definitions['fields'][4]['label'] ?? '',
                'label_width' => $definitions['label_width']
            ])
 
@@ -95,7 +95,7 @@ $area = \App\Models\Imet\v1\Modules\Context\Areas::getArea($vue_data['form_id'])
 
 @component('admin.components.module.components.row', [
                'name' => $definitions['fields'][5]['name'],
-               'label' => isset($definitions['fields'][5]['label']) ? $definitions['fields'][5]['label'] : '',
+               'label' => $definitions['fields'][5]['label'] ?? '',
                'label_width' => $definitions['label_width']
            ])
 

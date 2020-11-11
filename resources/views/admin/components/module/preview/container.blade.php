@@ -5,7 +5,7 @@
 /** @var String $mode (show|print) */
 /** @var \Illuminate\Database\Eloquent\Collection|null $collection (optional) */
 
-$collection = isset($collection) ? $collection : $module_class::getModule($form_id);
+$collection = $collection ?? $module_class::getModule($form_id);
 $definitions = $module_class::getDefinitions($form_id);
 $module_records = $module_class::getModuleRecords($form_id, $collection);
 $records = $module_records['records'];

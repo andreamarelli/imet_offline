@@ -34,17 +34,21 @@ class EntityModel extends Model
     /**
      * Return class short name (trim namespace)
      * @return string
-     * @throws \ReflectionException
-     */
+      */
     public static function getShortClassName()
     {
         return (new \ReflectionClass(static::class))->getShortName();
     }
 
+    /**
+     * @param $id
+     * @param null $key
+     * @return mixed
+     */
     public static function getLabel($id, $key = null) {
         $key = $key!=null ? $key : (new static())->primaryKey;
         $model = static::where($key, $id)->first();
-        return $model->getAttribute( static::LABEL);
+        return $model->getAttribute( static::LABEL) ?? null;
     }
 
     public function update_by_user()
@@ -114,7 +118,7 @@ class EntityModel extends Model
      */
     public function scopeWhereStartWith($query, $field, $initial_letter='')
     {
-        return $query->whereRaw('substring(lower('.$field.') from 1 for 1) = lower(?) ', array($initial_letter));
+        return $query->whereRaw('substring(lower('.$field.') from 1 for 1) = lower(?) ', [$initial_letter]);
     }
 
     /**

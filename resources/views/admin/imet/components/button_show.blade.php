@@ -10,17 +10,17 @@ if($version==='v1'){
 }
 ?>
 
-<span class="imet_encode_popover">
+<span class="imet_show_popover">
 
     <button class="btn btn-sm btn-success"
             role="button"
-            data-toggle="popover" data-trigger="focus" data-placement="top" :data-popover-content="'popover_'+item.FormID" >
+            data-toggle="popover" data-trigger="focus" data-placement="top" :data-popover-content="'popover_show_'+item.FormID" >
         {!! App\Library\Utils\Template::icon('eye', 'white') !!}
     </button>
 
-    <div :id="'popover_'+item.FormID" style="display: none">
+    <div :id="'popover_show_'+item.FormID" style="display: none">
         <div class="popover-heading">
-            {{ ucfirst(trans('form/imet/common.encode')) }}
+            {{ ucfirst(trans('form/imet/common.show')) }}
         </div>
         <div class="popover-body">
 
@@ -30,8 +30,9 @@ if($version==='v1'){
                 'action' =>'show',
                 'item' => 'item.FormID',
                 'label' => ucfirst(trans('form/imet/common.context')),
-                'icon' => 'pen',
-                'class' => 'btn-primary'
+                'icon' => 'list',
+                'class' => 'btn-success',
+                'new_page' => false
             ])
 
             {{-- Evaluation --}}
@@ -41,8 +42,22 @@ if($version==='v1'){
                 'item' => 'item.FormID',
                 'label' => ucfirst(trans('form/imet/common.evaluation')),
                 'icon' => 'check-circle',
-                'class' => 'btn-primary'
+                'class' => 'btn-success',
+                'new_page' => false
             ])
+
+            {{-- Analysis Report --}}
+            @if($version==='v2')
+                @include('admin.components.buttons._generic', [
+                    'controller' => $controller_context,
+                    'action' =>'report_show',
+                    'item' => 'item.FormID',
+                    'label' => ucfirst(trans('form/imet/common.report')),
+                    'icon' => 'flag-checkered',
+                    'class' => 'btn-success',
+                    'new_page' => false
+                ])
+            @endif
 
         </div>
     </div>

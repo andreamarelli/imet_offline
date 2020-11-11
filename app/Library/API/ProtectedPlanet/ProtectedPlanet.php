@@ -9,6 +9,7 @@ class ProtectedPlanet
 {
     public const URL_PREFIX = 'https://api.protectedplanet.net/v3/';
     public const TOKEN = '3c520c8b64cf0f903c351b702486e14b';
+    public const WEBSITE_URL = 'https://www.protectedplanet.net/';
 
     /**
      * Execute request to API
@@ -22,7 +23,8 @@ class ProtectedPlanet
         $params = array_merge($params, [
             'token' => self::TOKEN
         ]);
-        return API::execute_api_request($url, $params);
+        $response = API::execute_api_request($url, $params);
+        return  (array) $response;
     }
 
 

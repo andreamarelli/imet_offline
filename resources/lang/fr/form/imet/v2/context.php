@@ -332,7 +332,7 @@ return [
         'title' => 'Disponibilité en infrastructures, en équipement et en installations',
         'fields' => [
             'Resource' => 'Identification',
-            'AdequacyLevel' => 'Rapport nécessité/disponibilité',
+            'AdequacyLevel' => 'Rapport disponibilité/nécessité',
             'Comments' => 'Commentaires / Source',
         ],
         'groups' => [

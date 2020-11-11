@@ -2,7 +2,13 @@
 
 return [
 
-    'imet' => 'Integrated Management Effectiveness Tool (IMET)',
+    'languages' => [
+        'fr'        => 'french',
+        'en'        => 'english'
+    ],
+    'switch_language' => 'Switch current language to',
+
+    'imet' => 'IMET: Integrated Management Effectiveness Tool',
     'imet_short'        => 'IMET',
 
     'management'        => 'IMET management',
@@ -19,11 +25,14 @@ return [
     'readonly'                 => 'Read-only',
 
     'encode'            => 'encode',
+    'show'              => 'show',
+
     'context'           => 'context',
     'evaluation'        => 'evaluation',
+    'report'            => 'analysis report',
     'context_long'      => 'intervention context',
     'evaluation_long'   => 'management evaluation',
-    'report'            => 'analysis report',
+    'report_long'       => 'analysis report',
 
     'import_imet'       => 'Import IMET from file',
     'merge_tool'        => 'Merge Tool',

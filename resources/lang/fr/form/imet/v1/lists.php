@@ -2,11 +2,6 @@
 
 return [
 
-    'languages' => [
-        'fr'        => 'français',
-        'en'        => 'anglais'
-    ],
-
     'regions' => [
         'OFAC' => 'OFAC - Pays COMIFAC',
     ],
@@ -62,7 +57,7 @@ return [
         'Gouvernance privée',
         'Gouvernance par les communautés locales et les populations autochtones'
     ],
-    
+
     'Designation' => [
         'ASEAN Heritage Parks (ASEAN)',
         'Alliance for Zero Extinction Sites (AZE)',

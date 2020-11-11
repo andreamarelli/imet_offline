@@ -6,7 +6,7 @@
 /** @var boolean $show_filters */
 /** @var boolean $no_filter_selected */
 
-$can_encode = \App\User::isAdmin(Auth::user()) || \App\Models\Role\RoleImet::isEncoder(Auth::user());
+$can_encode = \App\Models\User::isAdmin(Auth::user()) || \App\Models\Role\RoleImet::isEncoder(Auth::user());
 
 ?>
 
@@ -18,9 +18,11 @@ $can_encode = \App\User::isAdmin(Auth::user()) || \App\Models\Role\RoleImet::isE
     ]])
 @endsection
 
-@section('admin_page_title')
-    @lang('form/imet/common.imet')
-@endsection
+@if(!App::environment('imetoffline'))
+    @section('admin_page_title')
+        @lang('form/imet/common.imet')
+    @endsection
+@endif
 
 @section('content')
 
@@ -86,7 +88,7 @@ $can_encode = \App\User::isAdmin(Auth::user()) || \App\Models\Role\RoleImet::isE
                                 {{-- name --}}
                                 <div class="imet_pa_name">
                                     <strong style="font-size: 1.1em;">@{{ item.name }}</strong>
-                                    (<a target="_blank" :href="'http://www.protectedplanet.net/'+ item.wdpa_id">@{{ item.wdpa_id }}</a>)
+                                    (<a target="_blank" :href="'{{ \App\Library\API\ProtectedPlanet\ProtectedPlanet::WEBSITE_URL }}'+ item.wdpa_id">@{{ item.wdpa_id }}</a>)
                                     <br />
                                     <flag :iso2=item.iso2></flag>&nbsp;&nbsp;<i>@{{ item.country_name }}</i>
                                 </div>
@@ -113,6 +115,11 @@ $can_encode = \App\User::isAdmin(Auth::user()) || \App\Models\Role\RoleImet::isE
                             <imet_radar :width=150 :height=150 :values=item.assessment ></imet_radar>
                         </td>
                         <td class="align-baseline text-center" style="white-space: nowrap;">
+
+                            {{-- Show --}}
+                            <span v-if="item.version==='v2'">
+                                @include('admin.imet.components.button_show', ['version' => 'v2'])
+                            </span>
 
                             @if($can_encode)
 
@@ -146,12 +153,6 @@ $can_encode = \App\User::isAdmin(Auth::user()) || \App\Models\Role\RoleImet::isE
                                     ])
                                 </span>
 
-                            @else
-
-                                {{-- Show --}}
-                                <span v-if="item.version==='v2'">
-                                    @include('admin.imet.components.button_show', ['version' => 'v2'])
-                                </span>
                             @endif
 
                             {{-- Export --}}

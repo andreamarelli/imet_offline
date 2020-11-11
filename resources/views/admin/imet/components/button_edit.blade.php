@@ -14,11 +14,11 @@ if($version==='v1'){
 
     <button class="btn btn-sm btn-warning"
        role="button"
-       data-toggle="popover" data-trigger="focus" data-placement="top" :data-popover-content="'popover_'+item.FormID" >
+       data-toggle="popover" data-trigger="focus" data-placement="top" :data-popover-content="'popover_edit_'+item.FormID" >
         {!! App\Library\Utils\Template::icon('pen', 'white') !!}
     </button>
 
-    <div :id="'popover_'+item.FormID" style="display: none">
+    <div :id="'popover_edit_'+item.FormID" style="display: none">
         <div class="popover-heading">
             {{ ucfirst(trans('form/imet/common.encode')) }}
         </div>
@@ -30,8 +30,9 @@ if($version==='v1'){
                 'action' =>'edit',
                 'item' => 'item.FormID',
                 'label' => ucfirst(trans('form/imet/common.context')),
-                'icon' => 'pen',
-                'class' => 'btn-warning'
+                'icon' => 'list',
+                'class' => 'btn-warning',
+                'new_page' => false
             ])
 
             {{-- Evaluation --}}
@@ -41,7 +42,8 @@ if($version==='v1'){
                 'item' => 'item.FormID',
                 'label' => ucfirst(trans('form/imet/common.evaluation')),
                 'icon' => 'check-circle',
-                'class' => 'btn-warning'
+                'class' => 'btn-warning',
+                'new_page' => false
             ])
 
             {{-- Analysis Report --}}
@@ -52,7 +54,8 @@ if($version==='v1'){
                     'item' => 'item.FormID',
                     'label' => ucfirst(trans('form/imet/common.report')),
                     'icon' => 'flag-checkered',
-                    'class' => 'btn-warning'
+                    'class' => 'btn-warning',
+                    'new_page' => false
                 ])
             @endif
 

@@ -22,8 +22,9 @@ trait Country{
     /**
      * Returns list of species (Corals, Sharks & Rays, Amphibians, Birds, Mammals) in Country protected; calculated with
      * the returning iso3 of intersection within species ranges and WDPA
+     *
      * @param $country
-     * @return array
+     * @return mixed
      */
     public static function get_country_redlist_th_list($country)
     {

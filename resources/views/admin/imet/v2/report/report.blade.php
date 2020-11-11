@@ -1,4 +1,5 @@
 <?php
+/** @var string $action */
 /** @var \App\Models\Imet\v2\Imet $item */
 /** @var array $assessment */
 /** @var array $key_elements */
@@ -51,20 +52,18 @@ function score_class_threats($value, $additional_classes=''){
     ]])
 @endsection
 
-@section('admin_page_title')
-    @lang('form/imet/common.imet')
-@endsection
+@if(!App::environment('imetoffline'))
+    @section('admin_page_title')
+        @lang('form/imet/common.imet')
+    @endsection
+@endif
+
 
 @section('content')
 
 <div id="imet_report">
 
-    <h2>{{ ucfirst(trans('form/imet/common.report')) }}</h2>
-    <div class="entity-heading">
-        <div class="id">#{{ $item->getKey() }}</div>
-        <div class="name">{{ $item->Name }}</div>
-        <div class="location">{!! \App\Library\Ofac\Template::flag_and_name($item->Country) !!}</div>
-    </div>
+    @include('admin.imet.components.heading', ['phase' => 'report'])
 
     <div class="module-container">
         <div class="module-header"><div class="module-title">General elements of the protected area</div></div>
@@ -131,60 +130,60 @@ function score_class_threats($value, $additional_classes=''){
                     <li>{{ $elem }}</li>
                 @endforeach
             </ul>
-            <editor v-model=report.key_species_comment v-on:update="report.key_species_comment = $event"></editor>
+            @include('admin.imet.v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'key_species_comment'])
             <h5>Terrestrial and marine habitats - land-cover, land-change and land-take</h5>
             <ul>
                 @foreach($key_elements['habitats'] as $elem)
                     <li>{{ $elem }}</li>
                 @endforeach
             </ul>
-            <editor v-model=report.habitats_comment v-on:update="report.habitats_comment = $event"></editor>
+            @include('admin.imet.v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'habitats_comment'])
             <h5>Climate Change</h5>
             <ul>
                 @foreach($key_elements['climate_change'] as $elem)
                     <li>{{ $elem }}</li>
                 @endforeach
             </ul>
-            <editor v-model=report.climate_change_comment v-on:update="report.climate_change_comment = $event"></editor>
+            @include('admin.imet.v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'climate_change_comment'])
             <h5>Ecosystem services</h5>
             <ul>
                 @foreach($key_elements['ecosystem_services'] as $elem)
                     <li>{{ $elem }}</li>
                 @endforeach
             </ul>
-            <editor v-model=report.ecosystem_services_comment v-on:update="report.ecosystem_services_comment = $event"></editor>
+            @include('admin.imet.v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'ecosystem_services_comment'])
             <h5>Threats</h5>
             <ul>
                 @foreach($key_elements['threats'] as $elem)
                     <li>{{ $elem }}</li>
                 @endforeach
             </ul>
-            <editor v-model=report.threats_comment v-on:update="report.threats_comment = $event"></editor>
-            @include('admin.imet.v2.report.table_evaluation', ['assessment' => $assessment])
+            @include('admin.imet.v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'threats_comment'])
+            @include('admin.imet.v2.report.components.table_evaluation', ['assessment' => $assessment])
         </div>
     </div>
 
     <div class="module-container">
         <div class="module-header"><div class="module-title">Management effectiveness analysis (analysis + swot analysis)</div></div>
         <div class="module-body">
-            <editor v-model=report.analysis v-on:update="report.analysis = $event"></editor>
+            @include('admin.imet.v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'analysis'])
             <h5>Characteristic elements of the protected area in the form of a SWOT exercise</h5>
             <div class="swot">
                 <div>
                     <b>Strengths</b>
-                    <editor v-model=report.strengths_swot v-on:update="report.strengths_swot = $event"></editor>
+                    @include('admin.imet.v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'strengths_swot'])
                 </div>
                 <div>
                     <b>Weaknesses</b>
-                    <editor v-model=report.weaknesses_swot v-on:update="report.weaknesses_swot = $event"></editor>
+                    @include('admin.imet.v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'weaknesses_swot'])
                 </div>
                 <div>
                     <b>Opportunities</b>
-                    <editor v-model=report.opportunities_swot v-on:update="report.opportunities_swot = $event"></editor>
+                    @include('admin.imet.v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'opportunities_swot'])
                 </div>
                 <div>
                     <b>Threats</b>
-                    <editor v-model=report.threats_swot v-on:update="report.threats_swot = $event"></editor>
+                    @include('admin.imet.v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'threats_swot'])
                 </div>
             </div>
         </div>
@@ -193,7 +192,7 @@ function score_class_threats($value, $additional_classes=''){
     <div class="module-container">
         <div class="module-header"><div class="module-title">Operating recommendations</div></div>
         <div class="module-body">
-            <editor v-model=report.recommendations v-on:update="report.recommendations = $event"></editor>
+            @include('admin.imet.v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'recommendations'])
         </div>
     </div>
 
@@ -201,11 +200,11 @@ function score_class_threats($value, $additional_classes=''){
         <div class="module-header"><div class="module-title">Key questions</div></div>
         <div class="module-body">
             <h5>What are your management/governance priorities?</h5>
-            <editor v-model=report.priorities v-on:update="report.priorities = $event"></editor>
+            @include('admin.imet.v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'priorities'])
             <h5>What is your minimum operating budget to ensure the preservation of the values and importance of your protected area?</h5>
-            <editor v-model=report.minimum_budget v-on:update="report.minimum_budget = $event"></editor>
+            @include('admin.imet.v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'minimum_budget'])
             <h5>In the case of additional funding for the management of the protected area what actions would you like to take and for how much time?</h5>
-            <editor v-model=report.additional_funding v-on:update="report.additional_funding = $event"></editor>
+            @include('admin.imet.v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'additional_funding'])
         </div>
     </div>
 
@@ -250,25 +249,27 @@ function score_class_threats($value, $additional_classes=''){
         </div>
     </div>
 
-    <div class="scrollButtons" v-cloak>
-        {{-- Save --}}
-        <div class="standalone" v-show=status==='changed'>
-            <form id="imet_report_form" method="post" action="{{ action([\App\Http\Controllers\Imet\ImetControllerV2::class, 'report_update'], [$item->getKey()]) }}" style="display: inline-block;">
-                @method('PATCH')
-                @csrf
-                <span @click="saveReport">{!! \App\Library\Utils\Template::icon('save') !!} {{ ucfirst(trans('common.save')) }}</span>
-            </form>
-        </div>
-        <div class="standalone" v-show=status==='loading' >
-            <i class="fa fa-spinner fa-spin green_dark"></i>
-            {{ ucfirst(trans('common.saving')) }}
-        </div>
-        <div v-show=status==='saved' class="standalone highlight">{{ ucfirst(trans('common.saved_successfully')) }}!</div>
-        <div v-show=status==='error' class="standalone error">{{ ucfirst(trans('common.saved_error')) }}!</div>
+    @if($action==='edit')
+        <div class="scrollButtons" v-cloak>
+            {{-- Save --}}
+            <div class="standalone" v-show=status==='changed'>
+                <form id="imet_report_form" method="post" action="{{ action([\App\Http\Controllers\Imet\ImetControllerV2::class, 'report_update'], [$item->getKey()]) }}" style="display: inline-block;">
+                    @method('PATCH')
+                    @csrf
+                    <span @click="saveReport">{!! \App\Library\Utils\Template::icon('save') !!} {{ ucfirst(trans('common.save')) }}</span>
+                </form>
+            </div>
+            <div class="standalone" v-show=status==='loading' >
+                <i class="fa fa-spinner fa-spin green_dark"></i>
+                {{ ucfirst(trans('common.saving')) }}
+            </div>
+            <div v-show=status==='saved' class="standalone highlight">{{ ucfirst(trans('common.saved_successfully')) }}!</div>
+            <div v-show=status==='error' class="standalone error">{{ ucfirst(trans('common.saved_error')) }}!</div>
 
-        {{-- Print --}}
-        <div class="standalone" @click="printReport">{!! \App\Library\Utils\Template::icon('print') !!} {{ ucfirst(trans('common.print')) }}</div>
-    </div>
+            {{-- Print --}}
+            <div class="standalone" @click="printReport">{!! \App\Library\Utils\Template::icon('print') !!} {{ ucfirst(trans('common.print')) }}</div>
+        </div>
+    @endif
 
 </div>
 
@@ -428,6 +429,7 @@ function score_class_threats($value, $additional_classes=''){
 
             loadMap(){
                 let _this = this;
+                console.log(window, window.mapboxgl);
                 window.mapboxgl.accessToken = 'pk.eyJ1IjoiYmxpc2h0ZW4iLCJhIjoiMEZrNzFqRSJ9.0QBRA2HxTb8YHErUFRMPZg';
                 let biopamaBaseLayer = 'mapbox://styles/jamesdavy/cjw25laqe0y311dqulwkvnfoc';
                 let mapPolyHostURL = "https://tiles.biopama.org/BIOPAMA_poly_2";

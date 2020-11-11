@@ -16,18 +16,15 @@ if($item->language != App::getLocale()){
     ]])
 @endsection
 
-@section('admin_page_title')
-    @lang('form/imet/common.imet')
-@endsection
+@if(!App::environment('imetoffline'))
+    @section('admin_page_title')
+        @lang('form/imet/common.imet')
+    @endsection
+@endif
 
 @section('content')
 
-    <h2>{{ ucfirst(trans('form/imet/common.context_long')) }}</h2>
-    <div class="entity-heading">
-        <div class="id">#{{ $item->getKey() }}</div>
-        <div class="name">{{ $item->Name }}</div>
-        <div class="location">{!! \App\Library\Ofac\Template::flag_and_name($item->Country) !!}</div>
-    </div>
+    @include('admin.imet.components.heading', ['phase' => 'context'])
 
     {{--  Form Controller Menu --}}
     @include('admin.components.steps', [

@@ -103,7 +103,7 @@ class UserRight extends EntityModel
 
         $user_right->user_id    = $record['user_id'];
         $user_right->scope      = $record['scope'];
-        $user_right->country    = isset($record['country']) ? $record['country'] : null;
+        $user_right->country    = $record['country'] ?? null;
         $user_right->site       = $record['site'];
         $user_right->encode     = isset($record['encode']) && $record['encode']===true ? true : null;
         $user_right->modify     = isset($record['modify']) && $record['modify']===true ? true : null;

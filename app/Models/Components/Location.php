@@ -25,7 +25,7 @@ trait Location
                 if($level === 'administrative_location'){
                     $inner_query->where('administrative_location', $site);
                 } else {
-                    $inner_query->whereRaw('unaccent('.$level.'_location) ilike (\'%\' || unaccent(\''.$site.'\') || \'%\')');
+                    $inner_query->whereRaw('unaccent('.strtolower($level).'_location) ILIKE unaccent(?)', ['%'.$site.'%']);
                 }
             }
         });
@@ -67,7 +67,7 @@ trait Location
                             $inner_query->where('level', 'national')
                                     ->where(function ($inner_query) use ($site) {
                                         $inner_query->where('level', 'national')
-                                        ->whereRaw('unaccent("national_location") ilike (\'%\' || unaccent(\'' . $site . '\') || \'%\')');
+                                        ->whereRaw('unaccent("national_location") ILIKE unaccent(?)', ['%'.$site.'%']);
                                     })->orWhere(function ($inner_query) use ($site){
                             $inner_query->where('level', 'administrativeLevels')
                                 ->wherein('administrative_location', AdministrationLevel::getIdsByCountry($site));
@@ -78,23 +78,13 @@ trait Location
                     $inner_query->where('level', 'ProtectedArea');
                     if($site !== null) {
                         $ofac_id= \App\Models\ProtectedArea\ProtectedArea::getByWdpa($site)->ofac_id ?? $site;
-                        if(static::class == "App\Models\Catalogue\Catalogue"){
-                            $inner_query->whereRaw('unaccent("protectedarea_location") ilike (\'%\' || unaccent(\'' . $ofac_id . '\') || \'%\')');
-                        } else {
-                            $inner_query->whereRaw('unaccent("ProtectedArea_location") ilike (\'%\' || unaccent(\'' . $ofac_id . '\') || \'%\')');
-                        }
-
+                        $inner_query->whereRaw('unaccent("protectedarea_location") ILIKE unaccent(?)', ['%'.$ofac_id.'%']);
                     }
                     break;
                 case 'concessions':
                     $inner_query->where('level', 'Concession');
                     if($site !== null) {
-                        if(static::class == "App\Models\Catalogue\Catalogue"){
-                            $inner_query->whereRaw('unaccent("concession_location") ilike (\'%\' || unaccent(\'' . $site . '\') || \'%\')');
-
-                        } else {
-                            $inner_query->whereRaw('unaccent("Concession_location") ilike (\'%\' || unaccent(\'' . $site . '\') || \'%\')');
-                        }
+                        $inner_query->whereRaw('unaccent("concession_location") ILIKE unaccent(?)', ['%'.$site.'%']);
                     }
                     break;
             }

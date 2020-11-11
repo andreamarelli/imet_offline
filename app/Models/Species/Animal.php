@@ -88,15 +88,15 @@ class Animal extends EntityModel
     public function scopeSearchName($query, $search_key)
     {
         return $query
-            ->where('species', '~~*', '%' . $search_key . '%')
-            ->orWhere('genus', '~~*', '%' . $search_key . '%')
-            ->orWhere('family', '~~*', '%' . $search_key . '%')
-            ->orWhere('order', '~~*', '%' . $search_key . '%')
-            ->orWhere('class', '~~*', '%' . $search_key . '%')
-            ->orWhere('phylum', '~~*', '%' . $search_key . '%')
-            ->orWhere('common_name_en', '~~*', '%' . $search_key . '%')
-            ->orWhere('common_name_fr', '~~*', '%' . $search_key . '%')
-            ->orWhere('common_name_sp', '~~*', '%' . $search_key . '%');
+            ->whereRaw('unaccent(species) ILIKE unaccent(?)', ['%'.$search_key.'%'])
+            ->orWhereRaw('unaccent(genus) ILIKE unaccent(?)', ['%'.$search_key.'%'])
+            ->orWhereRaw('unaccent(family) ILIKE unaccent(?)', ['%'.$search_key.'%'])
+            ->orWhereRaw('unaccent(\'order\') ILIKE unaccent(?)', ['%'.$search_key.'%'])
+            ->orWhereRaw('unaccent(class) ILIKE unaccent(?)', ['%'.$search_key.'%'])
+            ->orWhereRaw('unaccent(phylum) ILIKE unaccent(?)', ['%'.$search_key.'%'])
+            ->orWhereRaw('unaccent(common_name_en) ILIKE unaccent(?)', ['%'.$search_key.'%'])
+            ->orWhereRaw('unaccent(common_name_fr) ILIKE unaccent(?)', ['%'.$search_key.'%'])
+            ->orWhereRaw('unaccent(common_name_sp) ILIKE unaccent(?)', ['%'.$search_key.'%']);
     }
 
     /**
@@ -176,12 +176,12 @@ class Animal extends EntityModel
             ? static::getScientificName($taxonomy)
             : $taxonomy;
     }
-	
-	public static function getCommonName($taxonomy)
-	{
+
+    public static function getCommonName($taxonomy)
+    {
             $common_name=null;
 
-                    
+
                     $taxonomy_array = explode('|', $taxonomy);
                     $record= static::where('species', '=', $taxonomy_array[5])
                                         ->where('genus', '=', $taxonomy_array[4])
@@ -195,11 +195,11 @@ class Animal extends EntityModel
                     $common_name=(!empty($record)) ? $record['common_name_fr'] .
                         ' ' . $record['common_name_en'] .
                         ' ' . $record['common_name_sp'] : '';
-               
+
             return $common_name;
-	}
-        
-        
+    }
+
+
         public static function getIUCNCategory($taxonomy){
             $record=null;
              if(static::isTaxonomy($taxonomy)){
@@ -213,7 +213,7 @@ class Animal extends EntityModel
                                         ->first()
                                         ->toArray();
              }
-             
+
             return !empty($record)? $record['iucn_redlist_category']: null;
         }
 

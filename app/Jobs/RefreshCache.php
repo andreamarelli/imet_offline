@@ -2,14 +2,17 @@
 
 namespace App\Jobs;
 
+use App\Http\Controllers\Project\ProjectController;
 use App\Models\Country;
-use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
-use Illuminate\Http\Request;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Http\Request;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Log;
+use \App\Http\Controllers\AnalyticalPlatform\Biodiversity;
+use \App\Http\Controllers\AnalyticalPlatform\ForestManagement;
 
 class RefreshCache implements ShouldQueue
 {
@@ -27,15 +30,7 @@ class RefreshCache implements ShouldQueue
      */
     public function __construct()
     {
-        $request = new Request();
-        $request->merge(['no_cache' => 'true']);
 
-        \App\Http\Controllers\AnalyticalPlatform\Biodiversity\RegionalController::api($request);
-        //\App\Http\Controllers\AnalyticalPlatform\ForestManagement\RegionalController::api($request);
-        foreach(\App\Models\Country::ofac()->noAwy()->get()->pluck('iso3')->toArray() as $iso3) {
-        //    \App\Http\Controllers\AnalyticalPlatform\Biodiversity\NationalController::api($request, $iso3);
-        //    \App\Http\Controllers\AnalyticalPlatform\ForestManagement\NationalController::api($request, $iso3);
-        }
     }
 
     /**
@@ -45,6 +40,23 @@ class RefreshCache implements ShouldQueue
      */
     public function handle()
     {
+        $time_start  = microtime(true);
 
+        $request = new Request();
+        $request->merge(['no_cache' => 'true']);
+
+        // ###### Analytical Platform ######
+        Biodiversity\RegionalController::api($request);
+        ForestManagement\RegionalController::api($request);
+        foreach(Country::ofac()->noAwy()->get()->pluck('iso3')->toArray() as $iso3) {
+            Biodiversity\NationalController::api($request, $iso3);
+            ForestManagement\NationalController::api($request, $iso3);
+        }
+
+        // ###### Project Platform ######
+        ProjectController::api_project_platform($request);
+
+        $execution_time = round((microtime(true) - $time_start), 2);
+        Log::info('Scheduled job executed in '.$execution_time.' seconds: RefreshCache.');
     }
 }

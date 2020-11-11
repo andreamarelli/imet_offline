@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Components;
 
 use App\Http\Controllers\Controller;
 use App\Library\Utils\File\File;
+use App\Models\Components\Form;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Library\Utils\HTTP;
 
@@ -88,9 +90,10 @@ class FormController extends Controller
 
     /**
      * Manage "show" route
+     *
      * @param $item
      * @param null $step
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show($item, $step=null)
@@ -109,8 +112,9 @@ class FormController extends Controller
 
     /**
      * Manage "print" route
+     *
      * @param $item
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function print($item)
@@ -201,6 +205,8 @@ class FormController extends Controller
      * Export: Generate and download CSV file
      *
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
     public function csv()
     {
@@ -246,8 +252,11 @@ class FormController extends Controller
 
     /**
      * Generate and stream PDF
+     *
      * @param $item
      * @return string
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
     public function pdf($item)
     {

@@ -22,7 +22,7 @@ class API
         try {
             $response = json_decode(file_get_contents($url));
             // store in cache
-            Cache::put($cache_key, $cache_value, static::CACHE_TTL);
+            Cache::put($cache_key, $response, static::CACHE_TTL);
         } catch (\Exception $e) {
             return ['error' => $e->getMessage()];
         }

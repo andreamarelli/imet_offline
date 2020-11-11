@@ -4,7 +4,7 @@ namespace App\Models\Person\Modules;
 
 use App\Models\Components\Module;
 use App\Models\Person\Person;
-use App\User;
+use App\Models\User;
 
 
 class ProjectOwner extends Module

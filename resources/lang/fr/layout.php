@@ -102,6 +102,7 @@ return [
             "national_synthesis"    => "Synthèses nationales",
             "regional_synthesis"    => "Synthèse régionale",
             "imet"                  => "Aires protégées (IMET)",
+            "analytical_platform"   => "Portail analytique de l'OFAC",
 
             "concessions_indicators" => "Indicateurs de gestion forestière par concession",
         ],
@@ -122,7 +123,7 @@ return [
             "edf"                   => "État des Forêts",
             "edap"                  => "État des Aires Protégées",
             "other_publications"    => "Autres publications OFAC",
-            "library"               => "Catalogue de données",
+            "library"               => "Librairie",
             "policy_briefs"         => "Policy brief",
             "newsletter"         => "Newsletter",
         ],

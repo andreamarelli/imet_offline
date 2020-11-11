@@ -1,91 +1,93 @@
 <?php
 
-namespace App\Jobs;
-
+namespace App\Console\Commands;
 
 use App\Library\Utils\File\File;
-use App\Models\AdministrationLevel;
 use App\Models\Concession\Concession;
 use App\Models\KeyLandscapeConservation;
 use App\Models\Landscape;
 use App\Models\ProtectedArea\ProtectedArea;
-use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Console\Command;
 
-class GenerateGeoJSON implements ShouldQueue
+class GenerateGeoJson extends Command
 {
-    use Dispatchable;
-    use InteractsWithQueue;
-    use Queueable;
-    use SerializesModels;
-    use Utils;
-
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'generate:geojson';
 
     /**
-     * Create a new job instance.
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Generate GeoJSON file of vectorial entities in the DB';
+
+    /**
+     * Create a new command instance.
      *
      * @return void
      */
     public function __construct()
     {
-
+        parent::__construct();
     }
 
     /**
-     * Execute the job.
+     * Execute the console command.
      *
-     * @return void
+     * @return int
      */
     public function handle()
     {
         try{
 
             //  #######  ProtectedAreas  #######
-            static::log( 'Generating Protected Areas geojson...');
+            $this->line( 'Generating Protected Areas geojson...');
             $geoJSON = ProtectedArea::exportGeoJSON(
                 ProtectedArea::select(['geom', 'wdpa_id as id', 'wdpa_id', 'country', 'name', 'ofac_id', 'iucn_category', 'designation', 'status'])
             );
             File::exportTo('GeoJSON','protected_areas.geojson', $geoJSON);
-            static::log('done.', 'info');
+            $this->info('done.');
 
             //  #######  Concessions  #######
-            static::log( 'Generating Concessions geojson...');
+            $this->line( 'Generating Concessions geojson...');
             $geoJSON = Concession::exportGeoJSON(
                 Concession::select(['geom', 'ConcessionID as id', 'Country as country', 'ConcessionName as name', 'NationalID as national_id', 'PermitType as permit_type'])
             );
             File::exportTo('GeoJSON','concessions.geojson', $geoJSON);
-            static::log('done.', 'info');
+            $this->info('done.');
 
             //  #######  Landscapes  #######
-            static::log( 'Generating Landscapes geojson...');
+            $this->line( 'Generating Landscapes geojson...');
             $geoJSON = Landscape::exportGeoJSON(
-                    Landscape::select(['geom', 'LandscapeID as id', 'Name as name'])
+                Landscape::select(['geom', 'LandscapeID as id', 'Name as name'])
             );
             File::exportTo('GeoJSON','landscapes.geojson', $geoJSON);
-            static::log('done.', 'info');
+            $this->info('done.');
 
             //  #######  Landscapes KLC  #######
-            static::log( 'Generating Landscapes KLC geojson...');
+            $this->line( 'Generating Landscapes KLC geojson...');
             $geoJSON = KeyLandscapeConservation::exportGeoJSON(
                 KeyLandscapeConservation::select(['geom', 'id', 'klc_id', 'klcname as name', 'region'])
             );
             File::exportTo('GeoJSON','klc.geojson', $geoJSON);
-            static::log('done.', 'info');
+            $this->info('done.');
 
             //  #######  countries  #######
-            static::log( 'Generating countries geojson...');
+            $this->line( 'Generating countries geojson...');
             $geoJSON = \App\Models\CountryComifac::exportGeoJSON(
                 \App\Models\CountryComifac::select(['geom', 'id', 'iso2', 'iso3', 'iso', 'name_fr', 'name_en', 'name_sp'])
             );
             File::exportTo('GeoJSON','countries.geojson', $geoJSON);
-            static::log('done.', 'info');
+            $this->info('done.');
 
 
         } catch (\Exception $e){
-            static::log( $e->getMessage(), 'error');
+            $this->error($e->getMessage());
         }
+        return 0;
     }
 }

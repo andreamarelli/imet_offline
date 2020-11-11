@@ -35,7 +35,7 @@ return [
                         "protected_areas"       => "Protected Areas",
                         "monitoring_plot"       => "Monitoring permanent plots"
             ],
-            
+
         ],
 
         "africa" => [
@@ -103,6 +103,7 @@ return [
             "national_synthesis"    => "National synthesis",
             "regional_synthesis"    => "Regional synthesis",
             "imet"                  => "Protected Areas (IMET)",
+            "analytical_platform"   => "OFAC analytical portal",
 
             "concessions_indicators" => "Forest Concessions Indicators",
         ],

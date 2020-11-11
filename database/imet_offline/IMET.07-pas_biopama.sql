@@ -4686,25 +4686,25 @@ INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, cre
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555645409', 'TLS', '555645409', 'Lagoa Maubara', 'Not Reported', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555651493', 'TUV', '555651493', 'Nanumaga Marine Protected Area', 'Not Reported', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555645406', 'TLS', '555645406', 'Lagoa HasanFoun&OnuBot ', 'Not Reported', NULL);
-INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555547862-2', '555547862', 'PA', 'TUV', '555547862', 'Nukulaelae Terrestrial Protected Area', 'Not Reported', NULL);
+INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555547862-2', 'TUV', '555547862', 'Nukulaelae Terrestrial Protected Area', 'Not Reported', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555645407', 'TLS', '555645407', 'BeMatanIrabere', 'Not Reported', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555645410', 'TLS', '555645410', 'Lagoa BeMalae', 'Not Reported', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555547865', 'TUV', '555547865', 'Vaitupu Terrestrial Protected Area', 'Not Reported', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555645411', 'TLS', '555645411', 'Suco de Vila', 'Not Reported', NULL);
-INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555547865-2', '555547865', 'PA', 'TUV', '555547865', 'Vaitupu Locally Managed Marine Area', 'Not Reported', NULL);
-INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555547864-2', '555547864', 'PA', 'TUV', '555547864', 'Nui Terrestrial Protected Area', 'Not Reported', NULL);
+INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555547865-2', 'TUV', '555547865', 'Vaitupu Locally Managed Marine Area', 'Not Reported', NULL);
+INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555547864-2', 'TUV', '555547864', 'Nui Terrestrial Protected Area', 'Not Reported', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555645412', 'TLS', '555645412', 'Area Mangal Hera', 'Not Reported', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555645413', 'TLS', '555645413', 'Area Mangal Metinaro ', 'Not Reported', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555645414', 'TLS', '555645414', 'Lagoa Modomahut', 'Not Reported', NULL);
-INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_352708-2', '352708', 'PA', 'TLS', '352708', 'Nino Konis Santana', 'V', NULL);
-INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555547863-2', '555547863', 'PA', 'TUV', '555547863', 'Nanumea Locally Managed Marine Area', 'Not Reported', NULL);
-INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555547864-2-3', '555547864', 'PA', 'TUV', '555547864', 'Nui Locally Managed Marine Area', 'Not Reported', NULL);
-INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555547862-2-3', '555547862', 'PA', 'TUV', '555547862', 'Nukulaelae Locally Managed Marine Area', 'Not Reported', NULL);
-INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555547861-2', '555547861', 'PA', 'TUV', '555547861', 'Nukufetau Locally Managed Marine Area', 'Not Reported', NULL);
+INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_352708-2', 'TLS', '352708', 'Nino Konis Santana', 'V', NULL);
+INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555547863-2', 'TUV', '555547863', 'Nanumea Locally Managed Marine Area', 'Not Reported', NULL);
+INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555547864-2-3', 'TUV', '555547864', 'Nui Locally Managed Marine Area', 'Not Reported', NULL);
+INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555547862-2-3', 'TUV', '555547862', 'Nukulaelae Locally Managed Marine Area', 'Not Reported', NULL);
+INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555547861-2', 'TUV', '555547861', 'Nukufetau Locally Managed Marine Area', 'Not Reported', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555651495', 'TUV', '555651495', 'Niutao Locally Managed Marine Area', 'Not Reported', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555651494', 'TUV', '555651494', 'Niulakita Locally Managed Marine Area', 'Not Reported', NULL);
-INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555651493-2', '555651493', 'PA', 'TUV', '555651493', 'Nanumaga Locally Managed Marine Area', 'Not Reported', NULL);
-INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555547861-2-3', '555547861', 'PA', 'TUV', '555547861', 'Nukufetau Terrestrial Protected Area', 'Not Reported', NULL);
+INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555651493-2', 'TUV', '555651493', 'Nanumaga Locally Managed Marine Area', 'Not Reported', NULL);
+INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555547861-2-3', 'TUV', '555547861', 'Nukufetau Terrestrial Protected Area', 'Not Reported', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_145496', 'TUV', '145496', 'Funafuti', 'VI', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('SA_4490', 'AGO', '4490', 'Natural Regional Park Chimalavera', 'V', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('SA_347', 'AGO', '347', 'National Park Iona', 'II', NULL);
@@ -5027,8 +5027,7 @@ INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, cre
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555547850', 'COK', '555547850', 'Pouara', 'Not Reported', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_315496', 'COK', '315496', 'Tikioki', 'IV', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555547851', 'COK', '555547851', 'Titikaveka', 'Not Reported', NULL);
-INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555624907', 'COK', '555624907', 'Cook Islands Marine Park
-', 'VI', NULL);
+INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('PA_555624907', 'COK', '555624907', 'Cook Islands Marine Park', 'VI', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('SA_145516', 'BWA', '145516', 'Okavango Delta System', 'Not Reported', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('SA_17989', 'BWA', '17989', 'Maun', 'IV', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('WA_29498', 'CIV', '29498', 'Manzan', 'Not Reported', NULL);
@@ -6004,7 +6003,6 @@ INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, cre
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('CR_198', 'GUY', '198', 'Kaieteur National Park', 'II', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('CR_41049', 'GUY', '41049', 'Kanuku Mountains Protected Area', 'VI', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('CR_41057', 'GUY', '41057', 'Shell Beach Protected Area', 'VI', NULL);
-INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('CR_41057-2', '41057', 'CR', 'GUY', '41057', 'Shell Beach Protected Area', 'VI', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('CR_36142', 'JAM', '36142', 'Cambridge Back Lands', 'VI', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('CR_555542834', 'JAM', '555542834', 'Camp Savannah', 'VI', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('CR_28987', 'JAM', '28987', 'Cedar Valley', 'VI', NULL);
@@ -6718,8 +6716,7 @@ INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, cre
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('SA_4650', 'MOZ', '4650', 'Gilé', 'Not Reported', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('SA_7944', 'MOZ', '7944', 'Inhamitanga', 'Not Reported', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('SA_7945', 'MOZ', '7945', 'Nhapacué', 'Not Reported', NULL);
-INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('SA_902679', 'MOZ', '902679', 'Zambezi Delta
-', 'Not Reported', NULL);
+INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('SA_902679', 'MOZ', '902679', 'Zambezi Delta', 'Not Reported', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('SA_2088', 'MUS', '2088', 'MaccabeeBel Ombre Biosphere Reserve', 'Not Applicable', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('SA_799', 'MOZ', '799', 'Banhine', 'IV', NULL);
 INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('SA_800', 'MOZ', '800', 'Zinave', 'Not Assigned', NULL);

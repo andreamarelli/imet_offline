@@ -4,7 +4,7 @@ namespace App\Models\Person\Modules;
 
 
 use App\Models\UserRight;
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 

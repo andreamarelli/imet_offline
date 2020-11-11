@@ -4,6 +4,7 @@ namespace App\Models\Components;
 
 use App\Library\Utils\PhpClass;
 use App\Models\Imet\v2\Imet_Eval;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 
@@ -50,18 +51,26 @@ class Form extends EntityModel
 
     /**
      * Default method for getting form list
+     *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param Request $request
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeFilterList($query, Request $request)
+    public function scopeFilterList(Builder $query, Request $request)
     {
         return $query;
     }
 
+    /**
+     * @param $item
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     * @throws \Exception
+     */
     public static function updateModuleAndForm($item, Request $request)
     {
         // update Module
+        /** @var \App\Models\Components\Module $module_class */
         $module_class = ModuleKey::KeyToClassName($request->input('module_key'));
         PhpClass::ClassExist($module_class);
         $return = $module_class::updateModule($request);

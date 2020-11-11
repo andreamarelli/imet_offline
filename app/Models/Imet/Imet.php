@@ -7,6 +7,7 @@ use App\Models\Components\Form;
 use App\Models\Imet\Utils\Encoder;
 use App\Models\Imet\Utils\ProtectedArea;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class Imet extends Form
@@ -34,11 +35,12 @@ class Imet extends Form
 
     /**
      * Override scopeFilterList()
+     *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param Request $request
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeFilterList($query, Request $request)
+    public function scopeFilterList(Builder $query, Request $request)
     {
         // filter
         $query->whereHasPermission();

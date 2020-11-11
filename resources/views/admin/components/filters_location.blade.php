@@ -13,10 +13,10 @@
         'continental_location' =>       $params['continental_location'] ?? null,
         'regional_location' =>          $params['regional_location'] ?? null,
         'national_location' =>          $params['national_location'] ?? null,
-        'Concession_location' =>        $params['Concession_location'] ?? null,
-        'ProtectedArea_location' =>     $params['ProtectedArea_location'] ?? null,
-        'Landscape_location' =>         $params['Landscape_location'] ?? null,
-        'KeyLandscapeConservation_location' =>        $params['KeyLandscapeConservation_location'] ?? null,
+        'concession_location' =>        $params['concession_location'] ?? null,
+        'protectedarea_location' =>     $params['protectedarea_location'] ?? null,
+        'landscape_location' =>         $params['landscape_location'] ?? null,
+        'keylandscapeconservation_location' =>        $params['keylandscapeconservation_location'] ?? null,
         'administrative_location' =>    $params['administrative_location'] ?? null,
         'level_intersections' =>        isset($params['level_intersections'])
     ];
@@ -84,48 +84,48 @@
         <input type="hidden" name="national_location" v-model="national_location" />
     </div>
 
-    {{-- Concession_location --}}
+    {{-- concession_location --}}
     <div v-show="intervention_level === 'Concession'">
         @include('admin.components.module.edit.field.vue', [
             'type' => 'dropdown-Concession',
-            'v_value' => 'Concession_location',
-            'id' => "'Concession_location'",
-            'other' => 'name="Concession_location" @change=trigger'
+            'v_value' => 'concession_location',
+            'id' => "'concession_location'",
+            'other' => 'name="concession_location" @change=trigger'
         ])
-        <input type="hidden" name="Concession_location" v-model="Concession_location" />
+        <input type="hidden" name="concession_location" v-model="concession_location" />
     </div>
 
-    {{-- ProtectedArea_location --}}
+    {{-- protectedarea_location --}}
     <div v-show="intervention_level === 'ProtectedArea'">
         @include('admin.components.module.edit.field.vue', [
             'type' => 'dropdown-ProtectedArea',
-            'v_value' => 'ProtectedArea_location',
-            'id' => "'ProtectedArea_location'",
-            'other' => 'name="ProtectedArea_location" @change=trigger'
+            'v_value' => 'protectedarea_location',
+            'id' => "'protectedarea_location'",
+            'other' => 'name="protectedarea_location" @change=trigger'
         ])
-        <input type="hidden" name="ProtectedArea_location" v-model="ProtectedArea_location" />
+        <input type="hidden" name="protectedarea_location" v-model="protectedarea_location" />
     </div>
 
-    {{-- Landscape_location --}}
+    {{-- landscape_location --}}
     <div v-show="intervention_level === 'Landscape'">
         @include('admin.components.module.edit.field.vue', [
             'type' => 'dropdown-Landscape',
-            'v_value' => 'Landscape_location',
-            'id' => "'Landscape_location'",
-            'other' => 'name="Landscape_location" @change=trigger'
+            'v_value' => 'landscape_location',
+            'id' => "'landscape_location'",
+            'other' => 'name="landscape_location" @change=trigger'
         ])
-        <input type="hidden" name="Landscape_location" v-model="Landscape_location" />
+        <input type="hidden" name="landscape_location" v-model="landscape_location" />
     </div>
 
-    {{-- KeyLandscapeConservation_location --}}
+    {{-- keylandscapeconservation_location --}}
     <div v-show="intervention_level === 'KeyLandscapeConservation'">
         @include('admin.components.module.edit.field.vue', [
             'type' => 'dropdown-KeyLandscapeConservation',
-            'v_value' => 'KeyLandscapeConservation_location',
-            'id' => "'KeyLandscapeConservation_location'",
-            'other' => 'name="KeyLandscapeConservation_location" @change=trigger'
+            'v_value' => 'keylandscapeconservation_location',
+            'id' => "'keylandscapeconservation_location'",
+            'other' => 'name="keylandscapeconservation_location" @change=trigger'
         ])
-        <input type="hidden" name="KeyLandscapeConservation_location" v-model="KeyLandscapeConservation_location" />
+        <input type="hidden" name="keylandscapeconservation_location" v-model="keylandscapeconservation_location" />
     </div>
 
     {{-- administrative_location --}}
@@ -184,10 +184,10 @@
                 this.continental_location = null;
                 this.regional_location = null;
                 this.national_location = null;
-                this.Concession_location = null;
-                this.Landscape_location = null;
-                this.KeyLandscapeConservation_location = null;
-                this.ProtectedArea_location = null;
+                this.concession_location = null;
+                this.landscape_location = null;
+                this.keylandscapeconservation_location = null;
+                this.protectedarea_location = null;
                 this.administrative_location = null;
                 this.administrative_location_record_data = JSON.parse('{!! App\Library\Utils\Type\JSON::toVue($InitEmptyData) !!}');
                 this.level_intersections = null;

@@ -31,7 +31,7 @@ if(empty($tables)){
 }
 
 // Force Authentication of user 0
-Auth::login(\App\User::find(0), true);
+Auth::login(\App\Models\User::find(0), true);
 
 ?>
         <!DOCTYPE html>

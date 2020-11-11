@@ -9,7 +9,7 @@
         <i>@{{ last_update.date }}</i>
     </p>
 @else
-    @if($last_update['date']!==null)
+    @if(isset($last_update) && $last_update['date']!==null)
         <p class="text-right module-log">
             @lang('entities.common.last_update_by'):&nbsp;
             <b data-toggle="tooltip" data-placement="top" title="{{ $last_update['id'] }}">{{ $last_update['name'] }}</b>&nbsp;

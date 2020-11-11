@@ -6,9 +6,11 @@
     ]])
 @endsection
 
-@section('admin_page_title')
-    @lang('form/imet/common.imet')
-@endsection
+@if(!App::environment('imetoffline'))
+    @section('admin_page_title')
+        @lang('form/imet/common.imet')
+    @endsection
+@endif
 
 @section('content')
 

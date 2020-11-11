@@ -1,26 +1,30 @@
 <?php
 
-Route::get('file/{hash}',      'UploadFileController@download');
+use App\Http\Controllers;
+use App\Http\Controllers\Imet;
+
 
 Route::group(['middleware' => 'setLocale'], function () {
 
     if (App::environment('imetoffline')) {
-        Route::get('/', function () { return Redirect::to('admin/imet'); });
-        Route::get('welcome', function () { return Redirect::to('admin/imet'); });
-        Route::get('admin', function () { return Redirect::to('admin/imet'); });
 
+        Route::get('file/{hash}',      [Controllers\UploadFileController::class, 'download']);
+
+        Route::get('/', function () { return view('admin.imet.offline.welcome');});
+        Route::get('welcome', function () { return view('admin.imet.offline.welcome'); });
+        Route::get('admin', function () { return view('admin.imet.offline.welcome'); });
         Route::get('admin/imet/offline/close', function () { return view('admin.imet.offline.close'); });
         Route::get('admin/confirm_user', function () { return view('admin.imet.offline.confirm_user'); });
         Route::get('admin/offline_user', function () { return view('admin.imet.offline.edit_user'); });
-        Route::patch('admin/staff/{item}', 'StaffController@update_offline');
+        Route::patch('admin/staff/{item}', [Controllers\StaffController::class, 'update_offline']);
 
         Route::group(['prefix' => 'ajax'], function () {
-            Route::post('upload', 'UploadFileController@upload');
-            Route::get('download', 'UploadFileController@download');
-            Route::post('protected_areas/getLabels', 'ProtectedAreaController@getLabels');
+            Route::post('upload', [Controllers\UploadFileController::class, 'upload']);
+            Route::get('download', [Controllers\UploadFileController::class, 'download']);
+            Route::post('protected_areas/getLabels', [Controllers\ProtectedAreaController::class, 'getLabels']);
             Route::group(['prefix' => 'search'], function () {
-                Route::post('species', 'SpeciesController@search');
-                Route::post('protected_areas', 'ProtectedAreaController@search');
+                Route::post('species', [Controllers\SpeciesController::class, 'search']);
+                Route::post('protected_areas', [Controllers\ProtectedAreaController::class, 'search']);
             });
         });
     }
@@ -30,50 +34,53 @@ Route::group(['middleware' => 'setLocale'], function () {
         Route::group(['prefix' => 'imet'], function () {
 
             // ####  common routes (v1 & v2) ####
-            Route::match(['get', 'post'],'/',      'Imet\ImetController@index');
-            Route::match(['get', 'post'],'v1',      'Imet\ImetController@index');     // temporary alias
-            Route::match(['get', 'post'],'v2',      'Imet\ImetController@index');     // temporary alias
-            Route::delete('{item}', 'Imet\ImetController@destroy');
-            Route::get('{item}/export', 'Imet\ImetController@export');
-            Route::get('import',        'Imet\ImetController@import_view');
-            Route::post('import',      'Imet\ImetController@import');
-            Route::get('{item}/merge',  'Imet\ImetController@merge_view');
-            Route::post('merge',      'Imet\ImetController@merge');
-            Route::post('{item}/upgrade',      'Imet\ImetController@upgrade');
+            Route::match(['get', 'post'],'/',      [Imet\ImetController::class, 'index']);
+            Route::match(['get', 'post'],'v1',      [Imet\ImetController::class, 'index']);     // temporary alias
+            Route::match(['get', 'post'],'v2',      [Imet\ImetController::class, 'index']);     // temporary alias
+            Route::delete('{item}', [Imet\ImetController::class, 'destroy']);
+            Route::get('{item}/export', [Imet\ImetController::class, 'export']);
+            Route::get('import',        [Imet\ImetController::class, 'import_view']);
+            Route::post('import',      [Imet\ImetController::class, 'import']);
+            Route::get('{item}/merge',  [Imet\ImetController::class, 'merge_view']);
+            Route::post('merge',      [Imet\ImetController::class, 'merge']);
+            Route::post('{item}/upgrade',      [Imet\ImetController::class, 'upgrade']);
 
             // #### IMET Version 1 ####
             Route::group(['prefix' => 'v1'], function () {
                 Route::group(['prefix' => 'context'], function () {
-                    Route::get('{item}/edit/{step?}', 'Imet\ImetControllerV1@edit');
-                    Route::patch('{item}',           'Imet\ImetControllerV1@update');
+                    Route::get('{item}/edit/{step?}', [Imet\ImetControllerV1::class, 'edit']);
+                    Route::patch('{item}',           [Imet\ImetControllerV1::class, 'update']);
                 });
                 Route::group(['prefix' => 'evaluation'], function () {
-                    Route::get('{item}/edit/{step?}', 'Imet\ImetEvalControllerV1@edit');
-                    Route::patch('{item}',           'Imet\ImetEvalControllerV1@update');
+                    Route::get('{item}/edit/{step?}', [Imet\ImetEvalControllerV1::class, 'edit']);
+                    Route::patch('{item}',           [Imet\ImetEvalControllerV1::class, 'update']);
                 });
             });
 
             // #### IMET Version 2 ####
             Route::group(['prefix' => 'v2'], function () {
-                Route::get('{item}/print',       'Imet\ImetControllerV2@print');
-                Route::get('{item}/pdf',       'Imet\ImetControllerV2@pdf');
-                Route::get('{item}/report', 'Imet\ImetControllerV2@report');
-                Route::patch('{item}/report', 'Imet\ImetControllerV2@report_update');
+                Route::get('{item}/print',       [Imet\ImetControllerV2::class, 'print']);
 
                 Route::group(['prefix' => 'context'], function () {
-                    Route::get('{item}/edit/{step?}','Imet\ImetControllerV2@edit');
-                    Route::get('{item}/show/{step?}','Imet\ImetControllerV2@show');
-                    Route::patch('{item}',           'Imet\ImetControllerV2@update');
-                    Route::get('create',            'Imet\ImetControllerV2@create');
-                    Route::post('store',            'Imet\ImetControllerV2@store');
-                    Route::post('prev_years',            'Imet\ImetControllerV2@retrieve_prev_years');
+                    Route::get('{item}/edit/{step?}',[Imet\ImetControllerV2::class, 'edit']);
+                    Route::get('{item}/show/{step?}',[Imet\ImetControllerV2::class, 'show']);
+                    Route::patch('{item}',           [Imet\ImetControllerV2::class, 'update']);
+                    Route::get('create',            [Imet\ImetControllerV2::class, 'create']);
+                    Route::post('store',            [Imet\ImetControllerV2::class, 'store']);
+                    Route::post('prev_years',            [Imet\ImetControllerV2::class, 'retrieve_prev_years']);
                 });
                 Route::group(['prefix' => 'evaluation'], function () {
-                    Route::get('{item}/edit/{step?}',   'Imet\ImetEvalControllerV2@edit');
-                    Route::get('{item}/show/{step?}',   'Imet\ImetEvalControllerV2@show');
-                    Route::get('{item}/print',          'Imet\ImetEvalControllerV2@print');
-                    Route::patch('{item}',           'Imet\ImetEvalControllerV2@update');
+                    Route::get('{item}/edit/{step?}',   [Imet\ImetEvalControllerV2::class, 'edit']);
+                    Route::get('{item}/show/{step?}',   [Imet\ImetEvalControllerV2::class, 'show']);
+                    Route::get('{item}/print',          [Imet\ImetEvalControllerV2::class, 'print']);
+                    Route::patch('{item}',           [Imet\ImetEvalControllerV2::class, 'update']);
                 });
+                Route::group(['prefix' => 'report'], function () {
+                    Route::get('{item}/edit', [Imet\ImetControllerV2::class, 'report']);
+                    Route::get('{item}/show', [Imet\ImetControllerV2::class, 'report_show']);
+                    Route::patch('{item}', [Imet\ImetControllerV2::class, 'report_update']);
+                });
+
             });
 
         });
@@ -81,7 +88,7 @@ Route::group(['middleware' => 'setLocale'], function () {
     });
 
     Route::group(['prefix' => 'api/'], function () {
-        Route::get('imet/assessment/{item}/{step?}', 'Imet\ImetEvalController@assessment');
+        Route::get('imet/assessment/{item}/{step?}', [Imet\ImetEvalController::class, 'assessment']);
 
     });
 

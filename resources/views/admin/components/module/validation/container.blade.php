@@ -45,7 +45,7 @@ $only_show = $only_show ?? false;
             </div>
         @elseif($no_data)
             <div class="no-data">
-                @lang('form/national_indicators/common.nothing_to_validate'
+                @lang('form/national_indicators/common.nothing_to_validate')
             </div>
         @else
 

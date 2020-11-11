@@ -2,11 +2,13 @@
 
 namespace App\Models\Components;
 
-use App\Library\Utils\File\File;
 use App\Library\Utils\PhpClass;
+use DB;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Validator;
 
 class Module extends EntityModel
@@ -85,7 +87,7 @@ class Module extends EntityModel
     /**
      * Return fields names as plain array
      *
-     * @param string|array $additional_fields
+     * @param string|array|null $additional_fields
      * @return array
      */
     public static function getModuleFieldsNames($additional_fields = null)
@@ -198,8 +200,8 @@ class Module extends EntityModel
     /**
      * Get module Model/Collection
      *
-     * @param null $form_id
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @param int|null $form_id
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
      */
     public static function getModule($form_id = null)
     {
@@ -272,17 +274,13 @@ class Module extends EntityModel
      * Export Module record: for export/import
      *
      * @param $form_id
-     * @param bool $clean
-     * @param bool $to_json
      * @return array
      */
-    public static function exportModule($form_id, $clean = false, $to_json = true)
+    public static function exportModule($form_id)
     {
         $model               = new static();
         $model::$foreign_key = $model::$foreign_key ?? $model->primaryKey;
-        $fields              = $clean
-            ? $model::getModuleFieldsNames()
-            : $model::getModuleFieldsNames(['KEYS', 'TIMESTAMPS', 'FILE_BINARY']);
+        $fields              = $model::getModuleFieldsNames(['KEYS', 'TIMESTAMPS', 'FILE_BINARY']);
         $collection = $model->select($fields)
             ->where($model::$foreign_key, $form_id)
             ->get()
@@ -298,7 +296,7 @@ class Module extends EntityModel
                     return $item;
                 }
             );
-           return $to_json ? $collection->toArray() : $collection;
+           return $collection->toArray();
     }
 
     public static function areIdentical($module1, $module2)
@@ -373,8 +371,9 @@ class Module extends EntityModel
         $records = json_decode($request->input('records_json'), true);
         $form_id = $request->input('form_id', null);
 
+
         try {
-            \DB::beginTransaction();
+            DB::beginTransaction();
 
             $records_ids = [];
 
@@ -406,9 +405,9 @@ class Module extends EntityModel
                 static::destroy($records_ids_to_delete);
             }
 
-            \DB::commit();
-        } catch (\Exception $e) {
-            \DB::rollback();
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollback();
             throw $e;
         }
 
@@ -559,7 +558,8 @@ class Module extends EntityModel
         // Set empty array for checkboxes
         foreach ($empty_record as $key => $field) {
             $type = $model->fieldTypeByName($key);
-            if (substr_count($type, 'checkbox-') > 0) {
+            if (Str::startsWith($type, 'checkbox-')
+                && !Str::contains($type, 'checkbox-boolean')) {
                 $empty_record[$key] = [];
             } elseif ($type == 'upload') {
                 $empty_record[$key] = static::$upload_object;
@@ -581,13 +581,12 @@ class Module extends EntityModel
         $isEmpty = true;
 
         foreach (static::getModuleFieldsNames() as $field) {
-            if ($field !== $this->primaryKey                                                       // ignore primary_key
-                && (($field !== $foreign_key && $foreign_key !== null) || $foreign_key === null)      // ignore foreign_key (form id) if exist
+            if ($field !== $this->primaryKey                                                      // ignore primary_key
+                && (($field !== $foreign_key && $foreign_key !== null) || $foreign_key === null)  // ignore foreign_key (form id) if exist
                 && $field !== static::$group_key_field                                            // ignore group_key
                 && isset($record[$field]) && $record[$field] !== null                             // exist in record & is not null
-                && ($field != static::getPredefined(
-                        $record[$foreign_key]
-                    )['field'])              // ignore predefined values
+                && (static::getPredefined($record[$foreign_key])===null ||
+                    $field != static::getPredefined($record[$foreign_key])['field'])      // ignore predefined values
                 && !(static::fieldTypeByName(
                         $field
                     ) === 'checkbox-boolean' && $record[$field] === false) // ignore false values for checkbox-boolean

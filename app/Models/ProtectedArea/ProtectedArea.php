@@ -6,6 +6,7 @@ use App\Library\Utils\Geo\PostGisToGeoJSON;
 use App\Models\Components\Form;
 use App\Models\Components\Geom;
 use App\Models\ProtectedArea\Modules\Wdpa;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 
@@ -56,11 +57,12 @@ class ProtectedArea extends Form
 
     /**
      * Override scopeFilterList(): retrieve according to request
+     *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param Request $request
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeFilterList($query, Request $request)
+    public function scopeFilterList(Builder $query, Request $request)
     {
         $conditions = [];
         if($request->filled('country')){

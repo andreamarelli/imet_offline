@@ -19,10 +19,10 @@ $tr_record = $definitions['module_type']==='GROUP_TABLE'
     {{-- labels  --}}
     <thead>
     <tr>
-        <th class="text-center">{{ isset($definitions['fields'][0]['label']) ? ucfirst($definitions['fields'][0]['label']) : '' }}</th>
-        <th class="text-center">{{ isset($definitions['fields'][1]['label']) ? ucfirst($definitions['fields'][1]['label']) : '' }}</th>
-        <th class="text-center">{{ isset($definitions['fields'][2]['label']) ? ucfirst($definitions['fields'][2]['label']) : '' }}</th>
-        <th class="text-center">{{ isset($definitions['fields'][3]['label']) ? ucfirst($definitions['fields'][3]['label']) : '' }}</th>
+        <th class="text-center">{{ ucfirst($definitions['fields'][0]['label'] ?? '') }}</th>
+        <th class="text-center">{{ ucfirst($definitions['fields'][1]['label'] ?? '') }}</th>
+        <th class="text-center">{{ ucfirst($definitions['fields'][2]['label'] ?? '') }}</th>
+        <th class="text-center">{{ ucfirst($definitions['fields'][3]['label'] ?? '') }}</th>
     </tr>
     </thead>
 

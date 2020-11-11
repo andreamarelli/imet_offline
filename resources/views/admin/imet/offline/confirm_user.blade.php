@@ -32,7 +32,7 @@ $fields = \App\Models\Person\Modules\GeneralInfo::getDefinitions()['fields'];
 
                         @component('admin.components.module.components.row', [
                             'name' => $field['name'],
-                            'label' => isset($field['label']) ? $field['label'] : '',
+                            'label' => $field['label'] ?? '',
                             'label_width' => 3
                         ])
 

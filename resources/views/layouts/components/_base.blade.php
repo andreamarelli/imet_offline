@@ -3,12 +3,12 @@
     <head>
         @include('layouts.components.head')
     </head>
-    <body @if(Route::getCurrentRequest() && Route::getCurrentRequest()->is('/'))
-            id="homepage"
-            @endif>
-
+    <body
+        @if(Route::getCurrentRequest() && Route::getCurrentRequest()->is('/')) id="homepage"
+        @elseif(app()->environment('imetoffline'))  id="imet_offline"
+        @endif
+    >
         @yield('body')
-
     </body>
 
     @stack('scripts')

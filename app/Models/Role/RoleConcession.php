@@ -5,7 +5,7 @@ namespace App\Models\Role;
 
 use App\Http\Controllers\Components\API;
 use App\Models\Country;
-use App\User;
+use App\Models\User;
 
 class RoleConcession extends _Role
 {

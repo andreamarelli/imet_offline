@@ -6,19 +6,23 @@
     ]])
 @endsection
 
-@section('admin_page_title')
-    @lang('form/imet/common.imet')
-@endsection
+@if(!App::environment('imetoffline'))
+    @section('admin_page_title')
+        @lang('form/imet/common.imet')
+    @endsection
+@endif
 
 @section('content')
 
 
     <div class="module-container" id="import_imet">
+
         <div class="module-header">
             <div class="module-title">
                 @lang('form/imet/common.import_imet')
             </div>
         </div>
+
         <div class="module-body">
 
             <br />

@@ -2,6 +2,7 @@
 
 namespace App\Models\Imet\v2\Modules\Component;
 
+use App;
 use App\Models\Components\Module;
 use App\Models\Imet\v2\Imet;
 
@@ -81,8 +82,8 @@ class ImetModule extends Module
     {
         if($form_id!==null){
             $FormLang = Imet::getLanguage($form_id);
-            if($FormLang != \App::getLocale()){
-                \App::setLocale($FormLang);
+            if($FormLang != App::getLocale()){
+                App::setLocale($FormLang);
             }
         }
     }

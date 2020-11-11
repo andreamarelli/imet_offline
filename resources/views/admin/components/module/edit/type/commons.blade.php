@@ -17,7 +17,7 @@ if($definitions['module_type']=="GROUP_TABLE" || $definitions['module_type']=="G
 
         @component('admin.components.module.components.row', [
                 'name' => $field['name'],
-                'label' => isset($field['label']) ? $field['label'] : '',
+                'label' => $field['label'] ?? '',
                 'label_width' => $definitions['label_width']
             ])
 
