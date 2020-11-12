@@ -5,14 +5,14 @@ namespace App\Console\Commands;
 use App\Jobs;
 use Illuminate\Console\Command;
 
-class InitIMETOfflineDBJobs extends Command
+class InitIMETOfflineDB extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'init_imet_offline_db:jobs';
+    protected $signature = 'imet_offline:init_db';
 
     /**
      * The console command description.

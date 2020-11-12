@@ -41,22 +41,22 @@ class PopulateMetadata implements ShouldQueue
         DB::select('DELETE FROM imet.imet_metadata;');
         Module::iterateOverModules(
             [\App\Models\Imet\v1\Imet::$modules,],
-            __NAMESPACE__ . '\PopulateIMETMetadata::insert_metadata',
+            __NAMESPACE__ . '\PopulateMetadata::insert_metadata',
             ['v1', 'context']
         );
         Module::iterateOverModules(
             [\App\Models\Imet\v1\Imet_Eval::$modules,],
-            __NAMESPACE__ . '\PopulateIMETMetadata::insert_metadata',
+            __NAMESPACE__ . '\PopulateMetadata::insert_metadata',
             ['v1', 'evaluation']
         );
         Module::iterateOverModules(
             [\App\Models\Imet\v2\Imet::$modules,],
-            __NAMESPACE__ . '\PopulateIMETMetadata::insert_metadata',
+            __NAMESPACE__ . '\PopulateMetadata::insert_metadata',
             ['v2', 'context']
         );
         Module::iterateOverModules(
             [\App\Models\Imet\v2\Imet_Eval::$modules,],
-            __NAMESPACE__ . '\PopulateIMETMetadata::insert_metadata',
+            __NAMESPACE__ . '\PopulateMetadata::insert_metadata',
             ['v2', 'evaluation']
         );
 
