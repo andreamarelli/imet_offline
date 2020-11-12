@@ -8,11 +8,12 @@ Route::group(['middleware' => 'setLocale'], function () {
 
     if (App::environment('imetoffline')) {
 
+        Route::get('/', function () { return Redirect::to('admin/confirm_user'); });
+        Route::get('welcome', function () { return Redirect::to('admin/confirm_user'); });
+        Route::get('admin', function () { return Redirect::to('admin/confirm_user'); });
+
         Route::get('file/{hash}',      [Controllers\UploadFileController::class, 'download']);
 
-        Route::get('/', function () { return view('admin.imet.offline.welcome');});
-        Route::get('welcome', function () { return view('admin.imet.offline.welcome'); });
-        Route::get('admin', function () { return view('admin.imet.offline.welcome'); });
         Route::get('admin/imet/offline/close', function () { return view('admin.imet.offline.close'); });
         Route::get('admin/confirm_user', function () { return view('admin.imet.offline.confirm_user'); });
         Route::get('admin/offline_user', function () { return view('admin.imet.offline.edit_user'); });
