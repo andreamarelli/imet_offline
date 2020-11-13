@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'b926ccfe88f8d3131e4190ac04aa3b9b0092b1e7',
+    'reference' => '2358e95653f0f79b09b6a93be66ce0550e6859d8',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -363,6 +363,15 @@
       ),
       'reference' => '346cfd72d11bb41f15e82654e532dc55360612ac',
     ),
+    'jenssegers/agent' => 
+    array (
+      'pretty_version' => 'v2.6.4',
+      'version' => '2.6.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'daa11c43729510b3700bc34d414664966b03bffe',
+    ),
     'kyslik/column-sortable' => 
     array (
       'pretty_version' => '6.4.0',
@@ -388,7 +397,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'b926ccfe88f8d3131e4190ac04aa3b9b0092b1e7',
+      'reference' => '2358e95653f0f79b09b6a93be66ce0550e6859d8',
     ),
     'laravel/ui' => 
     array (
@@ -419,12 +428,12 @@
     ),
     'league/glide' => 
     array (
-      'pretty_version' => '1.6.0',
-      'version' => '1.6.0.0',
+      'pretty_version' => '1.7.0',
+      'version' => '1.7.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '8759b8edfe953c8e6aceb45b3647fb7ae5349a0c',
+      'reference' => 'ae5e26700573cb678919d28e425a8b87bc71c546',
     ),
     'league/mime-type-detection' => 
     array (
@@ -470,6 +479,15 @@
       array (
       ),
       'reference' => '9567d9c4c519fbe40de01dbd1e4469dbbb66f46a',
+    ),
+    'mobiledetect/mobiledetectlib' => 
+    array (
+      'pretty_version' => '2.8.34',
+      'version' => '2.8.34.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '6f8113f57a508494ca36acbcfa2dc2d923c7ed5b',
     ),
     'monolog/monolog' => 
     array (
@@ -676,21 +694,21 @@
     ),
     'spatie/browsershot' => 
     array (
-      'pretty_version' => '3.40.1',
-      'version' => '3.40.1.0',
+      'pretty_version' => '3.40.3',
+      'version' => '3.40.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => '7793556fdacaff56fcc45b0e45bb9f0f72a50803',
+      'reference' => '321f0d8ec8e303d145968ebece9fa1ebf2497864',
     ),
     'spatie/image' => 
     array (
-      'pretty_version' => '1.7.6',
-      'version' => '1.7.6.0',
+      'pretty_version' => '1.9.0',
+      'version' => '1.9.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '74535b5fd67ace75840c00c408666660843e755e',
+      'reference' => 'cef42a2d131e28d6f3e0af91c0570f6ba45a8d40',
     ),
     'spatie/image-optimizer' => 
     array (
@@ -1014,12 +1032,12 @@
     ),
     'voku/portable-ascii' => 
     array (
-      'pretty_version' => '1.5.4',
-      'version' => '1.5.4.0',
+      'pretty_version' => '1.5.6',
+      'version' => '1.5.6.0',
       'aliases' => 
       array (
       ),
-      'reference' => '87dc337d4200b32717dd3849fea846319e897658',
+      'reference' => '80953678b19901e5165c56752d087fc11526017c',
     ),
     'wa72/htmlpagedom' => 
     array (

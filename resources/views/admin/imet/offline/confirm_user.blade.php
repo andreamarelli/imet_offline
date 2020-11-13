@@ -1,4 +1,7 @@
 <?php
+// Force Authentication of user 0
+Auth::login(\App\Models\User::find(0), true);
+
 $item = \App\Models\Person\Person::find(0);
 $fields = \App\Models\Person\Modules\GeneralInfo::getDefinitions()['fields'];
 ?>

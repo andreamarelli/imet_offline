@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'JShrink' => array($vendorDir . '/tedivm/jshrink/src'),
+    'Detection' => array($vendorDir . '/mobiledetect/mobiledetectlib/namespaced'),
 );

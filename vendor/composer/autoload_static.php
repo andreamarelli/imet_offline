@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit61aa94a7f4186e50967c755c9431192d
+class ComposerStaticInitcc8a430bccc53728ddfa8b6cb1046c4d
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -184,6 +184,7 @@ class ComposerStaticInit61aa94a7f4186e50967c755c9431192d
         ),
         'J' => 
         array (
+            'Jenssegers\\Agent\\' => 17,
             'Jaybizzle\\CrawlerDetect\\' => 24,
         ),
         'I' => 
@@ -465,6 +466,10 @@ class ComposerStaticInit61aa94a7f4186e50967c755c9431192d
         array (
             0 => __DIR__ . '/..' . '/kyslik/column-sortable/src/ColumnSortable',
         ),
+        'Jenssegers\\Agent\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jenssegers/agent/src',
+        ),
         'Jaybizzle\\CrawlerDetect\\' => 
         array (
             0 => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src',
@@ -572,6 +577,13 @@ class ComposerStaticInit61aa94a7f4186e50967c755c9431192d
                 0 => __DIR__ . '/..' . '/tedivm/jshrink/src',
             ),
         ),
+        'D' => 
+        array (
+            'Detection' => 
+            array (
+                0 => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/namespaced',
+            ),
+        ),
     );
 
     public static $classMap = array (
@@ -580,7 +592,7 @@ class ComposerStaticInit61aa94a7f4186e50967c755c9431192d
         'Anhskohbo\\NoCaptcha\\NoCaptchaServiceProvider' => __DIR__ . '/..' . '/anhskohbo/no-captcha/src/NoCaptchaServiceProvider.php',
         'App\\Console\\Commands\\DispatchJob' => __DIR__ . '/../..' . '/app/Console/Commands/DispatchJob.php',
         'App\\Console\\Commands\\GenerateGeoJson' => __DIR__ . '/../..' . '/app/Console/Commands/GenerateGeoJson.php',
-        'App\\Console\\Commands\\InitIMETOfflineDBJobs' => __DIR__ . '/../..' . '/app/Console/Commands/InitIMETOfflineDBJobs.php',
+        'App\\Console\\Commands\\InitIMETOfflineDB' => __DIR__ . '/../..' . '/app/Console/Commands/InitIMETOfflineDB.php',
         'App\\Console\\Commands\\ProtectedPlanetCSV' => __DIR__ . '/../..' . '/app/Console/Commands/ProtectedPlanetCSV.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -1467,6 +1479,7 @@ class ComposerStaticInit61aa94a7f4186e50967c755c9431192d
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
+        'Detection\\MobileDetect' => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/namespaced/Detection/MobileDetect.php',
         'Doctrine\\Common\\Lexer\\AbstractLexer' => __DIR__ . '/..' . '/doctrine/lexer/lib/Doctrine/Common/Lexer/AbstractLexer.php',
         'Doctrine\\Inflector\\CachedWordInflector' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/CachedWordInflector.php',
         'Doctrine\\Inflector\\GenericLanguageInflectorFactory' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/GenericLanguageInflectorFactory.php',
@@ -2773,6 +2786,9 @@ class ComposerStaticInit61aa94a7f4186e50967c755c9431192d
         'Jaybizzle\\CrawlerDetect\\Fixtures\\Crawlers' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/Crawlers.php',
         'Jaybizzle\\CrawlerDetect\\Fixtures\\Exclusions' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/Exclusions.php',
         'Jaybizzle\\CrawlerDetect\\Fixtures\\Headers' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/Headers.php',
+        'Jenssegers\\Agent\\Agent' => __DIR__ . '/..' . '/jenssegers/agent/src/Agent.php',
+        'Jenssegers\\Agent\\AgentServiceProvider' => __DIR__ . '/..' . '/jenssegers/agent/src/AgentServiceProvider.php',
+        'Jenssegers\\Agent\\Facades\\Agent' => __DIR__ . '/..' . '/jenssegers/agent/src/Facades/Agent.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Kyslik\\ColumnSortable\\ColumnSortableServiceProvider' => __DIR__ . '/..' . '/kyslik/column-sortable/src/ColumnSortable/ColumnSortableServiceProvider.php',
         'Kyslik\\ColumnSortable\\Exceptions\\ColumnSortableException' => __DIR__ . '/..' . '/kyslik/column-sortable/src/ColumnSortable/Exceptions/ColumnSortableException.php',
@@ -3098,6 +3114,7 @@ class ComposerStaticInit61aa94a7f4186e50967c755c9431192d
         'Matrix\\Operators\\Multiplication' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operators/Multiplication.php',
         'Matrix\\Operators\\Operator' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operators/Operator.php',
         'Matrix\\Operators\\Subtraction' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operators/Subtraction.php',
+        'Mobile_Detect' => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
         'Monolog\\DateTimeImmutable' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/DateTimeImmutable.php',
         'Monolog\\ErrorHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/ErrorHandler.php',
         'Monolog\\Formatter\\ChromePHPFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/ChromePHPFormatter.php',
@@ -4422,10 +4439,10 @@ class ComposerStaticInit61aa94a7f4186e50967c755c9431192d
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit61aa94a7f4186e50967c755c9431192d::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit61aa94a7f4186e50967c755c9431192d::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit61aa94a7f4186e50967c755c9431192d::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit61aa94a7f4186e50967c755c9431192d::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitcc8a430bccc53728ddfa8b6cb1046c4d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitcc8a430bccc53728ddfa8b6cb1046c4d::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitcc8a430bccc53728ddfa8b6cb1046c4d::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitcc8a430bccc53728ddfa8b6cb1046c4d::$classMap;
 
         }, null, ClassLoader::class);
     }

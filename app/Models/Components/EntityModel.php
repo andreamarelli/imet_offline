@@ -48,7 +48,7 @@ class EntityModel extends Model
     public static function getLabel($id, $key = null) {
         $key = $key!=null ? $key : (new static())->primaryKey;
         $model = static::where($key, $id)->first();
-        return $model->getAttribute( static::LABEL) ?? null;
+        return $model!==null ? $model->getAttribute( static::LABEL) : null;
     }
 
     public function update_by_user()

@@ -23,8 +23,7 @@ class ProtectedPlanet
         $params = array_merge($params, [
             'token' => self::TOKEN
         ]);
-        $response = API::execute_api_request($url, $params);
-        return  (array) $response;
+        return API::execute_api_request($url, $params);
     }
 
 

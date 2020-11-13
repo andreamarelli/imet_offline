@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->job(new RefreshCache)->dailyAt('04:15');
+        $schedule->job(new RefreshCache)->dailyAt('04:20');
         $schedule->job(new GenerateThumbnails())->dailyAt('04:30');
     }
 
