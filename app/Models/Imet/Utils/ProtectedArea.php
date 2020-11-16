@@ -79,7 +79,7 @@ class ProtectedArea extends EntityModel {
         return $pas->map(function($item) use($countries){
             $item['country_name'] = $countries[$item->country];
             return $item;
-        })->toArray();
+        });
     }
 
     /**

@@ -2,6 +2,10 @@
 
 return [
 
+    'languages' => [
+        'fr'        => 'french',
+        'en'        => 'english'
+    ],
     'regions' => [
         'OFAC' => 'OFAC - COMIFAC countries',
     ],

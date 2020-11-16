@@ -540,7 +540,7 @@ class SelectionList
             } elseif ($matches[2] == "Currency") {
                 $list = Currency::imetV1List();
             } else {
-                $list = trans('form/imet/common.' . $matches[2]);
+                $list = trans('form/imet/'.strtolower($matches[1]).'/lists.' . $matches[2]);
             }
         }
 
