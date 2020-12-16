@@ -1,7 +1,7 @@
 <footer>
 
     {{-- IMET OFFLINE --}}
-    @if(app()->environment('imetoffline'))
+    @if(is_imet_environment())
         @include('admin.imet.offline.footer')
 
     {{-- homepage --}}

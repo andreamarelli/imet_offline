@@ -11,7 +11,7 @@ $only_logo = $only_logo ?? false;
             @include('layouts.components.header.components.logo')
 
         {{-- IMET OFFLINE --}}
-        @elseif(app()->environment('imetoffline'))
+        @elseif(is_imet_environment())
             @include('admin.imet.offline.header')
 
         {{-- Administration --}}

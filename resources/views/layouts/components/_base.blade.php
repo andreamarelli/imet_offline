@@ -5,7 +5,7 @@
     </head>
     <body
         @if(Route::getCurrentRequest() && Route::getCurrentRequest()->is('/')) id="homepage"
-        @elseif(app()->environment('imetoffline'))  id="imet_offline"
+        @elseif(is_imet_environment())  id="imet_offline"
         @endif
     >
         @yield('body')
@@ -13,7 +13,7 @@
 
     @stack('scripts')
 
-    @if(app()->environment('development'))
+    @if(App::environment('development'))
         <div class="text-center">
             Generated in <b>{{ round((microtime(true) - LARAVEL_START), 3) }}</b> seconds.
         </div>

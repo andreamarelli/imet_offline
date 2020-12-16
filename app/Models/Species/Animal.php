@@ -18,7 +18,7 @@ class Animal extends EntityModel
 
     public function __construct(array $attributes = []) {
 
-        $this->table = \App::environment('imetoffline')
+        $this->table = \is_imet_environment()
             ? 'species'
             : 'KnowledgeBase.species';
 

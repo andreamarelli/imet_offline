@@ -1,6 +1,6 @@
 <header id="header" class="container-fluid">
     <div class="wrap">
-        @if(app()->environment('imetoffline'))
+        @if(is_imet_environment())
             @include('admin.imet.offline.header')
         @else
             @include('layouts.components.header.components.logo')

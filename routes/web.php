@@ -6,7 +6,7 @@ use App\Http\Controllers\Imet;
 
 Route::group(['middleware' => 'setLocale'], function () {
 
-    if (App::environment('imetoffline')) {
+    if (is_imet_environment()) {
 
         Route::get('/', function () { return Redirect::to('admin/confirm_user'); });
         Route::get('welcome', function () { return Redirect::to('admin/confirm_user'); });

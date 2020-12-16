@@ -70,7 +70,7 @@ class Country extends EntityModel {
 
     public function __construct(array $attributes = []) {
 
-        $this->table = App::environment('imetoffline')
+        $this->table = is_imet_environment()
             ? static::imet_table
             :  static::ofac_table;
 

@@ -65,7 +65,7 @@ class Imet extends Form
 
     public function scopeWhereHasPermission($query){
 
-        if(!\App::environment('imetoffline')){
+        if(!\is_imet_environment()){
             // TODO
         }
         return $query;

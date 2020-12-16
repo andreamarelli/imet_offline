@@ -23,6 +23,7 @@ class Report extends Model
                 'habitats_comment'=> '',
                 'climate_change_comment'=> '',
                 'ecosystem_services_comment'=> '',
+                'threats_comment' => '',
                 'analysis'=> '',
                 'strengths_swot'=> '',
                 'weaknesses_swot'=> '',

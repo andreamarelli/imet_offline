@@ -158,15 +158,20 @@ class ImetController extends FormController
 
     /**
      * Import a full IMET from json file
-     * @param Request $request
+     *
+     * @param \Illuminate\Http\Request|null $request
+     * @param string|null $json
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     * @throws \Exception
+     * @throws \ReflectionException
+     * @throws \Throwable
      */
-    public function import(Request $request)
+    public function import(Request $request=null, $json=null)
     {
-        $fileContent = Upload::getUploadFileContent($request->get('json_file'));
-        $json = json_decode($fileContent, True);
+        if($json === null){
+            $fileContent = Upload::getUploadFileContent($request->get('json_file'));
+            $json = json_decode($fileContent, True);
+        }
 
         $imet_version = $json['Imet']['imet_version'] ?? null;
         $db_version = $json['Imet']['db_version'] ?? null;

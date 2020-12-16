@@ -8,7 +8,7 @@
         <br />
         <a class="btn-nav big rounded" href="{{ url('/') }}">@lang('layout.home')</a>
         <div style="height: 400px">
-            @if(!app()->environment('production') && isset($errors))
+            @if(!App::environment('production') && isset($errors))
                 @isset($errors)
                     <br />{{ dump($errors) }}
                 @endisset

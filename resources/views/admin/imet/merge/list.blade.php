@@ -31,7 +31,7 @@ if($primary_form->version==='v1'){
     ]])
 @endsection
 
-@if(!App::environment('imetoffline'))
+@if(!is_imet_environment())
     @section('admin_page_title')
         @lang('form/imet/common.imet')
     @endsection

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-if(!App::environment('imetoffline')){
+if(!is_imet_environment()){
 
     // ####  Analytical Platform APIs  ####
     Route::group(['prefix' => 'analysis'], function () {

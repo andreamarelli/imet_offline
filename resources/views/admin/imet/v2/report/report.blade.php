@@ -52,7 +52,7 @@ function score_class_threats($value, $additional_classes=''){
     ]])
 @endsection
 
-@if(!App::environment('imetoffline'))
+@if(!is_imet_environment())
     @section('admin_page_title')
         @lang('form/imet/common.imet')
     @endsection
@@ -429,20 +429,16 @@ function score_class_threats($value, $additional_classes=''){
 
             loadMap(){
                 let _this = this;
-                console.log(window, window.mapboxgl);
                 window.mapboxgl.accessToken = 'pk.eyJ1IjoiYmxpc2h0ZW4iLCJhIjoiMEZrNzFqRSJ9.0QBRA2HxTb8YHErUFRMPZg';
                 let biopamaBaseLayer = 'mapbox://styles/jamesdavy/cjw25laqe0y311dqulwkvnfoc';
                 let mapPolyHostURL = "https://tiles.biopama.org/BIOPAMA_poly_2";
-                let mapPointHostURL = "https://tiles.biopama.org/BIOPAMA_point_2";
                 let mapPaLayer = "WDPA2019MayPoly";
-                let mapPaLabelsLayer = "WDPA2019MayPolyPoints";
-                let mapPaPointLayer = "WDPA2019MayPoints";
 
                 this.report_map = new window.mapboxgl.Map({
                     container: 'map',
                     style: biopamaBaseLayer,
-                    center: [15, 20],
-                    zoom: 1,
+                    center: [15, 0],
+                    zoom: 3,
                     minZoom: 0,
                     maxZoom: 18
                 });
@@ -487,12 +483,6 @@ function score_class_threats($value, $additional_classes=''){
                             "delay": 0
                         }
                     });
-
-                    @if($wdpa_extent!==null)
-                        _this.report_map.fitBounds($.parseJSON('{!! $wdpa_extent !!}'), {
-                            padding: {top: 100, bottom:100, left: 100, right: 100}
-                        });
-                    @endif
                     _this.report_map.setFilter("wdpaSelected", ['in','WDPAID', {{ $item->wdpa_id }}]);
                     _this.report_map.setLayoutProperty("wdpaSelected", 'visibility', 'visible');
                 });

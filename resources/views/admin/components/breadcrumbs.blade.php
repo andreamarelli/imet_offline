@@ -2,7 +2,7 @@
 /** @var array $links */
 
 ?>
-@if(!App::environment('imetoffline'))
+@if(!is_imet_environment())
     <div id="breadcrumb">
         <div class="wrap">
             <a href="{{ url('/') }}/admin">@lang('layout.admin.admin_page')</a>

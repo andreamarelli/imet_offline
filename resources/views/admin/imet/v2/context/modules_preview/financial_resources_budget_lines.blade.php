@@ -3,6 +3,7 @@
 /** @var Mixed $definitions */
 /** @var Mixed $records */
 
+
 $record  = $records[0];
 
 $group_key = 'null';
@@ -85,4 +86,4 @@ $totalBudget = array_key_exists('FormID', $record) ? \App\Models\Imet\v2\Modules
 </table>
 
 
-@include('admin.components.module.preview.type.commons', compact(['collection', 'vue_data', 'definitions']))
+@include('admin.components.module.preview.type.commons', compact(['definitions', 'records']))

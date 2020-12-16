@@ -22,7 +22,7 @@ class SetLocale
     public function handle($request, Closure $next, $guard = null)
     {
         // Force Language to English
-        if(App::environment('imetoffline')) {
+        if(is_imet_environment()) {
             App::setLocale('en');
         }
 

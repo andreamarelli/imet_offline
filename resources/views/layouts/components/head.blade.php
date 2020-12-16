@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="{{ url('/') }}/favicon.ico" type="image/x-icon" rel="icon">
 
-@if(app()->environment('imetoffline'))
+@if(is_imet_environment())
     <title>IMET {{ \App\Models\Imet\v2\Imet::imet_version }}</title>
 @else
     <title>OFAC</title>
@@ -23,7 +23,7 @@
     <script src="{{ asset(mix('vendor_mapping.js', 'assets')) }}"></script>
 @endif
 
-@if(app()->environment('production'))
+@if(App::environment('production'))
 
     {{--  Google Analytics --}}
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74516400-1"></script>

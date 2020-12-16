@@ -2,6 +2,14 @@
 
 All notable changes to `Browsershot` will be documented in this file
 
+## 3.41.1 - 2020-12-08
+
+- replace `waitFor` with `waitForTimeout` (#452)
+
+## 3.41.0 - 2020-19-11
+
+- adding ability to pass envars to browser instance (#448)
+
 ## 3.40.3 - 2020-11-12
 
 - add support for PHP 8
