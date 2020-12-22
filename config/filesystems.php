@@ -64,6 +64,12 @@ return [
             'driver' => 'local',
             'root' => storage_path('framework/cache'),
             'visibility' => 'private',
+        ],
+
+        'imet' => [
+            'driver' => 'local',
+            'root' => database_path('imet_offline'),
+            'visibility' => 'private',
         ]
 
     ],

@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Imet;
 
 use App\Http\Controllers\Imet\ImetController;
 use App\Library\Utils\File\File;
 use Illuminate\Console\Command;
+use Illuminate\Http\Request;
 use Storage;
 use Str;
 
-class ImportIMETs extends Command
+class Import extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'import_imets';
+    protected $signature = 'imet:import';
 
     /**
      * The console command description.
@@ -44,22 +45,30 @@ class ImportIMETs extends Command
      */
     public function handle()
     {
-        foreach ($this->storage->files() as $file){
-            if(Str::endsWith($file, '.json')){
+        $i=0;
+        foreach ($this->storage->files() as $file) {
+            if (Str::endsWith($file, '.json')) {
                 $file_content = $this->storage->get($file);
-                $json = json_decode($file_content, True);
-                if($json !== null && isset($json['Imet']['version'])){
-                    $this->info('Importing file '.$file.'...');
+                $json         = json_decode($file_content, true);
+                if ($json !== null && isset($json['Imet']['version'])) {
+                    $this->info('Importing file ' . $file . '...');
                     try {
-                        $response = (new ImetController())->import(null, $json)->getContent();
+                        $response = (new ImetController())->import(new Request(), $json)->getContent();
                         if (Str::contains($response, 'success')) {
                             $this->info('Successfully imported.');
                         }
                     } catch (\Exception $e) {
-                        $this->error('Error: '.$e->getMessage());
+                        $this->error('Error: ' . $e->getMessage());
                     }
+                    $i++;
                 }
             }
+        }
+        if($i>0){
+            $this->info('All done.');
+        } else {
+            $this->warn('Nothing to import.');
+            $this->warn('No IMET json files found in storage/app/public.');
         }
         return 0;
     }

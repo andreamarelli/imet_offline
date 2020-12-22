@@ -52,6 +52,9 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('alpha_dash_dot', function($attribute, $value){
             return preg_match('/^[a-zA-Z0-9-_.]+$/', $value);
         });
+        Validator::extend('alpha_dash_dot', function($attribute, $value){
+            return preg_match('/^[a-zA-Z0-9-_.]+$/', $value);
+        });
         Validator::extend('filename', function($attribute, $value){
             return preg_match('/^[a-zA-Z0-9-_.&()]+$/', $value);
         });

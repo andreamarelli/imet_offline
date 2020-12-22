@@ -2,12 +2,11 @@
 
 namespace App\Console;
 
-use App\Console\Commands\InitIMETOfflineDB;
 use App\Jobs\GenerateThumbnails;
 use App\Jobs\RefreshCache;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Log;
+
 
 class Kernel extends ConsoleKernel
 {
@@ -16,9 +15,7 @@ class Kernel extends ConsoleKernel
      *
      * @var array
      */
-    protected $commands = [
-        InitIMETOfflineDB::class
-    ];
+    protected $commands = [];
 
     /**
      * Define the application's command schedule.

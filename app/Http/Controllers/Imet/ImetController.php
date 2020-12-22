@@ -26,7 +26,7 @@ class ImetController extends FormController
     public const AUTHORIZE_BY_POLICY = true;
 
     public const sanitization_rules = [
-        'search' => 'alpha_num|nullable',
+        'search' => 'custom_text|nullable',
         'year' => 'digits:4|integer|nullable',
         'country' => 'min:3|max:3|alpha|nullable',
     ];
@@ -166,7 +166,7 @@ class ImetController extends FormController
      * @throws \ReflectionException
      * @throws \Throwable
      */
-    public function import(Request $request=null, $json=null)
+    public function import(Request $request, $json=null)
     {
         if($json === null){
             $fileContent = Upload::getUploadFileContent($request->get('json_file'));

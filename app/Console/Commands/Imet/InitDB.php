@@ -1,25 +1,26 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Imet;
 
 use App\Jobs;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
-class InitIMETOfflineDB extends Command
+class InitDB extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'imet_offline:init_db';
+    protected $signature = 'imet:init_db';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Dispatch all the jobs';
+    protected $description = 'Initialize IMET offline database';
 
     /**
      * Create a new command instance.
@@ -38,16 +39,21 @@ class InitIMETOfflineDB extends Command
      */
     public function handle()
     {
-        $this->dispatch(Jobs\ImetOffline\InitDB::class);
+        $sql_files = \Storage::disk('imet')->files();
+        sort($sql_files);
+        foreach ($sql_files as $sql_file){
+            $this->dispatch(Jobs\ImetOffline\ApplySQL::class, $sql_file);
+        }
+
         $this->dispatch(Jobs\ImetOffline\PopulateMetadata::class);
         $this->dispatch(Jobs\ImetOffline\PopulateSpecies::class);
     }
 
 
-    private function dispatch($item){
+    private function dispatch($item, $args=null){
         $time_start  = microtime(true);
         $this->info('Executing '.$item);
-        $item::dispatch();
+        $item::dispatch($args);
         $this->info('Finished in '.round((microtime(true) - $time_start), 2).' seconds');
     }
 }
