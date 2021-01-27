@@ -8,13 +8,13 @@ use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\Parent_;
 
 class ImportanceSpecies extends Modules\Component\ImetModule_Eval
-{ 
+{
     protected $table = 'imet.eval_importance_c13';
     protected $fixed_rows = true;
     protected $validation_3to10 = '';
-    
+
     public function __construct(array $attributes = []) {
-    
+
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'C1.2';
         $this->module_title = trans('form/imet/v2/evaluation.ImportanceSpecies.title');
@@ -39,7 +39,7 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
         $this->validation_3to10 = trans('form/imet/v2/evaluation.ImportanceSpecies.validation_3to10');
 
         parent::__construct($attributes);
-     
+
     }
 
     /**
@@ -72,7 +72,7 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
         return $vue_data;
     }
 
-    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null, $db_version = null)
+    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null)
     {
         // ####  v1 -> v2  ####
         if($v1_to_v2) {

@@ -35,6 +35,16 @@ return [
         'management_effectiveness'  => 'Efficacité de gestion',
     ],
 
+    'indexes' => [
+        'imet'        => 'IMET index',
+        'context'     => 'Contexte index',
+        'planning'    => 'Planification index',
+        'inputs'      => 'Intrants index',
+        'process'     => 'Processus index',
+        'outputs'     => 'Resultats index',
+        'outcomes'    => 'Effects et Impacts index',
+    ],
+
     'assessment' => [
         'ctx101' => [
             'CTX 1.0.1',

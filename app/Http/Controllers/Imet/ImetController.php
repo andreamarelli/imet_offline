@@ -118,10 +118,8 @@ class ImetController extends FormController
             ->toArray();
 
         if($imet_form['version'] === 'v1'){
-            $imet_form['db_version'] = v1\Imet::db_version;
             $imet_form['imet_version'] = v1\Imet::imet_version;
         } else {
-            $imet_form['db_version'] = v2\Imet::db_version;
             $imet_form['imet_version'] = v2\Imet::imet_version;
         }
 
@@ -174,7 +172,6 @@ class ImetController extends FormController
         }
 
         $imet_version = $json['Imet']['imet_version'] ?? null;
-        $db_version = $json['Imet']['db_version'] ?? null;
 
         \DB::beginTransaction();
 
@@ -190,8 +187,8 @@ class ImetController extends FormController
                 // Create new form and return ID
                 $formID = v2\Imet::importForm($json['Imet']);
                 // Populate Imet & Imet_Eval modules
-                v2\Imet::importModules($json['Context'], $formID, false, $imet_version, $db_version);
-                v2\Imet_Eval::importModules($json['Evaluation'], $formID, false, $imet_version, $db_version);
+                v2\Imet::importModules($json['Context'], $formID, false, $imet_version);
+                v2\Imet_Eval::importModules($json['Evaluation'], $formID, false, $imet_version);
                 Encoder::importModule($formID, $json['Encoders'] ?? null);
             }
             \DB::commit();
@@ -243,11 +240,11 @@ class ImetController extends FormController
     }
 
 
-    public function store_prefilled(Request $request)
+    public function store_prefilled(Request $request, $prev_year_selection)
     {
         $records = json_decode($request->input('records_json'), true);
 
-        $json = static::export(Imet::find($records[0]['prev_year_selection']), false);
+        $json = static::export(Imet::find($prev_year_selection), false);
         $json['Imet']['Year'] = $records[0]['Year'];
         $json['Imet']['UpdateDate'] = Carbon::now()->format('Y-m-d H:i:s');
 

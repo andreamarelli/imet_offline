@@ -5,12 +5,12 @@ namespace App\Models\Imet\v2\Modules\Evaluation;
 use App\Models\Imet\v2\Modules;
 
 class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
-{ 
+{
     protected $table = 'imet.eval_supports_and_constaints';
 //    protected $fixed_rows = true;
-    
+
     public function __construct(array $attributes = []) {
-    
+
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'C2';
         $this->module_title = trans('form/imet/v2/evaluation.SupportsAndConstraints.title');
@@ -46,11 +46,11 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
         $this->module_info_EvaluationQuestion = trans('form/imet/v2/evaluation.SupportsAndConstraints.module_info_EvaluationQuestion');
         $this->module_info_Rating = trans('form/imet/v2/evaluation.SupportsAndConstraints.module_info_Rating');
         $this->ratingLegend = trans('form/imet/v2/evaluation.SupportsAndConstraints.ratingLegend');
-        
+
         parent::__construct($attributes);
     }
 
-    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null, $db_version = null)
+    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null)
     {
         // ####  v1 -> v2  ####
         if($v1_to_v2) {

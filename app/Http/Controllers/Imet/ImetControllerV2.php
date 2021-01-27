@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class ImetControllerV2 extends FormController
 {
-    use Report;
+    use ReportV2;
 
     protected static $form_class = Imet::class;
     protected static $form_view = 'imet/v2/context';
@@ -26,11 +26,12 @@ class ImetControllerV2 extends FormController
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Support\Collection
      */
-    public function retrieve_prev_years(Request $request)
+    public function retrieve_prev_years(Request $request): \Illuminate\Support\Collection
     {
         $wdpa_id = ProtectedArea::getByWdpa($request->input('wdpa_id'))->wdpa_id;
         return Imet::select(['FormID','Year','wdpa_id'])
             ->where('wdpa_id', $wdpa_id)
+            ->where('version', 'v2')
             ->where('Year', '<', $request->input('year'))
             ->orderByDesc('Year')
             ->get()
@@ -43,8 +44,10 @@ class ImetControllerV2 extends FormController
 
         // Export previous existing form and save as new (if selected)
         $prev_year_selection = $records[0]['prev_year_selection'] ?? null;
+        unset($records[0]['prev_year_selection']);
+        $request->merge(['records_json' => json_encode($records)]);
         if($prev_year_selection!==null && $prev_year_selection!=='no_import'){
-            return (new ImetController)->store_prefilled($request);
+            return (new ImetController)->store_prefilled($request, $prev_year_selection);
         }
 
         // Create new form

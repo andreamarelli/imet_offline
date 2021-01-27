@@ -56,6 +56,8 @@ class SelectionList
         } elseif ($type == 'countryOFACwithALL') {
             $list        = \App\Models\Country::selectionList('PAIRS', \App\Models\Country::ofac()->get());
             $list['ALL'] = strtoupper(trans('entities.common.all_countries'));
+        } elseif ($type == "ProtectedArea" && \is_imet_environment()) {
+            $list = \App\Models\Imet\Utils\ProtectedArea::selectionList();
         } elseif ($type == "ProtectedArea") {
             $list = \App\Models\ProtectedArea\ProtectedArea::selectionList();
         } elseif ($type == "ProtectedAreaWdpa") {

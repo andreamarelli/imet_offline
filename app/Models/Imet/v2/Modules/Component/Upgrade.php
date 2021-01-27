@@ -15,13 +15,12 @@ Trait Upgrade
      * @param $records
      * @param bool $v1_to_v2
      * @param null $imet_version
-     * @param null $db_version
      * @return mixed
      */
-    public static function upgradeModuleRecords($records, $v1_to_v2 = false, $imet_version = null, $db_version = null)
+    public static function upgradeModuleRecords($records, $v1_to_v2 = false, $imet_version = null)
     {
         foreach ($records as $i=>$record){
-            $records[$i] = static::upgradeModule($record, $v1_to_v2, $imet_version, $db_version);
+            $records[$i] = static::upgradeModule($record, $v1_to_v2, $imet_version);
         }
         return $records;
     }
@@ -32,10 +31,9 @@ Trait Upgrade
      * @param $record
      * @param bool $v1_to_v2
      * @param null $imet_version
-     * @param null $db_version
      * @return mixed
      */
-    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null, $db_version = null)
+    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null)
     {
         return $record;
     }

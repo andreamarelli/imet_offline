@@ -180,7 +180,6 @@ class Module extends EntityModel
             'module_info' => $model->module_info,
             'module_info_type' => $model->module_info_type,
             'module_class' => PhpClass::ClassWithoutNamespace(get_called_class()),
-
             'fields' => $model->module_fields,
             'common_fields' => $model->module_common_fields,
             'groups' => $model->module_groups,
@@ -191,7 +190,6 @@ class Module extends EntityModel
             'max_rows' => $model->max_rows,
             'accordion_title_field' => ($model->module_type === 'ACCORDION' || $model->module_type === 'GROUP_ACCORDION')
                 ? $model->module_fields[0]['name'] : null,
-
             'label_width' => $model->label_width,
             'primary_key' => $model->getKeyName(),
         ];

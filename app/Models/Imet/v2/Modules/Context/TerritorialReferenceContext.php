@@ -18,7 +18,7 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
             ['name' => 'ReferenceEcosystemAreaPopulation',  'type' => 'numeric',   'label' => trans('form/imet/v2/context.TerritorialReferenceContext.fields.ReferenceEcosystemAreaPopulation')],
             ['name' => 'EcologicalAspects',  'type' => 'text-area',   'label' => trans('form/imet/v2/context.TerritorialReferenceContext.fields.EcologicalAspects')],
             ['name' => 'FunctionalArea',  'type' => 'numeric',   'label' => trans('form/imet/v2/context.TerritorialReferenceContext.fields.FunctionalArea')],
-            ['name' => 'NoTakeArea',  'type' => 'toggle-yes_no',   'label' => trans('form/imet/v2/context.TerritorialReferenceContext.fields.NoTakeArea')],       
+            ['name' => 'NoTakeArea',  'type' => 'toggle-yes_no',   'label' => trans('form/imet/v2/context.TerritorialReferenceContext.fields.NoTakeArea')],
             ['name' => 'FunctionalAreaPopulation',  'type' => 'numeric',   'label' => trans('form/imet/v2/context.TerritorialReferenceContext.fields.FunctionalAreaPopulation')],
             ['name' => 'SocioEconomicAspects',  'type' => 'text-area',   'label' => trans('form/imet/v2/context.TerritorialReferenceContext.fields.SocioEconomicAspects')],
             ['name' => 'SpillOverEffect',  'type' => 'text-area',   'label' => trans('form/imet/v2/context.TerritorialReferenceContext.fields.SpillOverEffect')],
@@ -27,7 +27,7 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null, $db_version = null)
+    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null)
     {
         // ####  v1 -> v2  ####
         if($v1_to_v2) {

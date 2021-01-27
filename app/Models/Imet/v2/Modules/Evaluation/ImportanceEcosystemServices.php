@@ -6,12 +6,12 @@ use App\Models\Imet\v2\Modules;
 use Illuminate\Http\Request;
 
 class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
-{ 
+{
     protected $table = 'imet.eval_importance_c16';
     protected $fixed_rows = true;
-    
+
     public function __construct(array $attributes = []) {
-    
+
         $this->module_type = 'TABLE';
         $this->module_code = 'C1.5';
         $this->module_title = trans('form/imet/v2/evaluation.ImportanceEcosystemServices.title');
@@ -78,7 +78,7 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
         return $vue_data;
     }
 
-    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null, $db_version = null)
+    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null)
     {
         // ####  v1 -> v2  ####
         if($v1_to_v2) {

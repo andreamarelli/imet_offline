@@ -92,7 +92,7 @@ class Imet extends Form
     {
         $session_key = 'imet_language_'.$form_id;
         $language = session($session_key, null);
-        if($language===null){
+        if($language===null || $language===""){
             $language = strtolower(static::find($form_id)->language);
             session([$session_key => $language]);
         }

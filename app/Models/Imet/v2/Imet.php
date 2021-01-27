@@ -13,7 +13,6 @@ class Imet extends \App\Models\Imet\Imet
 {
     public const version = 'v2';
     public const imet_version = 'v2.1';
-    public const db_version = 'v2.2';
 
     public static $modules = [
 
@@ -113,11 +112,10 @@ class Imet extends \App\Models\Imet\Imet
      * @param $data
      * @param bool $v1_to_v2
      * @param null $imet_version
-     * @param null $db_version
      * @return array
      * @throws \ReflectionException
      */
-    public static function upgradeModules($data, $v1_to_v2 = false, $imet_version = null, $db_version = null)
+    public static function upgradeModules($data, $v1_to_v2 = false, $imet_version = null)
     {
         if(array_key_exists('FinancialResources', $data)){
             $data = FinancialAvailableResources::copyCurrencyFromCTX213($data);
@@ -130,7 +128,7 @@ class Imet extends \App\Models\Imet\Imet
         foreach (static::allModules() as $module_class) {
             if(array_key_exists($module_class::getShortClassName(), $data)){
                 $upgraded_data[$module_class::getShortClassName()]
-                    = $module_class::upgradeModuleRecords($data[$module_class::getShortClassName()], $v1_to_v2, $imet_version, $db_version);
+                    = $module_class::upgradeModuleRecords($data[$module_class::getShortClassName()], $v1_to_v2, $imet_version);
             }
         }
         return $upgraded_data;
@@ -143,13 +141,12 @@ class Imet extends \App\Models\Imet\Imet
      * @param $formID
      * @param bool $v1_to_v2
      * @param null $imet_version
-     * @param null $db_version
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      * @throws \ReflectionException
      */
-    public static function importModules($data, $formID, $v1_to_v2 = false, $imet_version = null, $db_version = null)
+    public static function importModules($data, $formID, $v1_to_v2 = false, $imet_version = null)
     {
-        $data = static::upgradeModules($data, $v1_to_v2, $imet_version, $db_version);
+        $data = static::upgradeModules($data, $v1_to_v2, $imet_version);
         parent::importModules($data, $formID);
     }
 

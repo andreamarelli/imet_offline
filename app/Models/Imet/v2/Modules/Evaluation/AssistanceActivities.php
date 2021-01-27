@@ -5,11 +5,11 @@ namespace App\Models\Imet\v2\Modules\Evaluation;
 use App\Models\Imet\v2\Modules;
 
 class AssistanceActivities extends Modules\Component\ImetModule_Eval
-{ 
+{
     protected $table = 'imet.eval_assistance_activities';
-    
+
     public function __construct(array $attributes = []) {
-    
+
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'PR11';
         $this->module_title = trans('form/imet/v2/evaluation.AssistanceActivities.title');
@@ -39,7 +39,7 @@ class AssistanceActivities extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null, $db_version = null)
+    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null)
     {
         // ####  v1 -> v2  ####
         if($v1_to_v2) {

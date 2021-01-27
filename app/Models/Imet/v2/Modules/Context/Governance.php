@@ -31,7 +31,7 @@ class Governance extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null, $db_version = null)
+    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null)
     {
         // #### not in predefined lists ####
         $record['InstitutionType'] = static::dropIfValueNotInPredefinedList($record['InstitutionType'], 'InstitutionType');

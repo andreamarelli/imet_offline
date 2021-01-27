@@ -56,6 +56,11 @@ Route::group(['middleware' => 'setLocale'], function () {
                     Route::get('{item}/edit/{step?}', [Imet\ImetEvalControllerV1::class, 'edit']);
                     Route::patch('{item}',           [Imet\ImetEvalControllerV1::class, 'update']);
                 });
+                Route::group(['prefix' => 'report'], function () {
+                    Route::get('{item}/edit', [Imet\ImetControllerV1::class, 'report']);
+                    Route::get('{item}/show', [Imet\ImetControllerV1::class, 'report_show']);
+                    Route::patch('{item}', [Imet\ImetControllerV1::class, 'report_update']);
+                });
             });
 
             // #### IMET Version 2 ####
