@@ -37,11 +37,16 @@ class GetSerialNumber extends Command
      */
     public function handle()
     {
-        $model = \DB::table('imet.offline_serial_number')
-            ->select('serial_number')
-            ->first();
-        $this->info($model ? $model->serial_number : null);
-        return 0;
+        try {
+            $model = \DB::table('imet.offline_serial_number')
+                ->select('serial_number')
+                ->first();
+            $this->info($model ? $model->serial_number : null);
+            return 0;
+        } catch (\Exception $e){
+            $this->error('ERROR');
+            return 1;
+        }
     }
 
 }
