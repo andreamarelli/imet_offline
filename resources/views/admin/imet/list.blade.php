@@ -134,12 +134,14 @@ $can_encode = \App\Models\User::isAdmin(Auth::user()) || \App\Models\Role\RoleIm
                                 </span>
 
                                 {{-- Upgrade --}}
+                                {{--
                                 <span v-if="item.version==='v1'">
                                     @include('admin.imet.components.button_upgrade', [
                                         'controller' => \App\Http\Controllers\Imet\ImetController::class,
                                         'item' => 'item.FormID'
                                     ])
                                 </span>
+                                --}}
 
                                 {{-- Merge tool --}}
                                 <span v-if="item.has_duplicates">
