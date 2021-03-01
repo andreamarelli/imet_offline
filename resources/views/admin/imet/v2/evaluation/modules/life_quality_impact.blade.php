@@ -1,4 +1,4 @@
-<?<?php
+<?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
 /** @var Mixed $vue_data */
