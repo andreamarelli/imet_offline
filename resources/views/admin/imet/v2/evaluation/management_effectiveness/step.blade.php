@@ -195,7 +195,7 @@ $assessment_step = json_decode(\App\Http\Controllers\Imet\ImetEvalControllerV2::
                 let _this = this;
 
                 $.ajax({
-                    url: window.Laravel.baseUrl + 'api/imet//assessment/'+_this.form_id+'/'+_this.current_step,
+                    url: window.Laravel.baseUrl + 'api/imet/assessment/'+_this.form_id+'/'+_this.current_step,
                     type: "GET",
                     dataType: "json"
                 })
