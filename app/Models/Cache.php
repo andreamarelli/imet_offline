@@ -59,7 +59,9 @@ class Cache{
     private static function _flushByKey($key)
     {
         $key = str_replace('laravel_cache', '', $key);
-        \Cache::forget($key);
+        if(\Cache::has($key)){
+            \Cache::forget($key);
+        }
         return $key . ': Cache flushed.';
     }
 

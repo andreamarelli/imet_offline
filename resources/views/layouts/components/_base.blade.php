@@ -13,10 +13,4 @@
 
     @stack('scripts')
 
-    @if(App::environment('development'))
-        <div class="text-center">
-            Generated in <b>{{ round((microtime(true) - LARAVEL_START), 3) }}</b> seconds.
-        </div>
-    @endif
-
 </html>

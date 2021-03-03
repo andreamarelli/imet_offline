@@ -2,6 +2,8 @@
 
 namespace App\Models\Components;
 
+use Illuminate\Support\Facades\Log;
+
 trait PredefinedValues {
 
     protected $predefined_values = null;
@@ -44,14 +46,16 @@ trait PredefinedValues {
             $predefined_field = $predefined_values['field'];
             $new_records = [];
 
-            if(!array_key_exists((new static())->primaryKey, $records[0])){
-                $records[0][(new static())->primaryKey]=null;
-            }
-            if(count($predefined_values['values'])>=1
-                && count($records)==1
-                && $records[0][(new static())->primaryKey]==null
-            ){
-                $records = [];
+            if(!empty($records)) {
+                if (!array_key_exists((new static())->primaryKey, $records[0])) {
+                    $records[0][(new static())->primaryKey] = null;
+                }
+                if (count($predefined_values['values']) >= 1
+                    && count($records) == 1
+                    && $records[0][(new static())->primaryKey] == null
+                ) {
+                    $records = [];
+                }
             }
 
             // For TABLE and ACCORDION

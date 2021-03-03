@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Http\Controllers\Project\ProjectController;
+use App\Models\Cache;
 use App\Models\Country;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -44,6 +45,9 @@ class RefreshCache implements ShouldQueue
 
         $request = new Request();
         $request->merge(['no_cache' => 'true']);
+
+        // ###### Clean Expired Cache ######
+        Cache::flushExpired();
 
         // ###### Analytical Platform ######
         Biodiversity\RegionalController::api($request);

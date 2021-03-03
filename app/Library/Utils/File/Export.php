@@ -75,6 +75,10 @@ trait Export
         $file_handler = fopen($path, 'w');
         fprintf($file_handler, chr(0xEF) . chr(0xBB) . chr(0xBF));
         foreach ($data as $row) {
+            foreach ($row as $field_index => $field){
+                // convert to string eventual array $fields (ex. from checkboxes)
+                $row[$field_index] = is_array($field) ? implode(';', $field) : $field;
+            }
             fputcsv($file_handler, $row);
         }
         fclose($file_handler);

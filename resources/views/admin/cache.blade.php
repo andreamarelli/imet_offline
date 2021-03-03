@@ -1,6 +1,5 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-
 $now = \Carbon\Carbon::now()->unix();
 ?>
 
@@ -17,12 +16,12 @@ $now = \Carbon\Carbon::now()->unix();
 <div id="app">
 
     <div class="text-right">
-        <button class="btn btn-sm act-btn-darkred" @click="flush('all')">
+        <a class="btn btn-sm act-btn-darkred" href="{{ action([\App\Http\Controllers\CacheController::class, 'flushAll']) }}">
             <i class="fas fa-trash"></i>&nbsp;&nbsp;Remove All
-        </button>
-        <button class="btn btn-sm act-btn-darkred" @click="flush('expired')">
+        </a>
+        <a class="btn btn-sm act-btn-darkred" href="{{ action([\App\Http\Controllers\CacheController::class, 'flushExpired']) }}">
             <i class="fas fa-trash"></i>&nbsp;&nbsp;Remove Expired
-        </button>
+        </a>
     </div>
 
     <table class="striped">
@@ -33,85 +32,40 @@ $now = \Carbon\Carbon::now()->unix();
             <th></th>
         </tr>
 
-        <tr v-for="item in list">
-            <td style="word-break: break-word;">
-                <b>@{{ item.api }}</b>
-                <br />
-                @{{ item.params }}
-            </td>
-            <td class="center width150px">
-                <span v-if="item.expiration>{{ $now }}">
-                   @{{ human_readable_date(item.expiration) }}
-                </span>
-                <span v-else>
-                    expired<br />
-                    <small><i>@{{ human_readable_date(item.expiration) }}</i></small>
-                </span>
-            </td>
-            <td class="width110px">
-                <button v-if="item.expiration>{{ $now }}"
-                        class="btn btn-sm act-btn-darkred" @click="flush(item.key)">
-                    <i class="fas fa-trash"></i>&nbsp;&nbsp;Remove
-                </button>
-            </td>
-        </tr>
+        @foreach($collection as $item)
+            <tr>
+                <td style="word-break: break-word;">
+                    <b>{{ $item->api }}</b>
+                    <br />
+                    {{ $item->params }}
+                </td>
+                <td class="center width150px">
+                    @if($item->expiration > $now)
+                        <span>
+                           {{ \Carbon\Carbon::createFromTimestamp($item->expiration)->toDateTimeString() }}
+                        </span>
+                    @else
+                        <span>
+                            expired<br />
+                            <small>
+                                <i>
+                                    {{ \Carbon\Carbon::createFromTimestamp($item->expiration)->toDateTimeString() }}
+                                </i>
+                            </small>
+                        </span>
+                    @endif
+                </td>
+                <td class="width110px">
+                    @if($item->expiration > $now)
+                        <a class="btn btn-sm act-btn-darkred"
+                           href="{{ action([\App\Http\Controllers\CacheController::class, 'flushExpired'], [$item->key]) }}">
+                            <i class="fas fa-trash"></i>&nbsp;&nbsp;Remove
+                        </a>
+                    @endif
+                </td>
+            </tr>
+        @endforeach
 
     </table>
 </div>
 @endsection
-
-@push('scripts')
-
-    <script>
-        new Vue({
-            el: '#app',
-
-            data: {
-                list: @json($list)
-            },
-
-            methods:{
-
-                human_readable_date(unix){
-                    let date = new Date(unix * 1000);
-                    return date.toLocaleString();
-                },
-
-                flush: function (key) {
-
-                    let url = 'admin/cache/flush';
-                    let data = {
-                        _token: window.Laravel.csrfToken
-                    };
-
-                    if(key==='all'){
-                        url = 'admin/cache/flush/all';
-                    }
-                    else if(key==='expired'){
-                        url = 'admin/cache/flush/expired';
-                    } else {
-                        data.key = encodeURI(key)
-                    }
-
-                    window.axios({
-                        method: 'post',
-                        url: window.Laravel.baseUrl + url,
-                        data: data
-                    })
-                    .then(function (response) {
-                        console.log('flushed');
-                    })
-                    .catch(function (response) {
-                        console.log('error');
-                    })
-                    .finally(function (response) {
-                        console.log('finished');
-                    });
-
-                },
-
-            }
-        });
-    </script>
-
-@endpush
