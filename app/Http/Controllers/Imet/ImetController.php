@@ -60,7 +60,11 @@ class ImetController extends FormController
         // set filter status
         $show_filters = Imet::count()>10;
         $no_filter_selected = empty(array_filter($request->except('_token')));
-        $countries = Country::getOFAC()->keyBy('iso3')->toArray();
+        if(is_imet_environment()){
+            $countries = Country::all()->sortBy(Country::LABEL)->keyBy('iso3')->toArray();
+        } else {
+            $countries = Country::getOFAC()->keyBy('iso3')->toArray();
+        }
         $years = Imet::getAvailableYears();
 
         $list = [];
