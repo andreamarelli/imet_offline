@@ -40,7 +40,7 @@ Route::group(['middleware' => 'setLocale'], function () {
             Route::match(['get', 'post'],'v2',      [Imet\ImetController::class, 'index']);     // temporary alias
             Route::delete('{item}', [Imet\ImetController::class, 'destroy']);
             Route::get('{item}/export', [Imet\ImetController::class, 'export']);
-            Route::get('exportcsv/list', [Imet\ImetController::class, 'exportListCSV']);
+            Route::get('exportcsv/list', [Imet\ImetController::class, 'exportListCSV'])->name('csv_list');
             Route::get('exportcsv/{ids}/{type}/{step_id}/{step}', [Imet\ImetController::class, 'exportModuleToCsv'])->name('csv');
             Route::get('import',        [Imet\ImetController::class, 'import_view']);
             Route::post('import',      [Imet\ImetController::class, 'import']);
