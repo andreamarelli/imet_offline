@@ -1,6 +1,19 @@
 <?php
 
 
+if (! function_exists('cleanString')) {
+    /**
+     * clean a string from special characters and replace spaces with hyphen
+     * @param $string
+     * @return string|string[]|null
+     */
+    function cleanString($string)
+    {
+        $string = str_replace(' ', '-', $string);
+        return preg_replace('/[^A-Za-z0-9\-]/', '', $string);
+    }
+}
+
 if (! function_exists('vueAction')) {
 
     /**
