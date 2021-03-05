@@ -17,6 +17,8 @@ use \App\Models\Imet\v1;
 use \App\Models\Imet\v2;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
+use App\Models\Components\ModuleKey;
+use App\Library\Utils\PhpClass;
 
 
 class ImetController extends FormController
@@ -114,18 +116,14 @@ class ImetController extends FormController
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
-    public function exportModuleToCsv(string $ids, string $type, int $step_key, string $step)
+    public function exportModuleToCsv(string $ids, string $module_key)
     {
-        if($type === 'i'){
-            $model = v1\Imet::$modules[$step][$step_key];
-        } else {
-            $model = v2\Imet_Eval::$modules[$step][$step_key];
-        }
+        $model = ModuleKey::KeyToClassName($module_key);
+        PhpClass::ClassExist($model);
 
-        if($ids) {
+        if ($ids) {
             $query = $model::whereIn('FormID', explode(',', $ids))->get();
-        }
-        else{
+        } else {
             $query = $model::select()->get();
         }
         $records = $query->makeHidden(['UpdateBy', 'UpdateDate', 'id'])->toArray();
@@ -133,7 +131,7 @@ class ImetController extends FormController
         if(count($records) === 0){
             return trans('common.no_record_found');
         }
-        $title = Str::snake(cleanString($query->pluck('module_title')->first()));
+        $title = Str::snake(\App\Library\Utils\Type\Chars::clean(str_replace(' ', '_', $query->pluck('module_title')->first()), '_'));
         return File::exportTo('CSV', $title.'.csv', $records);
     }
 
@@ -188,8 +186,9 @@ class ImetController extends FormController
             unset($temp_array[$key]);
         }
 
-        return view('admin.imet.v2.modules_iterate',
-            ['modules' =>  $modules_final_list,
+        return view('admin.imet.v2.tools.modules_iterate',
+            [
+              'modules' =>  $modules_final_list,
              'imet_keys' => $imet_keys,
              'imet_eval_keys' => $imet_eval_keys,
              'countries' => $countries_list,
@@ -197,7 +196,6 @@ class ImetController extends FormController
              'wdpa' => $wdpa_list,
              'request' => $request,
              'method' => 'GET',
-             'url' => '',
              'results' => $results
             ]
         );

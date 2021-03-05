@@ -41,7 +41,7 @@ Route::group(['middleware' => 'setLocale'], function () {
             Route::delete('{item}', [Imet\ImetController::class, 'destroy']);
             Route::get('{item}/export', [Imet\ImetController::class, 'export']);
             Route::get('exportcsv/list', [Imet\ImetController::class, 'exportListCSV'])->name('csv_list');
-            Route::get('exportcsv/{ids}/{type}/{step_id}/{step}', [Imet\ImetController::class, 'exportModuleToCsv'])->name('csv');
+            Route::get('exportcsv/{ids}/{module_key}', [Imet\ImetController::class, 'exportModuleToCsv'])->name('csv');
             Route::get('import',        [Imet\ImetController::class, 'import_view']);
             Route::post('import',      [Imet\ImetController::class, 'import']);
             Route::get('{item}/merge',  [Imet\ImetController::class, 'merge_view']);

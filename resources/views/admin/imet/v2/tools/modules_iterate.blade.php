@@ -46,18 +46,18 @@
     </div>
 </div>
     @if(Str::length($results) > 0)
-        @foreach($modules as $key => $module)
-            @if(count($module) > 0)
+        @foreach($modules as $step_key => $step)
+            @if(count($step) > 0)
                 <div class="module-container" >
                     <div class="module-body">
                         <table id="12" class="table module-table">
                             <thead>
                                 <tr>
                                     <th class=" text-center">
-                                        @if (in_array($key, $imet_keys))
-                                        <strong>@lang('form/imet/v2/common.steps.'.$key)</strong>
+                                        @if (in_array($step_key, $imet_keys))
+                                        <strong>@lang('form/imet/v2/common.steps.'.$step_key)</strong>
                                         @else
-                                            <strong>@lang('form/imet/v2/common.steps_eval.'.$key)</strong>
+                                            <strong>@lang('form/imet/v2/common.steps_eval.'.$step_key)</strong>
                                         @endif
                                     </th>
                                     <th class="text-center">
@@ -65,12 +65,11 @@
                                 </tr>
                             </thead>
                             <tbody class="22">
-                                @foreach($module as $ind_key => $indicator)
+                                @foreach($step as $module_key => $module)
                                 <tr class="module-table-item" >
-                                    @include('admin.imet.v2.module', [
-                                            'module' => new $indicator(),
-                                            'module_key' => $ind_key,
-                                            'step' => $key
+                                    @include('admin.imet.v2.tools.module', [
+                                            'moduleClass' => new $module(),
+                                            'module_key' => $module_key
                                     ])
                                 </tr>
                                 @endforeach
