@@ -67,7 +67,7 @@
                             <tbody class="22">
                                 @foreach($step as $module_key => $module)
                                 <tr class="module-table-item" >
-                                    @include('admin.imet.v2.tools.module', [
+                                    @include('admin.imet.v2.tools.components.module_export_csv', [
                                             'moduleClass' => new $module(),
                                             'module_key' => $module_key
                                     ])

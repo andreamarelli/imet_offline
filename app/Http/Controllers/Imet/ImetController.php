@@ -186,7 +186,7 @@ class ImetController extends FormController
             unset($temp_array[$key]);
         }
 
-        return view('admin.imet.v2.tools.modules_iterate',
+        return view('admin.imet.v2.tools.export_csv',
             [
               'modules' =>  $modules_final_list,
              'imet_keys' => $imet_keys,
