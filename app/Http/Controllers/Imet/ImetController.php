@@ -3,18 +3,22 @@
 namespace App\Http\Controllers\Imet;
 
 use App\Http\Controllers\Components\FormController;
+use App\Library\Ofac\Module as OfacModule;
 use App\Library\Utils\File\File;
 use App\Library\Utils\HTTP;
 use App\Models\Components\Upload;
 use App\Models\Country;
 use App\Models\Imet\Imet;
 use App\Models\Imet\Utils\Encoder;
-use App\Models\ProtectedArea\ProtectedArea;
+use App\Models\Imet\Utils\ProtectedArea;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use \App\Models\Imet\v1;
 use \App\Models\Imet\v2;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Str;
+use App\Models\Components\ModuleKey;
+use App\Library\Utils\PhpClass;
 
 
 class ImetController extends FormController
@@ -103,6 +107,102 @@ class ImetController extends FormController
             }, $countries),
             'years' => !empty($years) ? range(min($years), max($years)) : array(Carbon::today()->year),
         ]);
+    }
+
+
+    /**
+     * export records for specific module to csv format
+     * @param $ids
+     * @param $type
+     * @param $step_key
+     * @param $step
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|null
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+     */
+    public function exportModuleToCsv(string $ids, string $module_key)
+    {
+        $model = ModuleKey::KeyToClassName($module_key);
+        PhpClass::ClassExist($model);
+
+        if ($ids) {
+            $query = $model::whereIn('FormID', explode(',', $ids))->get();
+        } else {
+            $query = $model::select()->get();
+        }
+        $records = $query->makeHidden(['UpdateBy', 'UpdateDate', 'id'])->toArray();
+
+        if(count($records) === 0){
+            return trans('common.no_record_found');
+        }
+        $title = Str::snake(\App\Library\Utils\Type\Chars::clean(str_replace(' ', '_', $query->pluck('module_title')->first()), '_'));
+        return File::exportTo('CSV', $title.'.csv', $records);
+    }
+
+    /**
+     * return modules list for export
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function exportListCSV(Request $request) : \Illuminate\View\View
+    {
+        $wdpa_list = [];
+        $countries_list = [];
+        $modules_final_list = [];
+        $temp_array = [];
+
+        //retrieve all form records and manipulate array result
+        $results = Imet::select('FormID')->distinct()->commonSearchWithWdpa($request);
+
+        //add this to check if a filter is applied in order to return the ids or return 0 (all records)
+        if($request->filled('country') || $request->filled('year') || $request->filled('wdpa')) {
+            $results = $results->implode('FormID', ',');
+        }
+        else {
+            $results = 0;
+        }
+
+        //retrieve all data for filters countries, years, wdpa
+        $filters = Imet::getFieldsSplitToArrays();
+
+        //retrieve wdpa labels and ids in an array for selections
+        $wdpas = ProtectedArea::getRecordsArrayByFieldIds($filters['wdpa_id'], ['wdpa_id','name'], 'wdpa_id');
+        foreach($wdpas as $k => $a){
+            $wdpa_list[$a['wdpa_id']] = $a['name'];
+        }
+
+        //retrieve countries labels and ids in an array for selections
+        $countries = Country::getRecordsArrayByFieldIds($filters['Country'], ['iso3','name_en'], 'iso3');
+        foreach($countries as $k => $a){
+            $countries_list[$a['iso3']] = $a['name_en'];
+        }
+
+        $imet_keys = \App\Models\Imet\v2\Imet::getModulesKeys();
+        $imet_eval_keys = \App\Models\Imet\v2\Imet_Eval::getModulesKeys();
+
+        $modules = array_merge(\App\Models\Imet\v2\Imet::$modules,
+                               \App\Models\Imet\v2\Imet_Eval::$modules);
+
+        foreach($modules as $key => $module){
+            $temp_array[$key] = $module;
+            $modules_final_list[$key] = OfacModule::getModulesList($temp_array);
+            unset($temp_array[$key]);
+        }
+
+        return view('admin.imet.v2.tools.export_csv',
+            [
+              'modules' =>  $modules_final_list,
+             'imet_keys' => $imet_keys,
+             'imet_eval_keys' => $imet_eval_keys,
+             'countries' => $countries_list,
+             'years' => $filters['Year'],
+             'wdpa' => $wdpa_list,
+             'request' => $request,
+             'method' => 'GET',
+             'results' => $results
+            ]
+        );
     }
 
     /**

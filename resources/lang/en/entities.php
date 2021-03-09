@@ -62,6 +62,7 @@ return [
         'sum'                   => 'sum',
         'difference'            => 'difference',
         'total'                 => 'total',
+        'protected_area'        => 'protected_area'
     ],
 
     'dopa_not_available' => 'DOPA services not available',
