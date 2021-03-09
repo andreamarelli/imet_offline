@@ -34,7 +34,7 @@ class EntityModel extends Model
     /**
      * Return class short name (trim namespace)
      * @return string
-      */
+     */
     public static function getShortClassName()
     {
         return (new \ReflectionClass(static::class))->getShortName();

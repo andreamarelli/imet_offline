@@ -174,9 +174,9 @@ class Imet extends Form
     public static function getFieldsSplitToArrays($fields = ['Country','Year','wdpa_id', 'FormID']){
 
         $getRecords = static::select($fields)
-                            ->distinct()
-                            ->get()
-                            ->toArray();
+            ->distinct()
+            ->get()
+            ->toArray();
 
         $records = [];
         foreach($getRecords as $key => $field){

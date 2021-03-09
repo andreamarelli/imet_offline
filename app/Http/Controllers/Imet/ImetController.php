@@ -11,12 +11,11 @@ use App\Models\Country;
 use App\Models\Imet\Imet;
 use App\Models\Imet\Utils\Encoder;
 use App\Models\Imet\Utils\ProtectedArea;
+use App\Models\Imet\v1;
+use App\Models\Imet\v2;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use \App\Models\Imet\v1;
-use \App\Models\Imet\v2;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Str;
 use App\Models\Components\ModuleKey;
 use App\Library\Utils\PhpClass;
 
@@ -125,17 +124,23 @@ class ImetController extends FormController
         $model = ModuleKey::KeyToClassName($module_key);
         PhpClass::ClassExist($model);
 
-        if ($ids) {
-            $query = $model::whereIn('FormID', explode(',', $ids))->get();
-        } else {
-            $query = $model::select()->get();
-        }
+        $query = $model
+            ::where(function ($query) use ($ids){
+                 if($ids){
+                     $query->whereIn('FormID', explode(',', $ids));
+                 }
+            })
+            ->whereHas('imet', function($q){
+                $q->where('version', 'v2');
+            })
+            ->get();
+
         $records = $query->makeHidden(['UpdateBy', 'UpdateDate', 'id'])->toArray();
 
         if(count($records) === 0){
             return trans('common.no_record_found');
         }
-        $title = Str::snake(\App\Library\Utils\Type\Chars::clean(str_replace(' ', '_', $query->pluck('module_title')->first()), '_'));
+        $title = str_replace(' ', '_', $query->pluck('module_code')->first());
         return File::exportTo('CSV', $title.'.csv', $records);
     }
 
@@ -173,16 +178,16 @@ class ImetController extends FormController
         }
 
         //retrieve countries labels and ids in an array for selections
-        $countries = Country::getRecordsArrayByFieldIds($filters['Country'], ['iso3','name_en'], 'iso3');
-        foreach($countries as $k => $a){
-            $countries_list[$a['iso3']] = $a['name_en'];
-        }
+        $countries = is_imet_environment()
+            ? Country::all()->sortBy(Country::LABEL)->keyBy('iso3')->toArray()
+            : Country::getOFAC()->keyBy('iso3')->toArray();
+        $countries = array_map(function ($item){
+            return $item['name'];
+        }, $countries);
 
-        $imet_keys = \App\Models\Imet\v2\Imet::getModulesKeys();
-        $imet_eval_keys = \App\Models\Imet\v2\Imet_Eval::getModulesKeys();
-
-        $modules = array_merge(\App\Models\Imet\v2\Imet::$modules,
-                               \App\Models\Imet\v2\Imet_Eval::$modules);
+        $imet_keys = v2\Imet::getModulesKeys();
+        $imet_eval_keys = v2\Imet_Eval::getModulesKeys();
+        $modules = array_merge(v2\Imet::$modules, v1\Imet_Eval::$modules);
 
         foreach($modules as $key => $module){
             $temp_array[$key] = $module;
@@ -191,17 +196,17 @@ class ImetController extends FormController
         }
 
         return view('admin.imet.v2.tools.export_csv',
-            [
-              'modules' =>  $modules_final_list,
-             'imet_keys' => $imet_keys,
-             'imet_eval_keys' => $imet_eval_keys,
-             'countries' => $countries_list,
-             'years' => $filters['Year'],
-             'wdpa' => $wdpa_list,
-             'request' => $request,
-             'method' => 'GET',
-             'results' => $results
-            ]
+                    [
+                        'modules' =>  $modules_final_list,
+                        'imet_keys' => $imet_keys,
+                        'imet_eval_keys' => $imet_eval_keys,
+                        'countries' => $countries,
+                        'years' => $filters['Year'],
+                        'wdpa' => $wdpa_list,
+                        'request' => $request,
+                        'method' => 'GET',
+                        'results' => $results
+                    ]
         );
     }
 

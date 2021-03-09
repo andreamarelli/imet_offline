@@ -40,8 +40,6 @@ Route::group(['middleware' => 'setLocale'], function () {
             Route::match(['get', 'post'],'v2',      [Imet\ImetController::class, 'index']);     // temporary alias
             Route::delete('{item}', [Imet\ImetController::class, 'destroy']);
             Route::get('{item}/export', [Imet\ImetController::class, 'export']);
-            Route::get('exportcsv/list', [Imet\ImetController::class, 'exportListCSV'])->name('csv_list');
-            Route::get('exportcsv/{ids}/{module_key}', [Imet\ImetController::class, 'exportModuleToCsv'])->name('csv');
             Route::get('import',        [Imet\ImetController::class, 'import_view']);
             Route::post('import',      [Imet\ImetController::class, 'import']);
             Route::get('{item}/merge',  [Imet\ImetController::class, 'merge_view']);
@@ -89,6 +87,11 @@ Route::group(['middleware' => 'setLocale'], function () {
                     Route::patch('{item}', [Imet\ImetControllerV2::class, 'report_update']);
                 });
 
+            });
+
+            Route::group(['prefix' => 'tools'], function () {
+                Route::get('export_csv', [Imet\ImetController::class, 'exportListCSV'])->name('csv_list');
+                Route::get('export_csv/{ids}/{module_key}', [Imet\ImetController::class, 'exportModuleToCsv'])->name('csv');
             });
 
         });
