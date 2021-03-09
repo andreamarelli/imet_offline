@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit36b41256cf481215d516c57a62a8ab84
+class ComposerStaticInit7fa9c85807910b7a6807c470743fd78a
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -611,6 +611,8 @@ class ComposerStaticInit36b41256cf481215d516c57a62a8ab84
         'App\\Console\\Commands\\Imet\\GetSerialNumber' => __DIR__ . '/../..' . '/app/Console/Commands/Imet/GetSerialNumber.php',
         'App\\Console\\Commands\\Imet\\Import' => __DIR__ . '/../..' . '/app/Console/Commands/Imet/Import.php',
         'App\\Console\\Commands\\Imet\\InitDB' => __DIR__ . '/../..' . '/app/Console/Commands/Imet/InitDB.php',
+        'App\\Console\\Commands\\Imet\\PopulateMetadata' => __DIR__ . '/../..' . '/app/Console/Commands/Imet/PopulateMetadata.php',
+        'App\\Console\\Commands\\Imet\\PopulateSpecies' => __DIR__ . '/../..' . '/app/Console/Commands/Imet/PopulateSpecies.php',
         'App\\Console\\Commands\\Imet\\SetSerialNumber' => __DIR__ . '/../..' . '/app/Console/Commands/Imet/SetSerialNumber.php',
         'App\\Console\\Commands\\ProtectedPlanetCSV' => __DIR__ . '/../..' . '/app/Console/Commands/ProtectedPlanetCSV.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
@@ -2509,6 +2511,7 @@ class ComposerStaticInit36b41256cf481215d516c57a62a8ab84
         'Illuminate\\Foundation\\Events\\DiscoverEvents' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Events/DiscoverEvents.php',
         'Illuminate\\Foundation\\Events\\Dispatchable' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Events/Dispatchable.php',
         'Illuminate\\Foundation\\Events\\LocaleUpdated' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Events/LocaleUpdated.php',
+        'Illuminate\\Foundation\\Events\\VendorTagPublished' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Events/VendorTagPublished.php',
         'Illuminate\\Foundation\\Exceptions\\Handler' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php',
         'Illuminate\\Foundation\\Exceptions\\RegisterErrorViewPaths' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Exceptions/RegisterErrorViewPaths.php',
         'Illuminate\\Foundation\\Exceptions\\ReportableHandler' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Exceptions/ReportableHandler.php',
@@ -4243,6 +4246,7 @@ class ComposerStaticInit36b41256cf481215d516c57a62a8ab84
         'Symfony\\Component\\Finder\\Iterator\\FileTypeFilterIterator' => __DIR__ . '/..' . '/symfony/finder/Iterator/FileTypeFilterIterator.php',
         'Symfony\\Component\\Finder\\Iterator\\FilecontentFilterIterator' => __DIR__ . '/..' . '/symfony/finder/Iterator/FilecontentFilterIterator.php',
         'Symfony\\Component\\Finder\\Iterator\\FilenameFilterIterator' => __DIR__ . '/..' . '/symfony/finder/Iterator/FilenameFilterIterator.php',
+        'Symfony\\Component\\Finder\\Iterator\\LazyIterator' => __DIR__ . '/..' . '/symfony/finder/Iterator/LazyIterator.php',
         'Symfony\\Component\\Finder\\Iterator\\MultiplePcreFilterIterator' => __DIR__ . '/..' . '/symfony/finder/Iterator/MultiplePcreFilterIterator.php',
         'Symfony\\Component\\Finder\\Iterator\\PathFilterIterator' => __DIR__ . '/..' . '/symfony/finder/Iterator/PathFilterIterator.php',
         'Symfony\\Component\\Finder\\Iterator\\RecursiveDirectoryIterator' => __DIR__ . '/..' . '/symfony/finder/Iterator/RecursiveDirectoryIterator.php',
@@ -4812,6 +4816,7 @@ class ComposerStaticInit36b41256cf481215d516c57a62a8ab84
         'Wa72\\HtmlPageDom\\HtmlPage' => __DIR__ . '/..' . '/wa72/htmlpagedom/src/HtmlPage.php',
         'Wa72\\HtmlPageDom\\HtmlPageCrawler' => __DIR__ . '/..' . '/wa72/htmlpagedom/src/HtmlPageCrawler.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
+        'Webmozart\\Assert\\InvalidArgumentException' => __DIR__ . '/..' . '/webmozart/assert/src/InvalidArgumentException.php',
         'Webmozart\\Assert\\Mixin' => __DIR__ . '/..' . '/webmozart/assert/src/Mixin.php',
         'ZipStream\\Bigint' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Bigint.php',
         'ZipStream\\DeflateStream' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/DeflateStream.php',
@@ -4836,10 +4841,10 @@ class ComposerStaticInit36b41256cf481215d516c57a62a8ab84
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit36b41256cf481215d516c57a62a8ab84::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit36b41256cf481215d516c57a62a8ab84::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit36b41256cf481215d516c57a62a8ab84::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit36b41256cf481215d516c57a62a8ab84::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit7fa9c85807910b7a6807c470743fd78a::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit7fa9c85807910b7a6807c470743fd78a::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit7fa9c85807910b7a6807c470743fd78a::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit7fa9c85807910b7a6807c470743fd78a::$classMap;
 
         }, null, ClassLoader::class);
     }
