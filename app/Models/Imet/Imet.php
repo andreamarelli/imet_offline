@@ -8,6 +8,7 @@ use App\Models\Imet\Utils\Encoder;
 use App\Models\Imet\Utils\ProtectedArea;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class Imet extends Form
@@ -34,6 +35,36 @@ class Imet extends Form
     }
 
     /**
+     * common search filters with wdpa
+     * @param Builder $query
+     * @param Request $request
+     * @return Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function scopeCommonSearchWithWdpa(Builder $query, Request $request) : Collection
+    {
+        $this->commonFilters($query, $request);
+        if($request->filled('wdpa')){
+            $query->where('wdpa_id', $request->input('wdpa'));
+        }
+        return $query->get();
+    }
+
+    /**
+     * common method to use it in various searches queries
+     * @param Builder $query
+     * @param Request $request
+     */
+    private function commonFilters(Builder $query, Request $request)
+    {
+        if($request->filled('country')){
+            $query->where('Country', $request->input('country'));
+        }
+        if($request->filled('year')){
+            $query->where('Year', $request->input('year'));
+        }
+    }
+
+    /**
      * Override scopeFilterList()
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
@@ -44,12 +75,7 @@ class Imet extends Form
     {
         // filter
         $query->whereHasPermission();
-        if($request->filled('country')){
-            $query->where('Country', $request->input('country'));
-        }
-        if($request->filled('year')){
-            $query->where('Year', $request->input('year'));
-        }
+        $this->commonFilters($query, $request);
         if($request->filled('search')){
             $query->whereRaw('unaccent(name) ILIKE unaccent(?)', '%'.$request->input('search').'%')
                 ->orWhere('wdpa_id', 'LIKE', '%'.$request->input('search').'%');
@@ -135,19 +161,48 @@ class Imet extends Form
         return $form ? $form->only(['id', 'version']) : null;
     }
 
+    public static function getDistinctField($field){
+        return static::getAvailableYears($field);
+    }
+
     /**
+     * Retrieve specific fields and return them in different arrays in an array
+     *
+     * @param string[] $fields
+     * @return array
+     */
+    public static function getFieldsSplitToArrays($fields = ['Country','Year','wdpa_id', 'FormID']){
+
+        $getRecords = static::select($fields)
+            ->distinct()
+            ->get()
+            ->toArray();
+
+        $records = [];
+        foreach($getRecords as $key => $field){
+            foreach($fields as $k => $f){
+                $records[$f][$field[$f]] = $field[$f];
+            }
+        }
+
+        return $records;
+    }
+
+    /**
+     * string $column
      * Retrieve years for existing IMETs
      * @return array
      */
-    public static function getAvailableYears()
+    public static function getAvailableYears($column = 'Year')
     {
-        return static::select('Year')
+        return static::select($column)
             ->distinct()
-            ->orderBy('Year')
+            ->orderBy($column)
             ->get()
-            ->pluck('Year')
+            ->pluck($column)
             ->toArray();
     }
+
 
     /**
      * Import form from array
@@ -257,5 +312,13 @@ class Imet extends Form
         return $haveDuplicates;
     }
 
+    /**
+     * return array keys of modules
+     * @return array
+     */
+    public static function getModulesKeys() : array
+    {
+        return array_keys(static::$modules);
+    }
 
 }

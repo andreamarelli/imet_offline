@@ -61,7 +61,7 @@ return [
         'all_sites'             => 'all sites',
         'sum'                   => 'sum',
         'difference'            => 'difference',
-        'total'                 => 'total',
+        'total'                 => 'total'
     ],
 
     'dopa_not_available' => 'DOPA services not available',

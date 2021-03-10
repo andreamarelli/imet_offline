@@ -89,6 +89,11 @@ Route::group(['middleware' => 'setLocale'], function () {
 
             });
 
+            Route::group(['prefix' => 'tools'], function () {
+                Route::get('export_csv', [Imet\ImetController::class, 'exportListCSV'])->name('csv_list');
+                Route::get('export_csv/{ids}/{module_key}', [Imet\ImetController::class, 'exportModuleToCsv'])->name('csv');
+            });
+
         });
 
     });
