@@ -14,27 +14,25 @@ class SetLocale
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string|null  $guard
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
+     * @param string|null $guard
      * @return mixed
      */
     public function handle($request, Closure $next, $guard = null)
     {
         // Force Language to English
-        if(is_imet_environment()) {
+        if (is_imet_environment()) {
             App::setLocale('en');
         }
 
         // Switch locale (set in session)
-        if(Request::has('lang') &&
-            (Request::input('lang')==='fr' ||
-                Request::input('lang')==='en')){
+        if (Request::has('lang') && in_array(Request::input('lang'), ['fr', 'en', 'sp'/*, 'pt'*/])) {
             Session::put('locale', Request::input('lang'));
         }
 
         // Set local from session
-        if(Session::has('locale') && Session::get('locale')!==null){
+        if (Session::has('locale') && Session::get('locale') !== null) {
             App::setLocale(Session::get('locale'));
         }
 
