@@ -4,7 +4,9 @@ return [
 
     'languages' => [
         'fr'        => 'french',
-        'en'        => 'english'
+        'en'        => 'english',
+        'sp'        => 'spanish'/*,
+        'pt'        => 'portuguese'*/
     ],
     'switch_language' => 'Switch current language to',
 

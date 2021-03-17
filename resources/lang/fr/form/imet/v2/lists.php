@@ -4,7 +4,9 @@ return [
 
     'languages' => [
         'fr'        => 'français',
-        'en'        => 'anglais'
+        'en'        => 'anglais',
+        'sp'        => 'espagnol'/*,
+        'pt'        => 'portugais'*/
     ],
 
     'regions' => [
