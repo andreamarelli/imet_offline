@@ -35,7 +35,7 @@ export default {
       Locale: Locale,
       modalIsOpen: false,
       options: {
-        url: "/ajax/upload",
+        url: window.Laravel.baseUrl + 'ajax/upload',
         previewTemplate: this.template(),
         params: {
           _token: window.Laravel.csrfToken
@@ -86,6 +86,9 @@ export default {
             </div>
         `;
     },
+    hideShowRemoveLink(file, value){
+      file.previewTemplate.querySelector("a.dz-remove").style.display = value;
+    },
     clearDropzone() {
       this.$refs.myVueDropzone.removeAllFiles();
     },
@@ -97,7 +100,8 @@ export default {
       selector.style.width = width;
     },
     fileAdded(file) {
-      file.previewTemplate.querySelector("#total-progress.progress-bar");
+      this.hideShowRemoveLink(file, 'none');
+
       //bring the last file added to the top of the list
       const nodesArray = [...this.$refs.myVueDropzone.$el.children];
       const fileAdded = nodesArray.pop();
@@ -114,6 +118,7 @@ export default {
       } else {
         errorMessage += message;
       }
+      this.hideShowRemoveLink(file, 'block');
       this.progressBarConfiguration(file, errorMessage, 'red', '100%');
     },
     processing(file) {
@@ -135,6 +140,7 @@ export default {
           message += Locale.getLabel('common.upload.not_all_imported').replace("{{filesDidNotUploaded}}", filesDidNotUploaded).replace("{{totalFiles}}", totalFiles);
         }
       }
+      this.hideShowRemoveLink(file, 'block');
       this.progressBarConfiguration(file, message, "green");
     }
   }
