@@ -2,23 +2,14 @@
   "private": true,
   "scripts": {
     "dev": "npm run development",
-    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "dev-no-vendor": "cross-env NO_VENDOR=true NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "npm run development -- --watch",
-    "watch-poll": "npm run watch -- --watch-poll",
-    "watch-no-vendor": "cross-env NO_VENDOR=true NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js --watch",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --disable-host-check --config=node_modules/laravel-mix/setup/webpack.config.js",
     "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
-  },
-  "devDependencies": {
-    "cross-env": "^7.0.3",
-    "laravel-mix": "^5.0.9",
-    "resolve-url-loader": "^3.1.1",
-    "sass": "^1.32.5",
-    "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.12",
-    "webpack-shell-plugin": "^0.5.0"
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "npm run development -- --watch",
+    "watch-no-vendor": "cross-env NO_VENDOR=true NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js --watch",
+    "watch-poll": "npm run watch -- --watch-poll"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^22.0.0",
@@ -30,6 +21,7 @@
     "bootstrap": "^4.6.0",
     "bootstrap-datepicker": "^1.9.0",
     "bootstrap-select": "^1.13.18",
+    "core-js": "^3.6.5",
     "echarts": "^4.9.0",
     "flag-icon-css": "^3.5.0",
     "gradstop": "^2.2.3",
@@ -47,6 +39,20 @@
     "select2-bootstrap4-theme": "1.0.0",
     "vue": "^2.6.12",
     "vue-select": "^3.11.2",
+    "vue2-dropzone": "^3.6.0",
     "vuex": "^3.6.2"
-  }
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.5.12",
+    "cross-env": "^7.0.3",
+    "laravel-mix": "^5.0.9",
+    "resolve-url-loader": "^3.1.1",
+    "sass": "^1.32.5",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.12",
+    "webpack-shell-plugin": "^0.5.0"
+  },
+  "browserslist": [
+    "since 2017"
+  ]
 }

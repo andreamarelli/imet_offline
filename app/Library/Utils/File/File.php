@@ -3,6 +3,7 @@
 namespace App\Library\Utils\File;
 
 use App\Library\Utils\Type\Chars;
+use App\Models\Components\Upload;
 use Illuminate\Http\Testing\MimeType;
 
 
@@ -24,7 +25,7 @@ class File
      */
     public static function cleanFileName($original_filename)
     {
-        $info             = pathinfo($original_filename);
+        $info = pathinfo($original_filename);
         $cleaned_filename = basename($original_filename, '.' . $info['extension']);
         $cleaned_filename = str_replace('  ', '_', $cleaned_filename);
         $cleaned_filename = str_replace(' ', '_', $cleaned_filename);
@@ -46,7 +47,7 @@ class File
     {
         $units = array('B', 'KB', 'MB', 'GB', 'TB');
         $bytes = max($bytes, 0);
-        $pow   = '';
+        $pow = '';
         if ($fixedUnit != '') {
             $pow = array_search(strtoupper($fixedUnit), $units);
         }
@@ -151,7 +152,7 @@ class File
      * @param bool $public
      * @return \Illuminate\Filesystem\FilesystemAdapter
      */
-    private static function getDisk($public = false)
+    public static function getDisk($public = false)
     {
         $storage = $public ? static::PUBLIC_STORAGE : static::PRIVATE_STORAGE;
         return \Storage::disk($storage);
@@ -171,6 +172,36 @@ class File
         $disk = static::getDisk($public);
         $disk->put($file_path, $file_content);
         return $disk->path('') . $file_path;
+    }
+
+    /**
+     * retrieve zip file from temp folder open it and extract files
+     * @param string $file
+     * @param array $fileTypeToCheck
+     * @param int $filesToExtract
+     * @return array
+     */
+    public static function extractFilesFromZipFile(string $file, array $fileTypeToCheck = ['json'], int $filesToExtract = 5): array
+    {
+        $folder = static::PUBLIC_STORAGE . '/' . Upload::$UPLOAD_PATH;
+        $fullPath = \Storage::path($folder);
+        $files = [];
+        $zip = new \ZipArchive;
+        $zipStatus = $zip->open($fullPath . $file);
+        if ($zipStatus !== true) {
+            return $files;
+        }
+
+        for ($i = 0; $i < $zip->count(); $i++) {
+            $file = $zip->getNameIndex($i);
+            if ($i < $filesToExtract && in_array(substr($file, -4), $fileTypeToCheck, true)) {
+                $files[] = $zip->getNameIndex($i);
+            }
+        }
+
+        $zip->extractTo($fullPath, $files);
+        $zip->close();
+        return $files;
     }
 
 }

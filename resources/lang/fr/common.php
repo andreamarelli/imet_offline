@@ -130,6 +130,22 @@ return [
         'too_big'           => 'Fichier trop large. La taille maximale du fichier est de 50 Mo.',
         'not_valid_filename'=> 'Le nom de fichier n\'est pas valide; seules les lettres, les chiffres, les espaces et les caractères spéciaux suivants sont autorisés: -_. & ()',
         'not_valid_format'  => 'Le format du fichier est invalide',
+        'multiple_files_description' => 'Drag and drop to upload json files (maximum 10)',
+        'dict_default_message' => 'Drag and drop to upload json or zip files',
+        'dict_fallback_message' => 'Your browser does not support drag\'n\'drop file uploads.',
+        'dict_fallback_text' => 'Please use the fallback form below to upload your files like in the olden days.',
+        'dict_file_too_big' => 'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.',
+        'dict_invalid_file_type' => 'You can\'t upload files of this type.',
+        'dict_response_error' => 'Server responded with {{statusCode}} code.',
+        'dict_cancel_upload' => 'Cancel upload',
+        'dict_upload_canceled' => 'Upload canceled',
+        'dict_cancel_upload_confirmation' => 'Are you sure you want to cancel this upload?',
+        'dict_remove_file' => 'Remove file',
+        'dictMaxFilesExceeded' => 'You can not upload any more files',
+        'not_all_imported' => ' {{filesDidNotUploaded}} of {{totalFiles}} imported',
+        'no_files_found' => 'No files found',
+        'generic_error' => 'An error occurred please check your files',
+        'uploading'            => '...uploading'
     ],
 
     'publication' => [
