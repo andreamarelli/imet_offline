@@ -42,7 +42,7 @@ trait Export
         if ($download) {
             return File::download($path);
         }
-        return null;
+        return $path;
     }
 
     /**

@@ -58,6 +58,7 @@ return [
     'confidential_document' => 'documento confidencial',
     'confidential' => 'confidencial',
     'version'            => 'versión',
+    'protected_area'        => 'área protegida',
 
     // search & filters
     'search'            => "buscar",

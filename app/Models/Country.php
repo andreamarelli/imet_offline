@@ -10,7 +10,8 @@ use Config;
 use Illuminate\Database\Eloquent\Collection;
 
 
-class Country extends EntityModel {
+class Country extends EntityModel
+{
 
     use Geom;
 
@@ -68,11 +69,12 @@ class Country extends EntityModel {
         'CAF' => 0
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->table = is_imet_environment()
             ? static::imet_table
-            :  static::ofac_table;
+            : static::ofac_table;
 
         parent::__construct($attributes);
     }
@@ -101,7 +103,7 @@ class Country extends EntityModel {
     public function scopeOfac($query)
     {
         $query->whereIn('iso3', self::OFAC);
-        if(substr_count(url()->current(), 'admin')==0){
+        if (substr_count(url()->current(), 'admin') == 0) {
             $query->noAwy();
         }
         return $query;
@@ -120,7 +122,7 @@ class Country extends EntityModel {
      */
     public function scopeNoAwy($query)
     {
-        return $query->where('iso3', '<>', 'AWY') ;
+        return $query->where('iso3', '<>', 'AWY');
     }
 
     /**
@@ -132,9 +134,9 @@ class Country extends EntityModel {
     public static function getByISO($iso)
     {
         $iso = strtoupper($iso);
-        if(strlen($iso)==2){
+        if (strlen($iso) == 2) {
             return static::where('iso2', $iso)->first();
-        } elseif(strlen($iso)==3){
+        } elseif (strlen($iso) == 3) {
             return static::where('iso3', $iso)->first();
         }
     }
@@ -158,11 +160,11 @@ class Country extends EntityModel {
      */
     public static function getIsoNamePair($iso)
     {
-        if($iso!==null){
+        if ($iso !== null) {
             $country = static::getByISO($iso);
-            return ['iso3'=>$country->iso3, 'iso2'=>$country->iso2, 'name'=>$country->name];
+            return ['iso3' => $country->iso3, 'iso2' => $country->iso2, 'name' => $country->name];
         }
-        return ['iso3'=>'', 'iso2'=>'', 'name'=>''];
+        return ['iso3' => '', 'iso2' => '', 'name' => ''];
     }
 
     /**
@@ -175,10 +177,11 @@ class Country extends EntityModel {
     public static function selectionList($type = 'PAIRS', Collection $collection = null, $fields = [])
     {
         $lang = App::getLocale() ?? Config::get('app.locale');
-        return parent::selectionList('FIELDS', $collection, ['name_'.$lang, 'iso3']);
+        return parent::selectionList('FIELDS', $collection, ['name_' . $lang, 'iso3']);
     }
 
-    public static function getMapCenter($id){
+    public static function getMapCenter($id)
+    {
         return static::getCentroidLatLon($id, 'country', 'KnowledgeBase.country_centroids');
     }
 
@@ -197,6 +200,19 @@ class Country extends EntityModel {
             ->first();
 
         return \geoPHP::load($extent->bbox, 'wkt')->getBBox();
+    }
+
+    /**
+     * return countries list for the different environments
+     * @return array
+     */
+    public static function getCountriesByEnvironment(): array
+    {
+        if(is_imet_environment()){
+            return static::all()->sortBy(static::LABEL)->keyBy('iso3')->toArray();
+        }
+
+        return  static::getOFAC()->keyBy('iso3')->toArray();
     }
 
 }
