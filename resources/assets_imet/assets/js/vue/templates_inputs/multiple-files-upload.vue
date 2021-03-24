@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="btn btn-danger mb-2" v-on:click="clearDropzone">Remove all</button>
+    <button class="btn btn-danger mb-2" v-on:click="clearDropzone">{{ Locale.getLabel('common.upload.remove_all') }}</button>
     <vue-dropzone
         ref="myVueDropzone"
         id="dropzone"
@@ -44,7 +44,7 @@ export default {
         clickable: true,
         maxFiles: 10,
         maxFilesize: 1,
-        acceptedFiles: ".json",
+        acceptedFiles: ".json,.zip",
         autoProcessQueue: true,
         dictDefaultMessage: Locale.getLabel('common.upload.dict_default_message'),
         dictFallbackMessage: Locale.getLabel('common.upload.dict_fallback_message'),
@@ -57,7 +57,7 @@ export default {
         dictRemoveFile: Locale.getLabel('common.upload.dict_remove_file'),
         dictMaxFilesExceeded: Locale.getLabel('common.upload.dictMaxFilesExceeded'),
       },
-      formatTypes: ["application/json"]//, "application/zip"]
+      formatTypes: ["application/json", "application/zip"]
     };
   },
   mounted: function () {
@@ -86,7 +86,7 @@ export default {
             </div>
         `;
     },
-    hideShowRemoveLink(file, value){
+    hideShowRemoveLink(file, value) {
       file.previewTemplate.querySelector("a.dz-remove").style.display = value;
     },
     clearDropzone() {
@@ -102,7 +102,7 @@ export default {
     fileAdded(file) {
       this.hideShowRemoveLink(file, 'none');
 
-      //bring the last file added to the top of the list
+      //remove the last file and added to the top of the list
       const nodesArray = [...this.$refs.myVueDropzone.$el.children];
       const fileAdded = nodesArray.pop();
       nodesArray.unshift(fileAdded);
@@ -110,7 +110,7 @@ export default {
       dropzoneArea.append(...nodesArray);
     },
     uploadError(file, message) {
-      let errorMessage = Locale.getLabel('common.upload.error');
+      let errorMessage = Locale.getLabel('common.upload.upload_error');
       if (message['message']) {
         errorMessage += message['message'];
       } else if (!this.formatTypes.includes(file.type)) {

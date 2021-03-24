@@ -175,33 +175,18 @@ class File
     }
 
     /**
-     * retrieve zip file from temp folder open it and extract files
-     * @param string $file
-     * @param array $fileTypeToCheck
-     * @param int $filesToExtract
-     * @return array
+     * remove all files from path
+     * @param array $files
+     * @param string $disk
+     * @param string $path
+     * @param string $path
      */
-    public static function extractFilesFromZipFile(string $file, array $fileTypeToCheck = ['json'], int $filesToExtract = 5): array
+    public static function removeFiles(array $files, string  $disk = FILE::PRIVATE_STORAGE, string $path = ''): void
     {
-        $folder = static::PUBLIC_STORAGE . '/' . Upload::$UPLOAD_PATH;
-        $fullPath = \Storage::path($folder);
-        $files = [];
-        $zip = new \ZipArchive;
-        $zipStatus = $zip->open($fullPath . $file);
-        if ($zipStatus !== true) {
-            return $files;
+        foreach ($files as $file) {
+            \Storage::disk($disk)->delete($path.basename($file));
         }
-
-        for ($i = 0; $i < $zip->count(); $i++) {
-            $file = $zip->getNameIndex($i);
-            if ($i < $filesToExtract && in_array(substr($file, -4), $fileTypeToCheck, true)) {
-                $files[] = $zip->getNameIndex($i);
-            }
-        }
-
-        $zip->extractTo($fullPath, $files);
-        $zip->close();
-        return $files;
     }
+
 
 }
