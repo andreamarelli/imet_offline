@@ -2,7 +2,7 @@
 
 return [
 
-    "home" => "Homepaage",
+    "home" => "Homepage",
     "creative_commons" => "Content under Creative Common License",
 
     "search" => [

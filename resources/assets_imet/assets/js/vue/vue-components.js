@@ -56,7 +56,6 @@ Vue.component('selector-institution',                   require('./templates_inp
 Vue.component('selector-typology_pa',                   require('./templates_inputs/selector-typology_pa.vue').default);
 Vue.component('multiple-files-upload',                  require('./templates_inputs/multiple-files-upload.vue').default);
 
-
 // Components
 // Vue.component('modal-selector',                         require('./abstract_components/modal-selector.vue').default);
 

@@ -1,7 +1,10 @@
 <?php
 
+
 namespace App\Library\Utils\File;
 
+use Storage;
+use ZipArchive;
 use App\Models\Components\Upload;
 
 class Compress
@@ -13,7 +16,7 @@ class Compress
      * @param int $filesToExtract
      * @return array
      */
-    public static function extractFilesFromZipFile(string $file, array $fileTypeToCheck = ['json'], int $filesToExtract = 5): array
+    public static function extractFilesFromZipFile(string $file, array $fileTypeToCheck = ['json'], int $filesToExtract = 10): array
     {
         $folder = File::PUBLIC_STORAGE . '/' . Upload::$UPLOAD_PATH;
         $fullPath = \Storage::path($folder);
@@ -37,5 +40,26 @@ class Compress
         $zip->close();
         File::removeFiles([$filename], FILE::PUBLIC_STORAGE, "temp/");
         return $files;
+    }
+
+
+    /**
+     * pass an array of files to add them in a zip
+     * @param array $files
+     * @return string
+     */
+    public static function zipFile(array $files)
+    {
+        $fileName = "IMETS_" . count($files) . "_" . date('m-d-Y_hisu') . ".zip";
+        $store = Storage::disk(File::PRIVATE_STORAGE)->path('') . $fileName;
+        $zip = new ZipArchive();
+        $zip->open($store, \ZipArchive::CREATE);
+        foreach ($files as $file) {
+            $zip->addFile($file, basename($file));
+        }
+
+        $zip->close();
+        File::removeFiles($files);
+        return $store;
     }
 }

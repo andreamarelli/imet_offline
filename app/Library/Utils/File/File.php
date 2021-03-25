@@ -25,7 +25,7 @@ class File
      */
     public static function cleanFileName($original_filename)
     {
-        $info = pathinfo($original_filename);
+        $info             = pathinfo($original_filename);
         $cleaned_filename = basename($original_filename, '.' . $info['extension']);
         $cleaned_filename = str_replace('  ', '_', $cleaned_filename);
         $cleaned_filename = str_replace(' ', '_', $cleaned_filename);
@@ -47,7 +47,7 @@ class File
     {
         $units = array('B', 'KB', 'MB', 'GB', 'TB');
         $bytes = max($bytes, 0);
-        $pow = '';
+        $pow   = '';
         if ($fixedUnit != '') {
             $pow = array_search(strtoupper($fixedUnit), $units);
         }

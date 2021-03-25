@@ -125,20 +125,18 @@ export default {
       this.progressBarConfiguration(file, Locale.getLabel('common.upload.uploading'));
     },
     uploadedSuccessfully(file, response) {
-      let filesDidNotUploaded = 0;
-      let totalFiles = 0;
+
       let message = Locale.getLabel('common.upload.uploaded');
       if (response.length > 1) {
+        let filesDidNotUploaded = 0;
         response.forEach((r => {
-          if (r.status === 'error') {
+          if (r.status !== 'error') {
             filesDidNotUploaded++;
           }
-          totalFiles++;
         }))
+        const totalFiles = response.length;
 
-        if (filesDidNotUploaded > 0) {
-          message += Locale.getLabel('common.upload.not_all_imported').replace("{{filesDidNotUploaded}}", filesDidNotUploaded).replace("{{totalFiles}}", totalFiles);
-        }
+        message += Locale.getLabel('common.upload.not_all_imported').replace("{{filesDidNotUploaded}}", filesDidNotUploaded).replace("{{totalFiles}}", totalFiles);
       }
       this.hideShowRemoveLink(file, 'block');
       this.progressBarConfiguration(file, message, "green");

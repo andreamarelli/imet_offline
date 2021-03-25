@@ -1,13 +1,13 @@
 <?php
 
 return [
-
     'languages' => [
         'fr'        => 'french',
         'en'        => 'english',
         'sp'        => 'spanish'/*,
         'pt'        => 'portuguese'*/
     ],
+
     'regions' => [
         'OFAC' => 'OFAC - COMIFAC countries',
     ],

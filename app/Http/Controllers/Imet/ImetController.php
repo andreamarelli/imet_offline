@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Imet;
 
 use App\Http\Controllers\Components\FormController;
 use App\Library\Ofac\Module as OfacModule;
+use App\Library\Utils\File\Compress;
 use App\Library\Utils\File\File;
 use App\Library\Utils\HTTP;
 use App\Models\Components\Upload;
@@ -63,11 +64,7 @@ class ImetController extends FormController
         // set filter status
         $show_filters = Imet::count() > 10;
         $no_filter_selected = empty(array_filter($request->except('_token')));
-        if (is_imet_environment()) {
-            $countries = Country::all()->sortBy(Country::LABEL)->keyBy('iso3')->toArray();
-        } else {
-            $countries = Country::getOFAC()->keyBy('iso3')->toArray();
-        }
+        $countries = Country::getCountriesByEnvironment();
         $years = Imet::getAvailableYears();
 
         $list = [];
@@ -76,10 +73,10 @@ class ImetController extends FormController
             $list = Imet::filterList($request)
                 ->get()
                 ->map(
-                    function (Imet $item) use ($countries) {
-                        $item->iso2 = $countries[$item->Country]['iso2'] ?? null;
-                        $item->iso3 = $countries[$item->Country]['iso3'] ?? null;
-                        $item->country_name = $countries[$item->Country]['name'] ?? null;
+                    function (Imet $item) use($countries){
+                        $item->iso2                 = $countries[$item->Country]['iso2'] ?? null;
+                        $item->iso3                 = $countries[$item->Country]['iso3'] ?? null;
+                        $item->country_name         = $countries[$item->Country]['name'] ?? null;
                         $item->encoders_responsibles = Imet::getResponsibles($item->getKey(), $item->version);
                         $item->assessment = Assessment::radar_assessment($item->getKey());
                         return $item;
@@ -108,6 +105,40 @@ class ImetController extends FormController
         ]);
     }
 
+    /**
+     * return a list of Imet's for export in json/zip
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function export_view(Request $request)
+    {
+        $this->authorize('viewAny', static::$form_class);
+        HTTP::sanitize($request, self::sanitization_rules);
+
+        $countries = Country::getCountriesByEnvironment();
+        $years = Imet::getAvailableYears();
+
+        $list = Imet::filterList($request)
+            ->get()
+            ->map(
+                function (Imet $item) use ($countries) {
+                    $item->iso2 = $countries[$item->Country]['iso2'] ?? null;
+                    $item->country_name = $countries[$item->Country]['name'] ?? null;
+                    return $item;
+                }
+            )
+            ->makeHidden([Imet::UPDATED_AT, Imet::UPDATED_BY]);
+
+        return view('admin.' . static::$form_view . '.offline.export', [
+            'list' => $list,
+            'request' => $request,
+            'countries' => array_map(function ($item) {
+                return $item['name'];
+            }, $countries),
+            'years' => !empty($years) ? range(min($years), max($years)) : array(Carbon::today()->year),
+        ]);
+    }
 
     /**
      * export records for specific module to csv format
@@ -153,7 +184,6 @@ class ImetController extends FormController
     public function exportListCSV(Request $request): \Illuminate\View\View
     {
         $wdpa_list = [];
-        $countries_list = [];
         $modules_final_list = [];
         $temp_array = [];
 
@@ -210,6 +240,27 @@ class ImetController extends FormController
     }
 
     /**
+     * export Imet's json in batch (zip file) or if only one is selected as json file
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+     */
+    public function export_batch(Request $request)
+    {
+        $imetIds = explode(",", $request->input('selection'));
+        $imets = Imet::whereIn('FormID', $imetIds)->get();
+        foreach ($imets as $imet) {
+            $files[] = $this->export($imet, true, false);
+        }
+        $path = $files[0];
+        if (count($files) > 1) {
+            $path = Compress::zipFile($files);
+        }
+        return File::download($path);
+    }
+
+    /**
      * Export the full IMET form in json
      *
      * @param Imet $item
@@ -218,7 +269,7 @@ class ImetController extends FormController
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
-    public function export(Imet $item, $to_file = true)
+    public function export(Imet $item, $to_file = true, $download = true)
     {
         $imet_id = $item->getKey();
         $imet_form = $item
@@ -247,7 +298,8 @@ class ImetController extends FormController
             return File::exportTo(
                 'JSON',
                 $fileName,
-                $json
+                $json,
+                $download
             );
         } else {
             return $json;

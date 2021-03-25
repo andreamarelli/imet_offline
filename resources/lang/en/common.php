@@ -58,6 +58,7 @@ return [
     'confidential_document' => 'confidential document',
     'confidential' => 'confidential',
     'version'            => 'version',
+    'protected_area'        => 'protected area',
 
     // search & filters
     'search'            => "search",
@@ -101,7 +102,9 @@ return [
 
     'languages' => [
         'french'        => 'french',
-        'english'       => 'english'
+        'english'       => 'english',
+        'spanish'       => 'spanish'/*,
+        'portuguese'    => 'portuguese'*/
     ],
 
     'upload' => [
@@ -126,7 +129,7 @@ return [
         'dict_cancel_upload_confirmation' => 'Are you sure you want to cancel this upload?',
         'dict_remove_file'  => 'Remove file',
         'dictMaxFilesExceeded' => 'You exceeded the maximum files for upload. Please remove files in order to upload more',
-        'not_all_imported'  => ' {{filesDidNotUploaded}} of {{totalFiles}} imported',
+        'not_all_imported'  => ' ({{filesDidNotUploaded}} of {{totalFiles}} files imported)',
         'no_files_found'    => 'No valid file(s) found',
         'generic_error'     => 'An error occurred please check your files',
         'uploading'         => '...uploading',
