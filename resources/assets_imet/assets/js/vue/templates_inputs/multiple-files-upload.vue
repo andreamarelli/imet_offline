@@ -11,7 +11,7 @@
         v-on:vdropzone-success="uploadedSuccessfully"
         v-on:vdropzone-file-added="fileAdded"
     >
-      <div class="dropzone-custom-content">
+      <div class="dropzone-custom-content" style="margin-top: 100px">
         <h3 class="dropzone-custom-title">{{ Locale.getLabel('common.upload.multiple_files_description') }}</h3>
       </div>
     </vue-dropzone>
@@ -148,3 +148,11 @@ export default {
 
 </script>
 
+<style lang="scss" type="text/scss" scoped>
+.vue-dropzone {
+  height: 300px;
+  max-height:300px;
+  overflow:auto;
+  background:#fff;
+}
+</style>
