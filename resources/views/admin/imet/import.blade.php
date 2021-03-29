@@ -22,7 +22,7 @@
         <div class="module-body">
             <br/>
             <br/>
-            <multiple-files-upload id="import_json"></multiple-files-upload>
+            <multiple-files-upload></multiple-files-upload>
         </div>
     </div>
     <script>

@@ -236,9 +236,7 @@
         {!! $vue_attributes !!} data-class="{!! $class !!}" {!! $rules !!} {!! $other !!}
 ></upload>
 @elseif($type=="multiple-files-upload")
-    <multiple-files-upload
-            {!! $vue_attributes !!} data-class="{!! $class !!}" {!! $rules !!} {!! $other !!}
-    ></multiple-files-upload>
+    <multiple-files-upload></multiple-files-upload>
 
 {{--  ###### text editor ######  --}}
 @elseif($type=="text-editor")
