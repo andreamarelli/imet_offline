@@ -42,6 +42,7 @@ Route::group(['middleware' => 'setLocale'], function () {
             Route::get('{item}/export', [Imet\ImetController::class, 'export']);
             Route::match(['get','post'],'export_view',        [Imet\ImetController::class, 'export_view'])->name('export_view');
 
+            Route::post('ajax/upload', [Imet\ImetController::class, 'upload']);
             Route::get('import',        [Imet\ImetController::class, 'import_view']);
             Route::post('import',      [Imet\ImetController::class, 'import']);
             Route::get('{item}/merge',  [Imet\ImetController::class, 'merge_view']);

@@ -35,7 +35,7 @@ export default {
       Locale: Locale,
       modalIsOpen: false,
       options: {
-        url: window.Laravel.baseUrl + 'ajax/upload',
+        url: window.Laravel.baseUrl + 'admin/imet/ajax/upload',
         previewTemplate: this.template(),
         params: {
           _token: window.Laravel.csrfToken
