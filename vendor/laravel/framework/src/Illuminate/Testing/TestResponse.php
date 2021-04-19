@@ -14,7 +14,6 @@ use Illuminate\Support\Traits\Macroable;
 use Illuminate\Support\Traits\Tappable;
 use Illuminate\Testing\Assert as PHPUnit;
 use Illuminate\Testing\Constraints\SeeInOrder;
-use Illuminate\Testing\Fluent\AssertableJson;
 use LogicException;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -508,25 +507,13 @@ class TestResponse implements ArrayAccess
     /**
      * Assert that the response is a superset of the given JSON.
      *
-     * @param  array|callable  $value
+     * @param  array  $data
      * @param  bool  $strict
      * @return $this
      */
-    public function assertJson($value, $strict = false)
+    public function assertJson(array $data, $strict = false)
     {
-        $json = $this->decodeResponseJson();
-
-        if (is_array($value)) {
-            $json->assertSubset($value, $strict);
-        } else {
-            $assert = AssertableJson::fromAssertableJsonString($json);
-
-            $value($assert);
-
-            if ($strict) {
-                $assert->interacted();
-            }
-        }
+        $this->decodeResponseJson()->assertSubset($data, $strict);
 
         return $this;
     }

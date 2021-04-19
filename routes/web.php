@@ -35,16 +35,20 @@ Route::group(['middleware' => 'setLocale'], function () {
         Route::group(['prefix' => 'imet'], function () {
 
             // ####  common routes (v1 & v2) ####
-            Route::match(['get', 'post'],'/',      [Imet\ImetController::class, 'index']);
+            Route::match(['get', 'post'],'/',      [Imet\ImetController::class, 'index'])->name('index');
             Route::match(['get', 'post'],'v1',      [Imet\ImetController::class, 'index']);     // temporary alias
             Route::match(['get', 'post'],'v2',      [Imet\ImetController::class, 'index']);     // temporary alias
             Route::delete('{item}', [Imet\ImetController::class, 'destroy']);
             Route::get('{item}/export', [Imet\ImetController::class, 'export']);
+            Route::match(['get','post'],'export_view',        [Imet\ImetController::class, 'export_view'])->name('export_view');
+
+            Route::post('ajax/upload', [Imet\ImetController::class, 'upload']);
             Route::get('import',        [Imet\ImetController::class, 'import_view']);
             Route::post('import',      [Imet\ImetController::class, 'import']);
             Route::get('{item}/merge',  [Imet\ImetController::class, 'merge_view']);
             Route::post('merge',      [Imet\ImetController::class, 'merge']);
             Route::post('{item}/upgrade',      [Imet\ImetController::class, 'upgrade']);
+
 
             // #### IMET Version 1 ####
             Route::group(['prefix' => 'v1'], function () {
@@ -92,6 +96,7 @@ Route::group(['middleware' => 'setLocale'], function () {
             Route::group(['prefix' => 'tools'], function () {
                 Route::get('export_csv', [Imet\ImetController::class, 'exportListCSV'])->name('csv_list');
                 Route::get('export_csv/{ids}/{module_key}', [Imet\ImetController::class, 'exportModuleToCsv'])->name('csv');
+                Route::post('export_batch',        [Imet\ImetController::class, 'export_batch'])->name('export_json_batch');
             });
 
         });

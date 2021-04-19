@@ -227,8 +227,6 @@ class Validator implements ValidatorContract
         'RequiredWithAll',
         'RequiredWithout',
         'RequiredWithoutAll',
-        'ProhibitedIf',
-        'ProhibitedUnless',
         'Same',
         'Unique',
     ];

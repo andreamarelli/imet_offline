@@ -147,7 +147,7 @@ class Imet extends \App\Models\Imet\Imet
     public static function importModules($data, $formID, $v1_to_v2 = false, $imet_version = null)
     {
         $data = static::upgradeModules($data, $v1_to_v2, $imet_version);
-        parent::importModules($data, $formID);
+        return parent::importModules($data, $formID);
     }
 
 

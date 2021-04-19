@@ -18,10 +18,10 @@ final class GlideConversion
     private $imageDriver = 'gd';
 
     /** @var string */
-    private $conversionResult;
+    private $conversionResult = null;
 
     /** @var string */
-    private $temporaryDirectory;
+    private $temporaryDirectory = null;
 
     public static function create(string $inputImage): self
     {
@@ -30,6 +30,10 @@ final class GlideConversion
 
     public function setTemporaryDirectory(string $temporaryDirectory)
     {
+        if (! isset($temporaryDirectory)) {
+            return $this;
+        }
+
         if (! is_dir($temporaryDirectory)) {
             try {
                 mkdir($temporaryDirectory);

@@ -58,6 +58,7 @@ return [
     'confidential_document' => 'documento confidencial',
     'confidential' => 'confidencial',
     'version'            => 'versión',
+    'protected_area'        => 'área protegida',
 
     // search & filters
     'search'            => "buscar",
@@ -116,6 +117,24 @@ return [
         'too_big'           => 'El archivo es demasiado grande. El tamaño máximo de archivo permitido es de 50Mb.',
         'not_valid_filename'=> 'El nombre del archivo no es válido. Sólo se permiten letras, dígitos, espacios y los siguientes caracteres especiales: -_. & ()',
         'not_valid_format'  => 'El formato del archivo no es válido.',
+        'multiple_files_description' => 'Drag and drop to upload json/zip files (maximum 10)',
+        'dict_default_message' => 'Drag and drop to upload json/zip files',
+        'dict_fallback_message' => 'Your browser does not support drag\'n\'drop file uploads.',
+        'dict_fallback_text' => 'Please use the fallback form below to upload your files like in the olden days.',
+        'dict_file_too_big' => 'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.',
+        'dict_invalid_file_type' => 'You can\'t upload files of this type.',
+        'dict_response_error' => 'Server responded with {{statusCode}} code.',
+        'dict_cancel_upload' => 'Cancel upload',
+        'dict_upload_canceled' => 'Upload canceled',
+        'dict_cancel_upload_confirmation' => 'Are you sure you want to cancel this upload?',
+        'dict_remove_file'  => 'Remove file',
+        'dictMaxFilesExceeded' => 'You exceeded the maximum files for upload. Please remove files in order to upload more',
+        'not_all_imported'  => ' ({{filesDidNotUploaded}} of {{totalFiles}} files imported)',
+        'no_files_found'    => 'No valid file(s) found',
+        'generic_error'     => 'An error occurred please check your files',
+        'uploading'         => '...uploading',
+        'remove_all'        => 'Remove all',
+        'upload_error'      => 'Upload error: '
     ],
 
     'publication' => [

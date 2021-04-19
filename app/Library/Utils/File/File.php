@@ -3,6 +3,7 @@
 namespace App\Library\Utils\File;
 
 use App\Library\Utils\Type\Chars;
+use App\Models\Components\Upload;
 use Illuminate\Http\Testing\MimeType;
 
 
@@ -151,7 +152,7 @@ class File
      * @param bool $public
      * @return \Illuminate\Filesystem\FilesystemAdapter
      */
-    private static function getDisk($public = false)
+    public static function getDisk($public = false)
     {
         $storage = $public ? static::PUBLIC_STORAGE : static::PRIVATE_STORAGE;
         return \Storage::disk($storage);
@@ -172,5 +173,20 @@ class File
         $disk->put($file_path, $file_content);
         return $disk->path('') . $file_path;
     }
+
+    /**
+     * remove all files from path
+     * @param array $files
+     * @param string $disk
+     * @param string $path
+     * @param string $path
+     */
+    public static function removeFiles(array $files, string  $disk = FILE::PRIVATE_STORAGE, string $path = ''): void
+    {
+        foreach ($files as $file) {
+            \Storage::disk($disk)->delete($path.basename($file));
+        }
+    }
+
 
 }

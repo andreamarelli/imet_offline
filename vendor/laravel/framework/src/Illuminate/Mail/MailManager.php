@@ -63,7 +63,7 @@ class MailManager implements FactoryContract
      * Get a mailer instance by name.
      *
      * @param  string|null  $name
-     * @return \Illuminate\Contracts\Mail\Mailer
+     * @return \Illuminate\Mail\Mailer
      */
     public function mailer($name = null)
     {

@@ -7,7 +7,7 @@
 /** @var boolean $no_filter_selected */
 
 $can_encode = \App\Models\User::isAdmin(Auth::user()) || \App\Models\Role\RoleImet::isEncoder(Auth::user());
-
+$url = URL::route('index');
 ?>
 
 @extends('layouts.admin')
@@ -35,6 +35,11 @@ $can_encode = \App\Models\User::isAdmin(Auth::user()) || \App\Models\Role\RoleIm
                     {!! App\Library\Utils\Template::icon('file-import', 'white') !!}
                     {{ ucfirst(trans('common.import')) }}
                 </a>
+                {{-- Export json IMETs --}}
+                <a class="btn-nav rounded" href="{{ action([\App\Http\Controllers\Imet\ImetController::class, 'export_view']) }}">
+                    {!! App\Library\Utils\Template::icon('file-export', 'white') !!}
+                    {{ ucfirst(trans('common.export')) }}
+                </a>
                 {{-- Create new IMET --}}
                 @include('admin.components.buttons.create', ['controller' => \App\Http\Controllers\Imet\ImetControllerV2::class, 'label' => trans('form/imet/common.create')])
             @endslot
@@ -43,20 +48,7 @@ $can_encode = \App\Models\User::isAdmin(Auth::user()) || \App\Models\Role\RoleIm
     @endif
 
     @if($show_filters)
-        @component('admin.components.filters', ['url'=>'admin/imet', 'request'=>$request, 'method'=>'POST', 'expanded'=>$no_filter_selected])
-            @slot('filter_content')
-
-                {!! \App\Library\Ofac\Input\Input::label('search', trans('common.search')) !!}
-                {!! \App\Library\Ofac\Input\Input::text('search', $request->input('search')) !!}
-
-                {!! \App\Library\Ofac\Input\Input::label('country', trans('entities.common.country')) !!}
-                {!! \App\Library\Ofac\Input\DropDown::simple('country', $request->input('country'), $countries) !!}
-
-                {!! \App\Library\Ofac\Input\Input::label('year', trans('entities.common.year')) !!}
-                {!! \App\Library\Ofac\Input\DropDown::simple('year', $request->input('year'), $years) !!}
-
-            @endslot
-        @endcomponent
+        @include('admin.imet.components.common_filter')
     @endif
 
     <br />

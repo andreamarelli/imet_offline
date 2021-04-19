@@ -11,7 +11,6 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class UploadFileController extends Controller
 {
-
     /**
      * Upload file
      * @param Request $request
@@ -27,6 +26,7 @@ class UploadFileController extends Controller
             throw new BadRequestHttpException();
         }
     }
+
 
     /**
      * Download file (by hash)

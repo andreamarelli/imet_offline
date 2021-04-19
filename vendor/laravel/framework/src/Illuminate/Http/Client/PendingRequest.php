@@ -9,7 +9,6 @@ use GuzzleHttp\HandlerStack;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
-use Symfony\Component\VarDumper\VarDumper;
 
 class PendingRequest
 {
@@ -450,40 +449,6 @@ class PendingRequest
     {
         return tap($this, function () use ($callback) {
             $this->beforeSendingCallbacks[] = $callback;
-        });
-    }
-
-    /**
-     * Dump the request before sending.
-     *
-     * @return $this
-     */
-    public function dump()
-    {
-        $values = func_get_args();
-
-        return $this->beforeSending(function (Request $request, array $options) use ($values) {
-            foreach (array_merge($values, [$request, $options]) as $value) {
-                VarDumper::dump($value);
-            }
-        });
-    }
-
-    /**
-     * Dump the request before sending and end the script.
-     *
-     * @return $this
-     */
-    public function dd()
-    {
-        $values = func_get_args();
-
-        return $this->beforeSending(function (Request $request, array $options) use ($values) {
-            foreach (array_merge($values, [$request, $options]) as $value) {
-                VarDumper::dump($value);
-            }
-
-            exit(1);
         });
     }
 

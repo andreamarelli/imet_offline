@@ -34,7 +34,9 @@
         "spatie/browsershot": "^3.26",
         "wa72/htmlpagedom": "^2.0"
     },
-    "require-dev": {},
+    "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.9"
+    },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",

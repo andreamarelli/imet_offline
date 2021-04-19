@@ -335,7 +335,7 @@ class Stringable implements JsonSerializable
      * Get the string matching the given pattern.
      *
      * @param  string  $pattern
-     * @return static
+     * @return static|null
      */
     public function match($pattern)
     {

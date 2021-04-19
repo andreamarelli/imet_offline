@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Imet;
 
 use App\Http\Controllers\Components\FormController;
 use App\Library\Ofac\Module as OfacModule;
+use App\Library\Utils\File\Compress;
 use App\Library\Utils\File\File;
 use App\Library\Utils\HTTP;
 use App\Models\Components\Upload;
@@ -61,17 +62,13 @@ class ImetController extends FormController
             });
 
         // set filter status
-        $show_filters = Imet::count()>10;
+        $show_filters = Imet::count() > 10;
         $no_filter_selected = empty(array_filter($request->except('_token')));
-        if(is_imet_environment()){
-            $countries = Country::all()->sortBy(Country::LABEL)->keyBy('iso3')->toArray();
-        } else {
-            $countries = Country::getOFAC()->keyBy('iso3')->toArray();
-        }
+        $countries = Country::getCountriesByEnvironment();
         $years = Imet::getAvailableYears();
 
         $list = [];
-        if(!$show_filters || $search!==null || $country!==null || $year!==null){
+        if (!$show_filters || $search !== null || $country !== null || $year !== null) {
 
             $list = Imet::filterList($request)
                 ->get()
@@ -88,26 +85,60 @@ class ImetController extends FormController
                 ->makeHidden([Imet::UPDATED_AT, Imet::UPDATED_BY]);
 
             $hasDuplicates = Imet::foundDuplicates();
-            $list->map(function ($item) use ($hasDuplicates){
+            $list->map(function ($item) use ($hasDuplicates) {
                 $item['has_duplicates'] = in_array($item->getKey(), $hasDuplicates);
                 return $item;
             });
 
         }
 
-        return view('admin.'.static::$form_view.'.list', [
+        return view('admin.' . static::$form_view . '.list', [
             'controller' => static::class,
             'list' => $list,
             'request' => $request,
             'show_filters' => $show_filters,
             'no_filter_selected' => $no_filter_selected,
-            'countries' => array_map(function ($item){
+            'countries' => array_map(function ($item) {
                 return $item['name'];
             }, $countries),
             'years' => !empty($years) ? range(min($years), max($years)) : array(Carbon::today()->year),
         ]);
     }
 
+    /**
+     * return a list of Imet's for export in json/zip
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function export_view(Request $request)
+    {
+        $this->authorize('viewAny', static::$form_class);
+        HTTP::sanitize($request, self::sanitization_rules);
+
+        $countries = Country::getCountriesByEnvironment();
+        $years = Imet::getAvailableYears();
+
+        $list = Imet::filterList($request)
+            ->get()
+            ->map(
+                function (Imet $item) use ($countries) {
+                    $item->iso2 = $countries[$item->Country]['iso2'] ?? null;
+                    $item->country_name = $countries[$item->Country]['name'] ?? null;
+                    return $item;
+                }
+            )
+            ->makeHidden([Imet::UPDATED_AT, Imet::UPDATED_BY]);
+
+        return view('admin.' . static::$form_view . '.offline.export', [
+            'list' => $list,
+            'request' => $request,
+            'countries' => array_map(function ($item) {
+                return $item['name'];
+            }, $countries),
+            'years' => !empty($years) ? range(min($years), max($years)) : array(Carbon::today()->year),
+        ]);
+    }
 
     /**
      * export records for specific module to csv format
@@ -125,23 +156,23 @@ class ImetController extends FormController
         PhpClass::ClassExist($model);
 
         $query = $model
-            ::where(function ($query) use ($ids){
-                 if($ids){
-                     $query->whereIn('FormID', explode(',', $ids));
-                 }
+            ::where(function ($query) use ($ids) {
+                if ($ids) {
+                    $query->whereIn('FormID', explode(',', $ids));
+                }
             })
-            ->whereHas('imet', function($q){
+            ->whereHas('imet', function ($q) {
                 $q->where('version', 'v2');
             })
             ->get();
 
         $records = $query->makeHidden(['UpdateBy', 'UpdateDate', 'id'])->toArray();
 
-        if(count($records) === 0){
+        if (count($records) === 0) {
             return trans('common.no_record_found');
         }
         $title = str_replace(' ', '_', $query->pluck('module_code')->first());
-        return File::exportTo('CSV', $title.'.csv', $records);
+        return File::exportTo('CSV', $title . '.csv', $records);
     }
 
     /**
@@ -150,10 +181,9 @@ class ImetController extends FormController
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function exportListCSV(Request $request) : \Illuminate\View\View
+    public function exportListCSV(Request $request): \Illuminate\View\View
     {
         $wdpa_list = [];
-        $countries_list = [];
         $modules_final_list = [];
         $temp_array = [];
 
@@ -161,10 +191,9 @@ class ImetController extends FormController
         $results = Imet::select('FormID')->distinct()->commonSearchWithWdpa($request);
 
         //add this to check if a filter is applied in order to return the ids or return 0 (all records)
-        if($request->filled('country') || $request->filled('year') || $request->filled('wdpa')) {
+        if ($request->filled('country') || $request->filled('year') || $request->filled('wdpa')) {
             $results = $results->implode('FormID', ',');
-        }
-        else {
+        } else {
             $results = 0;
         }
 
@@ -172,8 +201,8 @@ class ImetController extends FormController
         $filters = Imet::getFieldsSplitToArrays();
 
         //retrieve wdpa labels and ids in an array for selections
-        $wdpas = ProtectedArea::getRecordsArrayByFieldIds($filters['wdpa_id'], ['wdpa_id','name'], 'wdpa_id');
-        foreach($wdpas as $k => $a){
+        $wdpas = ProtectedArea::getRecordsArrayByFieldIds($filters['wdpa_id'], ['wdpa_id', 'name'], 'wdpa_id');
+        foreach ($wdpas as $k => $a) {
             $wdpa_list[$a['wdpa_id']] = $a['name'];
         }
 
@@ -181,7 +210,7 @@ class ImetController extends FormController
         $countries = is_imet_environment()
             ? Country::all()->sortBy(Country::LABEL)->keyBy('iso3')->toArray()
             : Country::getOFAC()->keyBy('iso3')->toArray();
-        $countries = array_map(function ($item){
+        $countries = array_map(function ($item) {
             return $item['name'];
         }, $countries);
 
@@ -189,25 +218,46 @@ class ImetController extends FormController
         $imet_eval_keys = v2\Imet_Eval::getModulesKeys();
         $modules = array_merge(v2\Imet::$modules, v1\Imet_Eval::$modules);
 
-        foreach($modules as $key => $module){
+        foreach ($modules as $key => $module) {
             $temp_array[$key] = $module;
             $modules_final_list[$key] = OfacModule::getModulesList($temp_array);
             unset($temp_array[$key]);
         }
 
         return view('admin.imet.v2.tools.export_csv',
-                    [
-                        'modules' =>  $modules_final_list,
-                        'imet_keys' => $imet_keys,
-                        'imet_eval_keys' => $imet_eval_keys,
-                        'countries' => $countries,
-                        'years' => $filters['Year'],
-                        'wdpa' => $wdpa_list,
-                        'request' => $request,
-                        'method' => 'GET',
-                        'results' => $results
-                    ]
+            [
+                'modules' => $modules_final_list,
+                'imet_keys' => $imet_keys,
+                'imet_eval_keys' => $imet_eval_keys,
+                'countries' => $countries,
+                'years' => $filters['Year'],
+                'wdpa' => $wdpa_list,
+                'request' => $request,
+                'method' => 'GET',
+                'results' => $results
+            ]
         );
+    }
+
+    /**
+     * export Imet's json in batch (zip file) or if only one is selected as json file
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+     */
+    public function export_batch(Request $request)
+    {
+        $imetIds = explode(",", $request->input('selection'));
+        $imets = Imet::whereIn('FormID', $imetIds)->get();
+        foreach ($imets as $imet) {
+            $files[] = $this->export($imet, true, false);
+        }
+        $path = $files[0];
+        if (count($files) > 1) {
+            $path = Compress::zipFile($files);
+        }
+        return File::download($path);
     }
 
     /**
@@ -219,14 +269,14 @@ class ImetController extends FormController
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
-    public function export(Imet $item, $to_file = true)
+    public function export(Imet $item, $to_file = true, $download = true)
     {
         $imet_id = $item->getKey();
         $imet_form = $item
             ->makeHidden(['FormID', 'UpdateBy', 'protected_area_global_id'])
             ->toArray();
 
-        if($imet_form['version'] === 'v1'){
+        if ($imet_form['version'] === 'v1') {
             $imet_form['imet_version'] = v1\Imet::imet_version;
         } else {
             $imet_form['imet_version'] = v2\Imet::imet_version;
@@ -243,12 +293,13 @@ class ImetController extends FormController
                 : v2\Imet_Eval::exportModules($imet_id),
         ];
 
-        if($to_file){
+        if ($to_file) {
             $fileName = $item->filename('json');
             return File::exportTo(
                 'JSON',
                 $fileName,
-                $json
+                $json,
+                $download
             );
         } else {
             return $json;
@@ -268,46 +319,53 @@ class ImetController extends FormController
      *
      * @param \Illuminate\Http\Request|null $request
      * @param string|null $json
+     * @param boolean $returnJson
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      * @throws \ReflectionException
      * @throws \Throwable
      */
-    public function import(Request $request, $json=null)
+    public function import(Request $request, $json = null, $returnJson = true)
     {
-        if($json === null){
-            $fileContent = Upload::getUploadFileContent($request->get('json_file'));
-            $json = json_decode($fileContent, True);
-        }
-
-        $imet_version = $json['Imet']['imet_version'] ?? null;
-
-        \DB::beginTransaction();
-
         try {
-            if($json['Imet']['version']==='v1'){
+            if ($json === null) {
+                $fileContent = Upload::getUploadFileContent($request->get('json_file'));
+                $json = json_decode($fileContent, True);
+            }
+            $response = ['status' => 'success', 'modules' => []];
+            $modules_imported = [];
+
+            $imet_version = $json['Imet']['imet_version'] ?? null;
+            $version = $json['Imet']['version'];
+            \DB::beginTransaction();
+
+            if ($version === 'v1') {
                 // Create new form and return ID
                 $formID = v1\Imet::importForm($json['Imet']);
                 // Populate Imet & Imet_Eval modules
-                v1\Imet::importModules($json['Context'], $formID);
-                v1\Imet_Eval::importModules($json['Evaluation'], $formID);
+                $modules_imported['Context'] = v1\Imet::importModules($json['Context'], $formID);
+                $modules_imported['Evaluation'] = v1\Imet_Eval::importModules($json['Evaluation'], $formID);
                 Encoder::importModule($formID, $json['Encoders'] ?? null);
-            } elseif($json['Imet']['version']==='v2'){
+            } elseif ($version === 'v2') {
                 // Create new form and return ID
                 $formID = v2\Imet::importForm($json['Imet']);
                 // Populate Imet & Imet_Eval modules
-                v2\Imet::importModules($json['Context'], $formID, false, $imet_version);
-                v2\Imet_Eval::importModules($json['Evaluation'], $formID, false, $imet_version);
+                $modules_imported['Context'] = v2\Imet::importModules($json['Context'], $formID, false, $imet_version);
+                $modules_imported['Evaluation'] = v2\Imet_Eval::importModules($json['Evaluation'], $formID, false, $imet_version);
                 Encoder::importModule($formID, $json['Encoders'] ?? null);
             }
             \DB::commit();
-            $response = ['status' => 'success'];
+            $response['modules'] = $modules_imported;
         } catch (\Exception $e) {
             \DB::rollback();
             $response = ['status' => 'error'];
-            if(!App::environment('production')){
+            if (!App::environment('production')) {
                 throw $e;
             }
+        }
+
+        if(!$returnJson){
+            return $response;
         }
 
         return response()->json($response);
@@ -345,7 +403,7 @@ class ImetController extends FormController
             \Session::flash('', trans('form/imet/common.upgrade_failed'));
         }
 
-        return redirect()->action('\\'.static::class.'@index');
+        return redirect()->action('\\' . static::class . '@index');
     }
 
 
@@ -363,7 +421,7 @@ class ImetController extends FormController
             // Create new form and return ID
             $formID = v2\Imet::importForm($json['Imet']);
             // Populate Imet & Imet_Eval modules
-            v2\Imet::importModules($json['Context'], $formID );
+            v2\Imet::importModules($json['Context'], $formID);
             v2\Imet_Eval::importModules($json['Evaluation'], $formID);
             Encoder::importModule($formID, $json['Encoders'] ?? null);
 
@@ -372,7 +430,7 @@ class ImetController extends FormController
             return [
                 'status' => 'success',
                 'entity_label' => Imet::find($formID)->{Imet::LABEL},
-                'edit_url' => 'admin/'.static::$form_view.'/v2/context/'.$formID.'/edit'
+                'edit_url' => 'admin/' . static::$form_view . '/v2/context/' . $formID . '/edit'
             ];
         } catch (\Exception $e) {
             \DB::rollback();
@@ -411,9 +469,9 @@ class ImetController extends FormController
         $destination_form_id = $request->input('destination_form');
 
         $records = $module_class::exportModule($source_form_id);
-        $records = array_map(function($item) use($module_class, $destination_form_id) {
+        $records = array_map(function ($item) use ($module_class, $destination_form_id) {
             $item[(new $module_class())->getKeyName()] = null;
-            $item[$module_class::$foreign_key]         = $destination_form_id;
+            $item[$module_class::$foreign_key] = $destination_form_id;
             return $item;
         }, $records);
 
@@ -434,7 +492,7 @@ class ImetController extends FormController
     public static function api_pame(Request $request)
     {
         $conditions = [];
-        if($request->filled('iso')){
+        if ($request->filled('iso')) {
             $conditions[] = ['Country', '=', $request->input('iso')];
         }
 
@@ -448,5 +506,45 @@ class ImetController extends FormController
             ->toArray();
 
         return self::sendAPIResponse($imets, $request);
+    }
+
+    /**
+     * Upload file
+     * @param Request $request
+     * @return json|null
+     */
+    public function upload(Request $request)
+    {
+        $file = $request->file('file');
+        $ext = $file->extension();
+        $files = [];
+        try {
+            //upload file
+            $uploaded = Upload::uploadFile($file);
+            $import = new static();
+            //and then check if is zip or json
+            if (in_array($ext, ['zip'])) {
+                $extractFiles = Compress::extractFilesFromZipFile($uploaded['temp_filename']);
+
+                foreach ($extractFiles as $item) {
+                    $json = json_decode(Upload::getUploadFileContent(['temp_filename' => $item]), true);
+                    $files[] = $import->import(new Request(), $json, false);
+                    File::removeFiles([$item], FILE::PUBLIC_STORAGE, "temp/");
+                }
+            } else {
+                $json = json_decode(Upload::getUploadFileContent($uploaded), true);
+                $files[] = $import->import(new Request(), $json, false);
+                File::removeFiles([$uploaded['temp_filename']], FILE::PUBLIC_STORAGE, "temp/");
+            }
+
+            if (count($files) === 0 || (count($files) === 1 && isset($files[0]) && $files[0]['status'] === 'error')) {
+                return response()->json(["message" => trans('common.upload.no_files_found')], 500);
+            }
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json(["message" => trans('common.upload.generic_error')], 500);
+        }
+
+        return response()->json($files);
     }
 }
