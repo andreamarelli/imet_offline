@@ -7,9 +7,9 @@
 @endsection
 
 @if(!is_imet_environment())
-@section('admin_page_title')
-    @lang('form/imet/common.imet')
-@endsection
+    @section('admin_page_title')
+        @lang('form/imet/common.imet')
+    @endsection
 @endif
 
 @section('content')

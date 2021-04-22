@@ -4,7 +4,7 @@
 <link href="{{ url('/') }}/favicon.ico" type="image/x-icon" rel="icon">
 
 @if(is_imet_environment())
-    <title>IMET {{ \App\Models\Imet\v2\Imet::imet_version }}</title>
+    <title>IMET v{{ imet_offline_version() }}</title>
 @else
     <title>OFAC</title>
     <meta name="description" content="Des connaissances aux services de tous" />

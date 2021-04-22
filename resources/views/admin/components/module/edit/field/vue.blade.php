@@ -238,6 +238,7 @@
 @elseif($type=="multiple-files-upload")
     <multiple-files-upload></multiple-files-upload>
 
+
 {{--  ###### text editor ######  --}}
 @elseif($type=="text-editor")
 <editor v-model="{{ $v_value }}" v-on:update="{{ $v_value }} = $event"></editor>

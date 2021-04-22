@@ -2,6 +2,7 @@
 /** @var \Illuminate\Database\Eloquent\Collection $list */
 /** @var \Illuminate\Http\Request $request */
 /** @var array $countries */
+/** @var array $years */
 $url = URL::route('export_view');
 $no_filter_selected = true;
 ?>
@@ -22,7 +23,13 @@ $no_filter_selected = true;
 
 @section('content')
 
-    @include('admin.imet.components.common_filter')
+    @include('admin.imet.components.common_filters', [
+            'request'=>$request,
+            'url' => $url,
+            'no_filter_selected' => $no_filter_selected,
+            'countries' => $countries,
+            'years' => $years
+        ])
     <br/>
     <div id="export_list">
         <div class="row">

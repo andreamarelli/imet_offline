@@ -27,7 +27,7 @@
     // ## Initialize Vue ##
     new window.Vue({
 
-        store: window.vueStore,
+        store: window.formStore,
 
         el: '#form_global_errors_bar',
 
@@ -62,7 +62,7 @@
         methods: {
 
             /**
-             * Register in vueStore initial (page load) errors
+             * Register in formStore initial (page load) errors
              */
             registerInitialErrors: function(){
                 let _this = this;

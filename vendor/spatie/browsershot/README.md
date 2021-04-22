@@ -636,6 +636,8 @@ Browsershot::url('https://example.com')
     ->savePdf($pathToPdf);
 ```
 
+#### Setting the timeout
+
 The default timeout of Browsershot is set to 60 seconds. Of course, you can modify this timeout:
 
 ```php
@@ -709,6 +711,17 @@ You can specify the domain to register cookies to, if necessary:
 ```php
 Browsershot::url('https://example.com')
     ->useCookies(['Cookie-Key' => 'Cookie-Value'], 'ui.example.com')
+   ...
+```
+
+#### Sending POST requests
+
+By default, all requests sent using GET method. You can make POST request to the given url by using the `post` method.
+Note: POST request sent using `application/x-www-form-urlencoded` content type.
+
+```php
+Browsershot::url('https://example.com')
+    ->post(['foo' => 'bar'])
    ...
 ```
 

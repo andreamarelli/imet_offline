@@ -45,7 +45,6 @@ class GetSerialNumber extends Command
             return 0;
         } catch (\Exception $e){
             $this->error('ERROR');
-            $this->error($e);
             return 1;
         }
     }

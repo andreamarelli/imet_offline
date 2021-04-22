@@ -6,6 +6,8 @@ use App\Library\Utils\File\File;
 use App\Models\Components\Module;
 use App\Models\Components\Upload;
 use Illuminate\Http\Request;
+use Storage;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 
@@ -17,7 +19,7 @@ class UploadFileController extends Controller
      * @return array|null
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public static function upload(Request $request)
+    public function upload(Request $request): ?array
     {
         $uploaded = Upload::uploadFile($request->file('file_upload'));
         if($uploaded!==null){
@@ -27,22 +29,21 @@ class UploadFileController extends Controller
         }
     }
 
-
     /**
      * Download file (by hash)
+     *
      * @param $hash
-     * @return File
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
-    public static function download($hash)
+    public static function download($hash): BinaryFileResponse
     {
         [$file_content, $file_name] = Module::getFileByHash($hash);
-        $disk = \Storage::disk(File::PRIVATE_STORAGE);
+        $disk = Storage::disk(File::PRIVATE_STORAGE);
         $disk->put($hash, $file_content);
         $file_path = $disk->path($hash);
         return response()
             ->download($file_path, $file_name)
             ->deleteFileAfterSend();
     }
-
 
 }

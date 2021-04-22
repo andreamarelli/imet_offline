@@ -28,7 +28,7 @@ if(!is_imet_environment()){
         Route::match(['get', 'post'],'biodiversity/regional', [Controllers\AnalyticalPlatform\Biodiversity\RegionalController::class, 'api']);
         Route::match(['get', 'post'],'biodiversity/national/{item}',[Controllers\AnalyticalPlatform\Biodiversity\NationalController::class, 'api']);
         Route::match(['get', 'post'],'biodiversity/protected_areas/{item}',[Controllers\AnalyticalPlatform\Biodiversity\LocalController::class, 'api']);
-        Route::match(['get', 'post'],'biodiversity/landscapes/{item}',[Controllers\AnalyticalPlatform\Biodiversity\LandscapeController::class, 'api']);
+        Route::match(['get', 'post'],'biodiversity/klc/{item}',[Controllers\AnalyticalPlatform\Biodiversity\LandscapeController::class, 'api']);
         // # Legal Framework #
         Route::match(['get', 'post'],'legal_framework/regional',[Controllers\Controller::class, 'under_dev']);  // TODO
         Route::match(['get', 'post'],'legal_framework/national/{item}',[Controllers\Controller::class, 'under_dev']);  // TODO
@@ -45,7 +45,7 @@ if(!is_imet_environment()){
 
         // # Projects #
         Route::match(['get', 'post'],'projects',[Controllers\Project\ProjectController::class, 'analysis']);
-        
+
         // # Convergence Plan #
         Route::match(['get', 'post'],'convergence_plan/regional',[Controllers\AnalyticalPlatform\ConvergencePlan\RegionalController::class, 'api']);
         Route::match(['get', 'post'],'convergence_plan/national/{item}',[Controllers\AnalyticalPlatform\ConvergencePlan\NationalController::class, 'api']);
@@ -85,6 +85,7 @@ if(!is_imet_environment()){
     Route::group(['prefix' => 'library'], function () {
         Route::post('getKeywords',      [Controllers\CatalogueController::class, 'getKeywords']);
         Route::post('createKeywords',   [Controllers\CatalogueController::class, 'createKeywords']);
+        
     });
 
 }
