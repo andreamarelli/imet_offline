@@ -133,6 +133,20 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'input-simple' => [
+            'url' => [
+                'help-message' => "O endereço deve começar por *http://* ou *https://* ou *ftp://*.",
+                'field-name' => "O endereço dado",
+                'placeholder' => "Endereço web",
+            ],
+            'email' => [
+                'field-name' => "Email",
+                'placeholder' => "Email",
+            ],
+            'default' => [
+                'field-name' => "Campo",
+            ],
+        ],
     ],
 
     /*
@@ -147,4 +161,10 @@ return [
     */
 
     'attributes' => [],
+
+    'custom_text' =>    'O formato :attribute é inválido.',
+    'country_iso' =>    'O formato :attribute é inválido.',
+    'id' =>             'O formato :attribute é inválido.',
+
+    'captcha'     =>    'O formato :attribute é inválido.',
 ];

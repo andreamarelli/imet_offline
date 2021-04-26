@@ -5,8 +5,8 @@ return [
     'languages' => [
         'fr'        => 'french',
         'en'        => 'english',
-        'sp'        => 'spanish'/*,
-        'pt'        => 'portuguese'*/
+        'sp'        => 'spanish',
+        'pt'        => 'portuguese'
     ],
     'switch_language' => 'Switch current language to',
 

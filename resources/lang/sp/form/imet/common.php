@@ -5,12 +5,12 @@ return [
     'languages' => [
         'fr'        => 'francés',
         'en'        => 'inglés',
-        'sp'        => 'español'/*,
-        'pt'        => 'portugués'*/
+        'sp'        => 'español',
+        'pt'        => 'portugués'
     ],
     'switch_language' => 'Cambiar el idioma actual a',
 
-    'imet' => 'IMET: Integrated Management Effectiveness Tool',
+    'imet' => 'IMET: por sus siglas en inglés Herramienta de Efectividad de Manejo Integral',
     'imet_short'        => 'IMET',
 
     'management'        => 'Gestión del IMET',
@@ -29,7 +29,7 @@ return [
     'encode'            => 'codificar',
     'show'              => 'mostrar',
 
-    'context'           => 'Contexto',
+    'context'           => 'contexto',
     'evaluation'        => 'evaluación',
     'report'            => 'informe de análisis',
     'context_long'      => 'contexto de intervención',
@@ -39,10 +39,10 @@ return [
     'import_imet'       => 'Importar IMET desde un archivo',
     'merge_tool'        => 'Herramienta de combinación',
     'destination_form'        => 'Formulario de destino',
-    'set_as_destination_form' => 'Establecer como formulario de destino',
-    'confirm_merge'     => 'Confirmar la copia de datos',
+    'set_as_destination_form' => 'Establecer como forma de destino',
+    'confirm_merge'     => 'Confirmar para copiar datos',
     'upgrade'           => 'Actualización a IMET v2',
-    'upgrade_confirm'   => '¿Confirmar la actualización a IMET v2?<ul><li>Se creará una copia del formulario original.</li><li>Algunos datos no pudieron ser convertidos a la v2</li>',
+    'upgrade_confirm'   => 'Confirmar la actualización a IMET v2?<ul><li>Se creará una copia del formulario original.</li><li>Algunos datos no han podido ser convertidos a v2</li>',
     'upgrade_success'   => 'Actualización a IMET v2 completada con éxito',
     'upgrade_failed'    => 'Error al actualizar a IMET v2',
 

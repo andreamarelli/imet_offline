@@ -17,21 +17,21 @@ return [
     'throttle' => 'Demasiados intentos para iniciar sesión. Por favor, inténtelo de nuevo en : segundos segundos.',
 
     'login'                 => 'acceso',
-    'stay_connected'        => 'Permanecer conectado',
+    'stay_connected'        => 'permanecer conectado',
     'forgot_password'       => 'olvidó su contraseña',
     'logout'                => 'cerrar sesión',
-    'register'              => 'registro',
+    'register'              => 'regístrese',
     'captcha'               => 'captcha',
 
-    'username'              => 'nombre de usuario',
+    'username'              => 'usuario',
     'email'                 => 'correo electrónico',
     'password'              => 'contraseña',
     'password_confirmation' => 'confirmación de contraseña',
-    'password_update_required'          => 'Se requiere contraseña',
-    'password_update_required_message'  => 'La contraseña necesita ser modificada para asegurar un mayor nivel de seguridad. Gracias por su comprensión.',
+    'password_update_required'          => 'se requiere contraseña',
+    'password_update_required_message'  => 'Es necesario modificar la contraseña para garantizar un mayor nivel de seguridad. Gracias por su comprensión.',
     'password_update'                   =>  'guardar',
 
-    'password_old' => 'antigua contraseña',
+    'password_old' => 'contraseña anterior',
     'password_new' => 'nueva contraseña',
     'password_edit' => 'Modificar la contraseña'
 
