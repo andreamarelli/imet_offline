@@ -247,9 +247,9 @@ trait Upload {
     protected static function saveFileToDB($id, $field_key, $fileName, $fileContent)
     {
         $model = new static();
-        $sql = 'UPDATE "'.str_replace('.', '"."', $model->getTable()).'" 
+        $sql = 'UPDATE "'.str_replace('.', '"."', $model->getTable()).'"
                     SET "'.$field_key.'"=:filename,
-                        "'.$field_key.static::$binary_field_prefix.'"=:file_bytea 
+                        "'.$field_key.static::$binary_field_prefix.'"=:file_bytea
                     WHERE "'.$model->primaryKey.'"=:id;';
         $pdo = \DB::connection()->getPdo();
         $stmt = $pdo->prepare($sql);

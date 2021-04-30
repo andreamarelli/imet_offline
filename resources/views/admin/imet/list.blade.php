@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Collection $list */
 /** @var \Illuminate\Http\Request $request */
 /** @var array $countries */
+/** @var array $years */
 /** @var boolean $show_filters */
 /** @var boolean $no_filter_selected */
 
@@ -19,9 +20,9 @@ $url = URL::route('index');
 @endsection
 
 @if(!is_imet_environment())
-    @section('admin_page_title')
-        @lang('form/imet/common.imet')
-    @endsection
+@section('admin_page_title')
+    @lang('form/imet/common.imet')
+@endsection
 @endif
 
 @section('content')
@@ -48,7 +49,13 @@ $url = URL::route('index');
     @endif
 
     @if($show_filters)
-        @include('admin.imet.components.common_filter')
+        @include('admin.imet.components.common_filters', [
+            'request'=>$request,
+            'url' => $url,
+            'no_filter_selected' => $no_filter_selected,
+            'countries' => $countries,
+            'years' => $years
+        ])
     @endif
 
     <br />
@@ -71,72 +78,72 @@ $url = URL::route('index');
                 </thead>
 
                 <tbody>
-                    <tr v-for="item of items">
-                        <td class="align-baseline text-center">#@{{ item.FormID }}</td>
-                        <td class="align-baseline text-center"><strong>@{{ item.Year }}</strong></td>
-                        <td class="align-baseline">
+                <tr v-for="item of items">
+                    <td class="align-baseline text-center">#@{{ item.FormID }}</td>
+                    <td class="align-baseline text-center"><strong>@{{ item.Year }}</strong></td>
+                    <td class="align-baseline">
 
-                            <div class="imet_name">
-                                {{-- name --}}
-                                <div class="imet_pa_name">
-                                    <strong style="font-size: 1.1em;">@{{ item.name }}</strong>
-                                    (<a target="_blank" :href="'{{ \App\Library\API\ProtectedPlanet\ProtectedPlanet::WEBSITE_URL }}'+ item.wdpa_id">@{{ item.wdpa_id }}</a>)
-                                    <br />
-                                    <flag :iso2=item.iso2></flag>&nbsp;&nbsp;<i>@{{ item.country_name }}</i>
-                                </div>
+                        <div class="imet_name">
+                            {{-- name --}}
+                            <div class="imet_pa_name">
+                                <strong style="font-size: 1.1em;">@{{ item.name }}</strong>
+                                (<a target="_blank" :href="'{{ \App\Library\API\ProtectedPlanet\ProtectedPlanet::WEBSITE_URL }}'+ item.wdpa_id">@{{ item.wdpa_id }}</a>)
                                 <br />
-                                {{-- language --}}
-                                <div>
-                                    {{ ucfirst(trans('form/imet/common.encoding_language')) }}:
-                                    <flag :iso2=item.language></flag>
-                                </div>
-                                {{-- version --}}
-                                <div>
-                                    {{ ucfirst(trans('common.version')) }}:
-                                    <span v-if="item.version==='v2'" class="badge badge-success">v2</span>
-                                    <span v-else-if="item.version==='v1'" class="badge badge-secondary">v1</span>
-                                </div>
+                                <flag :iso2=item.iso2></flag>&nbsp;&nbsp;<i>@{{ item.country_name }}</i>
                             </div>
-                        </td>
-                        <td class="align-baseline">
-                            <imet_encoders_responsibles
-                                :items=item.encoders_responsibles
-                            ></imet_encoders_responsibles>
-                        </td>
-                        <td>
-                            <imet_radar :width=150 :height=150 :values=item.assessment ></imet_radar>
-                        </td>
-                        <td class="align-baseline text-center" style="white-space: nowrap;">
+                            <br />
+                            {{-- language --}}
+                            <div>
+                                {{ ucfirst(trans('form/imet/common.encoding_language')) }}:
+                                <flag :iso2=item.language></flag>
+                            </div>
+                            {{-- version --}}
+                            <div>
+                                {{ ucfirst(trans('common.version')) }}:
+                                <span v-if="item.version==='v2'" class="badge badge-success">v2</span>
+                                <span v-else-if="item.version==='v1'" class="badge badge-secondary">v1</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="align-baseline">
+                        <imet_encoders_responsibles
+                            :items=item.encoders_responsibles
+                        ></imet_encoders_responsibles>
+                    </td>
+                    <td>
+                        <imet_radar :width=150 :height=150 :values=item.assessment ></imet_radar>
+                    </td>
+                    <td class="align-baseline text-center" style="white-space: nowrap;">
 
-                            {{-- Show --}}
-                            <span v-if="item.version==='v2'">
+                        {{-- Show --}}
+                        <span v-if="item.version==='v2'">
                                 @include('admin.imet.components.button_show', ['version' => 'v2'])
                             </span>
 
-                            @if($can_encode)
+                        @if($can_encode)
 
-                                {{-- Edit --}}
-                                <span v-if="item.version==='v1'">
+                            {{-- Edit --}}
+                            <span v-if="item.version==='v1'">
                                     {{-- Edit --}}
-                                    @include('admin.imet.components.button_edit', ['version' => 'v1'])
+                                @include('admin.imet.components.button_edit', ['version' => 'v1'])
                                 </span>
-                                <span v-else-if="item.version==='v2'">
+                            <span v-else-if="item.version==='v2'">
                                     {{-- Edit --}}
-                                    @include('admin.imet.components.button_edit', ['version' => 'v2'])
+                                @include('admin.imet.components.button_edit', ['version' => 'v2'])
                                 </span>
 
-                                {{-- Upgrade --}}
-                                {{--
-                                <span v-if="item.version==='v1'">
-                                    @include('admin.imet.components.button_upgrade', [
-                                        'controller' => \App\Http\Controllers\Imet\ImetController::class,
-                                        'item' => 'item.FormID'
-                                    ])
-                                </span>
-                                --}}
+                            {{-- Upgrade --}}
+                            {{--
+                            <span v-if="item.version==='v1'">
+                                @include('admin.imet.components.button_upgrade', [
+                                    'controller' => \App\Http\Controllers\Imet\ImetController::class,
+                                    'item' => 'item.FormID'
+                                ])
+                            </span>
+                            --}}
 
-                                {{-- Merge tool --}}
-                                <span v-if="item.has_duplicates">
+                            {{-- Merge tool --}}
+                            <span v-if="item.has_duplicates">
                                     @include('admin.components.buttons._generic', [
                                         'controller' => \App\Http\Controllers\Imet\ImetController::class,
                                         'action' =>'merge_view',
@@ -147,20 +154,20 @@ $url = URL::route('index');
                                     ])
                                 </span>
 
-                            @endif
+                        @endif
 
-                            {{-- Export --}}
-                            @include('admin.components.buttons._generic', [
-                                'controller' => \App\Http\Controllers\Imet\ImetController::class,
-                                'action' =>'export',
-                                'item' => 'item.FormID',
-                                'tooltip' => ucfirst(trans('common.export')),
-                                'icon' => 'cloud-download-alt',
-                                'class' => 'btn-primary'
-                            ])
+                        {{-- Export --}}
+                        @include('admin.components.buttons._generic', [
+                            'controller' => \App\Http\Controllers\Imet\ImetController::class,
+                            'action' =>'export',
+                            'item' => 'item.FormID',
+                            'tooltip' => ucfirst(trans('common.export')),
+                            'icon' => 'cloud-download-alt',
+                            'class' => 'btn-primary'
+                        ])
 
-                            {{-- Print --}}
-                            <span v-if="item.version==='v2'">
+                        {{-- Print --}}
+                        <span v-if="item.version==='v2'">
                                 @include('admin.components.buttons._generic', [
                                     'controller' => \App\Http\Controllers\Imet\ImetControllerV2::class,
                                     'action' =>'print',
@@ -171,18 +178,18 @@ $url = URL::route('index');
                                 ])
                             </span>
 
-                            @if($can_encode)
+                        @if($can_encode)
 
-                                {{-- Delete --}}
-                                @include('admin.components.buttons.delete', [
-                                    'controller' => \App\Http\Controllers\Imet\ImetController::class,
-                                    'item' => 'item.FormID'
-                                ])
+                            {{-- Delete --}}
+                            @include('admin.components.buttons.delete', [
+                                'controller' => \App\Http\Controllers\Imet\ImetController::class,
+                                'item' => 'item.FormID'
+                            ])
 
-                            @endif
+                        @endif
 
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
                 </tbody>
 
             </table>

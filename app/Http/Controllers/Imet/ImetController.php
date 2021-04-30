@@ -225,17 +225,17 @@ class ImetController extends FormController
         }
 
         return view('admin.imet.v2.tools.export_csv',
-            [
-                'modules' => $modules_final_list,
-                'imet_keys' => $imet_keys,
-                'imet_eval_keys' => $imet_eval_keys,
-                'countries' => $countries,
-                'years' => $filters['Year'],
-                'wdpa' => $wdpa_list,
-                'request' => $request,
-                'method' => 'GET',
-                'results' => $results
-            ]
+                    [
+                        'modules' => $modules_final_list,
+                        'imet_keys' => $imet_keys,
+                        'imet_eval_keys' => $imet_eval_keys,
+                        'countries' => $countries,
+                        'years' => $filters['Year'],
+                        'wdpa' => $wdpa_list,
+                        'request' => $request,
+                        'method' => 'GET',
+                        'results' => $results
+                    ]
         );
     }
 
@@ -276,11 +276,7 @@ class ImetController extends FormController
             ->makeHidden(['FormID', 'UpdateBy', 'protected_area_global_id'])
             ->toArray();
 
-        if ($imet_form['version'] === 'v1') {
-            $imet_form['imet_version'] = v1\Imet::imet_version;
-        } else {
-            $imet_form['imet_version'] = v2\Imet::imet_version;
-        }
+        $imet_form['imet_version'] = imet_offline_version();
 
         $json = [
             'Imet' => $imet_form,

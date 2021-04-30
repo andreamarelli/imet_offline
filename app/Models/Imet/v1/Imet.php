@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 class Imet extends \App\Models\Imet\Imet
 {
     public const version = 'v1';
-    public const imet_version = 'v1';
 
     public static $modules = [
 

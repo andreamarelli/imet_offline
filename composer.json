@@ -19,6 +19,7 @@
         "ext-pdo": "*",
         "ext-tokenizer": "*",
         "ext-xml": "*",
+        "ext-zip": "*",
         "anhskohbo/no-captcha": "^3.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
@@ -34,9 +35,7 @@
         "spatie/browsershot": "^3.26",
         "wa72/htmlpagedom": "^2.0"
     },
-    "require-dev": {
-        "barryvdh/laravel-ide-helper": "^2.9"
-    },
+    "require-dev": {},
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
