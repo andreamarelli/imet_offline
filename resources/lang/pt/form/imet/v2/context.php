@@ -672,7 +672,7 @@ return [
                 '3' => 'Alta',
             ],
         ],
-        'module_info' => 'The threats calculator is for calculating threat impact scores of threats on a specific protected area. Using your best professional judgement, you evaluate the threat impact exploiting five categories of score: (1) Impact/ Severity; (2) Scale/ Extent; (3) How long/ Irreversibility; (4) Trend; (5) Probability for the threat in the future',
+        'module_info' => 'A calculadora de ameaças é utilizada para calcular o impacto das ameaças numa área protegida específica. Usando o seu melhor julgamento profissional, avalia o impacto da ameaça explorando cinco categorias de pontuação: (1) Impacto/ Gravidade; (2) Escala/ Extensão; (3) Quanto tempo/ Irreversibilidade; (4) Tendência; (5) Probabilidade para a ameaça no futuro',
         'warning_on_save' =>
             'Qualquer <br/> modificação pode causar perda de dados no seguinte
             módulos de avaliação (se já codificados): <br /> <i>C3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
