@@ -74,7 +74,7 @@ return [
             'CreationYear' => 'Year created',
             'Institution' => 'Supervisory institution(s)',
             'Biome' => 'Biome',
-            'Ecoregions' => 'Reference ecoregion(s) [Ecoregions G200, Olson, WWF; Spalding M. et alt. 2007]',
+            'Ecoregions' => 'Reference ecoregion(s) [Ecoregions G200, Olson, WWF; Spalding M. and colleaues 2007]',
             'Ecotype' => 'Ecotypes (up to three elements descending by the predominance)',
             'ReferenceText' => 'Reference to the designation of the gazetting text',
             'ReferenceTextDocument' => '',
@@ -270,15 +270,15 @@ return [
         'fields' => [
             'Currency' => 'Currency',
             'ReferenceYear' => 'Baseline year',
-            'ManagementFinancialPlanCosts' => 'Operating cost estimated on Management plan/Financial plan ($ or €/year)',
-            'OperationalWorkPlanCosts' => 'Operating costs estimated from the operational plan / working plan (budgeted annually)',
-            'TotalBudget' => 'Total annual budget available',
+            'ManagementFinancialPlanCosts' => 'Operating cost estimated on Financial plan ($ or €/year)',
+            'OperationalWorkPlanCosts' => 'Operating costs estimated on Working plan (budgeted annually)',
+            'TotalBudget' => 'Total annual budget actually available',
         ],
         'amount'                        => 'Total',
         'functioning_costs'             => 'Operating costs ($ or €/km2/year)',
-        'estimation_financial_plan'     => '% of resources required by financial plan / working plan (budgeted annually)',
-        'estimation_operational_plan'   => '% of resources required by the working plan (budgeted annually)',
-        'module_info' => 'Estimated total costs based on Management plan/Financial plan'
+        'estimation_financial_plan'     => '% of resources required by Financial plan (annual budget)',
+        'estimation_operational_plan'   => '% of resources required by the Working plan (annual budget)',
+        'module_info' => 'Estimated total costs based on Financial plan'
     ],
 
     'FinancialAvailableResources' => [
@@ -391,10 +391,10 @@ return [
             'Reliability' => 'Reliability',
             'Comments' => 'Source / Note',
         ],
-        'module_info' => 'Favourable conservation status: From Natura 2000, the conservation status of species will be considered ‘favourable’ when:<ul>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of species that are assumed to exist (see the IUCN’s lists of A - mammals, B - birds and C - amphibians), a limited number of key species of the protected area.<br /> <b>Species indicators</b> <ul> <li><b>FLA</b>: Flagship species</li> <li><b>EDG</b>: Endangered (threatened) species</li> <li><b>EDM</b>: Endemic species</li> <li><b>EXP</b>: Exploited species</li> <li><b>INV</b>: Invasive species</li> <li><b>LLK</b>: Epecies with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring program and generation of multiannual trend graph.',
+        'module_info' => 'Favourable conservation status: From Natura 2000, the conservation status of species will be considered ‘favourable’ when:<ul>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of species that are assumed to exist (see the IUCN’s lists of A - mammals, B - birds and C - amphibians), a limited number of key species of the protected area.<br /> <b>Species indicators</b> <ul> <li><b>FLA</b>: Flagship species</li> <li><b>EDG</b>: Endangered (threatened) species</li> <li><b>EDM</b>: Endemic species</li> <li><b>EXP</b>: Exploited species</li> <li><b>INV</b>: Invasive species</li> <li><b>LLK</b>: Species with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring programme and generation of multiannual trend graph.',
         'validation_min3' => 'Please encode not less than 3 key species',
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following 
+            'WARNING!! <br /> Any modification may cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -414,9 +414,9 @@ return [
             'Reliability' => 'Reliability',
             'Comments' => 'Source / Note',
         ],
-        'module_info' => 'Favourable conservation status:<br />From Natura 2000, the conservation status of species will be considered ‘favourable’ when:<ul><li>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of the plants that are assumed to exist (see the lists available and park information), a limited number of key plant of the protected area<br /> <b>Species indicators</b> <ul> <li><b>PHA</b>: Flagship species</li> <li><b>MEN</b>: Endangered (threatened) species</li> <li><b>END</b>: Endemic species</li> <li><b>EXP</b>: Exploited species</li> <li><b>INV</b>: Invasive species</li> <li><b>INS</b>: Epecies with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring program and generation of multiannual trend graph.<br /> <b>Reliability of information</b> <ul> <li>1: Low<li>2: Medium<li>3: High</li> </ul>',
+        'module_info' => 'Favourable conservation status:<br />From Natura 2000, the conservation status of species will be considered ‘favourable’ when:<ul><li>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of the plants that are assumed to exist (see the lists available and park information), a limited number of key plant of the protected area<br /> <b>Species indicators</b> <ul> <li><b>PHA</b>: Flagship species</li> <li><b>MEN</b>: Endangered (threatened) species</li> <li><b>END</b>: Endemic species</li> <li><b>EXP</b>: Exploited species</li> <li><b>INV</b>: Invasive species</li> <li><b>INS</b>: Species with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring programme and generation of multiannual trend graph.<br /> <b>Reliability of information</b> <ul> <li>1: Low<li>2: Medium<li>3: High</li> </ul>',
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following 
+            'WARNING!! <br /> Any modification may cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -432,9 +432,9 @@ return [
             'Sectors' => 'Sectors',
             'Comments' => 'Comments / Source'
         ],
-        'module_info' => 'Note: Favourable conservation status:<br />From Natura 2000, the conservation status of a natural habitat will considered ‘favourable’ when:<ul><li>its natural range and areas it covers within that range are stable or increasing, and</li><li>the specific structure and functions which are necessary for its long-term maintenance exist and are likely to continue to exist for the foreseeable future</li></ul>Rating: Select and evaluate the most important ecosystem and habitat-related parameters of terrestrial and freshwater ecosystems and habitats of the protected area.<br /> <b>Note</b>: Habitat evaluation is still emerging as a discipline, since it is highly complex. The classification provides for the following division of territory: Biome, Ecoregion, Ecosystem, Habitat. Habitat characteristics/values can be assessed as: <ul> <li>i) under threat of extinction (within their natural range),</li> <li>ii) having a reduced natural range,</li> <li>iii) in decline,</li> <li>iv) an outstanding example of specific characteristics, etc.</li> </ul> Assessment of habitats can also be performed from the perspective of: <ul> <li>i) reproduction,</li> <li>ii) nutrition,</li> <li>iii) species protection, etc.</li> </ul> <br /> <b>Reliability of information</b> <ul> <li>1: Low<li>2: Medium<li>3: High</li> </ul>',
+        'module_info' => 'Note: Favourable conservation status:<br />From Natura 2000, the conservation status of a natural habitat will considered ‘favourable’ when:<ul><li><li>its natural range and areas it covers within that range are stable or increasing, and</li><li>the specific structure and functions which are necessary for its long-term maintenance exist and are likely to continue to exist for the foreseeable future</li></ul>Rating: Select and evaluate the most important ecosystem and habitat-related parameters of terrestrial and freshwater ecosystems and habitats of the protected area.<br /> <b>Note</b>: Habitat evaluation is still emerging as a discipline, since it is highly complex. The classification provides for the following division of territory: Biome, Ecoregion, Ecosystem, Habitat. Habitat characteristics/values can be assessed as: <ul> <li>i) under threat of extinction (within their natural range),</li> <li>ii) having a reduced natural range,</li> <li>iii) in decline,</li> <li>iv) an outstanding example of specific characteristics, etc.</li> </ul> Assessment of habitats can also be performed from the perspective of: <ul> <li>i) reproduction,</li> <li>ii) nutrition,</li> <li>iii) species protection, etc.</li> </ul> <br /> <b>Reliability of information</b> <ul> <li>1: Low<li>2: Medium<li>3: High</li> </ul>',
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following 
+            'WARNING!! <br /> Any modification may cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -471,9 +471,9 @@ return [
             'Notes' => 'Source / Note',
             'HistoricalAreaData' => 'Baseline date',
         ],
-        'module_info' => 'Rating: Evaluate the most important elements of land cover-use-take for the management of the protected area<br />Land cover-use-take categories (exemple: forest, savannah, water, crops/plantations, dwellings, roads, etc.)',
+        'module_info' => 'Rating: Evaluate the most important elements of land cover-use-take for the management of the protected area<br />Land cover-use-take categories (example: forest, savannah, water, crops/plantations, dwellings, roads, etc.)',
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following 
+            'WARNING!! <br /> Any modification may cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -674,7 +674,7 @@ return [
         ],
         'module_info' => 'The threats calculator is for calculating threat impact scores of threats on a specific protected area. Using your best professional judgement, you evaluate the threat impact exploiting five categories of score: (1) Impact/ Severity; (2) Scale/ Extent; (3) How long/ Irreversibility; (4) Trend; (5) Probability for the threat in the future',
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following 
+            'WARNING!! <br /> Any modification may cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -704,7 +704,7 @@ return [
             ]
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following 
+            'WARNING!! <br /> Any modification may cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.4</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -733,7 +733,7 @@ return [
             'group0' => ['Water supply - illegal', 'Water supply - legal', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.) - illegal', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.) - legal', 'Human food - animal (wild / farmed meat, seafood , insects) - illegal', 'Human food - animal (wild / farmed meat, seafood, insects) - legal', 'Medicines and blue biotechnology (fish oil) - illegal', 'Medicines and blue biotechnology (fish oil) - legal', 'Fish / livestock feed (wild, farmed, bait) - illegal', 'Fish / livestock feed (wild, farmed, bait) - legal'],
             'group1' => ['High value timber - illegal', 'High value timber - legal', 'Timber for local construction - illegal', 'Timber for local construction - legal','Stems - fibres (palms, kenaf, etc.) - illegal', 'Stems - fibres (palms, kenaf, etc.) - legal', 'Other fibres (leaves, fruits...) (kapok, coco, etc.) - illegal', 'Other fibres (leaves, fruits...) (kapok, coco, etc.) - legal', 'Ornamental and aquaria resources (seeds, shells and fishes collection) - illegal', 'Ornamental and aquaria resources (seeds, shells and fishes collection) - legal', 'Sand (building) - illegal', 'Sand (building) - legal', 'Cultivation land (agriculture, livestock, forests) - illegal', 'Cultivation land (agriculture, livestock, forests) - legal'],
             'group2' => ['Fuelwood and biofuels - illegal', 'Fuelwood and biofuels - legal', 'Water for energy - illegal', 'Water for energy - legal', 'Fertiliser - illegal', 'Fertiliser - legal'],
-            'group3' => ['Gas regulation (C sequestration)', 'Waste burial / removal / neutralisation'],
+            'group3' => ['Gas regulation (C sequestration)', 'Waste burial / removal / neutralisation', 'Waste regulation (nutrient uptake)'],
             'group4' => ['Flood control', 'Drought control', 'Storm protection', 'Water erosion control', 'Wind erosion control', 'Prevention of coastal erosion'],
             'group5' => ['Aesthetic (ecosystem integrity) benefits', 'Ecotourism and nature watching', 'Walking, hiking and general recreation', 'Snorkeling, boating and diving', 'Hunting or fishing if permitted', 'Specified traditional fishing'],
             'group6' => ['Science - Research', 'Educational', 'Cultural heritage'],
@@ -768,7 +768,7 @@ return [
             ]
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following 
+            'WARNING!! <br /> Any modification may cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.5</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
