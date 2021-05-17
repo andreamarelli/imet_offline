@@ -277,7 +277,7 @@ return [
         'amount'                        => 'Total',
         'functioning_costs'             => 'Operating costs ($ or €/km2/year)',
         'estimation_financial_plan'     => '% of resources required by Financial plan (annual budget)',
-        'estimation_operational_plan'   => '% of resources required by the Working plan (annual budget)',
+        'estimation_operational_plan'   => '% of resources required by the Qorking plan (annual budget)',
         'module_info' => 'Estimated total costs based on Financial plan'
     ],
 
@@ -471,7 +471,7 @@ return [
             'Notes' => 'Source / Note',
             'HistoricalAreaData' => 'Baseline date',
         ],
-        'module_info' => 'Rating: Evaluate the most important elements of land cover-use-take for the management of the protected area<br />Land cover-use-take categories (example: forest, savannah, water, crops/plantations, dwellings, roads, etc.)',
+        'module_info' => 'Rating: Evaluate the most important elements of land cover-use-take for the management of the protected area<br />Land cover-use-take categories (exemple: forest, savannah, water, crops/plantations, dwellings, roads, etc.)',
         'warning_on_save' =>
             'WARNING!! <br /> Any modification may cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'

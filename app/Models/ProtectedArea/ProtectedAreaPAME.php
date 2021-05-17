@@ -12,9 +12,9 @@ class ProtectedAreaPAME extends EntityModel {
 //    const LABEL = '';
 //    protected static $sortBy = '';
 //    const EXPORT = [];
-//    const CREATED_AT = null;
-//    const UPDATED_AT = null;
-//    const UPDATED_BY = null;
+    const CREATED_AT = null;
+    const UPDATED_AT = null;
+    const UPDATED_BY = null;
 
 
 }

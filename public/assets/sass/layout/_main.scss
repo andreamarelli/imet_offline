@@ -1,0 +1,136 @@
+@import "../abstracts/all";
+
+main{
+
+  section.main {
+
+    &.one-col > .content,
+    &.two-col > .content {
+      padding: 6% 0 6% 0;
+      width: 100%;
+    }
+
+    &.one-col {
+    }
+
+    &.two-col {
+
+      > .content {
+        border-left: 1px solid $baseGray;
+      }
+
+      nav.sidebar {
+        padding: 8% 45px 5% 0;
+
+        h2 {
+          font-size: 2em;
+          margin-bottom: 30px;
+        }
+
+        > ul{
+
+          border-bottom: 1px solid $lighterGray;
+          font-family: $fontFamily-1;
+          -webkit-padding-start: 0;
+          list-style: none;
+
+          *{
+            color: $darkerGray;
+            font-weight: normal;
+            a:hover{
+              text-decoration: none;
+              color: $darkGreen;
+            }
+          }
+
+          // first level
+          > li {
+            &.selected{
+              > ul {
+                display: block;
+              }
+              > a {
+                font-weight: 700;
+                &:after {
+                  font-family: $fontFamily-FontAwesome;
+                  content: "\f105"; // fa-angle-right
+                  position: absolute;
+                  right: 0;
+                  top: 50%;
+                  margin-top: -8px;
+                }
+              }
+            }
+            > a {
+              display: block;
+              padding: 10px 10px 10px 0;
+              font-size: 1.3em;
+              position: relative;
+              border-top: 1px solid $lighterGray;
+            }
+            // second level
+            > ul {
+              display: none;
+              padding: 10px 0 30px;
+              list-style: none;
+              > li {
+                > a {
+                  display: block;
+                  padding: 6px 0 6px 20px;
+                  position: relative;
+                  &:before {
+                    font-family: $fontFamily-FontAwesome;
+                    content: "\f105"; // fa-angle-right
+                    position: absolute;
+                    left: 0;
+                  }
+                }
+
+                // third level{
+                > ul {
+                  font-size: .9em;
+                  li {
+                    list-style: disc;
+                    a {
+                      padding: 5px 0;
+                      display: block;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+        }
+
+        a.side-button {
+          font-family: $fontFamily-2;
+          font-size: .9em;
+          display: block;
+          margin-bottom: 10px;
+          padding: 18px 12px 18px 45px;
+          background-color: $baseGreen;
+          color: #fff;
+          border-radius: 10px;
+          @include transition(background-color);
+          &:hover {
+            background-color: $lightGreen;
+            color: $darkestGray;
+            text-decoration: none;
+          }
+          /*text-transform: uppercase;*/
+          position: relative;
+          img, span.flag-icon {
+            position: absolute;
+            left: 15px;
+            top: 20px;
+          }
+        }
+      }
+    }
+
+  }
+}
+  .monitoring-indicator {
+      margin-left: 50px;
+  }

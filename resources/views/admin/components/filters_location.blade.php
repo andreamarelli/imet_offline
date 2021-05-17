@@ -31,17 +31,12 @@
 ?>
 
 
-{{--
-{!! \App\Library\Ofac\Input\DropDownVue::simple('intervention_level', $vue_data['intervention_level'], 'ProjectLocation') !!}
---}}
-
-
 <div id="location_filter">
 
     {{-- level --}}
     {!! ucfirst(trans('form/project.intervention_level')).': ' !!}<br />
     @include('admin.components.module.edit.field.vue', [
-        'type' => 'dropdown-ProjectLocation',
+        'type' => 'dropdown-location_level',
         'v_value' => 'intervention_level',
         'id' => 'intervention_level',
         'other' => '@change=trigger'

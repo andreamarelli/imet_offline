@@ -354,7 +354,7 @@ return [
         'predefined_values' => [
             'Size (surface area)',
             'Configuration or shape of the protected area',
-            'Boundary/area ratio, value based on the analysis of context of intervention, point CTX 2',
+            'Boundary/area ratio, value based on the analysis of context of intervention, point CTX 2',
             'Border zone (areas near borders immediately outside of the protected area that have special rules on resources use)',
             'Buffer zones (areas surrounding a protected area, where special management of resources use and special development measures are undertaken in order to enhance the conservation value of the protected area)',
             'Corridors',
@@ -503,19 +503,19 @@ return [
         ],
         'predefined_values' => [
             'Biodiversity status and protection as global value',
-            'Animal species – flagship, endangered, endemic, … –',
-            'Plants species – flagship, endangered, endemic, … –',
+            'Animal species – flagship, endangered, endemic, … –',
+            'Plants species – flagship, endangered, endemic, … –',
             'Mitigation of the direct and indirect threats to the protected area',
-            'Ecosystem services – Provisioning (sustainable use)',
-            'Ecosystem services – Regulating (sustainable use)',
-            'Ecosystem services – Cultural (sustainable use)',
-            'Ecosystem services – Supporting',
-            'Climate change adaptation',
+            'Ecosystem services – Provisioning (sustainable use)',
+            'Ecosystem services – Regulating (sustainable use)',
+            'Ecosystem services – Cultural (sustainable use)',
+            'Ecosystem services – Supporting',
+            'Climate change adaptation',
             'Governance',
             'Support to the local economy',
             'Support social aspects',
             'Tourism and human use',
-            'Management systems – staffing, finances, purchasing',
+            'Management systems – staffing, finances, purchasing',
             'Infrastructure and equipment',
         ],
         'ratingLegend' => [
@@ -653,7 +653,7 @@ return [
                 '0' => 'Basic financial needs for the protected area management are secured only for 1 year (current year)',
                 '1' => 'Basic financial needs for the protected area management are secured for 2 years (current year +1 year)',
                 '2' => 'Basic financial needs for the protected area management are secured for 3 years (current year +2 years)',
-                '3' => 'Basic financial needs for the protected area management are secured for 4 – and more years. (current year +3 years and more)'
+                '3' => 'Basic financial needs for the protected area management are secured for 4 – and more years. (current year +3 years and more)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -844,12 +844,12 @@ return [
             'Comments' => 'Comments/Explanation',
         ],
         'predefined_values' => [
-            'Consistency: your financial policies and systems remain consistent',
-            'Accountability: you are able to explain and demonstrate to all officials / stakeholders how you have used your resources and what you have achieved',
-            'Transparency: your organisation is transparent regarding its work and its finances, making information available to all officials/stakeholders',
-            'Integrity: individuals in your organisation are operating with honesty and propriety',
-            'Financial stewardship: your organisation takes good care of the financial resources it has been given and ensures that they are used for the purpose intended.',
-            'Accounting standards: your organisation\'s system for keeping financial records and documentation follows accepted external accounting standards'
+            'Consistency: your financial policies and systems remain consistent',
+            'Accountability: you are able to explain and demonstrate to all officials / stakeholders how you have used your resources and what you have achieved',
+            'Transparency: your organisation is transparent regarding its work and its finances, making information available to all officials/stakeholders',
+            'Integrity: individuals in your organisation are operating with honesty and propriety',
+            'Financial stewardship: your organisation takes good care of the financial resources it has been given and ensures that they are used for the purpose intended.',
+            'Accounting standards: your organisation\'s system for keeping financial records and documentation follows accepted external accounting standards'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1128,7 +1128,7 @@ return [
                 'Provision of health infrastructure (i.e. buildings, clean water)',
                 'Provision of health services (health care)',
                 'Provision of free access to the park',
-                'Provision of cultural services (physical – intellectual – emblematic – spiritual – interaction from ecosystem services)',
+                'Provision of cultural services (physical – intellectual – emblematic – spiritual – interaction from ecosystem services)',
                 'Facilitation of social problem solving',
                 'Strengthening of the identity and sense of place of local communities'
             ]
@@ -1284,7 +1284,7 @@ return [
             'Monitoring visitor impacts',
             'Monitoring ecosystem services provided by the protected area',
             'Monitoring the effects of climate change on key elements of the protected area',
-            'Data collection and analysis of patrols management (i.e. SMART-MIST, Ranger-Based Monitoring – RBM))'
+            'Data collection and analysis of patrols management (i.e. SMART-MIST, Ranger-Based Monitoring – RBM))'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1317,7 +1317,7 @@ return [
             'Accessibility and security of the data from research',
             'Management support from research and long-term ecological monitoring data',
             'Research and long-term ecological monitoring of species (flagship, endangered, endemic, etc.)',
-            'Research and long-term ecological monitoring of terrestrial ecosystems and land use (land cover – land use – land take)',
+            'Research and long-term ecological monitoring of terrestrial ecosystems and land use (land cover – land use – land take)',
             'Research and long-term ecological monitoring of marine ecosystems and habitats',
             'Research and long-term ecological monitoring of freshwater ecosystems (lakes, rivers, and the smaller ponds and streams)',
             'Research and long-term monitoring of human well-being of the communities in the protected area and in the buffer areas',
@@ -1352,13 +1352,13 @@ return [
         ],
         'predefined_values' => [
             'Managing adaptation of species (e.g. translocate species, etc.)',
-            'Managing adaptation of habitats and the land cover – use – take in and outside of the protected area (avoid forest fragmentation, bare ground, etc.)',
+            'Managing adaptation of habitats and the land cover – use – take in and outside of the protected area (avoid forest fragmentation, bare ground, etc.)',
             'Managing adaptation of ecosystem services',
             'Reducing stressors that amplify climate impacts (e.g. increase connectivity, control invasive species, etc.)',
             'Sustaining or restoring ecosystem process and function to promote resilience (e.g. restore degraded vegetation, etc.)',
             'Protecting intact, connected ecosystems (e.g. remove waterway impediments; avoid bisection of corridors, etc.)',
             'Protecting areas that provide future habitat for displaced species (e.g. establish partnerships to protect critical habitats outside the protected area for key species affected by climate change effects)',
-            'Identifying and protecting climate refugia (e.g. reduce human use and disturbance in refugia, etc.)',
+            'Identifying and protecting climate refugia (e.g. reduce human use and disturbance in refugia, etc.)',
             'Managing ecological networks to promote ecological resilience to climate impacts',
             'Participating in landscape and seascape adaptation planning that extends beyond the boundaries of individual protected areas'
         ],
@@ -1467,10 +1467,10 @@ return [
         'module_info' => 'The statistical system allows only five lines to identify the functions of the staff of the protected area',
         'ratingLegend' => [
             'EvaluationScore' => [
-                '0' => 'No or very low achievement of the targeted output of the previous year (between 0 and 25%)',
-                '1' => 'Low level of achievement of the targeted output of the previous year (between 26 and 50%)',
-                '2' => 'Moderate level of achievement of the targeted output of the previous year (between 51 and 75%)',
-                '3' => 'High level of achievement of the targeted output of the previous year (between 76 and 100% )'
+                '0' => 'No or very low achievement of the targeted output of the previous year (between 0 and 25%)',
+                '1' => 'Low level of achievement of the targeted output of the previous year (between 26 and 50%)',
+                '2' => 'Moderate level of achievement of the targeted output of the previous year (between 51 and 75%)',
+                '3' => 'High level of achievement of the targeted output of the previous year (between 76 and 100% )'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -1591,7 +1591,7 @@ return [
             'The main management goals / objectives of the protected area are the conservation/restoration of natural values and the benefits that humans get from the natural environment and from properly functioning ecosystems (ecosystem services). Managers should ensure the conservation/restoration of key values (animal and plant species, land cover, etc.) and the preservation of provisioning, regulating, cultural and supporting ecosystem services, ensuring the values and benefits of protected areas for all'
         ],
         'module_info_Rating' => [
-            'Evaluate: A) the conditions and B) the trends of the key conservation elements of the protected area (based on the Context 1 and 3, Process elements PR7 – Managing the values and key elements of the protected area with specific actions, PR 17 adaptation to climate change and PR18 – Management of the ecosystem services)'
+            'Evaluate: A) the conditions and B) the trends of the key conservation elements of the protected area (based on the Context 1 and 3, Process elements PR7 – Managing the values and key elements of the protected area with specific actions, PR 17 adaptation to climate change and PR18 – Management of the ecosystem services)'
         ]
     ],
 

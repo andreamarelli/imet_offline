@@ -48,6 +48,7 @@ if(!is_imet_environment()){
 
         // # Convergence Plan #
         Route::match(['get', 'post'],'convergence_plan/regional',[Controllers\AnalyticalPlatform\ConvergencePlan\RegionalController::class, 'api']);
+//        Route::match(['get', 'post'],'convergence_plan/regional/radar',[Controllers\AnalyticalPlatform\ConvergencePlan\RegionalController::class, 'get_data_radar']); // Only for test, I will deletd after
         Route::match(['get', 'post'],'convergence_plan/national/{item}',[Controllers\AnalyticalPlatform\ConvergencePlan\NationalController::class, 'api']);
 
     });

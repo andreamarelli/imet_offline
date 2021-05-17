@@ -1,0 +1,96 @@
+@import "abstracts/all";
+
+*{
+  color: $darkestGray;
+  font-size: 12px;
+  -webkit-print-color-adjust: exact
+}
+
+body.pdf{
+  width: 1100px;
+
+  // #### Header ####
+  .logo_comifac{
+    margin-right: 10px;
+    img{
+      height: 40px;
+      width: auto;
+    }
+  }
+  .logo_ofac{
+    img{
+      height: 30px;
+      width: auto;
+    }
+  }
+  .logo_countries{
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    width: 180px;
+    height: auto;
+  }
+
+}
+
+
+
+body#pdf_project_platform{
+
+  #pdf_page_title{
+    background-color: $lighterGreen;
+    border-radius: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: $fontFamily-2;
+    font-weight: bold;
+    padding: 10px 0;
+  }
+
+  // #### Graphs ####
+  .graph-container{
+    page-break-inside: avoid;
+    .graph-item-container{
+      .graph-item{
+        width: 45%;
+        display: inline-block;
+      }
+    }
+    .map-item{
+      margin-bottom: 20px;
+    }
+  }
+
+  // #### Filters ####
+  .filters {
+    width: 100%;
+    font-family: $fontFamily-2;
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin: 20px 0;
+    td{
+      color: $baseGreen;
+      text-align: center;
+      vertical-align: top;
+      padding: 8px;
+      border-right: 1px solid $lighterGreen;
+      &:last-child{
+        border-right: 0;
+      }
+      div {
+        color: $darkestGray;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  // #### Map ####
+  #project_map{
+    border-radius: 5px;
+  }
+  #project_platform_list{
+    page-break-before: always;
+  }
+
+}

@@ -1,0 +1,445 @@
+@import "../abstracts/all";
+
+body#homepage {
+
+  header#header {
+    color: #fff;
+    background: url("#{$image_path}pages/home/foret-afrique-centrale-bg.jpg") no-repeat center top;
+    background-size: cover;
+
+    nav#menu {
+      border-bottom: 1px solid $lightestGray;
+      ul {
+        margin-bottom: 0;
+      }
+      > ul > li {
+        a{
+          color: $lightestGray;
+        }
+        &:hover {
+          ul {
+            display: block;
+            background-color: rgba(0, 0, 0, .2);
+            padding: 5px 0;
+            left: 0;
+            li a {
+              color: $lightestGray;
+              padding: 5px 10px;
+              &:hover {
+                text-decoration: none;
+                color: #fff;
+                background-color: rgba(0, 0, 0, .2);
+              }
+            }
+            &:before {
+              content: "";
+              position: absolute;
+              left: 0;
+              top: 0;
+              bottom: 0;
+              border-left: none;
+            }
+          }
+        }
+        &:last-child {
+          ul {
+            left: -75px;
+          }
+        }
+      }
+    }
+
+    &.openedNav {
+      section#home_title {
+        opacity: 0;
+      }
+    }
+
+    section#home_title {
+      clear: both;
+      float: left;
+      width: 100%;
+      text-align: center;
+      margin: 10% 0 13%;
+      @include transition(opacity, 0.1s);
+      h1{
+        color: #fff;
+        max-width: 700px;
+        margin: 0 auto 30px;
+        font-size: 4em;
+        .label {
+          font-size: 18px;
+          font-weight: 400;
+          display: block;
+          line-height: 1.2em;
+          margin-bottom: 30px;
+        }
+      }
+    }
+
+  }
+
+  section#home_services {
+    background-color: $darkestGray;
+
+    figure {
+      float: left;
+      width: 20%;
+      position: relative;
+      text-align: left;
+      margin-top: 0;
+      margin-bottom: 0;
+      a {
+        display: block;
+      }
+      img {
+        width: 100%;
+        display: block;
+      }
+      figcaption {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        color: #fff;
+        padding: 25px;
+        background-color: rgba(0, 0, 0, .3);
+        @include transition(background-color);
+        &:before {
+          content: "";
+          @include boxGradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .9));
+          position: absolute;
+          top: 50%;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+        }
+        &:hover {
+          background-color: rgba(0, 0, 0, .1);
+        }
+        /*>*{
+          position: relative;
+        }*/
+        .foot {
+          position: absolute;
+          bottom: 25px;
+          left: 25px;
+          right: 25px;
+          h2 {
+            color: #fff;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  div#home_container {
+
+    float: left;
+    width: 100%;
+    overflow: hidden;
+    background-color: $lightestGray;
+
+    .inner {
+      float: left;
+      width: 100%;
+      position: relative;
+      background-color: #fff;
+    }
+
+    section {
+      @include boxSizing();
+      > header {
+        position: relative;
+        float: left;
+        width: 100%;
+        &:before {
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 2000px;
+        }
+        h2 {
+          color: #fff;
+          font-size: 1.3em;
+          float: left;
+          margin: 28px 0;
+          padding-left: 30px;
+        }
+      }
+    }
+
+    #posts {
+      width: 62%;
+      float: left;
+      > header {
+        background-color: $darkerGreen;
+        &:before {
+          right: 100%;
+          background-color: $darkerGreen;
+        }
+        h2 {
+          border-left: 3px solid $darkGreen;
+          font-size: 1.3em;
+        }
+      }
+      article{
+        background-color: #fff;
+      }
+    }
+    #agenda {
+      width: 38%;
+      float: right;
+      > header {
+        background-color: $darkerGray;
+        &:before {
+          left: 100%;
+          background-color: $darkerGray;
+        }
+        h2 {
+        }
+      }
+      article{
+        background-color: $lighterGray;
+        clear: both;
+        border-bottom: 1px solid $lightGreen;
+      }
+    }
+
+  }
+
+  footer{
+
+    section#protected_areas {
+      background: url("#{$image_path}aires-protegees-bg.jpg") no-repeat center #2e5c67;
+      background-size: cover;
+      padding: 50px 0 80px 0;
+      font-family: $fontFamily-2;
+      margin: 0;
+      article {
+        width: 60%;
+        max-width: 650px;
+        float: left;
+        h2 {
+          color: #fff;
+          font-size: 2.4em;
+          margin-bottom: 30px;
+        }
+        p {
+          color: #fff;
+          margin-bottom: 30px;
+        }
+        a.bt-tag {
+          text-transform: uppercase;
+        }
+      }
+      figure {
+        float: right;
+        margin-right: 55px;
+        img {
+          height: 330px;
+        }
+      }
+    }
+
+    section#press {
+      float: left;
+      width: 100%;
+      padding-bottom: 130px;
+      color: #fff;
+      font-family: $fontFamily-2;
+
+      * a{
+        color: #fff;
+      }
+
+      .inner {
+        float: left;
+        position: relative;
+        width: 100%;
+        margin-top: -40px;
+        &:before {
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 20px;
+          content: "";
+          background-color: rgba(0, 0, 0, .5);
+          box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+        }
+        article{
+          float: left;
+          position: relative;
+          width: 62%;
+          padding: 30px 30px 0;
+          @include boxSizing();
+          background-color: $darkGreen;
+          a:hover{
+            color: $darkestGray;
+            text-decoration: none;
+            font-weight: normal;
+          }
+          h3 {
+            font-size: 1.4em;
+            margin: 15px 0 10px;
+            color: #fff;
+            a{
+              font-weight: normal;
+            }
+          }
+          p {
+            color: $lightGreen;
+            line-height: 1.8em;
+            margin-bottom: 10px;
+            font-size: .85em;
+          }
+          footer{
+            margin-top: 20px;
+            background-color: $baseGreen;
+            padding: 10px 15px;
+            font-size: .85em;
+            display: inline-block;
+            a {
+              font-weight: 700;
+              margin-right: 5px;
+              display: inline-block;
+            }
+            .date {
+              margin-left: 5px;
+              display: inline-block;
+              font-weight: 300
+            }
+          }
+
+          &:nth-child(odd){
+            background-color: $baseGreen;
+            footer{
+              background-color: $lightGreen;
+            }
+            p{
+              color: $darkerGreen;
+            }
+          }
+
+          &:last-child{
+            width:38%;
+            position:absolute;
+            top:0;
+            right:0;
+            bottom:0;
+            padding-right: 50px;
+            background-color: $baseBrown;
+            h3{
+              margin: 20px 0 15px;
+            }
+            p{
+              color: $lightBrown;
+            }
+            footer{
+              position: absolute;
+              left: 30px;
+              bottom: 0;
+              background-color: $darkBrown;
+            }
+          }
+
+        }
+      }
+    }
+
+  }
+
+}
+
+#agenda{
+  article {
+    padding: 30px
+  }
+}
+#posts, #all_posts{
+  article {
+    padding: 30px 50px;
+  }
+}
+
+
+
+#agenda, #posts, #all_posts{
+
+  article {
+    clear: both;
+    overflow: hidden;
+    border-bottom: 1px solid $lightestGray;
+
+    header {
+      margin-bottom: 10px;
+      .date.tag {
+        float: right;
+        color: $lightGreen;
+        border-color: $lightGreen;
+        margin: 0 0 5px 15px;
+        &:hover{
+          color: $lightGreen;
+        }
+      }
+      .title{
+        a{
+          font-size: 1.2em;
+          color: $darkGray;
+          font-weight: normal;
+          &:hover {
+            text-decoration: none;
+            color: $baseGreen;
+          }
+        }
+      }
+      .subtitle{
+        display: block;
+        font-style: italic;
+      }
+    }
+    p{
+      margin: 0;
+    }
+    a.bt-tag{
+      text-transform: uppercase;
+    }
+    img {
+      float: left;
+      width: 250px;
+      margin: 0 10px 10px
+    }
+  }
+
+  iframe{
+    display: block;
+    margin: 10px auto;
+  }
+  &#posts iframe{
+    width: 373px;
+    height: 210px;
+  }
+  &#all_posts iframe{
+    width: 560px;
+    height: 315px;
+  }
+
+}
+
+#posts{
+  article {
+    header{
+      .title{
+        a{
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

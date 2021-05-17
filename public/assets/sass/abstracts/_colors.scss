@@ -1,0 +1,57 @@
+// ## Primary ##
+$lightestGreen: #e5f3e9;
+$lighterGreen: #b9eac8;
+$lightGreen: #87c89b;
+$baseGreen: #00A74B;
+$darkGreen: #007233;
+$darkerGreen: #004A19;
+$darkestGreen: #0F2F21;
+
+// ## Gray scale ##
+$white: #fff;
+$lightestGray: #f4f4f4;
+$lighterGray: #e4e4e4;
+$lightGray: #cdcdcd;
+$baseGray: #a7a7a7;
+$darkGray: #6f6f6f;
+$darkerGray: #5b5b5b;
+$darkestGray: #252525;
+$black: #000;
+
+// ## Alternate colors ##
+$lightBlue: #b8cfcd;
+$baseBlue: #316a7b;
+$darkBlue: #1b3b44;
+
+$lightBrown: #b4a28f;
+$baseBrown: #665544;
+$darkBrown: #473c30;
+
+$lightRed: #f2dede;
+$baseRed: #d9534f;
+$darkRed: #ce2e29;
+
+
+// ## Multiple color palette ##
+$palette-1: #41925a;
+$palette-2: #cdc43c;
+$palette-3: #365078;
+$palette-4: #765816;
+$palette-5: #94a34e;
+$palette-6: #336399;
+$palette-7: #3ccd72;
+$palette-8: #6698d3;
+$palette-9: #3cc1cd;
+
+// ## Contextual labels colors ##
+$contextual-primary: #337ab7; // same as bootstrap
+$contextual-info: #5bc0de; // same as bootstrap
+$contextual-success: $baseGreen;
+$contextual-warning: #f0ad4e; // same as bootstrap
+$contextual-danger: $baseRed; // same as bootstrap
+
+$contextual-light-primary: #8eb4cb; // same as bootstrap
+$contextual-light-info: #d9edf7; // same as bootstrap
+$contextual-light-success: $lighterGreen;
+$contextual-light-warning: #fcf8e3; // same as bootstrap
+$contextual-light-danger: $lightRed; // same as bootstrap

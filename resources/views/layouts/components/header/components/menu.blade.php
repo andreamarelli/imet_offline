@@ -71,7 +71,7 @@
                     echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'publications', 'edf');
                     echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'publications', 'edap', '/publications/edap');
                     echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'publications', 'other_publications');
-                    echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'publications', 'library', url('/').'/library');
+                    echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'publications', 'library');
                     echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'publications', 'policy_briefs');
                     echo App\Library\Utils\Template::menuItem($breadcrumbs[1], 'publications', 'newsletter');
                 ?>

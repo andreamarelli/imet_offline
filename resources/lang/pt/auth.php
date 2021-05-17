@@ -33,4 +33,4 @@ return [
     'password_old' => 'senha antiga',
     'password_new' => 'nova palavra-chave',
     'password_edit' => 'Modificar a palavra-chave',
-    ];
+];

@@ -102,6 +102,20 @@ class SelectionList
             $list = \App\Models\Locality::selectionList('ONLY_LABELS');
         }
 
+        elseif ($type == "location_level") {
+            $list = [
+                'mondial' => 'Mondial',
+                'continental' => 'Continental',
+                'regional' => 'Régional',
+                'national' => 'National',
+                'ProtectedArea' => 'Aires protégées',
+                'administrativeLevels' => 'Niveau sous-national',
+                'Concession' => 'Concessions',
+                'Landscape' => 'Paysages',
+                'KeyLandscapeConservation' => ucfirst(trans('entities.klc'))
+            ];
+        }
+
         // #####################################
         // #########  Protected Areas  #########
         // #####################################
@@ -307,18 +321,6 @@ class SelectionList
                 'video' => 'Video',
                 'other' => 'Autre'
             ];
-        } elseif ($type == "catalogue_location") {
-            $list = [
-                'mondial' => 'Mondial',
-                'continental' => 'Continental',
-                'regional' => 'Régional',
-                'national' => 'National',
-                'ProtectedArea' => 'Aires protégées',
-                'administrativeLevels' => 'Niveau sous-national',
-                'Concession' => 'Concessions',
-                'Landscape' => 'Paysages',
-                'KeyLandscapeConservation' => ucfirst(trans('entities.klc'))
-            ];
         } elseif ($type === 'catalogue_date_type') {
             $list = [
                 'creation_date' => 'Date de creation',
@@ -366,18 +368,6 @@ class SelectionList
                 'Filières et fonds',
                 'ONG/PTF',
                 'Privés'
-            ];
-        } elseif ($type == "ProjectLocation") {
-            $list = [
-                'mondial' => 'Mondial',
-                'continental' => 'Continental',
-                'regional' => 'Régional',
-                'national' => 'National',
-                'ProtectedArea' => 'Aires protégées',
-                'administrativeLevels' => 'Niveau sous-national',
-                'Concession' => 'Concessions',
-                'Landscape' => 'Paysages',
-                'KeyLandscapeConservation' => ucfirst(trans('entities.klc'))
             ];
         } elseif ($type == 'convergence_plan_axes') {
             $list = [

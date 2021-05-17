@@ -1,0 +1,22 @@
+@import "../abstracts/all";
+
+figure {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  img {
+    margin-bottom: 6px;
+    max-width: 790px;
+  }
+  figcaption {
+    color: $darkGray;
+    strong {
+      font-size: 1.1em;
+    }
+  }
+}
+
+p.table-caption{
+  text-align: center;
+  color: $darkGray;
+}
