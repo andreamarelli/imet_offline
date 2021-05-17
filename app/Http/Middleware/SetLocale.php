@@ -27,7 +27,7 @@ class SetLocale
         }
 
         // Switch locale (set in session)
-        if (Request::has('lang') && in_array(Request::input('lang'), ['fr', 'en', 'sp'/*, 'pt'*/])) {
+        if (Request::has('lang') && in_array(Request::input('lang'), ['fr', 'en', 'sp', 'pt'])) {
             Session::put('locale', Request::input('lang'));
         }
 

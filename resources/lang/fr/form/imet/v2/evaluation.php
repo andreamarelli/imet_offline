@@ -67,7 +67,7 @@ return [
             'L’aire protégée a-t-elle clairement identifié et intégré les espèces clés dans la gestion ?'
         ],
         'module_info_Rating' => [
-            'Évaluer le niveau d’intégration d’un minimum de 3 à un maximum de 10 espèces clés dans la gestion de l’aire protégée (sur la base de l’analyse du contexte d’intervention, points CTX 4.1 et 4.2, automatiquement reportée ci-dessous). La représentativité d’une espèce clé correspond au degré auquel elle : [i] représente un importante caractéristique naturelle d’un habitat, d’un écosystème ou d’un biome ; (ii) influence un processus ou une communauté écologique ou [iii] affecte une politique de gestion axée sur les espèces)'
+            'Évaluer le niveau d’intégration d’un minimum de 3 à un maximum de 10 espèces clés dans la gestion de l’aire protégée (sur la base de l’analyse du contexte d’intervention, points CTX 4.1 et 4.2, automatiquement reportée ci-dessous). La représentativité ou la très représentativité d’une espèce clé correspond au degré auquel elle : [i] représente un importante caractéristique naturelle d’un habitat, d’un écosystème ou d’un biome ; (ii) influence un processus ou une communauté écologique ou [iii] affecte une politique de gestion axée sur les espèces)'
         ],
         'validation_3to10' => 'Évaluer le niveau d’intégration d’un minimum de 3 à un maximum de 10 espèces clés dans la gestion de l’aire protégée (sur la base de l’analyse du contexte d’intervention, points CTX 4.1 et 4.2, automatiquement reportée ci-dessous). La représentativité d’une espèce clé correspond au degré auquel elle : [i] représente un importante caractéristique naturelle d’un habitat, d’un écosystème ou d’un biome ; (ii) influence un processus ou une communauté écologique ou [iii] affecte une politique de gestion axée sur les espèces)',
         'warning_on_save' =>
@@ -311,10 +311,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-                '0' => 'Tout à fait inadéquat',
+                '0' => 'Inadéquat',
                 '1' => 'Plutôt inadéquat',
                 '2' => 'Adéquat',
-                '3' => 'Tout à fait adéquat',
+                '3' => 'Totalement adéquat',
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -345,10 +345,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' =>    'cet élément n’est pas lié à la gestion de l’aire protégée',
-                '0' => 'Tout à fait inadéquat',
+                '0' => 'Inadéquat',
                 '1' => 'Plutôt inadéquat',
                 '2' => 'Adéquat',
-                '3' => 'Tout à fait adéquat',
+                '3' => 'Totalement adéquat',
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -395,10 +395,10 @@ return [
             ],
             'EvaluationScore' => [
                 'N/A' =>   'cet élément n’est pas lié à la gestion de l’aire protégée',
-                '0' => 'Tout à fait inadéquat',
+                '0' => 'Inadéquat',
                 '1' => 'Plutôt inadéquat',
                 '2' => 'Adéquat',
-                '3' => 'Tout à fait adéquat'
+                '3' => 'Totalement adéquat'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -423,16 +423,16 @@ return [
         ],
         'ratingLegend' => [
             'PlanAdequacyScore' => [
-                '0' => 'La vision, la mission et les objectifs du plan de gestion sont tout à fait inadéquats',
+                '0' => 'La vision, la mission et les objectifs du plan de gestion sont absolument inadéquats',
                 '1' => 'La vision, la mission et les objectifs du plan de gestion sont inadéquats',
                 '2' => 'La vision, la mission et les objectifs du plan de gestion sont adéquats',
-                '3' => 'La vision, la mission et les objectifs du plan de gestion sont tout à fait adéquats'
+                '3' => 'La vision, la mission et les objectifs du plan de gestion sont absolument adéquats'
             ],
             'VisionAdequacy' => [
                 '0' => 'Le plan de gestion présente une vision, une mission et des objectifs pas de tout clairs et applicables (0-30% des besoins)',
                 '1' => 'Le plan de gestion présente une vision, une mission et des objectifs insuffisamment clairs et applicables (31-60% des besoins)',
                 '2' => 'Le plan de gestion présente une vision, une mission et des objectifs suffisamment clairs et applicables (61-90% des besoins)',
-                '3' => 'Le plan de gestion présente une vision, une mission et des objectifs tout à fait clairs et applicables (91-100% des besoins)'
+                '3' => 'Le plan de gestion présente une vision, une mission et des objectifs parfaitement clairs et applicables (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -457,16 +457,16 @@ return [
         ],
         'ratingLegend' => [
             'PlanAdequacyScore' => [
-                '0' => 'Les activités et des résultats du plan de travail/d’action sont tout à fait inadéquats par rapport aux objectifs du plan de gestion (0-30% des besoins)',
+                '0' => 'Les activités et des résultats du plan de travail/d’action sont totalement inadéquats par rapport aux objectifs du plan de gestion (0-30% des besoins)',
                 '1' => 'Les activités et des résultats du plan de travail/d’action sont inadéquats par rapport aux objectifs du plan de gestion (31-60% des besoins)',
                 '2' => 'Les activités et des résultats du plan de travail/d’action sont adéquats par rapport aux objectifs du plan de gestion (61-90% des besoins)',
-                '3' => 'Les activités et des résultats du plan de travail/d’action sont tout à fait adéquats par rapport aux objectifs du plan de gestion (91-100% des besoins)',
+                '3' => 'Les activités et des résultats du plan de travail/d’action sont totalement adéquats par rapport aux objectifs du plan de gestion (91-100% des besoins)',
             ],
             'VisionAdequacy' => [
                 '0' => 'Le plan de travail/d’action ne présente pas des activités et des résultats attendus pas de tout clairs et applicables (0-30% des besoins)',
                 '1' => 'Le plan de travail/d’action ne présente pas des activités et des résultats attendus insuffisamment clairs et applicables',
                 '2' => 'Le plan de travail/d’action présente des activités et des résultats attendus suffisamment clairs et applicables',
-                '3' => 'Le plan de travail/d’action présente des activités et des résultats attendus tout à fait clairs et applicables'
+                '3' => 'Le plan de travail/d’action présente des activités et des résultats attendus parfaitement clairs et applicables'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -505,10 +505,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' =>   'cet élément n’est pas lié à la gestion de l’aire protégée',
-                '0' => 'Tout à fait inadéquat (0-30% des besoins)',
+                '0' => 'Inadéquat (0-30% des besoins)',
                 '1' => 'Plutôt inadéquat (31-60% des besoins)',
                 '2' => 'Adéquat (61-90% des besoins)',
-                '3' => 'Tout à fait adéquat (91-100% des besoins)'
+                '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -577,7 +577,7 @@ return [
                 '0' => 'Aucune capacité de personnel (0-30 % des besoins)',
                 '1' => 'Capacités insuffisantes du personnel (31-60 % des besoins)',
                 '2' => 'Capacités adéquates du personnel, mais de nouvelles compétences sont nécessaires (61-90 % des besoins)',
-                '3' => 'Capacités tout à fait adéquates et mises à jour du personnel (91-100 % des besoins)'
+                '3' => 'Capacités parfaitement adéquates et mises à jour du personnel (91-100 % des besoins)'
 
             ]
         ],
@@ -694,16 +694,16 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-                '0' => 'Tout à fait inadéquat',
+                '0' => 'Inadéquat',
                 '1' => 'Plutôt inadéquat',
                 '2' => 'Adéquat',
-                '3' => 'Tout à fait adéquat'
+                '3' => 'Totalement adéquat'
             ],
             'PercentageLevel' => [
-                '0' => 'Activité de renforcement des capacités du personnel tout à fait inadéquates',
+                '0' => 'Activité de renforcement des capacités du personnel inadéquates',
                 '1' => 'Activités de renforcement des capacités du personnel plutôt adéquates',
                 '2' => 'Activités de renforcement des capacités du personnel adéquates, mais des améliorations s’imposent',
-                '3' => 'Activités de renforcement des capacités du personnel tout à fait adéquat (suffisantes et mise à jour)'
+                '3' => 'Activités de renforcement des capacités du personnel totalement adéquat (suffisantes et mise à jour)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -738,10 +738,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-                '0' => 'Tout à fait inadéquat (0-30% des besoins)',
+                '0' => 'Inadéquat (0-30% des besoins)',
                 '1' => 'Plutôt inadéquat (31-60% des besoins)',
                 '2' => 'Adéquat (61-90% des besoins)',
-                '3' => 'Tout à fait adéquat (91-100% des besoins)'
+                '3' => 'Ttotalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' =>[
@@ -765,7 +765,7 @@ return [
             'Loyauté et intégrité des gestionnaires et des dirigeants',
             'Retour d’information et encadrement par les gestionnaires et les leaders',
             'Stimulation et motivation pour la réalisation des activités',
-            'Retour d’information sur les activités réalisées',
+            'Retour d’information sur les activités réalisées par le personnel',
             'Autonomie pour accomplir les tâches de façon adéquate',
             'Implication du personnel dans les décisions concernant leur travail et leur emploi',
             'Rémunération appropriée (salaires, primes et sécurité sociale)',
@@ -777,10 +777,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
               'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Tout à fait inadéquat (0-30% des besoins)',
+              '0' => 'Inadéquat (0-30% des besoins)',
               '1' => 'Plutôt inadéquat (31-60% des besoins)',
               '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Tout à fait adéquat (91-100% des besoins)'
+              '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -828,7 +828,7 @@ return [
             'Comments' => 'Commentaires/Explication',
         ],
         'predefined_values' => [
-            'Cohérence : vos politiques de bgestion et les systèmes financiers restent cohérents',
+            'Cohérence : vos politiques de gestion et les systèmes financiers restent cohérents',
             'Responsabilité : vous êtes en mesure d’expliquer et de démontrer à tous les fonctionnaires/intervenants comment vous avez utilisé vos ressources et ce que vous avez accompli',
             'Transparence : votre organisation est transparente en ce qui concerne son travail et ses finances, en mettant les informations à la disposition de tous les fonctionnaires/intervenants',
             'Intégrité : les membres de votre organisation font preuve d’honnêteté et de bienséance.',
@@ -865,10 +865,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
               'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Tout à fait inadéquat (0-30% des besoins)',
+              '0' => 'Inadéquat (0-30% des besoins)',
               '1' => 'Plutôt inadéquat (31-60% des besoins)',
               '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Tout à fait adéquat (91-100% des besoins)'
+              '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -900,10 +900,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
               'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Tout à fait inadéquat (0-30% des besoins)',
+              '0' => 'Inadéquat (0-30% des besoins)',
               '1' => 'Plutôt inadéquat (31-60% des besoins)',
               '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Tout à fait adéquat (91-100% des besoins)'
+              '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -938,10 +938,10 @@ return [
         'ratingLegend' => [
             'Adequacy' => [
               'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Tout à fait inadéquat (0-30% des besoins)',
+              '0' => 'Inadéquat (0-30% des besoins)',
               '1' => 'Plutôt inadéquat (31-60% des besoins)',
               '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Tout à fait adéquat (91-100% des besoins)'
+              '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -985,10 +985,10 @@ return [
         'ratingLegend' => [
             'Adequacy' => [
               'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Tout à fait inadéquat (0-30% des besoins)',
+              '0' => 'Inadéquat (0-30% des besoins)',
               '1' => 'Plutôt inadéquat (31-60% des besoins)',
               '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Tout à fait adéquat (91-100% des besoins)'
+              '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -1116,10 +1116,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
               'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Tout à fait inadéquat (0-30% des besoins)',
+              '0' => 'Inadéquat (0-30% des besoins)',
               '1' => 'Plutôt inadéquat (31-60% des besoins)',
               '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Tout à fait adéquat (91-100% des besoins)'
+              '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -1154,10 +1154,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
               'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Tout à fait inadéquat (0-30% des besoins)',
+              '0' => 'Inadéquat (0-30% des besoins)',
               '1' => 'Plutôt inadéquat (31-60% des besoins)',
               '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Tout à fait adéquat (91-100% des besoins)'
+              '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -1197,10 +1197,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
               'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Tout à fait inadéquat (0-30% des besoins)',
+              '0' => 'Inadéquat (0-30% des besoins)',
               '1' => 'Plutôt inadéquat (31-60% des besoins)',
               '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Tout à fait adéquat (91-100% des besoins)'
+              '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -1228,10 +1228,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
               'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Tout à fait inadéquat (0-30% des besoins)',
+              '0' => 'Inadéquat (0-30% des besoins)',
               '1' => 'Plutôt inadéquat (31-60% des besoins)',
               '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Tout à fait adéquat (91-100% des besoins)'
+              '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -1269,10 +1269,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
               'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Tout à fait inadéquat (0-30% des besoins)',
+              '0' => 'Inadéquat (0-30% des besoins)',
               '1' => 'Plutôt inadéquat (31-60% des besoins)',
               '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Tout à fait adéquat (91-100% des besoins)'
+              '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -1309,10 +1309,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
               'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Tout à fait inadéquat (0-30% des besoins)',
+              '0' => 'Inadéquat (0-30% des besoins)',
               '1' => 'Plutôt inadéquat (31-60% des besoins)',
               '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Tout à fait adéquat (91-100% des besoins)'
+              '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -1346,10 +1346,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
               'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Tout à fait inadéquat (0-30% des besoins)',
+              '0' => 'Inadéquat (0-30% des besoins)',
               '1' => 'Plutôt inadéquat (31-60% des besoins)',
               '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Tout à fait adéquat (91-100% des besoins)'
+              '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -1388,10 +1388,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
               'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Tout à fait inadéquat (0-30% des besoins)',
+              '0' => 'Inadéquat (0-30% des besoins)',
               '1' => 'Plutôt inadéquat (31-60% des besoins)',
               '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Tout à fait adéquat (91-100% des besoins)'
+              '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -1418,10 +1418,10 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-                '0' => 'Niveau d’exécution nul ou très faible des activités visées pour l’année(s) analysé(s) (entre 0 et 25 %)',
-                '1' => 'Faible niveau d’exécution des activités visées pour l’année(s) analysé(s) (entre 26 et 50 %)',
-                '2' => 'Niveau moyen de mise en œuvre des activités visées pour l’année(s) analysé(s) (entre 51 et 75 %)',
-                '3' => 'Niveau élevé de mise en œuvre des activités visées pour l’année(s) analysé(s) (entre 76 et 100 %)'
+                '0' => 'Niveau d’exécution nul ou très faible des activités prévues pour l’année(s) analysé(s) (entre 0 et 25 %)',
+                '1' => 'Faible niveau d’exécution des activités prévues pour l’année(s) analysé(s) (entre 26 et 50 %)',
+                '2' => 'Niveau moyen de mise en œuvre des activités prévues pour l’année(s) analysé(s) (entre 51 et 75 %)',
+                '3' => 'Niveau élevé de mise en œuvre des activités prévues pour l’année(s) analysé(s) (entre 76 et 100 %)'
             ]
         ],
         'module_info_EvaluationQuestion' => [

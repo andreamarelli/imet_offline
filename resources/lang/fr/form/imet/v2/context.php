@@ -75,7 +75,7 @@ return [
             'Institution' => 'Institution de tutelle',
             'Biome' => 'Biome',
             'Ecoregions' => 'Ecorégion(s) de référence [Ecorégions G200, Olson, WWF; Spalding M. et alt. 2007]',
-            'Ecotype' => 'Ecotypes (indiquer jusqu’à trois éléments par ordre d’importance décroissante)',
+            'Ecotype' => 'Écotypes (indiquer jusqu’à trois éléments par ordre d’importance décroissante)',
             'ReferenceText' => 'Référence du texte de création en cours de validité',
             'ReferenceTextDocument' => '',
             'ReferenceTextValues' => 'Quelle est l’importance de l’aire protégée et les principales valeurs pour lesquelles elle a été désignée ? (Fournir une liste, puis une brève description)',
@@ -170,7 +170,7 @@ return [
             'LimitsExist' => 'Existence de limites géoréférencées officielles (oui/non)',
             'Shapefile' => 'Fichier SIG',
             'SourceSHP' => 'Source du fichier SIG',
-            'Coordinates' => 'Coordonnées géographiques (préciser si référence WDPA ou si autre référence SIG, telle un autre point clé du parc)',
+            'Coordinates' => 'Coordonnées géographiques (préciser s’il s’agit d’une référence WDPA ou une référence SIG d’un autre point clé du parc)',
             'SourceCoords' => 'Source des coordonnées',
             'AdministrativeLocation' => 'Localisation administrative de la zone protégée (province, région, etc.)',
         ]
@@ -213,14 +213,14 @@ return [
     'TerritorialReferenceContext' => [
         'title' => 'Contexte territorial de référence de l’aire protégée',
         'fields' => [
-            'ReferenceEcosystemAreaEstimation' => 'A) Aire de l’écosystème fonctionnel. Estimer la superficie de l’écosystème fonctionnel : superficie importante pour le maintien des services écosystémiques fournis par l’aire protégée : a) en Km² et b) en Km de largeur de la bande extérieure',
-            'ReferenceEcosystemAreaPopulation' => 'Estimer la population locale vivant dans l’aire de l’écosystème fonctionnel',
+            'ReferenceEcosystemAreaEstimation' => 'A) Aire de l’écosystème fonctionnel. Estimer la superficie de l’écosystème fonctionnel : superficie importante pour le maintien des valeurs de l’aire protégée (habitats, espèces clés, etc.) : a) en Km² et b) en Km de largeur de la bande extérieure',
+            'ReferenceEcosystemAreaPopulation' => 'Estimer la population humaine vivant dans l’aire de l’écosystème fonctionnel',
             'EcologicalAspects' => 'Préciser l’éventuelle présence de facteurs écologiques qui doivent être pris en considération dans la gestion de l’aire protégée (p.ex. domaines vitaux des espèces phare) et estimer la surface en km2',
-            'FunctionalArea' => 'B) Zone d’influence socio-économique de l’aire protégée. Estimer l’influence socio-économique directe de l’aire protégée : Zone habitée autour de l’aire protégée qui bénéficie des services écosystémiques fournis par l’aire protégée : a) en km² et b) en Km de largeur de la bande extérieure',
+            'FunctionalArea' => 'B) Zone d’influence socio-économique de l’aire protégée. Estimer l’influence socio-économique directe de l’aire protégée : Zone habitée qui est influencée par l’aire protégée : a) en km² et b) en Km de largeur de la bande extérieure',
             'NoTakeArea' => 'L’aire de l’écosystème fonctionnel correspond-elle à la zone de non-prélèvement ?',
             'FunctionalAreaPopulation' => 'Estimer la population locale vivant dans l’aire d’influence socio-économique',
             'SocioEconomicAspects' => 'Énumérer et décrire les facteurs socio-économiques et administratifs (p. ex. les normes coutumières et  modernes qui régissent ou influencent la gestion des ressources naturelles)',
-            'SpillOverEffect' => 'C) Zone de débordement (spill-over). Estimer les effets du débordement (spill-over) des zones de conservation strictes pour maintenir l’approvisionnement en services écosystémiques (pêche) fournis par l’aire protégée : a) en km² et b) en mètres de largeur de la bande extérieure',
+            'SpillOverEffect' => 'C) Zone de débordement (spill-over). Estimer les effets du débordement (spill-over) des zones de conservation strictes. Zone de débordement pour maintenir l’approvisionnement en services écosystémiques (p. ex. pêche) fournis par l’aire protégée : a) en km² et b) en mètres de largeur de la bande extérieure',
         ],
         'categories' => [
             'FunctionalEcosystemArea' => 'Aire fonctionnelle de l’écosystème',
@@ -270,15 +270,15 @@ return [
         'fields' => [
             'Currency' => 'Devise',
             'ReferenceYear' => 'Année de référence',
-            'ManagementFinancialPlanCosts' => 'Coûts de fonctionnement annuel estimés à partir du Plan de gestion/Plan financier [$ ou €/an]',
-            'OperationalWorkPlanCosts' => 'Coûts de fonctionnement estimés à partir du plan opérationnel/plan de travail budgétisé annuellement [$ ou €/an]',
-            'TotalBudget' => 'Budget total annuel disponible [$ ou €/an]',
+            'ManagementFinancialPlanCosts' => 'Coûts de fonctionnement annuel estimés à partir du Plan financier pluriannuel [$ ou €/an]',
+            'OperationalWorkPlanCosts' => 'Coûts de fonctionnement estimés à partir du Plan de travail annuel [$ ou €/an]',
+            'TotalBudget' => 'Budget total annuel effectivement disponible [$ ou €/an]',
         ],
         'amount'                        => 'Montant',
         'functioning_costs'             => 'Coûts de fonctionnement ($ ou €/Km²/an)',
-        'estimation_financial_plan'     => '% des estimations du plan financier / plan de travail budgétisé annuellement',
-        'estimation_operational_plan'   => '% des estimations du plan opérationnel / plan de travail budgétisé annuellement',
-        'module_info' => 'Coûts totaux estimés à partir du Plan de gestion/Plan financier'
+        'estimation_financial_plan'     => '% du Plan financier (budget annuel)',
+        'estimation_operational_plan'   => '% du Plan de travail (budget annuel)',
+        'module_info' => 'Coûts totaux estimés à partir du Plan financier'
     ],
 
     'FinancialAvailableResources' => [
@@ -332,7 +332,7 @@ return [
         'title' => 'Disponibilité en infrastructures, en équipement et en installations',
         'fields' => [
             'Resource' => 'Identification',
-            'AdequacyLevel' => 'Rapport disponibilité/nécessité',
+            'AdequacyLevel' => 'Rapport nécessité/disponibilité',
             'Comments' => 'Commentaires / Source',
         ],
         'groups' => [
@@ -377,7 +377,7 @@ return [
     ],
 
     'AnimalSpecies' => [
-        'title' => 'Espèces animales (Mammifères, Oiseaux, Amphibiens, Reptiles, Poissons), espèces phares, menacées, endémiques, exploitées, envahissantes, etc.) utilisées comme indicateurs de l’état de l’aire protégée et nécessitant d’un suivi dans le temps',
+        'title' => 'Espèces animales (Mammifères, Oiseaux, Amphibiens, Reptiles, Poissons), espèces phares, menacées, endémiques, exploitées, envahissantes, etc.) choisis comme éléments clés de l’aire protégée et nécessitant d’un suivi dans le temps',
         'fields' => [
             'SpeciesID' => 'Espèce',
             'FlagshipSpecies' => 'PHA',
@@ -400,7 +400,7 @@ return [
     ],
 
     'VegetalSpecies' => [
-        'title' => 'Espèces de plantes : espèces phares, menacées, endémiques, exploitées, envahissantes, etc. et sélectionnées comme indicateurs pour l’aire protégée et qui devront faire l’objet d’un suivi dans le temps',
+        'title' => 'Espèces de plantes : espèces phares, menacées, endémiques, exploitées, envahissantes, etc. et choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi dans le temps',
         'fields' => [
             'Species' => 'Espèce',
             'FlagshipSpecies' => 'PHA',
@@ -422,7 +422,7 @@ return [
     ],
 
     'Habitats' => [
-        'title' => 'L’écosystème et les habitats choisis comme indicateurs pour l’aire protégée et qui devront faire l’objet d’un suivi dans le temps',
+        'title' => 'L’écosystème et les habitats choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi dans le temps',
         'fields' => [
             'EcosystemType' => 'Type d\'écosystème ou d\'habitat',
             'Value' => 'Description de l’état ou de la valeur',
@@ -464,7 +464,7 @@ return [
     ],
 
     'LandCover' => [
-        'title' => 'Gestion de la couverture, de l’utilisation et de l’occupation des terres forêt, sol, eau, routes, etc.) [pour les valeurs globales, voir le point 2.2] choisis comme indicateurs pour l’aire protégée et qui devront faire l’objet d’un suivi au fil du temps',
+        'title' => 'Gestion de la couverture, de l’utilisation et de l’occupation des terres forêt, sol, eau, routes, etc.) [pour les valeurs globales, voir le point 2.2] choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi au fil du temps',
         'fields' => [
             'CoverType' => 'Catégories',
             'HistoricalArea' => 'Surface (ha)',
@@ -757,7 +757,7 @@ return [
             'group0' => ['Approvisionnement en eau (disponibilité, épuration) - illégal', 'Approvisionnement en eau (disponibilité, épuration) - légal', 'Alimentation humaine - végétale  (tubercules, feuilles, fruits, miel, champignons, etc.) - illégal', 'Alimentation humaine - végétale (tubercules, feuilles, fruits, miel, champignons, etc.) - légal', 'Alimentation humaine - animale (viande sauvage/d’élevage, poisson, insectes) - illégal', 'Alimentation humaine - animal (viande sauvage/d’élevage, poisson, insectes) - légal', 'Médicaments / pharmacopée - illégal', 'Médicaments / pharmacopée - légal', 'Aliments pour l’élevage (poissons et bétail) - illégal', 'Aliments pour l’élevage (poissons et bétail) - légal'],
             'group1' => ['Bois à haute valeur économique - illégal', 'Bois à haute valeur économique - légal','Bois pour la construction locale - illégal', 'Bois pour la construction locale - légal', 'Fibres de tiges (palmiers, kénaf, jute, etc.) - illégal', 'Fibres de tiges (palmiers, kénaf, jute, etc.) - légal', 'Autres fibres (kapok, coco,  etc.) - illégal', 'Autres fibres (kapok, coco,  etc.) - légal', 'Ornementale (graines, coquilles, etc.) - illégal', 'Ornementale (graines, coquilles, etc.) - légal', 'Sable (bâtiment) - illégal', 'Sable (bâtiment) - légal', 'Terres cultivées (agriculture, élevage, forêts) - illégal', 'Terres cultivées (agriculture, élevage, forêts) - légal'],
             'group2' => ['Bois de feu et biocarburants - illégal', 'Bois de feu et biocarburants - légal', 'Eau pour énergie - illégal', 'Eau pour énergie - légal', 'Engrais (production – transformation) - illégal', 'Engrais (production – transformation) - légal'],
-            'group3' => ['Régulation du gaz (séquestration du C)', 'Enterrement/décomposition/neutralisation des déchets'],
+            'group3' => ['Régulation du gaz (séquestration du C)', 'Enterrement/décomposition/neutralisation des déchets', 'Régulation des déchets (absorption d’éléments nutritifs)'],
             'group4' => ['Contrôle des inondations', 'Lutte contre la sécheresse', 'Protection contre les tempêtes', 'Contrôle de l’érosion par l’eau', 'Contrôle de l’érosion éolienne'],
             'group5' => ['Esthétique (intégrité de l’écosystème)', 'Ecotourisme et observation de la nature', 'Marche, randonnée pédestre et loisirs généraux', 'Chasse ou pêche si autorisée'],
             'group6' => ['Science — Recherche', 'Education', 'Patrimoine culturel/héritage'],

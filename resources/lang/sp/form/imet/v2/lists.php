@@ -2,10 +2,10 @@
 
 return [
     'languages' => [
-        'fr'        => 'french',
-        'en'        => 'english',
-        'sp'        => 'spanish'/*,
-        'pt'        => 'portuguese'*/
+        'fr'        => 'francés',
+        'en'        => 'inglés',
+        'sp'        => 'español',
+        'pt'        => 'portugués'
     ],
 
     'regions' => [

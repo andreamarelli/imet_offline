@@ -5,8 +5,8 @@ return [
     'languages' => [
         'fr'        => 'français',
         'en'        => 'anglais',
-        'sp'        => 'espagnol'/*,
-        'pt'        => 'portugais'*/
+        'sp'        => 'espagnol',
+        'pt'        => 'portugais'
     ],
 
     'regions' => [

@@ -68,7 +68,7 @@ return [
             'Has the protected area clearly identified and integrated the key species in the management of the protected area?'
         ],
         'module_info_Rating' => [
-            'Evaluate the level of integration of 3 to 10 key species in the management of the protected area (based on an analysis of the Context of Intervention, points 4.1 and 4.2, automatically reported below). (The representativeness of a key specie corresponds to the degree to which it: (i) represents a strong natural characteristic of one habitat, ecosystem, biome; (ii) influences an ecological process or community or (iii) affects a species-directed management policy)'
+            'Evaluate the level of integration of 3 to 10 key species in the management of the protected area (based on an analysis of the Context of Intervention, points 4.1 and 4.2, automatically reported below). (The representativeness or highly representative of a key specie corresponds to the degree to which it: (i) represents a strong natural characteristic of one habitat, ecosystem, biome; (ii) influences an ecological process or community or (iii) affects a species-directed management policy)'
         ],
         'validation_3to10' => 'Please include in statistics not less than 3 and not more than 10 of the key species',
         'warning_on_save' =>
@@ -670,7 +670,7 @@ return [
         'fields' => [
             'Equipment' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'A) Adequacy of infrastructure, equipment and facilities (CTX 3.3)',
-            'Importance' => 'B) Present need for the availability for the protected area management',
+            'Importance' => 'B) Present needs for the availability for the protected area management',
             'Comments' => 'Comments/Explanation',
         ],
         'adequacy' => 'Adequacy of infrastructure, equipment and facilities',
@@ -692,7 +692,7 @@ return [
             'The infrastructure, equipment and facilities are important to ensure and enhance the operational efficiency and effectiveness of the protected area. The infrastructure, equipment and facilities analysis of a protected area can provide a basis for seeking additional financing. Donors should be encouraged to contribute to achieving and maintaining appropriate levels of infrastructure, equipment and facilities for the management of protected areas'
         ],
         'module_info_Rating' => [
-            'Evaluate: A) the adequacy of infrastructure, equipment and facilities (results automatically calculated on the basis of the analysis of the context of intervention, point CTX 3.3), B) the present need for the availability of specific infrastructure, equipment and facilities for the protected area',
+            'Evaluate: A) the adequacy of infrastructure, equipment and facilities (results automatically calculated on the basis of the analysis of the context of intervention, point CTX 3.3), B) the present needs for the availability of specific infrastructure, equipment and facilities for the protected area',
                 ]
     ],
 
@@ -863,7 +863,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Are the budget and financial resources well managed so as to meet essential and priorities management requirements of the protected area?',
-            'The budget and financial management should be a significant system for the protected area. It ensure the budget functionality that would permit budgeting, allocation of position costs across programs, dynamic and detailed forecasting of position costs, integration of strategic planning and performance measurement data, etc. Budget and financial management is more than keeping accounting records. It is an essential part of planning, organising, controlling and monitoring financial resources in order to achieve conservation objectives of the protected area. You can only achieve effective budget and financial management if you have a sound management and work plan. A plan in this context means having set objectives and having agreed, developed and evaluated the policies, strategies, tactics and actions to achieve the objectives.'
+            'The budget and financial management should be a significant system for the protected area. It ensures the budget functionality that would permit budgeting, allocation of position costs across programs, dynamic and detailed forecasting of position costs, integration of strategic planning and performance measurement data, etc. Budget and financial management is more than keeping accounting records. It is an essential part of planning, organising, controlling and monitoring financial resources in order to achieve conservation objectives of the protected area. You can only achieve effective budget and financial management if you have a sound management and work plan. A plan in this context means having set objectives and having agreed, developed and evaluated the policies, strategies, tactics and actions to achieve the objectives.'
         ],
         'module_info_Rating' => [
             'Evaluate the set-up of the basic elements that must be in place to achieve good practice in budget and financial management. (There is no single model of a budget and financial management system that suits all organisations, but there are some basics that must be in place to achieve good practice in budget and financial management)'
@@ -931,10 +931,10 @@ return [
         ]
     ],
     'LawEnforcementImplementation' => [
-        'title' => 'Ranger patrol management (Law enforcement)',
+        'title' => 'Ranger patrols management (Law enforcement)',
         'fields' => [
             'Element' => 'Criteria – Concept measured – Variable',
-            'Adequacy'=> 'Adequacy of ranger patrol management',
+            'Adequacy'=> 'Adequacy of ranger patrols management',
             'Comments' => 'Comments/Explanation',
         ],
         'predefined_values' => [
@@ -952,7 +952,7 @@ return [
             'Outposts/pickets - inside park',
             'Outposts/pickets - outside park',
             'Multi-day patrols',
-            'Use of SMART-MIST-RBM information to conduct law enforcement patrol briefing and debriefing',
+            'Use of SMART-MIST-RBM information to conduct law enforcement patrols briefing and debriefing',
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -969,7 +969,7 @@ return [
             '(Note: A specific IMET module for a more in-depth law enforcement analysis is available)',
         ],
         'module_info_Rating' => [
-            'Evaluate the adequacy of elements of the ranger patrol management oriented on ensuring long-term protection of biodiversity and other values',
+            'Evaluate the adequacy of elements of the ranger patrols management oriented on ensuring long-term protection of biodiversity and other values',
             ]
     ],
 
@@ -986,7 +986,7 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-                'Intelligence and investigations units orienting ranger patrol actions ',
+                'Intelligence and investigations units orienting ranger patrols actions ',
                 'Organisation of informants system ',
                 'Informatics support for intelligence',
                 'System for intelligence data organisation and analysis',
@@ -1236,7 +1236,7 @@ return [
         'title' => 'Management of visitors’ impact',
         'fields' => [
             'Impact' => 'Criteria – Concept measured – Variable',
-            'EvaluationScore' => 'Adequacy of visitor impact management',
+            'EvaluationScore' => 'Adequacy of visitors impact management',
             'Comments' => 'Comments/Explanation',
         ],
         'predefined_values' => [
@@ -1427,11 +1427,11 @@ return [
     ],
 
     'WorkProgramImplementation' => [
-        'title' => 'Activity implementation of the work/action plan',
+        'title' => 'Activities implementation of the work/action plan',
         'fields' => [
             'Category' => 'Categories of activities',
             'Activity' => 'Activity',
-            'TargetedActivity' => 'Planned activity',
+            'TargetedActivity' => 'Targeted activity',
             'EvaluationScore' => 'Level of implementation',
             'Comments' => 'Comments/Explanation',
         ],
@@ -1469,13 +1469,13 @@ return [
             'EvaluationScore' => [
                 '0' => 'No or very low achievement of the targeted output of the previous year (between 0 and 25%)',
                 '1' => 'Low level of achievement of the targeted output of the previous year (between 26 and 50%)',
-                '2' => 'Moderate level of achievement of the targeted output ofr the previous year (between 51 and 75%)',
-                '3' => 'High level of achievement of the targeted output  of the previous year (between 76 and 100% )'
+                '2' => 'Moderate level of achievement of the targeted output of the previous year (between 51 and 75%)',
+                '3' => 'High level of achievement of the targeted output of the previous year (between 76 and 100% )'
             ]
         ],
         'module_info_EvaluationQuestion' => [
             'To what extent has the protected area achieved the main outputs of the work plan?',
-            'The prevalent approach for protected area planning includes the establishment of annual or multi-year work/action plan OUTPUTS that contribute to the achievement of long-term conservation goals / objectives or OUTCOMES. In the planning process the longer-term goals / objectives are translated into short-term conservation targets for specific biodiversity features, such as species, habitats and threats or ecosystem services possible to achieve with the work/action plan. However, since the use of many low-level conservation targets is an obstacle to achieving high-level conservation performance, the outputs must be strongly linked to the outcomes to ensure high-level conservation performance. Putting performance measurement systems in place is an important way of keeping track of the progress of your management and conservation activities'
+            'The prevalent approach for protected area planning includes the establishment of annual or multi-year work/action plan OUTPUTS that contributes to the achievement of long-term conservation goals / objectives or OUTCOMES. In the planning process the longer-term goals / objectives are translated into short-term conservation targets for specific biodiversity features, such as species, habitats and threats or ecosystem services possible to achieve with the work/action plan. However, since the use of many low-level conservation targets is an obstacle to achieving high-level conservation performance, the outputs must be strongly linked to the outcomes to ensure high-level conservation performance. Putting performance measurement systems in place is an important way of keeping track of the progress of your management and conservation activities'
         ],
         'module_info_Rating' => [
             'Evaluate the level of achievement of the main outputs of the work/action plan (in comments, indicate the reference year if you apply for a multi-year work/action plan)',
@@ -1510,10 +1510,10 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'What is the current extent of area domination for the protected area',
-            'Area domination refers to the ability of park management to create presence in a given area, for example through regular patrol surveys, rapid interventions or airborne surveillance. Where required, this presence needs to be imposed frequently and effectively to address threats such as poaching or illegal activities. The aim of high area domination is to prevent or minimise illegal activities affecting the biodiversity, cultural or historical values, and to enforce the protection of the protected area and its boundaries'
+            'Area domination refers to the ability of park management to create presence in a given area, for example through regular patrols surveys, rapid interventions or airborne surveillance. Where required, this presence needs to be imposed frequently and effectively to address threats such as poaching or illegal activities. The aim of high area domination is to prevent or minimise illegal activities affecting the biodiversity, cultural or historical values, and to enforce the protection of the protected area and its boundaries'
         ],
         'module_info_Rating' => [
-            'Evaluate the area domination based on the percentage of the protected area’s surface area where the management is present or can be present through (A) patrol surveys; (B) rapid interventions; (C) using special means'
+            'Evaluate the area domination based on the percentage of the protected area’s surface area where the management is present or can be present through (A) patrols surveys; (B) rapid interventions; (C) using special means'
         ]
     ],
 

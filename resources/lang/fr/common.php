@@ -119,8 +119,8 @@ return [
     'languages' => [
         'french'        => 'français',
         'english'       => 'anglais',
-        'spanish'       => 'espagnol'/*,
-        'portuguese'    => 'portugais'*/
+        'spanish'       => 'espagnol',
+        'portuguese'    => 'portugais'
     ],
 
     'upload' => [

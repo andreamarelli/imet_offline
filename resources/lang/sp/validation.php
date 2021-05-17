@@ -138,7 +138,7 @@ return [
             'url' => [
                 'help-message' => "La dirección debe comenzar por *http://* o *https://* o *ftp://*",
                 'field-name' => "La dirección indicada",
-                'placeholder' => "Dirección web",
+                'placeholder' => "Dirección de la página web",
             ],
             'email' => [
                 'field-name' => "Correo electrónico",
