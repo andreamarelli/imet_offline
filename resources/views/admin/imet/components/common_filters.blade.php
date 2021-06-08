@@ -1,12 +1,12 @@
 <?php
 /** @var \Illuminate\Http\Request $request */
 /** @var string $url */
-/** @var boolean $no_filter_selected */
+/** @var boolean $filter_selected */
 /** @var array $countries */
 /** @var array $years */
 ?>
 
-@component('admin.components.filters', ['url'=>$url, 'request'=>$request, 'method'=>'POST', 'expanded'=>$no_filter_selected])
+@component('admin.components.filters', ['url'=>$url, 'request'=>$request, 'method'=>'POST', 'expanded'=>$filter_selected])
     @slot('filter_content')
 
         {!! \App\Library\Ofac\Input\Input::label('search', trans('common.search')) !!}

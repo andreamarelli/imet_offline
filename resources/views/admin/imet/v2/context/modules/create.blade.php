@@ -35,7 +35,7 @@ $vue_record_index = 0;
 
     {{-- label  --}}
     <div class="module-row__label">
-        <label for="prev_year_selector">{!! ucfirst(trans('form/imet/v2/common.prefill_prev_year')) !!}</label>
+        <label for="prev_year_selector">{!! ucfirst(trans('form/imet/v2/context.Create.fields.prefill_prev_year')) !!}</label>
     </div>
 
     {{-- input field --}}

@@ -11,8 +11,9 @@ class EcosystemServices extends Modules\Component\ImetModule
 
     public static $groupByCategory = [
         ['group0', 'group1', 'group2'],
-        ['group3', 'group4', 'group5'],
-        ['group6', 'group7', 'group8', 'group9']
+        ['group3', 'group4'],
+        ['group5', 'group6', 'group7', 'group8'],
+        ['group9']
     ];
 
     public function __construct(array $attributes = []) {

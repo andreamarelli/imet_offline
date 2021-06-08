@@ -11,8 +11,6 @@ return [
 
     'synthetic_indicator' => 'synthetic indicator',
 
-    'prefill_prev_year' => 'préremplir avec l\'année précédente',
-
     'steps' => [
         'general_info'          => 'General Information about the protected area',
         'areas'                 => 'Areas, boundaries and shape index, level of control',
@@ -254,5 +252,5 @@ return [
         ]
 
     ]
-    
+
 ];

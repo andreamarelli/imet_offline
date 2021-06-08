@@ -76,6 +76,7 @@ Route::group(['middleware' => 'setLocale'], function () {
                     Route::get('{item}/show/{step?}',[Imet\ImetControllerV2::class, 'show']);
                     Route::patch('{item}',           [Imet\ImetControllerV2::class, 'update']);
                     Route::get('create',            [Imet\ImetControllerV2::class, 'create']);
+                    Route::get('create_non_wdpa',            [Imet\ImetControllerV2::class, 'create_non_wdpa']);
                     Route::post('store',            [Imet\ImetControllerV2::class, 'store']);
                     Route::post('prev_years',            [Imet\ImetControllerV2::class, 'retrieve_prev_years']);
                 });

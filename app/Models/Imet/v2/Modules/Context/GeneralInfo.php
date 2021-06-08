@@ -3,6 +3,9 @@
 namespace App\Models\Imet\v2\Modules\Context;
 
 use App\Library\Ofac\Input\SelectionList;
+use App\Models\Imet\Imet;
+use App\Models\Imet\Utils\ProtectedArea;
+use App\Models\Imet\Utils\ProtectedAreaNonWdpa;
 use App\Models\Imet\v2\Modules;
 
 class GeneralInfo extends Modules\Component\ImetModule
@@ -47,15 +50,15 @@ class GeneralInfo extends Modules\Component\ImetModule
         $vue_data = parent::getVueData($form_id, $collection);
 
         $imet = \App\Models\Imet\v2\Imet::find($vue_data['form_id']);
-        $pa = \App\Models\Imet\Utils\ProtectedArea::getByWdpa($imet->wdpa_id);
+        $pa = Imet::getProtectedArea($imet->wdpa_id);
 
-        $vue_data['records'][0]['CompleteName'] = $vue_data['records'][0]['CompleteName']!==null ? $vue_data['records'][0]['CompleteName'] : $pa->name;
-        $vue_data['records'][0]['WDPA'] = $vue_data['records'][0]['WDPA']!==null ? $vue_data['records'][0]['WDPA'] : $pa->wdpa_id;
-        $vue_data['records'][0]['Type'] = $vue_data['records'][0]['Type']!==null ? $vue_data['records'][0]['Type'] : $imet->Type;
-        $vue_data['records'][0]['IUCNCategory1'] = $vue_data['records'][0]['IUCNCategory1']!==null ? $vue_data['records'][0]['IUCNCategory1'] : $pa->iucn_category;
-        $vue_data['records'][0]['Country'] = $vue_data['records'][0]['Country']!==null ? $vue_data['records'][0]['Country'] : $pa->country;
-        $vue_data['records'][0]['CreationYear'] = $vue_data['records'][0]['CreationYear']!==null ? $vue_data['records'][0]['CreationYear']
-            : ($pa->creation_date!==null ? substr($pa->creation_date, 0, 4) : null);
+        $vue_data['records'][0]['CompleteName'] = $vue_data['records'][0]['CompleteName'] ?? $pa->name;
+        $vue_data['records'][0]['WDPA'] = $vue_data['records'][0]['WDPA'] ?? $pa->wdpa_id;
+        $vue_data['records'][0]['Type'] = $vue_data['records'][0]['Type'] ?? $imet->Type;
+        $vue_data['records'][0]['IUCNCategory1'] = $vue_data['records'][0]['IUCNCategory1'] ?? $pa->iucn_category;
+        $vue_data['records'][0]['Country'] = $vue_data['records'][0]['Country'] ?? $pa->country;
+        $vue_data['records'][0]['CreationYear'] = $vue_data['records'][0]['CreationYear'] ??
+            ($pa->creation_date!==null ? substr($pa->creation_date, 0, 4) : null);
 
         return $vue_data;
     }

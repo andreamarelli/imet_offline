@@ -2,6 +2,33 @@
 
 return [
 
+    'Create' => [
+        'title' => 'Créer un nouveau IMET (WDPA)',
+        'fields' => [
+            'version' => 'version',
+            'Year' => 'année',
+            'wdpa_id' => 'aire protégée',
+            'language' => 'langue',
+            'prefill_prev_year' => 'préremplir avec l\'année précédente',
+        ]
+    ],
+
+    'CreateNonWdpa' => [
+        'title' => 'Créer un nouveau IMET (non-WDPA)',
+        'fields' => [
+            'version' => 'version IMET',
+            'Year' => 'année',
+            'wdpa_id' => 'aire protégée',
+            'language' => 'langue',
+            'prefill_prev_year' => 'préremplir avec l\'année précédente',
+            'name' => 'nom de l\'aire protégée',
+            'designation' => 'désignation',
+            'designation_type' => 'type de désignation',
+            'status' => 'statut',
+            'country' => 'pays',
+        ]
+    ],
+
     'Objectives' => [
         'title' => 'Détermination des objectifs',
         'fields' => [
@@ -189,7 +216,7 @@ return [
             'PercentageEcoregion' => '% par rapport à l’écorégion ou à chacune des écorégions pour le cas des aires protégées appartenant à plusieurs réseaux',
             'PercentageTransnationalNetwork' => '% par rapport réseau transfrontalier',
             'PercentageLandscapeNetwork' => '% par rapport au landscape/network',
-            'Index' => 'Indice de forme (RACINE(3.14)/(6.28)*périmètre/RACINE(superficie) = bon 1 - 1,5; moyen de 1,5 - 2;  faible > 2)',
+            'Index' => 'Indice de forme <br />&radic;(3.14)/(6.28)*périmètre/&radic;(superficie) =<br /> bon 1 - 1,5; moyen de 1,5 - 2;  faible > 2',
             'Observations' => 'Observations',
         ]
     ],

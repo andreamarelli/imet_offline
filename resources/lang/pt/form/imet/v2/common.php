@@ -11,8 +11,6 @@ return [
 
     'synthetic_indicator' => 'Indicador sintético',
 
-    'prefill_prev_year' => 'préremplir avec l\'année précédente',
-
     'steps' => [
         'general_info'          => 'Informações gerais sobre a área protegida',
         'areas'                 => 'Áreas, limites e índice de forma, nível de controlo',

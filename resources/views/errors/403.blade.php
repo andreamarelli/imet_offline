@@ -9,7 +9,7 @@
             <br />
 
             @if(!App::environment('production') && isset($errors))
-                <?php dump($_SESSION) ?>
+                <?php dump($_SESSION ?? null) ?>
                 <?php dump($_SERVER) ?>
             @endif
 

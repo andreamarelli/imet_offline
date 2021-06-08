@@ -3,8 +3,8 @@
 namespace Illuminate\Http\Client;
 
 use Closure;
-use function GuzzleHttp\Promise\promise_for;
 use GuzzleHttp\Psr7\Response as Psr7Response;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use PHPUnit\Framework\Assert as PHPUnit;
@@ -56,6 +56,13 @@ class Factory
     }
 
     /**
+     * The event dispatcher implementation.
+     *
+     * @var \Illuminate\Contracts\Events\Dispatcher|null
+     */
+    protected $dispatcher;
+
+    /**
      * The stub callables that will handle requests.
      *
      * @var \Illuminate\Support\Collection
@@ -86,10 +93,13 @@ class Factory
     /**
      * Create a new factory instance.
      *
+     * @param  \Illuminate\Contracts\Events\Dispatcher|null  $dispatcher
      * @return void
      */
-    public function __construct()
+    public function __construct(Dispatcher $dispatcher = null)
     {
+        $this->dispatcher = $dispatcher;
+
         $this->stubCallbacks = collect();
     }
 
@@ -109,7 +119,11 @@ class Factory
             $headers['Content-Type'] = 'application/json';
         }
 
-        return promise_for(new Psr7Response($status, $headers, $body));
+        $response = new Psr7Response($status, $headers, $body);
+
+        return class_exists(GuzzleHttp\Promise\Create::class)
+            ? \GuzzleHttp\Promise\Create::promiseFor($response)
+            : \GuzzleHttp\Promise\promise_for($response);
     }
 
     /**
@@ -335,6 +349,16 @@ class Factory
     protected function newPendingRequest()
     {
         return new PendingRequest($this);
+    }
+
+    /**
+     * Get the current event dispatcher implementation.
+     *
+     * @return \Illuminate\Contracts\Events\Dispatcher|null
+     */
+    public function getDispatcher()
+    {
+        return $this->dispatcher;
     }
 
     /**

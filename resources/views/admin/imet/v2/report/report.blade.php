@@ -11,6 +11,7 @@
 /** @var array $vision */
 /** @var array $area */
 /** @var bool $connection */
+/** @var bool $show_api */
 
 // Force Language
 if ($item->language != App::getLocale()) {
@@ -54,7 +55,7 @@ function score_class_threats($value, $additional_classes=''){
 
 @if(!is_imet_environment())
     @section('admin_page_title')
-        @lang('form/imet/common.imet')
+        @lang('form/imet/common.imet')<
     @endsection
 @endif
 
@@ -65,34 +66,36 @@ function score_class_threats($value, $additional_classes=''){
 
     @include('admin.imet.components.heading', ['phase' => 'report'])
 
-    <div class="module-container">
-        <div class="module-header"><div class="module-title">General elements of the protected area</div></div>
-        <div class="module-body">
-            <div id="map" v-if=connection></div>
-            <div v-else class="dopa_not_available">@lang('entities.dopa_not_available')</div>
-            <div style="display: flex;">
-                @if($connection)
-                    <div id="radar">
-                        <dopa_radar data='@json($dopa_radar)'></dopa_radar>
-                        &copy;Dopa Services
+    @if($show_api)
+        <div class="module-container">
+            <div class="module-header"><div class="module-title">General elements of the protected area</div></div>
+            <div class="module-body">
+                <div id="map" v-if=connection></div>
+                <div v-else class="dopa_not_available">@lang('entities.dopa_not_available')</div>
+                <div style="display: flex;">
+                    @if($connection)
+                        <div id="radar">
+                            <dopa_radar data='@json($dopa_radar)'></dopa_radar>
+                            &copy;Dopa Services
+                        </div>
+                    @endif
+                    <div>
+                        <div><div class="strong">Country:</div>{{ $general_info['Country'] ?? '-' }}</div>
+                        <div><div class="strong">Name:</div>{{ $general_info['CompleteName'] ?? '-' }}</div>
+                        <div><div class="strong">Category(ies):</div>{{ $general_info['NationalCategory'] ?? '-' }}</div>
+                        <div><div class="strong">Data of gazetting:</div>{{ $general_info['CreationYear'] ?? '-' }}</div>
+                        <div><div class="strong">Surface:</div>{{ $area }} [km2]</div>
+                        <div><div class="strong">Agency:</div>{{ $general_info['Institution'] ?? '-' }}</div>
+                        <div><div class="strong">Biome:</div>{{ $general_info['Biome']  }}</div>
+                        <div><div class="strong">Main values for which the protected areas have been gazetted:</div>{{ $general_info['ReferenceTextValues'] ?? '-' }}</div>
+                        <div><div class="strong">Vision:</div>{{ $vision['LocalVision'] ?? '-' }}</div>
+                        <div><div class="strong">Mission:</div>{{ $vision['LocalMission'] ?? '-' }}</div>
+                        <div><div class="strong">Objectives:</div>{{ $vision['LocalObjective'] ?? '-' }}</div>
                     </div>
-                @endif
-                <div>
-                    <div><div class="strong">Country:</div>{{ $general_info['Country'] ?? '-' }}</div>
-                    <div><div class="strong">Name:</div>{{ $general_info['CompleteName'] ?? '-' }}</div>
-                    <div><div class="strong">Category(ies):</div>{{ $general_info['NationalCategory'] ?? '-' }}</div>
-                    <div><div class="strong">Data of gazetting:</div>{{ $general_info['CreationYear'] ?? '-' }}</div>
-                    <div><div class="strong">Surface:</div>{{ $area }} [km2]</div>
-                    <div><div class="strong">Agency:</div>{{ $general_info['Institution'] ?? '-' }}</div>
-                    <div><div class="strong">Biome:</div>{{ $general_info['Biome']  }}</div>
-                    <div><div class="strong">Main values for which the protected areas have been gazetted:</div>{{ $general_info['ReferenceTextValues'] ?? '-' }}</div>
-                    <div><div class="strong">Vision:</div>{{ $vision['LocalVision'] ?? '-' }}</div>
-                    <div><div class="strong">Mission:</div>{{ $vision['LocalMission'] ?? '-' }}</div>
-                    <div><div class="strong">Objectives:</div>{{ $vision['LocalObjective'] ?? '-' }}</div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 
     <div class="module-container">
         <div class="module-header"><div class="module-title">Evaluation of the protected area management cycle elements</div></div>
@@ -208,46 +211,48 @@ function score_class_threats($value, $additional_classes=''){
         </div>
     </div>
 
-    <div class="module-container">
-        <div class="module-header"><div class="module-title">Annexes (&copy;Dopa Services)</div></div>
-        <div class="module-body">
-            <div>
-                <div v-if=connection>
+    @if($show_api)
+        <div class="module-container">
+            <div class="module-header"><div class="module-title">Annexes (&copy;Dopa Services)</div></div>
+            <div class="module-body">
+                <div>
+                    <div v-if=connection>
 
-                    <b>Forest Cover</b>
-                    <dopa_indicators_table
-                        :title=dopa_indicators.forest_cover.title_table
-                        :indicators=dopa_indicators.forest_cover.indicators
-                        :api_data="api_data"
-                    ></dopa_indicators_table>
-                    <dopa_chart_bar
-                        :title=dopa_indicators.forest_cover.title_chart
-                        :indicators=dopa_indicators.forest_cover.bar_indicators
-                        :api_data=api_data
-                    ></dopa_chart_bar>
-
-                    <hr />
-
-                    <b>Total Carbon</b>
-                    <dopa_indicators_table
-                        :title=dopa_indicators.total_carbon.title_table
-                        :indicators=dopa_indicators.total_carbon.indicators
-                        :api_data=api_data
-                    ></dopa_indicators_table>
-
-
-                    <b>Agricultural pressure</b>
-                    <dopa_indicators_table
-                            :title=dopa_indicators.agricultural_pressure.title_table
-                            :indicators=dopa_indicators.agricultural_pressure.indicators
+                        <b>Forest Cover</b>
+                        <dopa_indicators_table
+                            :title=dopa_indicators.forest_cover.title_table
+                            :indicators=dopa_indicators.forest_cover.indicators
+                            :api_data="api_data"
+                        ></dopa_indicators_table>
+                        <dopa_chart_bar
+                            :title=dopa_indicators.forest_cover.title_chart
+                            :indicators=dopa_indicators.forest_cover.bar_indicators
                             :api_data=api_data
-                    ></dopa_indicators_table>
+                        ></dopa_chart_bar>
 
+                        <hr />
+
+                        <b>Total Carbon</b>
+                        <dopa_indicators_table
+                            :title=dopa_indicators.total_carbon.title_table
+                            :indicators=dopa_indicators.total_carbon.indicators
+                            :api_data=api_data
+                        ></dopa_indicators_table>
+
+
+                        <b>Agricultural pressure</b>
+                        <dopa_indicators_table
+                                :title=dopa_indicators.agricultural_pressure.title_table
+                                :indicators=dopa_indicators.agricultural_pressure.indicators
+                                :api_data=api_data
+                        ></dopa_indicators_table>
+
+                    </div>
+                    <div v-else class="dopa_not_available">@lang('entities.dopa_not_available')</div>
                 </div>
-                <div v-else class="dopa_not_available">@lang('entities.dopa_not_available')</div>
             </div>
         </div>
-    </div>
+    @endif
 
     @if($action==='edit')
         <div class="scrollButtons" v-cloak>

@@ -10,7 +10,8 @@ $area = array_key_exists('FormID', $record) ? \App\Models\Imet\v2\Modules\Contex
 
 if(floatval($area)>0 && floatval($record['BoundaryLength'])>0){
     $calc = sqrt(3.14)/(2*3.14)*floatval($record['BoundaryLength'])/sqrt($area);
-    $calc = $calc>=1 ? round($calc, 2) : null;
+    $calc = round($calc, 2);
+//    $calc = $calc>=1 ? round($calc, 2) : null;
 }
 
 ?>

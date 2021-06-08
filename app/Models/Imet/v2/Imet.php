@@ -5,6 +5,8 @@ namespace App\Models\Imet\v2;
 use App\Models\Imet\v2\Modules\Context\FinancialAvailableResources;
 use App\Models\Imet\v2\Modules\Context\FinancialResourcesBudgetLines;
 use App\Models\Imet\v2\Modules\Context\FinancialResourcesPartners;
+use App\Models\Imet\v2\Modules\Context\ResponsablesInterviewees;
+use App\Models\Imet\v2\Modules\Context\ResponsablesInterviewers;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -75,21 +77,39 @@ class Imet extends \App\Models\Imet\Imet
         ]
     ];
 
-    /**
-     * Override parent scopeFilterList()
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param Request $request
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeFilterList(Builder $query, Request $request)
+
+    public function responsible_interviees()
     {
-        $query
-            ->where('version', static::version)
-            ->orderBy('Year', 'desc')
-            ->orderBy('wdpa_id', 'desc');
-        return $query;
+        return $this->hasMany(ResponsablesInterviewees::class, $this->primaryKey, 'FormID')
+            ->select(['FormID','Name']);
     }
+
+    public function responsible_interviers()
+    {
+        return $this->hasMany(ResponsablesInterviewers::class, $this->primaryKey, 'FormID')
+            ->select(['FormID','Name']);
+    }
+
+    public function assessment()
+    {
+        return $this->hasOne(Assessment::class, 'formid', 'FormID');
+    }
+
+//    /**
+//     * Override parent scopeFilterList()
+//     *
+//     * @param \Illuminate\Database\Eloquent\Builder $query
+//     * @param Request $request
+//     * @return \Illuminate\Database\Eloquent\Builder
+//     */
+//    public function scopeFilterList(Builder $query, Request $request)
+//    {
+//        $query
+//            ->where('version', static::version)
+//            ->orderBy('Year', 'desc')
+//            ->orderBy('wdpa_id', 'desc');
+//        return $query;
+//    }
 
 
     /**

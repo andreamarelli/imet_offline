@@ -2,6 +2,33 @@
 
 return [
 
+    'Create' => [
+        'title' => 'Create a new IMET (WDPA)',
+        'fields' => [
+            'version' => 'IMET version',
+            'Year' => 'year',
+            'wdpa_id' => 'protected area',
+            'language' => 'language',
+            'prefill_prev_year' => 'prefill with previous year',
+        ]
+    ],
+
+    'CreateNonWdpa' => [
+        'title' => 'Create a new IMET (non-WDPA)',
+        'fields' => [
+            'version' => 'version',
+            'Year' => 'year',
+            'wdpa_id' => 'protected area',
+            'language' => 'language',
+            'prefill_prev_year' => 'prefill with previous year',
+            'name' => 'name of the protected area',
+            'designation' => 'designation',
+            'designation_type' => 'designation type',
+            'status' => 'status',
+            'country' => 'country',
+        ]
+    ],
+
     'Objectives' => [
         'title' => 'Setting objectives',
         'fields' => [
@@ -190,7 +217,7 @@ return [
             'PercentageEcoregion' => 'Surface % of ecoregion',
             'PercentageTransnationalNetwork' => 'Surface % of transboundary network',
             'PercentageLandscapeNetwork' => 'Surface % of landscape/network',
-            'Index' => 'Configuration index [Shape index (RACINE (3.14)/(6.28)*perimeter/RACINE(area) = good 1 - 1.5; average 1.5 - 2; low > 2)]',
+            'Index' => 'Configuration index <br />&radic;(3.14)/(6.28)*perimeter/&radic;(area) =<br /> good 1 - 1.5; average 1.5 - 2; low > 2',
             'Observations' => 'Notes',
         ]
     ],

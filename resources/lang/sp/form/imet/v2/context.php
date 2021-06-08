@@ -2,6 +2,33 @@
 
 return [
 
+    'Create' => [
+        'title' => 'Crear un nuevo IMET (WDPA)',
+        'fields' => [
+            'version' => 'versión',
+            'Year' => 'año',
+            'wdpa_id' => 'área protegida',
+            'language' => 'idioma',
+            'prefill_prev_year' => 'Pre-rellenado con el año anterior',
+        ]
+    ],
+
+    'CreateNonWdpa' => [
+        'title' => 'Crear un nuevo IMET (no WDPA)',
+        'fields' => [
+            'version' => 'versión',
+            'Year' => 'año',
+            'wdpa_id' => 'área protegida',
+            'language' => 'idioma',
+            'prefill_prev_year' => 'Pre-rellenado con el año anterior',
+            'name' => 'Nombre del área protegida',
+            'designation' => 'designación',
+            'designation_type' => 'Tipo de designación',
+            'status' => 'estado',
+            'country' => 'país',
+        ]
+    ],
+
     'Objectives' => [
         'title' => 'Estableciendo objetivos',
         'fields' => [
@@ -130,7 +157,7 @@ return [
     ],
 
     'Missions' => [
-        'title' => 'Visión - Misión - Objetivos',
+        'title' => 'Visión - Misión - Objetivos',
         'fields' => [
             'LocalVision' => 'A nivel local o nacional Visión',
             'LocalMission' => 'Misión',
@@ -190,7 +217,7 @@ return [
             'PercentageEcoregion' => 'Superficie % de la ecorregión',
             'PercentageTransnationalNetwork' => 'Superficie % de la red transfronteriza',
             'PercentageLandscapeNetwork' => 'Superficie % de paisaje/red',
-            'Index' => 'Índice de configuración [Índice de forma (RACINE - 3.14 - / - 6.28 - *perímetro/RACINE - área - = bueno 1 - 1,5; promedio 1,5-2; bajo> 2)]% de la red nacional de áreas protegidas]',
+            'Index' => 'Índice de configuración <br />&radic;(3.14)/(6.28)*perímetro/&radic;(área) =<br /> bueno 1 - 1.5; promedio 1.5 - 2; bajo > 2',
             'Observations' => 'Notas',
         ]
     ],
@@ -391,7 +418,7 @@ return [
             'Reliability' => 'Fiabilidad',
             'Comments' => 'Fuente/Nota',
         ],
-        'module_info' => 'Estado de conservación favorable: A partir de Natura 2000, el estado de conservación de las especies se considerará "favorable" cuando:<ul>los datos sobre la dinámica de la población de la especie en cuestión indican que se mantiene a largo plazo como un componente viable de sus hábitats naturales, y</li><li>el área de distribución natural de la especie no se está reduciendo ni es probable que se reduzca en un futuro previsible, y existe, y probablemente seguirá existiendo, un hábitat suficientemente grande para mantener sus poblaciones a largo plazo</li></ul>Clasificación: Evaluar a partir de la lista de especies que se supone que existen (véanse las listas de la UICN de A - mamíferos, B - aves y C - anfibios), un número limitado de especies clave de la zona protegida.<br /> <b>Indicadores de especies</b> <ul> <li><b>BAN</b>: Especies emblemáticas o bandera</li> <li><b>EN</b>: Especies en peligro (amenazadas)</li> <li><b>EDM</b>: Especies endémicas</li> <li><b>EXP</b>: Especies explotadas</li> <li><b>INV</b>: Especies invasoras</li> <li><b>EBNC</b>: Especie con bajo nivel de conocimiento</li> </ul> <b>Población estimada:</b> Programa de monitoreo y vigilancia ecológica y generación de un gráfico de tendencias multianual.',
+        'module_info' => 'Estado de conservación favorable: A partir de Natura 2000, el estado de conservación de las especies se considerará "favorable" cuando:<ul>los datos sobre la dinámica de la población de la especie en cuestión indican que se mantiene a largo plazo como un componente viable de sus hábitats naturales, y</li><li>el área de distribución natural de la especie no se está reduciendo ni es probable que se reduzca en un futuro previsible, y existe, y probablemente seguirá existiendo, un hábitat suficientemente grande para mantener sus poblaciones a largo plazo</li></ul>Clasificación: Evaluar a partir de la lista de especies que se supone que existen (véanse las listas de la UICN de A - mamíferos, B - aves y C - anfibios), un número limitado de especies clave de la zona protegida.<br /> <b>Indicadores de especies</b> <ul> <li><b>BAN</b>: Especies emblemáticas o bandera</li> <li><b>EN</b>: Especies en peligro (amenazadas)</li> <li><b>EDM</b>: Especies endémicas</li> <li><b>EXP</b>: Especies explotadas</li> <li><b>INV</b>: Especies invasoras</li> <li><b>EBNC</b>: Especie con bajo nivel de conocimiento</li> </ul> <b>Población estimada:</b> Programa de monitoreo y vigilancia ecológica y generación de un gráfico de tendencias multianual.',
         'validation_min3' => 'Por favor, codifique al menos 3 especies clave',
         'warning_on_save' =>
             'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
@@ -463,7 +490,7 @@ return [
     ],
 
     'LandCover' => [
-        'title' => 'Mantenimiento de la cubierta terrestre - utilización (o física del terreno - bosque, agua, carreteras, etc.) [for aggregate values see point CTX 2.2]',
+        'title' => 'Mantenimiento de la cubierta terrestre - utilización (o física del terreno - bosque, agua, carreteras, etc.) [for aggregate values see point CTX 2.2]',
         'fields' => [
             'CoverType' => 'Categorías cobertura – uso – tenencia del territorio',
             'HistoricalArea' => 'Superficie (ha)',
@@ -491,7 +518,7 @@ return [
             'group0' => 'Comercial y residencial',
             'group1' => 'Cultivos anuales o multianuales (no leñosos)',
             'group2' => 'Plantaciones de madera y de pasta de papel',
-            'group3' => 'Ganadería de pequeña y gran escala',
+            'group3' => 'Ganadería de pequeña y gran escala',
             'group4' => 'Acuicultura marina y de agua dulce',
             'group5' => 'Otra tipología de producción',
             'group6' => 'Energía y minería',
@@ -709,7 +736,7 @@ return [
     ],
 
     'EcosystemServices' => [
-        'title' => 'Servicios/funciones Ecosistémicas - importancia, dependencia de las comunidades y tendencia de los servicios/funciones del ecosistema que proporciona el área protegida',
+        'title' => 'Servicios/funciones Ecosistémicas - importancia, dependencia de las comunidades y tendencia de los servicios/funciones del ecosistema que proporciona el área protegida',
         'fields' => [
             'Element' => 'Servicios/funciones Ecosistémicas',
             'Importance' => 'Importancia',
@@ -730,8 +757,8 @@ return [
             'group9' => 'Servicios de apoyo',
         ],
         'predefined_values' => [
-            'group0' => ['Suministro de agua - ilegal', 'Suministro de agua - legal', 'Alimentación humana (tubérculos, frutas, miel, setas, algas, etc.) - ilegal', 'Alimentación humana (tubérculos, frutas, miel, setas, algas, etc.) - legal', 'Alimentación humana  - animal (carne silvestre/de granja, mariscos, insectos) - ilegal', 'Alimentación humana  - animal (carne silvestre/de granja, mariscos, insectos) - legal', 'Medicamentos y biotecnología azul (aceite de pescado) - ilegal', 'Medicamentos y biotecnología azul (aceite de pescado) - legal', 'Alimentación con peces y ganado (silvestre, de granja, cebo) - ilegal', 'Alimentación con peces y ganado (silvestre, de granja, cebo) - legal'],
-            'group1' => ['Madera de alto valor - ilegal', 'Madera de alto valor - legal', 'Madera para la construcción local - ilegal', 'Madera para la construcción local - legal','Fibras del tallo (palmas, tasta, chillca, wamanpito, etc.) - ilegal', 'Fibras del tallo (palmas, tasta, chillca, wamanpito, etc.) - legal', 'Otras fibras (hojas, kapok, coco, etc.) - ilegal', 'Otras fibras (hojas, kapok, coco, etc.) - legal', 'Recursos ornamentales y de acuario (colección de semillas, conchas y peces) - ilegal', 'Recursos ornamentales y de acuario (colección de semillas, conchas y peces) - legal', 'Arena (para la construcción) - ilegal', 'Arena (para la construcción) - legal', 'Tierras de cultivo (agricultura, ganadería, bosques) - ilegal', 'Tierras de cultivo (agricultura, ganadería, bosques) - legal'],
+            'group0' => ['Suministro de agua - ilegal', 'Suministro de agua - legal', 'Alimentación humana (tubérculos, frutas, miel, setas, algas, etc.) - ilegal', 'Alimentación humana (tubérculos, frutas, miel, setas, algas, etc.) - legal', 'Alimentación humana  - animal (carne silvestre/de granja, mariscos, insectos) - ilegal', 'Alimentación humana  - animal (carne silvestre/de granja, mariscos, insectos) - legal', 'Medicamentos y biotecnología azul (aceite de pescado) - ilegal', 'Medicamentos y biotecnología azul (aceite de pescado) - legal', 'Alimentación con peces y ganado (silvestre, de granja, cebo) - ilegal', 'Alimentación con peces y ganado (silvestre, de granja, cebo) - legal'],
+            'group1' => ['Madera de alto valor - ilegal', 'Madera de alto valor - legal', 'Madera para la construcción local - ilegal', 'Madera para la construcción local - legal','Fibras del tallo (palmas, tasta, chillca, wamanpito, etc.) - ilegal', 'Fibras del tallo (palmas, tasta, chillca, wamanpito, etc.) - legal', 'Otras fibras (hojas, kapok, coco, etc.) - ilegal', 'Otras fibras (hojas, kapok, coco, etc.) - legal', 'Recursos ornamentales y de acuario (colección de semillas, conchas y peces) - ilegal', 'Recursos ornamentales y de acuario (colección de semillas, conchas y peces) - legal', 'Arena (para la construcción) - ilegal', 'Arena (para la construcción) - legal', 'Tierras de cultivo (agricultura, ganadería, bosques) - ilegal', 'Tierras de cultivo (agricultura, ganadería, bosques) - legal'],
             'group2' => ['Leña y biocombustibles - ilegal', 'Leña y biocombustibles - legal', 'Generación de energía con agua - ilegal', 'Generación de energía con agua - legal', 'Fertilizante - ilegal', 'Fertilizante - legal'],
             'group3' => ['Regulación de gases (secuestro C)', 'Disposición /Enterramiento/eliminación/neutralización de residuos', 'Regulación de los desechos (absorción de nutrientes)'],
             'group4' => ['Control de inundaciones', 'Control de sequías', 'Protección contra tormentas', 'Control de la erosión hídrica', 'Control de la erosión eólica', 'Prevención de la erosión costera'],
@@ -739,7 +766,7 @@ return [
             'group6' => ['Investigación y ciencia', 'Educacional', 'La herencia cultural'],
             'group7' => ['Simbólico o histórico', 'Sagrado y/o religioso'],
             'group8' => ['Conservación ex situ'],
-            'group9' => ['Producción primaria neta (vegetación)', 'Ciclo de nutrientes (descomposición y mineralización de la basura)', 'Hábitats importantes (hábitats de anidación de aves - playas de desove - guardería)', 'Especies formadoras de hábitat (por ejemplo, corales)', 'Polinización (plantas)', 'Ciclo del agua', 'Paisaje marino: heterogeneidad/complejidad del hábitat (apoyando la diversidad)'],
+            'group9' => ['Producción primaria neta (vegetación)', 'Ciclo de nutrientes (descomposición y mineralización de la basura)', 'Hábitats importantes (hábitats de anidación de aves - playas de desove - guardería)', 'Especies formadoras de hábitat (por ejemplo, corales)', 'Polinización (plantas)', 'Ciclo del agua', 'Paisaje marino: heterogeneidad/complejidad del hábitat (apoyando la diversidad)'],
         ],
         'categories' => [
             'title1' => 'Provisión',

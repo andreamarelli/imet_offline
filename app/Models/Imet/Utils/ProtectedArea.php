@@ -45,9 +45,9 @@ class ProtectedArea extends EntityModel {
     /**
      * Get by WDPA id
      * @param $wdpa
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
+     * @return \App\Models\Imet\Utils\ProtectedArea
      */
-    public static function getByWdpa($wdpa)
+    public static function getByWdpa($wdpa): ProtectedArea
     {
         return static::where('wdpa_id', $wdpa)
             ->first();

@@ -2,6 +2,33 @@
 
 return [
 
+    'Create' => [
+        'title' => 'Criar um novo IMET (WDPA)',
+        'fields' => [
+            'version' => 'versão',
+            'Year' => 'ano',
+            'wdpa_id' => 'zona protegida',
+            'language' => 'língua',
+            'prefill_prev_year' => 'pré-preencher com o ano anterior'
+        ]
+    ],
+
+    'CreateNonWdpa' => [
+        'title' => 'Criar um novo IMET (não WDPA)',
+        'fields' => [
+            'version' => 'versão',
+            'Year' => 'ano',
+            'wdpa_id' => 'zona protegida',
+            'language' => 'língua',
+            'prefill_prev_year' => 'pré-preencher com o ano anterior',
+            'name' => 'Nome da área protegida',
+            'designation' => 'designação',
+            'designation_type' => 'Tipo de designação',
+            'status' => 'estado',
+            'country' => 'país',
+        ]
+    ],
+
     'Objectives' => [
         'title' => 'Definição de objectivos',
         'fields' => [
@@ -190,7 +217,7 @@ return [
             'PercentageEcoregion' => '% da Superficie da ecoregião',
             'PercentageTransnationalNetwork' => ' % da superficie da rede transfronteiriça',
             'PercentageLandscapeNetwork' => '% da Superficie da paisagens/rede',
-            'Index' => 'Índice de configuração [índice de forma (RACINE - 3.14 - / - 6.28 - *perímetro/RACINE - area - = bom 1 - 1,5; média 1,5-2; baixo> 2)]% da rede nacional de áreas protegidas',
+            'Index' => 'Índice de configuração <br />&radic;(3.14)/(6.28)*perímetro/&radic;(área) =<br /> bom 1 - 1.5; média 1.5 - 2; baixo > 2',
             'Observations' => 'Observaçoes',
         ]
     ],
@@ -391,7 +418,7 @@ return [
             'Reliability' => 'Confiabilidade',
             'Comments' => 'Fonte/Observação',
         ],
-        'module_info' => 'Estado de conservação favorável: A partir de Natura 2000, o estado de conservação das espécies será considerado "favorável" quando:<ul> os dados sobre a dinâmica populacional das espécies em causa indicam que se mantém a longo prazo como uma componente viável dos seus habitats naturais, e<li> a área variedade natural de distribuição da espécie não está a ser reduzida nem será provavelmente reduzida num futuro previsível, e existe, e provavelmente continuará a existir, um habitat suficientemente grande para manter as suas populações a longo prazo</li></ul> Classificação: Avaliar a partir da lista de espécies que se supõe existirem (ver as listas da IUCN de A - mamiferos, B -_ aves e C - anfibios), um número limitado de espécies chave da área protegida. <br /> <b>Espécies indicadoras</b> <ul> <li><b>EE</b>: Espécies emblemáticas</li> <li><b>EP</b>: especies em perigo (Ameaçadas)</li> <li><b>EED</b>: Espécies Endémicas </li> <li><b>EXP</b>: Espécies exploradas</li> <li><b>INV</b>: Espécies invasoras</li> <li><b>EBC</b>: Espécie com baixo nível de conhecimento</li></ul> <b>Estimativa da população</b>: Programa de monitorização ecológica e geração de gráfico de tendências plurianuais.',
+        'module_info' => 'Estado de conservação favorável: A partir de Natura 2000, o estado de conservação das espécies será considerado "favorável" quando:<ul> os dados sobre a dinâmica populacional das espécies em causa indicam que se mantém a longo prazo como uma componente viável dos seus habitats naturais, e<li> a área variedade natural de distribuição da espécie não está a ser reduzida nem será provavelmente reduzida num futuro previsível, e existe, e provavelmente continuará a existir, um habitat suficientemente grande para manter as suas populações a longo prazo</li></ul> Classificação: Avaliar a partir da lista de espécies que se supõe existirem (ver as listas da IUCN de A - mamiferos, B -_ aves e C - anfibios), um número limitado de espécies chave da área protegida. <br /> <b>Espécies indicadoras</b> <ul> <li><b>EE</b>: Espécies emblemáticas</li> <li><b>EP</b>: especies em perigo (Ameaçadas)</li> <li><b>EED</b>: Espécies Endémicas </li> <li><b>EXP</b>: Espécies exploradas</li> <li><b>INV</b>: Espécies invasoras</li> <li><b>EBC</b>: Espécie com baixo nível de conhecimento</li></ul> <b>Estimativa da população</b>: Programa de monitorização ecológica e geração de gráfico de tendências plurianuais.',
         'validation_min3' => 'Please encode not less than 3 key species',
         'warning_on_save' =>
             'Qualquer <br/> modificação pode causar perda de dados no seguinte
@@ -455,7 +482,7 @@ return [
             'Pântanos de maré, pântanos costeiros',
             'Ecossistema de águas marinhas costeiras',
             'Estrato pelágico',
-            'Estrato de Abyssal',
+            'Estrato de Abyssal',
             'Estrato bentónico',
             'Mar aberto'
         ],
@@ -463,7 +490,7 @@ return [
     ],
 
     'LandCover' => [
-        'title' => 'Manutenção da cobertura do solo - utilização do solo (ou terreno físico - floresta, água, estradas, etc.) [para valores agregados ver ponto CTX 2.2]',
+        'title' => 'Manutenção da cobertura do solo - utilização do solo (ou terreno físico - floresta, água, estradas, etc.) [para valores agregados ver ponto CTX 2.2]',
         'fields' => [
             'CoverType' => 'cobertura do solo - categorias de utilização do solo',
             'HistoricalArea' => 'superficie (ha)',
@@ -709,7 +736,7 @@ return [
     ],
 
     'EcosystemServices' => [
-        'title' => 'Serviços Ecossistémicos - importância, dependência das comunidades e tendencias',
+        'title' => 'Serviços Ecossistémicos - importância, dependência das comunidades e tendencias',
         'fields' => [
             'Element' => 'Servicos Ecossistémicos',
             'Importance' => 'Importancia',
@@ -730,16 +757,16 @@ return [
             'group9' => 'Serviços de apoio',
         ],
         'predefined_values' => [
-            'group0' => ['Abastecimento de água - ilegal', 'Abastecimento de água - legal', 'Alimentação humana - vegetal (tubérculos, frutas, mel, cogumelos, algas marinhas, etc.) - ilegal', 'Alimentação humana - vegetal (tubérculos, frutas, mel, cogumelos, algas marinhas, etc.) - legal', 'Alimentação humanaHumano food - animal (carne selvagem/domésticae criação, frutos do mar, insectos) - ilegal', 'Alimentação humanaHumano food - animal (carne selvagem/domésticae criação, frutos do mar, insectos)- legal', 'Medicamentos e biotecnologia azul (óleo de peixe) - ilegal', 'Medicamentos e biotecnologia azul (óleo de peixe) - legal', 'Alimento para peixes/animais (selvagens, de criação, isco) - ilegal', 'Alimento para peixes/animais (selvagens, de criação, isco) - legal'],
+            'group0' => ['Abastecimento de água - ilegal', 'Abastecimento de água - legal', 'Alimentação humana - vegetal (tubérculos, frutas, mel, cogumelos, algas marinhas, etc.) - ilegal', 'Alimentação humana - vegetal (tubérculos, frutas, mel, cogumelos, algas marinhas, etc.) - legal', 'Alimentação humanaHumano food - animal (carne selvagem/domésticae criação, frutos do mar, insectos) - ilegal', 'Alimentação humanaHumano food - animal (carne selvagem/domésticae criação, frutos do mar, insectos)- legal', 'Medicamentos e biotecnologia azul (óleo de peixe) - ilegal', 'Medicamentos e biotecnologia azul (óleo de peixe) - legal', 'Alimento para peixes/animais (selvagens, de criação, isco) - ilegal', 'Alimento para peixes/animais (selvagens, de criação, isco) - legal'],
             'group1' => ['Madeira de alto valor - ilegal', 'Madeira de alto valor - legal', 'Madeira para a construção local - ilegal', 'Madeira para a construção local - legal', 'Fibras de caule (palmeiras, kenaf, etc.) - ilegal', 'Fibras de caule (palmeiras, kenaf, etc.) - legal', 'Outras fibras (folhas, sumaúma, coco, etc.) - ilegal', 'Outras fibras (folhas, sumaúma, coco, etc.) - legal', 'Recursos ornamentais e aquários (colecção de sementes, conchas e peixes) - ilegal', 'Recursos ornamentais e aquários (coleção de sementes, conchas e peixes) - legal', 'Areia (construção) - ilegal', 'Areia (construção) - legal', 'Terras de cultivo (agricultura, pecuária, florestas) - ilegal', 'Terras de cultivo (agricultura, pecuária, florestas) - legal'],
             'group2' => ['Lenha e biocombustíveis - ilegal', 'Lenha e biocombustíveis - legal', 'Água para a energia - ilegal', 'Água para a energia - legal', 'Fertilizante - ilegal', 'Fertilizante - legal'],
             'group3' => ['Regulação de gás (C sequestro de C)', 'Enterro/remoção/neutralização de resíduos'],
             'group4' => ['Controlo das cheias', 'Controlo da Seca', 'Protecção contra tempestades', 'Controlo da erosão da água', 'Controlo da erosão Ecological', 'Prevenção da erosão costeira'],
             'group5' => ['Benefícios estéticos (integridade do ecossistema)', 'Ecoturismo e observação da natureza', 'Caminhadas, escaladas de montanhas e recreacao em geral', 'Mergulho com tubo de respiração, navegação e mergulho', 'Caça ou pesca, se for permitida', 'Pesca tradicional específica'],
-            'group6' => ['Ciência - Investigação', 'Educação', 'Património cultural'],
+            'group6' => ['Ciência - Investigação', 'Educação', 'Património cultural'],
             'group7' => ['Simbólico ou histórico', 'Sagrado ou religioso'],
             'group8' => ['conservacao ex situ'],
-            'group9' => ['Produção primária líquida (vegetação)', 'Ciclagem de nutrientes (decomposição e mineralização do lixo)', 'Habitats importantes (nidificação de aves - desova junto ao mar - habitats viveiros)', 'Habitat de antigas espécies (por exemplo, corais)', 'Polinização (plantas)', 'ciclismo aquático', 'Paisagem marítima: heterogeneidade/complexidade de habitat (apoiando a diversidade)'],
+            'group9' => ['Produção primária líquida (vegetação)', 'Ciclagem de nutrientes (decomposição e mineralização do lixo)', 'Habitats importantes (nidificação de aves - desova junto ao mar - habitats viveiros)', 'Habitat de antigas espécies (por exemplo, corais)', 'Polinização (plantas)', 'ciclismo aquático', 'Paisagem marítima: heterogeneidade/complexidade de habitat (apoiando a diversidade)'],
         ],
         'categories' => [
             'title1' => 'Aprovisionamento',
@@ -747,7 +774,7 @@ return [
             'title3' => 'Cultural',
             'title4' => 'Apoio',
         ],
-        'module_info' => '<b>Serviços Ecossistémicos - importância, dependência das comunidades e tendência dos serviços ecossistémicos prestados pela área protegida </b> <ul> <li>The outputs from the following section will support management decisions to ensure that ecosystem services delivered by the protected area for the human well-being are preserved. The analysis will ensure incorporation of the relevant values into the management system of the protected area</li> <li>Classificação: Considere cada avaliação com base em: A) importância de serviços ecossistémicos específicos, B) dependência da população local em relação ao serviço ecossistémico e C) tendência na quantidade ou qualidade dos serviços ecossistémicos prestados pela área protegida, utilizando as escalas abaixo</li> <li>Não é necessária uma medição precisa do valor para atribuir uma classificação</li> <li>A especificação da natureza do aprovisionamento como legal ou ilegal depende da designação da área protegida e dos costumes legais existentes para a área avaliada</li> </ul>',
+        'module_info' => '<b>Serviços Ecossistémicos - importância, dependência das comunidades e tendência dos serviços ecossistémicos prestados pela área protegida </b> <ul> <li>The outputs from the following section will support management decisions to ensure that ecosystem services delivered by the protected area for the human well-being are preserved. The analysis will ensure incorporation of the relevant values into the management system of the protected area</li> <li>Classificação: Considere cada avaliação com base em: A) importância de serviços ecossistémicos específicos, B) dependência da população local em relação ao serviço ecossistémico e C) tendência na quantidade ou qualidade dos serviços ecossistémicos prestados pela área protegida, utilizando as escalas abaixo</li> <li>Não é necessária uma medição precisa do valor para atribuir uma classificação</li> <li>A especificação da natureza do aprovisionamento como legal ou ilegal depende da designação da área protegida e dos costumes legais existentes para a área avaliada</li> </ul>',
         'ratingLegend' => [
             'Importance' => [
                 'Local' => 'importância limitada às comunidades locais ou regionais (por exemplo, tubérculos, frutas, lenha, etc.)',

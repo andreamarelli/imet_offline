@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Imet;
 use App\Http\Controllers\Components\FormController;
 use App\Library\Utils\File\File;
 use App\Models\Imet\Utils\ProtectedArea;
+use App\Models\Imet\Utils\ProtectedAreaNonWdpa;
 use App\Models\Imet\v2\Imet;
 use App\Models\Imet\v2\Modules;
 use Illuminate\Http\Request;
@@ -19,6 +20,91 @@ class ImetControllerV2 extends FormController
     protected static $form_default_step = 'general_info';
 
     public const AUTHORIZE_BY_POLICY = true;
+
+
+    /**
+     * Manage "create" route
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function create_non_wdpa()
+    {
+        if(static::AUTHORIZE_BY_POLICY){
+            $this->authorize('create', static::$form_class);
+        }
+        return view('admin.'.static::$form_view.'.create', ['is_wdpa' => false]);
+    }
+
+    /**
+     *  Override:
+     * - create prefilled IMET
+     * - create IMET on non-WDPA site
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array|\Illuminate\View\View|mixed
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function store(Request $request)
+    {
+        if(static::AUTHORIZE_BY_POLICY){
+            $this->authorize('create', Imet::class);
+        }
+
+        $records = json_decode($request->input('records_json'), true);
+
+        // #### Create an prefilled IMET (data from a previous year) ####
+        if(array_key_exists('prev_year_selection', $records[0])){
+            $prev_year_selection = $records[0]['prev_year_selection'] ?? null;
+            unset($records[0]['prev_year_selection']);
+            $request->merge(['records_json' => json_encode($records)]);
+            if($prev_year_selection!==null && $prev_year_selection!=='no_import'){
+                return (new ImetController)->store_prefilled($request, $prev_year_selection);
+            }
+        }
+
+        // #### Create an IMET on a non-WDPA site ####
+        if(array_key_exists('name', $records[0])){
+            return $this->store_non_wdpa($request);
+        }
+
+        return parent::store($request);
+    }
+
+    /**
+     * Manage "store" route
+     *
+     * @param Request $request
+     * @return array
+     * @throws \Exception
+     * @throws \Throwable
+     */
+    private function store_non_wdpa(Request $request): array
+    {
+        $records = json_decode($request->input('records_json'), true);
+
+        try {
+            // Create new non-WDPA pa
+            $new_pa = new ProtectedAreaNonWdpa();
+            $new_pa->fill([
+                'id' => ProtectedAreaNonWdpa::generate_fake_wdpa(),
+                'name' => $records[0]['name'],
+                'designation' => $records[0]['designation'],
+                'designation_type' => $records[0]['designation_type'],
+                'status' => $records[0]['status'],
+                'country' => $records[0]['country']
+            ]);
+            $new_pa->save();
+
+            // Create Form
+            $records[0]['wdpa_id'] = $new_pa->getKey();
+            $request->merge(['records_json' => json_encode($records)]);
+            return parent::store($request);
+
+        } catch (\Exception $e) {
+            \Session::flash('message', trans('common.saved_error'));
+            throw $e;
+        }
+    }
 
     /**
      * Retrieve existing previous forms
@@ -36,22 +122,6 @@ class ImetControllerV2 extends FormController
             ->orderByDesc('Year')
             ->get()
             ->pluck('Year', 'FormID');
-    }
-
-    public function store(Request $request)
-    {
-        $records = json_decode($request->input('records_json'), true);
-
-        // Export previous existing form and save as new (if selected)
-        $prev_year_selection = $records[0]['prev_year_selection'] ?? null;
-        unset($records[0]['prev_year_selection']);
-        $request->merge(['records_json' => json_encode($records)]);
-        if($prev_year_selection!==null && $prev_year_selection!=='no_import'){
-            return (new ImetController)->store_prefilled($request, $prev_year_selection);
-        }
-
-        // Create new form
-        return parent::store($request);
     }
 
     /**

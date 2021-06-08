@@ -69,16 +69,21 @@ trait ReportV2{
     {
         $form_id = $item->getKey();
 
-        $api_available = DOPA::apiAvailable();
+        $api_available = $show_api = false;
         $wdpa_extent = $dopa_radar = $dopa_indicators = null;
-        if($api_available){
-            $wdpa_extent = [];
-            $dopa_radar =  DOPA::get_wdpa_radarplot($item->wdpa_id);
-            $dopa_indicators =  DOPA::get_wdpa_all_inds($item->wdpa_id);
+
+        if(!\App\Models\Imet\Utils\ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)){
+            $show_api = true;
+            $api_available = DOPA::apiAvailable();
+            if($api_available){
+                $wdpa_extent = [];
+                $dopa_radar =  DOPA::get_wdpa_radarplot($item->wdpa_id);
+                $dopa_indicators =  DOPA::get_wdpa_all_inds($item->wdpa_id);
+            }
         }
+
         $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
         $vision = Modules\Context\Missions::getModuleRecords($form_id);
-
         $global_assessement = (array) ImetEvalControllerV2::assessment($form_id, 'global', true)->getData();
 
         return [
@@ -114,6 +119,7 @@ trait ReportV2{
             ],
             'report' => \App\Models\Imet\v2\Report::getByForm($form_id),
             'connection' => $api_available,
+            'show_api' => $show_api,
             'wdpa_extent' => $wdpa_extent[0]->extent ?? null,
             'dopa_radar' =>  $dopa_radar,
             'dopa_indicators' => $dopa_indicators[0] ?? null,

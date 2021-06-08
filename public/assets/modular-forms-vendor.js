@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -532,7 +532,7 @@ eval("// Utilities & frameworks\nwindow._ = __webpack_require__(/*! lodash */ \"
 
 /***/ }),
 
-/***/ 1:
+/***/ 3:
 /*!**************************************************************************!*\
   !*** multi ./vendor/andreamarelli/modular-forms/src/Assets/js/vendor.js ***!
   \**************************************************************************/

@@ -12,6 +12,7 @@ use App\Models\Country;
 use App\Models\Imet\Imet;
 use App\Models\Imet\Utils\Encoder;
 use App\Models\Imet\Utils\ProtectedArea;
+use App\Models\Imet\Utils\ProtectedAreaNonWdpa;
 use App\Models\Imet\v1;
 use App\Models\Imet\v2;
 use Carbon\Carbon;
@@ -51,53 +52,59 @@ class ImetController extends FormController
         $country = $request->input('country', null);
         $year = $request->input('year', null);
 
-        // Check for missing data
-        Imet::where('Country', null)
-            ->orWhere('wdpa_id', null)
-            ->orWhere('name', null)
-            ->get()
-            ->map(function ($imet) {
-                /** @var Imet $imet */
-                $imet->checkMissingPaData();
-            });
+        // Check and add missing Pa data to form DB record
+        Imet::checkMissingPaData();
 
         // set filter status
-        $show_filters = Imet::count() > 10;
-        $no_filter_selected = empty(array_filter($request->except('_token')));
+        $filter_selected = !empty(array_filter($request->except('_token')));
         $countries = Country::getCountriesByEnvironment();
         $years = Imet::getAvailableYears();
 
-        $list = [];
-        if (!$show_filters || $search !== null || $country !== null || $year !== null) {
 
-            $list = Imet::filterList($request)
-                ->get()
-                ->map(
-                    function (Imet $item) use($countries){
-                        $item->iso2                 = $countries[$item->Country]['iso2'] ?? null;
-                        $item->iso3                 = $countries[$item->Country]['iso3'] ?? null;
-                        $item->country_name         = $countries[$item->Country]['name'] ?? null;
-                        $item->encoders_responsibles = Imet::getResponsibles($item->getKey(), $item->version);
-                        $item->assessment = Assessment::radar_assessment($item->getKey());
-                        return $item;
-                    }
-                )
-                ->makeHidden([Imet::UPDATED_AT, Imet::UPDATED_BY]);
-
-            $hasDuplicates = Imet::foundDuplicates();
-            $list->map(function ($item) use ($hasDuplicates) {
-                $item['has_duplicates'] = in_array($item->getKey(), $hasDuplicates);
+        $list_v1 = \App\Models\Imet\v1\Imet
+            ::filterList($request)
+            ->with('country', 'encoder', 'responsible_interviees', 'responsible_interviers', 'assessment')
+            ->get()
+            ->map(function ($item){
+                $item['assessment_radar'] = $item['assessment']->radar();
                 return $item;
             });
 
-        }
+        $list_v2 = \App\Models\Imet\v2\Imet
+            ::filterList($request)
+            ->with('country', 'encoder', 'responsible_interviees', 'responsible_interviers', 'assessment')
+            ->get()
+            ->map(function ($item){
+                $item['assessment_radar'] = $item['assessment']->radar();
+                return $item;
+            });
+
+        $list = $list_v1->merge($list_v2);
+
+        $list->map(function ($item){
+            $item->encoders_responsibles = [
+                'encoders' => $item->encoder,
+                'internal' => $item->responsible_interviers,
+                'external' => $item->responsible_interviees,
+            ];
+            if(ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)){
+                $item->wdpa_id = null;
+            }
+            return $item;
+        });
+
+
+        $hasDuplicates = Imet::foundDuplicates();
+        $list->map(function ($item) use ($hasDuplicates) {
+            $item['has_duplicates'] = in_array($item->getKey(), $hasDuplicates);
+            return $item;
+        });
 
         return view('admin.' . static::$form_view . '.list', [
             'controller' => static::class,
             'list' => $list,
             'request' => $request,
-            'show_filters' => $show_filters,
-            'no_filter_selected' => $no_filter_selected,
+            'filter_selected' => $filter_selected,
             'countries' => array_map(function ($item) {
                 return $item['name'];
             }, $countries),
@@ -289,6 +296,10 @@ class ImetController extends FormController
                 : v2\Imet_Eval::exportModules($imet_id),
         ];
 
+        if(ProtectedAreaNonWdpa::isNonWdpa($imet_form['wdpa_id'])){
+            $json['NonWdpaProtectedArea'] = ProtectedAreaNonWdpa::export($imet_form['wdpa_id']);
+        }
+
         if ($to_file) {
             $fileName = $item->filename('json');
             return File::exportTo(
@@ -343,6 +354,11 @@ class ImetController extends FormController
                 $modules_imported['Evaluation'] = v1\Imet_Eval::importModules($json['Evaluation'], $formID);
                 Encoder::importModule($formID, $json['Encoders'] ?? null);
             } elseif ($version === 'v2') {
+                // Non-Wdpa protected area
+                if(array_key_exists('NonWdpaProtectedArea', $json)){
+                    $wdpa_id = ProtectedAreaNonWdpa::import($json['NonWdpaProtectedArea']);
+                    $json['Imet']['wdpa_id'] = $wdpa_id;
+                }
                 // Create new form and return ID
                 $formID = v2\Imet::importForm($json['Imet']);
                 // Populate Imet & Imet_Eval modules
@@ -354,6 +370,7 @@ class ImetController extends FormController
             $response['modules'] = $modules_imported;
         } catch (\Exception $e) {
             \DB::rollback();
+            dd($e);
             $response = ['status' => 'error'];
             if (!App::environment('production')) {
                 throw $e;

@@ -2,8 +2,8 @@
 
 namespace App\Models\Imet\v1;
 
-use App\Models\UserRight;
-use Illuminate\Http\Request;
+use App\Models\Imet\v1\Modules\Context\ResponsablesInterviewees;
+use App\Models\Imet\v1\Modules\Context\ResponsablesInterviewers;
 
 
 class Imet extends \App\Models\Imet\Imet
@@ -75,5 +75,23 @@ class Imet extends \App\Models\Imet\Imet
             Modules\Context\Objectives7::class,
         ]
     ];
+
+    public function responsible_interviees()
+    {
+        return $this->hasMany(ResponsablesInterviewees::class, $this->primaryKey, 'FormID')
+            ->select(['FormID','Name']);
+    }
+
+    public function responsible_interviers()
+    {
+        return $this->hasMany(ResponsablesInterviewers::class, $this->primaryKey, 'FormID')
+            ->select(['FormID','Name']);
+    }
+
+
+    public function assessment()
+    {
+        return $this->hasOne(Assessment::class, 'formid', 'FormID');
+    }
 
 }

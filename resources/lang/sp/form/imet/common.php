@@ -15,8 +15,6 @@ return [
 
     'management'        => 'Gestión del IMET',
 
-    'create'            => 'Crear un nuevo IMET',
-
     'encoding_language'         => 'Lenguaje de codificación',
     'encoders_responsible'      => 'Codificadores y responsables',
     'encoders'                  => 'Codificadores',

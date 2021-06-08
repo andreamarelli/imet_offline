@@ -10,6 +10,7 @@
 /** @var array $vision */
 /** @var array $area */
 /** @var bool  $connection */
+/** @var bool  $show_api */
 ?>
 
 @include('admin.imet.v2.report.report', [
@@ -23,5 +24,6 @@
     'general_info' => $general_info,
     'vision' => $vision,
     'area' => $area,
-    'connection' => $connection
+    'connection' => $connection,
+    'show_api' => $show_api,
 ])

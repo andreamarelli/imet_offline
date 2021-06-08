@@ -14,9 +14,7 @@ return [
     'imet_short'        => 'IMET',
 
     'management'        => 'gestion des formulaires IMET',
-
-    'create'            => 'Créer un nouveau IMET',
-
+    
     'encoding_language' => 'Langue d\'encodage',
     'encoders_responsible'      => 'Encodeurs and responsables',
     'encoders'                  => 'Encodeurs',

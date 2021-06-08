@@ -164,13 +164,13 @@ $vue_data['GISArea_km2'] = $vue_data['GISArea_km2_full'] = formatNum($vue_data['
 
                     if(this.isValidNumber(area) && this.isValidNumber(boundary_length)){
                         let calc =  Math.sqrt(3.14)/(2*3.14)*boundary_length/Math.sqrt(area);
-                        if(calc>=1){
+                        // if(calc>=1){
                             this.records[0]['Index'] = calc.toFixed(2).toString();
-                        } else {
-                            this.records[0]['Index'] = null;
-                            // todo: warn error (Please check area and boundary_length: seems not to be consistent)
-                            // todo: legend x shape index value
-                        }
+                        // } else {
+                        //     this.records[0]['Index'] = null;
+                        //     // todo: warn error (Please check area and boundary_length: seems not to be consistent)
+                        //     // todo: legend x shape index value
+                        // }
                     } else {
                         this.records[0]['Index'] = null;
                     }

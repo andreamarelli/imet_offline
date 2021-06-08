@@ -15,8 +15,6 @@ return [
 
     'management'        => 'IMET management',
 
-    'create'            => 'Create a new IMET',
-
     'encoding_language'         => 'Encoding language',
     'encoders_responsible'      => 'Encoders and responsibles',
     'encoders'                  => 'Encoders',

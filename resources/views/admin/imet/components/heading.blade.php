@@ -10,7 +10,9 @@
     <div class="name">
         {!! \App\Library\Ofac\Template::flag($item->Country) !!}
         {{ $item->name }}
-        (<a target="_blank" href="{{ \App\Library\API\ProtectedPlanet\ProtectedPlanet::WEBSITE_URL  }}/{{ $item->wdpa_id }}">{{ $item->wdpa_id }}</a>)
+        @if(!\App\Models\Imet\Utils\ProtectedAreaNonWdpa::isNonWdpa( $item->wdpa_id))
+            (<a target="_blank" href="{{ \App\Library\API\ProtectedPlanet\ProtectedPlanet::WEBSITE_URL  }}/{{ $item->wdpa_id }}">{{ $item->wdpa_id }}</a>)
+        @endif
     </div>
 </div>
 
@@ -35,6 +37,3 @@
     </a>
 
 </nav>
-
-
-{{-- <h3>{{ ucfirst(trans('form/imet/common.context_long')) }}</h3> --}}

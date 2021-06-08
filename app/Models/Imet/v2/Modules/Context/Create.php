@@ -21,12 +21,12 @@ class Create extends Modules\Component\ImetModule
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'SIMPLE';
-        $this->module_title = trans('form/imet/common.create');
+        $this->module_title = trans('form/imet/v2/context.Create.title');
         $this->module_fields = [
-            ['name' => 'version',                   'type' => 'blade-admin.imet.v2.context.fields.version',   'label' => trans('common.version')],
-            ['name' => 'Year',                      'type' => 'yearMaxCurrent',             'label' => trans('entities.common.year')],
-            ['name' => 'wdpa_id',  'type' => 'selector-wdpa',   'label' => trans_choice('entities.protected_area.protected_area', 1)],
-            ['name' => 'language',                  'type' => 'toggle-ImetV2_languages',    'label' => trans('entities.common.language')],
+            ['name' => 'version',   'type' => 'blade-admin.imet.v2.context.fields.version', 'label' => trans('form/imet/v2/context.Create.fields.version')],
+            ['name' => 'Year',      'type' => 'yearMaxCurrent',                             'label' => trans('form/imet/v2/context.Create.fields.Year')],
+            ['name' => 'language',  'type' => 'toggle-ImetV2_languages',                    'label' => trans('form/imet/v2/context.Create.fields.language')],
+            ['name' => 'wdpa_id',   'type' => 'selector-wdpa',                              'label' => trans('form/imet/v2/context.Create.fields.wdpa_id')],
         ];
 
         parent::__construct($attributes);
