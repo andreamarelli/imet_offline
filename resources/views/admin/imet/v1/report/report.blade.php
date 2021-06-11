@@ -66,7 +66,7 @@ function score_class_threats($value, $additional_classes=''){
     @include('admin.imet.components.heading', ['phase' => 'report'])
 
     <div class="module-container">
-        <div class="module-header"><div class="module-title">General elements of the protected area</div></div>
+        <div class="module-header"><div class="module-title">@lang('form/imet/v2/report.general_elements')</div></div>
         <div class="module-body">
             <div id="map" v-if=connection></div>
             <div v-else class="dopa_not_available">@lang('entities.dopa_not_available')</div>
@@ -78,24 +78,24 @@ function score_class_threats($value, $additional_classes=''){
                     </div>
                 @endif
                 <div>
-                    <div><div class="strong">Country:</div>{{ $general_info['Country'] ?? '-' }}</div>
-                    <div><div class="strong">Name:</div>{{ $general_info['CompleteName'] ?? '-' }}</div>
-                    <div><div class="strong">Category(ies):</div>{{ $general_info['NationalCategory'] ?? '-' }}</div>
-                    <div><div class="strong">Data of gazetting:</div>{{ $general_info['CreationYear'] ?? '-' }}</div>
-                    <div><div class="strong">Surface:</div>{{ $area }} [km2]</div>
-                    <div><div class="strong">Agency:</div>{{ $general_info['Institution'] ?? '-' }}</div>
-                    <div><div class="strong">Biome:</div>{{ $general_info['Biome']  }}</div>
-                    <div><div class="strong">Main values for which the protected areas have been gazetted:</div>{{ $general_info['ReferenceTextValues'] ?? '-' }}</div>
-                    <div><div class="strong">Vision:</div>{{ $vision['LocalVision'] ?? '-' }}</div>
-                    <div><div class="strong">Mission:</div>{{ $vision['LocalMission'] ?? '-' }}</div>
-                    <div><div class="strong">Objectives:</div>{{ $vision['LocalObjective'] ?? '-' }}</div>
+                    <div><div class="strong">@lang('form/imet/v2/report.country'):</div>{{ $general_info['Country'] ?? '-' }}</div>
+                    <div><div class="strong">@lang('form/imet/v2/report.name'):</div>{{ $general_info['CompleteName'] ?? '-' }}</div>
+                    <div><div class="strong">@lang('form/imet/v2/report.category'):</div>{{ $general_info['NationalCategory'] ?? '-' }}</div>
+                    <div><div class="strong">@lang('form/imet/v2/report.gazetting'):</div>{{ $general_info['CreationYear'] ?? '-' }}</div>
+                    <div><div class="strong">@lang('form/imet/v2/report.surface'):</div>{{ $area }} [km2]</div>
+                    <div><div class="strong">@lang('form/imet/v2/report.agency'):</div>{{ $general_info['Institution'] ?? '-' }}</div>
+                    <div><div class="strong">@lang('form/imet/v2/report.biome'):</div>{{ $general_info['Biome']  }}</div>
+                    <div><div class="strong">@lang('form/imet/v2/report.main_values_protected'):</div>{{ $general_info['ReferenceTextValues'] ?? '-' }}</div>
+                    <div><div class="strong">@lang('form/imet/v2/report.vision'):</div>{{ $vision['LocalVision'] ?? '-' }}</div>
+                    <div><div class="strong">@lang('form/imet/v2/report.mission'):</div>{{ $vision['LocalMission'] ?? '-' }}</div>
+                    <div><div class="strong">@lang('form/imet/v2/report.objectives'):</div>{{ $vision['LocalObjective'] ?? '-' }}</div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="module-container">
-        <div class="module-header"><div class="module-title">Evaluation of the protected area management cycle elements</div></div>
+        <div class="module-header"><div class="module-title">@lang('form/imet/v2/report.evaluation_elements')</div></div>
         <div class="module-body">
             <imet_charts form_id={{ $item->getKey() }} :show_histogram="true"></imet_charts>
             <table id="global_scores">
@@ -122,37 +122,37 @@ function score_class_threats($value, $additional_classes=''){
     </div>
 
     <div class="module-container">
-        <div class="module-header"><div class="module-title">Management context (key elements of management)</div></div>
+        <div class="module-header"><div class="module-title">@lang('form/imet/v2/report.management_context')</div></div>
         <div class="module-body">
-            <h5>Key species</h5>
+            <h5>@lang('form/imet/v2/report.key_species')</h5>
             <ul>
                 @foreach($key_elements['species'] as $elem)
                     <li>{{ $elem }}</li>
                 @endforeach
             </ul>
             @include('admin.imet.v1.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'key_species_comment'])
-            <h5>Terrestrial and marine habitats - land-cover, land-change and land-take</h5>
+            <h5>@lang('form/imet/v2/report.terrestial_marine_habitats')</h5>
             <ul>
                 @foreach($key_elements['habitats'] as $elem)
                     <li>{{ $elem }}</li>
                 @endforeach
             </ul>
             @include('admin.imet.v1.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'habitats_comment'])
-            <h5>Climate Change</h5>
+            <h5>@lang('form/imet/v2/report.climate_change')</h5>
             <ul>
                 @foreach($key_elements['climate_change'] as $elem)
                     <li>{{ $elem }}</li>
                 @endforeach
             </ul>
             @include('admin.imet.v1.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'climate_change_comment'])
-            <h5>Ecosystem services</h5>
+            <h5>@lang('form/imet/v2/report.ecosystem_services')</h5>
             <ul>
                 @foreach($key_elements['ecosystem_services'] as $elem)
                     <li>{{ $elem }}</li>
                 @endforeach
             </ul>
             @include('admin.imet.v1.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'ecosystem_services_comment'])
-            <h5>Threats</h5>
+            <h5>@lang('form/imet/v2/report.threats')</h5>
             <ul>
                 @foreach($key_elements['threats'] as $elem)
                     <li>{{ $elem }}</li>
@@ -164,25 +164,25 @@ function score_class_threats($value, $additional_classes=''){
     </div>
 
     <div class="module-container">
-        <div class="module-header"><div class="module-title">Management effectiveness analysis (analysis + swot analysis)</div></div>
+        <div class="module-header"><div class="module-title">@lang('form/imet/v2/report.management_effectiveness')</div></div>
         <div class="module-body">
             @include('admin.imet.v1.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'analysis'])
-            <h5>Characteristic elements of the protected area in the form of a SWOT exercise</h5>
+            <h5>@lang('form/imet/v2/report.characteristics_elements')</h5>
             <div class="swot">
                 <div>
-                    <b>Strengths</b>
+                    <b>@lang('form/imet/v2/report.strengths')</b>
                     @include('admin.imet.v1.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'strengths_swot'])
                 </div>
                 <div>
-                    <b>Weaknesses</b>
+                    <b>@lang('form/imet/v2/report.weaknesses')</b>
                     @include('admin.imet.v1.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'weaknesses_swot'])
                 </div>
                 <div>
-                    <b>Opportunities</b>
+                    <b>@lang('form/imet/v2/report.opportunities')</b>
                     @include('admin.imet.v1.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'opportunities_swot'])
                 </div>
                 <div>
-                    <b>Threats</b>
+                    <b>@lang('form/imet/v2/report.threats')</b>
                     @include('admin.imet.v1.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'threats_swot'])
                 </div>
             </div>
@@ -190,20 +190,20 @@ function score_class_threats($value, $additional_classes=''){
     </div>
 
     <div class="module-container">
-        <div class="module-header"><div class="module-title">Operating recommendations</div></div>
+        <div class="module-header"><div class="module-title">@lang('form/imet/v2/report.operation_recommendations')</div></div>
         <div class="module-body">
             @include('admin.imet.v1.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'recommendations'])
         </div>
     </div>
 
     <div class="module-container">
-        <div class="module-header"><div class="module-title">Key questions</div></div>
+        <div class="module-header"><div class="module-title">@lang('form/imet/v2/report.key_questions')</div></div>
         <div class="module-body">
-            <h5>What are your management/governance priorities?</h5>
+            <h5>@lang('form/imet/v2/report.management_priorities')</h5>
             @include('admin.imet.v1.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'priorities'])
-            <h5>What is your minimum operating budget to ensure the preservation of the values and importance of your protected area?</h5>
+            <h5>@lang('form/imet/v2/report.operating_budget')</h5>
             @include('admin.imet.v1.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'minimum_budget'])
-            <h5>In the case of additional funding for the management of the protected area what actions would you like to take and for how much time?</h5>
+            <h5>@lang('form/imet/v2/report.additional_funding')</h5>
             @include('admin.imet.v1.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'additional_funding'])
         </div>
     </div>
@@ -214,7 +214,7 @@ function score_class_threats($value, $additional_classes=''){
             <div>
                 <div v-if=connection>
 
-                    <b>Forest Cover</b>
+                    <b>@lang('form/imet/v2/report.forest_cover')</b>
                     <dopa_indicators_table
                         :title=dopa_indicators.forest_cover.title_table
                         :indicators=dopa_indicators.forest_cover.indicators
@@ -228,7 +228,7 @@ function score_class_threats($value, $additional_classes=''){
 
                     <hr />
 
-                    <b>Total Carbon</b>
+                    <b>@lang('form/imet/v2/report.total_carbon')</b>
                     <dopa_indicators_table
                         :title=dopa_indicators.total_carbon.title_table
                         :indicators=dopa_indicators.total_carbon.indicators
@@ -236,7 +236,7 @@ function score_class_threats($value, $additional_classes=''){
                     ></dopa_indicators_table>
 
 
-                    <b>Agricultural pressure</b>
+                    <b>@lang('form/imet/v2/report.agricultural_pressure')</b>
                     <dopa_indicators_table
                             :title=dopa_indicators.agricultural_pressure.title_table
                             :indicators=dopa_indicators.agricultural_pressure.indicators
@@ -286,49 +286,49 @@ function score_class_threats($value, $additional_classes=''){
             api_data: JSON.parse('{!! App\Library\Utils\Type\JSON::toVue($dopa_indicators) !!}'),
             dopa_indicators: {
                 forest_cover: {
-                    title_table: 'Forest Cover',
-                    title_chart: 'Forest loss and gain (%)',
+                    title_table: '@lang("form/imet/v2/report.forest_cover")',
+                    title_chart: '@lang("form/imet/v2/report.forest_cover_percent") (%)',
                     indicators: [
                         {
                             field: 'gfc_treecover_km2',
-                            label: 'Forest cover [km2]',
+                            label: '@lang("form/imet/v2/report.forest_cover") [km2]',
                             color: '#5b5b5b'
                         },
                         {
                             field: 'gfc_treecover_perc',
-                            label: 'Forest cover [%]',
+                            label: '@lang("form/imet/v2/report.forest_cover") [%]',
                             color: '#5b5b5b'
                         },
                         {
                             field: 'gfc_loss_km2',
-                            label: 'Forest loss [km2]',
+                            label: '@lang("form/imet/v2/report.forest_loss") [km2]',
                             color: '#D9534F'
                         },
                         {
                             field: 'gfc_loss_perc',
-                            label: 'Forest loss [%]',
+                            label: '@lang("form/imet/v2/report.forest_loss") [%]',
                             color: '#D9534F'
                         },
                         {
                             field: 'gfc_gain_km2',
-                            label: 'Forest gain [km2]',
+                            label: '@lang("form/imet/v2/report.forest_gain") [km2]',
                             color: '#337AB7'
                         },
                         {
                             field: 'gfc_gain_perc',
-                            label: 'Forest gain [%]',
+                            label: '@lang("form/imet/v2/report.forest_gain") [%]',
                             color: '#337AB7'
                         },
                     ],
                     bar_indicators: [
                         {
                             field: 'gfc_loss_perc',
-                            label: 'Forest loss [%]',
+                            label: '@lang("form/imet/v2/report.forest_loss") [%]',
                             color: '#D9534F'
                         },
                         {
                             field: 'gfc_gain_perc',
-                            label: 'Forest gain [%]',
+                            label: '@lang("form/imet/v2/report.forest_gain") [%]',
                             color: '#337AB7'
                         },
                     ]
@@ -338,23 +338,23 @@ function score_class_threats($value, $additional_classes=''){
                     indicators: [
                         {
                             field: 'carbon_min_c_mg',
-                            label: 'Min. [Mg]'
+                            label: '@lang("form/imet/v2/report.min") [Mg]'
                         },
                         {
                             field: 'carbon_mean_c_mg',
-                            label: 'Mean [Mg]'
+                            label: '@lang("form/imet/v2/report.mean") [Mg]'
                         },
                         {
                             field: 'carbon_max_c_mg',
-                            label: 'Max. [Mg]'
+                            label: '@lang("form/imet/v2/report.max") [Mg]'
                         },
                         {
                             field: 'carbon_stdev_c_mg',
-                            label: 'Std. Dev. [Mg]'
+                            label: '@lang("form/imet/v2/report.std_dev") [Mg]'
                         },
                         {
                             field: 'carbon_tot_c_mg',
-                            label: 'Sum [Pg]'
+                            label: '@lang("form/imet/v2/report.sum") [Pg]'
                         },
                     ]
                 },
@@ -363,11 +363,11 @@ function score_class_threats($value, $additional_classes=''){
                     indicators: [
                         {
                             field: 'agri_ind_pa',
-                            label: 'Protected Area. [%]'
+                            label: '@lang("form/imet/v2/report.protected_area") [%]'
                         },
                         {
                             field: 'agri_ind_bu',
-                            label: '10 km Unprotected buffer [%]'
+                            label: '@lang("form/imet/v2/report.unprotected_buffer") [%]'
                         }
                     ]
                 }
