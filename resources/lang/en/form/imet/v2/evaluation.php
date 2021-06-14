@@ -30,7 +30,7 @@ return [
         ],
         'module_subTitle' => 'Value and Importance - Special Designations',
         'module_info_EvaluationQuestion' => [
-            'Has the protected area included the values and importance of national, regional or international designations in the management of the protected area?'
+            'Has the protected area included the values and importance of national, regional or international designations in its management?'
         ],
         'module_info_Rating' => [
             'Evaluate the integration of the values and importance of the designations (national designation and international designation, e.g. World Heritage site or Ramsar site) in the management of the protected area'
@@ -65,7 +65,7 @@ return [
         ],
         'module_subTitle' => 'Value and Importance - Species (flagship, endangered, endemic, exploited, invasive, etc.)',
         'module_info_EvaluationQuestion' => [
-            'Has the protected area clearly identified and integrated the key species in the management of the protected area?'
+            'Has the protected area clearly identified and integrated the key species in its management?'
         ],
         'module_info_Rating' => [
             'Evaluate the level of integration of 3 to 10 key species in the management of the protected area (based on an analysis of the Context of Intervention, points 4.1 and 4.2, automatically reported below). (The representativeness or highly representative of a key specie corresponds to the degree to which it: (i) represents a strong natural characteristic of one habitat, ecosystem, biome; (ii) influences an ecological process or community or (iii) affects a species-directed management policy)'
@@ -77,7 +77,7 @@ return [
     ],
 
     'ObjectivesSpecies' => [
-        'module_info' => 'Establish and describe conservation objectives for for <b>species (flagship, endangered, endemic, exploited, invasive and for which there is insufficient data) </b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe conservation objectives for <b>species (flagship, endangered, endemic, exploited, invasive and for which there is insufficient data) </b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
     ],
 
     'ImportanceHabitats' => [
@@ -108,7 +108,7 @@ return [
         ],
         'module_subTitle' => 'Value and Importance - Terrestrial and marine habitats - land-cover, land-change and land-take',
         'module_info_EvaluationQuestion' => [
-            'Has the protected area clearly identified and integrated the most important terrestrial and marine habitats and dimensions of land-cover, land-change and land-take in the management of the protected area'
+            'Has the protected area clearly identified and integrated the most important terrestrial and marine habitats and dimensions of land-cover, land-change and land-take in its management'
         ],
         'module_info_Rating' => [
             'Evaluate the level of integration in the management of the protected area of 3 to 10 of the most representative and important habitats and dimensions of land-cover, land-change and land-take types (based on the analysis of the Context of Intervention, points 4.3.1 and 4.3.2, automatically reported below). (The regional and global value/importance of habitats and of land-cover is a degree to which it: (i) represents at the regional or global level the natural environment of key plants or animals; (ii) influences an ecological process or community and (iii) affects a habitat / land cover directed management policy)'
@@ -142,10 +142,10 @@ return [
         ],
         'module_subTitle' => 'Value and Importance - Climate Change',
         'module_info_EvaluationQuestion' => [
-            'Has the protected area clearly identified and integrated the key elements (species, habitats, etc.) most vulnerable to climate change in the management of the protected area to adopt the best available adaptation measures?'
+            'Has the protected area clearly identified and integrated the climate change most vulnerable key elements in its management to adopt the best available adaptation measures?'
         ],
         'module_info_Rating' => [
-            'Evaluate the level of integration in the management of the protected area of the most important key elements (species, habitats, etc.) most vulnerable to climate change (based on the analysis of the Context of Intervention, points CTX6.1, automatically reported below)'
+            'Evaluate the level of integration in the management of the protected area of the climate change most vulnerable key elements (based on the analysis of the Context of Intervention, points CTX6.1, automatically reported below)'
         ],
         'warning_on_save' =>
             'WARNING!! <br /> Any modification may cause data loss in the following
@@ -175,10 +175,10 @@ return [
         ],
         'module_subTitle' => 'Value and Importance - Ecosystem services',
         'module_info_EvaluationQuestion' => [
-            'Has the protected area clearly identified and integrated the most important ecosystem services for human well-being in the management of the protected area?'
+            'Has the protected area clearly identified and integrated the most important ecosystem services for human well-being in its management?'
         ],
         'module_info_Rating' => [
-            'Evaluate the level of integration in the management of the protected area of the most important ecosystem services (based on the analysis of the Context of Intervention point CTX7.1, automatically reported below)'
+            'Evaluate the level of integration of the most important ecosystem services in the management of the protected area (based on the analysis of the Context of Intervention point CTX7.1, automatically reported below)'
         ],
         'warning_on_save' =>
             'WARNING!! <br /> Any modification may cause data loss in the following
@@ -190,7 +190,7 @@ return [
     ],
 
     'SupportsAndConstraints' => [
-        'title' => 'External constraints or supporting',
+        'title' => 'External constraints or supports',
         'fields' => [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Influence/power of the stakeholders',
@@ -264,13 +264,13 @@ return [
                 '3' => 'High influence/power'
             ],
             'EvaluationScore2' => [
-                '-3' => 'Severe constraints generated by this stakeholder ',
-                '-2' => 'Constraints generated by this stakeholder',
-                '-1' => 'Some constraints generated by this stakeholder',
-                '0' => 'Neither constraining nor supporting role of this stakeholder',
-                '+1' => 'Some supports from this stakeholder',
-                '+2' => 'Support (least–moderate–severe)',
-                '+3' => 'Strong supports from this stakeholder',
+                '-3' => 'Severe constraints ',
+                '-2' => 'Moderate constraints',
+                '-1' => 'Minor constraints',
+                '0' => 'No constraints but also no support role',
+                '+1' => 'Minor supports',
+                '+2' => 'Moderate supports',
+                '+3' => 'Strong supports',
             ],
         ],
         'module_info_EvaluationQuestion' => [
@@ -294,10 +294,10 @@ return [
             'Comments' => 'Comments/Explanation',
         ],
         'module_info_EvaluationQuestion' => [
-            'Has the protected area clearly identified and integrated the threats (pressures, threats and vulnerabilities) that could affect the area’s biodiversity, cultural heritage, ecosystem services, etc. in the management of the protected area??'
+            'Has the protected area clearly identified and integrated the threats that could affect the area’s biodiversity, cultural heritage, or ecosystem services in its management ?'
         ],
         'module_info_Rating' => [
-            'Evaluate the level of integration in the management of the protected area of most important threats based on the analysis of the threats calculator at Context of intervention point CTX 5.1 and automatically reported below.'
+            'Evaluate the level of integration of most important threats in the management of the protected area based on the analysis of the threats calculator at Context of intervention point CTX 5.1 and automatically reported below.'
         ],
         'warning_on_save' =>
             'WARNING!! <br /> Any modification may cause data loss in the following
@@ -305,7 +305,7 @@ return [
     ],
 
     'ObjectivesMenaces' => [
-        'module_info' => 'Setting target conservation objectives and indicators for <b>the most important threats facing</b> the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Setting target conservation objectives and indicators for <b>the most important threats facing</b> the protected area<br /> The objectives entered below will be used for improving the management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
     ],
 
     'RegulationsAdequacy' => [
@@ -329,7 +329,7 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'this element is not related to the management of the protected area',
-                '0' => 'Fully inadequate',
+                '0' => 'Completely inadequate',
                 '1' => 'Somewhat inadequate',
                 '2' => 'Adequate',
                 '3' => 'Fully adequate',
@@ -354,7 +354,7 @@ return [
         'predefined_values' => [
             'Size (surface area)',
             'Configuration or shape of the protected area',
-            'Boundary/area ratio, value based on the analysis of context of intervention, point CTX 2',
+            'Boundary/area ratio, value based on the analysis of context of intervention, point CTX 2',
             'Border zone (areas near borders immediately outside of the protected area that have special rules on resources use)',
             'Buffer zones (areas surrounding a protected area, where special management of resources use and special development measures are undertaken in order to enhance the conservation value of the protected area)',
             'Corridors',
@@ -363,7 +363,7 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'this element is not related to the management of the protected area',
-                '0' => 'Fully inadequate',
+                '0' => 'Completely inadequate',
                 '1' => 'Somewhat inadequate',
                 '2' => 'Adequate',
                 '3' => 'Fully adequate',
@@ -397,7 +397,7 @@ return [
             'Collaboration in the demarcation of boundaries',
             'Publication of information of the boundaries demarcation',
             'Demarcation and development of legal boundaries consistent with legal statutes and international laws if necessary',
-            'Demarcation using the official source of reference dat',
+            'Demarcation using the official source of reference data',
             'Boundaries recorded with geographic coordinates (degree, min, sec)',
             'Demarcation of PA use zones (zoning)',
         ],
@@ -413,7 +413,7 @@ return [
             ],
             'EvaluationScore' => [
                 'N/A' => 'this element is not related to the management of the protected area',
-                '0' => 'Fully inadequate (0-30% of the needs)',
+                '0' => 'Completely inadequate (0-30% of the needs)',
                 '1' => 'Somewhat inadequate (31-60% of the needs)',
                 '2' => 'Adequate (61-90% of the needs)',
                 '3' => 'Fully adequate (91-100% of the needs)',
@@ -521,7 +521,7 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'this element is not related to the management of the protected area',
-                '0' => 'Fully inadequate (0-30% of the needs)',
+                '0' => 'Completely inadequate (0-30% of the needs)',
                 '1' => 'Somewhat inadequate (31-60% of the needs)',
                 '2' => 'Adequate (61-90% of the needs)',
                 '3' => 'Fully adequate (91-100% of the needs)',
@@ -529,7 +529,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Are the objectives set for the protected area adequate?',
-            'Management of protected areas is increasingly being carried out following the ‘management by objectives’ approach. It is considered proactive, i.e. designed to achieve specific set of results, rather than reactive, i.e., merely responding to issues that arise. The goals and objectives of the protected area have to be clearly understood. They should be well-defined and worded to facilitate monitoring but also should relate to the key values of the protected area (i.e. important species or ecosystems) or to major areas of management activity (e.g. tourism, education). In this tool we make an important distinction between outcomes and outputs.<ul><li>OUTCOMES relate to GOALS / OBJECTIVES, i.e. long-term goals / objectives or visions expressed in the management plan. These goals / objectives are usually specific statements relating to the key values of the protected area (i.e. important species or ecosystem services) or to major areas of management activities (e.g. tourism, education).</li><li>OUTPUTS relate to TARGETS, i.e. short-term (or relatively short-term) quantitative targets to achieve the long-term goals / objectives and specific objectives. We believe that the use of many low-level conservation targets is an obstacle to achieving high-level conservation performance.</li></ul>'
+            'Management of protected areas is increasingly being carried out following the ‘management by objectives’ approach. It is considered proactive, i.e. designed to achieve specific set of results, rather than reactive, i.e., merely responding to issues that arise. The goals and objectives of the protected area have to be clearly understood. They should be well-defined and worded to facilitate monitoring but also should relate to the key values of the protected area (i.e. important species or ecosystems) or to major areas of management activity (e.g. tourism, education). In this tool we make an important distinction between outcomes and outputs.<ul><li>OUTCOMES refer to changes related to GOALS / OBJECTIVES, i.e. long-term goals / objectives or visions expressed in the management plan. These goals / objectives are usually specific statements relating to the key values of the protected area (i.e. important species or ecosystem services) or to major areas of management activities (e.g. tourism, education).</li><li>OUTPUTS refer to the achievement ofshort term ACTIVITIES, generally measured in a quantitative manner, and which contribute with other achievements to reach the long-term goals or specific objectives.</li></ul>'
         ],
         'module_info_Rating' => [
             'Evaluate the adequacy of the management plan objectives for the key elements of the protected area, based on the analysis of the intervention context, points: CTX1.5, CTX 4, 5, 6, 7 and context of management, points from C 1.1 to C 1.5)'
@@ -626,7 +626,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Is the current budget adequate for appropriate management of the protected area?',
-            'Protected areas prepare their annual operating budgets each year or for a number of years. Key financial planning and budget documents are necessary to improve operational efficiency and effectiveness. The improvement is achieved through the use of performance measures and analysis of processes'
+            'Protected areas prepare their annual operating budgets each year or for several years. Key financial planning and budget documents are necessary to improve operational efficiency and effectiveness. The improvement is achieved using performance measures and analysis of processes'
         ],
         'module_info_Rating' => [
             'Evaluate the adequacy of current year funding of the protected area in relation to conservation requirements (based on the analysis of the context of intervention, point CTX 3.2)'
@@ -658,7 +658,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'How much of the required budget is secured, and for how long, to cover basic protected area management needs?',
-            'A secure and reliable budget is critical for protected area planning and management, in particular for large-scale and long-term activities. A realistic assessment of needs should be made to ensure that all costs associated with the work or management plan can be fully met, bearing in mind that some goals will require several years to be achieved. Where resources are not available, the manager must decide how to prioritise activities in terms of timing and investmen'
+            'A secure and reliable budget is critical for protected area planning and management, in particular for large-scale and long-term activities. A realistic assessment of needs should be made to ensure that all costs associated with the work or management plan can be fully met, bearing in mind that some goals will require several years to be achieved. Where resources are not available, the manager must decide how to prioritise activities in terms of timing and investment.'
         ],
         'module_info_Rating' => [
             'Evaluate: A) the security of funding and B) the period of security of funding for the forthcoming years in relation to conservation requirements in the protected area'
@@ -676,7 +676,7 @@ return [
         'adequacy' => 'Adequacy of infrastructure, equipment and facilities',
         'ratingLegend' => [
             'EvaluationScore' => [
-                '0' => 'Fully inadequate (0-30% of the needs)',
+                '0' => 'Completely inadequate (0-30% of the needs)',
                 '1' => 'Somewhat inadequate (31-60% of the needs)',
                 '2' => 'Adequate (61-90% of the needs)',
                 '3' => 'Fully adequate (91-100% of the needs)',
@@ -710,13 +710,13 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-                '0' => 'Fully inadequate',
+                '0' => 'Completely inadequate',
                 '1' => 'Somewhat inadequate',
                 '2' => 'Adequate',
                 '3' => 'Fully adequate'
             ],
             'PercentageLevel' => [
-                '0' => 'Fully inadequate staff capacity-building activities',
+                '0' => 'Completely inadequate staff capacity-building activities',
                 '1' => 'Somewhat adequate staff capacity building activities',
                 '2' => 'Adequate staff capacity-building activities, but improvements are needed',
                 '3' => 'Fully adequate staff capacity building activities (sufficient and updated)'
@@ -754,7 +754,7 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'this element is not related to the management of the protected area',
-                '0' => 'Fully inadequate (0-30% of the needs)',
+                '0' => 'Completely inadequate (0-30% of the needs)',
                 '1' => 'Somewhat inadequate (31-60% of the needs)',
                 '2' => 'Adequate (61-90% of the needs)',
                 '3' => 'Fully adequate (91-100% of the needs)'
@@ -793,7 +793,7 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'this element is not related to the management of the protected area',
-                '0' => 'Fully inadequate (0-30% of the needs)',
+                '0' => 'Completely inadequate (0-30% of the needs)',
                 '1' => 'Somewhat inadequate (31-60% of the needs)',
                 '2' => 'Adequate (61-90% of the needs)',
                 '3' => 'Fully adequate (91-100% of the needs)'
@@ -812,7 +812,7 @@ return [
         'title' => 'Management guidance of the protected area',
         'fields' => [
             'EvaluationScoreGovernace' => 'A) Adequacy of management\'s communication about the protected area mission and values',
-            'EvaluationScoreLeadership' => 'B) Adequacy of management’s results oriented approach',
+            'EvaluationScoreLeadership' => 'B) Adequacy of management’s results-oriented approach',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
@@ -823,10 +823,10 @@ return [
                 '3' => 'There is complete communication about the protected area vision, mission and values to influence performance, support and feedback of the staff (between 76 and 100% of requirements)'
             ],
             'EvaluationScoreLeadership' => [
-                '0' => 'The management is not results oriented in achieving the vision, mission and conservation of values of the protected area',
-                '1' => 'The management is weakly results oriented in achieving the vision, mission and conservation of values of the protected area',
-                '2' => 'The management is usually results oriented in achieving the vision, mission and conservation of values of the protected area',
-                '3' => 'The management is strong results oriented in achieving the vision, mission and the conservation of values of the protected area'
+                '0' => 'The management is not results-oriented in achieving the vision, mission and conservation of values of the protected area',
+                '1' => 'The management is poorly results-oriented in achieving the vision, mission, and conservation of values of the protected area',
+                '2' => 'The management is usually results-oriented in achieving the vision, mission, and conservation of values of the protected area',
+                '3' => 'The management is strongly results-oriented in achieving the vision, mission, and conservation of values of the protected area'
             ],
         ],
         'module_info_EvaluationQuestion' => [
@@ -863,7 +863,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Are the budget and financial resources well managed so as to meet essential and priorities management requirements of the protected area?',
-            'The budget and financial management should be a significant system for the protected area. It ensures the budget functionality that would permit budgeting, allocation of position costs across programs, dynamic and detailed forecasting of position costs, integration of strategic planning and performance measurement data, etc. Budget and financial management is more than keeping accounting records. It is an essential part of planning, organising, controlling and monitoring financial resources in order to achieve conservation objectives of the protected area. You can only achieve effective budget and financial management if you have a sound management and work plan. A plan in this context means having set objectives and having agreed, developed and evaluated the policies, strategies, tactics and actions to achieve the objectives.'
+            'The budget and financial management of a protected area should be robust to permit adequate budgeting, allocation of position costs across programs, dynamic and detailed forecasting of position costs, integration of strategic planning and performance measurement data, etc. Budget and financial management is more than keeping accounting records. It is an essential part of planning, organising, controlling and monitoring financial resources in order to achieve conservation objectives of the protected area. You can only achieve effective budget and financial management if you have a sound management and work plan with clear policies, strategies and set of agreed objectives.'
         ],
         'module_info_Rating' => [
             'Evaluate the set-up of the basic elements that must be in place to achieve good practice in budget and financial management. (There is no single model of a budget and financial management system that suits all organisations, but there are some basics that must be in place to achieve good practice in budget and financial management)'
@@ -881,7 +881,7 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'this element is not related to the management of the protected area',
-                '0' => 'Fully inadequate (0-30% of the needs)',
+                '0' => 'Completely inadequate (0-30% of the needs)',
                 '1' => 'Somewhat inadequate (31-60% of the needs)',
                 '2' => 'Adequate (61-90% of the needs)',
                 '3' => 'Fully adequate (91-100% of the needs)'
@@ -889,7 +889,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Are the protected area’s infrastructure, equipment and facilities adequately maintained?',
-            'Preventive maintenance is the term used for routine recurring maintenance performed on infrastructure, equipment and facilities to keep them running smoothly and efficiently and to help extend their life. Poorly maintained infrastructure, equipment and facilities not only wear out more quickly, but also waste resources and fundamentally degrade the protected area’s capacity to achieve conservation objectives. The protected area should work to prevent both of these conditions through an adequate maintenance programme'
+            'Preventive maintenance is the term used for routine recurring maintenance performed on infrastructure, equipment and facilities to keep them running smoothly and efficiently and to help extend their life. Poorly maintained infrastructure, equipment and facilities not only wear out more quickly, but also waste resources and fundamentally degrade the protected area’s capacity to achieve conservation objectives. The protected area should work to prevent both conditions through an adequate maintenance programme'
         ],
         'module_info_Rating' => [
             'Evaluate the level of maintenance of infrastructure, equipment and facilities in relation to management requirements for the protected area (based on the analysis of the context of intervention, point CTX 3.3)'
@@ -916,7 +916,7 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'this element is not related to the management of the protected area',
-                '0' => 'Fully inadequate (0-30% of the needs)',
+                '0' => 'Completely inadequate (0-30% of the needs)',
                 '1' => 'Somewhat inadequate (31-60% of the needs)',
                 '2' => 'Adequate (61-90% of the needs)',
                 '3' => 'Fully adequate (91-100% of the needs)'
@@ -924,7 +924,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Are there in place specific management actions for the key values and threats to the protected area?',
-            'The main management objective of protected areas is conservation/restoration of natural and associated cultural values.To preserve protected areas, in addition to ensuring their protection, managers should use the available management advice and guidelines, identify and implement the required measures using best practices for the benefit of key values and minimising the most significant threats. Actions can include conservation/restoration of animal and plant species, land cover and managing various threats (note: for the climate change adaptation and ecosystem services management actions see PR 17 and PR 18). Examples of actions: management of animals or plants, management of the physical environment, managing fire, revegetation work, controlling invasive species, management of cultural resources, minimise threats, etc.'
+            'The primary management objective of protected areas is conservation/restoration of natural and associated cultural values.To preserve these values and minimise the most significant threats, managers should identify and use the available management guidelines, measures and best practices. Actions can include conservation/restoration of animal and plant species, land cover and managing various threats (note: for the climate change adaptation and ecosystem services management actions see PR 17 and PR 18). Examples of actions: management of animals or plants, management of the physical environment, managing fire, revegetation work, controlling invasive species, management of cultural resources, minimise threats, etc.'
         ],
         'module_info_Rating' => [
             'List three or more key values, threats and other key elements and evaluate the adequacy of related management actions (based on the analysis of the context of intervention points CTX 4 and 5)'
@@ -939,7 +939,7 @@ return [
         ],
         'predefined_values' => [
             'Proactive strategic management',
-			'Collaborative surveillance (protection achived through a combination of enforcement and collaboration with communities)',
+			'Collaborative surveillance (protection achieved through a combination of enforcement and collaboration with communities)',
             'Standard operating procedures (SOPs)',
             'Emergency operating procedures',
             'Rapid intervention procedures',
@@ -957,7 +957,7 @@ return [
         'ratingLegend' => [
             'Adequacy' => [
                 'N/A' => 'this element is not related to the management of the protected area',
-                '0' => 'Fully inadequate (0-30%)',
+                '0' => 'Completely inadequate (0-30%)',
                 '1' => 'Somewhat inadequate (31-60%)',
                 '2' => 'Adequate (61-90%)',
                 '3' => 'Fully adequate (91-100%)',
@@ -1005,7 +1005,7 @@ return [
         'ratingLegend' => [
             'Adequacy' => [
                 'N/A' => 'this element is not related to the management of the protected area',
-                '0' => 'Fully inadequate (0-30%)',
+                '0' => 'Completely inadequate (0-30%)',
                 '1' => 'Somewhat inadequate (31-60%)',
                 '2' => 'Adequate (61-90%)',
                 '3' => 'Fully adequate (91-100%)',
@@ -1026,7 +1026,7 @@ return [
             'Element' => 'Criteria – Concept measured – Variable',
             'Cooperation' => 'Degree of cooperation',
             'MPInvolvement' => 'P',
-            'MPIImplementation' => 'PM',
+            'MPImplementation' => 'PM',
             'BAInvolvement' => 'B/A',
             'EEInvolvement' => 'IEC',
             'Comments' => 'Comments/Explanation',
@@ -1081,8 +1081,8 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Do stakeholders contribute to management of the protected area to develop understanding and support for the delivery of protected area objectives??',
-            'In many protected areas, some or all of the relevant stakeholders are cooperating in a substantial way in the management’s decision-making regarding activities and their implementation inside or outside of the protected area. This cooperation can involve formal or informal agreements. The level of stakeholder cooperation in a protected area depends on a variety of factors, but particularly on the nature of the stakeholders, the pressures and other influences arising from stakeholders, and the biodiversity and ecosystem services of the protected area. This step in the analysis evaluates how some or all of the relevant stakeholders are involved in the management of the protected area in four areas: (P) planning; (PM) planning and management (B/A) benefits/assistance for local communities (IEC) Information, education and communication for community understanding and engagement. The optimal level of stakeholder involvement and cooperation should be determined for each protected area individually because each protected area is unique'
+            'Do stakeholders contribute to the management of the protected area to develop understanding and support for the delivery of protected area objectives?',
+            'In many protected areas, some or all the relevant stakeholders are cooperating in a substantial way in the management’s decision-making regarding activities and their implementation inside or outside of the protected area. This cooperation can involve formal or informal agreements. The level of stakeholder cooperation in a protected area depends on a variety of factors, but particularly on the nature of the stakeholders, the pressures and other influences arising from stakeholders, and the biodiversity and ecosystem services of the protected area. This step in the analysis evaluates how some or all relevant stakeholders are involved in the management of the protected area in four areas: (P) planning; (PM) planning and management (B/A) benefits/assistance for local communities (IEC) Information, education and communication for community understanding and engagement. The optimal level of stakeholder involvement and cooperation should be determined for each protected area individually because each protected area is unique'
         ],
         'module_info_Rating' => [
             'Select (A) the areas in which the stakeholders are involved in managing the protected area and evaluate (B) the level of cooperation:<ul><li><b>P</b>: management planning</li><li><b>PM</b>: management plan implementation</li><li><b>B/A</b>:benefits/assistance for local communities </li><li><b>IEC</b>:environmental education, community awareness and engagement</li></ul>'
@@ -1104,9 +1104,9 @@ return [
             'group0' => [
                 'Support for local activities (e.g. ecosystem services management, climate change mitigation, etc.)',
                 'Support for local business (e.g. processing of agricultural, fishing, forest products, etc.)',
-                'Support for local funding path-ways',
+                'Support for local funding pathways',
                 'Support for food production and small farming',
-                'Purchase of agricultures products for tourism and staff',
+                'Purchase of agriculture products for tourism and staff',
                 'Support for tourism businesses',
                 'Support for traditional products and crafts for tourists',
                 'Support for human-wildlife conflict resolutions - compensation',
@@ -1136,7 +1136,7 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'this element is not related to the management of the protected area',
-                '0' => 'Fully inadequate (0-30%)',
+                '0' => 'Completely inadequate (0-30%)',
                 '1' => 'Somewhat inadequate (31-60%)',
                 '2' => 'Adequate (61-90%)',
                 '3' => 'Fully adequate (91-100%)'
@@ -1144,7 +1144,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Does the protected area carry out activities/programmes designed to provide appropriate benefits/assistance for communities? ',
-            'Protected area management has moved away from the historical total protection paradigm, whereby conservation gains were generally seen to come at the expense of the local communities’ interests. It is now widely acknowledged that protected areas should contribute to sustainable development and economic well-being of their neighbouring communities. Positive socio-economic outcomes from protected areas are important in their own right, but they may also be necessary to ensure that protected areas continue to deliver strong ecological outcomes. A lack of appropriate benefits/assistance for local communities has been linked to failed conservation outcomes from protected area initiatives in many case studies from around the world. Accordingly, international best practice standards promote protected area assessment that accounts for both ecological and socio-economic outcomes (Sources UNESCO - IUCN).'
+            'Protected area management has moved away from the historical total protection paradigm, whereby conservation gains were generally seen to come at the expense of the local communities’ interests. It is now widely acknowledged that protected areas should contribute to sustainable development and economic well-being of their neighbouring communities. Positive socio-economic outcomes from protected areas are important, but they may also be necessary to ensure that protected areas continue to deliver strong ecological outcomes. A lack of appropriate benefits/assistance for local communities has been linked to failed conservation outcomes from protected area initiatives in many case studies from around the world. Accordingly, international best practice standards promote protected area assessment that accounts for both ecological and socio-economic outcomes (Sources UNESCO - IUCN).'
         ],
         'module_info_Rating' => [
             'Evaluate the adequacy of the activities/programme that the protected area is carrying out to provide benefits/assistance for communities'
@@ -1174,7 +1174,7 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'this element is not related to the management of the protected area',
-                '0' => 'fully inadequate (0-30%)',
+                '0' => 'Completely inadequate (0-30%)',
                 '1' => 'somewhat inadequate (31-60%)',
                 '2' => 'adequate (61-90%)',
                 '3' => 'fully adequate (91-100%)',
@@ -1197,27 +1197,27 @@ return [
             'Comments' => 'Comments/Explanation',
         ],
         'predefined_values' => [
-            'Management procedures for tourism related to objectives/favourable outcomes of protected area values',
-            'Existence of specific targets for tourism and visitor management',
-            'Awareness of the consequences emerging from tourism activities',
+            'Tourism management procedures related to objectives/favourable outcomes of protected area values',
+            'Existence of specific objectives for tourism and visitor management',
+            'Raising awareness of the consequences of ecotourism activities',
             'Usage of zoning to manage diverse recreation opportunities while preserving important values',
-            'Tourism diversity through promoting  biophysical, cultural and social values',
-            'Engagement of stakeholders and rightholders to establish consensus and partnership for implementation of tourism activities',
+            'Tourism diversification through promoting  biophysical, cultural and social values',
+            'Commitment of stakeholders and rightholders to establish consensus and partnership for implementation of tourism activities',
             'Economic benefits for protected areas ensured',
             'Information and communication strategy and programmes supporting the sustainability of tourism programmes',
             'Accommodation, catering and leisure activities management',
             'Visitor transport and safety management',
             'Accommodation, catering, leisure activities for disabled people ',
             'Range of experiences available for visitors',
-            'Guides tourism in the protected area',
+            'Tourist guides in the protected area',
             'Constant development of tourist attractions',
             'Sense of place (preserving or improving the specific character of the natural area)',
-            'Data tourism monitoring'
+            'Tourism monitoring data'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'this element is not related to the management of the protected area',
-                '0' => 'Fully inadequate (0-30%)',
+                '0' => 'Completely inadequate (0-30%)',
                 '1' => 'Somewhat inadequate (31-60%)',
                 '2' => 'Adequate (61-90%)',
                 '3' => 'Fully adequate (91-100%)',
@@ -1248,7 +1248,7 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A => this element is not related to the management of the protected area',
-                '0' => 'fully inadequate (0-30%)',
+                '0' => 'Completely inadequate (0-30%)',
                 '1' => 'somewhat inadequate (31-60%)',
                 '2' => 'adequate (61-90%)',
                 '3' => 'fully adequate (91-100%)',
@@ -1289,7 +1289,7 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'this element is not related to the management of the protected area',
-                '0' => 'fully inadequate (0-30%)',
+                '0' => 'Completely inadequate (0-30%)',
                 '1' => 'somewhat inadequate (31-60%)',
                 '2' => 'adequate (61-90%)',
                 '3' => 'fully adequate (91-100%)',
@@ -1328,14 +1328,14 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'this element is not related to the management of the protected area',
-                '0' => 'Fully inadequate (0-30%)',
+                '0' => 'Completely inadequate (0-30%)',
                 '1' => 'Somewhat inadequate (31-60%)',
                 '2' => 'Adequate (61-90%)',
                 '3' => 'Fully adequate (91-100%)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Does the protected area coordinate or initiate research activities and long-term ecological monitoring, and does it have access to and makes use of the research results in the management?',
+            'Does the protected area coordinate or initiate research activities and long-term ecological monitoring, and does it have access to and make use of the research results in its management?',
             'The purpose of the research and biomonitoring in a protected area is to obtain information on the long-term development of selected components of its ecosystems to predict future issues and plan management interventions. A survey should select the areas as well the species, habitats, water, etc. to evaluate the environmental health of the values and importance of the protected area. Functional measures could be increasingly applied as a complementary approach to monitor the ecological integrity of the protected area'
         ],
         'module_info_Rating' => [
@@ -1344,7 +1344,7 @@ return [
     ],
 
     'ClimateChangeMonitoring' => [
-        'title' => 'Management of adaptation to the effects of climate change',
+        'title' => 'Management of adaptation to the climate change effect',
         'fields' => [
             'Program' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Rating: Adequacy of adaptation measures',
@@ -1365,14 +1365,14 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'this element is not related to the management of the protected area',
-                '0' => 'fully inadequate (0-30%)',
+                '0' => 'Completely inadequate (0-30%)',
                 '1' => 'somewhat inadequate (31-60%)',
                 '2' => 'adequate (61-90%)',
                 '3' => 'fully adequate (91-100%)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'How does the protected area manage adaptation to the effects of climate change?',
+            'How does the protected area manage the adaptation to the climate change effects?',
             'Climate change response can be divided into “mitigation” (actions that reduce the amount of carbon dioxide and other heat-trapping gases in the atmosphere) and “adaptation” (an adjustment of human or natural systems to the changing climate). While protected areas have the ability to capture and store carbon in their ecosystems and to reduce emissions from protected area operations, the primary focus of the management is usually on adaptation to the effects of climate change'
         ],
         'module_info_Rating' => [
@@ -1407,14 +1407,14 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'this element is not related to the management of the protected area',
-                '0' => 'fully inadequate (0-30%)',
+                '0' => 'Completely inadequate (0-30%)',
                 '1' => 'somewhat inadequate (31-60%)',
                 '2' => 'adequate (61-90%)',
                 '3' => 'fully adequate (91-100%)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Does the protected area manage to promote the conservation/enhancement of the ecosystem services provided by the protected area?',
+            'Does the protected area promote the conservation and the enhancement of the ecosystem services it provides?',
             'Ecosystem services are the many and varied benefits that humans freely gain from the natural environment and from properly functioning ecosystems. Ecosystem services are grouped into four broad categories: (1) provisioning services, such as the production of food and water; (2) regulating services, such as the control of climate and disease; (3) cultural services, such as spiritual and recreational benefits; and (4) supporting services, such as nutrient cycles, crop pollination or habitats that provide everything that an individual plant or animal needs to survive: food; water; and shelter [Millennium Ecosystem Assessment (MA)]'
         ],
         'module_info_Rating' => [
@@ -1475,7 +1475,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'To what extent has the protected area achieved the main outputs of the work plan?',
-            'The prevalent approach for protected area planning includes the establishment of annual or multi-year work/action plan OUTPUTS that contributes to the achievement of long-term conservation goals / objectives or OUTCOMES. In the planning process the longer-term goals / objectives are translated into short-term conservation targets for specific biodiversity features, such as species, habitats and threats or ecosystem services possible to achieve with the work/action plan. However, since the use of many low-level conservation targets is an obstacle to achieving high-level conservation performance, the outputs must be strongly linked to the outcomes to ensure high-level conservation performance. Putting performance measurement systems in place is an important way of keeping track of the progress of your management and conservation activities'
+            'The prevalent approach for protected area planning includes the establishment of annual or multi-year work/action plan OUTPUTS that contributes to the achievement of long-term conservation goals / objectives or OUTCOMES. In the planning process the longer-term goals / objectives are translated into short-term conservation targets for specific biodiversity features, such as species, habitats and threats or ecosystem services possible to achieve with the work/action plan. However, since the use of many low-level conservation targets is an obstacle to achieving high-level conservation performance, the outputs must be strongly linked to the outcomes to ensure high-level conservation performance. Putting performance measurement systems in place is an important way of keeping track of the progress of your management and conservation activities'
         ],
         'module_info_Rating' => [
             'Evaluate the level of achievement of the main outputs of the work/action plan (in comments, indicate the reference year if you apply for a multi-year work/action plan)',
@@ -1509,7 +1509,7 @@ return [
             ],
         ],
         'module_info_EvaluationQuestion' => [
-            'What is the current extent of area domination for the protected area',
+            'What is the current extent of area domination for the protected area?',
             'Area domination refers to the ability of park management to create presence in a given area, for example through regular patrols surveys, rapid interventions or airborne surveillance. Where required, this presence needs to be imposed frequently and effectively to address threats such as poaching or illegal activities. The aim of high area domination is to prevent or minimise illegal activities affecting the biodiversity, cultural or historical values, and to enforce the protection of the protected area and its boundaries'
         ],
         'module_info_Rating' => [
@@ -1535,7 +1535,7 @@ return [
         'module_info_EvaluationQuestion' => [
             'To what extent has the protected area achieved the main objectives of the management plan?',
             '(Based on the analysis of the context of intervention, point CTX1.5 Vision – Mission – Objectives or element Planning, point P6 - Objectives of the protected area)',
-            'Management of protected areas is increasingly being carried out according to the ‘management by objectives’ principles. The goals and objectives of a protected area must be clearly understood if management is to be successful based on measurable achievements. In this tool we make an important distinction between outcomes and outputs:<ul><li>OUTCOMES relate to GOALS / OBJECTIVES, i.e. long-term goals / objectives or visions expressed in the management plan. These goals / objectives are usually specific statements relating to the key values of the protected area (i.e. important species or ecosystem services) or to major areas of management activities (e.g. tourism, education).</li><li>OUTPUTS relate to TARGETS, i.e. short-term (or relatively short-term) quantitative targets to achieve the long-term goals / objectives and specific objectives. We believe that the use of many low-level conservation targets is an obstacle to achieving high-level conservation performance</li></ul>'
+            'Management of protected areas is increasingly being carried out according to the ‘management by objectives’ principles. The goals and objectives of a protected area must be clearly understood if management is to be successful based on measurable achievements. In this tool we make an important distinction between outcomes and outputs:<ul><li>OUTCOMES refer to changes related to long-term GOALS / OBJECTIVES or vision expressed in the management plan. These goals / objectives are usually specific statements relating to the key values of the protected area (i.e. important species or ecosystem services) or to major areas of management activities (e.g. tourism, education).</li><li>OUTPUTS refer to the achievements of short term to ACTIVITIES that are generally measured in a quantitative manner, which contribute with other achievements to reach the long-term goals and specific objectives. We believe that the use of many low-level conservation targets is an obstacle to achieving high-level conservation performance</li></ul>'
         ],
         'module_info_Rating' => [
             'Evaluate the level of achievement of the main long-term goals / objectives related to the key values of the protected area or major areas of the management plan'
@@ -1596,7 +1596,7 @@ return [
     ],
 
     'LifeQualityImpact' => [
-        'title' => 'Effects on the quality of life of stakeholders',
+        'title' => 'Effects on the quality of life of local stakeholders',
         'fields' => [
             'Element' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Effects',
@@ -1609,22 +1609,21 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-                'Material well-being of local populations',
-                'Local activities intensity (food production, small farming, handicraft, services for the protected area, etc.)',
-                'Support to local business (power supply, water supply, commerce, roads between villages, etc.)',
+                'Creation or strenghening of local production activities (food production, small farming, handicraft,etc.)',
+                'contribution to local development (power and/or water supply, small business, roads between villages, etc.)',
                 'Tourism incomes',
                 'Human-wildlife conflict',
                 'Employments of locals',
-                'Ecosystem services (provisioning)'
+                'Ecosystem provisioning services'
             ],
             'group1' => [
-                'Security',
-                'Reliability (continuity, quantity and quality) of ecosystem services',
-                'Education services',
-                'Health services',
-                'Ecosystem services (Cultural)',
-                'Communities identity (cultural, traditional, spiritual, etc.)',
-                'Natural resources users conflicts reduction'
+                'Protection of people, facilities and infrastructure and social stability',
+                'Maintaining the quantity and quality of ecosystem provisioning services',
+                'Contribution to education',
+                'Contribution to the improvement of local public health',
+                'Maintening the emblematic and spiritual value of the local territory',
+                'Maintening or strengthening community identity (cultural, traditional, spiritual, etc.)',
+                'Natural resources users conflicts'
             ]
         ],
         'ratingLegend' => [
@@ -1641,10 +1640,10 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Does the management of the protected area have positive or negative effects on the quality of life of local stakeholders?',
-            'From an ecosystem perspective, all people rely on natural capital and ecosystem services. Changes in the environment (present and future conditions) and the availability of essential resources can affect the quality of life (contributions that ecosystem services make to well-being) through impacts on consumption, income and wealth (material living standards) and on good life, health and social and cultural relations (immaterial living standards). The protected area management should take great care in the effects on the quality of life of local stakeholders'
+            'Current and future changes in the environment and the availability of essential resources can affect the quality of life through impacts on consumption, income and wealth (material living standards) and on good life, health and social and cultural relations (immaterial living standards). The protected area management should take great care in the effects on the quality of life of local stakeholders'
         ],
         'module_info_Rating' => [
-            'Evaluate the effects for local stakeholders resulting from the operational activities of the protected area'
+            'Evaluate the effects of the protected area operational activities on local stakeholders.'
         ]
     ]
 

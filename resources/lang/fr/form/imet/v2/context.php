@@ -49,16 +49,16 @@ return [
         'module_info' => 'Établir et décrire les objectifs de conservation relatifs aux <b>pour les ressources humaines, financières et matérielles pour la gestion </b> de l\'aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives4' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation relatifs aux <b> i) espèces et plantes phares en voie de disparition, endémiques, envahissantes, exploitées, avec des données insuffisantes ; ii) habitats ; iii) changement de couverture terrestre et iv) gestion des ressources naturelles </b>de l\'aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs de conservation relatifs aux <b> i) espèces animales ; ii) espèces de plante; iii) habitats iv) couverture, utilisation et occupation des terres </b>de l\'aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives5' => [
         'module_info' => 'Établir et décrire les objectifs de conservation relatifs aux <b>pressions et menaces</b> qui pèsent sur l’aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives6' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation relatifs au <b>changements climatiques</b> qui pèsent sur l’aire protégée.<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs de conservation relatifs au <b>changement climatique </b> qui pèsent sur l’aire protégée.<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives7' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation relatifs au <b>maintien des services écosystémiques et à la dépendance des collectivités</b> de l’aire protégée envers ces services<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs de conservation relatifs aux <b> services écosystémiques et à la dépendance des collectivités</b> de l’aire protégée envers ces services<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
 
     'ResponsablesInterviewers' => [
@@ -144,14 +144,14 @@ return [
     ],
 
     'Networks' => [
-        'title' => 'Appartenance à un réseau de gestion local (zones tampons avec un statut particulier, réserves de faune, etc.), national, landscape, transfrontalier, régional ou international',
+        'title' => 'Appartenance à un réseau de gestion local, national, paysage, transfrontalier, régional ou international',
         'fields' => [
             'NetworkName' => 'Nom',
             'ProtectedAreas' => 'Noms des autres aires protégées du réseau',
         ],
         'groups' => [
             'group0' => 'Réseau transfrontalier',
-            'group1' => 'Landscape (réseau des AP Terrestres) - Network (réseau des AP Marines)',
+            'group1' => 'Paysage terrestre - Landscape (réseau des AP terrestres) - Paysage marin - seascape (réseau des AP marines)',
             'group2' => 'Autre réseau',
         ]
     ],
@@ -216,7 +216,7 @@ return [
             'PercentageEcoregion' => '% par rapport à l’écorégion ou à chacune des écorégions pour le cas des aires protégées appartenant à plusieurs réseaux',
             'PercentageTransnationalNetwork' => '% par rapport réseau transfrontalier',
             'PercentageLandscapeNetwork' => '% par rapport au landscape/network',
-            'Index' => 'Indice de forme <br />&radic;(3.14)/(6.28)*périmètre/&radic;(superficie) =<br /> bon 1 - 1,5; moyen de 1,5 - 2;  faible > 2',
+            'Index' => 'Indice de forme (RACINE(3.14)/(6.28)*périmètre/RACINE(superficie) = bon 1 - 1,5; moyen de 1,5 - 2;  faible > 2)',
             'Observations' => 'Observations',
         ]
     ],
@@ -404,7 +404,7 @@ return [
     ],
 
     'AnimalSpecies' => [
-        'title' => 'Espèces animales (Mammifères, Oiseaux, Amphibiens, Reptiles, Poissons), espèces phares, menacées, endémiques, exploitées, envahissantes, etc.) choisis comme éléments clés de l’aire protégée et nécessitant d’un suivi dans le temps',
+        'title' => 'Espèces animales (espèces phares, menacées, endémiques, exploitées, envahissantes, etc.) choisis comme éléments clés de l’aire protégée et nécessitant un suivi dans le temps',
         'fields' => [
             'SpeciesID' => 'Espèce',
             'FlagshipSpecies' => 'PHA',
@@ -419,7 +419,7 @@ return [
             'Reliability' => 'Fiabilité',
             'Comments' => 'Commentaires / Source',
         ],
-        'module_info' => 'État de conservation favorable : A partir de Natura 2000, L’état de conservation des espèces sera considéré comme « favorable » lorsque:<ul><li>les données sur la dynamique des populations de l’espèce concernée indiquent qu’elle se maintient à long terme en tant que composante viable de ses habitats naturels, et</li><li>l’aire de répartition naturelle de l’espèce n’est ni réduite ni susceptible de l’être dans un avenir prévisible, et il existe, et il existera probablement encore à long terme un habitat suffisamment vaste pour maintenir ses populations</li></ul>Evaluation : Évaluer, à partir de la liste des espèces supposées exister (voir les listes A de l’UICN - mammifères, B - oiseaux et C - amphibiens), un nombre limité d’espèces clés de l’aire protégée.<br /> <b>Espèce indicateurs</b> <ul> <li><b>PHA</b>: Espèce phare</li> <li><b>MEN</b>: Espèce en voie de disparition menacée</li> <li><b>END</b>: Espèce endémique</li> <li><b>EXP</b>: Espèce exploitée</li> <li><b>INV</b>: Espèce invasive</li> <li><b>INS</b>: Espèce avec faible niveau de connaissance</li> </ul>',
+        'module_info' => 'État de conservation favorable : Selon Natura 2000, l’état de conservation des espèces est considéré comme « favorable » lorsque:<ul><li>les données sur la dynamique des populations de l’espèce concernée indiquent qu’elle se maintient à long terme en tant que composante viable de ses habitats naturels, et</li><li>l’aire de répartition naturelle de l’espèce n’est ni réduite ni susceptible de l’être dans un avenir prévisible, et il existe, et il existera probablement encore à long terme un habitat suffisamment vaste pour maintenir ses populations</li></ul>Evaluation : Évaluer, à partir de la liste des espèces supposées exister (voir les listes A de l’UICN - mammifères, B - oiseaux et C - amphibiens), un nombre limité d’espèces clés de l’aire protégée.<br /> <b>Types d\'espèces</b> <ul> <li><b>PHA</b>: Espèce phare</li> <li><b>MEN</b>: Espèce en voie de disparition menacée</li> <li><b>END</b>: Espèce endémique</li> <li><b>EXP</b>: Espèce exploitée</li> <li><b>INV</b>: Espèce invasive</li> <li><b>INS</b>: Espèce avec faible niveau de connaissance</li> </ul>',
         'validation_min3' => 'Veuillez encoder au moins 3 des espèces clés.',
         'warning_on_save' =>
             'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
@@ -442,7 +442,7 @@ return [
             'Reliability' => 'Fiabilité de l’information',
             'Comments' => 'Commentaires / Source',
         ],
-        'module_info' =>'État de conservation favorable : A partir de Natura 2000, L’état de conservation des espèces sera considéré comme « favorable » lorsque:<ul><li>les données sur la dynamique des populations de l’espèce concernée indiquent qu’elle se maintient à long terme en tant que composante viable de ses habitats naturels, et</li><li>l’aire de répartition naturelle de l’espèce n’est ni réduite ni susceptible de l’être dans un avenir prévisible, et il existe, et il existera probablement encore à long terme un habitat suffisamment vaste pour maintenir ses populations</li></ul>Evaluation : Évaluer, à partir de la liste des plantes supposées exister (voir les listes mises à disposition et les informations du parc), un nombre limité d’espèces végétales clés de l’aire protégée.<br /> <b>Espèce indicateurs</b> <ul> <li><b>PHA</b>: Espèce phare</li> <li><b>MEN</b>: Espèce menacée</li> <li><b>END</b>: Espèce endémique</li> <li><b>EXP</b>: Espèce exploitée</li> <li><b>INV</b>: Espèce invasive</li> <li><b>INS</b>: Espèce avec faible niveau de connaissance</li> </ul>',
+        'module_info' =>'État de conservation favorable : Selon Natura 2000, L’état de conservation des espèces est considéré comme « favorable » lorsque:<ul><li>les données sur la dynamique des populations de l’espèce concernée indiquent qu’elle se maintient à long terme en tant que composante viable de ses habitats naturels, et</li><li>l’aire de répartition naturelle de l’espèce n’est ni réduite ni susceptible de l’être dans un avenir prévisible, et il existe, et il existera probablement encore à long terme un habitat suffisamment vaste pour maintenir ses populations</li></ul>Evaluation : Évaluer, à partir de la liste des plantes supposées exister (voir les listes mises à disposition et les informations du parc), un nombre limité d’espèces végétales clés de l’aire protégée.<br /> <b>Types d\'espèces</b> <ul> <li><b>PHA</b>: Espèce phare</li> <li><b>MEN</b>: Espèce menacée</li> <li><b>END</b>: Espèce endémique</li> <li><b>EXP</b>: Espèce exploitée</li> <li><b>INV</b>: Espèce invasive</li> <li><b>INS</b>: Espèce avec faible niveau de connaissance</li> </ul>',
         'warning_on_save' =>
             'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
@@ -460,7 +460,7 @@ return [
             'Sectors' => 'Secteurs',
             'Comments' => 'Commentaires / Source',
         ],
-        'module_info' =>'État de conservation favorable : A partir de Natura 2000, l’état de conservation d’un habitat naturel sera considéré comme « favorable » lorsque:<ul><li>son aire de répartition naturelle et les zones qu’il couvre à l’intérieur de cette aire sont stables ou en augmentation, et</li><li>la structure et les fonctions spécifiques qui sont nécessaires à son maintien à long terme existent et sont susceptibles de continuer à exister dans un avenir prévisible</li></ul>Sur la base de plusieurs paramètres relatifs aux habitats (externe = irremplaçabilité et internes = spécificités de l\'aire protégée), le gestionnaire détermine les spécificités des habitats terrestres et d\'eau douce de l\'aire protégée qui devront faire l\'objet d\'un suivi dans le temps.<br /> <b>Note</b>: l\'évaluation des écosystemes et habitats est une discipline encore émergente, car très complexe. La classification prévoit la division de territoire suivante : Biome, Ecorégion, Ecosystème, Habitat. Les caractéristiques de l\'habitat / valeurs peuvent être évaluées comme : <ul> <li>i) sous la menace d\'extinction (au sein de leur aire de répartition naturelle),</li> <li>ii) ayant une aire de répartition naturelle réduite,</li> <li>iii) en déclin,</li> <li>iv) un exemple exceptionnel de caractéristiques spécifiques, etc.</li> </ul> Les Caractéristiques / Valeurs des écosystèmes et habitats peuvent être estimées comme spécifique pour : <ul> <li>i) la reproduction,</li> <li>ii) la nutrition,</li> <li>iii) la protection des espèces, etc.</li> </ul>',
+        'module_info' =>'État de conservation favorable : Selon Natura 2000, l’état de conservation d’un habitat naturel est considéré comme « favorable » lorsque:<ul><li>son aire de répartition naturelle et les zones qu’il couvre à l’intérieur de cette aire sont stables ou en augmentation, et</li><li>la structure et les fonctions spécifiques qui sont nécessaires à son maintien à long terme existent et sont susceptibles de continuer à exister dans un avenir prévisible</li></ul>Sur la base de plusieurs paramètres relatifs aux habitats (externe = irremplaçabilité et internes = spécificités de l\'aire protégée), le gestionnaire détermine les spécificités des habitats terrestres et d\'eau douce de l\'aire protégée qui devront faire l\'objet d\'un suivi dans le temps.<br /> <b>Note</b>: l\'évaluation des écosystemes et habitats est une discipline très complexe. La classification prévoit la division de territoire suivante : Biome, Ecorégion, Ecosystème, Habitat. Les caractéristiques de l\'habitat / valeurs peuvent être évaluées comme : <ul> <li>i) sous la menace d\'extinction (au sein de leur aire de répartition naturelle),</li> <li>ii) ayant une aire de répartition naturelle réduite,</li> <li>iii) en déclin,</li> <li>iv) un exemple exceptionnel de caractéristiques spécifiques, etc.</li> </ul> Les Caractéristiques / Valeurs des écosystèmes et habitats peuvent être estimées comme spécifique pour : <ul> <li>i) la reproduction,</li> <li>ii) la nutrition,</li> <li>iii) la protection des espèces, etc.</li> </ul>',
         'warning_on_save' =>
             'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
@@ -491,7 +491,7 @@ return [
     ],
 
     'LandCover' => [
-        'title' => 'Gestion de la couverture, de l’utilisation et de l’occupation des terres forêt, sol, eau, routes, etc.) [pour les valeurs globales, voir le point 2.2] choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi au fil du temps',
+        'title' => 'Gestion de la couverture, de l’utilisation et de l’occupation des terres [pour les valeurs globales, voir le point 2.2] choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi au fil du temps',
         'fields' => [
             'CoverType' => 'Catégories',
             'HistoricalArea' => 'Surface (ha)',
@@ -583,7 +583,7 @@ return [
             ],
             'group8' => [
                 'Chasse d\'animaux terrestres',
-                'Prelevement d\'animaux vivants'
+                'Prélèvement d\'animaux vivants'
             ],
             'group9' => [
                 'Cueillette de produits des plantes',
@@ -593,7 +593,7 @@ return [
                 'Exploitation bois d\'oeuvre à grande échelle',
                 'Exploitation bois d\'oeuvre à petite échelle',
                 'Exploitation bois énergie à grande échelle',
-                'Exploitation bois energie à petite échelle',
+                'Exploitation bois énergie à petite échelle',
                 'Perche/poteau pour construction'
             ],
             'group11' => [
@@ -667,7 +667,7 @@ return [
             ],
             'group24' => [
                 'Altération et modification de l\'habitat',
-                'Sècheresses',
+                'Sécheresses',
                 'Températures extrêmes',
                 'Tempêtes et inondations',
                 'Augmentation des pluies et changements saisonniers'
@@ -745,7 +745,7 @@ return [
             'group4' => 'Autres éléments importants et valeurs clés particulièrement sensibles au changement climatique',
             'group5' => 'Autre',
         ],
-        'module_info' => 'Les résultats de la section suivante appuieront les décisions de gestion pour s’assurer que l’aire protégée adopte des mesures visant à minimiser les effets du changement climatique. L’analyse assurera l’intégration des valeurs affectées par le changement climatique dans le système de gestion des aires protégées.<br />Evaluation: Identifier et évaluer l’importance d’intégrer dans les systèmes de gestion de l’aire protégée les efforts d’adaptation aux changements climatiques des éléments clés les plus vulnérables aux changements climatiques, en utilisant les échelles ci-dessous',
+        'module_info' => 'Les résultats de la section suivante appuieront les décisions de gestion pour s’assurer que l’aire protégée adopte des mesures visant à minimiser les effets du changement climatique. L’analyse assurera l’intégration des valeurs affectées par le changement climatique dans le système de gestion des aires protégées.<br />Evaluation: Identifier et évaluer l’importance d’intégrer dans les systèmes de gestion de l’aire protégée les efforts d’adaptation au changement climatique des éléments clés les plus vulnérables au changement climatique, en utilisant les échelles ci-dessous',
         'ratingLegend' => [
             'Trend' => [
               '0' => 'très affecté par le changement climatique',
@@ -762,7 +762,7 @@ return [
     'EcosystemServices' => [
         'title' => 'Services écosystémiques et dépendance des communautés/société',
         'fields' => [
-            'Element' => 'Element',
+            'Element' => 'Elément',
             'Importance' => 'Importance',
             'ImportanceRegional' => 'Dépendance à l’égard du service écosystémique',
             'ImportanceGlobal' => 'Tendance',
@@ -798,7 +798,7 @@ return [
           'title3' => 'Culturel',
           'title4' => 'Support / Soutien',
         ],
-        'module_info' => '<b>Services écosystémiques — importance, dépendance des communautés/société et tendance des services écosystémiques fournis par l’aire protégé </b> <ul> <li>Evaluation: Évaluer chaque évaluation sur la base de : A) Importance de services écosystémiques clés, B) dépendance de la population locale/société à l’égard du service écosystémique et C) tendance de la quantité ou de la qualité des services écosystémiques fournis par l’aire protégée, selon les échelles suivantes:<ul><li>Vous n’avez pas besoin d’une mesure précise de la valeur pour attribuer une note.</li><li>La détermination de la nature légale ou illégale de l’approvisionnement dépend de la désignation de l’aire protégée et des dispositions légales et règlementaires en vigueur dans l’aire évaluée</li> </ul>',
+        'module_info' => '<b>Services écosystémiques — importance, dépendance des communautés/société et tendance des services écosystémiques fournis par l’aire protégé </b> <ul> <li>Evaluation: Évaluer chaque service écosystémique sur la base de : A) son importance, B) la dépendance de la population locale/société à l’égard du service écosystémique et C) la tendance de sa quantité ou de sa qualité, selon les échelles suivantes:<ul><li>Vous n’avez pas besoin d’une mesure précise de la valeur pour attribuer une note.</li><li>La détermination de la nature légale ou illégale de l’approvisionnement dépend de la désignation de l’aire protégée et des dispositions légales et règlementaires en vigueur dans l’aire évaluée</li> </ul>',
         'ratingLegend' => [
           'Importance' => [
               'Locale' => 'Importance limitée aux communautés locales ou régionales (ex. tubercules, fruits, bois de chauffage, etc.)',
