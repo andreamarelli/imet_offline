@@ -491,12 +491,12 @@
             'dev_requirement' => false,
         ),
         'nesbot/carbon' => array(
-            'pretty_version' => '2.48.1',
-            'version' => '2.48.1.0',
+            'pretty_version' => '2.49.0',
+            'version' => '2.49.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../nesbot/carbon',
             'aliases' => array(),
-            'reference' => '8d1f50f1436fb4b05e7127360483dd9c6e73da16',
+            'reference' => '93d9db91c0235c486875d22f1e08b50bdf3e6eee',
             'dev_requirement' => false,
         ),
         'opis/closure' => array(
@@ -663,12 +663,12 @@
             ),
         ),
         'spatie/browsershot' => array(
-            'pretty_version' => '3.46.0',
-            'version' => '3.46.0.0',
+            'pretty_version' => '3.47.0',
+            'version' => '3.47.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../spatie/browsershot',
             'aliases' => array(),
-            'reference' => '6794b7cc871ef9c845a005fef64b3617ec235e0e',
+            'reference' => '4975143f1e5bd0bcb023f00c05d8c6b24e788f2d',
             'dev_requirement' => false,
         ),
         'spatie/image' => array(

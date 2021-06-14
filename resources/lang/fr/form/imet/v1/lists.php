@@ -7,10 +7,6 @@ return [
         'en'        => 'anglais'
     ],
 
-    'regions' => [
-        'OFAC' => 'OFAC - Pays COMIFAC',
-    ],
-
     'PaType' => [
         'Terrestre',
         'Maritime',

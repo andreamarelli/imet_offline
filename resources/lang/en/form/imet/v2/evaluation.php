@@ -341,7 +341,7 @@ return [
         ],
         'module_info_Rating' => [
             'Identify and evaluate the adequacy of the current legal and regulatory provisions for conservation and natural resources management in the protected area'
-            ]
+        ]
     ],
 
     'DesignAdequacy' => [
@@ -354,7 +354,7 @@ return [
         'predefined_values' => [
             'Size (surface area)',
             'Configuration or shape of the protected area',
-            'Boundary/area ratio, value based on the analysis of context of intervention, point CTX 2',
+            'Boundary/area ratio, value based on the analysis of context of intervention, point CTX 2',
             'Border zone (areas near borders immediately outside of the protected area that have special rules on resources use)',
             'Buffer zones (areas surrounding a protected area, where special management of resources use and special development measures are undertaken in order to enhance the conservation value of the protected area)',
             'Corridors',
@@ -445,12 +445,12 @@ return [
                 '1' => 'The vision, mission and objectives of the management plan are somewhat inadequate',
                 '2' => 'The vision, mission and objectives of the management plan are adequate',
                 '3' => 'The vision, mission and objectives of the management plan are fully adequate'
-              ],
-              'PlanAdequacyScore' => [
-                  '0' => 'The clarity and applicability of the vision, mission and objectives are fully inadequate (0-30% of needs)',
-                  '1' => 'The clarity and applicability of the vision, mission and objectives are somewhat inadequate (31-60% of needs)',
-                  '2' => 'The clarity and applicability of the vision, mission and objectives are adequate (61-90% of needs)',
-                  '3' => 'The clarity and applicability of the vision, mission and objectives are fully adequate (91-100% of needs)'
+            ],
+            'PlanAdequacyScore' => [
+                '0' => 'The clarity and applicability of the vision, mission and objectives are fully inadequate (0-30% of needs)',
+                '1' => 'The clarity and applicability of the vision, mission and objectives are somewhat inadequate (31-60% of needs)',
+                '2' => 'The clarity and applicability of the vision, mission and objectives are adequate (61-90% of needs)',
+                '3' => 'The clarity and applicability of the vision, mission and objectives are fully adequate (91-100% of needs)'
             ],
         ],
         'module_info_EvaluationQuestion' => [
@@ -537,7 +537,7 @@ return [
     ],
 
     'ObjectivesPlanification' => [
-      'module_info' => 'Establish and describe conservation objectives for <b>planning</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe conservation objectives for <b>planning</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
     ],
 
     'InformationAvailability' => [
@@ -693,12 +693,12 @@ return [
         ],
         'module_info_Rating' => [
             'Evaluate: A) the adequacy of infrastructure, equipment and facilities (results automatically calculated on the basis of the analysis of the context of intervention, point CTX 3.3), B) the present needs for the availability of specific infrastructure, equipment and facilities for the protected area',
-                ]
+        ]
     ],
 
     'ObjectivesIntrants' => [
-      'module_info' => 'Establish and describe conservation objectives for <b>inputs</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
-        ],
+        'module_info' => 'Establish and describe conservation objectives for <b>inputs</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+    ],
 
     'StaffCompetence' => [
         'title' => 'Staff training and capacity-building programme',
@@ -797,7 +797,7 @@ return [
                 '1' => 'Somewhat inadequate (31-60% of the needs)',
                 '2' => 'Adequate (61-90% of the needs)',
                 '3' => 'Fully adequate (91-100% of the needs)'
-                ]
+            ]
         ],
         'module_info_EvaluationQuestion' => [
             'Does the management of the protected area use adequate measures / approaches / tools for ensuring staff motivation?',
@@ -805,7 +805,7 @@ return [
         ],
         'module_info_Rating' => [
             'Evaluate the adequacy of staff motivation measures / approaches / tools in the protected area',
-            ]
+        ]
     ],
 
     'GovernanceLeadership' => [
@@ -885,7 +885,7 @@ return [
                 '1' => 'Somewhat inadequate (31-60% of the needs)',
                 '2' => 'Adequate (61-90% of the needs)',
                 '3' => 'Fully adequate (91-100% of the needs)'
-                ]
+            ]
         ],
         'module_info_EvaluationQuestion' => [
             'Are the protected area’s infrastructure, equipment and facilities adequately maintained?',
@@ -939,14 +939,14 @@ return [
         ],
         'predefined_values' => [
             'Proactive strategic management',
-			'Collaborative surveillance (protection achieved through a combination of enforcement and collaboration with communities)',
+            'Collaborative surveillance (protection achieved through a combination of enforcement and collaboration with communities)',
             'Standard operating procedures (SOPs)',
             'Emergency operating procedures',
             'Rapid intervention procedures',
-			'Non collaborative (technology: radar, optical-infrared, radio monitoring Vs technology poor performance, qualified rangers)',
+            'Non collaborative (technology: radar, optical-infrared, radio monitoring Vs technology poor performance, qualified rangers)',
             'Adaptable and diverse tactics (e.g. complementary patrol types, such as observation points, vehicle/boats-assisted patrols, and ambushes, etc.)',
             'Enforcement strategies that combine technology with sea patrols (eg. satellite monitoring and vehicle/boats-assisted patrols)',
-			'Efficient decision-making process for standard and emergency operating procedures',
+            'Efficient decision-making process for standard and emergency operating procedures',
             'Elite units (highest performing rangers/scouts) management',
             'Operations control room',
             'Outposts/pickets - inside park',
@@ -970,7 +970,7 @@ return [
         ],
         'module_info_Rating' => [
             'Evaluate the adequacy of elements of the ranger patrols management oriented on ensuring long-term protection of biodiversity and other values',
-            ]
+        ]
     ],
 
     'IntelligenceImplementation' => [
@@ -1119,7 +1119,7 @@ return [
                 'Provide power supply, electrical connection',
                 'Provide water supply - connection',
                 'Support for the construction, maintenance and improvement of external roads',
-                ],
+            ],
             'group1' => [
                 'Strengthening of security in the area',
                 'Minimisation of conflicts and strengthening of the sustainable management and use of ecosystem services',
@@ -1178,7 +1178,7 @@ return [
                 '1' => 'somewhat inadequate (31-60%)',
                 '2' => 'adequate (61-90%)',
                 '3' => 'fully adequate (91-100%)',
-          ]
+            ]
         ],
         'module_info_EvaluationQuestion' => [
             'Does the protected area carry out activities/programmes of environmental education and public awareness specifically linked to the needs and objectives of conservation/management of natural resources?',
@@ -1636,7 +1636,7 @@ return [
                 '+1' => 'Slightly favourable effects',
                 '+2' => 'Favourable effects',
                 '+3' => 'Highly favourable effects',
-                ]
+            ]
         ],
         'module_info_EvaluationQuestion' => [
             'Does the management of the protected area have positive or negative effects on the quality of life of local stakeholders?',

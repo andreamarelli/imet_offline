@@ -83,21 +83,24 @@ class ImetControllerV2 extends FormController
         $records = json_decode($request->input('records_json'), true);
 
         try {
+
             // Create new non-WDPA pa
+            $nonWdpa_record = collect($records[0])
+                ->except(['version', 'Year', 'language', 'FormID', 'UpdateDate', 'UpdateBy'])
+                ->toArray();
+            $nonWdpa_record['id'] = ProtectedAreaNonWdpa::generate_fake_wdpa();
             $new_pa = new ProtectedAreaNonWdpa();
-            $new_pa->fill([
-                'id' => ProtectedAreaNonWdpa::generate_fake_wdpa(),
-                'name' => $records[0]['name'],
-                'designation' => $records[0]['designation'],
-                'designation_type' => $records[0]['designation_type'],
-                'status' => $records[0]['status'],
-                'country' => $records[0]['country']
-            ]);
+            $new_pa->fill($nonWdpa_record);
             $new_pa->save();
 
             // Create Form
-            $records[0]['wdpa_id'] = $new_pa->getKey();
-            $request->merge(['records_json' => json_encode($records)]);
+            $form_record = collect($records[0])
+                ->only(['version', 'Year', 'language', 'FormID', 'UpdateDate', 'UpdateBy'])
+                ->toArray();
+            $form_record['wdpa_id'] = $new_pa->getKey();
+            $form_record['Country'] = $records[0]['country'];
+            $form_record['version'] = Imet::version;
+            $request->merge(['records_json' => json_encode([$form_record])]);
             return parent::store($request);
 
         } catch (\Exception $e) {

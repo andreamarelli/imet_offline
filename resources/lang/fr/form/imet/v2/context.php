@@ -21,12 +21,23 @@ return [
             'wdpa_id' => 'aire protégée',
             'language' => 'langue',
             'prefill_prev_year' => 'préremplir avec l\'année précédente',
-            'name' => 'nom de l\'aire protégée',
-            'designation' => 'désignation',
+            'pa_def' => 'définition',
+            'name' => 'nom fourni par l’exploitant',
+            'origin_name' => 'nom dans la langue d’origine',
+            'designation' => 'nom de la désignation (ex. réserve, sanctuaire, etc.)',
+            'designation_eng' => 'désignation obligatoire en anglais',
             'designation_type' => 'type de désignation',
+            'marine' => 'typologie',
+            'rep_m_area' => 'surface de l’aire protégée conservée marine [km<sup>2</sup>]',
+            'rep_area' => 'surface de l’aire protégée conservée [km<sup>2</sup>]',
             'status' => 'statut',
+            'status_year' => 'année de promulgation du statut',
             'country' => 'pays',
-        ]
+        ],
+
+        'allowed_international' => 'Valeurs autorisées pour les désignations de niveau international',
+        'allowed_regional' => 'Valeurs autorisées pour les désignations de niveau régional',
+        'allowed_national' => 'Pas de valeurs fixes pour les protégées - conservées désignées au niveau national',
     ],
 
     'Objectives' => [
@@ -748,10 +759,10 @@ return [
         'module_info' => 'Les résultats de la section suivante appuieront les décisions de gestion pour s’assurer que l’aire protégée adopte des mesures visant à minimiser les effets du changement climatique. L’analyse assurera l’intégration des valeurs affectées par le changement climatique dans le système de gestion des aires protégées.<br />Evaluation: Identifier et évaluer l’importance d’intégrer dans les systèmes de gestion de l’aire protégée les efforts d’adaptation au changement climatique des éléments clés les plus vulnérables au changement climatique, en utilisant les échelles ci-dessous',
         'ratingLegend' => [
             'Trend' => [
-              '0' => 'très affecté par le changement climatique',
-              '1' => 'modérément affecté par le changement climatique',
-              '2' => 'peu affecté par le changement climatique',
-              '3' => 'non affecté par le changement climatique',
+                '0' => 'très affecté par le changement climatique',
+                '1' => 'modérément affecté par le changement climatique',
+                '2' => 'peu affecté par le changement climatique',
+                '3' => 'non affecté par le changement climatique',
             ]
         ],
         'warning_on_save' =>
@@ -769,16 +780,16 @@ return [
             'Observations' => 'Description/État/Observations',
         ],
         'groups' => [
-          'group0' => 'Nutrition',
-          'group1' => 'Matériaux',
-          'group2' => 'Energie',
-          'group3' => 'Assainissement des déchets, des substances toxiques et autres pollutions',
-          'group4' => 'Régulation des flux',
-          'group5' => 'Interactions physiques et expérience',
-          'group6' => 'Interactions et amélioration intellectuelles',
-          'group7' => 'Spirituel et/ou emblématiques',
-          'group8' => 'Autres services écosystémiques culturels',
-          'group9' => 'Support / Soutien',
+            'group0' => 'Nutrition',
+            'group1' => 'Matériaux',
+            'group2' => 'Energie',
+            'group3' => 'Assainissement des déchets, des substances toxiques et autres pollutions',
+            'group4' => 'Régulation des flux',
+            'group5' => 'Interactions physiques et expérience',
+            'group6' => 'Interactions et amélioration intellectuelles',
+            'group7' => 'Spirituel et/ou emblématiques',
+            'group8' => 'Autres services écosystémiques culturels',
+            'group9' => 'Support / Soutien',
         ],
         'predefined_values' => [
             'group0' => ['Approvisionnement en eau (disponibilité, épuration) - illégal', 'Approvisionnement en eau (disponibilité, épuration) - légal', 'Alimentation humaine - végétale  (tubercules, feuilles, fruits, miel, champignons, etc.) - illégal', 'Alimentation humaine - végétale (tubercules, feuilles, fruits, miel, champignons, etc.) - légal', 'Alimentation humaine - animale (viande sauvage/d’élevage, poisson, insectes) - illégal', 'Alimentation humaine - animal (viande sauvage/d’élevage, poisson, insectes) - légal', 'Médicaments / pharmacopée - illégal', 'Médicaments / pharmacopée - légal', 'Aliments pour l’élevage (poissons et bétail) - illégal', 'Aliments pour l’élevage (poissons et bétail) - légal'],
@@ -793,29 +804,29 @@ return [
             'group9' => ['Production primaire nette (végétation)', 'Cycle des nutriments (décomposition et minéralisation de la litière)', 'Formation de l’habitat des espèces (lieux de nidification des oiseaux)', 'Pollinisation (plantes)', 'Cycle de l’eau', 'Autres'],
         ],
         'categories' => [
-          'title1' => 'Approvisionnement',
-          'title2' => 'Régulation',
-          'title3' => 'Culturel',
-          'title4' => 'Support / Soutien',
+            'title1' => 'Approvisionnement',
+            'title2' => 'Régulation',
+            'title3' => 'Culturel',
+            'title4' => 'Support / Soutien',
         ],
         'module_info' => '<b>Services écosystémiques — importance, dépendance des communautés/société et tendance des services écosystémiques fournis par l’aire protégé </b> <ul> <li>Evaluation: Évaluer chaque service écosystémique sur la base de : A) son importance, B) la dépendance de la population locale/société à l’égard du service écosystémique et C) la tendance de sa quantité ou de sa qualité, selon les échelles suivantes:<ul><li>Vous n’avez pas besoin d’une mesure précise de la valeur pour attribuer une note.</li><li>La détermination de la nature légale ou illégale de l’approvisionnement dépend de la désignation de l’aire protégée et des dispositions légales et règlementaires en vigueur dans l’aire évaluée</li> </ul>',
         'ratingLegend' => [
-          'Importance' => [
-              'Locale' => 'Importance limitée aux communautés locales ou régionales (ex. tubercules, fruits, bois de chauffage, etc.)',
-              'Larger' => 'Importance étendue à la société nationale et mondiale (bassin versant, tourisme, etc.)'
-          ],
-          'ImportanceRegional' => [
-              '0' => 'très faible',
-              '1' => 'faible',
-              '2' => 'moyenne',
-              '3' => 'élevée',
-          ],
-          'ImportanceGlobal' => [
-              '-2' => 'En baisse',
-              '-1' => 'Légèrement en baisse',
-              '0' => 'Aucun changement',
-              '1' => 'Légèrement en hausse',
-              '2' => 'En hausse'
+            'Importance' => [
+                'Locale' => 'Importance limitée aux communautés locales ou régionales (ex. tubercules, fruits, bois de chauffage, etc.)',
+                'Larger' => 'Importance étendue à la société nationale et mondiale (bassin versant, tourisme, etc.)'
+            ],
+            'ImportanceRegional' => [
+                '0' => 'très faible',
+                '1' => 'faible',
+                '2' => 'moyenne',
+                '3' => 'élevée',
+            ],
+            'ImportanceGlobal' => [
+                '-2' => 'En baisse',
+                '-1' => 'Légèrement en baisse',
+                '0' => 'Aucun changement',
+                '1' => 'Légèrement en hausse',
+                '2' => 'En hausse'
             ],
         ],
         'warning_on_save' =>

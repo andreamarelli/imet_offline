@@ -8,8 +8,31 @@ return [
         'sp'        => 'spanish',
         'pt'        => 'portuguese'
     ],
-    'regions' => [
-        'OFAC' => 'OFAC - COMIFAC countries',
+
+    'NonWdpaPaDef' => [
+        '1' => 'meets IUCN and/or CBD protected area definitions',
+        '0' => 'meets the CBD definition of an OECM',
+    ],
+
+    'NonWdpaDesignType' => [
+        'National',
+        'Regional',
+        'International',
+        'Not applicable'
+    ],
+
+    'NonWdpaTypology' => [
+        '2' => 'predominantly or entirely marine',
+        '1' => 'coastal: marine and terrestrial',
+        '0' => 'predominantly or entirely terrestrial'
+    ],
+
+    'NonWdpaStatus' => [
+        'Proposed',
+        'Inscribed',
+        'Adopted',
+        'Designated',
+        'Established'
     ],
 
     'PaType' => [

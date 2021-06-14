@@ -56,10 +56,10 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-              '0' => 'Pas d’intégration',
-              '1' => 'Faible intégration',
-              '2' => 'Intégration partielle',
-              '3' => 'Forte intégration',
+                '0' => 'Pas d’intégration',
+                '1' => 'Faible intégration',
+                '2' => 'Intégration partielle',
+                '3' => 'Forte intégration',
             ]
         ],
         'module_subTitle' => 'Valeurs et importance — Espèces (phare, en voie de disparition, endémiques, exploitées, envahissantes, etc.)',
@@ -94,10 +94,10 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-              '0' => 'Pas d’intégration',
-              '1' => 'Faible intégration',
-              '2' => 'Intégration partielle',
-              '3' => 'Forte intégration',
+                '0' => 'Pas d’intégration',
+                '1' => 'Faible intégration',
+                '2' => 'Intégration partielle',
+                '3' => 'Forte intégration',
             ],
             'EvaluationScore2' => [
                 '1' => 'Faible valeur/importance',
@@ -133,10 +133,10 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-              '0' => 'Pas d’intégration',
-              '1' => 'Faible intégration',
-              '2' => 'Intégration partielle',
-              '3' => 'Forte intégration',
+                '0' => 'Pas d’intégration',
+                '1' => 'Faible intégration',
+                '2' => 'Intégration partielle',
+                '3' => 'Forte intégration',
             ]
         ],
         'module_subTitle' => 'Valeur et importance - Changement climatique',
@@ -228,7 +228,7 @@ return [
                 'ONG environnementale',
                 'Scientifiques/Chercheurs',
                 'Bailleurs de fonds',
-                ],
+            ],
             'group3' => [
                 'Opérateurs touristiques privés',
                 'Exploitants forestiers',
@@ -382,7 +382,7 @@ return [
             'Délimitation de l’aire protégée à l’aide de la source officielle de données géographiques de référence',
             'Limites de l’aire protégée enregistrées avec coordonnées géographiques (degré, min, sec)',
             'Délimitation des zones d’utilisation des aires protégées (zonage)',
-                    ],
+        ],
         'ratingLegend' => [
             'Boundaries' => [
                 '0' => 'si 0–15 %',
@@ -776,11 +776,11 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-              'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Inadéquat (0-30% des besoins)',
-              '1' => 'Plutôt inadéquat (31-60% des besoins)',
-              '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Totalement adéquat (91-100% des besoins)'
+                'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -864,11 +864,11 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-              'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Inadéquat (0-30% des besoins)',
-              '1' => 'Plutôt inadéquat (31-60% des besoins)',
-              '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Totalement adéquat (91-100% des besoins)'
+                'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -899,11 +899,11 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-              'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Inadéquat (0-30% des besoins)',
-              '1' => 'Plutôt inadéquat (31-60% des besoins)',
-              '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Totalement adéquat (91-100% des besoins)'
+                'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -937,17 +937,17 @@ return [
         ],
         'ratingLegend' => [
             'Adequacy' => [
-              'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Inadéquat (0-30% des besoins)',
-              '1' => 'Plutôt inadéquat (31-60% des besoins)',
-              '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Totalement adéquat (91-100% des besoins)'
+                'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
             'Dans quelle mesure la gestion et la mise en œuvre de l’application de la loi par les patrouilles de surveillants sont-elles adéquates et axées sur la protection à long terme de la biodiversité ?',
             'La gestion des patrouilles de surveillants est une activité d’application de la loi essentielle pour faire respecter les règles juridiques existantes qui devraient assurer la protection à long terme de la biodiversité et des autres valeurs de l’aire protégée. Une gestion efficace des aires protégées nécessite l’application de la loi à tous les niveaux : patrouilles de surveillants, renseignements et systèmes de justice pénale efficaces. Cette étape de l’analyse porte sur le processus de gestion des patrouilles de surveillants (un module spécifique à une analyse approfondie de l’application de la loi est disponible)',
-                  ],
+        ],
         'module_info_Rating' => [
             'Évaluer l’adéquation des éléments de la gestion des patrouilles de surveillants visant à assurer la protection à long terme de la biodiversité et d’autres valeurs'
         ]
@@ -984,11 +984,11 @@ return [
         ],
         'ratingLegend' => [
             'Adequacy' => [
-              'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Inadéquat (0-30% des besoins)',
-              '1' => 'Plutôt inadéquat (31-60% des besoins)',
-              '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Totalement adéquat (91-100% des besoins)'
+                'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -1020,30 +1020,30 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-              'Autorités traditionnelles',
-              'Peuples autochtones',
-              'Collectivités vivant à proximité ou à l’interieur de l’aire protégée',
-              'Collectivités ne vivant pas en proximité de l’aire protégée',
-              'Détenteurs de droits traditionnels ou modernes',
-              'Propriétaires fonciers ou des terres',
-              'Utilisateurs locaux des ressources naturelles',
-              'Utilisateurs locaux de produits forestiers non ligneux (PFNL)',
-              'Groupes sous-représentés ou défavorisés',
+                'Autorités traditionnelles',
+                'Peuples autochtones',
+                'Collectivités vivant à proximité ou à l’interieur de l’aire protégée',
+                'Collectivités ne vivant pas en proximité de l’aire protégée',
+                'Détenteurs de droits traditionnels ou modernes',
+                'Propriétaires fonciers ou des terres',
+                'Utilisateurs locaux des ressources naturelles',
+                'Utilisateurs locaux de produits forestiers non ligneux (PFNL)',
+                'Groupes sous-représentés ou défavorisés',
             ],
             'group1' => [
-              'Gouvernement central',
-              'Gouvernement local',
-              'Conseil territorial/départemental et municipal',
-              'Autorité en charge des aires protégées',
-              'Services fonciers locaux',
-              'Représentants des populations locales (parlementaires, etc.)',
-              'Forces armées (police, paramilitaire, militaire et marine)'
+                'Gouvernement central',
+                'Gouvernement local',
+                'Conseil territorial/départemental et municipal',
+                'Autorité en charge des aires protégées',
+                'Services fonciers locaux',
+                'Représentants des populations locales (parlementaires, etc.)',
+                'Forces armées (police, paramilitaire, militaire et marine)'
             ],
             'group2' => [
-              'ONG de défense des droits sociaux',
-              'ONG environnementale',
-              'Scientifiques/Chercheurs',
-              'Bailleurs de fonds'
+                'ONG de défense des droits sociaux',
+                'ONG environnementale',
+                'Scientifiques/Chercheurs',
+                'Bailleurs de fonds'
             ],
             'group3' => [
                 'Opérateurs touristiques privés',
@@ -1115,11 +1115,11 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-              'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Inadéquat (0-30% des besoins)',
-              '1' => 'Plutôt inadéquat (31-60% des besoins)',
-              '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Totalement adéquat (91-100% des besoins)'
+                'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -1153,11 +1153,11 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-              'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Inadéquat (0-30% des besoins)',
-              '1' => 'Plutôt inadéquat (31-60% des besoins)',
-              '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Totalement adéquat (91-100% des besoins)'
+                'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -1196,11 +1196,11 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-              'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Inadéquat (0-30% des besoins)',
-              '1' => 'Plutôt inadéquat (31-60% des besoins)',
-              '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Totalement adéquat (91-100% des besoins)'
+                'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -1227,16 +1227,16 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-              'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Inadéquat (0-30% des besoins)',
-              '1' => 'Plutôt inadéquat (31-60% des besoins)',
-              '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Totalement adéquat (91-100% des besoins)'
+                'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
             'L’aire protégée gère-t-elle et atténue-t-elle de façon appropriée les impacts des visiteurs ?',
-             'Promouvoir les loisirs et le tourisme pour que les visiteurs puissent connaître et apprécier une aire protégée, sans porter atteinte aux valeurs pour lesquelles elle a été créée, peut s’avérer difficile. Les visiteurs peuvent avoir un impact négatif à la fois sur les ressources et sur l’expérience des autres visiteurs, ou peuvent aussi, sans le savoir, porter atteinte aux valeurs et normes culturelles. La surveillance, la gestion et l’atténuation des impacts sur les visiteurs sont des aspects essentiels pour la mise en place de stratégies de gestion du tourisme durable, mais ils sont souvent négligés une fois que le plan est en cours. Sans une connaissance adéquate des effets des activités touristiques sur l’environnement naturel du site et sur les communautés environnantes, il est impossible d’établir si la gestion des activités d’écotourisme de l’aire protégée est efficace',
+            'Promouvoir les loisirs et le tourisme pour que les visiteurs puissent connaître et apprécier une aire protégée, sans porter atteinte aux valeurs pour lesquelles elle a été créée, peut s’avérer difficile. Les visiteurs peuvent avoir un impact négatif à la fois sur les ressources et sur l’expérience des autres visiteurs, ou peuvent aussi, sans le savoir, porter atteinte aux valeurs et normes culturelles. La surveillance, la gestion et l’atténuation des impacts sur les visiteurs sont des aspects essentiels pour la mise en place de stratégies de gestion du tourisme durable, mais ils sont souvent négligés une fois que le plan est en cours. Sans une connaissance adéquate des effets des activités touristiques sur l’environnement naturel du site et sur les communautés environnantes, il est impossible d’établir si la gestion des activités d’écotourisme de l’aire protégée est efficace',
         ],
         'module_info_Rating' => 'Évaluer l’adéquation de la gestion de l’impact des visiteurs sur l’aire protégée (écotourisme)'
     ],
@@ -1268,11 +1268,11 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-              'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Inadéquat (0-30% des besoins)',
-              '1' => 'Plutôt inadéquat (31-60% des besoins)',
-              '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Totalement adéquat (91-100% des besoins)'
+                'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -1308,11 +1308,11 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-              'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Inadéquat (0-30% des besoins)',
-              '1' => 'Plutôt inadéquat (31-60% des besoins)',
-              '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Totalement adéquat (91-100% des besoins)'
+                'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -1345,11 +1345,11 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-              'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Inadéquat (0-30% des besoins)',
-              '1' => 'Plutôt inadéquat (31-60% des besoins)',
-              '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Totalement adéquat (91-100% des besoins)'
+                'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -1387,16 +1387,16 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-              'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-              '0' => 'Inadéquat (0-30% des besoins)',
-              '1' => 'Plutôt inadéquat (31-60% des besoins)',
-              '2' => 'Adéquat (61-90% des besoins)',
-              '3' => 'Totalement adéquat (91-100% des besoins)'
+                'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
             'L’aire protégée parvient-elle à promouvoir la conservation/amélioration des services écosystémiques qu’elle fournit ?',
-        'Les services écosystémiques sont les avantages nombreux et variés que les humains tirent librement de l’environnement naturel et du bon fonctionnement des écosystèmes. Les services écosystémiques sont regroupés en quatre grandes catégories : (1) les services d’approvisionnement, comme la production de nourriture et d’eau ; (2) les services de régulation, comme le contrôle du climat et des maladies ; (3) les services culturels, comme les avantages spirituels et récréatifs ; et (4) les services de support / soutien, comme les cycles nutritifs, la pollinisation des cultures ou les habitats qui fournissent tout ce dont une plante ou un animal a besoin pour survivre : nourriture, eau et abri [évaluation des écosystèmes pour le Millénaire (EM)]'
+            'Les services écosystémiques sont les avantages nombreux et variés que les humains tirent librement de l’environnement naturel et du bon fonctionnement des écosystèmes. Les services écosystémiques sont regroupés en quatre grandes catégories : (1) les services d’approvisionnement, comme la production de nourriture et d’eau ; (2) les services de régulation, comme le contrôle du climat et des maladies ; (3) les services culturels, comme les avantages spirituels et récréatifs ; et (4) les services de support / soutien, comme les cycles nutritifs, la pollinisation des cultures ou les habitats qui fournissent tout ce dont une plante ou un animal a besoin pour survivre : nourriture, eau et abri [évaluation des écosystèmes pour le Millénaire (EM)]'
         ],
         'module_info_Rating' => [
             'Évaluer l’adéquation des mesures de gestion favorisant la conservation/amélioration des services écosystémiques fournis par l’aire protégée'
@@ -1620,7 +1620,7 @@ return [
         'module_info_EvaluationQuestion' => [
             'La gestion de l’aire protégée a-t-elle des effets/impacts positifs ou négatifs sur la qualité de vie des acteurs locaux ?',
             'Les changements actuels et futurs de l’environnement et la disponibilité des ressources essentielles peuvent affecter la qualité de la vie à travers des effets/impacts sur la consommation, le revenu et la richesse (bien-être matériels) et sur le bien vivre, la santé et les relations sociales et culturelles (bien-être immatériels). La gestion des aires protégées doit être très attentive aux effets/impacts sur la qualité de vie des acteurs locaux',
-            ],
+        ],
         'module_info_Rating' => [
             'Évaluer les effets/impacts des activités opérationnelles de l’aire protégée envers les acteurs locaux.'
         ]

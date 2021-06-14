@@ -39,8 +39,7 @@
 
 {{--  ###### disabled ######  --}}
 @elseif($type=="disabled")
-    <input type="text" disabled="disabled" {!! $vue_attributes !!} class="{!! $class !!}" {!! $other !!} />
-
+    <simple-textarea :disabled=true {!! $vue_attributes !!} {!! $rules !!} {!! $other !!}></simple-textarea>
 
 {{--  ###### hidden ######  --}}
 @elseif($type=="hidden")

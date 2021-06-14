@@ -21,12 +21,23 @@ return [
             'wdpa_id' => 'protected area',
             'language' => 'language',
             'prefill_prev_year' => 'prefill with previous year',
-            'name' => 'name of the protected area',
-            'designation' => 'designation',
+            'pa_def' => 'definition',
+            'name' => 'name as provided by the operator',
+            'origin_name' => 'name in original language',
+            'designation' => 'name of designation (ex. reserve, sanctuary park, etc.)',
+            'designation_eng' => 'designation in english',
             'designation_type' => 'designation type',
+            'marine' => 'typology',
+            'rep_m_area' => 'surface of the protected conserved marine area [km<sup>2</sup>]',
+            'rep_area' => 'surface of the protected conserved area [km<sup>2</sup>]',
             'status' => 'status',
+            'status_year' => 'year of the enactment',
             'country' => 'country',
-        ]
+        ],
+
+        'allowed_international' => 'Allowed values for international-level designations',
+        'allowed_regional' => 'Allowed values for regional-level designations',
+        'allowed_national' => 'No fixed values for protected areas designated at a national level',
     ],
 
     'Objectives' => [
@@ -724,10 +735,10 @@ return [
         'module_info' => 'The outputs from the following section will support management decisions to ensure that the protected area adopts measures to minimise the effects of climate change. The analysis will ensure the incorporation of relevant values into the protected area management system',
         'ratingLegend' => [
             'Trend' => [
-              '0' => 'Highly affected by climate change',
-              '1' => 'Moderately affected by climate change',
-              '2' => 'Little affected by climate change',
-              '3' => 'Not affected by climate change',
+                '0' => 'Highly affected by climate change',
+                '1' => 'Moderately affected by climate change',
+                '2' => 'Little affected by climate change',
+                '3' => 'Not affected by climate change',
             ]
         ],
         'warning_on_save' =>

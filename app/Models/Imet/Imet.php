@@ -333,7 +333,7 @@ class Imet extends Form
         $name = Chars::clean(Chars::replaceAccents($this->name));
         $now = Carbon::now()->format('Y-m-d');
         return 'IMET' .
-            '-' . $this->wdpa_id  .
+            ProtectedAreaNonWdpa::isNonWdpa($this->wdpa_id) ? '' : '-' . $this->wdpa_id  .
             '-' . $this->Year .
             '-' . $name .
             '-' . $now .

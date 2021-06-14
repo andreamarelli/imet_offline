@@ -19,13 +19,19 @@
             methods: {
 
                 recordChangedCallback(){
-                    if(this.records[0]['Year']
-                        && this.records[0]['language']
-                        && this.records[0]['name']
-                        && this.records[0]['designation']
-                        && this.records[0]['designation_type']
-                        && this.records[0]['status']
-                        && this.records[0]['country']
+
+                    let empty = []
+                    for (const [key, value] of Object.entries(this.records[0])) {
+                        if(value === null || value === ''){
+                            empty.push(key);
+                        }
+                    }
+
+                    if(empty.length === 4 &&
+                        empty.includes('version') &&
+                        empty.includes('FormID') &&
+                        empty.includes('UpdateDate') &&
+                        empty.includes('UpdateBy')
                     ){
                         this.status = 'changed';
                     } else {

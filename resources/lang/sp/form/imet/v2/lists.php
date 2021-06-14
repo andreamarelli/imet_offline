@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     'languages' => [
         'fr'        => 'french',
         'en'        => 'english',
@@ -8,8 +9,30 @@ return [
         'pt'        => 'portuguese'
     ],
 
-    'regions' => [
-        'OFAC' => 'OFAC - COMIFAC countries',
+    'NonWdpaPaDef' => [
+        '1' => 'cumple con las definiciones de áreas protegidas de la UICN y / o CBD',
+        '0' => 'cumple con la definición de CBD de un OECM',
+    ],
+
+    'NonWdpaDesignType' => [
+        'Regional',
+        'Nacional',
+        'Internacional',
+        'No aplicable'
+    ],
+
+    'NonWdpaTypology' => [
+        '2' => 'principalmente o enteramente marino',
+        '1' => 'costero: marino y terrestre',
+        '0' => 'principalmente o enteramente terrestre'
+    ],
+
+    'NonWdpaStatus' => [
+        'Propuesta',
+        'Inscrita',
+        'Adoptada',
+        'Designada',
+        'Establecida'
     ],
 
     'PaType' => [

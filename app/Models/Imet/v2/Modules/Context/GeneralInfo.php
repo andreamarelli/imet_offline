@@ -53,7 +53,7 @@ class GeneralInfo extends Modules\Component\ImetModule
         $pa = Imet::getProtectedArea($imet->wdpa_id);
 
         $vue_data['records'][0]['CompleteName'] = $vue_data['records'][0]['CompleteName'] ?? $pa->name;
-        $vue_data['records'][0]['WDPA'] = $vue_data['records'][0]['WDPA'] ?? $pa->wdpa_id;
+        $vue_data['records'][0]['WDPA'] = $vue_data['records'][0]['WDPA'] ?? (ProtectedAreaNonWdpa::isNonWdpa($pa->wdpa_id) ? null : $pa->wdpa_id);
         $vue_data['records'][0]['Type'] = $vue_data['records'][0]['Type'] ?? $imet->Type;
         $vue_data['records'][0]['IUCNCategory1'] = $vue_data['records'][0]['IUCNCategory1'] ?? $pa->iucn_category;
         $vue_data['records'][0]['Country'] = $vue_data['records'][0]['Country'] ?? $pa->country;

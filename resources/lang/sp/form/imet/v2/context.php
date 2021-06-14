@@ -21,12 +21,23 @@ return [
             'wdpa_id' => 'área protegida',
             'language' => 'idioma',
             'prefill_prev_year' => 'Pre-rellenado con el año anterior',
-            'name' => 'Nombre del área protegida',
-            'designation' => 'designación',
+            'pa_def' => 'definición',
+            'name' => 'nombre proporcionado por el operador',
+            'origin_name' => 'nombre en idioma original',
+            'designation' => 'nombre de la designación (por ejemplo, reserva, santuario, etc.)',
+            'designation_eng' => 'designación obligatoria en inglés',
             'designation_type' => 'Tipo de designación',
+            'marine' => 'tipología',
+            'rep_m_area' => 'superficie del área protegida marina conservada [km<sup>2</sup>]',
+            'rep_area' => 'superficie del área protegida conservada [km<sup>2</sup>]',
             'status' => 'estado',
+            'status_year' => 'año de promulgación del estatuto',
             'country' => 'país',
-        ]
+        ],
+
+        'allowed_international' => 'Allowed values for international-level designations',
+        'allowed_regional' => 'Allowed values for regional-level designations',
+        'allowed_national' => 'No fixed values for protected areas designated at a national level',
     ],
 
     'Objectives' => [

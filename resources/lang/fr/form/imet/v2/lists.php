@@ -9,8 +9,30 @@ return [
         'pt'        => 'portugais'
     ],
 
-    'regions' => [
-        'OFAC' => 'OFAC - Pays COMIFAC',
+    'NonWdpaPaDef' => [
+        '1' => 'répond aux définitions des aires protégées de l\'UICN et/ou de la CDB',
+        '0' => 'répond à la définition CBD d\'un OECM',
+    ],
+
+    'NonWdpaDesignType' => [
+        'Régional',
+        'National',
+        'International',
+        'Non applicable'
+    ],
+
+    'NonWdpaTypology' => [
+        '2' => 'principalement ou entièrement marine',
+        '1' => 'côtière: marine et terrestre',
+        '0' => 'principalement ou entièrement terrestre'
+    ],
+
+    'NonWdpaStatus' => [
+        'Proposé',
+        'Inscrit',
+        'Adopté',
+        'Désigné',
+        'Établi'
     ],
 
     'PaType' => [
