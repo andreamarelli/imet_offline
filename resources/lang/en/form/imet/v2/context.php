@@ -49,13 +49,13 @@ return [
         'module_info' => 'Establish and describe conservation objectives for <b>human and financial resources/support from partnerships in managing</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
     ],
     'Objectives4' => [
-        'module_info' => ' Establish and describe conservation objectives for key factors: <b> i) flagship species and flagship plants, endangered, endemic, invasive, exploited, with insufficient data; ii) habitats; iii) land-cover-change and iv) management of natural resources</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => ' Establish and describe conservation objectives for key factors: <b> i) animal species ii) plant species; iii) habitats and iv) land-cover change </b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
     ],
     'Objectives5' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>threats</b> facing the protected areae<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe conservation objectives for <b>threats</b> facing the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
     ],
     'Objectives6' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>climate change effects</b> facing the protected areae<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe conservation objectives for <b>climate change effects</b> facing the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
     ],
     'Objectives7' => [
         'module_info' => 'Establish and describe conservation objectives for <b> the ecosystem services and the dependence on these services of communities/societies</b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
@@ -217,7 +217,7 @@ return [
             'PercentageEcoregion' => 'Surface % of ecoregion',
             'PercentageTransnationalNetwork' => 'Surface % of transboundary network',
             'PercentageLandscapeNetwork' => 'Surface % of landscape/network',
-            'Index' => 'Configuration index <br />&radic;(3.14)/(6.28)*perimeter/&radic;(area) =<br /> good 1 - 1.5; average 1.5 - 2; low > 2',
+            'Index' => 'Configuration index [Shape index (RACINE (3.14)/(6.28)*perimeter/RACINE(area) = good 1 - 1.5; average 1.5 - 2; low > 2)]',
             'Observations' => 'Notes',
         ]
     ],
@@ -248,7 +248,7 @@ return [
             'FunctionalAreaPopulation' => 'Estimate the size of local population living within the socio-economic area of influence',
             'SocioEconomicAspects' => 'List and describe the socio-economic and administrative factors (e.g. traditional or modern roles about natural resources establish by traditional and modern authorities) that influence the protected area management',
             'SpillOverEffect' => 'C) Area of SPILL-OVER effects. Estimate the SPILL-OVER effects in the marine protected area, i.e., the size of the area crucial to maintain the ecosystem services provisioning (fishing) delivered by the protected area: a) in km² and b) in metres as width of the outer strip',
-            'NoTakeArea' => 'Is the funcitonal ecosystem area correspondent to the no-take area?',
+            'NoTakeArea' => 'Is the functional ecosystem area correspondent to the no-take area?',
         ],
         'categories' => [
             'FunctionalEcosystemArea' => 'Functional ecosystem area',
@@ -282,7 +282,7 @@ return [
     'ManagementStaffCommunities' => [
         'title' => 'Size and composition of staff: Staff from Communities',
         'fields' => [
-            'Community' => 'Communitie',
+            'Community' => 'Community',
             'Role1' => 'Role',
             'StaffNUmberRole1' => 'Number',
             'Role2' => 'Role',
@@ -304,12 +304,12 @@ return [
         'amount'                        => 'Total',
         'functioning_costs'             => 'Operating costs ($ or €/km2/year)',
         'estimation_financial_plan'     => '% of resources required by Financial plan (annual budget)',
-        'estimation_operational_plan'   => '% of resources required by the Qorking plan (annual budget)',
+        'estimation_operational_plan'   => '% of resources required by the Working plan (annual budget)',
         'module_info' => 'Estimated total costs based on Financial plan'
     ],
 
     'FinancialAvailableResources' => [
-        'title' => 'Financial resources: Budget available',
+        'title' => 'Financial resources: Available budget',
         'fields' => [
             'BudgetType' => '',
             'NationalBudget' => 'National budget',
@@ -329,7 +329,7 @@ return [
     ],
 
     'FinancialResourcesBudgetLines' => [
-        'title' => 'Financial resources: Budget items of the operational plan / working plan (budgeted annually)',
+        'title' => 'Financial resources: Budget items of the operational or working plan (budgeted annually)',
         'fields' => [
             'Line' => 'Budget items',
             'Amount' => 'Amount ($ or €/year)',
@@ -381,7 +381,7 @@ return [
             'group0' =>  ['Offices','Patrol posts','Barrier points','Scientific buildings','Garage and workshop','Miscellaneous services (magazine, radio, etc.)','Health care centre'],
             'group1' =>  ['For officers and deputy officers', 'For ranger staff', 'For support staff'],
             'group2' =>  ['Hotels (guest capacity)', 'Eco-lodges (guest capacity)', 'Encampments (guest capacity)', 'Reception facilities for tourists', 'Viewpoints or Observation points', 'Available tourist routes (km)'],
-            'group3' =>  ['Cars', 'Motorbyke/Quads', 'Bicycles', 'Boats', 'Pirogues', 'Aeroplane, microlight', 'Heavy engines'],
+            'group3' =>  ['Cars', 'Motorbike/Quads', 'Bicycles', 'Boats', 'Pirogues', 'Aeroplane, microlight', 'Heavy engines'],
             'group4' =>  ['Weapons', 'Cartridges', 'Uniforms', 'Rations (per diem)', 'GPS, compasses', 'Camping and bush equipment'],
             'group5' =>  ['VHF/HF radios', 'V-SAT', 'Landline telephones', 'GSM telephones', 'Satellite telephones', 'Internet connection'],
             'group6' =>  ['Desktop computers', 'Printers', 'Photocopiers', 'Laptop computers'],
@@ -418,7 +418,7 @@ return [
             'Reliability' => 'Reliability',
             'Comments' => 'Source / Note',
         ],
-        'module_info' => 'Favourable conservation status: From Natura 2000, the conservation status of species will be considered ‘favourable’ when:<ul>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of species that are assumed to exist (see the IUCN’s lists of A - mammals, B - birds and C - amphibians), a limited number of key species of the protected area.<br /> <b>Species indicators</b> <ul> <li><b>FLA</b>: Flagship species</li> <li><b>EDG</b>: Endangered (threatened) species</li> <li><b>EDM</b>: Endemic species</li> <li><b>EXP</b>: Exploited species</li> <li><b>INV</b>: Invasive species</li> <li><b>LLK</b>: Species with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring programme and generation of multiannual trend graph.',
+        'module_info' => 'Favourable conservation status: From Natura 2000, the conservation status of species is considered ‘favourable’ when:<ul>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of species that are assumed to exist (see the IUCN’s lists of A - mammals, B - birds and C - amphibians), a limited number of key species of the protected area.<br /> <b>Species types</b> <ul> <li><b>FLA</b>: Flagship species</li> <li><b>EDG</b>: Endangered (threatened) species</li> <li><b>EDM</b>: Endemic species</li> <li><b>EXP</b>: Exploited species</li> <li><b>INV</b>: Invasive species</li> <li><b>LLK</b>: Species with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring programme and generation of trend graph.',
         'validation_min3' => 'Please encode not less than 3 key species',
         'warning_on_save' =>
             'WARNING!! <br /> Any modification may cause data loss in the following
@@ -441,7 +441,7 @@ return [
             'Reliability' => 'Reliability',
             'Comments' => 'Source / Note',
         ],
-        'module_info' => 'Favourable conservation status:<br />From Natura 2000, the conservation status of species will be considered ‘favourable’ when:<ul><li>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of the plants that are assumed to exist (see the lists available and park information), a limited number of key plant of the protected area<br /> <b>Species indicators</b> <ul> <li><b>PHA</b>: Flagship species</li> <li><b>MEN</b>: Endangered (threatened) species</li> <li><b>END</b>: Endemic species</li> <li><b>EXP</b>: Exploited species</li> <li><b>INV</b>: Invasive species</li> <li><b>INS</b>: Species with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring programme and generation of multiannual trend graph.<br /> <b>Reliability of information</b> <ul> <li>1: Low<li>2: Medium<li>3: High</li> </ul>',
+        'module_info' => 'Favourable conservation status:<br />From Natura 2000, the conservation status of species is considered ‘favourable’ when:<ul><li>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of the plants that are assumed to exist (see the lists available and park information), a limited number of key plants of the protected area<br /> <b>Species types</b> <ul> <li><b>PHA</b>: Flagship species</li> <li><b>MEN</b>: Endangered (threatened) species</li> <li><b>END</b>: Endemic species</li> <li><b>EXP</b>: Exploited species</li> <li><b>INV</b>: Invasive species</li> <li><b>INS</b>: Species with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring programme and generation of multiannual trend graph.<br /> <b>',
         'warning_on_save' =>
             'WARNING!! <br /> Any modification may cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
@@ -459,7 +459,7 @@ return [
             'Sectors' => 'Sectors',
             'Comments' => 'Comments / Source'
         ],
-        'module_info' => 'Note: Favourable conservation status:<br />From Natura 2000, the conservation status of a natural habitat will considered ‘favourable’ when:<ul><li><li>its natural range and areas it covers within that range are stable or increasing, and</li><li>the specific structure and functions which are necessary for its long-term maintenance exist and are likely to continue to exist for the foreseeable future</li></ul>Rating: Select and evaluate the most important ecosystem and habitat-related parameters of terrestrial and freshwater ecosystems and habitats of the protected area.<br /> <b>Note</b>: Habitat evaluation is still emerging as a discipline, since it is highly complex. The classification provides for the following division of territory: Biome, Ecoregion, Ecosystem, Habitat. Habitat characteristics/values can be assessed as: <ul> <li>i) under threat of extinction (within their natural range),</li> <li>ii) having a reduced natural range,</li> <li>iii) in decline,</li> <li>iv) an outstanding example of specific characteristics, etc.</li> </ul> Assessment of habitats can also be performed from the perspective of: <ul> <li>i) reproduction,</li> <li>ii) nutrition,</li> <li>iii) species protection, etc.</li> </ul> <br /> <b>Reliability of information</b> <ul> <li>1: Low<li>2: Medium<li>3: High</li> </ul>',
+        'module_info' => 'Note: Favourable conservation status:<br />From Natura 2000, the conservation status of a natural habitat is considered ‘favourable’ when:<ul><li><li>its natural range and areas it covers within that range are stable or increasing, and</li><li>the specific structure and functions which are necessary for its long-term maintenance exist and are likely to continue to exist for the foreseeable future</li></ul>Rating: Select and evaluate the most important ecosystem and habitat-related parameters of terrestrial and freshwater ecosystems and habitats of the protected area.<br /> <b>Note</b>: Habitat evaluation is still emerging as a discipline, since it is highly complex. The classification provides for the following division of territory: Biome, Ecoregion, Ecosystem, Habitat. Habitat characteristics/values can be assessed as: <ul> <li>i) under threat of extinction (within their natural range),</li> <li>ii) having a reduced natural range,</li> <li>iii) in decline,</li> <li>iv) an outstanding example of specific characteristics, etc.</li> </ul> Assessment of habitats can also be performed from the perspective of: <ul> <li>i) reproduction,</li> <li>ii) nutrition,</li> <li>iii) species protection, etc.</li> </ul> <br /> <b>',
         'warning_on_save' =>
             'WARNING!! <br /> Any modification may cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
@@ -490,7 +490,7 @@ return [
     ],
 
     'LandCover' => [
-        'title' => 'Maintenance of land cover-use-take (or physical terrain - forest, water, roads, etc.) [for aggregate values see point CTX 2.2]',
+        'title' => 'Maintenance of land cover-use-take [for aggregate values see point CTX 2.2]',
         'fields' => [
             'CoverType' => 'Land cover-use-take categories',
             'HistoricalArea' => 'Surface (ha)',
@@ -498,7 +498,7 @@ return [
             'Notes' => 'Source / Note',
             'HistoricalAreaData' => 'Baseline date',
         ],
-        'module_info' => 'Rating: Evaluate the most important elements of land cover-use-take for the management of the protected area<br />Land cover-use-take categories (exemple: forest, savannah, water, crops/plantations, dwellings, roads, etc.)',
+        'module_info' => 'Rating: Evaluate the most important elements of land cover-use-take for the management of the protected area<br />Land cover-use-take categories (example: forest, savannah, water, crops/plantations, dwellings, roads, etc.)',
         'warning_on_save' =>
             'WARNING!! <br /> Any modification may cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
@@ -510,7 +510,7 @@ return [
             'Value' => 'Values',
             'Impact' => 'Impact/ Severity',
             'Extension' => 'Scale/ Extent',
-            'Duration' => 'How long/ Irreversibility',
+            'Duration' => 'Duration/ Irreversibility',
             'Trend' => 'Trend',
             'Probability' => 'Probability for the threat in future',
         ],
@@ -531,7 +531,7 @@ return [
             'group13' => 'Bush fires (fires)',
             'group14' => 'Dams and water management or use',
             'group15' => 'Other changes in the ecosystem',
-            'group16' => 'Invasive / problematique species',
+            'group16' => 'Invasive / challenging species',
             'group17' => 'Domestic and urban waste water',
             'group18' => 'Industrial and military effluent',
             'group19' => 'Agricultural and forestry effluents',
@@ -539,7 +539,7 @@ return [
             'group21' => 'Atmospheric pollution',
             'group22' => 'Excessive energy use',
             'group23' => 'Geological phenomena',
-            'group24' => 'Climate change and phenomenas',
+            'group24' => 'Climate change effects',
             'group25' => 'Other pressures and threats'
         ],
         'predefined_values' => [
@@ -561,7 +561,7 @@ return [
                 'Livestock farming and grazing on small farms',
                 'Agro-industrial livestock farming and grazing'],
             'group4' => [
-                'Subsistence or artisanal aquaculturee',
+                'Subsistence or artisanal aquaculture',
                 'Industrial aquaculture'],
             'group6' => [
                 'Drilling (gas and oil)',
@@ -660,10 +660,10 @@ return [
             'title5' => 'Use of biological resources',
             'title6' => 'Human disturbance / intrusion',
             'title7' => 'Changes in the natural system',
-            'title8' => 'Invasive / problematique species',
+            'title8' => 'Invasive / challenging species',
             'title9' => 'Pollution',
             'title10' =>'Geological phenomena',
-            'title11' =>'Climate change and phenomenas',
+            'title11' =>'Climate change and effects',
             'title12' =>'Other pressures and threats'
         ],
         'ratingLegend' => [
@@ -680,17 +680,17 @@ return [
                 '3' => 'Everywhere >50%',
             ],
             'Duration' => [
-                '0' => 'Short term < 5 ans',
-                '1' => 'Medium term 5-20 ans',
-                '2' => 'Very long term 20-100 ans',
-                '3' => 'Permanent >100 ans',
+                '0' => 'Short term < 5 years',
+                '1' => 'Medium term 5-20 years',
+                '2' => 'Very long term 20-100 years',
+                '3' => 'Permanent >100 years',
             ],
             'Trend' => [
                 '-2' => 'Decreasing',
                 '-1' => 'Slightly decreasing',
                 '0' => 'No change',
                 '1' => 'Slightly increasing',
-                '2' => 'Increasingy',
+                '2' => 'Increasing',
             ],
             'Probability' => [
                 '0' => 'Very low',
@@ -699,7 +699,7 @@ return [
                 '3' => 'High',
             ],
         ],
-        'module_info' => 'The threats calculator is for calculating threat impact scores of threats on a specific protected area. Using your best professional judgement, you evaluate the threat impact exploiting five categories of score: (1) Impact/ Severity; (2) Scale/ Extent; (3) How long/ Irreversibility; (4) Trend; (5) Probability for the threat in the future',
+        'module_info' => 'The threats calculator measures the impact of threats on a specific protected area. Using your best professional judgement, you evaluate the threat impact exploiting five categories of score: (1) Impact/ Severity; (2) Scale/ Extent; (3) Duration/ Irreversibility; (4) Trend; (5) Probability for the threat in the future',
         'warning_on_save' =>
             'WARNING!! <br /> Any modification may cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
@@ -757,7 +757,7 @@ return [
             'group9' => 'Supporting services',
         ],
         'predefined_values' => [
-            'group0' => ['Water supply - illegal', 'Water supply - legal', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.) - illegal', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.) - legal', 'Human food - animal (wild / farmed meat, seafood , insects) - illegal', 'Human food - animal (wild / farmed meat, seafood, insects) - legal', 'Medicines and blue biotechnology (fish oil) - illegal', 'Medicines and blue biotechnology (fish oil) - legal', 'Fish / livestock feed (wild, farmed, bait) - illegal', 'Fish / livestock feed (wild, farmed, bait) - legal'],
+            'group0' => ['Water supply - illegal', 'Water supply - legal', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.) - illegal', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.) - legal', 'Human food - animal (wild / farmed meat, seafood, insects) - illegal', 'Human food - animal (wild / farmed meat, seafood, insects) - legal', 'Medicines and blue biotechnology (fish oil) - illegal', 'Medicines and blue biotechnology (fish oil) - legal', 'Fish / livestock feed (wild, farmed, bait) - illegal', 'Fish / livestock feed (wild, farmed, bait) - legal'],
             'group1' => ['High value timber - illegal', 'High value timber - legal', 'Timber for local construction - illegal', 'Timber for local construction - legal','Stems - fibres (palms, kenaf, etc.) - illegal', 'Stems - fibres (palms, kenaf, etc.) - legal', 'Other fibres (leaves, fruits...) (kapok, coco, etc.) - illegal', 'Other fibres (leaves, fruits...) (kapok, coco, etc.) - legal', 'Ornamental and aquaria resources (seeds, shells and fishes collection) - illegal', 'Ornamental and aquaria resources (seeds, shells and fishes collection) - legal', 'Sand (building) - illegal', 'Sand (building) - legal', 'Cultivation land (agriculture, livestock, forests) - illegal', 'Cultivation land (agriculture, livestock, forests) - legal'],
             'group2' => ['Fuelwood and biofuels - illegal', 'Fuelwood and biofuels - legal', 'Water for energy - illegal', 'Water for energy - legal', 'Fertiliser - illegal', 'Fertiliser - legal'],
             'group3' => ['Gas regulation (C sequestration)', 'Waste burial / removal / neutralisation', 'Waste regulation (nutrient uptake)'],
@@ -791,7 +791,7 @@ return [
                 '-1' => 'slightly decreasing',
                 '0' => 'no change',
                 '1' => 'slightly increasing',
-                '2' => 'increasingy'
+                '2' => 'increasing'
             ]
         ],
         'warning_on_save' =>
