@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Imet;
 
 use App\Library\API\DOPA\DOPA;
+use App\Models\Imet\Utils\ProtectedAreaNonWdpa;
 use App\Models\Imet\v2\Imet;
 use App\Models\Imet\v2\Modules;
 use App\Models\Species\Animal;
@@ -80,6 +81,9 @@ trait ReportV2{
                 $dopa_radar =  DOPA::get_wdpa_radarplot($item->wdpa_id);
                 $dopa_indicators =  DOPA::get_wdpa_all_inds($item->wdpa_id);
             }
+        } else {
+            $show_non_wdpa = true;
+            $non_wdpa = ProtectedAreaNonWdpa::find($item->wdpa_id)->toArray();
         }
 
         $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
@@ -123,6 +127,8 @@ trait ReportV2{
             'wdpa_extent' => $wdpa_extent[0]->extent ?? null,
             'dopa_radar' =>  $dopa_radar,
             'dopa_indicators' => $dopa_indicators[0] ?? null,
+            'show_non_wdpa' => $show_non_wdpa ?? false,
+            'non_wdpa' => $non_wdpa ?? null,
             'general_info' => $general_info['records'][0] ?? null,
             'vision' => $vision['records'][0] ?? null,
             'area' => Modules\Context\Areas::getArea($form_id)

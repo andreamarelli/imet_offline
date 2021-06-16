@@ -97,6 +97,11 @@ function score_class_threats($value, $additional_classes=''){
             </div>
         @endif
 
+        @include('admin.imet.v2.report.components.non_wdpa', [
+            'show_non_wdpa' => $show_non_wdpa,
+            'non_wdpa' =>  $non_wdpa
+        ])
+
         <div class="module-container">
             <div class="module-header"><div class="module-title">@lang('form/imet/v2/report.evaluation_elements')</div></div>
             <div class="module-body">

@@ -20,21 +20,31 @@
 
                 recordChangedCallback(){
 
-                    let empty = []
+                    let empty = [];
                     for (const [key, value] of Object.entries(this.records[0])) {
                         if(value === null || value === ''){
                             empty.push(key);
                         }
                     }
 
-                    if(empty.length === 4 &&
-                        empty.includes('version') &&
+                    console.log(empty);
+
+                    if(empty.includes('version') &&
                         empty.includes('FormID') &&
                         empty.includes('UpdateDate') &&
-                        empty.includes('UpdateBy')
-                    ){
-                        this.status = 'changed';
-                    } else {
+                        empty.includes('UpdateBy')){
+
+                        if(empty.length === 4 ||
+                            (empty.length === 5 &&  empty.includes('rep_m_area')) ||
+                            (empty.length === 5 &&  empty.includes('rep_area'))
+                        ){
+                            this.status = 'changed';
+                        } else {
+                            this.status = 'init';
+                        }
+                    }
+
+                    else {
                         this.status = 'init';
                     }
 

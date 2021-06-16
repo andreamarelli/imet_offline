@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit2e33666b9347445ce8cdae664fd492e2
+class ComposerStaticInit52f99734e88f847649fb267c24ddb550
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -27,6 +27,10 @@ class ComposerStaticInit2e33666b9347445ce8cdae664fd492e2
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
+        '265b4faa2b3a9766332744949e83bf97' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Collections/helpers.php',
+        'c7a3c339e7e14b60e06a2d7fcce9476b' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Events/functions.php',
+        'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
+        '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         '3af723442581d6c310bf44543f9f5c60' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/adjoint.php',
         'd803221834c8b57fec95debb5406a797' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/antidiagonal.php',
         '4714cafbd3be4c72c274a25eae9396bb' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/cofactors.php',
@@ -85,10 +89,6 @@ class ComposerStaticInit2e33666b9347445ce8cdae664fd492e2
         '883af48563631547925fa4c3b48ead07' => __DIR__ . '/..' . '/markbaker/complex/classes/src/operations/multiply.php',
         'f190e3308e6ca23234a2875edc985c03' => __DIR__ . '/..' . '/markbaker/complex/classes/src/operations/divideby.php',
         'ac9e33ce6841aa5bf5d16d465a2f03a7' => __DIR__ . '/..' . '/markbaker/complex/classes/src/operations/divideinto.php',
-        '265b4faa2b3a9766332744949e83bf97' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Collections/helpers.php',
-        'c7a3c339e7e14b60e06a2d7fcce9476b' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Events/functions.php',
-        'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
-        '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         'b4e3f29b106af37a2bb239f73cdf68c7' => __DIR__ . '/../..' . '/app/helpers.php',
     );
@@ -5060,10 +5060,10 @@ class ComposerStaticInit2e33666b9347445ce8cdae664fd492e2
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit2e33666b9347445ce8cdae664fd492e2::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit2e33666b9347445ce8cdae664fd492e2::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit2e33666b9347445ce8cdae664fd492e2::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit2e33666b9347445ce8cdae664fd492e2::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit52f99734e88f847649fb267c24ddb550::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit52f99734e88f847649fb267c24ddb550::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit52f99734e88f847649fb267c24ddb550::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit52f99734e88f847649fb267c24ddb550::$classMap;
 
         }, null, ClassLoader::class);
     }

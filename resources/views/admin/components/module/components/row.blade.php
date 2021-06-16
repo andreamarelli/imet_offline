@@ -3,6 +3,8 @@
 /** @var String     $label */
 /** @var int    $label_width */
 
+$label_width = $label_width ?? 3;
+
 $style_width = $label_width!==3
     ? 'style="width: '.round(100/12*$label_width).'%;"'      // bootstrap col-lg-x to %
     : '';
