@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Imet;
 
 use App\Http\Controllers\Components\FormController;
+use App\Http\Controllers\Imet\ScalingUp\ScalingUpAnalysis;
 use App\Library\Utils\File\File;
 use App\Models\Imet\Utils\ProtectedArea;
 use App\Models\Imet\Utils\ProtectedAreaNonWdpa;
@@ -14,6 +15,7 @@ use Illuminate\Http\Request;
 class ImetControllerV2 extends FormController
 {
     use ReportV2;
+    use ScalingUpAnalysis;
 
     protected static $form_class = Imet::class;
     protected static $form_view = 'imet/v2/context';

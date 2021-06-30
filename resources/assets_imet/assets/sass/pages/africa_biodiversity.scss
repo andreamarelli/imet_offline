@@ -1,0 +1,156 @@
+@import "../abstracts/all";
+
+section.header-biodiversity {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 80px 20px;
+  color: #fff;
+  h2{
+    font-size: 4em;
+    margin-bottom: 30px;
+    color:#fff;
+  }
+  p{
+    font-size: 1.2em;
+    max-width: 600px;
+    margin-bottom: 20px;
+  }
+  form{
+    max-width: 400px;
+    font-size: 1.2em;
+    margin-top: 30px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #fff;
+    .filters {
+      margin-bottom: 20px;
+      width: 100%;
+      float: left;
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: normal;
+      }
+      .bootstrap-select{
+        width: 47.5%;
+        float: left;
+        display: inline-block;
+        margin-right: 10px;
+        button{
+          border-color: #fff;
+          background-color: transparent;
+          color: #fff;
+          font-size: 1.1em;
+          padding: 8px 30px 8px 15px;
+        }
+      }
+    }
+    input[type=text]{
+      border:none;
+      background: transparent;
+      padding: 3px 20px;
+      color: #fff;
+      font-family: $fontFamily-3;
+      font-size: 1.1em;
+    }
+    .fa-search{
+      font-size: 1.5em;
+      padding-right: 20px;
+      border-right: 1px solid #fff;
+    }
+    ::-webkit-input-placeholder {
+      color: #fff;
+      font-family: $fontFamily-3;
+    }
+    ::-moz-placeholder {
+      color: #fff;
+      font-family: $fontFamily-3;
+    }
+    :-ms-input-placeholder {
+      color: #fff;
+      font-family: $fontFamily-3;
+    }
+    :-moz-placeholder {
+      color: #fff;
+      font-family: $fontFamily-3;
+    }
+  }
+
+}
+
+.biodiversity_figure_container {
+  max-width: 1180px;
+  padding: 30px 0 150px;
+  overflow: hidden;
+
+  figure {
+    float: left;
+    width: 25%;
+    position: relative;
+    text-align: left;
+    margin: 0;
+
+    img {
+      width: 100%;
+      display: block;
+      margin: 0;
+    }
+    figcaption {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 35px;
+      color: #fff;
+      h2 {
+        font-size: 2.5em;
+        color: #fff;
+      }
+      p {
+        font-weight: 300;
+        .arrow {
+          font-size: 1.4em;
+        }
+        .num {
+          font-size: 1.8em;
+        }
+      }
+    }
+    &.columns-2 {
+      width: 50%;
+    }
+  }
+}
+
+table.biodiversity_details{
+  tbody{
+    td{
+      .name{
+        color: $darkestGray;
+        font-weight: 600;
+      }
+      .common_names{
+        display: block;
+        font-style: italic;
+        font-weight: 600;
+        color: $darkestGray;
+        margin-top: 7px;
+        text-align: left;
+
+      }
+      .common_name{
+        margin: 0;
+      }
+      .flag-icon{
+        margin-right: 5px;
+      }
+      &.id-IUCN{
+        color: $baseGreen;
+        text-align: center;
+        font-size: 1.1em;
+      }
+      &:last-of-type {
+        text-align: center;
+      }
+    }
+  }
+}

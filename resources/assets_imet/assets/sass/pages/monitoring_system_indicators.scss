@@ -1,0 +1,143 @@
+@import "../abstracts/all";
+
+div.publish_indicators {
+
+  header {
+    padding: 20px 45px 20px 45px;
+    margin-bottom: 15px;
+    width: 100%;
+
+    h2 {
+      margin-top: 0;
+      font-size: 2.2em;
+      position: relative;
+      float: left;
+
+      &:before {
+        content: "";
+        position: absolute;
+        left: -45px;
+        top: 5px;
+        bottom: 5px;
+        border-left: 4px solid #f0efef;
+      }
+    }
+
+    form.indicator_filter {
+      float: right;
+
+      label {
+        margin-right: 10px;
+        display: inline-block;
+        padding: 10px 0;
+        font-weight: 600;
+      }
+    }
+
+  }
+
+  .filter {
+    padding: 20px 45px 20px 45px;
+    margin-bottom: 20px;
+    .bootstrap-select{
+      width: 600px;
+    }
+    a.button {
+      float: right;
+    }
+  }
+
+
+  nav.steps{
+    padding: 20px 45px 20px 45px;
+  }
+
+  article {
+
+    .card {
+
+      .card-header {
+        font-family: $fontFamily-1;
+        font-weight: 700;
+        font-size: 1.5em;
+        .action {
+          font-family: $fontFamily-2;
+          font-weight: 400;
+        }
+        &.collapsed, &:not(.collapsed){
+          padding: 15px 90px 15px 20px;
+        }
+      }
+
+
+      h4 {
+        font-size: 1.5em;
+        border-top: 1px solid #f6f5f5;
+        border-bottom: 1px solid #f6f5f5;
+        margin-bottom: 20px;
+        padding: 10px 0;
+      }
+      h5 {
+        padding: 20px 15px;
+        background-color: #f4f4f4;
+        border-left: 4px solid #dedede;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        font-size: 1.3em;
+        position: relative;
+        .year {
+          color: $darkGreen;
+        }
+        .publication-validation_info {
+          background: url("/images/sprite2x.png") no-repeat top left transparent;
+          background-position-x: -280px;
+          background-position-y: -0;
+          width: 26px;
+          height: 26px;
+          display: inline-block;
+          position: absolute;
+          right: 20px;
+          top: 50%;
+          margin-top: -14px;
+          &.validated {
+            background-position: -282px -0px
+          }
+          &.warning {
+            background-position: -282px -36px
+          }
+          .msg {
+            display: none;
+            text-indent: 0;
+            position: absolute;
+            right: 40px;
+            z-index: 1;
+            white-space: nowrap;
+            background-color: $darkerGreen;
+            color: #fff;
+            font-size: 12px;
+            padding: 10px;
+          }
+          &:hover {
+            .msg {
+              display: block;
+            }
+          }
+        }
+      }
+      > div {
+        overflow: visible;
+      }
+
+      table.grey {
+        font-size: 1em;
+        thead {
+          th {
+            text-align: center;
+          }
+        }
+      }
+
+    }
+  }
+}
+

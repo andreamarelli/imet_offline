@@ -66,7 +66,7 @@ function score_class_threats($value, $additional_classes=''){
         @include('admin.imet.components.heading', ['phase' => 'report'])
 
         <div class="module-container">
-            <div class="module-header"><div class="module-title">@lang('form/imet/v2/report.general_elements')</div></div>
+            <div class="module-header"><div class="module-title">@lang('form/imet/v2.report.general_elements')</div></div>
             <div class="module-body">
                 <div id="map" v-if=connection></div>
                 <div v-else class="dopa_not_available">@lang('entities.dopa_not_available')</div>
@@ -78,24 +78,24 @@ function score_class_threats($value, $additional_classes=''){
                         </div>
                     @endif
                     <div>
-                        <div><div class="strong">@lang('form/imet/v2/report.country'):</div>{{ $general_info['Country'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('form/imet/v2/report.name'):</div>{{ $general_info['CompleteName'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('form/imet/v2/report.category'):</div>{{ $general_info['NationalCategory'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('form/imet/v2/report.gazetting'):</div>{{ $general_info['CreationYear'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('form/imet/v2/report.surface'):</div>{{ $area }} [km2]</div>
-                        <div><div class="strong">@lang('form/imet/v2/report.agency'):</div>{{ $general_info['Institution'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('form/imet/v2/report.biome'):</div>{{ $general_info['Biome']  }}</div>
-                        <div><div class="strong">@lang('form/imet/v2/report.main_values_protected'):</div>{{ $general_info['ReferenceTextValues'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('form/imet/v2/report.vision'):</div>{{ $vision['LocalVision'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('form/imet/v2/report.mission'):</div>{{ $vision['LocalMission'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('form/imet/v2/report.objectives'):</div>{{ $vision['LocalObjective'] ?? '-' }}</div>
+                        <div><div class="strong">@lang('form/imet/v2.report.country'):</div>{{ $general_info['Country'] ?? '-' }}</div>
+                        <div><div class="strong">@lang('form/imet/v2.report.name'):</div>{{ $general_info['CompleteName'] ?? '-' }}</div>
+                        <div><div class="strong">@lang('form/imet/v2.report.category'):</div>{{ $general_info['NationalCategory'] ?? '-' }}</div>
+                        <div><div class="strong">@lang('form/imet/v2.report.gazetting'):</div>{{ $general_info['CreationYear'] ?? '-' }}</div>
+                        <div><div class="strong">@lang('form/imet/v2.report.surface'):</div>{{ $area }} [km2]</div>
+                        <div><div class="strong">@lang('form/imet/v2.report.agency'):</div>{{ $general_info['Institution'] ?? '-' }}</div>
+                        <div><div class="strong">@lang('form/imet/v2.report.biome'):</div>{{ $general_info['Biome']  }}</div>
+                        <div><div class="strong">@lang('form/imet/v2.report.main_values_protected'):</div>{{ $general_info['ReferenceTextValues'] ?? '-' }}</div>
+                        <div><div class="strong">@lang('form/imet/v2.report.vision'):</div>{{ $vision['LocalVision'] ?? '-' }}</div>
+                        <div><div class="strong">@lang('form/imet/v2.report.mission'):</div>{{ $vision['LocalMission'] ?? '-' }}</div>
+                        <div><div class="strong">@lang('form/imet/v2.report.objectives'):</div>{{ $vision['LocalObjective'] ?? '-' }}</div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="module-container">
-            <div class="module-header"><div class="module-title">@lang('form/imet/v2/report.evaluation_elements')</div></div>
+            <div class="module-header"><div class="module-title">@lang('form/imet/v2.report.evaluation_elements')</div></div>
             <div class="module-body">
                 <imet_charts form_id={{ $item->getKey() }} :show_histogram="true"></imet_charts>
                 <table id="global_scores">

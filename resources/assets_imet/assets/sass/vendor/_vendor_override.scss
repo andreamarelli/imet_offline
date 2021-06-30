@@ -1,0 +1,285 @@
+@import "../abstracts/all";
+
+.btn:focus{
+  outline: none;
+  box-shadow: none;
+}
+
+// #################################
+// ##########  Bootstrap  ##########
+// #################################
+
+.help-block{
+  display: inline-block;
+  margin: 0 0 0 10px;
+}
+
+.table > thead > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > th,
+.table > tbody > tr > td,
+.table > tfoot > tr > th,
+.table > tfoot > tr > td{
+  line-height: 22px;
+}
+
+div.modal{
+  text-align: left;
+  .modal-content{
+    border: none;
+    border-radius: 0;
+  }
+  .modal-body{
+    max-height: 500px;
+    overflow-y: scroll;
+  }
+}
+
+.tooltip-inner {
+  white-space:pre-wrap;
+}
+
+.btn-warning{
+  color: $darkestGray;
+}
+
+// ################################
+// ####  Bootstrap-datepicker  ####
+// ################################
+
+.field-edit.form-daypicker{
+  width: 102px;
+  display: inline-block;
+}
+.field-edit.form-monthpicker{
+  width: 78px;
+  display: inline-block;
+}
+.datepicker{
+    table tr td.active,
+    table tr td.active.active,
+    table tr td span.active.active{
+      background-color: $darkGreen;
+      background-image: none;
+      background-repeat: no-repeat;
+      color: $lightestGray;
+      font-weight: bold;
+      &:hover {
+        background-color: $darkerGreen;
+        color: $black;
+      }
+    }
+    table tr td.today{
+      background-color: $lighterGreen;
+      background-image: none;
+      background-repeat: no-repeat;
+      &:hover {
+        background-color: $lightGreen;
+      }
+    }
+}
+
+// ################################
+// ######  Bootstrap-slider  ######
+// ################################
+
+.slider-selection {
+  background: $lightGreen;
+}
+.slider-handle {
+  background: $darkGreen;
+}
+.slider-track-high{
+  background-color: $baseGray;
+  border-radius: 4px;
+}
+
+
+
+// ################################
+// ######  Bootstrap-select  ######
+// ################################
+
+.bootstrap-select {
+  li a{
+    @include transition(background-color);
+    color: $darkerGray !important;
+    font-weight: normal !important;
+    &:focus{
+      outline: none;
+    }
+    &:hover {
+      background: $baseGreen;
+    }
+  }
+  li.selected a {
+    font-weight: bold !important;
+  }
+}
+
+
+// ##############################
+// ########  vue-select  ########
+// ##############################
+
+.v-select{
+
+  font-family: $fontFamily-1;
+  font-size: $input_font-size;
+
+  .vs__dropdown-toggle{
+    @extend .field-edit-base;
+    padding: 6px 12px;
+    .vs__selected-options{
+      padding: 0;
+      .vs__selected{ // applied to multiple
+        padding: 1px 4px;
+        margin:  0 5px 3px 0;
+      }
+      .vs__search{
+        padding: 0;
+        margin: 0;
+      }
+    }
+    .vs__actions{
+      padding: 0;
+      .vs__clear{
+        fill: $contextual-danger;
+        line-height: 1em;
+      }
+      .vs__open-indicator{
+        transform: scale(0.8);
+      }
+    }
+  }
+
+  .vs__dropdown-menu{
+    padding-bottom: 0;
+    > li.vs__dropdown-option{
+      margin: 0;
+      padding-left: 15px;
+      &:hover,
+      &.vs__dropdown-option--selected{
+        background-color: $lightGreen;
+      }
+      &.vs__dropdown-option--highlight{
+        background-color: $darkGreen;
+        color: $white;
+      }
+    }
+  }
+
+}
+
+.v-select.vs--single{
+  .vs__dropdown-toggle{
+    .vs__selected-options{
+      .vs__selected{
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
+}
+
+
+
+// ###########################
+// ########  select2  ########
+// ###########################
+
+.select2-container {
+
+  max-width: 1000px;
+
+  & *:not(button),
+  .select2-selection--single .select2-selection__rendered,
+  .select2-selection--multiple .select2-selection__choice,
+  .select2-search--dropdown .select2-search__field{
+    font-size: $input_font-size;
+    font-family: $input_font-family;
+    color: $darkGray;
+    //z-index: 4;
+  }
+
+  .select2-selection--single .select2-selection__placeholder,
+  .select2-selection--multiple .select2-search__field::placeholder {
+    color: $lighterGray;
+  }
+
+  .select2-selection__clear {
+    color: $contextual-danger;
+    float: left !important;
+    margin-right: 5px !important;
+  }
+
+  .select2-selection--single{
+    text-align: left;
+  }
+  .select2-selection--multiple{
+    ul {
+      list-style: none !important;
+      margin-bottom: 0 !important;
+      line-height: 1.5em !important;
+      li {
+        margin-bottom: 0 !important;
+      }
+      li.select2-search input {
+        width: auto !important;
+      }
+    }
+    .select2-selection__choice {
+      background-color: $lightestGray;
+    }
+    .select2-selection__choice__remove {
+      color: $contextual-danger;
+    }
+  }
+  .select2-results__option{
+    padding: 0.25rem 0.35rem;
+  }
+  .select2-results__option[aria-selected=true]{
+    background-color: $lightGray;
+  }
+
+  .select2-results__option--highlighted[aria-selected],
+  .select2-results__option:hover,
+  .select2-results__option:hover *{
+    background-color: $lightGreen;
+    color: $darkestGray;
+  }
+
+  .currency-item {
+    display: flex;
+    justify-content: space-between;
+    .currency-code{
+      font-weight: bold;
+    }
+  }
+
+
+}
+
+// ###########################
+// ########  Leaflet  ########
+// ###########################
+
+.leaflet-control-layers-list{
+  font-family: $fontFamily-1;
+  font-size: 11px;
+  label{
+    margin-bottom: 0;
+    font-weight: normal;
+  }
+}
+
+.marker-cluster {
+  background-color: rgba($darkerGreen, 0.3);
+  div{
+    background-color: rgba($darkerGreen, 1);
+    .marker-count{
+      font-weight: bolder;
+      color: White;
+    }
+  }
+}

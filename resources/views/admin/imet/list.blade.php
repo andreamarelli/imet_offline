@@ -64,12 +64,22 @@ $url = URL::route('index');
 
     <br />
     <div id="sortable_list">
-
+        <div id="cloud">
+            <label-cloud :cookie-name="'analysis'" :url="'{{url('admin/imet')}}/v2/report/{items}/scaling/up'" :source-of-data="'cookie'"></label-cloud>
+        </div>
+        <br/>
+        <br/>
+        <action-button-cookie :class-name="'btn btn-success float-left'" :cookie-name="'analysis'"
+                              :event="'update_cloud_tags'" :label="'Save choices'">
+        </action-button-cookie>
         @include('admin.components.table.sort_on_client.num_records')
 
         <table class="striped">
             <thead>
             <tr>
+                <th class="text-center width30px"><input type='checkbox' class="ml-1 vue-checkboxes"
+                                                        @click="check_all()"
+                                                        v-model="are_checked_all"></th>
                 <th class="text-center width60px">@lang('entities.common.id')</th>
                 @include('admin.components.table.sort_on_client.th', ['column' => 'Year', 'label' => trans('entities.common.year'), 'class' => 'width90px'])
                 @include('admin.components.table.sort_on_client.th', ['column' => 'name', 'label' => trans_choice('entities.protected_area.protected_area', 1)])
@@ -81,6 +91,12 @@ $url = URL::route('index');
 
             <tbody>
             <tr v-for="item of items">
+                <td class="align-baseline text-center"><input type="checkbox"
+                                                              :checked="is_checked(item.FormID)"
+                                                              :data-name="item.name"
+                                                              @click="selectValueByIdAndValue(item.FormID, item.name)"
+                                                              class="vue-checkboxes"
+                                                              :value="item.FormID"></td>
                 <td class="align-baseline text-center">#@{{ item.FormID }}</td>
                 <td class="align-baseline text-center"><strong>@{{ item.Year }}</strong></td>
                 <td class="align-baseline">

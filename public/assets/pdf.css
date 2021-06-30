@@ -1,2 +1,79 @@
-[v-cloak]{display:none}*{color:#252525;font-size:12px;-webkit-print-color-adjust:exact}body.pdf{width:1100px}body.pdf .logo_comifac{margin-right:10px}body.pdf .logo_comifac img{height:40px;width:auto}body.pdf .logo_ofac img{height:30px;width:auto}body.pdf .logo_countries{display:block;margin-top:5px;margin-bottom:15px;width:180px;height:auto}body#pdf_project_platform #pdf_page_title{background-color:#b9eac8;border-radius:5px;text-align:center;text-transform:uppercase;font-family:Varela Round,sans-serif;font-weight:700;padding:10px 0}body#pdf_project_platform .graph-container{page-break-inside:avoid}body#pdf_project_platform .graph-container .graph-item-container .graph-item{width:45%;display:inline-block}body#pdf_project_platform .graph-container .map-item{margin-bottom:20px}body#pdf_project_platform .filters{width:100%;font-family:Varela Round,sans-serif;border-collapse:collapse;table-layout:fixed;margin:20px 0}body#pdf_project_platform .filters td{color:#00a74b;text-align:center;vertical-align:top;padding:8px;border-right:1px solid #b9eac8}body#pdf_project_platform .filters td:last-child{border-right:0}body#pdf_project_platform .filters td div{color:#252525;text-transform:uppercase;margin-bottom:10px}body#pdf_project_platform #project_map{border-radius:5px}body#pdf_project_platform #project_platform_list{page-break-before:always}
-/*# sourceMappingURL=pdf.css.map*/
+[v-cloak] {
+  display: none;
+}
+
+* {
+  color: #252525;
+  font-size: 12px;
+  -webkit-print-color-adjust: exact;
+}
+
+body.pdf {
+  width: 1100px;
+}
+body.pdf .logo_comifac {
+  margin-right: 10px;
+}
+body.pdf .logo_comifac img {
+  height: 40px;
+  width: auto;
+}
+body.pdf .logo_ofac img {
+  height: 30px;
+  width: auto;
+}
+body.pdf .logo_countries {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  width: 180px;
+  height: auto;
+}
+
+body#pdf_project_platform #pdf_page_title {
+  background-color: #b9eac8;
+  border-radius: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Varela Round", sans-serif;
+  font-weight: bold;
+  padding: 10px 0;
+}
+body#pdf_project_platform .graph-container {
+  page-break-inside: avoid;
+}
+body#pdf_project_platform .graph-container .graph-item-container .graph-item {
+  width: 45%;
+  display: inline-block;
+}
+body#pdf_project_platform .graph-container .map-item {
+  margin-bottom: 20px;
+}
+body#pdf_project_platform .filters {
+  width: 100%;
+  font-family: "Varela Round", sans-serif;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 20px 0;
+}
+body#pdf_project_platform .filters td {
+  color: #00A74B;
+  text-align: center;
+  vertical-align: top;
+  padding: 8px;
+  border-right: 1px solid #b9eac8;
+}
+body#pdf_project_platform .filters td:last-child {
+  border-right: 0;
+}
+body#pdf_project_platform .filters td div {
+  color: #252525;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+body#pdf_project_platform #project_map {
+  border-radius: 5px;
+}
+body#pdf_project_platform #project_platform_list {
+  page-break-before: always;
+}

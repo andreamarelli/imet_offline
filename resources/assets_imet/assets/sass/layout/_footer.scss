@@ -1,0 +1,25 @@
+@import "../abstracts/all";
+
+footer {
+
+  @media print {
+    display: none;
+  }
+
+  section#footer {
+    text-align: center;
+    clear: both;
+    background-color: $darkestGray;
+    font-size: .8em;
+    padding: 10px 6%;
+    color: $lightestGray;
+
+    a {
+      margin-right: 10px;
+
+      img {
+        vertical-align: middle;
+      }
+    }
+  }
+}

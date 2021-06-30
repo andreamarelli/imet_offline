@@ -1,0 +1,325 @@
+@import "../abstracts/all";
+@import "../vendor/mapbox";
+
+@mixin dark_label_tab(){
+  display: inline-block;
+  background-color: $baseGreen;
+  color: $white;
+  padding: 5px 10px;
+  @include text-2xs();
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  @media all and (max-width: 1280px) {
+    padding: 1px 8px;
+  }
+}
+
+@mixin map_overlay{
+  position: fixed;
+  z-index: 400;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#analytical_platform {
+
+  #platform_map{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    .leaflet-top,
+    .mapboxgl-ctrl-top-right{
+      top: 80px;
+    }
+  }
+
+  .loading-spinner {
+    @include map_overlay();
+    top: 50%;
+    left: 50%;
+  }
+
+  .top_positioning {
+    position: fixed;
+    width: 100%;
+    top: 30px;
+    max-width: 1600px;
+    @media all and (max-width: 1280px) {
+      top: 10px;
+    }
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .logo {
+      background-color: $white;
+      padding: 20px;
+      border-radius: 0 7px 7px 0;
+
+      > a {
+        display: block;
+
+        img {
+          &:first-child {
+            width: 50px;
+            margin-right: 10px;
+          }
+
+          &:nth-child(2) {
+            width: 80px;
+          }
+        }
+      }
+    }
+
+    .menuSelectors{
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: stretch;
+      margin-left: 60px;
+      position: relative;
+
+      @include text-sm;
+
+      .menuThemes{}
+      .menuLevels {
+        margin-left: 15px;
+
+        .selector_label {
+          @include dark_label_tab();
+          text-transform: uppercase;
+        }
+
+        .selector-icon{
+          .selection:first-child{
+            border-top-left-radius: 0;
+          }
+        }
+
+      }
+      .menuLocalLevels {
+        position: absolute;
+        right: 0;
+        top: 70px;
+        display: flex;
+        justify-content: flex-end;
+        .menuCountries{
+          .selection{
+            padding: 5px 7px;
+            flex-direction: column;
+            text-align: center;
+            white-space: normal;
+            max-width: 100px;
+          }
+        }
+      }
+
+    }
+
+  }
+
+  .right_positioning{
+    position: fixed;
+    right: 0;
+    top: 180px;
+    display: flex;
+    flex-direction: row-reverse;
+    .selector-icon-big{
+      height: 160px;
+    }
+    .card-api{
+      background: white;
+      border-radius: 4px;
+      .card-content{
+        min-height: 200px;
+        max-height: calc(100vh - 350px);
+        overflow: auto;
+        margin: 0 0 0 15px;
+        padding: 15px 15px 0 0;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+      .card-tools {
+        background-color: $lighterGray;
+        color: $darkestGray;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        padding: 5px 10px;
+        @include text-sm();
+        text-align: right;
+        .btn-nav{
+          white-space: nowrap;
+          line-height: 1.4em;
+        }
+        .card-filters{
+          text-align: left;
+          margin-top: 8px;
+        }
+      }
+    }
+  }
+
+  .bottom_positioning{
+    position: fixed;
+    bottom: 35px;
+    left: 30px;
+    @media all and (max-width: 1280px) {
+      left: 10px;
+    }
+    .selector-icon-big .selection{
+      padding: 8px 5px;
+    }
+    .card-loading{
+      background-color: $white;
+      width: 100%;
+      padding: 15px;
+      @include text-lg;
+      color: $darkGreen;
+    }
+    .card-api{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .card-chart{
+        min-height: 250px;
+        min-width: 500px;
+      }
+
+      .card-label{
+        @include dark_label_tab();
+        .upper{
+          text-transform: uppercase;
+        }
+      }
+      .selector-icon-big{
+        order: 2;
+        width: 100%;
+      }
+      .card-content{
+        order: 1;
+        width: 100%;
+        background: white;
+        padding: 15px;
+        min-height: 200px;
+        overflow: auto;
+        border-radius: 4px;
+        max-height: calc(100vh - 330px);
+        @media all and (max-width: 1280px) {
+          max-height: calc(100vh - 250px);
+        }
+      }
+    }
+
+
+  }
+
+}
+
+// Vue transition: slide & fade
+.slide-fade-enter-active {
+  transition-duration: 300ms;
+  transition-timing-function: ease-in;
+}
+.slide-fade-leave-active {
+  transition-duration: 0s;
+}
+.slide-fade-enter-to,
+.slide-fade-leave{
+  max-width: 100%;
+  opacity: 1;
+  overflow: hidden;
+}
+.slide-fade-enter,
+.slide-fade-leave-to{
+  max-width: 0;
+  opacity: 0.7;
+  overflow: hidden;
+}
+
+// ######  CUSTOM CARDS' WIDTHS  ######
+
+.card-biodiversity_regional{ width: 640px; }            // 4 sub-themes
+.card-biodiversity_national{ width: 640px; }            // 5 sub-themes
+.card-biodiversity_protected_areas{ width: 670px; }     // 8 sub-themes
+.card-forest_management_regional{ width: 670px; }       // 8 sub-themes
+.card-forest_management_national{ width: 670px; }       // 8 sub-themes
+.card-forest_management_concessions{ width: 640px; }    // 5 sub-themes
+.card-layers{ width: 350px; }
+.card-library{ width: 410px; }
+.card-projects{ width: 400px; }
+
+// ######  CUSTOM STYLES  ######
+
+.card-library{
+  .file_card{
+    .content .title{
+      @include force-break;
+    }
+  }
+}
+
+.card-projects{
+  span.subtitle{
+    margin-bottom: 5px;
+  }
+  span.two_columns{
+    width: 330px;
+    span:first-child{
+      font-style: italic;
+    }
+  }
+}
+
+.card-layers{
+  display: flex;
+  flex-direction: column;
+  max-width: 430px;
+  @media all and (max-width: 1280px) {
+    max-width: 350px;
+  }
+}
+
+.card-api{
+  .accordion-container{
+    .card-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .copyright{
+        font-style: italic;
+        @include text-xs;
+        padding-left: 10px;
+        color: $darkGreen;
+        white-space: nowrap;
+      }
+      .card-header-action{
+        padding: 5px 15px;
+        white-space: nowrap;
+        .switch_checkbox{
+          margin-top: 5px;
+        }
+        &:empty{
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.aichi-icon{
+  background-color: $lightestGray;
+  padding: 5px;
+  border-radius: 50%;
+  border: 1px solid white;
+  width: 30px;
+  height: 30px;
+  margin-right: 15px
+}
+.card-title a:hover img.aichi-icon{
+  background-color: $white;
+}

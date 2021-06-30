@@ -6,6 +6,13 @@ use App\Models\Imet\Imet;
 
 trait Assessment{
 
+    private static $indicators = ['context',
+        'planning',
+        'inputs',
+        'process',
+        'outputs',
+        'outcomes'
+    ];
 
     /**
      * Retrieve the IMET assessment statistics
@@ -19,7 +26,7 @@ trait Assessment{
     {
         $version = Imet::getVersion($item);
         $assessment_schema = $version=='v1'
-            ? 'imet_assessment'
+            ? 'imet_assessment_v1_to_v2'
             : 'imet_assessment_v2';
 
         if($version!==null) {
@@ -104,6 +111,26 @@ trait Assessment{
             $labels = ['C', 'P', 'I', 'PR', 'OP', 'OC'];
         }
         return array_combine($labels, $values);
+    }
+
+    public static function getUpperLimit($indicator)
+    {
+        $upperLimit = [];
+        foreach (static::$indicators as $v) {
+            $upperLimit[$v] = max($indicator[$v]);
+        }
+
+        return $upperLimit;
+    }
+
+    public static function getLowerLimit($indicator)
+    {
+        $lowerLimit = [];
+        foreach (static::$indicators as $v) {
+            $lowerLimit[$v] = min($indicator[$v]);
+        }
+
+        return $lowerLimit;
     }
 
 }

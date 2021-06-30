@@ -1,0 +1,30 @@
+@import "abstracts/all";
+
+// Bootstrap + bootstrap-based forms
+$font-size-base: 0.9rem !default;;
+$brand-success: $contextual-success !default;
+$state-success-bg: $contextual-light-success !default;
+
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-select/sass/bootstrap-select.scss";
+@import "~bootstrap-datepicker/dist/css/bootstrap-datepicker.standalone";
+@import "~select2";
+@import "~select2-bootstrap4-theme";
+
+// Fontawesome
+$fa-font-path : '#{$assets_path}fonts';
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
+// Forms
+@import "~vue-select/src/scss/vue-select.scss";
+
+// Flags
+$flag-icon-css-path:  '#{$assets_path}flags';
+@import "~flag-icon-css/sass/flag-icon.scss";
+
+// Mapping
+@import "~leaflet/dist/leaflet.css";
+@import "~leaflet-basemaps/L.Control.Basemaps.css";
+@import "~mapbox-gl/dist/mapbox-gl.css";
