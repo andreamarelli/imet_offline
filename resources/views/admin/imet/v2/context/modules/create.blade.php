@@ -108,7 +108,6 @@ $vue_record_index = 0;
                     default: false
                 }
             },
-
             watch: {
                 prev_year_selection(value){
                     if(value===null || value==='no_import'){
@@ -119,6 +118,17 @@ $vue_record_index = 0;
                     let record =  this.records[0];
                     record['prev_year_selection'] = value;
                     this.$set(this.records, 0, record);
+                },
+                records: {
+                    handler: async function () {
+                        await this.recordChangedCallback();
+                        if (this.status !== 'init') {
+                            let _this = this;
+                            _this.status = (_this.status !== 'changed') ? 'changed' : _this.status;
+                            _this.__sync_common_fields();
+                        }
+                    },
+                    deep: true
                 }
             },
 
@@ -173,6 +183,10 @@ $vue_record_index = 0;
                     this.current_pa = this.records[0]['wdpa_id'];
                     this.current_year = this.records[0]['Year'];
                 },
+
+               resetModuleCallback(){
+                    this.reset_status = 'init';
+               },
 
                 async retrievePreviousYears(){
                     let _this = this;
