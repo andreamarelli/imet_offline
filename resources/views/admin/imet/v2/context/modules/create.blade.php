@@ -124,20 +124,7 @@ $vue_record_index = 0;
 
             methods: {
 
-                recordChangedCallback(){
-                    // show SAVE bar only when all fields have been selected
-                    if(this.records[0]['Year']!==null &&
-                        this.records[0]['wdpa_id']!==null &&
-                        (
-                            (this.prev_year_selection==='no_import' && this.records[0]['language']!==null) ||
-                            (this.prev_year_selection!=='no_import' && this.prev_year_selection!==null)
-                        )
-                    ){
-                        this.status = 'idle';
-                    } else {
-                        this.status = 'init';
-                    }
-
+                async recordChangedCallback(){
                     // empty prev_year_selection if wdpa or year changes
                     if(this.current_pa !== this.records[0]['wdpa_id'] &&
                         this.current_year !== this.records[0]['Year']
@@ -147,12 +134,39 @@ $vue_record_index = 0;
                     }
 
                     // retrieve prev_year_selection
-                    if(this.records[0]['wdpa_id']!==null &&
-                        this.records[0]['Year']!==null &&
+                    if(![null, ""].includes(this.records[0]['wdpa_id']) &&
+                        ![null, ""].includes(this.records[0]['Year']) &&
                         (this.current_pa !== this.records[0]['wdpa_id'] ||
                             this.current_year !== this.records[0]['Year'])
                     ){
-                        this.retrievePreviousYears();
+                        try {
+                            const response = await this.retrievePreviousYears();
+                            this.retrieving_years = false;
+                            if (Object.values(response.data).length > 0) {
+                                this.parseAvailableYears(response.data);
+                            } else {
+                                this.available_years = null;
+                            }
+                        }
+                        catch(e){
+                            this.retrieving_years = false;
+                            this.available_years = null;
+                        }
+                    }
+
+
+                    // show SAVE bar only when all fields have been selected
+                    if(![null, ""].includes(this.records[0]['Year']) &&
+                        ![null, ""].includes(this.records[0]['wdpa_id']) &&
+                        (
+                            (this.prev_year_selection==='no_import' && this.records[0]['language']!==null) ||
+                            (this.prev_year_selection!=='no_import' && this.prev_year_selection!==null) ||
+                            (this.available_years === null && this.records[0]['language']!==null)
+                        )
+                    ){
+                        this.status = 'idle';
+                    } else {
+                        this.status = 'init';
                     }
 
                     // store selections
@@ -160,12 +174,12 @@ $vue_record_index = 0;
                     this.current_year = this.records[0]['Year'];
                 },
 
-                retrievePreviousYears(){
+                async retrievePreviousYears(){
                     let _this = this;
                     _this.available_years = null;
                     _this.retrieving_years = true;
 
-                    window.axios({
+                    return window.axios({
                         method: 'post',
                         url: '{{ action([\App\Http\Controllers\Imet\ImetControllerV2::class, 'retrieve_prev_years']) }}',
                         data: {
@@ -174,18 +188,6 @@ $vue_record_index = 0;
                             wdpa_id: _this.records[0]['wdpa_id']
                         }
                     })
-                        .then(function (response) {
-                            _this.retrieving_years = false;
-                            if(Object.values(response.data).length>0){
-                                _this.parseAvailableYears(response.data);
-                            } else{
-                                _this.available_years = null;
-                            }
-                            // _this.showSaveBar();
-                        })
-                        .catch(function (response) {
-                        })
-                        .finally(function (response) {});
                 },
 
                 parseAvailableYears(data){
