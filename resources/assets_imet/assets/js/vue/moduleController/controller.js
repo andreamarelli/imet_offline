@@ -32,7 +32,8 @@ window.ModuleController = Vue.extend({
             not_applicable: null,
             visible: null,
             not_available: null,
-            warning_on_save: null
+            warning_on_save: null,
+            reset_status: 'idle'
         }
     },
 
@@ -87,7 +88,7 @@ window.ModuleController = Vue.extend({
         _this.__set_predefined_as_disabled();
 
         Vue.nextTick(function () {
-            _this.status = 'idle';
+            _this.status = _this.reset_status;
         });
 
         _this.mountedCallback();
@@ -99,8 +100,8 @@ window.ModuleController = Vue.extend({
          * Automatic watch to supervise input changes
          */
         records: {
-            handler: async function () {
-                await this.recordChangedCallback();
+            handler: function () {
+                this.recordChangedCallback();
                 if (this.status !== 'init') {
                     let _this = this;
                     _this.status = (_this.status !== 'changed') ? 'changed' : _this.status;
@@ -123,7 +124,7 @@ window.ModuleController = Vue.extend({
             _this.__init_applicable();
             _this.resetModuleCallback();
             Vue.nextTick(function () {
-                _this.status = 'init';
+                _this.status = _this.reset_status;
             });
         },
 
