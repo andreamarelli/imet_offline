@@ -119,11 +119,17 @@ class ImetControllerV2 extends FormController
      */
     public function retrieve_prev_years(Request $request): \Illuminate\Support\Collection
     {
+        $year = $request->input('year');
+
+        if($year === null){
+            return collect([]);
+        }
+
         $wdpa_id = ProtectedArea::getByWdpa($request->input('wdpa_id'))->wdpa_id;
         return Imet::select(['FormID','Year','wdpa_id'])
             ->where('wdpa_id', $wdpa_id)
             ->where('version', 'v2')
-            ->where('Year', '<', $request->input('year'))
+            ->where('Year', '<', $year)
             ->orderByDesc('Year')
             ->get()
             ->pluck('Year', 'FormID');

@@ -99,8 +99,8 @@ window.ModuleController = Vue.extend({
          * Automatic watch to supervise input changes
          */
         records: {
-            handler: function () {
-                this.recordChangedCallback();
+            handler: async function () {
+                await this.recordChangedCallback();
                 if (this.status !== 'init') {
                     let _this = this;
                     _this.status = (_this.status !== 'changed') ? 'changed' : _this.status;
@@ -123,7 +123,7 @@ window.ModuleController = Vue.extend({
             _this.__init_applicable();
             _this.resetModuleCallback();
             Vue.nextTick(function () {
-                _this.status = 'idle';
+                _this.status = 'init';
             });
         },
 
