@@ -85,7 +85,6 @@ export default {
 
   methods: {
     onEditorInput(value) {
-      console.log({value})
        this.editorData = value;
     }
   }

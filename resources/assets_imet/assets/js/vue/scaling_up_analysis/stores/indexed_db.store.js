@@ -31,7 +31,6 @@ class BasketStore {
     }
 
     get_local_storage_images_key() {
-        // return `basket_${this.get_unique_id()}`;
         return `basket`;
     }
 

@@ -61,8 +61,4 @@ export default class BaseStore {
     localization(value) {
         return window.Locale.getLabel(value);
     }
-
-
 }
-
-//new BaseStore();

@@ -1,8 +1,5 @@
 <?php
-
-
 namespace App\Models\Imet\ScalingUp;
-
 
 use App\Http\Controllers\Imet\Assessment;
 use App\Http\Controllers\Imet\ImetEvalControllerV2;
@@ -17,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 class ScalingUpAnalysis extends Model
 {
     private static $protected_areas_ids = [];
-    protected static $ttl = 1;
+    protected static $ttl = 2;
     protected $table = 'imet.scaling_up';
     protected $fillable = ['wdpas'];
     public $timestamps = false;
@@ -28,6 +25,7 @@ class ScalingUpAnalysis extends Model
     }
 
     /**
+     * if names are duplicate add the year
      * @param $form_id
      * @param bool $retrieve_area
      * @return Imet|\Illuminate\Database\Eloquent\Builder|mixed
@@ -41,6 +39,7 @@ class ScalingUpAnalysis extends Model
     }
 
     /**
+     *
      * @param $search_with
      * @param $in_value
      * @param $add_value
@@ -57,6 +56,7 @@ class ScalingUpAnalysis extends Model
     }
 
     /**
+     * get the protected area country
      * @param $form_ids
      * @return Imet[]|array|bool|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|mixed
      */
@@ -86,6 +86,7 @@ class ScalingUpAnalysis extends Model
     }
 
     /**
+     * get all the data for map view
      * @param $form_ids
      * @return array
      */
@@ -141,14 +142,17 @@ class ScalingUpAnalysis extends Model
         $country_stats['area_prot_mar_km2'] = $dopa_stats['area_prot_mar_km2'];
         $country_stats['area_prot_terr_km2'] = $dopa_stats['area_prot_terr_km2'];
 
-        //return [$protected_areas, $country_stats];
         return ['status' => 'success', 'data' => [$protected_areas, $country_stats]];
     }
 
 
+    /**
+     * @param $network
+     * @param $form_id
+     * @return array
+     */
     private static function transboundary_areas($network, $form_id)
     {
-
         $wdpa_name = [];
         $main_values = [];
         foreach ($network as $trabs) {
@@ -238,9 +242,6 @@ class ScalingUpAnalysis extends Model
         $generalElements['total_surface_protected_areas'] = round($generalElements['total_surface_protected_areas'], 2);
         $generalElements['total_surface_area_of_landscape_protected_areas'] = round($generalElements['total_surface_area_of_landscape_protected_areas'], 2);
 
-//        return [
-//            'general_info' => $generalElements,
-//        ];
         return ['status' => 'success', 'data' => ['general_info' => $generalElements]];
     }
 
@@ -321,9 +322,6 @@ class ScalingUpAnalysis extends Model
 
         $key_elements['species_statistics'] = $species_count;
 
-//        return [
-//            'key_elements' => $key_elements
-//        ];
         return ['status' => 'success', 'data' => ['key_elements' => $key_elements]];
     }
 
@@ -360,7 +358,6 @@ class ScalingUpAnalysis extends Model
             $assessments[$k]['name'] = static::add_the_indicator_to_the_field($assessments[$k]['wdpa_id'], $assessments[$k]['name'], $assessments[$k]['year']);
         }
 
-        //return ['assessments' => $assessments];
         return ['status' => 'success', 'data' => ['assessments' => $assessments]];
     }
 
@@ -389,7 +386,6 @@ class ScalingUpAnalysis extends Model
             arsort($analysis_diagrams_protected_areas[$indi]);
         }
 
-        //return $analysis_diagrams_protected_areas;
         return ['status' => 'success', 'data' => $analysis_diagrams_protected_areas];
     }
 
@@ -402,7 +398,7 @@ class ScalingUpAnalysis extends Model
         $data = static::get_upper_lower_protected_areas_diagram_compare($form_ids);
         unset($data['diagrams']['upper limit']);
         unset($data['diagrams']['lower limit']);
-        //return  $data;
+
         return $data;
     }
 
@@ -429,7 +425,7 @@ class ScalingUpAnalysis extends Model
             [1, $lowerLimit['planning'], $upperLimit['planning']],
             [0, $lowerLimit['context'], $upperLimit['context']]
         ];
-        //return $response;
+
         return ['status' => 'success', 'data' => $response];
     }
 
@@ -619,8 +615,6 @@ class ScalingUpAnalysis extends Model
             }
         }
 
-
-        //return ['values' => $percent];
         return ['status' => 'success', 'data' => ['values' => $percent]];
     }
 
@@ -646,7 +640,7 @@ class ScalingUpAnalysis extends Model
 
         $form_ids = array_reverse($form_ids, true);
         $totalProtectedAreas = count($form_ids);
-        //dd($assessments);
+
         foreach ($indicator as $indi => $value) {
             foreach ($form_ids as $key => $form_id) {
                 $assess = $assessments['data']['assessments'][$key];
@@ -668,8 +662,6 @@ class ScalingUpAnalysis extends Model
         $lowerLimit['lineStyle'] = 'dashed';
         $lowerLimit['color'] = 'yellow';
 
-//        return ['diagrams' => array_merge($analysis_diagrams_protected_areas, [
-//            'Average' => $average, 'upper limit' => $upperLimit, 'lower limit' => $lowerLimit])];
         return ['status' => 'success', 'data' => ['diagrams' => array_merge($analysis_diagrams_protected_areas, [
             'Average' => $average, 'upper limit' => $upperLimit, 'lower limit' => $lowerLimit])]];
     }
@@ -691,7 +683,6 @@ class ScalingUpAnalysis extends Model
             return ['status' => false];
         }
 
-        //return $dopa_stats;
         return ['status' => 'success', 'data' => $dopa_stats];
     }
 
@@ -738,7 +729,7 @@ class ScalingUpAnalysis extends Model
             }
         }
         krsort($average);
-        //return ['radar' => $average];
+
         return ['status' => 'success', 'data' => ['radar' => $average]];
     }
 
@@ -808,7 +799,6 @@ class ScalingUpAnalysis extends Model
 
         krsort($average);
 
-        //return ['scatter' => $final_average];
         return ['status' => 'success', 'data' => ['scatter' => $final_average]];
     }
 
@@ -864,7 +854,6 @@ class ScalingUpAnalysis extends Model
             return ['status' => false];
         }
 
-        //return $dopa_country_ecoregions_stats;
         return ['status' => 'success', 'data' => $dopa_country_ecoregions_stats];
 
     }
@@ -890,7 +879,6 @@ class ScalingUpAnalysis extends Model
             return ['status' => false];
         }
 
-        //return $dopa_stats;
         return ['status' => 'success', 'data' => $dopa_stats];
     }
 
@@ -928,7 +916,6 @@ class ScalingUpAnalysis extends Model
             return ['status' => false];
         }
 
-        //return $dopa_stats;
         return ['status' => 'success', 'data' => $dopa_stats];
     }
 
@@ -954,7 +941,6 @@ class ScalingUpAnalysis extends Model
             return ['status' => false];
         }
 
-        //return $dopa_stats;
         return ['status' => 'success', 'data' => $dopa_stats];
     }
 
@@ -986,7 +972,7 @@ class ScalingUpAnalysis extends Model
         $cache_key = Cache::buildKey($action, ['form_id' => $form_id]);
 
         if (($cache_value = Cache::get($cache_key)) !== false) {
-            //return $cache_value;
+            return $cache_value;
         }
 
         $protected_area = Imet::where('FormID', $form_id)->get();

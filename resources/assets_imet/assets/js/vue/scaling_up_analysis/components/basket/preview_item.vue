@@ -1,6 +1,6 @@
 <template>
     <div class="img-container">
-      <div v-html="url"></div>
+
       <img :src="url" :width="width"/>
       <div class="img-text"> <slot></slot></div>
 
@@ -28,7 +28,7 @@ export default {
   position: relative;
   display: inline-block;
   margin: 10px 5px 5px;
-  max-width: 350px;
+  max-width: 450px;
   max-height: 350px;
   overflow: auto;
 }

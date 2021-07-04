@@ -1,25 +1,22 @@
 <template>
-
-  <div class='doughnut card-chart'></div>
-
+  <div class='bar card-chart'></div>
 </template>
 
 <style lang="scss" type="text/scss" scoped>
-.doughnut{
+.bar {
   min-height: 200px;
-  min-width: 400px;
+  min-width: 200px;
 }
 </style>
 <script>
-import dopa_chart_doughnut from "../analytical_platform/components/dopa_chart_doughnut";
-import resize from './mixins/resize.mixin';
+import dopa_chart_bar from "../../../analytical_platform/components/dopa_chart_bar";
+import resize from './../../mixins/resize.mixin';
 
 export default {
-  name: "scaling_dopa_chart_doughnut",
+  name: "scaling_dopa_chart_bar",
   mixins: [
     resize,
-    dopa_chart_doughnut
-
+    dopa_chart_bar
   ],
   methods: {
     draw_chart() {

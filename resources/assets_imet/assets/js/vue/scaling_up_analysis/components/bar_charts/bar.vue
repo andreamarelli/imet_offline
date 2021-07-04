@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import resize from './../mixins/resize.mixin';
+import resize from './../../mixins/resize.mixin';
 
 export default {
   name: "bar",
@@ -91,7 +91,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.values);
     this.draw_chart();
   },
   methods: {

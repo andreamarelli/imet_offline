@@ -84,7 +84,6 @@ export default {
       }
     },
     show_hide_excluded_elements: function (action = 'none') {
-      console.log(this.exclude_elements.length)
       if (this.exclude_elements.length > 0) {
         const exclude_elements = this.exclude_elements.split(',');
 

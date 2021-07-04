@@ -3,8 +3,8 @@
 </template>
 <script>
 
-import imet_radar from "./components/radar_multiple_values";
-import resize from './mixins/resize.mixin'
+import imet_radar from "./radar_multiple_values";
+import resize from './../../mixins/resize.mixin'
 
 export default {
   name: "scaling_radar",

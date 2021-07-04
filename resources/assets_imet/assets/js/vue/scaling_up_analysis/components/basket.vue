@@ -7,43 +7,33 @@
     <div class="stable" id="sidePreview">
       <div class="container">
         <div class="row">
-          <div class="col-3">
-            <div class="row mb-6">
-              <div class="col-sm mt-2">
-                <span class="badge badge-pill badge-primary">{{ preview_images.length }}</span>
-              </div>
+          <div class="col-1 basket-menu">
+            <div class="mt-2">
+              <span class="badge badge-pill badge-primary">{{ preview_images.length }}</span>
             </div>
-            <div class="row mb-6">
-              <div class="col-sm mt-2">
-                <i
-                    @click="remove_all()"
-                    class="fa fa-trash green"></i>
-              </div>
+            <div class="mt-2">
+              <i
+                  @click="remove_all()"
+                  class="fa fa-trash green"></i>
             </div>
-            <div class="row mb-6">
-              <div class="col-sm mt-2">
-                <i class="fas fa-print" @click="printElement"></i>
-              </div>
+            <div class="mt-2">
+              <i class="fas fa-print" @click="printElement"></i>
             </div>
           </div>
-          <div class="col-8">
+          <div class="col basket">
             <div style="" class="scrollPreview mb-2" v-cloak>
               <div id="preview">
-                <div class="row dropzone-areas">
-                  <drop_drag_area :drop_id="1" :key="1" class="row dropzone_area">
-                    <template>
-                      <draggable_item class="col" v-for="(image, idx) in preview_images" :key="image.id"
-                                      :item="{id:image.id}">
-                        <div class="d-flex justify-content-start">
-                          <i @click="remove_item(image.id)" class="fa fa-times fa-2x red_dark"></i>
-                        </div>
-                        <preview_item :url="url+image.url" :width="'100%'">
-
-                        </preview_item>
-
-                      </draggable_item>
-                    </template>
-                  </drop_drag_area>
+                <div v-if="preview_images.length > 0" class="row" v-for="(image, idx) in preview_images" :key="image.id">
+                  <div class="col">
+                    <div class="d-flex justify-content-start">
+                      <i @click="remove_item(image.id)" class="fa fa-times fa-2x red_dark"></i>
+                    </div>
+                    <preview_item :url="url+image.url" :width="'100%'">
+                    </preview_item>
+                  </div>
+                </div>
+                <div v-else>
+                  Basket is empty
                 </div>
               </div>
             </div>
@@ -120,7 +110,7 @@ export default {
       const success = await this.stores.BasketStore.clear();
       if (success) {
         await this.load_all();
-      }else {
+      } else {
 
       }
     },
@@ -135,16 +125,12 @@ export default {
 </script>
 
 <style scoped>
-
-
 .stable {
   right: 40px;
   z-index: 9999999;
 }
 
 .stable .scrollPreview {
-  /*max-height: 100%;*/
-  /*overflow: auto;*/
   z-index: 99;
 
   padding-left: 0px;
@@ -152,13 +138,35 @@ export default {
   margin-left: 0px;
   margin-right: 0px;
   margin-bottom: 0px;
-  width: 450px;
+  width: 400px;
+}
+
+
+.stable .basket-menu {
+  margin-top: 50px;
+  background-color: #04AA6D;
+
+  height: 100px;
+  width: 30px;
+  box-sizing: content-box;
+  border-radius: 5px 0px 0px 5px; /* Rounded corners on the top right and bottom right side */
+}
+
+.basket {
+  background-color: #eee;
+  margin-bottom: 10px;
+  padding: 10px;
+  min-height: 200px;
+  width: 490px;
+  max-height: 400px;
+  overflow: auto;
+  border-radius: 5px 5px 5px 5px;
+  border: solid #04AA6D;
 }
 
 .stable .col {
   flex-grow: 1;
   max-width: 100%;
-  flex-basis: unset;
 }
 
 .fa-trash {
@@ -175,7 +183,7 @@ export default {
   right: -490px; /* Position them outside of the screen */
   transition: 0.5s; /* Add transition on hover */
   padding: 20px 0px 0px 5px; /* 15px padding */
-  background-color: #04AA6D;
+
   text-decoration: none; /* Remove underline */
   font-size: 18px; /* Increase font size */
   color: white; /* White text color */
@@ -184,31 +192,6 @@ export default {
 
 #sidePreview:hover {
   right: 0; /* On mouse-over, make the elements appear as they should */
-}
-
-.dropzone_area {
-  background-color: #eee;
-  /*margin-bottom: 10px;*/
-  padding: 10px;
-  min-height: 300px;
-  width: 500px;
-  max-height: 500px;
-  overflow: auto;
-}
-
-.change-add {
-  transition: all 0.1s;
-  -webkit-transition: all 0.1s ease-in-out;
-}
-
-.change-remove {
-  transition: all 0.8s;
-  -webkit-transition: all 0.8s ease-in-out;
-}
-
-.change {
-  background-color: red !important;
-  transform: scale(1.5);
 }
 
 </style>

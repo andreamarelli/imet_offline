@@ -10,7 +10,6 @@
            v-html="stores.BaseStore.localization('entities.dopa_not_available')"></div>
       <div v-else-if="error_wrong" class="dopa_not_available"
            v-html="stores.BaseStore.localization('form/imet/analysis_report/report.error_wrong')"></div>
-
       <div v-else class="container-menu">
         <!--        <small_menu v-if="show_menu" :items="data.values.diagrams"></small_menu>-->
         <slot :props="data"></slot>
@@ -20,8 +19,8 @@
 </template>
 
 <script>
-import ajax from './../mixins/ajax.mixin';
-import small_menu from './small_menu';
+import ajax from './../../mixins/ajax.mixin';
+import small_menu from './../menus/small_menu';
 
 
 export default {
@@ -65,7 +64,6 @@ export default {
 
   methods: {
     success: function (response) {
-      console.log({response});
       if (response.status === false) {
         this.timeout = true;
         return;

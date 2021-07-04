@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import resize from './../mixins/resize.mixin';
+import resize from './../../mixins/resize.mixin';
 
 export default {
   name: "bar_category_stack",
@@ -157,7 +157,6 @@ export default {
     draw_chart() {
       if (Object.keys(this.values).length > 0) {
         this.chart = echarts.init(this.$el);
-        console.log(this.bar_options);
         this.chart.setOption(this.bar_options);
       }
     }

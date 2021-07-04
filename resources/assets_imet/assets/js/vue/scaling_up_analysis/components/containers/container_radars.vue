@@ -10,9 +10,8 @@
 </template>
 
 <script>
-import container from './components/container'
-import resize from './mixins/resize.mixin';
-import Radar_multiple_values from "./components/radar_multiple_values";
+import container from './container';
+import Radar_multiple_values from "./../various_charts/radar_multiple_values";
 
 
 export default {

@@ -230,7 +230,6 @@ export default {
     draw_chart() {
       if (Object.keys(this.values).length > 1) {
         this.chart = echarts.init(this.$el);
-        console.log(this.radar_options);
         this.chart.setOption(this.radar_options);
         if (this.unselect_legends_on_load) {
 

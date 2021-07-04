@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import resize from './../mixins/resize.mixin'
+import resize from './../../mixins/resize.mixin'
 
 export default {
   mixins: [resize],

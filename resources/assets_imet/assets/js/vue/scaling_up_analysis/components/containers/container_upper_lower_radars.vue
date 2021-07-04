@@ -33,7 +33,7 @@
 
 <script>
 
-import datatable_interact_with_radar from "./datatable_interact_with_radar";
+import datatable_interact_with_radar from "./../datatables/datatable_interact_with_radar";
 
 export default {
   components: {

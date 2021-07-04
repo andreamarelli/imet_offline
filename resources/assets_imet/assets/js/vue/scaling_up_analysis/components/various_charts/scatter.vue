@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import resize from "../mixins/resize.mixin";
+import resize from "../../mixins/resize.mixin";
 
 export default {
   name: "scatter",
@@ -100,12 +100,10 @@ export default {
   },
   mounted() {
     this.data = this.values;//.map(el=>Object.values(el));
-    console.log({data: this.data});
   },
   methods: {
     draw_chart() {
       if (this.data.length > 0) {
-        console.log(this.bar_options);
         this.chart = echarts.init(this.$el);
         this.chart.setOption(this.bar_options);
         this.chart.on('legendselectchanged', (params) => {
