@@ -126,9 +126,17 @@ class ImetController extends FormController
         $countries = Country::getCountriesByEnvironment();
         $years = Imet::getAvailableYears();
 
-        $list = Imet::filterList($request)
-            ->get()
-            ->map(
+        $list_v1 = \App\Models\Imet\v1\Imet
+            ::filterList($request)
+            ->get();
+
+        $list_v2 = \App\Models\Imet\v2\Imet
+            ::filterList($request)
+            ->get();
+
+        $list = $list_v1->merge($list_v2);
+
+        $list->map(
                 function (Imet $item) use ($countries) {
                     $item->iso2 = $countries[$item->Country]['iso2'] ?? null;
                     $item->country_name = $countries[$item->Country]['name'] ?? null;
