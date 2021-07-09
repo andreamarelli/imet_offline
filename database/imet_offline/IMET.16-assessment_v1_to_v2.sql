@@ -93,34 +93,6 @@ END;
 $$;
 
 
-CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step_summary(
-	form_id text DEFAULT NULL::text,
-	c_iso3 text DEFAULT NULL::text)
-    RETURNS SETOF imet_assessment_v1_to_v2.v_imet_eval_stat_step_summary
-    LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE PARALLEL UNSAFE
-    ROWS 1000
-
-AS $$
-declare
-form_ids text;
-
-BEGIN
-
-  form_ids := '{' || form_id || '}';
-
-CASE WHEN form_id is not null and c_iso3 is null
-    THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step_summary where formid=ANY(form_ids::int[]);
-WHEN form_id is null and c_iso3 is not null
-    THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step_summary where iso3=c_iso3;
-WHEN form_id is not null and c_iso3 is not null
-    THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step_summary where iso3=c_iso3 and formid=ANY(form_ids::int[]);
-ELSE
-    return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step_summary;
-END CASE;
-END;
-$$;
 
 
 CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_stat_labels(
@@ -583,6 +555,34 @@ SELECT DISTINCT tableall.formid,
                 tableall.outcomes
 FROM tableall;
 
+CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step_summary(
+    form_id text DEFAULT NULL::text,
+    c_iso3 text DEFAULT NULL::text)
+    RETURNS SETOF imet_assessment_v1_to_v2.v_imet_eval_stat_step_summary
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $$
+declare
+form_ids text;
+
+BEGIN
+
+  form_ids := '{' || form_id || '}';
+
+CASE WHEN form_id is not null and c_iso3 is null
+    THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step_summary where formid=ANY(form_ids::int[]);
+WHEN form_id is null and c_iso3 is not null
+    THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step_summary where iso3=c_iso3;
+WHEN form_id is not null and c_iso3 is not null
+    THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step_summary where iso3=c_iso3 and formid=ANY(form_ids::int[]);
+ELSE
+    return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step_summary;
+END CASE;
+END;
+$$;
 
 
 
