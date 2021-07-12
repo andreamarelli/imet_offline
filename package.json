@@ -32,6 +32,7 @@
     "bootstrap-select": "^1.13.18",
     "echarts": "^4.9.0",
     "flag-icon-css": "^3.5.0",
+    "html-to-image": "1.6.1",
     "gradstop": "^2.2.3",
     "jquery": "^3.6.0",
     "leaflet": "1.3.4",
@@ -48,7 +49,6 @@
     "vue": "^2.6.14",
     "vue-select": "^3.11.2",
     "vue2-dropzone": "^3.6.0",
-    "vuex": "^3.6.2",
-    "html-to-image": "1.6.1"
+    "vuex": "^3.6.2"
   }
 }

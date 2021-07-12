@@ -153,6 +153,7 @@ $vue_record_index = 0;
                             const response = await this.retrievePreviousYears();
                             this.retrieving_years = false;
                             if (Object.values(response.data).length > 0) {
+                                console
                                 this.parseAvailableYears(response.data);
                             } else {
                                 this.available_years = null;
@@ -184,9 +185,9 @@ $vue_record_index = 0;
                     this.current_year = this.records[0]['Year'];
                 },
 
-               resetModuleCallback(){
+                resetModuleCallback(){
                     this.reset_status = 'init';
-               },
+                },
 
                 async retrievePreviousYears(){
                     let _this = this;
@@ -239,5 +240,4 @@ $vue_record_index = 0;
         });
     </script>
 @endpush
-
 

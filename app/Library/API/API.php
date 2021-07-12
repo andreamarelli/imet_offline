@@ -13,7 +13,7 @@ class API
         // Retrieve from cache
         $cache_key = Cache::buildKey($url, $params);
         if(($cache_value = Cache::get($cache_key)) !== false){
-           // return $cache_value;
+            return $cache_value;
         }
 
         // Execute request to API
@@ -22,7 +22,6 @@ class API
         try {
             $response = json_decode(file_get_contents($url));
             // store in cache
-           // dd($url, $params);
             Cache::put($cache_key, $response, static::CACHE_TTL);
         } catch (\Exception $e) {
             return ['error' => $e->getMessage()];

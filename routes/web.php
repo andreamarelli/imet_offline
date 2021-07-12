@@ -90,6 +90,8 @@ Route::group(['middleware' => 'setLocale'], function () {
                     Route::get('{item}/edit', [Imet\ImetControllerV2::class, 'report']);
                     Route::get('{item}/show', [Imet\ImetControllerV2::class, 'report_show']);
                     Route::patch('{item}', [Imet\ImetControllerV2::class, 'report_update']);
+
+                    // Scaling Up Analysis
                     Route::get('{items}/scaling/up', [Imet\ImetControllerV2::class, 'report_scaling_up'])->name('scaling_up');
                     Route::get('scaling/up/preview/{id}', [Imet\ImetControllerV2::class, 'preview_template'])->name('scaling_up_preview');
                     Route::post('scaling/analysis', [Imet\ImetControllerV2::class, 'get_ajax_responses']);
@@ -98,6 +100,7 @@ Route::group(['middleware' => 'setLocale'], function () {
                     Route::post('scaling/basket/all',      [Imet\ScalingUp\Basket::class, 'all']);
                     Route::delete( 'scaling/basket/delete/{id}',      [Imet\ScalingUp\Basket::class, 'delete']);
                     Route::post('scaling/basket/clear',      [Imet\ScalingUp\Basket::class, 'clear']);
+
                 });
 
             });

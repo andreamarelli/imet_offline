@@ -14,7 +14,7 @@
             <div class="row align-items-center fill">
                 <div class="col-sm">
                     <div class="text-center">
-                        <br/> <preview_template :scaling_up_id="{{$scaling_up_id}}"></preview_template>
+                        <br/> <preview_template scaling_up_id="{{ $scaling_up_id }}"></preview_template>
                     </div>
                 </div>
             </div>

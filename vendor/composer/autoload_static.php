@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit52f99734e88f847649fb267c24ddb550
+class ComposerStaticInitd4d3afd06d844f7baa0dc9cb4fc953ba
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -27,10 +27,6 @@ class ComposerStaticInit52f99734e88f847649fb267c24ddb550
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
-        '265b4faa2b3a9766332744949e83bf97' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Collections/helpers.php',
-        'c7a3c339e7e14b60e06a2d7fcce9476b' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Events/functions.php',
-        'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
-        '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         '3af723442581d6c310bf44543f9f5c60' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/adjoint.php',
         'd803221834c8b57fec95debb5406a797' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/antidiagonal.php',
         '4714cafbd3be4c72c274a25eae9396bb' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Functions/cofactors.php',
@@ -89,6 +85,10 @@ class ComposerStaticInit52f99734e88f847649fb267c24ddb550
         '883af48563631547925fa4c3b48ead07' => __DIR__ . '/..' . '/markbaker/complex/classes/src/operations/multiply.php',
         'f190e3308e6ca23234a2875edc985c03' => __DIR__ . '/..' . '/markbaker/complex/classes/src/operations/divideby.php',
         'ac9e33ce6841aa5bf5d16d465a2f03a7' => __DIR__ . '/..' . '/markbaker/complex/classes/src/operations/divideinto.php',
+        '265b4faa2b3a9766332744949e83bf97' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Collections/helpers.php',
+        'c7a3c339e7e14b60e06a2d7fcce9476b' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Events/functions.php',
+        'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
+        '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         'b4e3f29b106af37a2bb239f73cdf68c7' => __DIR__ . '/../..' . '/app/helpers.php',
     );
@@ -676,6 +676,8 @@ class ComposerStaticInit52f99734e88f847649fb267c24ddb550
         'App\\Http\\Controllers\\Imet\\ImetEvalControllerV2' => __DIR__ . '/../..' . '/app/Http/Controllers/Imet/ImetEvalControllerV2.php',
         'App\\Http\\Controllers\\Imet\\ReportV1' => __DIR__ . '/../..' . '/app/Http/Controllers/Imet/ReportV1.php',
         'App\\Http\\Controllers\\Imet\\ReportV2' => __DIR__ . '/../..' . '/app/Http/Controllers/Imet/ReportV2.php',
+        'App\\Http\\Controllers\\Imet\\ScalingUp\\Basket' => __DIR__ . '/../..' . '/app/Http/Controllers/Imet/ScalingUp/Basket.php',
+        'App\\Http\\Controllers\\Imet\\ScalingUp\\ScalingUpAnalysis' => __DIR__ . '/../..' . '/app/Http/Controllers/Imet/ScalingUp/ScalingUpAnalysis.php',
         'App\\Http\\Controllers\\InstitutionController' => __DIR__ . '/../..' . '/app/Http/Controllers/InstitutionController.php',
         'App\\Http\\Controllers\\LocalityController' => __DIR__ . '/../..' . '/app/Http/Controllers/LocalityController.php',
         'App\\Http\\Controllers\\NationalIndicators\\N1Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/NationalIndicators/N1Controller.php',
@@ -856,6 +858,8 @@ class ComposerStaticInit52f99734e88f847649fb267c24ddb550
         'App\\Models\\ForestType' => __DIR__ . '/../..' . '/app/Models/ForestType.php',
         'App\\Models\\Imet\\Imet' => __DIR__ . '/../..' . '/app/Models/Imet/Imet.php',
         'App\\Models\\Imet\\Report' => __DIR__ . '/../..' . '/app/Models/Imet/Report.php',
+        'App\\Models\\Imet\\ScalingUp\\Basket' => __DIR__ . '/../..' . '/app/Models/Imet/ScalingUp/Basket.php',
+        'App\\Models\\Imet\\ScalingUp\\ScalingUpAnalysis' => __DIR__ . '/../..' . '/app/Models/Imet/ScalingUp/ScalingUpAnalysis.php',
         'App\\Models\\Imet\\Utils\\Encoder' => __DIR__ . '/../..' . '/app/Models/Imet/Utils/Encoder.php',
         'App\\Models\\Imet\\Utils\\ProtectedArea' => __DIR__ . '/../..' . '/app/Models/Imet/Utils/ProtectedArea.php',
         'App\\Models\\Imet\\Utils\\ProtectedAreaNonWdpa' => __DIR__ . '/../..' . '/app/Models/Imet/Utils/ProtectedAreaNonWdpa.php',
@@ -2590,6 +2594,7 @@ class ComposerStaticInit52f99734e88f847649fb267c24ddb550
         'Illuminate\\Hashing\\HashManager' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Hashing/HashManager.php',
         'Illuminate\\Hashing\\HashServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Hashing/HashServiceProvider.php',
         'Illuminate\\Http\\Client\\ConnectionException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Client/ConnectionException.php',
+        'Illuminate\\Http\\Client\\Events\\ConnectionFailed' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Client/Events/ConnectionFailed.php',
         'Illuminate\\Http\\Client\\Events\\RequestSending' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Client/Events/RequestSending.php',
         'Illuminate\\Http\\Client\\Events\\ResponseReceived' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Client/Events/ResponseReceived.php',
         'Illuminate\\Http\\Client\\Factory' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Http/Client/Factory.php',
@@ -2708,6 +2713,7 @@ class ComposerStaticInit52f99734e88f847649fb267c24ddb550
         'Illuminate\\Queue\\Console\\ListFailedCommand' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/Console/ListFailedCommand.php',
         'Illuminate\\Queue\\Console\\ListenCommand' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/Console/ListenCommand.php',
         'Illuminate\\Queue\\Console\\PruneBatchesCommand' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/Console/PruneBatchesCommand.php',
+        'Illuminate\\Queue\\Console\\PruneFailedJobsCommand' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/Console/PruneFailedJobsCommand.php',
         'Illuminate\\Queue\\Console\\RestartCommand' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/Console/RestartCommand.php',
         'Illuminate\\Queue\\Console\\RetryBatchCommand' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/Console/RetryBatchCommand.php',
         'Illuminate\\Queue\\Console\\RetryCommand' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/Console/RetryCommand.php',
@@ -2726,6 +2732,7 @@ class ComposerStaticInit52f99734e88f847649fb267c24ddb550
         'Illuminate\\Queue\\Failed\\DynamoDbFailedJobProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/Failed/DynamoDbFailedJobProvider.php',
         'Illuminate\\Queue\\Failed\\FailedJobProviderInterface' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/Failed/FailedJobProviderInterface.php',
         'Illuminate\\Queue\\Failed\\NullFailedJobProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/Failed/NullFailedJobProvider.php',
+        'Illuminate\\Queue\\Failed\\PrunableFailedJobProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/Failed/PrunableFailedJobProvider.php',
         'Illuminate\\Queue\\InteractsWithQueue' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/InteractsWithQueue.php',
         'Illuminate\\Queue\\InvalidPayloadException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/InvalidPayloadException.php',
         'Illuminate\\Queue\\Jobs\\BeanstalkdJob' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/Jobs/BeanstalkdJob.php',
@@ -3387,6 +3394,7 @@ class ComposerStaticInit52f99734e88f847649fb267c24ddb550
         'League\\Flysystem\\ConfigAwareTrait' => __DIR__ . '/..' . '/league/flysystem/src/ConfigAwareTrait.php',
         'League\\Flysystem\\ConnectionErrorException' => __DIR__ . '/..' . '/league/flysystem/src/ConnectionErrorException.php',
         'League\\Flysystem\\ConnectionRuntimeException' => __DIR__ . '/..' . '/league/flysystem/src/ConnectionRuntimeException.php',
+        'League\\Flysystem\\CorruptedPathDetected' => __DIR__ . '/..' . '/league/flysystem/src/CorruptedPathDetected.php',
         'League\\Flysystem\\Directory' => __DIR__ . '/..' . '/league/flysystem/src/Directory.php',
         'League\\Flysystem\\Exception' => __DIR__ . '/..' . '/league/flysystem/src/Exception.php',
         'League\\Flysystem\\File' => __DIR__ . '/..' . '/league/flysystem/src/File.php',
@@ -5060,10 +5068,10 @@ class ComposerStaticInit52f99734e88f847649fb267c24ddb550
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit52f99734e88f847649fb267c24ddb550::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit52f99734e88f847649fb267c24ddb550::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit52f99734e88f847649fb267c24ddb550::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit52f99734e88f847649fb267c24ddb550::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitd4d3afd06d844f7baa0dc9cb4fc953ba::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitd4d3afd06d844f7baa0dc9cb4fc953ba::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitd4d3afd06d844f7baa0dc9cb4fc953ba::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitd4d3afd06d844f7baa0dc9cb4fc953ba::$classMap;
 
         }, null, ClassLoader::class);
     }

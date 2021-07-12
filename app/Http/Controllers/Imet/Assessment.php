@@ -6,7 +6,8 @@ use App\Models\Imet\Imet;
 
 trait Assessment{
 
-    private static $indicators = ['context',
+    private static $indicators = [
+        'context',
         'planning',
         'inputs',
         'process',
@@ -113,7 +114,8 @@ trait Assessment{
         return array_combine($labels, $values);
     }
 
-    public static function getUpperLimit($indicator)
+
+    public static function getUpperLimit($indicator): array
     {
         $upperLimit = [];
         foreach (static::$indicators as $v) {
@@ -123,7 +125,7 @@ trait Assessment{
         return $upperLimit;
     }
 
-    public static function getLowerLimit($indicator)
+    public static function getLowerLimit($indicator): array
     {
         $lowerLimit = [];
         foreach (static::$indicators as $v) {
