@@ -305,6 +305,8 @@ class Module extends EntityModel
             static::UPDATED_AT,
             static::UPDATED_BY
         ];
+        
+        $module1 = unserialize(serialize($module1));
 
         return $module1
                 ->makeHidden($fields_to_hide)
