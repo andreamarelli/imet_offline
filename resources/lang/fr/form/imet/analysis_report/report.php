@@ -48,6 +48,7 @@ return [
         'comments_terrestrial' => 'Comments on Terrestrial and marine habitats -land-cover, land-change and land-take',
         'comments_plants_species' => 'Comments on Key plants species',
         'comments_animal_species' => 'Comments on Key species',
+        'threats' => 'Threats'
     ],
     'protected_area_coverage_and_connectivity' => [
         'title',
