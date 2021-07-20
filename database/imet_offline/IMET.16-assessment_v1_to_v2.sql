@@ -163,6 +163,35 @@ BEGIN
 END;
 $$;
 
+CREATE VIEW imet_assessment_v1_to_v2.v_imet_eval_stat_step3
+AS
+WITH table0 AS (
+    SELECT v_imet_eval_stat_step3.formid,
+           v_imet_eval_stat_step3.wdpa_id,
+           v_imet_eval_stat_step3.iso3,
+           v_imet_eval_stat_step3.name,
+           round(v_imet_eval_stat_step3.i1 * 0.8, 2) AS i1,
+           round(v_imet_eval_stat_step3.i2 * 0.91, 2) AS i2,
+           round(imet_assessment_v1_to_v2.get_imet_condition_stat_step_3_i3(v_imet_eval_stat_step3.i3::double precision)::numeric, 2) AS i3,
+           round(imet_assessment_v1_to_v2.get_imet_condition_stat_step_3_i4(v_imet_eval_stat_step3.i4::double precision)::numeric, 2) AS i4,
+           round(v_imet_eval_stat_step3.i5 * 0.893, 2) AS i5
+    FROM imet_assessment.v_imet_eval_stat_step3
+)
+SELECT DISTINCT table0.formid,
+                table0.wdpa_id,
+                table0.iso3,
+                table0.name,
+                table0.i1,
+                table0.i2,
+                table0.i3,
+                table0.i4,
+                table0.i5,
+                round(((COALESCE(table0.i1, 0::numeric) + COALESCE(table0.i2, 0::numeric) + COALESCE(table0.i3, 0::numeric) + COALESCE(table0.i4, 0::numeric) + COALESCE(table0.i5, 0::numeric))::double precision / NULLIF(( SELECT count(*) AS count
+                    FROM ( VALUES (table0.i1), (table0.i2), (table0.i3), (table0.i4), (table0.i5)) v(col)
+                    WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS avg_indicator
+FROM table0
+ORDER BY table0.iso3, table0.name;
+
 CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step3(
     form_id integer DEFAULT NULL::integer,
     c_iso3 text DEFAULT NULL::text)
@@ -186,6 +215,74 @@ BEGIN
         END CASE;
 END;
 $$;
+
+
+
+CREATE VIEW imet_assessment_v1_to_v2.v_imet_eval_stat_step4
+AS
+WITH table0 AS (
+    SELECT v_imet_eval_stat_step4.formid,
+           v_imet_eval_stat_step4.wdpa_id,
+           v_imet_eval_stat_step4.iso3,
+           v_imet_eval_stat_step4.name,
+           v_imet_eval_stat_step4.pr1,
+           v_imet_eval_stat_step4.pr2,
+           v_imet_eval_stat_step4.pr3,
+           v_imet_eval_stat_step4.pr4,
+           v_imet_eval_stat_step4.pr5,
+           round(v_imet_eval_stat_step4.pr6 * 0.8, 2) AS pr6,
+           v_imet_eval_stat_step4.pr7,
+           v_imet_eval_stat_step4.pr10 AS pr8,
+           v_imet_eval_stat_step4.pr10 AS pr9,
+           v_imet_eval_stat_step4.pr11 AS pr10,
+           v_imet_eval_stat_step4.pr12 AS pr11,
+           v_imet_eval_stat_step4.pr13 AS pr12,
+           v_imet_eval_stat_step4.pr14 AS pr13,
+           v_imet_eval_stat_step4.pr15 AS pr14,
+           v_imet_eval_stat_step4.pr16 AS pr15,
+           v_imet_eval_stat_step4.pr17 AS pr16,
+           v_imet_eval_stat_step4.pr18 AS pr17,
+           v_imet_eval_stat_step4.pr19 AS pr18,
+           v_imet_eval_stat_step4.pr1_6,
+           v_imet_eval_stat_step4.pr7_10,
+           v_imet_eval_stat_step4.pr11_13,
+           v_imet_eval_stat_step4.pr14_15,
+           v_imet_eval_stat_step4.pr16_17,
+           0 AS pr18_19
+    FROM imet_assessment.v_imet_eval_stat_step4
+)
+SELECT table0.formid,
+       table0.wdpa_id,
+       table0.iso3,
+       table0.name,
+       table0.pr1,
+       table0.pr2,
+       table0.pr3,
+       table0.pr4,
+       table0.pr5,
+       table0.pr6,
+       table0.pr7,
+       table0.pr8,
+       table0.pr9,
+       table0.pr10,
+       table0.pr11,
+       table0.pr12,
+       table0.pr13,
+       table0.pr14,
+       table0.pr15,
+       table0.pr16,
+       table0.pr17,
+       table0.pr18,
+       table0.pr1_6,
+       table0.pr7_10,
+       table0.pr11_13,
+       table0.pr14_15,
+       table0.pr16_17,
+       table0.pr18_19,
+       round(((COALESCE(table0.pr1, 0::numeric) + COALESCE(table0.pr2, 0::numeric) + COALESCE(table0.pr3, 0::numeric) + COALESCE(table0.pr4, 0::numeric) + COALESCE(table0.pr5, 0::numeric) + COALESCE(table0.pr6, 0::numeric) + COALESCE(table0.pr7, 0::numeric) + COALESCE(table0.pr8, 0::numeric) + COALESCE(table0.pr9, 0::numeric) + COALESCE(table0.pr10, 0::numeric) + COALESCE(table0.pr11, 0::numeric) + COALESCE(table0.pr12, 0::numeric) + COALESCE(table0.pr13, 0::numeric) + COALESCE(table0.pr14, 0::numeric) + COALESCE(table0.pr15, 0::numeric) + COALESCE(table0.pr16, 0::numeric) + COALESCE(table0.pr17, 0::numeric) + COALESCE(table0.pr18, 0::numeric))::double precision / NULLIF(( SELECT count(*) AS count
+           FROM ( VALUES (table0.pr1), (table0.pr2), (table0.pr3), (table0.pr4), (table0.pr5), (table0.pr6), (table0.pr7), (table0.pr8), (table0.pr9), (table0.pr10), (table0.pr11), (table0.pr12), (table0.pr13), (table0.pr14), (table0.pr15), (table0.pr16), (table0.pr17), (table0.pr18)) v(col)
+           WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS avg_indicator
+FROM table0;
 
 CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step4(
     form_id integer DEFAULT NULL::integer,
@@ -211,6 +308,46 @@ BEGIN
 END;
 $$;
 
+
+
+CREATE VIEW imet_assessment_v1_to_v2.v_imet_eval_stat_step5
+AS
+WITH table0 AS (
+    SELECT DISTINCT v_imet_eval_stat_step5.formid,
+                    v_imet_eval_stat_step5.wdpa_id,
+                    v_imet_eval_stat_step5.iso3,
+                    v_imet_eval_stat_step5.name,
+                    v_imet_eval_stat_step5.r1 * 0.76 AS r1,
+                    v_imet_eval_stat_step5.r2 * 0.76 AS r2
+    FROM imet_assessment.v_imet_eval_stat_step5
+), table1 AS (
+    SELECT get_imet_evaluation_stats_rank_all.formid,
+           get_imet_evaluation_stats_rank_all.section,
+           get_imet_evaluation_stats_rank_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_rank_all('eval_control'::text, 'EvaluationScore'::text, 'EVAL PR9'::text) get_imet_evaluation_stats_rank_all(formid, section, value_p)
+), tableall AS (
+    SELECT a.formid,
+           a.wdpa_id,
+           a.iso3,
+           a.name,
+           round(a.r1, 2) AS r1,
+           round(a.r2, 2) AS r2,
+           b.value_p AS r3
+    FROM table0 a
+             LEFT JOIN table1 b ON a.formid = b.formid
+)
+SELECT DISTINCT tableall.formid,
+                tableall.wdpa_id,
+                tableall.iso3,
+                tableall.name,
+                tableall.r1,
+                tableall.r2,
+                tableall.r3,
+                round((((COALESCE(tableall.r1, 0::numeric) + COALESCE(tableall.r2, 0::numeric))::double precision + COALESCE(tableall.r3, 0::numeric::double precision)) / NULLIF(( SELECT count(*) AS count
+                                                                                                                                                                                    FROM ( VALUES (tableall.r1), (tableall.r2), (tableall.r3)) v(col)
+                                                                                                                                                                                    WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 2) AS avg_indicator
+FROM tableall;
+
 CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step5(
     form_id integer DEFAULT NULL::integer,
     c_iso3 text DEFAULT NULL::text)
@@ -234,6 +371,32 @@ BEGIN
         END CASE;
 END;
 $$;
+
+
+
+CREATE VIEW imet_assessment_v1_to_v2.v_imet_eval_stat_step6
+AS
+WITH table0 AS (
+    SELECT v_imet_eval_stat_step6.formid,
+           v_imet_eval_stat_step6.wdpa_id,
+           v_imet_eval_stat_step6.iso3,
+           v_imet_eval_stat_step6.name,
+           v_imet_eval_stat_step6.ei1 * 0.76 AS ei1,
+           round(((COALESCE(v_imet_eval_stat_step6.ei2::double precision, 0::numeric::double precision) + COALESCE(v_imet_eval_stat_step6.ei3)::double precision) / 2::double precision)::numeric, 2) AS ei2,
+           v_imet_eval_stat_step6.ei4 AS ei3
+    FROM imet_assessment.v_imet_eval_stat_step6
+)
+SELECT DISTINCT table0.formid,
+                table0.wdpa_id,
+                table0.iso3,
+                table0.name,
+                table0.ei1,
+                table0.ei2,
+                table0.ei3,
+                round(((COALESCE(table0.ei1, 0::numeric)::double precision + COALESCE(table0.ei2::double precision / 2::double precision + 50::double precision, 0::double precision) + COALESCE(table0.ei3::double precision / 2::double precision + 50::double precision, 0::double precision)) / NULLIF(( SELECT count(*) AS count
+                                                                                                                                                                                                                                                                                                           FROM ( VALUES (table0.ei1), (table0.ei2), (table0.ei3)) v(col)
+                                                                                                                                                                                                                                                                                                           WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS avg_indicator
+FROM table0;
 
 CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step6(
     form_id integer DEFAULT NULL::integer,
@@ -329,164 +492,9 @@ FROM table0
 ORDER BY table0.iso3, table0.name;
 
 
-CREATE VIEW imet_assessment_v1_to_v2.v_imet_eval_stat_step3
-AS
-WITH table0 AS (
-    SELECT v_imet_eval_stat_step3.formid,
-           v_imet_eval_stat_step3.wdpa_id,
-           v_imet_eval_stat_step3.iso3,
-           v_imet_eval_stat_step3.name,
-           round(v_imet_eval_stat_step3.i1 * 0.8, 2) AS i1,
-           round(v_imet_eval_stat_step3.i2 * 0.91, 2) AS i2,
-           round(imet_assessment_v1_to_v2.get_imet_condition_stat_step_3_i3(v_imet_eval_stat_step3.i3::double precision)::numeric, 2) AS i3,
-           round(imet_assessment_v1_to_v2.get_imet_condition_stat_step_3_i4(v_imet_eval_stat_step3.i4::double precision)::numeric, 2) AS i4,
-           round(v_imet_eval_stat_step3.i5 * 0.893, 2) AS i5
-    FROM imet_assessment.v_imet_eval_stat_step3
-)
-SELECT DISTINCT table0.formid,
-                table0.wdpa_id,
-                table0.iso3,
-                table0.name,
-                table0.i1,
-                table0.i2,
-                table0.i3,
-                table0.i4,
-                table0.i5,
-                round(((COALESCE(table0.i1, 0::numeric) + COALESCE(table0.i2, 0::numeric) + COALESCE(table0.i3, 0::numeric) + COALESCE(table0.i4, 0::numeric) + COALESCE(table0.i5, 0::numeric))::double precision / NULLIF(( SELECT count(*) AS count
-                                                                                                                                                                                                                              FROM ( VALUES (table0.i1), (table0.i2), (table0.i3), (table0.i4), (table0.i5)) v(col)
-                                                                                                                                                                                                                              WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS avg_indicator
-FROM table0
-ORDER BY table0.iso3, table0.name;
 
 
-CREATE VIEW imet_assessment_v1_to_v2.v_imet_eval_stat_step4
-AS
-WITH table0 AS (
-    SELECT v_imet_eval_stat_step4.formid,
-           v_imet_eval_stat_step4.wdpa_id,
-           v_imet_eval_stat_step4.iso3,
-           v_imet_eval_stat_step4.name,
-           v_imet_eval_stat_step4.pr1,
-           v_imet_eval_stat_step4.pr2,
-           v_imet_eval_stat_step4.pr3,
-           v_imet_eval_stat_step4.pr4,
-           v_imet_eval_stat_step4.pr5,
-           round(v_imet_eval_stat_step4.pr6 * 0.8, 2) AS pr6,
-           v_imet_eval_stat_step4.pr7,
-           v_imet_eval_stat_step4.pr10 AS pr8,
-           v_imet_eval_stat_step4.pr10 AS pr9,
-           v_imet_eval_stat_step4.pr11 AS pr10,
-           v_imet_eval_stat_step4.pr12 AS pr11,
-           v_imet_eval_stat_step4.pr13 AS pr12,
-           v_imet_eval_stat_step4.pr14 AS pr13,
-           v_imet_eval_stat_step4.pr15 AS pr14,
-           v_imet_eval_stat_step4.pr16 AS pr15,
-           v_imet_eval_stat_step4.pr17 AS pr16,
-           v_imet_eval_stat_step4.pr18 AS pr17,
-           v_imet_eval_stat_step4.pr19 AS pr18,
-           v_imet_eval_stat_step4.pr1_6,
-           v_imet_eval_stat_step4.pr7_10,
-           v_imet_eval_stat_step4.pr11_13,
-           v_imet_eval_stat_step4.pr14_15,
-           v_imet_eval_stat_step4.pr16_17,
-           0 AS pr18_19
-    FROM imet_assessment.v_imet_eval_stat_step4
-)
-SELECT table0.formid,
-       table0.wdpa_id,
-       table0.iso3,
-       table0.name,
-       table0.pr1,
-       table0.pr2,
-       table0.pr3,
-       table0.pr4,
-       table0.pr5,
-       table0.pr6,
-       table0.pr7,
-       table0.pr8,
-       table0.pr9,
-       table0.pr10,
-       table0.pr11,
-       table0.pr12,
-       table0.pr13,
-       table0.pr14,
-       table0.pr15,
-       table0.pr16,
-       table0.pr17,
-       table0.pr18,
-       table0.pr1_6,
-       table0.pr7_10,
-       table0.pr11_13,
-       table0.pr14_15,
-       table0.pr16_17,
-       table0.pr18_19,
-       round(((COALESCE(table0.pr1, 0::numeric) + COALESCE(table0.pr2, 0::numeric) + COALESCE(table0.pr3, 0::numeric) + COALESCE(table0.pr4, 0::numeric) + COALESCE(table0.pr5, 0::numeric) + COALESCE(table0.pr6, 0::numeric) + COALESCE(table0.pr7, 0::numeric) + COALESCE(table0.pr8, 0::numeric) + COALESCE(table0.pr9, 0::numeric) + COALESCE(table0.pr10, 0::numeric) + COALESCE(table0.pr11, 0::numeric) + COALESCE(table0.pr12, 0::numeric) + COALESCE(table0.pr13, 0::numeric) + COALESCE(table0.pr14, 0::numeric) + COALESCE(table0.pr15, 0::numeric) + COALESCE(table0.pr16, 0::numeric) + COALESCE(table0.pr17, 0::numeric) + COALESCE(table0.pr18, 0::numeric))::double precision / NULLIF(( SELECT count(*) AS count
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          FROM ( VALUES (table0.pr1), (table0.pr2), (table0.pr3), (table0.pr4), (table0.pr5), (table0.pr6), (table0.pr7), (table0.pr8), (table0.pr9), (table0.pr10), (table0.pr11), (table0.pr12), (table0.pr13), (table0.pr14), (table0.pr15), (table0.pr16), (table0.pr17), (table0.pr18)) v(col)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS avg_indicator
-FROM table0;
 
-CREATE VIEW imet_assessment_v1_to_v2.v_imet_eval_stat_step5
-AS
-WITH table0 AS (
-    SELECT DISTINCT v_imet_eval_stat_step5.formid,
-                    v_imet_eval_stat_step5.wdpa_id,
-                    v_imet_eval_stat_step5.iso3,
-                    v_imet_eval_stat_step5.name,
-                    v_imet_eval_stat_step5.r1 * 0.76 AS r1,
-                    v_imet_eval_stat_step5.r2 * 0.76 AS r2
-    FROM imet_assessment.v_imet_eval_stat_step5
-), table1 AS (
-    SELECT get_imet_evaluation_stats_rank_all.formid,
-           get_imet_evaluation_stats_rank_all.section,
-           get_imet_evaluation_stats_rank_all.value_p
-    FROM imet_assessment.get_imet_evaluation_stats_rank_all('eval_control'::text, 'EvaluationScore'::text, 'EVAL PR9'::text) get_imet_evaluation_stats_rank_all(formid, section, value_p)
-), tableall AS (
-    SELECT a.formid,
-           a.wdpa_id,
-           a.iso3,
-           a.name,
-           round(a.r1, 2) AS r1,
-           round(a.r2, 2) AS r2,
-           b.value_p AS r3
-    FROM table0 a
-             LEFT JOIN table1 b ON a.formid = b.formid
-)
-SELECT DISTINCT tableall.formid,
-                tableall.wdpa_id,
-                tableall.iso3,
-                tableall.name,
-                tableall.r1,
-                tableall.r2,
-                tableall.r3,
-                round((((COALESCE(tableall.r1, 0::numeric) + COALESCE(tableall.r2, 0::numeric))::double precision + COALESCE(tableall.r3, 0::numeric::double precision)) / NULLIF(( SELECT count(*) AS count
-                                                                                                                                                                                    FROM ( VALUES (tableall.r1), (tableall.r2), (tableall.r3)) v(col)
-                                                                                                                                                                                    WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 2) AS avg_indicator
-FROM tableall;
-
-
-CREATE VIEW imet_assessment_v1_to_v2.v_imet_eval_stat_step6
-AS
-WITH table0 AS (
-    SELECT v_imet_eval_stat_step6.formid,
-           v_imet_eval_stat_step6.wdpa_id,
-           v_imet_eval_stat_step6.iso3,
-           v_imet_eval_stat_step6.name,
-           v_imet_eval_stat_step6.ei1 * 0.76 AS ei1,
-           round(((COALESCE(v_imet_eval_stat_step6.ei2::double precision, 0::numeric::double precision) + COALESCE(v_imet_eval_stat_step6.ei3)::double precision) / 2::double precision)::numeric, 2) AS ei2,
-           v_imet_eval_stat_step6.ei4 AS ei3
-    FROM imet_assessment.v_imet_eval_stat_step6
-)
-SELECT DISTINCT table0.formid,
-                table0.wdpa_id,
-                table0.iso3,
-                table0.name,
-                table0.ei1,
-                table0.ei2,
-                table0.ei3,
-                round(((COALESCE(table0.ei1, 0::numeric)::double precision + COALESCE(table0.ei2::double precision / 2::double precision + 50::double precision, 0::double precision) + COALESCE(table0.ei3::double precision / 2::double precision + 50::double precision, 0::double precision)) / NULLIF(( SELECT count(*) AS count
-                                                                                                                                                                                                                                                                                                             FROM ( VALUES (table0.ei1), (table0.ei2), (table0.ei3)) v(col)
-                                                                                                                                                                                                                                                                                                             WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS avg_indicator
-FROM table0;
 
 CREATE VIEW imet_assessment_v1_to_v2.v_imet_eval_stat_step_summary
 AS
