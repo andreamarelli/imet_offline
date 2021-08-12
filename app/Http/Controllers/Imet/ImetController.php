@@ -378,7 +378,6 @@ class ImetController extends FormController
             $response['modules'] = $modules_imported;
         } catch (\Exception $e) {
             \DB::rollback();
-            dd($e);
             $response = ['status' => 'error'];
             if (!App::environment('production')) {
                 throw $e;
