@@ -120,4 +120,5 @@ Route::group(['middleware' => 'setLocale'], function () {
 
     });
 
+
 });
