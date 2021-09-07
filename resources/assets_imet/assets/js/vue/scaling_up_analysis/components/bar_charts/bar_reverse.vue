@@ -6,7 +6,6 @@ export default {
   mixins: [bar],
   computed: {
     bar_options() {
-
       return {
         colors:['#5470C6'],
         title: {
@@ -34,6 +33,12 @@ export default {
             rotate: this.rotate,
             interval: 0
           }
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
         },
         series: [{
           data: this.values,

@@ -308,60 +308,43 @@ export default {
     },
     terrestial_ecoregions: {
         columns: [
-            {'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.name'), 'field': 'ecoregion'},
-            {'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.area'), 'field': 'area_km2'},
+            {'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.name'), 'field': 'eco_name'},
+            {'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.area'), 'field': 'ecoregion_tot_sqkm'},
             {
-                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.percentage_of_ecoregion_in_country'),
-                'field': 'percentage_of_ecoregion_in_country',
-                type: 'percentage',
+                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.ecoregion_pa_sqkm'),
+                'field': 'ecoregion_prot_sqkm',
                 color: '#cae5a1'
             },
             {
-                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.percentage_of_ecoregion_protected_in_country'),
-                'field': 'percentage_of_ecoregion_protected_in_country',
-                type: 'percentage',
+                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.ecoregion_protected_tot_sqkm'),
+                'field': 'pa_tot_sqkm',
                 color: '#8ecfe0'
             },
             {
-                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.country_contribution_to_global_ecoregion_protection'),
-                'field': 'country_contribution_to_global_ecoregion_protection',
-                type: 'percentage',
+                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.protected_in_ecoregion'),
+                'field': 'pa_in_eco_sqkm',
                 color: '#91ad41'
-            },
-            {
-                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.ecoregion_protection_percentage'),
-                'field': 'ecoregion_protection_percentage',
-                type: 'percentage',
-                color: ''
             }
         ]
     },
     marine_ecoregions: {
-        columns: [{'label': window.Locale.getLabel('form/imet/analysis_report/report.marine_ecoregions.name'), 'field': 'ecoregion'},
-            {'label': window.Locale.getLabel('form/imet/analysis_report/report.marine_ecoregions.area'), 'field': 'area_km2'},
+        columns: [
+            {'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.name'), 'field': 'eco_name'},
+            {'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.area'), 'field': 'ecoregion_tot_sqkm'},
             {
-                'label': window.Locale.getLabel('form/imet/analysis_report/report.marine_ecoregions.percentage_of_ecoregion_in_country'),
-                'field': 'percentage_of_ecoregion_in_country',
-                type: 'percentage',
+                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.ecoregion_pa_sqkm'),
+                'field': 'ecoregion_prot_sqkm',
                 color: '#cae5a1'
             },
             {
-                'label': window.Locale.getLabel('form/imet/analysis_report/report.marine_ecoregions.percentage_of_ecoregion_protected_in_country'),
-                'field': 'percentage_of_ecoregion_protected_in_country',
-                type: 'percentage',
+                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.ecoregion_protected_tot_sqkm'),
+                'field': 'pa_tot_sqkm',
                 color: '#8ecfe0'
             },
             {
-                'label': window.Locale.getLabel('form/imet/analysis_report/report.marine_ecoregions.country_contribution_to_global_ecoregion_protection'),
-                'field': 'country_contribution_to_global_ecoregion_protection',
-                type: 'percentage',
+                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.protected_in_ecoregion'),
+                'field': 'pa_in_eco_sqkm',
                 color: '#91ad41'
-            },
-            {
-                'label': window.Locale.getLabel('form/imet/analysis_report/report.marine_ecoregions.ecoregion_protection_percentage'),
-                'field': 'ecoregion_protection_percentage',
-                type: 'percentage',
-                color: ''
             }]
     },
     copernicus:

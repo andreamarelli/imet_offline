@@ -213,7 +213,7 @@ export default {
     },
     add_group: function (name = null) {
       const components_length = this.list_of_components.length;
-      const group_name = name ?? `${this.stores.BaseStore.localization('form/imet/analysis_report.grouping.group')}${(components_length + 1)}`;
+      const group_name = name ?? `${this.stores.BaseStore.localization('form/imet/analysis_report/report.grouping.group')} ${(components_length + 1)}`;
       const length = !components_length ? 1 : Math.max(...this.list_of_components.map(i => i.id)) + 1;
       this.list_of_components.push({id: length, color: this.colors[length - 1], name: group_name})
       this.list_of_components.sort((a, b) => {

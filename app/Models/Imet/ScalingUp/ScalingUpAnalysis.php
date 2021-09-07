@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models\Imet\ScalingUp;
 
 use App\Http\Controllers\Imet\Assessment;
@@ -36,6 +37,11 @@ class ScalingUpAnalysis extends Model
         $area->name = static::add_the_indicator_to_the_field($area->wdpa_id, $area->name, $area->Year);
 
         return $area;
+    }
+
+    public static function reset_areas_ids()
+    {
+        static::$protected_areas_ids = [];
     }
 
     /**
@@ -261,6 +267,15 @@ class ScalingUpAnalysis extends Model
             'threats' => [],
             'species_statistics' => []
         ];
+        $array_elements = ['habitats' => [],
+            'climate_change' => [],
+            'ecosystem_services' => [],
+            'threats' => []];
+        $array_elements_count = ['habitats_count' => [],
+            'climate_change_count' => [],
+            'ecosystem_services_count' => [],
+            'threats_count' => [],
+        ];
         $species_count = ['group0' => [], 'group1' => []];
 
         foreach ($form_ids as $form_id) {
@@ -290,38 +305,79 @@ class ScalingUpAnalysis extends Model
             if (count($retrieve_key_elements['species'])) {
                 foreach ($retrieve_key_elements['species'] as $key => $array_species) {
                     foreach ($array_species as $group => $species) {
-                        $key_elements['species'][$group][$name][0][] = $species;
+
                         if (isset($species_count[$group][$species])) {
                             $species_count[$group][$species] += 1;
                         } else {
                             $species_count[$group][$species] = 1;
                         }
+
+                        $key_elements['species'][$group][$species][0][] = $name;
                     }
                 }
             }
 
-            if (count($retrieve_key_elements['habitats'])) {
-                $key_elements['habitats'][$name][] = $retrieve_key_elements['habitats'];
-            }
-            if (count($retrieve_key_elements['climate_change'])) {
-                $key_elements['climate_change'][$name][] = $retrieve_key_elements['climate_change'];
-            }
-            if (count($retrieve_key_elements['ecosystem_services'])) {
-                $key_elements['ecosystem_services'][$name][] = $retrieve_key_elements['ecosystem_services'];
-            }
-            if (count($retrieve_key_elements['threats'])) {
-                $key_elements['threats'][$name][] = $retrieve_key_elements['threats'];
+
+            foreach ($array_elements as $keys => $element) {
+                if (count($retrieve_key_elements[$keys])) {
+                    foreach ($retrieve_key_elements[$keys] as $key => $item) {
+                        if (isset($array_elements_count[$keys . '_count'][$item])) {
+                            $array_elements_count[$keys . '_count'][$item] += 1;
+                        } else {
+                            $array_elements_count[$keys . '_count'][$item] = 1;
+                        }
+                        $key_elements[$keys][$item][0][] = $name;
+                    }
+                }
             }
         }
 
+        foreach ($array_elements as $keys => $element) {
+            foreach ($array_elements_count[$keys . '_count'] as $k => $value) {
+                $key_elements[$keys] = array_filter($key_elements[$keys], function ($v) {
+                    return count($v[0]) > 1;
+                });
+
+                uasort($key_elements[$keys], function ($a, $b) {
+                    return count($b[0]) <=> count($a[0]);
+                });
+
+                $array_elements_count[$keys . '_count'] = array_filter($array_elements_count[$keys . '_count'], function ($v) {
+                    return ($v) > 1;
+                });
+
+                uasort($array_elements_count[$keys . '_count'], function ($a, $b) {
+                    return $b <=> $a;
+                });
+            }
+
+        }
+
         foreach ($species_count as $k => $group) {
+            $key_elements['species'][$k] = array_filter($key_elements['species'][$k], function ($v) {
+                return count($v[0]) > 1;
+            });
+
+            uasort($key_elements['species'][$k], function ($a, $b) {
+                return count($b[0]) <=> count($a[0]);
+            });
+
+            $species_count[$k] = array_filter($group, function ($v) {
+                return ($v) > 1;
+            });
+
             uasort($species_count[$k], function ($a, $b) {
                 return $b <=> $a;
             });
         }
 
         $key_elements['species_statistics'] = $species_count;
-
+        $key_elements['habitats_statistics'] = $array_elements_count['habitats_count'];
+        $key_elements['climate_change_statistics'] = $array_elements_count['climate_change_count'];
+        $key_elements['ecosystem_services_statistics'] = array_slice($array_elements_count['ecosystem_services_count'], 0, 10);
+        $key_elements['threats_statistics'] = array_slice($array_elements_count['threats_count'],0,5);
+        $key_elements['ecosystem_services'] = array_slice($key_elements['ecosystem_services'], 0,10);
+        $key_elements['threats'] = array_slice($key_elements['threats'], 0,5);
         return ['status' => 'success', 'data' => ['key_elements' => $key_elements]];
     }
 
@@ -335,14 +391,24 @@ class ScalingUpAnalysis extends Model
         $protected_areas = [];
         $protected_areas_names = [];
         foreach ($form_ids as $j => $form_id) {
-            $protected_areas_names[] = static::protected_areas_duplicate_fixes($form_id)->name;
-            $protected_areas[$j] = Modules\Context\MenacesPressions::getStats($form_id);
-            foreach ($protected_areas[$j]['category_stats'] as $k => $protected_area) {
-                $total_categories[$k][] = (-1 * (double)$protected_area);
-            }
+            $protected_areas_names[$form_id] = static::protected_areas_duplicate_fixes($form_id)->name;
         }
 
-        return ['status' => 'success', 'data' => ["protected_area_names" => $protected_areas_names, "values" => $total_categories]];
+
+        foreach ($form_ids as $j => $form_id) {
+            $protected_areas[$j] = Modules\Context\MenacesPressions::getStats($form_id);
+            foreach ($protected_areas[$j]['category_stats'] as $k => $protected_area) {
+                $total_categories[$k][] = ["name" => $protected_areas_names[$form_id], "value" => (-1 * (double)$protected_area)];
+            }
+        }
+        foreach ($total_categories as $k => $cat) {
+            usort($cat, function ($a, $b) {
+                return $a['value'] < $b['value'];
+            });
+            $total_categories[$k] = $cat;
+        }
+
+        return ['status' => 'success', 'data' => ["values" => $total_categories]];
     }
 
     /**
@@ -807,27 +873,23 @@ class ScalingUpAnalysis extends Model
      * @param $form_ids
      * @return array
      */
-    public static function get_dopa_country_ecoregions_terestial_stats($form_ids): array
+    public static function get_dopa_pa_ecoregions_terrestial_stats($form_ids): array
     {
-        $dopa_country_ecoregions_stats = [];
+        $dopa_pa_ecoregions_stats = [];
         $api_available = DOPA::apiAvailable();
         if ($api_available) {
             foreach ($form_ids as $key => $form_id) {
                 $protected_area = static::protected_areas_duplicate_fixes($form_id);
-                $country = Country::getByISO($protected_area['Country']);
-                if (!isset($dopa_country_ecoregions_stats[$country->name_en])) {
-                    $areas = DOPA::get_country_ecoregions_stats($protected_area['Country']);
-                    $dopa_country_ecoregions_stats[$country->name_en] = array_filter($areas, function ($value) {
-                        return !$value->is_marine;
-                    });
-                }
+                $areas = DOPA::get_wdpa_ecoregions($protected_area['wdpa_id']);//DOPA::get_country_ecoregions_stats($protected_area['Country']);//DOPA::get_wdpa_all_inds($protected_area['wdpa_id']);//
+                $dopa_pa_ecoregions_stats[$protected_area['name']] = array_filter($areas, function ($value) {
+                    return !$value->marine;
+                });
             }
         } else {
             return ['status' => false];
         }
 
-        //return $dopa_country_ecoregions_stats;
-        return ['status' => 'success', 'data' => $dopa_country_ecoregions_stats];
+        return ['status' => 'success', 'data' => $dopa_pa_ecoregions_stats];
 
     }
 
@@ -835,27 +897,23 @@ class ScalingUpAnalysis extends Model
      * @param $form_ids
      * @return array
      */
-    public static function get_dopa_country_ecoregions_marine_stats($form_ids): array
+    public static function get_dopa_pa_ecoregions_marine_stats($form_ids): array
     {
-        $dopa_country_ecoregions_stats = [];
+        $dopa_pa_ecoregions_stats = [];
         $api_available = DOPA::apiAvailable();
         if ($api_available) {
             foreach ($form_ids as $key => $form_id) {
                 $protected_area = static::protected_areas_duplicate_fixes($form_id);
-                $country = Country::getByISO($protected_area['Country']);
-                if (!isset($dopa_country_ecoregions_stats[$country->name_en])) {
-                    $area = DOPA::get_country_ecoregions_stats($protected_area['Country']);
-                    $dopa_country_ecoregions_stats[$country->name_en] = array_filter($area, function ($value) {
-                        return $value->is_marine;
-                    });
-                }
+                $area = DOPA::get_wdpa_ecoregions($protected_area['wdpa_id']);//;
+                $dopa_pa_ecoregions_stats[$protected_area['name']] = array_filter($area, function ($value) {
+                    return $value->marine;
+                });
             }
         } else {
             return ['status' => false];
         }
 
-        return ['status' => 'success', 'data' => $dopa_country_ecoregions_stats];
-
+        return ['status' => 'success', 'data' => $dopa_pa_ecoregions_stats];
     }
 
     /**

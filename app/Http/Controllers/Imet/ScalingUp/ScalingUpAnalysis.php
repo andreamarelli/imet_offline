@@ -80,7 +80,7 @@ trait ScalingUpAnalysis
             ['name' => "terestial_ecoregions", 'title' => 'Terestial ecoregions', 'snapshot_id' => "terestial_ecoregions", 'exclude_elements' => ''],
             ['name' => "marine_ecoregions", 'title' => 'Marine ecoregions', 'snapshot_id' => "marine_ecoregions", 'exclude_elements' => ''],
             ['name' => "copernicus", 'title' => 'Copernicus Global Land Cover', 'snapshot_id' => "copernicus", 'exclude_elements' => ''],
-            ['name' => "protected_area_table", 'title' => 'List of protected areas >= 10m2 and associated pressures', 'snapshot_id' => "protected_area_table", 'exclude_elements' => ''],
+//            ['name' => "protected_area_table", 'title' => 'List of protected areas >= 10m2 and associated pressures', 'snapshot_id' => "protected_area_table", 'exclude_elements' => ''],
 
             ['name' => "protected_area_coverage_and_connectivity", 'title' => 'Protected area coverage and connectivity', 'snapshot_id' => "protected_area_coverage_and_connectivity", 'exclude_elements' => ''],
             ['name' => "land_degradation", 'title' => 'Land degradation', 'snapshot_id' => "land_degradation", 'exclude_elements' => ''],

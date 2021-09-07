@@ -7,7 +7,7 @@
                             :loaded_at_once="container.props.show_view"
                             :url=url
                             :parameters="'{{$pa_ids}}'"
-                            :func="'get_dopa_country_ecoregions_terestial_stats'"
+                            :func="'get_dopa_pa_ecoregions_terrestial_stats'"
 
                     >
                         <template slot-scope="data" class="contailer">

@@ -1,8 +1,8 @@
 <template>
   <div class="vue-cloud">
-    <div class="row mb-3 mr-0"  v-if="get_selections()">
-      <div class="col" >
-        <button  class="btn btn-success float-right" @click="scaling_up">
+    <div class="row mb-3 mr-0" v-if="get_selections()">
+      <div class="col">
+        <button class="btn btn-success float-right" @click="scaling_up">
           Scaling up analysis
         </button>
 
@@ -75,29 +75,29 @@ export default {
     });
     this.$root.$on('scaling_up', () => {
       this.ids = this.selections.map(selection => selection[this.fieldId]).join(',');
-       this.url.replace('{items}', this.ids);
-       window.location.href = this.url;
+      this.url.replace('{items}', this.ids);
+      window.location.href = this.url;
     });
   },
   methods: {
-    get_selections(){
-      if(this.selections?.length){
+    get_selections() {
+      if (this.selections?.length) {
         return this.selections.length > 1;
       }
       return false;
     },
-    scaling_up: function() {
-      this.ids = this.selections.map(selection => selection[this.fieldId]).join(',');
+    scaling_up: function () {
+      this.ids = this.selections.map(selection => selection[this.fieldId]).sort((a, b) => parseInt(a) - parseInt(b)).join(',');
 
       window.location.href = this.url.replace('{items}', this.ids);
     },
     get_values: function () {
       return this.get_raw_values();
     },
-    get_raw_values(){
+    get_raw_values() {
       if (this.is_cookie()) {
         const cookie = window.Cookies.getByName(this.cookieName);
-        if(cookie) {
+        if (cookie) {
           const data = cookie.split('=');
           return JSON.parse(data[1]);
         }

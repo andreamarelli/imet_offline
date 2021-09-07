@@ -75,8 +75,10 @@ export default {
           preserveDrawingBuffer: true
         });
         window.report_map.on('error', (error) => {
-          this.no_internet_connection = true;
-          this.error_message = this.stores.BaseStore.localization('form/imet/analysis_report/report.error_connection');
+          if (typeof error.isSourceLoaded === 'undefined') {
+            this.no_internet_connection = true;
+            this.error_message = this.stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.error_connection');
+          }
         });
         window.report_map.on('load', function () {
           window.report_map.addSource("BIOPAMA_Poly", {

@@ -18,13 +18,14 @@
                                                    :event_image="'save_entire_block_as_image'"
                                                    :exclude_elements="'{{$exclude_elements}}'">
                                     <template slot-scope="v">
+
                                         <bar_reverse
-                                                :title="container.props.stores.BaseStore.localization(`form/imet/v2/context.MenacesPressions.categories.title${index+1}`)"
+                                                :title="(index+1)+'. '+ container.props.stores.BaseStore.localization(`form/imet/v2/context.MenacesPressions.categories.title${index+1}`)"
                                                 :event_id="'save_image_s'"
                                                 :show_legends="true"
-                                                :values="v.props"
+                                                :values="v.props.map(item => item.value)"
                                                 :colors="['5C7BD9']"
-                                                :fields='data.props.values.protected_area_names'></bar_reverse>
+                                                :fields='v.props.map(item => item.name)'></bar_reverse>
                                     </template>
                                 </container_actions>
                             </div>
