@@ -37,10 +37,15 @@ return [
     'management_context' => [
         'key_species' => 'Key species',
         'animal_species' => 'Animal species (flagship, endangered, endemic, ...)',
-        'occurrences_species' => 'Number of occurrences of each key species',
+        'occurrences_species' => 'Key animal species occurring in 2 or more PAs ',
+        'occurrences_plants' => 'key plants species occurring in 2 or more PAs ',
+        'occurrences_habitats' => 'habitats occurring in 2 or more PAs ',
+        'occurrences_climate' => 'Key values sensitive to climate change occurring in 2 or more PAs ',
+        'occurrences_ecosystem_services' => '10 most important ecosystems occurring in 2 or more PAs ',
+        'occurrences_threats' => '5 most important threats occurring in 2 or more PAs',
         'plants_species' => 'Plants species (flagship, endangered, endemic, ...)',
         'terrestrial_marine_habitats' => 'Terrestrial and marine habitats - land-cover, land-change and land-take',
-        'climate_change' => 'Climate Change',
+        'climate_change' => 'Key values sensitive to climate change',
         'ecosystem_services' => 'Ecosystem services',
         'comments_threats' => 'Comments on Threats',
         'comments_ecosystem' => 'Comments on Ecosystem services',
@@ -48,6 +53,8 @@ return [
         'comments_terrestrial' => 'Comments on Terrestrial and marine habitats -land-cover, land-change and land-take',
         'comments_plants_species' => 'Comments on Key plants species',
         'comments_animal_species' => 'Comments on Key species',
+        'label_threats' => 'Threats',
+        'comment_on_management_context' => 'Comments for Management context (key elements of management)'
     ],
     'protected_area_coverage_and_connectivity' => [
         'title',
@@ -99,19 +106,17 @@ return [
     ],
     'terrestial_ecoregions' => [
         'name' => 'Name',
-        'area' => 'Area (km2)',
-        'percentage_of_ecoregion_in_country' => '% of ecoregion in country',
-        'percentage_of_ecoregion_protected_in_country' => '% of ecoregion protected in country',
-        'country_contribution_to_global_ecoregion_protection' => '% country contribution to global protection',
-        'ecoregion_protection_percentage' => '% of ecoregion protected worldwide'
+        'area' => 'ecoregion area (km2)',
+        'ecoregion_pa_sqkm' => 'protected ecoregion (km2)',
+        'ecoregion_protected_tot_sqkm' => 'total protected area (km2)',
+        'protected_in_ecoregion' => 'protected area in ecoregion (km2)'
     ],
     'marine_ecoregions' => [
         'name' => 'Name',
-        'area' => 'Area (km2)',
-        'percentage_of_ecoregion_in_country' => '% of ecoregion in country',
-        'percentage_of_ecoregion_protected_in_country' => '% of ecoregion protected in country',
-        'country_contribution_to_global_ecoregion_protection' => '% country contribution to global protection',
-        'ecoregion_protection_percentage' => '% of ecoregion protected worldwide'
+        'area' => 'ecoregion area (km2)',
+        'ecoregion_pa_sqkm' => 'protected ecoregion (km2)',
+        'ecoregion_protected_tot_sqkm' => 'total protected area (km2)',
+        'protected_in_ecoregion' => 'protected area in ecoregion (km2)'
     ],
     'copernicus' => [
         'label' => 'Land Cover Class',
