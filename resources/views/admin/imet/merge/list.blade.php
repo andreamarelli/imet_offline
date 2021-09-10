@@ -101,7 +101,7 @@ if($primary_form->version==='v1'){
                         @php
                             $module_primary = $module_class::getModule($primary_form->getKey());
                             // following needed in order to keep upload field null in case of empty and correctly compare it in areIdentical()
-                            $module_primary_orig = unserialize(serialize($module_primary))
+                            $module_primary_orig = unserialize(serialize($module_primary));
                         @endphp
                         @if(!$module_primary->isEmpty())
                             @include('admin.imet.merge.view_module', ['module' => $module_primary, 'formID' => $primary_form->getKey(), 'module_class' => $module_class ])

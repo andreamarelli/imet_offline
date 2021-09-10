@@ -74,11 +74,11 @@ Or you could opt to just install it globally
 npm install puppeteer --global
 ```
 
-On a [Forge](https://forge.laravel.com) provisioned Ubuntu 16.04 server you can install the latest stable version of Chrome like this:
+On a [Forge](https://forge.laravel.com) provisioned Ubuntu 20.04 server you can install the latest stable version of Chrome like this:
 
 ```bash
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-sudo apt-get install -y nodejs gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget libgbm-dev
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt-get install -y nodejs gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget libgbm-dev libxshmfence-dev
 sudo npm install --global --unsafe-perm puppeteer
 sudo chmod -R o+rx /usr/lib/node_modules/puppeteer/.local-chromium
 ```
@@ -426,6 +426,16 @@ $image = Browsershot::url('https://example.com')
     ->screenshot()
 ```
 
+#### Setting the user data directory
+
+You can set the [user data directory](https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/user_data_dir.md) that is used to store the browser session and additional data. Setting this to a static value may introduce cache problems, could also increase performance. It needs to be an absolute path.
+
+```php
+$image = Browsershot::url('https://example.com')
+    ->userDataDir('/tmp/session-1')
+    ->screenshot()
+```
+
 ### PDFs
 
 Browsershot will save a pdf if the path passed to the `save` method has a `pdf` extension.
@@ -682,9 +692,21 @@ Browsershot::url('https://example.com')
    ...
 ```
 
-#### Setting extraHTTPHeaders
+#### Added extra headers to the navigational request
 
-To send custom HTTP headers, set the extraHTTPHeaders option like so:
+To add custom HTTP headers to a navigational HTTP request, use `extraNavigationHTTPHeaders` like so:
+
+```php
+Browsershot::url('https://example.com')
+    ->setExtraNavigationHttpHeaders(['Custom-Header-Name' => 'Custom-Header-Value'])
+   ...
+```
+
+This will add the header to the page you want to render, but those headers will not be added to any external resources that make up that page.
+
+#### Adding extra headers to every request
+
+To add custom HTTP headers to the navigational HTTP request and all resources that make up the page, use `setExtraHttpHeaders`:
 
 ```php
 Browsershot::url('https://example.com')

@@ -1,19 +1,11 @@
 {
-    "/custom.js": "/custom.js?id=b860007042abd487db21",
-    "/custom.js.map": "/custom.js.map?id=edbf945a81f228ca2644",
-    "/mapping.js": "/mapping.js?id=c7edb1877b7b7ff40171",
-    "/mapping.js.map": "/mapping.js.map?id=c179b6c86a9c761aa27b",
-    "/pdf.js": "/pdf.js?id=87c3886b5fb1e21fa69b",
-    "/pdf.js.map": "/pdf.js.map?id=dff3f91843c2ed4c18fc",
-    "/vendor.js": "/vendor.js?id=e62beb5cb7e266c18aa4",
-    "/vendor.css": "/vendor.css?id=9a47f49f42d8aa415b13",
-    "/custom.css": "/custom.css?id=44bbe39df1aca0de1164",
-    "/pdf.css": "/pdf.css?id=4325bbcd824185f64777",
-    "/vendor.js.map": "/vendor.js.map?id=104132d511aca66e8dc2",
-    "/vendor.css.map": "/vendor.css.map?id=6fb523392cab0d72dc8d",
-    "/custom.css.map": "/custom.css.map?id=6563cd103b2edb0a8ae1",
-    "/pdf.css.map": "/pdf.css.map?id=7d93972a0dcd984ab441",
-    "/vendor_mapping.js": "/vendor_mapping.js?id=61d9d4a899b24812b4b9",
-    "/vendor_mapping.js.map": "/vendor_mapping.js.map?id=38e1d4a44984c95f1602",
-    "/lang.js": "/lang.js?id=227c2914730e6cdcd1e5"
+    "/custom.js": "/custom.js?id=5999f4fc8de44f340cef",
+    "/mapping.js": "/mapping.js?id=9fbd09f8bc7ba32cb228",
+    "/pdf.js": "/pdf.js?id=edfd4a40bf25cc7445ab",
+    "/vendor.js": "/vendor.js?id=3927e04968445fbca30c",
+    "/vendor.css": "/vendor.css?id=7eec465bef60c8064ebb",
+    "/custom.css": "/custom.css?id=62063211c22ec5b62b47",
+    "/pdf.css": "/pdf.css?id=20cfb392c5df621fa3b1",
+    "/vendor_mapping.js": "/vendor_mapping.js?id=337ceff26ea54e193b36",
+    "/lang.js": "/lang.js?id=e3993a1b8c2d5b025d46"
 }
