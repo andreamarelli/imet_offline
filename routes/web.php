@@ -1,124 +1,32 @@
 <?php
 
-use App\Http\Controllers;
-use App\Http\Controllers\Imet;
+use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
+use AndreaMarelli\ImetCore\Controllers\SpeciesController;
+use AndreaMarelli\ModularForms\Controllers\UploadFileController;
+use App\Http\Controllers\StaffController;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Route;
 
 
-Route::group(['middleware' => 'setLocale'], function () {
+Route::group(['middleware' => 'web'], function () {
 
-    if (is_imet_environment()) {
+    Route::get('/', function () { return Redirect::to('admin/confirm_user'); });
 
-        Route::get('/', function () { return Redirect::to('admin/confirm_user'); });
-        Route::get('welcome', function () { return Redirect::to('admin/confirm_user'); });
-        Route::get('admin', function () { return Redirect::to('admin/confirm_user'); });
+    // Authentication Routes
+    Route::get('admin/confirm_user', [StaffController::class, 'confirm_offline_user']);
+    Route::patch('admin/staff/{item}', [StaffController::class, 'update_offline']);
 
-        Route::get('file/{hash}',      [Controllers\UploadFileController::class, 'download']);
 
-        Route::get('admin/imet/offline/close', function () { return view('admin.imet.offline.close'); });
-        Route::get('admin/confirm_user', function () { return view('admin.imet.offline.confirm_user'); });
-        Route::get('admin/offline_user', function () { return view('admin.imet.offline.edit_user'); });
-        Route::patch('admin/staff/{item}', [Controllers\StaffController::class, 'update_offline']);
+    Route::get('file/{hash}',      [UploadFileController::class, 'download']);
 
-        Route::group(['prefix' => 'ajax'], function () {
-            Route::post('upload', [Controllers\UploadFileController::class, 'upload']);
-            Route::get('download', [Controllers\UploadFileController::class, 'download']);
-            Route::post('protected_areas/getLabels', [Controllers\ProtectedAreaController::class, 'getLabels']);
-            Route::group(['prefix' => 'search'], function () {
-                Route::post('species', [Controllers\SpeciesController::class, 'search']);
-                Route::post('protected_areas', [Controllers\ProtectedAreaController::class, 'search']);
-            });
+    Route::group(['prefix' => 'ajax'], function () {
+        Route::post('upload', [UploadFileController::class, 'upload']);
+        Route::get('download', [UploadFileController::class, 'download']);
+        Route::group(['prefix' => 'search'], function () {
+            Route::post('protected_areas', [ProtectedAreaController::class, 'search']);
+            Route::post('species', [SpeciesController::class, 'search']);
         });
-    }
-
-    Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-
-        Route::group(['prefix' => 'imet'], function () {
-
-            // ####  common routes (v1 & v2) ####
-            Route::match(['get', 'post'],'/',      [Imet\ImetController::class, 'index'])->name('index');
-            Route::match(['get', 'post'],'v1',      [Imet\ImetController::class, 'index']);     // temporary alias
-            Route::match(['get', 'post'],'v2',      [Imet\ImetController::class, 'index']);     // temporary alias
-            Route::delete('{item}', [Imet\ImetController::class, 'destroy']);
-            Route::get('{item}/export', [Imet\ImetController::class, 'export']);
-            Route::match(['get','post'],'export_view',        [Imet\ImetController::class, 'export_view'])->name('export_view');
-
-            Route::post('ajax/upload', [Imet\ImetController::class, 'upload']);
-            Route::get('import',        [Imet\ImetController::class, 'import_view']);
-            Route::post('import',      [Imet\ImetController::class, 'import']);
-            Route::get('{item}/merge',  [Imet\ImetController::class, 'merge_view']);
-            Route::post('merge',      [Imet\ImetController::class, 'merge']);
-            Route::post('{item}/upgrade',      [Imet\ImetController::class, 'upgrade']);
-
-
-            // #### IMET Version 1 ####
-            Route::group(['prefix' => 'v1'], function () {
-                Route::group(['prefix' => 'context'], function () {
-                    Route::get('{item}/edit/{step?}', [Imet\ImetControllerV1::class, 'edit']);
-                    Route::patch('{item}',           [Imet\ImetControllerV1::class, 'update']);
-                });
-                Route::group(['prefix' => 'evaluation'], function () {
-                    Route::get('{item}/edit/{step?}', [Imet\ImetEvalControllerV1::class, 'edit']);
-                    Route::patch('{item}',           [Imet\ImetEvalControllerV1::class, 'update']);
-                });
-                Route::group(['prefix' => 'report'], function () {
-                    Route::get('{item}/edit', [Imet\ImetControllerV1::class, 'report']);
-                    Route::get('{item}/show', [Imet\ImetControllerV1::class, 'report_show']);
-                    Route::patch('{item}', [Imet\ImetControllerV1::class, 'report_update']);
-                });
-            });
-
-            // #### IMET Version 2 ####
-            Route::group(['prefix' => 'v2'], function () {
-                Route::get('{item}/print',       [Imet\ImetControllerV2::class, 'print']);
-
-                Route::group(['prefix' => 'context'], function () {
-                    Route::get('{item}/edit/{step?}',[Imet\ImetControllerV2::class, 'edit']);
-                    Route::get('{item}/show/{step?}',[Imet\ImetControllerV2::class, 'show']);
-                    Route::patch('{item}',           [Imet\ImetControllerV2::class, 'update']);
-                    Route::get('create',            [Imet\ImetControllerV2::class, 'create']);
-                    Route::get('create_non_wdpa',            [Imet\ImetControllerV2::class, 'create_non_wdpa']);
-                    Route::post('store',            [Imet\ImetControllerV2::class, 'store']);
-                    Route::post('prev_years',            [Imet\ImetControllerV2::class, 'retrieve_prev_years']);
-                });
-                Route::group(['prefix' => 'evaluation'], function () {
-                    Route::get('{item}/edit/{step?}',   [Imet\ImetEvalControllerV2::class, 'edit']);
-                    Route::get('{item}/show/{step?}',   [Imet\ImetEvalControllerV2::class, 'show']);
-                    Route::get('{item}/print',          [Imet\ImetEvalControllerV2::class, 'print']);
-                    Route::patch('{item}',           [Imet\ImetEvalControllerV2::class, 'update']);
-                });
-                Route::group(['prefix' => 'report'], function () {
-                    Route::get('{item}/edit', [Imet\ImetControllerV2::class, 'report']);
-                    Route::get('{item}/show', [Imet\ImetControllerV2::class, 'report_show']);
-                    Route::patch('{item}', [Imet\ImetControllerV2::class, 'report_update']);
-
-                    // Scaling Up Analysis
-                    Route::get('{items}/scaling/up', [Imet\ImetControllerV2::class, 'report_scaling_up'])->name('scaling_up');
-                    Route::get('scaling/up/preview/{id}', [Imet\ImetControllerV2::class, 'preview_template'])->name('scaling_up_preview');
-                    Route::post('scaling/analysis', [Imet\ImetControllerV2::class, 'get_ajax_responses']);
-                    Route::post('scaling/basket/add',      [Imet\ScalingUp\Basket::class, 'save']);
-                    Route::post('scaling/basket/get',      [Imet\ScalingUp\Basket::class, 'retrieve']);
-                    Route::post('scaling/basket/all',      [Imet\ScalingUp\Basket::class, 'all']);
-                    Route::delete( 'scaling/basket/delete/{id}',      [Imet\ScalingUp\Basket::class, 'delete']);
-                    Route::post('scaling/basket/clear',      [Imet\ScalingUp\Basket::class, 'clear']);
-
-                });
-
-            });
-
-            Route::group(['prefix' => 'tools'], function () {
-                Route::get('export_csv', [Imet\ImetController::class, 'exportListCSV'])->name('csv_list');
-                Route::get('export_csv/{ids}/{module_key}', [Imet\ImetController::class, 'exportModuleToCsv'])->name('csv');
-                Route::post('export_batch',        [Imet\ImetController::class, 'export_batch'])->name('export_json_batch');
-            });
-
-        });
-
     });
-
-    Route::group(['prefix' => 'api/'], function () {
-        Route::get('imet/assessment/{item}/{step?}', [Imet\ImetEvalController::class, 'assessment']);
-
-    });
-
 
 });
+

@@ -1,0 +1,57 @@
+@import "../abstracts/all";
+
+
+@media print {
+  .print_body{
+    transform: scale(0.7);
+    transform-origin: 50% 0;
+  }
+  section.header-ribbon {
+    color: $white !important;
+    background-color: $primary-900 !important;
+  }
+  .table td, .table th {
+    background-color: transparent !important;
+  }
+  .card-header,
+  .card-body,
+  .progress{
+    background-color: $gray-50 !important;
+  }
+  .field-preview,
+  .checkbox label::before{
+    background-color: $white !important;
+  }
+  input[type="checkbox"]:checked + label::before {
+    background-color: $primary-800 !important;
+  }
+  .btn.act-btn-active{
+    background-color: $primary-800 !important;
+  }
+  .rating.active{
+    color: White;
+    background-color: $primary-800 !important;
+  }
+  .module-container{
+    .module-header{
+      background-color: $gray-500 !important;
+    }
+    .module-body{
+      background-color: $gray-200 !important;
+    }
+    .module_accordion{
+      .card-header,
+      .card-body{
+        background-color: $gray-50 !important;
+      }
+    }
+  }
+  .module-bar.info-bar,
+  .module-bar.info-black-bar{
+    background-color: $contextual-light-info !important;
+  }
+  .module-bar.module_subTitle{
+    background-color: $gray-200 !important;
+  }
+}
+

@@ -1,0 +1,2 @@
+window.is_production=!0,window.urls=window.urls||{},window.formStore=window.ModularForms.formStore,window.onload=function(){window.$('[data-toggle="tooltip"]').tooltip()};
+//# sourceMappingURL=index.js.map

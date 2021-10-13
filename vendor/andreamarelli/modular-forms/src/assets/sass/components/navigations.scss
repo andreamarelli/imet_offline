@@ -1,0 +1,254 @@
+@import "../abstracts/all";
+
+@mixin disabled(){
+  &.disabled {
+    background-color: $gray-50;
+    color: $gray-400;
+    cursor: not-allowed;
+    .icon-svg:before {
+      background-color: $gray-600;
+    }
+  }
+}
+
+// ######  Icon Selector  ######
+.selector-icon {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  @include text-xs;
+  font-family: $fontFamily-1;
+
+  .selection {
+    background-color: $white;
+    padding: 5px 10px;
+    white-space: nowrap;
+    border-right: 1px solid $primary-50;
+    @include transition();
+    display: flex;
+    align-items: center;
+
+    @include selector_border-radius(4px);
+
+    span.flag-icon {
+      @include text-lg;
+      height: 20px;
+    }
+
+    .icon-svg {
+      margin-right: 5px;
+      @include icon-white-s();
+      @include transition();
+    }
+
+    &:hover, &.active {
+      @include hover-bg($primary-900);
+      color: $gray-50;
+    }
+
+    @include disabled();
+  }
+}
+
+// ######  Icon Selector Badge  ######
+.selector-icon-badge {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  @include text-sm;
+
+  .selection {
+    display: flex;
+    align-items: center;
+    height: 65px;
+    text-align: center;
+    background-color: $white;
+    border-right: 1px solid $primary-50;
+    border-bottom: 3px solid $white;
+    padding: 0 15px;
+    position: relative;
+    max-width: 150px;
+    @media all and (max-width: 1280px) {
+      height: 60px;
+      padding: 0 10px;
+    }
+    @include transition();
+
+    @include selector_border-radius(4px);
+
+    .icon-svg {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateY(-60%) translateX(-50%);
+      @include icon-primary();
+      @include transition();
+    }
+
+    .selection_label {
+      margin-top: 15px;
+      display: block;
+      max-width: 160px;
+    }
+
+    &:hover:not(.disabled), &.active {
+      @include hover-bg();
+    }
+
+    @include disabled();
+  }
+}
+
+// ######  Icon Selector Big  ######
+.selector-icon-big {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  font-family: $fontFamily-1;
+  @include text-2xs;
+
+  .selection {
+    flex-grow: 1;
+    margin: 0;
+    padding: 10px 15px;
+    text-align: center;
+    @include transition();
+    @include hover-bg($primary-900, $gray-50);
+    color: $white;
+    border-right: 1px solid $primary-50;
+    border-bottom: 3px solid $primary-900;
+    position: relative;
+    @media all and (max-width: 1280px) {
+      padding: 5px;
+    }
+
+    @include selector_border-radius(4px);
+
+    > .icon-svg {
+      @include icon-primary();
+      padding: 7px !important;
+      display: block;
+      margin: 0 auto 5px;
+      @include transition();
+
+      &:before {
+        background-color: $primary-800;
+      }
+    }
+
+    &:hover:not(.disabled), &.active {
+      @include hover-bg(white, $gray-50);
+      color: $black;
+    }
+
+    @include disabled();
+    &.disabled {
+      color: $gray-600;
+      background-color: $gray-300;
+      border-bottom: 3px solid $gray-600;
+    }
+
+    .badge {
+      position: absolute;
+      right: auto;
+      left: 50%;
+      top: 10px;
+      transform: translateX(10px);
+      background-color: $red-400;
+      color: $white;
+
+      &.empty,
+      &.loading {
+        background-color: $gray-400;
+        color: $gray-800;
+        display: block;
+      }
+    }
+
+  }
+
+  &.vertical {
+    flex-direction: column !important;
+    float: left;
+
+    .selection {
+      border-right: 3px solid $primary-900;
+      border-bottom: 1px solid $primary-50;
+      max-width: 100px;
+      @media all and (max-width: 1280px) {
+        max-width: 85px;
+        padding: 10px 5px;
+      }
+
+      @include selector_border-radius-vertical(4px);
+
+      &:hover, &.active {
+        border-right-color: $primary-600;
+      }
+
+      .badge {
+        right: auto;
+        left: 50%;
+        top: 10px;
+        transform: translateX(10px);
+      }
+    }
+  }
+}
+
+// ######  Web Mapping layers' navigation  ######
+.selector-layer {
+
+  .selection {
+    width: 100%;
+    margin: 10px 0;
+
+    &:nth-child(1){
+      margin-top: 0;
+    }
+
+    > .title {
+      display: block;
+      border-bottom: 1px solid $primary-600;
+       > h6{
+         font-weight: bold;
+       }
+    }
+
+    > .content {
+
+      > .layer {
+        border-bottom: 1px solid $primary-50;
+        margin-bottom: 0;
+        padding: 5px;
+        display: flex;
+
+        &:last-child{
+          border-bottom: none;
+        }
+        &:nth-child(odd) {
+          background-color: $gray-50;
+        }
+        &:nth-child(even) {
+          background-color: $white;
+        }
+
+        .switch_checkbox {
+          margin-right: 8px;
+        }
+
+        .layer_label {
+          @include text-sm;
+          color: $primary-600;
+        }
+
+        .layer_abstract {
+          @include text-xs;
+          display: block;
+        }
+
+      }
+    }
+
+  }
+}

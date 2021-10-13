@@ -1,0 +1,140 @@
+@import "../abstracts/all";
+
+// ALL tables
+table {
+  margin: 15px 0;
+  border-collapse: collapse;
+  width: 100%;
+  td.center {
+    text-align: center;
+  }
+  td.italic {
+    font-style: italic;
+  }
+}
+
+// Sortable tables (for Kyslik/column-sortable)
+th.sortable_col{
+  a.sortable_link{
+    color: $gray-800;
+    &:hover{
+      text-decoration: none;
+      color: $primary-800;
+    }
+  }
+}
+
+table.striped,
+table.colourful {
+  > thead,
+  > tbody {
+    > tr{
+      > th,
+      > td{
+        padding: 10px;
+      }
+    }
+  }
+  > thead > tr > th,
+  > tbody > tr > th,
+  > thead > tr.head > td,
+  > tbody > tr.head > td{
+    font-weight: 700;
+    text-align: center;
+    color: $gray-800;
+    background-color: $gray-200;
+    border-right: 1px solid $gray-200;
+    text-transform: capitalize;
+    &:first-child {
+      border-radius: 5px 0 0 0;
+    }
+    &:last-child {
+      border-right: none;
+      border-radius: 0 5px 0 0;
+    }
+  }
+  > tbody {
+    > tr {
+      > td {
+        position: relative;
+        font-size: .9em;
+        border: 1px solid $gray-200;
+      }
+      &:nth-child(odd) {
+        background-color: $gray-50;
+      }
+      &:nth-child(even) {
+        background-color: White;
+      }
+    }
+  }
+}
+table.light, table.grey{
+  thead th,
+  tr.head td {
+    background-color: $gray-200;
+    font-weight: 700;
+    text-align: center;
+    padding: 15px;
+    border-right: 1px solid $gray-400;
+    color: $gray-800;
+    text-transform: capitalize;
+    &:first-child {
+      border-radius: 5px 0 0 0;
+    }
+    &:last-child {
+      border-right: none;
+      border-radius: 0 5px 0 0;
+    }
+  }
+  tbody {
+    td {
+      background-color: $white;
+      padding: 15px;
+      border-bottom: 1px solid $gray-200;
+      position: relative;
+      font-size: .9em;
+      &:after {
+        content: "";
+        border-right: 1px solid $gray-400;
+        position: absolute;
+        right: 0;
+        top: 15px;
+        bottom: 15px;
+      }
+      &:first-child {
+        border-left: 1px solid $gray-200;
+      }
+      &:last-child {
+        border-right: 1px solid $gray-200;
+        &:after {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+table.lines {
+  margin: 0;
+  //@include small-txt;
+  font-size: 0.75rem;
+  background-color: $white;
+  letter-spacing: 0;
+  >thead>tr>th{
+    padding: 8px;
+    border-top: 1px solid $primary-50;
+    border-bottom: 1px solid $primary-50;
+    color: $primary-600;
+    vertical-align: bottom;
+  }
+  >tbody>tr>td,
+  >tbody>tr>th{
+    padding: 8px;
+    vertical-align: top;
+    border-color: $primary-50;
+    border-width: 1px;
+    border-bottom-style: dashed;
+    border-top:none;
+  }
+}

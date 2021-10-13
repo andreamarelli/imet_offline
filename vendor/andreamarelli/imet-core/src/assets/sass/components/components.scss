@@ -1,0 +1,111 @@
+@import "../../../../vendor/andreamarelli/modular-forms/src/Assets/sass/abstracts/colors";
+
+// ### IMET ###
+.imet_modules{
+  .field-edit,
+  .field-enabled,
+  .field-preview,
+  .field-disabled{
+    color: $gray-700;
+  }
+}
+
+.imet_name{
+  display: flex;
+  flex-direction: column;
+  .imet_pa_name{
+    font-size: 1.1em;
+    flex-grow: 1;
+  }
+}
+
+.imet_responsible{
+  font-size: 0.85em;
+  text-align: left;
+  ul{
+    margin: 0;
+    padding-inline-start: 15px;
+    li{
+      line-height: 1.4em;
+    }
+  }
+  button{
+    margin-top: 5px;
+  }
+  .hidden{
+    display: none !important;
+  }
+}
+
+.histogram-row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  .histogram-row__code{
+    width: 45px;
+  }
+  .histogram-row__title{
+    width: 340px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .histogram-row__value{
+    width: 45px;
+  }
+  .histogram-row__progress-bar{
+    font-size: 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    .histogram-row__progress-bar__bar,
+    .histogram-row__progress-bar__spacer{
+      flex-grow: 1;
+    }
+    .histogram-row__progress-bar__limit-left{
+      width: 40px;
+      text-align: right;
+      padding-right: 3px;
+    }
+    .histogram-row__progress-bar__limit-right{
+      width: 40px;
+      text-align: left;
+      padding-left: 3px;
+    }
+  }
+}
+
+
+
+.progress_bar_label,
+.progress_bar,
+.progress_bar_container{
+  padding: 0;
+}
+
+.progress_bar_limits{
+  font-size: 10px;
+  padding: 0 3px 0 0;
+  text-align: right;
+}
+.progress_bar_limits_left{
+  font-size: 10px;
+  padding: 0 0 0 3px;
+  text-align: left;
+}
+.progress{
+  margin: 2px 0;
+  vertical-align: bottom;
+}
+.progress-bar{
+  color: #000000;
+  font-weight: bold;
+  -webkit-print-color-adjust: exact;
+}
+.progress-bar-negative{
+  float: right;
+  color: Red;
+}
+.synthetic_indicator{
+  font-size: 1.2em;
+}

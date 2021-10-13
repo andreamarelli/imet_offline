@@ -1,37 +1,33 @@
-@extends('layouts.components._base')
+@extends('modular-forms::layouts._base', ['class_to_body' => 'flex-col'])
 
 
 @section('body')
 
-    @include('layouts.components.header.header')
+    <header>
+        @include('offline.header')
+    </header>
 
-    @if(View::hasSection('admin_page_title'))
-        @component('layouts.components.main.title_ribbon')
-                <span class="page_title">
-                    @yield('admin_page_title')
-                </span>
-        @endcomponent
-    @endif
+    <main class="one-col">
+        <section class="content">
 
-    <main class="container">
-        <section class="main one-col row">
-            <div class="content">
-                @if (Session::has('message'))
-                    @include('admin.components.alert', ['message' => Session::get('message'), 'alert_type' => 'success'])
-                @elseif (Session::has('error_message'))
-                    @include('admin.components.alert', ['message' => Session::get('error_message'), 'alert_type' => 'danger'])
-                @endif
+            @if (Session::has('message'))
+                @include('modular-forms::page.alert', ['message' => Session::get('message'), 'alert_type' => 'success'])
+            @elseif (Session::has('error_message'))
+                @include('modular-forms::page.alert', ['message' => Session::get('error_message'), 'alert_type' => 'danger'])
+            @endif
 
-                <?php
-                    if(Session::has('lists')){
-                        Session::forget('lists');
-                    }
-                ?>
-                @yield('content')
-            </div>
+            <?php
+            if(Session::has('lists')){
+                Session::forget('lists');
+            }
+            ?>
+            @yield('content')
+
         </section>
     </main>
 
-    @include('layouts.components.footer.footer')
+    <footer>
+        @include('offline.footer')
+    </footer>
 
 @endsection

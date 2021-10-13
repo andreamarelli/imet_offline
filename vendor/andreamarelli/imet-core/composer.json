@@ -1,0 +1,39 @@
+{
+    "name": "andreamarelli/imet-core",
+    "description": "Imet core package",
+    "authors": [
+        {
+            "name": "Andrea Marelli",
+            "email": "andrea.marelli.dev@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "ext-json": "*",
+        "andreamarelli/modular-forms": "dev-master"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0"
+    },
+    "repositories": {
+        "andreamarelli/modular-forms": {
+            "type": "vcs",
+            "url": "https://github.com/andreamarelli/modular-forms"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "AndreaMarelli\\ImetCore\\": "src"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AndreaMarelli\\ImetCore\\ServiceProvider"
+            ]
+        }
+    }
+}
