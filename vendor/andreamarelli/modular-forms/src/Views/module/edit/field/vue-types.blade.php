@@ -104,6 +104,7 @@ $other_attributes = $other ?? '';
 @elseif(substr_count($type, "dropdown")>0
     || substr_count($type, "suggestion")>0
     || substr_count($type, "toggle")>0
+    || substr_count($type, "currency-unit")>0
     || substr_count($type, "checkbox")>0)
 
     <?php
@@ -112,7 +113,8 @@ $other_attributes = $other ?? '';
     ?>
 
     {{-- ## dropdowns ## --}}
-    @if(substr_count($type, "dropdown-")>0)
+    @if(substr_count($type, "dropdown-")>0
+        || substr_count($type, "currency-unit")>0)
         <dropdown
             data-values='@json($cached_list)'
             {!! $vue_attributes !!} {!! $rules_attribute !!} {!! $other_attributes !!}

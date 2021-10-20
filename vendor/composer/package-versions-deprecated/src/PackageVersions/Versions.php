@@ -33,8 +33,8 @@ final class Versions
      * @internal
      */
     const VERSIONS          = array (
-  'andreamarelli/imet-core' => 'dev-scaling_up@8aa1073472ab75b08a1ae66a46a60811d8475579',
-  'andreamarelli/modular-forms' => 'dev-master@9ee00d23e9804cc3ae244cab0c182530fd8a7314',
+  'andreamarelli/imet-core' => 'dev-scaling_up@23178bc85807e4e7bb6ef605f6c75662228f129d',
+  'andreamarelli/modular-forms' => 'dev-master@eedb5b90a2acc90b1c42d27d393b971292a27ae0',
   'asm89/stack-cors' => 'v2.0.3@9cb795bf30988e8c96dd3c40623c48a877bc6714',
   'brick/math' => '0.9.3@ca57d18f028f84f777b2168cd1911b0dee2343ae',
   'conedevelopment/i18n' => 'v1.1.0@c13b5c651276480d2b9c13eee70c30cbc71528e4',
@@ -184,7 +184,7 @@ final class Versions
   'seld/phar-utils' => '1.1.2@749042a2315705d2dfbbc59234dd9ceb22bf3ff0',
   'symfony/filesystem' => 'v5.3.4@343f4fe324383ca46792cae728a3b6e2f708fb32',
   'theseer/tokenizer' => '1.2.1@34a41e998c2183e22995f158c581e7b5e755ab9e',
-  'laravel/laravel' => 'dev-master@4163354abebbdfbb6b213681bd4a6af2486aa640',
+  'laravel/laravel' => 'dev-master@d2e3f92b1ebb53bd444005c7d08a6b3edfd73c6e',
 );
 
     private function __construct()

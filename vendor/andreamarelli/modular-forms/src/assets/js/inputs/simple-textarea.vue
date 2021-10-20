@@ -37,7 +37,8 @@
         watch: {
             inputValue(value){
                 this.emitValue(value);
-                if(this.originalValue === value && document.activeElement.id!=='simple-textarea'){
+                // apply value to text-area but onInput
+                if(document.activeElement.id!=='simple-textarea'){
                     this.container.querySelector('span').innerText = value;
                 }
             }

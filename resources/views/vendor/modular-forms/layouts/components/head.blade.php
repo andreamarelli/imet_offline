@@ -23,4 +23,8 @@
     \Illuminate\Support\Str::contains(Route::getCurrentRoute()->uri(), '/report') ||
     \Illuminate\Support\Str::contains(Route::getCurrentRoute()->uri(), '/scaling_up')))
     @include('modular-forms::layouts.components.mapbox')
+    {{-- hardcoded accessToken (not possible to push it into .env.imetoffline through updates --}}
+{{--    <script>--}}
+{{--        window.mapboxgl.accessToken = 'pk.eyJ1IjoiYW5kcmVhbWFyZWxsaWRldiIsImEiOiJjamF2Y3VzNGU2cWoxMnFud3E3NzByaWs1In0.bnMeWpZrxYbq0xb_fuOy6Q';--}}
+{{--    </script>--}}
 @endif
