@@ -46,7 +46,7 @@ $filter_selected = false;
                 <th class="text-center width60px"><input type='checkbox' class="ml-1" @click="checkAll"
                                                          v-model="isCheckAll"></th>
                 <th class="text-center width90px">@lang('imet-core::common.year')</th>
-                <th class="text-center fit-width">@choice('imet-core::common.protected_area.protected_area, 1')</th>
+                <th class="text-center fit-width">@choice('imet-core::common.protected_area.protected_area',1)</th>
                 <th class="text-center fit-width">@lang('imet-core::common.country')</th>
                 <th class="text-center fit-width">@lang('imet-core::common.version')</th>
                 <th class="text-center fit-width">@lang('imet-core::common.language')</th>

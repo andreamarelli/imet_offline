@@ -15,12 +15,12 @@
                <span class="field-enabled field-edit">
                    {{ value instanceof Object ? value.original_filename : value }}
                </span>
-                <!-- Link button -->
-                <a class="btn-nav dark small" target="_blank" v-bind:href="value.download_link" v-if="value.original_filename!==null">
+                <!-- Download link button -->
+                <a class="btn-nav dark small" target="_blank" v-bind:href="value.download_link" v-if="!changed && value.original_filename!==null">
                      <i class="fa fa-cloud-download-alt white" />
                 </a>
-                <!-- Clean Button -->
-                <button type="button" class="btn-nav small red" v-if="value.original_filename!==null" v-on:click="cleanSelection">
+                <!-- Delete Button -->
+                <button type="button" class="btn-nav small red" v-if="value.original_filename!==null" v-on:click="deleteSelection">
                     <i class="fa fa-times-circle white" />
                 </button>
                 <!-- Upload Button-->
@@ -40,7 +40,7 @@
                         </label>
                         &nbsp;&nbsp;
                         <!-- Select Button -->
-                        <button type="button" v-on:click="selectFile" class="btn-nav small">
+                        <button type="button" v-on:click="openFileSelection" class="btn-nav small">
                             <i class="fa fa-folder-open white" />
                             {{ Locale.getLabel('modular-forms::common.upload.select_file') }}
                         </button>
@@ -139,11 +139,21 @@
                 selectedFile: null,
                 selectedFileName: null,
                 modalId: 'upload-modal_' + this.id,
+                changed: false,
                 uploading: false,
             }
         },
 
+        watch: {
+            inputValue: function(value){
+                if(value.changed === false){
+                    this.changed = false;
+                }
+            }
+        },
+
         mounted(){
+            this.container = this.$el;
             this.modalComponent = this.$children[0];
         },
 
@@ -161,11 +171,13 @@
                 this.isFileSelected = false;
                 this.selectedFile = null;
                 this.selectedFileName =  null;
+                this.changed = false;
             },
 
-            selectFile: function () {
-                let input =  $(this.$el).find('input[name="file_upload"]')[0];
-                $(input).trigger('click');
+            openFileSelection: function () {
+                this.container
+                    .querySelector('input[name="file_upload"]')
+                    .click();
             },
 
             validateFile: function(event){
@@ -203,6 +215,7 @@
                     this.modalComponent.setError(errorMessage);
                 }
 
+                event.target.value = '';
             },
 
             uploadFile: function () {
@@ -224,12 +237,13 @@
                         _this.modalComponent.setError(Locale.getLabel('modular-forms::common.upload.error'));
                     })
                     .finally(function (response) {
+                        _this.uploading = false;
                         _this.loading = false;
+                        _this.changed = true;
                     });
             },
 
             applySelection: function(response){
-
                 let value = {
                     'original_filename': response.original_filename,
                     'temp_filename': response.temp_filename,
@@ -240,7 +254,8 @@
                 this.modalComponent.closeModal();
             },
 
-            cleanSelection: function () {
+            deleteSelection: function () {
+                this.changed = true;
                 this.emitValue({
                     'original_filename': null,
                     'temp_filename': null,

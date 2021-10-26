@@ -200,7 +200,7 @@ class Controller extends __Controller
             return trans('modular-forms::common.no_record_found');
         }
         $title = str_replace(' ', '_', $query->pluck('module_code')->first());
-        return File::exportTo('CSV', $title . '.csv', $records);
+        return File::exportToCSV($title . '.csv', $records);
     }
 
     /**

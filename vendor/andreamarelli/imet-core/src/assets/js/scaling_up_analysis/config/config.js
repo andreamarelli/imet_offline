@@ -30,66 +30,311 @@ export default {
             {'process': '#0099CC'},
             {'outputs': '#92D050'},
             {'outcomes': '#00B050'}],
-        context: {
-            columns: [
-                {
-                    "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
-                    "field": "name"
-                },
-                {
-                    "label": window.Locale.getLabel('imet-core::analysis_report.assessment.c11'),
-                    "field": "c11"
-                },
-                {
-                    "label": window.Locale.getLabel('imet-core::analysis_report.assessment.c12'),
-                    "field": "c12",
-                },
-                {
-                    "label": window.Locale.getLabel('imet-core::analysis_report.assessment.c13'),
-                    "field": "c13"
-                },
-                {
-                    "label": window.Locale.getLabel('imet-core::analysis_report.assessment.c14'),
-                    "field": "c14"
-                },
-                {
-                    "label": window.Locale.getLabel('imet-core::analysis_report.assessment.c15'),
-                    "field": "c15"
-                }
-            ]
-        },
-        process: {
-            columns: [
-                {
-                    "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
-                    "field": "name"
-                },
-                {
-                    "label": window.Locale.getLabel('imet-core::analysis_report.assessment.pr15_16'),
-                    "field": "pr15_16"
-                },
-                {
-                    "label": window.Locale.getLabel('imet-core::analysis_report.assessment.pr10_12'),
-                    "field": "pr10_12",
-                },
-                {
-                    "label": window.Locale.getLabel('imet-core::analysis_report.assessment.pr13_14'),
-                    "field": "pr13_14"
-                },
-                {
-                    "label": window.Locale.getLabel('imet-core::analysis_report.assessment.pr17_18'),
-                    "field": "pr17_18"
-                },
-                {
-                    "label": window.Locale.getLabel('imet-core::analysis_report.assessment.pr1_6'),
-                    "field": "pr1_6"
-                },
-                {
-                    "label": window.Locale.getLabel('imet-core::analysis_report.assessment.pr7_9'),
-                    "field": "pr7_9"
-                }
-            ]
-        }
+        context: [
+            {
+                name: 'main',
+                title: '',
+                columns: [
+                    {
+                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "field": "name"
+                    },
+                    {
+                        "label": `C1: ${window.Locale.getLabel('imet-core::analysis_report.assessment.c1')}`,
+                        "field": "c1"
+                    },
+                    {
+                        "label": `C2: ${window.Locale.getLabel('imet-core::analysis_report.assessment.c2')}`,
+                        "field": "c2",
+                    },
+                    {
+                        "label": `C3: ${window.Locale.getLabel('imet-core::analysis_report.assessment.c3')}`,
+                        "field": "c3"
+                    }
+                ]
+            },
+            {
+                name: 'context_value_and_importance',
+                title: window.Locale.getLabel('imet-core::analysis_report.assessment.c1'),
+                columns: [
+                    {
+                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "field": "name"
+                    },
+                    {
+                        "label": `C1.1: ${window.Locale.getLabel('imet-core::analysis_report.assessment.c11')}`,
+                        "field": "c11"
+                    },
+                    {
+                        "label": `C1.2: ${window.Locale.getLabel('imet-core::analysis_report.assessment.c12')}`,
+                        "field": "c12",
+                    },
+                    {
+                        "label": `C1.3: ${window.Locale.getLabel('imet-core::analysis_report.assessment.c13')}`,
+                        "field": "c13"
+                    },
+                    {
+                        "label": `C1.4: ${window.Locale.getLabel('imet-core::analysis_report.assessment.c14')}`,
+                        "field": "c14"
+                    },
+                    {
+                        "label": `C1.5: ${window.Locale.getLabel('imet-core::analysis_report.assessment.c15')}`,
+                        "field": "c15"
+                    }
+                ]
+            }
+        ],
+        planning: [
+            {
+                name: 'main',
+                columns: [
+                    {
+                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "field": "name"
+                    },
+                    {
+                        "label": `P1: ${window.Locale.getLabel('imet-core::analysis_report.assessment.p1')}`,
+                        "field": "p1"
+                    },
+                    {
+                        "label": `P2: ${window.Locale.getLabel('imet-core::analysis_report.assessment.p2')}`,
+                        "field": "p2",
+                    },
+                    {
+                        "label": `P3: ${window.Locale.getLabel('imet-core::analysis_report.assessment.p3')}`,
+                        "field": "p3"
+                    },
+                    {
+                        "label": `P4: ${window.Locale.getLabel('imet-core::analysis_report.assessment.p4')}`,
+                        "field": "p4"
+                    },
+                    {
+                        "label": `P.5: ${window.Locale.getLabel('imet-core::analysis_report.assessment.p5')}`,
+                        "field": "p5"
+                    },
+                    {
+                        "label": `P6: ${window.Locale.getLabel('imet-core::analysis_report.assessment.p6')}`,
+                        "field": "p6"
+                    }
+                ]
+
+            }
+        ],
+        inputs: [
+            {
+                name: 'main',
+                columns: [
+                    {
+                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "field": "name"
+                    },
+                    {
+                        "label": `I1: ${window.Locale.getLabel('imet-core::analysis_report.assessment.i1')}`,
+                        "field": "i1"
+                    },
+                    {
+                        "label": `I2: ${window.Locale.getLabel('imet-core::analysis_report.assessment.i2')}`,
+                        "field": "i2",
+                    },
+                    {
+                        "label": `I3: ${window.Locale.getLabel('imet-core::analysis_report.assessment.i3')}`,
+                        "field": "i3"
+                    },
+                    {
+                        "label": `I4: ${window.Locale.getLabel('imet-core::analysis_report.assessment.i4')}`,
+                        "field": "i4"
+                    },
+                    {
+                        "label": `I5: ${window.Locale.getLabel('imet-core::analysis_report.assessment.i5')}`,
+                        "field": "i5"
+                    }
+                ]
+
+            }
+        ],
+        process: [
+            {
+                name: 'process_internal_management',
+                title: `PR A: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr1_6')}`,
+                columns: [
+                    {
+                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "field": "name"
+                    },
+                    {
+                        "label": `PR1: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr1')}`,
+                        "field": "pr1"
+                    },
+                    {
+                        "label": `PR2: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr2')}`,
+                        "field": "pr2",
+                    },
+                    {
+                        "label": `PR3: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr3')}`,
+                        "field": "pr3"
+                    },
+                    {
+                        "label": `PR4: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr4')}`,
+                        "field": "pr4"
+                    },
+                    {
+                        "label": `PR5: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr5')}`,
+                        "field": "pr5"
+                    },
+                    {
+                        "label": `PR6: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr6')}`,
+                        "field": "pr6"
+                    }
+                ]
+            },
+            {
+                name: 'process_management_protection_values',
+                title: `PR B: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr7_9')}`,
+                columns: [
+                    {
+                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "field": "name"
+                    },
+                    {
+                        "label": `PR7: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr7')}`,
+                        "field": "pr7"
+                    },
+                    {
+                        "label": `PR8: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr8')}`,
+                        "field": "pr8",
+                    },
+                    {
+                        "label": `PR9: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr9')}`,
+                        "field": "pr9"
+                    }
+                ]
+
+            },
+            {
+                name: 'process_stakeholders_relationships',
+                title: `PR C: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr10_12')}`,
+                columns: [
+                    {
+                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "field": "name"
+                    },
+                    {
+                        "label": `PR10: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr10')}`,
+                        "field": "pr10"
+                    },
+                    {
+                        "label": `PR11: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr11')}`,
+                        "field": "pr11",
+                    },
+                    {
+                        "label": `PR12: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr12')}`,
+                        "field": "pr12"
+                    }
+                ]
+            },
+            {
+                name: 'process_tourism_management',
+                title: `PR D: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr13_14')}`,
+                columns: [
+                    {
+                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "field": "name"
+                    },
+                    {
+                        "label": `PR13: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr13')}`,
+                        "field": "pr13"
+                    },
+                    {
+                        "label": `PR14: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr14')}`,
+                        "field": "pr14"
+                    }
+                ]
+            },
+            {
+                name: 'process_monitoring_and_research',
+                title: `PR E: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr15_16')}`,
+                columns: [
+                    {
+                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "field": "name"
+                    },
+                    {
+                        "label": `PR15: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr15')}`,
+                        "field": "pr15"
+                    },
+                    {
+                        "label": `PR16: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr16')}`,
+                        "field": "pr16"
+                    }
+                ]
+            },
+            {
+                name: 'process_effects_of_climate_change',
+                title: `PR F: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr17_18')}`,
+                columns: [
+                    {
+                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "field": "name"
+                    },
+                    {
+                        "label": `PR17: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr17')}`,
+                        "field": "pr17"
+                    },
+                    {
+                        "label": `PR18: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr18')}`,
+                        "field": "pr18"
+                    }
+                ]
+            }
+        ],
+        outcomes: [
+            {
+                name: 'main',
+                columns: [
+                    {
+                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "field": "name"
+                    },
+                    {
+                        "label": `O/C1: ${window.Locale.getLabel('imet-core::analysis_report.assessment.oc1')}`,
+                        "field": "oc1"
+                    },
+                    {
+                        "label": `O/C1: ${window.Locale.getLabel('imet-core::analysis_report.assessment.oc2')}`,
+                        "field": "oc2",
+                    },
+                    {
+                        "label": `O/C1: ${window.Locale.getLabel('imet-core::analysis_report.assessment.oc3')}`,
+                        "field": "oc3"
+                    }
+                ]
+
+            }
+        ],
+        outputs: [
+            {
+                name: 'main',
+                columns: [
+                    {
+                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "field": "name"
+                    },
+                    {
+                        "label": `O/P: ${window.Locale.getLabel('imet-core::analysis_report.assessment.op1')}`,
+                        "field": "op1"
+                    },
+                    {
+                        "label": `O/P2: ${window.Locale.getLabel('imet-core::analysis_report.assessment.op3')}`,
+                        "field": "op2",
+                    },
+                    {
+                        "label": `O/P3: ${window.Locale.getLabel('imet-core::analysis_report.assessment.op3')}`,
+                        "field": "op3"
+                    }
+                ]
+
+            }
+        ],
     },
     dopa_indicators: {
         protected_area_coverage_and_connectivity: {

@@ -97,9 +97,9 @@ export default {
     },
     score_class: function (value, additional_classes = '') {
       let addClass = '';
-      if (value === 0) {
+      if (value <= 0 || value === null) {
         addClass = 'score_danger';
-      } else if (value < 34) {
+      } else if (value > 0 && value < 34) {
         addClass = 'score_alert';
       } else if (value < 51) {
         addClass = 'score_warning';

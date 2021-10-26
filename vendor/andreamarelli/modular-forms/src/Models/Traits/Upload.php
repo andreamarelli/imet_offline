@@ -41,9 +41,9 @@ trait Upload {
                 'changed' => true,
                 'download_link' => static::getUrlByHash(
                     File::encodeHash([
-                        'temp_filename' => $temp_filename,
-                        'original_filename' => $original_filename
-                    ])
+                                         'temp_filename' => $temp_filename,
+                                         'original_filename' => $original_filename
+                                     ])
                 )
             ];
 
@@ -99,10 +99,10 @@ trait Upload {
     public static function getFileModelHash($class, $field, $id): string
     {
         return File::encodeHash([
-            'model' => $class,
-            'field' => $field,
-            'id' => $id
-        ]);
+                                    'model' => $class,
+                                    'field' => $field,
+                                    'id' => $id
+                                ]);
     }
 
     /**
@@ -128,7 +128,7 @@ trait Upload {
             return [$file_content, $file_name];
         }
         return [null, null];
-     }
+    }
 
     /**
      * Retrieve file type by hash
@@ -204,20 +204,23 @@ trait Upload {
             foreach ($this->attributes as $name => $_) {
                 if (in_array($name, $upload_fields)) {
 
-                    if (gettype($this->attributes[$name]) === 'array') {
+                    if (gettype($this->attributes[$name]) === 'array' && $this->attributes[$name]['changed'] === true) {
 
                         // File just uploaded (file is actually in temp folder)
-                        if ($this->attributes[$name]['changed'] === true && $this->attributes[$name]['temp_filename'] !== null) {
+                        if ($this->attributes[$name]['temp_filename'] !== null) {
                             $uploads[$name] = [
                                 'path' => $this->attributes[$name]['temp_filename'],
                                 'original_filename' => $this->attributes[$name]['original_filename']
                             ];
-                        } // No file uploaded (no changes)
-                        else {
-                            $uploads[$name] = null;
                         }
 
-                    } // From JSON import
+                        // File removed
+                        elseif ($this->attributes[$name]['temp_filename'] === null) {
+                            $uploads[$name] = null;
+                        }
+                    }
+
+                    // From JSON import
                     elseif (gettype($this->attributes[$name]) === 'string') {
                         if(array_key_exists($name . static::$binary_field_prefix, $this->attributes)){
                             $uploads[$name] = [

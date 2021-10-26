@@ -96,7 +96,7 @@ class ScalingUpAnalysis extends Model
      * @param $wdpa_id
      * @return array
      */
-    private static function get_all_indicators_without_nulls($wdpa_id) : array
+    private static function get_all_indicators_without_nulls($wdpa_id): array
     {
         return array_map(function ($i) {
             foreach ($i as $key => $item) {
@@ -456,32 +456,8 @@ class ScalingUpAnalysis extends Model
      */
     public static function get_sub_indicators_by_context($form_id, $type = '')
     {
-        $data = (array)EvalControllerV2::assessment($form_id, $type)->getData();
-        $indicators = [
-            'context' => [
-                'c14' => [],
-                'c15' => [],
-                'c12' => [],
-                'c13' => [],
-                'c11' => []
-            ],
-            'process' => [
-                'pr15_16' => [],
-                'pr10_12' => [],
-                'pr13_14' => [],
-                'pr17_18' => [],
-                'pr1_6' => [],
-                'pr7_9' => [],
-            ],
-        ];
+        return (array)EvalControllerV2::assessment($form_id, $type)->getData();
 
-        foreach ($indicators[$type] as $key => $values) {
-            if (isset($data[$key])) {
-                $indicators[$key] = $data[$key];
-            }
-        }
-
-        return $indicators;
     }
 
 
@@ -492,7 +468,7 @@ class ScalingUpAnalysis extends Model
     public static function analysis_diagram_protected_areas($form_ids): array
     {
         $assessments = static::get_assessments($form_ids);
-        $analysis_diagrams_protected_areas = $indicator = $sub = [
+        $analysis_diagrams_protected_areas = $indicator = $tables = [
             'context' => [],
             'planning' => [],
             'inputs' => [],
@@ -501,20 +477,115 @@ class ScalingUpAnalysis extends Model
             'outcomes' => []
         ];
 
+        $table_indicators = [
+            'context' => [
+                'main' => [
+                    'c1' => [],
+                    'c2' => [],
+                    'c3' => []
+                ],
+                'context_value_and_importance' => [
+                    'c11' => [],
+                    'c12' => [],
+                    'c13' => [],
+                    'c14' => [],
+                    'c15' => []
+                ]],
+            'planning' => [
+                'main' => [
+                    'p1' => [],
+                    'p2' => [],
+                    'p3' => [],
+                    'p4' => [],
+                    'p5' => [],
+                    'p6' => []
+                ]
+            ],
+            'inputs' => [
+                'main' => [
+                    'i1' => [],
+                    'i2' => [],
+                    'i3' => [],
+                    'i4' => [],
+                    'i5' => []
+                ]
+            ],
+            'process' => [
+                'process_internal_management' => [
+                    'pr1' => [],
+                    'pr2' => [],
+                    'pr3' => [],
+                    'pr4' => [],
+                    'pr5' => [],
+                    'pr6' => [],
+                ],
+                'process_management_protection_values' => [
+                    'pr7' => [],
+                    'pr8' => [],
+                    'pr9' => []
+                ],
+                'process_stakeholders_relationships' => [
+                    'pr10' => [],
+                    'pr11' => [],
+                    'pr12' => []
+                ],
+                'process_tourism_management' => [
+                    'pr13' => [],
+                    'pr14' => []
+                ],
+                'process_monitoring_and_research' => [
+                    'pr15' => [],
+                    'pr16' => []
+                ],
+                'process_effects_of_climate_change' => [
+                    'pr17' => [],
+                    'pr18' => []
+                ]
+            ],
+            'outputs' => [
+                'main' => [
+                    'op1' => [],
+                    'op2' => [],
+                    'op3' => []
+                ]
+            ],
+
+            'outcomes' => [
+                'main' => [
+                    'oc1' => [],
+                    'oc2' => [],
+                    'oc3' => []
+                ]
+            ]
+        ];
+
         foreach ($indicator as $indi => $value) {
             foreach ($form_ids as $key => $form_id) {
                 $assess = $assessments['data']['assessments'][$key];
                 $name = $assess['name'];
-
-                if (in_array($indi, ['context', 'process'])) {
-                    $sub[$indi][$key] = array_merge(static::get_sub_indicators_by_context($form_id, $indi), ["name" => $name]);
-                }
+                $tables[$indi][$key] = array_merge(static::get_sub_indicators_by_context($form_id, $indi), ["name" => $name]);
                 $analysis_diagrams_protected_areas[$indi][$name] = $assess[$indi];
             }
             arsort($analysis_diagrams_protected_areas[$indi]);
         }
 
-        return ['status' => 'success', 'data' => ['bars' => $analysis_diagrams_protected_areas, 'sub' => $sub]];
+        foreach ($tables as $k => $items) {
+            foreach ($items as $ki => $item) {
+                if (count($table_indicators[$k])) {
+                    foreach ($table_indicators[$k] as $d => $ii) {
+                        $table_indicators[$k][$d][] = array_merge(array_intersect_key($item, $ii), ['name' => $item['name']]);
+                    }
+                }
+            }
+        }
+
+        foreach ($table_indicators as $k => $v) {
+            foreach ($v as $k2 => $v2) {
+                $table_indicators[$k][$k2] = array_filter($v2);
+            }
+        }
+
+        return ['status' => 'success', 'data' => ['bars' => $analysis_diagrams_protected_areas, 'sub' => $table_indicators]];
     }
 
     /**
@@ -1132,10 +1203,9 @@ class ScalingUpAnalysis extends Model
         sort($array);
         $index = ($percentile / 100) * count($array);
         if (floor($index) == $index) {
-            if(isset($array[$index - 1])) {
+            if (isset($array[$index - 1])) {
                 $result = ($array[$index - 1] + $array[$index]) / 2;
-            }
-            else{
+            } else {
                 //todo maybe is wrong i have to discuss it
                 $result = 0;
             }
