@@ -245,6 +245,7 @@ return [
             'ExpectedPermanent' => 'Planned or adequate staffing *',
             'ActualPermanent' => 'Current actual staffing',
             'Observations' => 'Notes',
+            'difference' => 'Difference',
             'Source' => 'Source',
         ],
         'module_info' => 'The statistical system allows only fourteen lines to identify the functions of the staff of the protected area'

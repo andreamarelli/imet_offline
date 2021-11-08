@@ -12,7 +12,7 @@ return [
         ],
     ],
     'ImportanceClassification' => [
-        'title' => 'Definição de objectivos',
+        'title' => 'Designações Especiais',
         'fields' => [
             'Aspect' => 'Critério – Conceito medido – Variável',
             'EvaluationScore' => 'Integracao',
@@ -43,7 +43,7 @@ return [
     'ImportanceSpecies' => [
         'title' => 'Espécies Chave',
         'fields' => [
-            'Aspect' => 'Criterio -_ Conceito Medido - Variável',
+            'Aspect' => 'Criterio - Conceito Medido - Variável',
             'EvaluationScore' => 'Integração',
             'SignificativeSpecies' => 'Espécies altamente representativas',
             'IncludeInStatistics' => 'Dar prioridade na gestão',
@@ -61,7 +61,7 @@ return [
                 '3' => 'alta integração',
             ]
         ],
-        'module_subTitle' => 'Valores e Importancia - Espécies (emblemática, ameaçada, endémica, explorada, invasiva, etc.)',
+        'module_subTitle' => 'Valores e Importancia - Espécies (emblemática, ameaçada, endémica, explorada, invasiva, etc.)',
         'module_info_EvaluationQuestion' => [
             'Terá a A área protegida identificado e integrado claramente as espécies-chave na gestão da área protegida?'
         ],
@@ -79,9 +79,9 @@ return [
     ],
 
     'ImportanceHabitats' => [
-        'title' => 'Valores e Importancia - Habitats terrestre e marinho - tipos de cobertura, mudança, ocupação e uso solo',
+        'title' => 'Valores e Importancia - Habitats terrestre e marinho - tipos de cobertura, mudança, ocupação e uso solo',
         'fields' => [
-            'Aspect' => 'Critério -_ Conceito medido - Variável',
+            'Aspect' => 'Critério - Conceito medido - Variável',
             'EvaluationScore' => 'Integração',
             'EvaluationScore2' => 'Valor/importância regional e global',
             'IncludeInStatistics' => 'Dar prioridade na gestão',
@@ -104,12 +104,12 @@ return [
                 '3' => 'alto valor/importância',
             ],
         ],
-        'module_subTitle' => 'Valores e Importancia - Habitats Terrestre e Marinho - tipos de cobertura, mudança e ocupação e uso solo',
+        'module_subTitle' => 'Valores e Importancia - Habitats Terrestre e Marinho - tipos de cobertura, mudança e ocupação e uso solo',
         'module_info_EvaluationQuestion' => [
             'Terá a área protegida identificado e integrado claramente os habitats terrestres e marinhos mais importantes e as dimensões da cobertura terrestre, da mudança de terra e da ocupação do solo na gestão da área protegida?'
         ],
         'module_info_Rating' => [
-            'Avaliar o nível de integração na gestão da área protegida de 3 a 10 dos habitats e dimensões mais representativas e importantes dos tipos de cobertura, mudança e ocupação do solo (com base na análise do Contexto de Intervenção, pontos 4.3.1 e 4.3.2, automaticamente comunicados abaixo). (O valor/importância regional e global dos habitats e da cobertura da terra é um grau em que se encontra: - i - representas os  a níveis regional ou global o ambiente natural das principais plantas ou animais; (ii) influencia um processo ecológico ou a comunidade ecológica and - iii - affecta a política em relação gestão dirigida ao habitat/cobertura do solo)'
+            'Avaliar o nível de integração na gestão da área protegida de 3 a 10 dos habitats e dimensões mais representativas e importantes dos tipos de cobertura, mudança e ocupação do solo (com base na análise do Contexto de Intervenção, pontos 4.3.1 e 4.3.2, automaticamente comunicados abaixo). (O valor/importância regional e global dos habitats e da cobertura da terra é um grau em que se encontra: - i - representas os  a níveis regional ou global o ambiente natural das principais plantas ou animais; (ii) influencia um processo ecológico ou a comunidade ecológica and - iii - affecta a política em relação gestão dirigida ao habitat/cobertura do solo)'
         ],
         'validation_3to10' => 'Por favor inclua nas estatisticas não menos que 3 e não mais que 10 das espécies chave',
         'warning_on_save' =>
@@ -138,7 +138,7 @@ return [
                 '3' => 'alta integração',
             ]
         ],
-        'module_subTitle' => 'Valores e Importância - Alteração Climática',
+        'module_subTitle' => 'Valores e Importância - Alteração Climática',
         'module_info_EvaluationQuestion' => [
             'Terá a A área protegida identificado e integrado claramente os elementos-chave (espécies, habitats, etc.) mais vulneráveis às alterações climáticas na gestão da área protegida para adoptar as melhores medidas de adaptação disponíveis?'
         ],
@@ -171,7 +171,7 @@ return [
                 '3' => 'alta integração',
             ]
         ],
-        'module_subTitle' => 'Valores e serviços Importancia - Serviços Ecossistémicos',
+        'module_subTitle' => 'Valores e serviços Importancia - Serviços Ecossistémicos',
         'module_info_EvaluationQuestion' => [
             'Terá a área protegida identificado e integrado claramente os serviços ecossistémicos mais importantes para o bem-estar humano na gestão da área protegida?'
         ],
@@ -268,7 +268,7 @@ return [
                 '-1' => 'Algumas restrições geradas por esta parte interessada',
                 '0' => 'Não condiciona nem apoia o papel desta parte interessada',
                 '+1' => 'Alguns apoios desta parte interessada',
-                '+2' => 'Apoio (menor - moderado - severo)',
+                '+2' => 'Apoio (menor - moderado - severo)',
                 '+3' => 'Forte apoio desta parte interessada',
             ],
         ],
@@ -315,7 +315,7 @@ return [
             'Comments' => 'Comentários/Explicação',
         ],
         'predefined_values' => [
-            'Declaração e designação (e.g. parque nacional)',
+            'Declaração e designação (e.g. parque nacional)',
             'Clareza da demarcação legal da área protegida (por exemplo, limites naturais como rios, limites não naturais, direitos consuetudinários, enclaves, etc.).',
             'Regras internas para a gestão da área protegida',
             'Ratificação e aplicação de convenções internacionais (CITES, CBD, Nagoya, CMS, Património Mundial, RAMSAR, etc.)',
@@ -423,7 +423,7 @@ return [
             'A demarcação física de uma área protegida é em geral uma obrigação legal. A demarcação dos limites cumpre os requisitos para assinalar qual é o limite da área protegida estabelecida por legislação específica. A demarcação de áreas protegidas é útil de um ponto de vista jurídico, uma vez que permite definir exactamente onde aplicar um quadro jurídico específico (ou seja, aplicar sanções). Note-se, contudo, que embora útil, a demarcação não é por si só uma medida de protecção suficiente e o conhecimento e aceitação dos limites da área protegida pelas partes interessadas é necessário para a conservação.'
         ],
         'module_info_Rating' => [
-            'Avaliar  <ol type="A"><li>A.o grau em que os limites da área protegida estão demarcado</li><li>B.a adequação da demarcação doas limites para a gestão da área protegida</li></ol>'
+            'Avaliar  <ol type="A"><li>O grau em que os limites da área protegida estão demarcado</li><li>A adequação da demarcação doas limites para a gestão da área protegida</li></ol>'
         ]
     ],
 
@@ -502,19 +502,19 @@ return [
         ],
         'predefined_values' => [
             'Estado e protecção da biodiversidade como valor global',
-            'Espécies de animais- emblemáticas, ameaçadas, endémicas, ...',
-            'Espécies de Plantas - emblemáticas, ameaçadas, endémicas,… –',
+            'Espécies de animais- emblemáticas, ameaçadas, endémicas,...',
+            'Espécies de Plantas - emblemáticas, ameaçadas, endémicas,...',
             'Mitigação das ameaças directas e indirectas à área protegida',
-            'Serviços Ecossistémicos - Provisionamento (utilização sustentável)',
-            'Serviços Ecossistémicos - Regulador (utilização sustentável)',
-            'Serviços Ecossistémicos -  Cultural (utilização sustentável)',
-            'Serviços Ecossistémicos - Apoio',
+            'Serviços Ecossistémicos - Provisionamento (utilização sustentável)',
+            'Serviços Ecossistémicos - Regulador (utilização sustentável)',
+            'Serviços Ecossistémicos - Cultural (utilização sustentável)',
+            'Serviços Ecossistémicos - Apoio',
             'Adaptação as alteraçoes climáticas',
             'Governanção',
             'Apoio à economia local',
             'Apoiar aspectos sociais',
             'Turismo e uso humano',
-            'Sistemas de Gestão - pessoal, finanças, aquisiçoes',
+            'Sistemas de Gestão - pessoal, finanças, aquisiçoes',
             'Infra-estruturas e equipamento',
         ],
         'ratingLegend' => [
@@ -528,7 +528,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Os objectivos estabelecidos para a área protegida são adequados?',
-            'A gestão de áreas protegidas é cada vez mais efectuada seguindo a abordagem de "gestão por objectivos". É considerada proactiva, ou seja, concebida para alcançar um conjunto específico de resultados, em vez de reactiva, ou seja, apenas respondendo a questões que surgem. As metas e objectivos da área protegida têm de ser claramente compreendidos. Devem ser bem definidos e redigidos para facilitar a monitorização, mas também devem estar relacionados com os valores-chave da área protegida (ou seja, espécies ou ecossistemas importantes) ou com as principais áreas de actividade de gestão (por exemplo, turismo, educação). Nesta ferramenta, fazemos uma distinção importante entre resultados e produtos.<ul><li>Os RESULTADOS referem-se a OBJECTIVOS GERAIS, ou seja, objectivos gerais sao obejctivos a longo prazo ou visões expressas no plano de maneio. Estes objectivos gerais são geralmente declarações específicas relacionadas com os valores-chave da área protegida (ou seja, espécies importantes ou serviços ecossistémicos) ou com as principais áreas de actividades de gestão (por exemplo, turismo, educação).</li><li>PRODUTO referem-se as METAS, ou seja, curto prazo (ou relativamente curto prazo) metas quantitativas de curto prazo (ou relativamente de curto prazo) para atingir as metas/objectivos de longo prazo e objectivos específicos. Acreditamos que a utilização de muitas metas de conservação de baixo nível é um obstáculo para alcançar um desempenho de conservação de alto nível.</li></ul>'
+            'A gestão de áreas protegidas é cada vez mais efectuada seguindo a abordagem de "gestão por objectivos". É considerada proactiva, ou seja, concebida para alcançar um conjunto específico de resultados, em vez de reactiva, ou seja, apenas respondendo a questões que surgem. As metas e objectivos da área protegida têm de ser claramente compreendidos. Devem ser bem definidos e redigidos para facilitar a monitorização, mas também devem estar relacionados com os valores-chave da área protegida (ou seja, espécies ou ecossistemas importantes) ou com as principais áreas de actividade de gestão (por exemplo, turismo, educação). Nesta ferramenta, fazemos uma distinção importante entre resultados e produtos.<ul><li>Os RESULTADOS referem-se as mudanças relacionadas com os OBJECTIVOS GERAIS, ou seja, objectivos gerais de longo prazo/objectivos ou visões expressas no plano de maneio. Estes objectivos gerais são geralmente declarações específicas relacionadas com os valores-chave da área protegida (ou seja, espécies importantes ou serviços ecossistémicos) ou com as principais áreas de actividades de gestão (por exemplo, turismo, educação).</li><li>Os PRODUTOS referem-se aos alcances das actividades de curto prazo, são geralmente medidos de maneira quantitativa considerando que contribuem com outros alcances para chegar aos objectivos gerais de longo prazo ou aos objectivos específicos.</li></ul>'
         ],
         'module_info_Rating' => [
             'Avaliar a adequação dos objectivos do plano de gestão aos elementos-chave da área protegida, com base na análise do contexto de intervenção, pontos: CTX1.5, CTX 4, 5, 6, 7 e contexto de gestão, pontos de C 1.1 a C 1.5)'
@@ -548,9 +548,9 @@ return [
         ],
         'groups' => [
             'group0' => 'Espécies Animais (emblemáticas, em perigo, endémicas, …)',
-            'group1' => 'Espécies de Plantas species (emblemáticas, ameaçadas, endémicas…)',
+            'group1' => 'Espécies de Plantas (emblemáticas, ameaçadas, endémicas…)',
             'group2' => 'Habitats cobertura do solo utilização dentro e fora da área protegida',
-            'group3' => 'Ameaças à área  protegida',
+            'group3' => 'Ameaças à área protegida',
             'group4' => 'Efeitos das alterações climáticas sobre os elementos chave da área protegida',
             'group5' => 'Serviços Ecossistémicos providenciados pela área protegida'
         ],
@@ -652,7 +652,7 @@ return [
                 '0' => 'As necessidades financeiras básicas da gestão da área protegida são asseguradas apenas por 1 ano (ano corrente)',
                 '1' => 'As necessidades financeiras básicas da gestão da área protegida são asseguradas durante 2 anos (ano corrente +1 ano)',
                 '2' => 'As necessidades financeiras básicas da gestão da área protegida estão garantidas por 3 anos (ano corrente +2 anos)',
-                '3' => 'As necessidades financeiras básicas da gestão da área protegida estão asseguradas para 4 - and mais anos. (ano corrente +3 anos e mais)'
+                '3' => 'As necessidades financeiras básicas da gestão da área protegida estão asseguradas para 4 - and mais anos. (ano corrente +3 anos e mais)'
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -862,7 +862,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'O orçamento e os recursos financeiros são bem geridos de modo a satisfazer os requisitos essenciais e prioritários de gestão da área protegida?',
-            'O orçamento e a gestão financeira devem ser um sistema significativo para a área protegida. Assegura a funcionalidade orçamental que permitiria a orçamentação, a atribuição de custos de posição através de programas, a previsão dinâmica e detalhada dos custos de posição, a integração de dados de planeamento estratégico e medição de desempenho, etc. A gestão orçamental e financeira é mais do que a manutenção de registos contabilísticos. É uma parte essencial do planeamento, organização, controlo e monitorização dos recursos financeiros, a fim de alcançar os objectivos de conservação da área protegida. Só é possível alcançar uma gestão orçamental e financeira eficaz se se tiver uma boa gestão e um plano de trabalho. Um plano neste contexto significa ter estabelecido objectivos e ter acordado, desenvolvido e avaliado as políticas, estratégias, tácticas e acções para alcançar os objectivos.'
+            'O orçamento e a gestão financeira da área protegida devem ser robustos  para permitir uma adequada alocação de recursos, uma previsã dinâmica e detalhada dos custos dos programas e planificação estratégica. A gestão orçamental e financeira é mais do que a manutenção de registos contabilísticos. É uma parte essencial do planeamento, organização, controlo e monitorização dos recursos financeiros, a fim de alcançar os objectivos de conservação da área protegida. Só é possível alcançar uma gestão orçamental e financeira eficaz se se tiver uma boa gestão e um plano de trabalho com claras  politicas, estrat;égias e um conjunto de objectivos acordados.'
         ],
         'module_info_Rating' => [
             'Avaliar o estabelecimento dos elementos básicos que devem estar em vigor para alcançar as boas práticas de gestão orçamental e financeira. (Não existe um modelo único de sistema de gestão orçamental e financeira que se adapte a todas as organizações, mas existem alguns elementos básicos que devem estar em vigor para se alcançarem boas práticas na gestão orçamental e financeira)'
@@ -923,7 +923,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Existem acções de gestão específicas para os principais valores e ameaças à área protegida?',
-            'O principal objectivo de gestão das áreas protegidas é a conservação/restauro dos valores naturais e culturais associados. Para preservar as áreas protegidas, além de assegurarem a sua protecção, os gestores devem utilizar os conselhos e orientações de gestão disponíveis, identificar e implementar as medidas necessárias utilizando as melhores práticas em benefício dos valores-chave e minimizando as ameaças mais significativas. As acções podem incluir a conservação/restauro de espécies animais e vegetais, ocupação do solo e gestão de várias ameaças (nota: para as acções de adaptação às alterações climáticas e gestão dos serviços ecossistémicos ver PR 17 e PR 18). Exemplos de acções: gestão de animais ou plantas, gestão do ambiente físico, gestão de incêndios, trabalho de revegetação, controlo de espécies invasoras, gestão de recursos culturais, minimização de ameaças, etc.'
+            'O principal objectivo de gestão das áreas protegidas é a conservação/restauro dos valores naturais e culturais associados. Para preservar esses valores e minimizar as ameaças mais significativas os gestores devem utilizar os conselhos e orientações de gestão disponíveis, identificar e implementar as medidas necessárias utilizando as melhores práticas em benefício dos valores-chave e minimizando as ameaças mais significativas. As acções podem incluir a conservação/restauro de espécies animais e de plantas, ocupação do solo e gestão de várias ameaças (nota: para as acções de adaptação às alterações climáticas e gestão dos serviços ecossistémicos ver PR 17 e PR 18). Exemplos de acções: gestão de animais ou plantas, gestão do ambiente físico, gestão de incêndios, trabalho de revegetação, controlo de espécies invasoras, gestão de recursos culturais, minimização de ameaças, etc.'
         ],
         'module_info_Rating' => [
             'Enumerar três ou mais valores chave, ameaças e outros elementos chave e avaliar a adequação das acções de gestão relacionadas (com base na análise do contexto dos pontos de intervenção CTX 4 e 5)'
@@ -1127,7 +1127,7 @@ return [
                 'Fornecimento de infra-estruturas para a Saúde (isto é, edifícios, água limpa)',
                 'Prestação de serviços de saúde (cuidados de saúde)',
                 'Fornecimento de livre acesso ao parque',
-                'Prestação de serviços culturais (fisicos - intelectuais - emblemáticos - esspirituaisl - interaçoes a partir de serviços ecossistémicos)',
+                'Prestação de serviços culturais (fisicos - intelectuais - emblemáticos - esspirituaisl - interaçoes a partir de serviços ecossistémicos)',
                 'Facilitação da resolução de problemas sociais',
                 'Reforço da identidade e do sentido de lugar das comunidades locais'
             ]
@@ -1143,7 +1143,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'A área protegida realiza actividades/programas concebidos para proporcionar benefícios/assistência adequados às comunidades? ',
-            'A gestão de áreas protegidas afastou-se do paradigma histórico da protecção total, em que os ganhos de conservação eram geralmente vistos à custa dos interesses das comunidades locais. É agora amplamente reconhecido que as áreas protegidas devem contribuir para o desenvolvimento sustentável e bem-estar económico das suas comunidades vizinhas. Os resultados socioeconómicos positivos das áreas protegidas são importantes por direito próprio, mas também podem ser necessários para assegurar que as áreas protegidas continuem a produzir resultados ecológicos fortes. A falta de benefícios/assistência adequados para as comunidades locais tem estado ligada a resultados de conservação falhados de iniciativas de áreas protegidas em muitos estudos de caso de todo o mundo. Consequentemente, as normas internacionais de melhores práticas promovem a avaliação de áreas protegidas que tem em conta tanto os resultados ecológicos como socioeconómicos (Fontes: UNESCO - IUCN).'
+            'A gestão de áreas protegidas afastou-se do paradigma histórico da protecção total, em que os ganhos de conservação eram geralmente vistos à custa dos interesses das comunidades locais. É agora amplamente reconhecido que as áreas protegidas devem contribuir para o desenvolvimento sustentável e bem-estar económico das suas comunidades vizinhas. Os resultados socioeconómicos positivos das áreas protegidas são importantes por direito próprio, mas também podem ser necessários para assegurar que as áreas protegidas continuem a produzir resultados ecológicos fortes. A falta de benefícios/assistência adequados para as comunidades locais tem estado ligada a resultados de conservação falhados de iniciativas de áreas protegidas em muitos estudos de caso de todo o mundo. Consequentemente, as normas internacionais de melhores práticas promovem a avaliação de áreas protegidas que tem em conta tanto os resultados ecológicos como socioeconómicos (Fontes: UNESCO - IUCN).'
         ],
         'module_info_Rating' => [
             'Avaliar a adequação das actividades/programa que a área protegida está a levar a cabo para proporcionar benefícios/assistência às comunidades'
@@ -1196,12 +1196,12 @@ return [
             'Comments' => 'Comentários/Explicação',
         ],
         'predefined_values' => [
-            'Procedimentos de gestão para o turismo relacionados com objectivos/resultados favoráveis dos valores das áreas protegidas',
+            'Procedimentos de gestão turistica relacionados com objectivos/resultados favoráveis dos valores das áreas protegidas',
             'Existência de objectivos específicos para o turismo e a gestão de visitantes',
-            'Sensibilização sobrepara as consequências emergentes das actividades recreativas e turísticas',
+            'Aumentar a consciencialização sobre as actividades de ecoturismo',
             'Utilização do zoneamento para gerir diversas oportunidades de recreação, preservando ao mesmo tempo valores importantes',
-            'Visar a diversidade turística através da promoção dos valores biofísicos, culturais e sociais',
-            'Envolvimento dos intervenientes e titulares de direitos para estabelecer consensos e parcerias para a implementação de actividades turísticas',
+            'Diversificação turística através da promoção dos valores biofísicos, culturais e sociais',
+            'Compromisso dos intervenientes e titulares de direitos para estabelecer consensos e parcerias para a implementação de actividades turísticas',
             'Garantidos os benefícios económicos para a área protegida',
             'Estratégia e programas de informação e comunicação de apoio à sustentabilidade dos programas turísticos',
             'Gestão de alojamentos, restauração e actividades de lazer',
@@ -1211,7 +1211,7 @@ return [
             'Guias turísticos na área protegida',
             'Desenvolvimento constante das atracções turísticas',
             'Sentido de lugar (preservar ou melhorar o carácter específico do espaço natural)',
-            'Data tourism monitoring'
+            'Dados de monitorização de turismo'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1283,7 +1283,7 @@ return [
             'Monitorização dos impactos dos visitantes',
             'Monitorização dos serviços ecossistémicos prestados pela área protegida',
             'Monitorização dos efeitos das alterações climáticas nos elementos-chave da área protegida',
-            'Recolha e análise de dados (ou seja, SMART, Monitoria Baseada nos Fiscaisd - MRBFM)'
+            'Recolha e análise de dados (ou seja, SMART, Monitoria Baseada nos Fiscaisd - MRBFM)'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1533,8 +1533,8 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Em que medida é que a área protegida alcançou os principais objectivos do plano de gestão?',
-            '(Com base na análise do contexto de intervenção, ponto CTX1.5 Visão -_ Missão - Objectivos ou elemento Planeamento, ponto P6 - Objectivoes da área protegida',
-            'A gestão das áreas protegidas é cada vez mais efectuada de acordo com os princípios de "gestão por objectivos". As metas e objectivos de uma área protegida devem ser claramente compreendidos para que a gestão seja bem sucedida com base em realizações mensuráveis. Nesta ferramenta, fazemos uma distinção importante entre resultados e produtos: <ul><li>Os RESULTADOS referem-se a OBJECTIVOS GERAIS, ou seja, objectivos a longo prazo ou visões expressas no plano de gestão. Estes objectivos são geralmente declarações específicas relacionadas com os valores-chave da área protegida (ou seja, espécies importantes ou serviços ecossistémicos) ou com as principais áreas de actividades de gestão (por exemplo, turismo, educação).</li><li>PRODUTOS referem-se a metas, ou seja, metas quantitativas de curto prazo (ou relativamente de curto prazo) para atingir as metas/objectivos de longo prazo e objectivos específicos. Acreditamos que a utilização de muitas metas de conservação de baixo nível é um obstáculo para alcançar um desempenho de conservação de alto nível</li></ul>'
+            '(Com base na análise do contexto de intervenção, ponto CTX1.5 Visão - Missão - Objectivos ou elemento Planeamento, ponto P6 - Objectivoes da área protegida',
+            'A gestão das áreas protegidas é cada vez mais efectuada de acordo com os princípios de "gestão por objectivos". As metas e objectivos de uma área protegida devem ser claramente compreendidos para que a gestão seja bem sucedida com base em realizações mensuráveis. Nesta ferramenta, fazemos uma distinção importante entre resultados e produtos: <ul><li>OOs RESULTADOS referem-se as mudanças relacionadas com os OBJECTIVOS GERAIS, ou seja, objectivos gerais de longo prazo/objectivos ou visões expressas no plano de maneio. Estes objectivos gerais são geralmente declarações específicas relacionadas com os valores-chave da área protegida (ou seja, espécies importantes ou serviços ecossistémicos) ou com as principais áreas de actividades de gestão (por exemplo, turismo, educação).</li><li>PRODUTOS referem-se a metas, ou seja, metas quantitativas de curto prazo (ou relativamente de curto prazo) para atingir as metas/objectivos de longo prazo e objectivos específicos. Acreditamos que a utilização de muitas metas de conservação de baixo nível é um obstáculo para alcançar um desempenho de conservação de alto nível</li></ul>'
         ],
         'module_info_Rating' => [
             'Avaliar o nível de realização dos principais objectivos Gerais a longo prazo relacionados com os valores-chave da área protegida ou das principais áreas do plano de gestão'
@@ -1553,7 +1553,7 @@ return [
         'groups' => [
             'group0' => 'Condições e tendências de conservação para as espécies animais chave',
             'group1' => 'Condições e tendências de conservação para espécies-chave de plantas',
-            'group2' => 'Condições e tendências de conservação dos habitats, cobertura de terra cover - uso',
+            'group2' => 'Condições e tendências de conservação dos habitats, cobertura de terra cover - uso',
             'group3' => 'Situação e tendências das ameaças para a área protegida',
             'group4' => 'Adaptação às alterações climáticas',
             'group5' => 'Condições e tendências de conservação dos serviços ecossistémicos da área protegida'
@@ -1587,10 +1587,10 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Quais são as condições e tendências para os elementos-chave da conservação da área protegida?',
-            'Os principais objectivos  de gestão da área protegida são a conservação/restauro dos valores naturais e os benefícios que os seres humanos obtêm do ambiente natural e do bom funcionamento dos ecossistemas (serviços ecossistémicos). Os gestores devem assegurar a conservação/restauro de valores-chave (espécies animais e vegetais, ocupação do solo, etc.) e a preservação do abastecimento, regulação, cultura e apoio dos serviços ecossistémicos, assegurando os valores e benefícios das áreas protegidas para todos'
+            'Os principais objectivos de gestão da área protegida são a conservação/restauro dos valores naturais e os benefícios que os seres humanos obtêm do ambiente natural e do bom funcionamento dos ecossistemas (serviços ecossistémicos). Os gestores devem assegurar a conservação/restauro de valores-chave (espécies animais e vegetais, ocupação do solo, etc.) e a preservação do abastecimento, regulação, cultura e apoio dos serviços ecossistémicos, assegurando os valores e benefícios das áreas protegidas para todos'
         ],
         'module_info_Rating' => [
-            'Avaliar: A) as condições e B) as tendências dos elementos-chave de conservação da área protegida (com base nos Contextos 1 e 3, Elementos do processo PR7 - Gerindo os valores e elementos-chave da área']
+            'Avaliar: A) as condições e B) as tendências dos elementos-chave de conservação da área protegida (com base nos Contextos 1 e 3, Elementos do processo PR7 - Gerindo os valores e elementos-chave da área']
     ],
     'LifeQualityImpact' => [
         'title' => 'Efeitos sobre a qualidade de vida das partes interessadas',
@@ -1606,21 +1606,20 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-                'Bem-estar material das populações locais',
-                'Actividades locais reforçadas (produção de alimentos, agricultura em pequena escala, artesanato, serviços para a área protegida, etc.)',
-                'Apoio às empresas locais (abastecimento de energia, abastecimento de água, comércio, estradas entre aldeias, etc.)',
+                'Criação ou fortalecimento das actividades de produção local (produção de alimentos, agricultura em pequena escala, artesanato, etc)',
+                'Contribuição para o desenvolvimento local (fornecimento de electricidade e /ou água, pequenos negócios, estradas entre aldeias, etc.)',
+                'Provisão de serviços ecossistémicos (alimentos, material rustico, etc)',
                 'Rendimento turístico',
                 'Conflito entre homem e fauna selvagem',
-                'Emprego de nativos',
-                'Serviços de ecossistema (provisionamento)'
+                'Emprego de mão –de-obra local'
             ],
             'group1' => [
-                'Segurança',
-                'Fiabilidade (continuidade, quantidade e qualidade) dos serviços ecossistémicos',
-                'Serviços de educação',
-                'Serviços de Saúde',
-                'Serviços do Ecossistémicos (Cultural)',
-                'Identidade comunitária (cultural, tradicional, espiritual, etc.)',
+                'Protecção das pessoas, facilidades, infraestruturas e estabilidade social',
+                'Manter a quantidade e qualidade do aprovisionamneto dos serviços ecossistémicos',
+                'Contribuição para a educação',
+                'Contribuição para o melhoramento dos Serviços locais de Saúde',
+                'Manter os valores emblemáticos e espirituais do território local',
+                'Manter or fortalecer a identidade comunitária (cultural, tradicional, espiritual, etc.)',
                 'Redução de conflitos entre utilizadores de recursos naturais'
             ]
         ],
@@ -1638,7 +1637,7 @@ return [
 
             'module_info_EvaluationQuestion' => [
                 'A gestão da área protegida tem efeitos positivos ou negativos sobre a qualidade de vida dos intervenientes locais?',
-                'De uma perspectiva de ecossistema, todas as pessoas dependem do capital natural e dos serviços ecossistémicos. As mudanças no ambiente (condições presentes e futuras) e a disponibilidade de recursos essenciais podem afectar a qualidade de vida (contribuições que os serviços ecosistémicos fazem para o bem-estar) através de impactos no consumo, rendimento e riqueza (padrões de vida materiais) e na boa vida, saúde e relações sociais e culturais (padrões de vida imateriais). A gestão das áreas protegidas deve ter muito cuidado com os efeitos sobre a qualidade de vida dos intervenientes locais'
+                'Mudanças correntes e futuras do ambiente e disponibilidade dos recursos essenciais podem afectar a qualidade de vida através dos impactos no consumo, renda e riqueza (padroes de vida materiais) e na boa vida, saúde e relações sociais e culturais (padrões imateriais de vida).  A gestão das áreas protegidas deve ter muito cuidado com os efeitos sobre a qualidade de vida dos intervenientes locais'
             ],
             'module_info_Rating' => [
                 'Avaliar os efeitos para os intervenientes locais resultantes das actividades operacionais da área protegida'

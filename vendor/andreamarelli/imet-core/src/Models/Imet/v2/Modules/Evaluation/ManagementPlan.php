@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use Illuminate\Http\Request;
 
 class ManagementPlan extends Modules\Component\ImetModule_Eval
 {
@@ -18,8 +19,8 @@ class ManagementPlan extends Modules\Component\ImetModule_Eval
             ['name' => 'PlanUptoDate',     'type' => 'toggle-yes_no',    'label' => trans('imet-core::v2_evaluation.ManagementPlan.fields.PlanUptoDate')],
             ['name' => 'PlanApproved',     'type' => 'toggle-yes_no',    'label' => trans('imet-core::v2_evaluation.ManagementPlan.fields.PlanApproved')],
             ['name' => 'PlanImplemented',     'type' => 'toggle-yes_no',    'label' => trans('imet-core::v2_evaluation.ManagementPlan.fields.PlanImplemented')],
-            ['name' => 'VisionAdequacy',     'type' => 'blade-imet-core::components.rating-0to3',    'label' => trans('imet-core::v2_evaluation.ManagementPlan.fields.VisionAdequacy')],
-            ['name' => 'PlanAdequacyScore',     'type' => 'blade-imet-core::components.rating-0to3',    'label' => trans('imet-core::v2_evaluation.ManagementPlan.fields.PlanAdequacyScore')],
+            ['name' => 'VisionAdequacy',     'type' => 'imet-core::rating-0to3',    'label' => trans('imet-core::v2_evaluation.ManagementPlan.fields.VisionAdequacy')],
+            ['name' => 'PlanAdequacyScore',     'type' => 'imet-core::rating-0to3',    'label' => trans('imet-core::v2_evaluation.ManagementPlan.fields.PlanAdequacyScore')],
             ['name' => 'Comments',              'type' => 'text-area',           'label' => trans('imet-core::v2_evaluation.ManagementPlan.fields.Comments')],
         ];
 
@@ -29,6 +30,33 @@ class ManagementPlan extends Modules\Component\ImetModule_Eval
 
         parent::__construct($attributes);
     }
+
+    private static function ensureNullValues($data)
+    {
+        if($data['PlanExistence'] === false || $data['PlanExistence'] === "false"){
+            $data['PlanUptoDate'] = false;
+            $data['PlanApproved'] = false;
+            $data['PlanImplemented'] = false;
+            $data['VisionAdequacy'] = 0;
+            $data['PlanAdequacyScore'] = 0;
+        }
+        return $data;
+    }
+
+    public static function updateModule(Request $request): array
+    {
+        $records = json_decode($request->input('records_json'), true);
+        $records[0] = static::ensureNullValues($records[0]);
+        $request->merge(['records_json' => json_encode($records)]);
+        return parent::updateModule($request);
+    }
+
+    public static function importModule($form_id, $data)
+    {
+        $data = static::ensureNullValues($data);
+        parent::importModule($form_id, $data);
+    }
+
 
 
 }

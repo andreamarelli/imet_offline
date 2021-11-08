@@ -75,21 +75,10 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
                 Route::patch('{item}', [ReportControllerV2::class, 'report_update']);
             });
 
-            // Scaling Up Analysis
-            Route::group(['prefix' => 'scaling_up'], function () {
-                Route::get('download/{scaling_id}', [ScalingUpAnalysisController::class, 'download_zip_file'])->name('download_scaling_up_files');
-                Route::get('{items}',    [ScalingUpAnalysisController::class, 'report_scaling_up'])->name('scaling_up');
-                Route::get('preview/{id}',[ScalingUpAnalysisController::class, 'preview_template'])->name('scaling_up_preview');
-                Route::post('analysis',     [ScalingUpAnalysisController::class, 'get_ajax_responses']);
-                Route::group(['prefix' => 'basket'], function () {
-                    Route::post('add',   [ScalingUpBasketController::class, 'save']);
-                    Route::post('get',   [ScalingUpBasketController::class, 'retrieve']);
-                    Route::post('all',   [ScalingUpBasketController::class, 'all']);
-                    Route::delete('delete/{id}',[ScalingUpBasketController::class, 'delete']);
-                    Route::post('clear', [ScalingUpBasketController::class, 'clear']);
-                });
-            });
         });
+
+        // Scaling Up Analysis - do not provide to offline
+        Route::get('scaling_up', function(){ abort(404); });
 
         Route::group(['prefix' => 'tools'], function () {
             Route::get('export_csv', [Controller::class, 'exportListCSV'])->name('csv_list');

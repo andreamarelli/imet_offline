@@ -15,7 +15,7 @@ class AdministrativeManagement extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::v2_evaluation.AdministrativeManagement.title');
         $this->module_fields = [
             ['name' => 'Aspect',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.AdministrativeManagement.fields.Aspect')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to4WithNA',   'label' => trans('imet-core::v2_evaluation.AdministrativeManagement.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to4WithNA',   'label' => trans('imet-core::v2_evaluation.AdministrativeManagement.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.AdministrativeManagement.fields.Comments')],
         ];
 

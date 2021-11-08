@@ -5,18 +5,20 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'd2e3f92b1ebb53bd444005c7d08a6b3edfd73c6e',
+        'reference' => 'dc25a2417e03b74b8d7f3d4355339077677efad0',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
     'versions' => array(
         'andreamarelli/imet-core' => array(
-            'pretty_version' => 'dev-scaling_up',
-            'version' => 'dev-scaling_up',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
             'type' => 'library',
             'install_path' => __DIR__ . '/../andreamarelli/imet-core',
-            'aliases' => array(),
-            'reference' => '01dec001c83f0128fb6e19552c148e712b415434',
+            'aliases' => array(
+                0 => '9999999-dev',
+            ),
+            'reference' => '31204b594016fb6e4dbb3c536910199721223420',
             'dev_requirement' => false,
         ),
         'andreamarelli/modular-forms' => array(
@@ -27,7 +29,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => '580805ed04e3dadbb585e6c2cd947899be741c7a',
+            'reference' => '7f1dc251ae298e9b46304e72f670473ccb4d7c09',
             'dev_requirement' => false,
         ),
         'asm89/stack-cors' => array(
@@ -609,7 +611,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'd2e3f92b1ebb53bd444005c7d08a6b3edfd73c6e',
+            'reference' => 'dc25a2417e03b74b8d7f3d4355339077677efad0',
             'dev_requirement' => false,
         ),
         'laravel/serializable-closure' => array(

@@ -139,6 +139,7 @@ $tr_record = $definitions['module_type']==='GROUP_TABLE'
                             sum += item;
                         }
                     });
+                    sum = sum/2;
                     return sum;
                 },
 

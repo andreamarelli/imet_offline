@@ -84,12 +84,10 @@ $tr_record = $definitions['module_type'] === 'GROUP_TABLE'
         <tr>
             <td></td>
             <td>
-                <div :class="isValidArea ? '' : 'has-error'">
-                    <input type="text" disabled="disabled"
-                       class="input-number field-edit text-right"
-                       v-bind:value="sumUnderControlArea"
-                    />
-                </div>
+                <input type="text" disabled="disabled"
+                   class="input-number field-edit text-right"
+                   v-bind:value="sumUnderControlArea"
+                />
             </td>
             <td></td>
             <td>
@@ -106,16 +104,6 @@ $tr_record = $definitions['module_type'] === 'GROUP_TABLE'
             </td>
             <td></td>
             <td></td>
-        </tr>
-
-        <tr>
-            <td></td>
-            <td colspan="6">
-                <div v-if="!isValidArea" class="text-danger text-left" style="font-size: 0.9em;">
-                    <i class="fa fa-exclamation-triangle"></i>
-                    {!!  ucfirst(trans('imet-core::v2_context.Sectors.sum_error')) !!}
-                </div>
-            </td>
         </tr>
 
     </tbody>
@@ -183,13 +171,6 @@ $tr_record = $definitions['module_type'] === 'GROUP_TABLE'
                 },
                 UnderControlPatrolManDay(){
                     return this.sumColumnFloat('UnderControlPatrolManDay');
-                },
-                isValidArea: function () {
-                    return this.sumUnderControlArea===null
-                        || this.sumUnderControlArea===''
-                        || isNaN(this.sumUnderControlArea)
-                        || (this.sumUnderControlArea>0
-                            && parseFloat(this.sumUnderControlArea).toFixed(2)===parseFloat(this.getPaArea()).toFixed(2));
                 }
 
             },

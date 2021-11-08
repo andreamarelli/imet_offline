@@ -69,6 +69,27 @@ Trait Upgrade
     }
 
     /**
+     * Rename a field in the given record
+     *
+     * @param $record
+     * @param $from
+     * @param $to
+     * @return mixed
+     */
+    protected static function renameField($record, $from, $to)
+    {
+        $record = static::addField($record, $to);
+        $record[$to] = $record[$from];
+        $record = static::dropField($record, $from);
+        if(array_key_exists($from.'_BYTEA', $record)){
+            $record = static::addField($record, $to.'_BYTEA');
+            $record[$to.'_BYTEA'] = $record[$from.'_BYTEA'];
+            $record = static::dropField($record, $from.'_BYTEA');
+        }
+        return $record;
+    }
+
+    /**
      * Replace an obsolete predefined value with a newer one
      *
      * @param $record

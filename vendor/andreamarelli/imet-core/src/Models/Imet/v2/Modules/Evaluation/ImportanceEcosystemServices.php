@@ -17,7 +17,7 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::v2_evaluation.ImportanceEcosystemServices.title');
         $this->module_fields = [
             ['name' => 'Aspect', 'type' => 'blade-imet-core::v2.evaluation.fields.importance_ecosystem_services_aspect',   'label' => trans('imet-core::v2_evaluation.ImportanceEcosystemServices.fields.Aspect')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.ImportanceEcosystemServices.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.ImportanceEcosystemServices.fields.EvaluationScore')],
             ['name' => 'IncludeInStatistics',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_evaluation.ImportanceEcosystemServices.fields.IncludeInStatistics')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ImportanceEcosystemServices.fields.Comments')],
         ];

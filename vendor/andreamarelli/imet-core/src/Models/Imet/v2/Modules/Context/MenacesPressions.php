@@ -32,11 +32,11 @@ class MenacesPressions extends Modules\Component\ImetModule
         $this->module_title = trans('imet-core::v2_context.MenacesPressions.title');
         $this->module_fields = [
             ['name' => 'Value',         'type' => 'text-area',               'label' => trans('imet-core::v2_context.MenacesPressions.fields.Value')],
-            ['name' => 'Impact',        'type' => 'blade-imet-core::components.rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Impact')],
-            ['name' => 'Extension',     'type' => 'blade-imet-core::components.rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Extension')],
-            ['name' => 'Duration',      'type' => 'blade-imet-core::components.rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Duration')],
-            ['name' => 'Trend',         'type' => 'blade-imet-core::components.rating-Minus2to2',   'label' => trans('imet-core::v2_context.MenacesPressions.fields.Trend')],
-            ['name' => 'Probability',   'type' => 'blade-imet-core::components.rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Probability')],
+            ['name' => 'Impact',        'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Impact')],
+            ['name' => 'Extension',     'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Extension')],
+            ['name' => 'Duration',      'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Duration')],
+            ['name' => 'Trend',         'type' => 'imet-core::rating-Minus2to2',   'label' => trans('imet-core::v2_context.MenacesPressions.fields.Trend')],
+            ['name' => 'Probability',   'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Probability')],
         ];
 
         $this->module_groups = [

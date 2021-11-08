@@ -529,7 +529,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             '¿Son adecuados los objetivos establecidos para el área protegida?',
-            'La gestión de las áreas protegidas se lleva a cabo cada vez más siguiendo el enfoque de "gestión por objetivos". Se considera proactiva, es decir, está diseñada para lograr un conjunto específico de resultados, en lugar de ser un instrumento reactivo, es decir, simplemente respondiendo a los problemas que surgen. Las metas y objetivos del área protegida deben ser claramente entendidos. Deberían estar bien definidos y redactados para facilitar la supervisión, pero también deberían estar relacionados con los valores clave del área protegida (es decir, especies o ecosistemas importantes) o con las principales áreas de actividad de gestión (por ejemplo, turismo, educación). En esta herramienta hacemos una importante distinción entre resultados y productos.<ul><li>Los RESULTADOS se relacionan con las METAS/OBJETIVOS, es decir, las metas/objetivos a largo plazo o las visiones expresadas en el plan de gestión. Estas metas/objetivos suelen ser declaraciones específicas relacionadas con los valores clave del área protegida (es decir, especies importantes o servicios del ecosistema) o con las principales áreas de actividades de gestión (por ejemplo, turismo, educación).</li><li>Los resultados se refieren a las METAS, es decir, a las metas cuantitativas a corto plazo (o relativamente a corto plazo) para alcanzar las metas/objetivos a largo plazo y los objetivos específicos. Creemos que el uso de muchas metas de conservación de bajo nivel es un obstáculo para lograr un rendimiento de conservación de alto nivel.</li></ul>'
+            'La gestión de las áreas protegidas se lleva a cabo cada vez más siguiendo el enfoque de "gestión por objetivos". Se considera proactiva, es decir, está diseñada para lograr un conjunto específico de resultados, en lugar de ser un instrumento reactivo, es decir, simplemente respondiendo a los problemas que surgen. Las metas y objetivos del área protegida deben ser claramente entendidos. Deberían estar bien definidos y redactados para facilitar la supervisión, pero también deberían estar relacionados con los valores clave del área protegida (es decir, especies o ecosistemas importantes) o con las principales áreas de actividad de gestión (por ejemplo, turismo, educación). En esta herramienta hacemos una importante distinción entre resultados y productos.<ul><li> Los RESULTADOS se refieren a los cambios relacionados con las METAS / OBJETIVOS, es decir, las metas / objetivos a largo plazo o las visiones expresadas en el plan de gestión o manejo. Estas metas / objetivos suelen serdeclaraciones específicas relacionadas con los valores clave del área protegida (es decir, especies importantes o funciones y/o servicios del ecosistema) o con las principales áreas de actividades de gestión (por ejemplo, turismo, educación).</li><li>Los RESULTADOS se refieren a la realización de ACTIVIDADES a corto plazo, generalmente se miden de forma cuantitativa, y contribuyen con otros logros a alcanzar las metas a largo plazo o los objetivos específicos.</li></ul>'
         ],
         'module_info_Rating' => [
             'Evaluar la adecuación de los objetivos del plan de manejo para los elementos clave del área protegida, basándose en el análisis del contexto de la intervención, puntos: CTX1.5, CTX 4, 5, 6, 7 y contexto de la gestión, puntos de C 1.1 a C 1.5)'
@@ -863,7 +863,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             '¿Se administran bien el presupuesto y los recursos financieros para satisfacer las necesidades esenciales y prioritarias de gestión del área protegida?',
-            'El presupuesto y la gestión financiera deben ser un sistema significativo para el área protegida. Asegura la funcionalidad del presupuesto que permitiría el financiamiento, la asignación de los costes de posición entre programas, la previsión dinámica y detallada de los costes de posición, la integración de la planificación estratégica y los datos de medición del rendimiento, etc. La gestión presupuestaria y financiera es más que el mantenimiento de registros contables. Es una parte esencial de la planificación, organización, control y supervisión de los recursos financieros para lograr los objetivos de conservación del área protegida. Sólo se puede lograr una gestión presupuestaria y financiera eficaz si se cuenta con una gestión y un plan de trabajo sólidos. Un plan en este contexto significa haber establecido objetivos y haber acordado, desarrollado y evaluado las políticas, estrategias, tácticas y acciones para lograr los objetivos.'
+            'El presupuesto y la gestión financiera de un área protegida debe ser sólida para permitir una asignación adecuada de los recursos, una previsión dinámica y detallada de los costes de posición en todos los programas y una planificación estratégica. La gestión presupuestaria y financiera es más que sólo llevar registros contables. Es una parte esencial de la planificación, la organización, el control y el seguimiento de los recursos financieros para lograr los objetivos de conservación del área protegida. Sólo se puede conseguir una gestión presupuestaria y financiera eficaz si se dispone de un plan de gestión y trabajo sólido con políticas y estrategias claras y un conjunto de objetivos acordados.'
         ],
         'module_info_Rating' => [
             'Evaluar la configuración de los elementos básicos que deben estar en vigor para lograr una buena práctica en la gestión presupuestaria y financiera. (No existe un modelo único de sistema de gestión presupuestaria y financiera que se adapte a todas las organizaciones, pero hay algunos elementos básicos que deben estar en vigor para lograr una buena práctica de gestión presupuestaria y financiera)'
@@ -924,7 +924,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             '¿Existen medidas de gestión específicas para los valores y amenazas clave del área protegida?',
-            'El principal objetivo de gestión de las áreas protegidas es la conservación/restauración de los valores naturales y culturales asociados. Para preservar las áreas protegidas, además de asegurar su protección, los gestores deberían utilizar el asesoramiento y las directrices de gestión disponibles, identificar y aplicar las medidas necesarias utilizando las mejores prácticas en beneficio de los valores clave y minimizando las amenazas más importantes. Las acciones pueden incluir la conservación/restauración de especies animales y vegetales, la cobertura terrestre y la gestión de diversas amenazas (nota: para las acciones de adaptación al cambio climático y de gestión de los servicios de los ecosistemas, véase PR 17 y PR 18). Ejemplos de acciones: gestión de animales o plantas, gestión del entorno físico, gestión del fuego, trabajos de revegetación, control de especies invasoras, gestión de recursos culturales, minimizar las amenazas, etc.'
+            'El principal objetivo de gestión de las áreas protegidas es la conservación/restauración de los valores naturales y culturales asociados. Para preservar estos valores y minimizar las amenazas más significativas, los gestores deben identificar y utilizar las directrices, medidas o mejores prácticas de gestión disponibles. Las acciones pueden incluir la conservación/restauración de especies animales y vegetales, la cobertura del suelo y la gestión de diversas amenazas (nota: para las acciones de adaptación al cambio climático y de gestión de los servicios de los ecosistemas, véanse los PR 17 y PR 18). Ejemplos de acciones: gestión de fauna o vegetación, gestión del entorno físico, gestión de incendios, trabajos de revegetación, control de especies invasoras, gestión de recursos culturales, minimización de amenazas, etc.'
         ],
         'module_info_Rating' => [
             'Enumere tres o más valores, amenazas y otros elementos clave y evalúe la idoneidad de las medidas de gestión conexas (sobre la base del análisis del contexto de los puntos de intervención CTX 4 y 5).'
@@ -1197,22 +1197,22 @@ return [
             'Comments' => 'Comentarios/explicación',
         ],
         'predefined_values' => [
-            'Procedimientos de gestión del turismo relacionados con los objetivos/resultados favorables de los valores de las áreas protegidas',
-            'Existencia de objetivos específicos para el turismo y la gestión de visitantes',
-            'Sensibilización de las consecuencias que se derivan de las actividades de recreación y turismo',
-            'Uso de la zonificación para gestionar diversas oportunidades de recreación, preservando al mismo tiempo los valores importantes',
-            'Dirigirse a la diversidad del turismo mediante la promoción de los valores biofísicos, culturales y sociales',
-            'Participación de los socios, actores locales y los titulares de los derechos para establecer un consenso y una asociación para la realización de actividades turísticas',
-            'Se garantizan los beneficios económicos para el área protegida',
-            'Estrategia de información y comunicación y programas de apoyo a la sostenibilidad de los programas de turismo',
+            'Procedimientos de gestión del turismo relacionados con los objetivos/resultados favorables de los valores del área protegida',
+            'Existencia de objetivos específicos para la gestión del turismo y los visitantes',
+            'Sensibilización sobre las consecuencias derivadas de las actividades recreativas y turísticas',
+            'Utilización de la zonificación para gestionar diversas oportunidades de recreación, preservando los valores importantes',
+            'Diversificación del turismo mediante la promoción de valores biofísicos, culturales y socioculturales',
+            'Compromiso de las partes interesadas y los titulares de derechos para establecer un consenso y una asociación para la realización de actividades turísticas',
+            'Garantía de beneficios económicos para el área protegida',
+            'Estrategia y programas de información y comunicación que apoyen la sostenibilidad de los programas turísticos',
             'Gestión del alojamiento, la restauración y las actividades de ocio',
-            'Transporte de visitantes y gestión de la seguridad',
-            'Alojamiento, catering, actividades de ocio para discapacitados (ciegos, lisiados, personas adulto mayores)',
-            'Variedad de experiencias disponibles para los visitantes',
-            'Guías de turismo en el área protegida',
-            'El desarrollo constante de las atracciones y actividades turísticas',
-            'Sentido del lugar (preservando o mejorando el carácter específico del área natural)',
-            'Datos de monitoreo sobre turismo'
+            'Gestión del transporte y la seguridad de los visitantes',
+            'Alojamiento, servicio de alimentación y actividades de ocio para personas discapacitadas',
+            'Gama de experiencias disponibles para los visitantes',
+            'Guías turísticos en el área protegida',
+            'Desarrollo constante de las atracciones turísticas',
+            'Sentido del lugar (preservar o mejorar el carácter específico del espacio natural)',
+            'Datos de seguimiento del turismo'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1610,21 +1610,20 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-                'Bienestar material de las poblaciones locales',
-                'Fortalecimiento de las actividades locales (producción de alimentos, agricultura en pequeña escala, artesanía, servicios para el área protegida, etc.)',
-                'Apoyo a las empresas locales (suministro de energía, suministro de agua, comercio, carreteras entre los pueblos, etc.)',
+                'Creación o fortalecimiento de actividades productivas locales (producción de alimentos, pequeña agricultura, artesanía, etc.)',
+                'Contribución al desarrollo local (suministro de energía y/o agua, pequeñas empresas, carreteras entre pueblos, etc.)',
+                'Servicios de aprovisionamiento de los ecosistemas: (alimentos, materias primas, etc.)',
                 'Ingresos por turismo',
-                'Conflicto entre los seres humanos y la vida silvestre',
-                'Empleo de los actores locales',
-                'Servicios y funciones de los ecosistemas (provisión)'
+                'Conflictos entre el hombre y la fauna silvestre',
+                'Empleos de la población local'
             ],
             'group1' => [
-                'Seguridad',
-                'Fiabilidad (continuidad, cantidad y calidad) de los servicios/funciones ecosistémicas',
-                'Servicios de educación',
-                'Servicios de salud',
-                'Servicios y funciones ecosistémicas (Culturales)',
-                'Identidad comunitaria (cultural, tradicional, espiritual, etc.)',
+                'Protección de las personas, instalaciones e infraestructuras y estabilidad social',
+                'Mantenimiento de la cantidad y calidad de los servicios de aprovisionamiento de los ecosistemas',
+                'Contribución a la educación',
+                'Contribución a la mejora de la salud pública local',
+                'Mantenimiento del valor emblemático y espiritual del territorio local',
+                'Mantenimiento o fortalecimiento de la identidad comunitaria (cultural, tradicional, espiritual, etc.)',
                 'Reducción de los conflictos de los usuarios de los recursos naturales'
             ]
         ],

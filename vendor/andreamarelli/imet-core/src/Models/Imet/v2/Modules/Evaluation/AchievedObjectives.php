@@ -15,7 +15,7 @@ class AchievedObjectives extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::v2_evaluation.AchievedObjectives.title');
         $this->module_fields = [
             ['name' => 'Objective',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.AchievedObjectives.fields.Objective')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::v2_evaluation.AchievedObjectives.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::v2_evaluation.AchievedObjectives.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.AchievedObjectives.fields.Comments')],
         ];
 

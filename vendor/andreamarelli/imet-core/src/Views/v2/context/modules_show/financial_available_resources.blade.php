@@ -17,6 +17,7 @@ foreach($records as $index => $record){
         : '';
     $totalSum += $records[$index]['__sum_row'] ;
 }
+$totalSum = $totalSum / 2;
 
 
 $table = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.table', compact(['definitions', 'records']))->render();
@@ -34,7 +35,7 @@ $table_dom = $dom->filter('table#table_'.$definitions['module_key']);
         $tr->filter('td')->eq(4)->after(
             '<td>'.
                 \Illuminate\Support\Facades\View::make('modular-forms::module.show.field', [
-                    'type' => 'numeric',
+                    'type' => 'integer',
                     'value' => $records[$index]['__sum_row']
                 ]).
             '</td>'.
@@ -52,7 +53,7 @@ $table_dom = $dom->filter('table#table_'.$definitions['module_key']);
                 <td colspan="5"></td>
                 <td>'.
                     \Illuminate\Support\Facades\View::make('modular-forms::module.show.field', [
-                        'type' => 'numeric',
+                        'type' => 'integer',
                         'value' => $totalSum
                     ]).'
                 </td>

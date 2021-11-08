@@ -154,6 +154,88 @@ export default {
         ],
         process: [
             {
+                name: 'main',
+                title: '',
+                columns: [
+                    {
+                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "field": "name"
+                    },
+                    {
+                        "label": `PR1`,
+                        "field": "pr1"
+                    },
+                    {
+                        "label": `PR2`,
+                        "field": "pr2",
+                    },
+                    {
+                        "label": `PR3`,
+                        "field": "pr3"
+                    },
+                    {
+                        "label": `PR4`,
+                        "field": "pr4"
+                    },
+                    {
+                        "label": `PR5`,
+                        "field": "pr5"
+                    },
+                    {
+                        "label": `PR6`,
+                        "field": "pr6"
+                    },
+                    {
+                        "label": `PR7`,
+                        "field": "pr7"
+                    },
+                    {
+                        "label": `PR8`,
+                        "field": "pr8",
+                    },
+                    {
+                        "label": `PR9`,
+                        "field": "pr9"
+                    },
+                    {
+                        "label": `PR10`,
+                        "field": "pr10"
+                    },
+                    {
+                        "label": `PR11`,
+                        "field": "pr11",
+                    },
+                    {
+                        "label": `PR12`,
+                        "field": "pr12"
+                    },
+                    {
+                        "label": `PR13`,
+                        "field": "pr13"
+                    },
+                    {
+                        "label": `PR14`,
+                        "field": "pr14"
+                    },
+                    {
+                        "label": `PR15`,
+                        "field": "pr15"
+                    },
+                    {
+                        "label": `PR16`,
+                        "field": "pr16"
+                    },
+                    {
+                        "label": `PR17`,
+                        "field": "pr17"
+                    },
+                    {
+                        "label": `PR18`,
+                        "field": "pr18"
+                    }
+                ]
+            },
+            {
                 name: 'process_internal_management',
                 title: `PR A: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr1_6')}`,
                 columns: [

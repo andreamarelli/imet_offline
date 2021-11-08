@@ -14,8 +14,8 @@ class AreaDomination extends Modules\Component\ImetModule_Eval
         $this->module_code = 'O/P3';
         $this->module_title = trans('imet-core::v2_evaluation.AreaDomination.title');
         $this->module_fields = [
-            ['name' => 'Patrol',            'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::v2_evaluation.AreaDomination.fields.Patrol')],
-            ['name' => 'RapidIntervention', 'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::v2_evaluation.AreaDomination.fields.RapidIntervention')],
+            ['name' => 'Patrol',            'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::v2_evaluation.AreaDomination.fields.Patrol')],
+            ['name' => 'RapidIntervention', 'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::v2_evaluation.AreaDomination.fields.RapidIntervention')],
             ['name' => 'AirVehicles',       'type' => 'toggle-yes_no',   'label' => trans('imet-core::v2_evaluation.AreaDomination.fields.AirVehicles')],
             ['name' => 'Planes',            'type' => 'toggle-yes_no',   'label' => trans('imet-core::v2_evaluation.AreaDomination.fields.Planes')],
             ['name' => 'Comments',          'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.AreaDomination.fields.Comments')],

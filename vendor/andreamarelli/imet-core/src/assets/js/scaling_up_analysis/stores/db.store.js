@@ -23,15 +23,15 @@ class DBStorage {
     }
 
     async save( value) {
-        return await this.ajax_request('admin/imet/v2/scaling_up/basket/add',{value})
+        return await this.ajax_request('admin/imet/scaling_up/basket/add',{value})
     }
 
     async retrieve(id){
-        return await this.ajax_request('admin/imet/v2/scaling_up/basket/retrieve',{id}, );
+        return await this.ajax_request('admin/imet/scaling_up/basket/retrieve',{id}, );
     }
 
     async all(id) {
-        return await this.ajax_request('admin/imet/v2/scaling_up/basket/all', {id})
+        return await this.ajax_request('admin/imet/scaling_up/basket/all', {id})
     }
 
     delete_item_child(key, id){
@@ -42,11 +42,11 @@ class DBStorage {
     }
 
     async delete(id){
-        return await this.ajax_request(`admin/imet/v2/scaling_up/basket/delete/${id}`, null,'DELETE');
+        return await this.ajax_request(`admin/imet/scaling_up/basket/delete/${id}`, null,'DELETE');
     }
 
     async clear(id){
-        return await this.ajax_request('admin/imet/v2/scaling_up/basket/clear', {id});
+        return await this.ajax_request('admin/imet/scaling_up/basket/clear', {id});
     }
 
 }

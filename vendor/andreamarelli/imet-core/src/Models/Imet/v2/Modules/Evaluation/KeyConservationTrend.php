@@ -16,8 +16,8 @@ class KeyConservationTrend extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::v2_evaluation.KeyConservationTrend.title');
         $this->module_fields = [
             ['name' => 'Element',   'type' => 'blade-imet-core::v2.evaluation.fields.show_species',           'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Element')],
-            ['name' => 'Condition', 'type' => 'blade-imet-core::components.rating-Minus3to3WithNA',    'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Condition')],
-            ['name' => 'Trend',     'type' => 'blade-imet-core::components.rating-Minus3to3WithNA',    'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Trend')],
+            ['name' => 'Condition', 'type' => 'imet-core::rating-Minus3to3WithNA',    'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Condition')],
+            ['name' => 'Trend',     'type' => 'imet-core::rating-Minus3to3WithNA',    'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Trend')],
             ['name' => 'Reliability',  'type' => 'dropdown-ImetV2_SpeciesReliability',   'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Reliability'), 'class' => 'width100px'],
             ['name' => 'Comments',  'type' => 'text-area',           'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Comments')],
         ];

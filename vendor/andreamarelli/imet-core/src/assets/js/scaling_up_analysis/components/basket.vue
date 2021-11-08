@@ -115,7 +115,7 @@ export default {
       }
     },
     printElement: async function (elem, append = false, delimiter) {
-      window.open(window.Laravel.baseUrl + 'admin/imet/v2/scaling_up/preview/' + this.stores.BasketStore.get_scaling_up_id(), '', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no');
+      window.open(window.Laravel.baseUrl + 'admin/imet/scaling_up/preview/' + this.stores.BasketStore.get_scaling_up_id(), '', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no');
     },
     preview_template_window: function (img_url) {
       return `<div class='container'><div class="row mb-5"><div class="col-sm"><img class="img-fluid" src="${img_url}"/></div></div></div>`;

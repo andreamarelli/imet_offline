@@ -15,7 +15,7 @@ class IntelligenceImplementation extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::v2_evaluation.IntelligenceImplementation.title');
         $this->module_fields = [
             ['name' => 'Element',   'type' => 'text-area',          'label' => trans('imet-core::v2_evaluation.IntelligenceImplementation.fields.Element'), 'other'=>'rows="3"'],
-            ['name' => 'Adequacy',  'type' => 'blade-imet-core::components.rating-0to3WithNA',  'label' => trans('imet-core::v2_evaluation.IntelligenceImplementation.fields.Adequacy')],
+            ['name' => 'Adequacy',  'type' => 'imet-core::rating-0to3WithNA',  'label' => trans('imet-core::v2_evaluation.IntelligenceImplementation.fields.Adequacy')],
             ['name' => 'Comments',  'type' => 'text-area',               'label' => trans('imet-core::v2_evaluation.IntelligenceImplementation.fields.Comments')],
         ];
 

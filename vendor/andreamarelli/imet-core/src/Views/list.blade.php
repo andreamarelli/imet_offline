@@ -67,29 +67,11 @@ $url        = URL::route('index');
     <br />
     <div id="sortable_list">
 
-        <div id="cloud">
-            <label-cloud :cookie-name="'analysis'" :url="'{{url('admin/imet')}}/v2/scaling_up/{items}'" :source-of-data="'cookie'"></label-cloud>
-        </div>
-        <br/>
-        <br/>
-        <action-button-cookie
-            :class-name="'btn btn-success float-left'"
-            :cookie-name="'analysis'"
-            :event="'update_cloud_tags'"
-            :label="'Save choices'">
-        </action-button-cookie>
-
         @include('modular-forms::tables.sort_on_client.num_records')
 
         <table class="striped">
             <thead>
             <tr>
-                <th class="text-center width30px">
-                    <input type='checkbox'
-                           class="ml-1 vue-checkboxes"
-                           @click="check_all()"
-                           v-model="are_checked_all">
-                </th>
                 <th class="text-center width60px">@lang('imet-core::common.id')</th>
                 @include('modular-forms::tables.sort_on_client.th', ['column' => 'Year', 'label' => trans('imet-core::common.year'), 'class' => 'width90px'])
                 @include('modular-forms::tables.sort_on_client.th', ['column' => 'name', 'label' => trans_choice('imet-core::common.protected_area.protected_area', 1)])
@@ -101,14 +83,6 @@ $url        = URL::route('index');
 
             <tbody>
             <tr v-for="item of items">
-                <td class="align-baseline text-center">
-                    <input type="checkbox"
-                        :checked="is_checked(item.FormID)"
-                        :data-name="item.name"
-                        @click="selectValueByIdAndValue(item.FormID, item.name)"
-                        class="vue-checkboxes"
-                        :value="item.FormID">
-                </td>
                 <td class="align-baseline text-center">#@{{ item.FormID }}</td>
                 <td class="align-baseline text-center"><strong>@{{ item.Year }}</strong></td>
                 <td class="align-baseline">
@@ -158,13 +132,11 @@ $url        = URL::route('index');
 
                         {{-- Edit --}}
                         <span v-if="item.version==='v1'">
-                                {{-- Edit --}}
                             @include('imet-core::components.button_edit', ['version' => 'v1'])
-                            </span>
+                        </span>
                         <span v-else-if="item.version==='v2'">
-                                {{-- Edit --}}
                             @include('imet-core::components.button_edit', ['version' => 'v2'])
-                            </span>
+                        </span>
 
                         {{-- Merge tool --}}
                         <span v-if="item.has_duplicates">

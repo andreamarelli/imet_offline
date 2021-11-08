@@ -244,21 +244,20 @@ return [
             'Observations' => 'Observations',
         ],
         'area_percentage'               => '% de la surface',
-        'average_time'                  => 'Moyenne homme * j * Km² de la surface totale',
-        'sum_error' => 'La superficie totale sous contrôle doit correspondre à la superficie spécifiée dans le module <b>CTX 2.2</b>'
+        'average_time'                  => 'Moyenne homme * j * Km² de la surface totale'
     ],
 
     'TerritorialReferenceContext' => [
         'title' => 'Contexte territorial de référence de l’aire protégée',
         'fields' => [
-            'ReferenceEcosystemAreaEstimation' => 'A) Aire de l’écosystème fonctionnel. Estimer la superficie de l’écosystème fonctionnel : superficie importante pour le maintien des valeurs de l’aire protégée (habitats, espèces clés, etc.) : a) en Km² et b) en Km de largeur de la bande extérieure',
-            'ReferenceEcosystemAreaPopulation' => 'Estimer la population humaine vivant dans l’aire de l’écosystème fonctionnel',
+            'FunctionalHasNoTakeArea' => 'L’aire de l’écosystème fonctionnel correspond-elle à la zone de non-prélèvement ?',
+            'FunctionalArea' => 'Estimer la superficie de l’écosystème fonctionnel importante pour le maintien de la biodiversité de l’aire protégée (habitats, espèces clés, etc.) : a) en Km² et b) en Km de largeur de la bande extérieure',
+            'FunctionalPopulation' => 'Estimer la population humaine vivant dans l’aire de l’écosystème fonctionnel',
             'EcologicalAspects' => 'Préciser l’éventuelle présence de facteurs écologiques qui doivent être pris en considération dans la gestion de l’aire protégée (p.ex. domaines vitaux des espèces phare) et estimer la surface en km2',
-            'FunctionalArea' => 'B) Zone d’influence socio-économique de l’aire protégée. Estimer l’influence socio-économique directe de l’aire protégée : Zone habitée qui est influencée par l’aire protégée : a) en km² et b) en Km de largeur de la bande extérieure',
-            'NoTakeArea' => 'L’aire de l’écosystème fonctionnel correspond-elle à la zone de non-prélèvement ?',
-            'FunctionalAreaPopulation' => 'Estimer la population locale vivant dans l’aire d’influence socio-économique',
-            'SocioEconomicAspects' => 'Énumérer et décrire les facteurs socio-économiques et administratifs (p. ex. les normes coutumières et  modernes qui régissent ou influencent la gestion des ressources naturelles)',
-            'SpillOverEffect' => 'C) Zone de débordement (spill-over). Estimer les effets du débordement (spill-over) des zones de conservation strictes. Zone de débordement pour maintenir l’approvisionnement en services écosystémiques (p. ex. pêche) fournis par l’aire protégée : a) en km² et b) en mètres de largeur de la bande extérieure',
+            'BenefitArea' => 'Estimer la zone habitée qui est influencée par l’aire protégée : a) en km² et b) en Km de largeur de la bande extérieure',
+            'BenefitPopulation' => 'Estimer la population locale vivant dans l’aire d’influence socio-économique',
+            'BenefitSocioEconomicAspects' => 'Énumérer et décrire les facteurs socio-économiques et administratifs (p. ex. les normes coutumières et  modernes qui régissent ou influencent la gestion des ressources naturelles)',
+            'SpillOverArea' => 'Estimer les effets du débordement (spill-over) des zones de conservation strictes. Zone de débordement pour maintenir l’approvisionnement en services écosystémiques (p. ex. pêche) fournis par l’aire protégée : a) en km² et b) en mètres de largeur de la bande extérieure',
         ],
         'categories' => [
             'FunctionalEcosystemArea' => 'Aire fonctionnelle de l’écosystème',

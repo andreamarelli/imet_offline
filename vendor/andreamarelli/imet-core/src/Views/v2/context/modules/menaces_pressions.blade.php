@@ -8,45 +8,51 @@ use Illuminate\Support\Facades\View;
 
 $view_groupTable = View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vue_data', 'definitions']))->render();
 
-// Inject titles (with category stats)
-foreach(MenacesPressions::$groupByCategory as $i => $category){
-    $searchFor = '<h5 class="highlight group_title_'.$definitions['module_key'].'_'.$category[0].'">';
-    $textToAdd = '
-        <div class="module-row">
-            <div style="width: 60%;">
-                <h3>'.($i+1).'. '.trans('imet-core::v2_context.MenacesPressions.categories.title'.($i+1)).'</h3>
-            </div>
-            <div class="module-row__input">
+    // Inject titles
+    foreach(MenacesPressions::$groupByCategory as $i => $category){
+        $view_groupTable = AndreaMarelli\ModularForms\Helpers\Module::injectGroupTitle(
+            $view_groupTable, $definitions['module_key'], $category[0],
+            ($i+1).'. '.trans('imet-core::v1_context.MenacesPressions.categories.title' . ($i+1)));
 
-                <div class="row progress_bar" style="margin-top: 25px">
-                    <div class="col-lg-1 progress_bar_limits">-100%</div>
-                    <div class="col-lg-10 progress_bar_container">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped progress-bar-negative"
-                                 role="progressbar"
-                                 :style="{ width: Math.abs(category_stats[\''.$i.'\']) + \'%\', backgroundColor: \'#87c89b\'}">
-                                <span v-if="category_stats[\''.$i.'\']!==null">{{ category_stats[\''.$i.'\'] }} %</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-1 progress_bar_limits">0%</div>
-                </div>
-
-            </div>
-        </div>';
-    $view_groupTable = str_replace($searchFor, $textToAdd.$searchFor, $view_groupTable);
-}
-
-// inject row and group stats
-foreach(MenacesPressions::$groupByCategory as $i => $category){
-    foreach ($category as $group){
-        $searchFor = '<input type="hidden" v-model="records[\''.$group.'\'][index]';
-        $textToAdd = '<input type="text" disabled="disabled" v-model="row_stats[\''.$group.'\'][index]" class="field-disabled input-number field-edit text-center"/>';
-        $view_groupTable = str_replace($searchFor, $textToAdd.$searchFor, $view_groupTable);
     }
-}
+
+    // inject column with row stats
+    foreach(MenacesPressions::$groupByCategory as $i => $category){
+        foreach ($category as $group){
+            $searchFor = '<input type="hidden" v-model="records[\''.$group.'\'][index]';
+            $textToAdd = '<input type="text" disabled="disabled" v-model="row_stats[\''.$group.'\'][index]" class="field-disabled input-number field-edit text-center"/>';
+            $view_groupTable = str_replace($searchFor, $textToAdd.$searchFor, $view_groupTable);
+        }
+    }
 
 ?>
+
+<div>
+    @foreach(MenacesPressions::$groupByCategory as $i => $category)
+        <div class="histogram-row">
+            <div class="histogram-row__code text-center"><b>{{ ($i+1) }}</b></div>
+            <div class="histogram-row__title text-left">@lang('imet-core::v2_context.MenacesPressions.categories.title'.($i+1))</div>
+            <div class="histogram-row__value text-right" style="margin-right: 20px;">
+                <b v-html="category_stats[{{ $i }}] || '-'"></b>
+            </div>
+            <div class="histogram-row__progress-bar"  v-if="category_stats['{{ $i }}']!==null">
+                <div class="histogram-row__progress-bar__limit-left">-100%</div>
+                <div class="histogram-row__progress-bar__bar">
+                    <div class="progress">
+                        <div role="progressbar"
+                             class="progress-bar progress-bar-striped  progress-bar-negative"
+                             :style="'width: ' + Math.abs(category_stats[{{ $i }}]) + '%; background-color: #87c89b !important;'">
+                            <span v-html="'-' +category_stats[{{ $i }}]"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="histogram-row__progress-bar__limit-right">0%</div></div>
+        </div>
+
+    @endforeach
+</div>
+<br />
+<br />
 
 {!! $view_groupTable !!}
 @include('modular-forms::module.edit.type.commons', compact(['collection', 'vue_data', 'definitions']))
@@ -108,10 +114,10 @@ foreach(MenacesPressions::$groupByCategory as $i => $category){
 
                     // calculate stats for each category
                     valuesByCategory.forEach(function (category){
-                        let cat_stat = _this.calculate_stats(category)*100/3.0;
-                        stats.push(cat_stat.toFixed(2));
+                        let cat_stat = _this.calculate_stats(category);
+                        cat_stat = cat_stat!==null ? (cat_stat*100/3.0).toFixed(2) : null;
+                        stats.push(cat_stat);
                     });
-
                     return stats;
                 }
 

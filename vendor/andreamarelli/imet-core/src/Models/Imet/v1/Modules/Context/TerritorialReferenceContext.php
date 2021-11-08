@@ -14,17 +14,28 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
         $this->module_code = 'CTX 2.5';
         $this->module_title = trans('imet-core::v1_context.TerritorialReferenceContext.title');
         $this->module_fields = [
-            ['name' => 'ReferenceEcosystemAreaEstimation',  'type' => 'integer',   'label' => trans('imet-core::v1_context.TerritorialReferenceContext.fields.ReferenceEcosystemAreaEstimation')],
-            ['name' => 'ReferenceEcosystemAreaPopulation',  'type' => 'integer',   'label' => trans('imet-core::v1_context.TerritorialReferenceContext.fields.ReferenceEcosystemAreaPopulation')],
+            ['name' => 'FunctionalKm2',  'type' => 'integer',   'label' => trans('imet-core::v1_context.TerritorialReferenceContext.fields.ReferenceEcosystemAreaEstimation')],
+            ['name' => 'FunctionalPopulation',  'type' => 'integer',   'label' => trans('imet-core::v1_context.TerritorialReferenceContext.fields.ReferenceEcosystemAreaPopulation')],
             ['name' => 'EcologicalAspects',  'type' => 'text-area',   'label' => trans('imet-core::v1_context.TerritorialReferenceContext.fields.EcologicalAspects')],
-            ['name' => 'FunctionalArea',  'type' => 'integer',   'label' => trans('imet-core::v1_context.TerritorialReferenceContext.fields.FunctionalArea')],
+            ['name' => 'BenefitKm2',  'type' => 'integer',   'label' => trans('imet-core::v1_context.TerritorialReferenceContext.fields.FunctionalArea')],
 
             ['name' => 'FunctionalAreaPopulation',  'type' => 'integer',   'label' => trans('imet-core::v1_context.TerritorialReferenceContext.fields.FunctionalAreaPopulation')],
-            ['name' => 'SocioEconomicAspects',  'type' => 'text-area',   'label' => trans('imet-core::v1_context.TerritorialReferenceContext.fields.SocioEconomicAspects')],
+            ['name' => 'BenefitSocioEconomicAspects',  'type' => 'text-area',   'label' => trans('imet-core::v1_context.TerritorialReferenceContext.fields.SocioEconomicAspects')],
             ['name' => 'SpillOverEffect',  'type' => 'text-area',   'label' => trans('imet-core::v1_context.TerritorialReferenceContext.fields.SpillOverEffect')],
         ];
 
         parent::__construct($attributes);
 
+    }
+
+
+    public static function upgradeModule($record, $imet_version = null)
+    {
+        $record = static::renameField($record, 'ReferenceEcosystemAreaEstimation', 'FunctionalKm2');
+        $record = static::renameField($record, 'ReferenceEcosystemAreaPopulation', 'FunctionalPopulation');
+        $record = static::renameField($record, 'FunctionalArea', 'BenefitKm2');
+        $record = static::renameField($record, 'SocioEconomicAspects', 'BenefitSocioEconomicAspects');
+
+        return $record;
     }
 }

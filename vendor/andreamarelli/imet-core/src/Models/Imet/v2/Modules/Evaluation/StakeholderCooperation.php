@@ -19,7 +19,7 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
             ['name' => 'MPIImplementation', 'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::v2_evaluation.StakeholderCooperation.fields.MPIImplementation')],
             ['name' => 'BAInvolvement',     'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::v2_evaluation.StakeholderCooperation.fields.BAInvolvement')],
             ['name' => 'EEInvolvement',     'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::v2_evaluation.StakeholderCooperation.fields.EEInvolvement')],
-            ['name' => 'Cooperation',       'type' => 'blade-imet-core::components.rating-0to3WithNA',  'label' => trans('imet-core::v2_evaluation.StakeholderCooperation.fields.Cooperation')],
+            ['name' => 'Cooperation',       'type' => 'imet-core::rating-0to3WithNA',  'label' => trans('imet-core::v2_evaluation.StakeholderCooperation.fields.Cooperation')],
             ['name' => 'Comments',          'type' => 'text-area',               'label' => trans('imet-core::v2_evaluation.StakeholderCooperation.fields.Comments')],
         ];
 

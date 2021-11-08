@@ -245,21 +245,20 @@ return [
             'Observations' => 'Notes',
         ],
         'area_percentage'               => '% of the area',
-        'average_time'                  => 'Average ranger * d * km² of the total area',
-        'sum_error' => 'The total area under protection should correspond to the area specified in the module <b>CTX 2.2</b>'
+        'average_time'                  => 'Average ranger * d * km² of the total area'
     ],
 
     'TerritorialReferenceContext' => [
         'title' => 'Baseline territorial context of the protected area',
         'fields' => [
-            'ReferenceEcosystemAreaEstimation' => 'A) Functional ecosystem area. Estimate the functional ecosystem area: area that is important for the maintenance of the ecosystem services delivered by the protected area: a) in Km² and b) in Km as width of the outer strip',
-            'ReferenceEcosystemAreaPopulation' => 'Estimate the size of local population living within the functional ecosystem area',
+            'FunctionalHasNoTakeArea' => 'Is the functional ecosystem area correspondent to the no-take area?',
+            'FunctionalArea' => 'Estimate the functional ecosystem area that is important for the maintenance of biodiversity of the protected area (e.g. home ranges of flagship species ): a) in Km² and b) in Km as width of the outer strip',
+            'FunctionalPopulation' => 'Estimate the size of local population living within the functional ecosystem area',
             'EcologicalAspects' => 'Estimate the presence of the environmental factors, e.g. home ranges of flagship species (in km2) (Km2)',
-            'FunctionalArea' => 'B) Area that benefits of the ecosystem services of the protected area. Estimate the socio-economic influence of the protected area: Inhabited area around the protected area that benefits from the ecosystem services delivered by the protected area: a) in km² and b) in Km as width of the outer strip',
-            'FunctionalAreaPopulation' => 'Estimate the size of local population living within the socio-economic area of influence',
-            'SocioEconomicAspects' => 'List and describe the socio-economic and administrative factors (e.g. traditional or modern roles about natural resources establish by traditional and modern authorities) that influence the protected area management',
-            'SpillOverEffect' => 'C) Area of SPILL-OVER effects. Estimate the SPILL-OVER effects in the marine protected area, i.e., the size of the area crucial to maintain the ecosystem services provisioning (fishing) delivered by the protected area: a) in km² and b) in metres as width of the outer strip',
-            'NoTakeArea' => 'Is the functional ecosystem area correspondent to the no-take area?',
+            'BenefitArea' => 'Estimate the inhabited area around the protected area that benefits from the ecosystem services delivered by the protected area: a) in km² and b) in Km as width of the outer strip',
+            'BenefitPopulation' => 'Estimate the size of local population living within the socio-economic area of influence',
+            'BenefitSocioEconomicAspects' => 'List and describe the socio-economic and administrative factors (e.g. traditional or modern roles about natural resources establish by traditional and modern authorities) that influence the protected area management',
+            'SpillOverArea' => 'Estimate the SPILL-OVER effects in the marine protected area, i.e., the size of the area crucial to maintain the ecosystem services provisioning (fishing) delivered by the protected area: a) in km² and b) in metres as width of the outer strip',
         ],
         'categories' => [
             'FunctionalEcosystemArea' => 'Functional ecosystem area',
@@ -275,6 +274,7 @@ return [
             'ExpectedPermanent' => 'Planned or adequate staffing *',
             'ActualPermanent' => 'Current actual staffing',
             'Observations' => 'Notes',
+            'difference' => 'Difference',
             'Source' => 'Source',
         ],
         'module_info' => 'The statistical system allows only fourteen lines to identify the functions of the staff of the protected area'
@@ -308,7 +308,7 @@ return [
         'fields' => [
             'Currency' => 'Currency',
             'ReferenceYear' => 'Baseline year',
-            'ManagementFinancialPlanCosts' => 'Operating cost estimated on Financial plan ($ or €/year)',
+            'ManagementFinancialPlanCosts' => 'Operating cost estimated on multiannual Financial plan ($ or €/year)',
             'OperationalWorkPlanCosts' => 'Operating costs estimated on Working plan (budgeted annually)',
             'TotalBudget' => 'Total annual budget actually available',
         ],

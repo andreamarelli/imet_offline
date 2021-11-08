@@ -64,10 +64,6 @@ class Controller extends __Controller
         $this->authorize('viewAny', static::$form_class);
         HTTP::sanitize($request, self::sanitization_rules);
 
-        $search = $request->input('search', null);
-        $country = $request->input('country', null);
-        $year = $request->input('year', null);
-
         // Check and add missing Pa data to form DB record
         Imet::checkMissingPaData();
 
@@ -79,6 +75,28 @@ class Controller extends __Controller
             ->toArray();
         $years = Imet::getAvailableYears();
 
+        $list = static::get_list($request);
+
+        return view(static::$form_view_prefix . 'list', [
+            'controller' => static::class,
+            'list' => $list,
+            'request' => $request,
+            'filter_selected' => $filter_selected,
+            'countries' => array_map(function ($item) {
+                return $item['name'];
+            }, $countries),
+            'years' => !empty($years) ? range(min($years), max($years)) : array(Carbon::today()->year),
+        ]);
+    }
+
+    /**
+     * Get IMET list for index view
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return mixed
+     */
+    protected function get_list(Request $request)
+    {
         $list_v1 = v1\Imet
             ::filterList($request)
             ->with('country', 'encoder', 'responsible_interviees', 'responsible_interviers', 'assessment')
@@ -101,9 +119,9 @@ class Controller extends __Controller
 
         $list->map(function ($item){
             $item->encoders_responsibles = [
-                'encoders' => $item->encoder,
-                'internal' => $item->responsible_interviers,
-                'external' => $item->responsible_interviees,
+                'encoders' => $item->encoder->unique(),
+                'internal' => $item->responsible_interviers->unique(),
+                'external' => $item->responsible_interviees->unique(),
             ];
             if(ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)){
                 $item->wdpa_id = null;
@@ -117,7 +135,25 @@ class Controller extends __Controller
             return $item;
         });
 
-        return view(static::$form_view_prefix . 'list', [
+        return $list;
+    }
+
+    public function scaling_up(Request $request)
+    {
+        $this->authorize('viewAny', static::$form_class);
+        HTTP::sanitize($request, self::sanitization_rules);
+
+        // set filter status
+        $filter_selected = !empty(array_filter($request->except('_token')));
+        $countries = ProtectedArea::getCountries()
+            ->keyBy('iso3')
+            ->sort()
+            ->toArray();
+        $years = Imet::getAvailableYears();
+
+        $list = static::get_list($request);
+
+        return view(static::$form_view_prefix . 'scaling_up.list', [
             'controller' => static::class,
             'list' => $list,
             'request' => $request,

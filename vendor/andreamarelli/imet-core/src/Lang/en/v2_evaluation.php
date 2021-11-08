@@ -1026,7 +1026,7 @@ return [
             'Element' => 'Criteria – Concept measured – Variable',
             'Cooperation' => 'Degree of cooperation',
             'MPInvolvement' => 'P',
-            'MPImplementation' => 'PM',
+            'MPIImplementation' => 'PM',
             'BAInvolvement' => 'B/A',
             'EEInvolvement' => 'IEC',
             'Comments' => 'Comments/Explanation',
@@ -1082,10 +1082,10 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Do stakeholders contribute to the management of the protected area to develop understanding and support for the delivery of protected area objectives?',
-            'In many protected areas, some or all the relevant stakeholders are cooperating in a substantial way in the management’s decision-making regarding activities and their implementation inside or outside of the protected area. This cooperation can involve formal or informal agreements. The level of stakeholder cooperation in a protected area depends on a variety of factors, but particularly on the nature of the stakeholders, the pressures and other influences arising from stakeholders, and the biodiversity and ecosystem services of the protected area. This step in the analysis evaluates how some or all relevant stakeholders are involved in the management of the protected area in four areas: (P) planning; (PM) planning and management (B/A) benefits/assistance for local communities (IEC) Information, education and communication for community understanding and engagement. The optimal level of stakeholder involvement and cooperation should be determined for each protected area individually because each protected area is unique'
+            'In many protected areas, some or all the relevant stakeholders are cooperating in a substantial way in the management’s decision-making regarding activities and their implementation inside or outside of the protected area. This cooperation can involve formal or informal agreements. The level of stakeholder cooperation in a protected area depends on a variety of factors, but particularly on the nature of the stakeholders, the pressures and other influences arising from stakeholders, and the biodiversity and ecosystem services of the protected area. This step in the analysis evaluates how some or all relevant stakeholders are involved in the management of the protected area in four areas: (P) planning; (PM) planning and management (B/A) benefits/assistance (IEC) Information, education and communication for community understanding and engagement. The optimal level of stakeholder involvement and cooperation should be determined for each protected area individually because each protected area is unique'
         ],
         'module_info_Rating' => [
-            'Select (A) the areas in which the stakeholders are involved in managing the protected area and evaluate (B) the level of cooperation:<ul><li><b>P</b>: management planning</li><li><b>PM</b>: management plan implementation</li><li><b>B/A</b>:benefits/assistance for local communities </li><li><b>IEC</b>:environmental education, community awareness and engagement</li></ul>'
+            'Select (A) the areas in which the stakeholders are involved in managing the protected area and evaluate (B) the level of cooperation:<ul><li><b>P</b>: management planning</li><li><b>PM</b>: management plan implementation</li><li><b>B/A</b>:benefits/assistance</li><li><b>IEC</b>:environmental education, community awareness and engagement</li></ul>'
         ]
     ],
 
