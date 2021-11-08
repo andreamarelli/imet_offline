@@ -1,0 +1,5 @@
+@import "../abstracts/paths";
+
+// Flags
+$flag-icon-css-path:  '~flag-icon-css/flags';
+@import "~flag-icon-css/sass/flag-icon.scss";

@@ -1,1 +1,0 @@
-@include('admin.imet.v1.create')

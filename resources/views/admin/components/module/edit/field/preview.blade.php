@@ -1,1 +1,0 @@
-<div class="field-preview">{!! $value !!}</div>

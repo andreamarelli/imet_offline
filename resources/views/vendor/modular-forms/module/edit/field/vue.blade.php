@@ -1,0 +1,50 @@
+<?php
+/** @var String $type */
+/** @var String $v_value */
+/** @var String $id [optional] */
+/** @var String $class [optional] */
+/** @var String $rules [optional] */
+/** @var String $other [optional] */
+/** @var String $module_key */
+
+
+$id = $id ?? '';
+$class = $class ?? '';
+$rules = $rules ?? '';
+$other = $other ?? '';
+
+$vue_attributes = \AndreaMarelli\ModularForms\Helpers\DOM::vueAttributes($id, $v_value);
+$class_attribute = \AndreaMarelli\ModularForms\Helpers\DOM::addClass($class, 'field-edit');
+$rules_attribute = \AndreaMarelli\ModularForms\Helpers\DOM::rulesAttribute($rules);
+$other_attributes = $other ?? '';
+
+?>
+
+
+{{-- ###### IMET ###### --}}
+@if(\Illuminate\Support\Str::startsWith($type, 'imet-core::'))
+
+    @include('imet-core::components.vue-types', [
+            'type' => $type,
+            'v_value' => $v_value,
+            'id' => $id,
+            'class' => $class,
+            'rules' => $rules,
+            'other' => $other,
+            'module_key' => $module_key ?? null
+        ])
+
+{{-- ###### Standard vendor view ###### --}}
+@else
+
+    @include('modular-forms::module.edit.field.vue-types', [
+        'type' => $type,
+        'v_value' => $v_value,
+        'id' => $id,
+        'class' => $class,
+        'rules' => $rules,
+        'other' => $other,
+        'module_key' => $module_key ?? null
+    ])
+
+@endif

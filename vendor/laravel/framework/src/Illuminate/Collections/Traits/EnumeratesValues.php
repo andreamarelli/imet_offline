@@ -13,7 +13,6 @@ use Illuminate\Support\Enumerable;
 use Illuminate\Support\HigherOrderCollectionProxy;
 use Illuminate\Support\HigherOrderWhenProxy;
 use JsonSerializable;
-use ReturnTypeWillChange;
 use Symfony\Component\VarDumper\VarDumper;
 use Traversable;
 
@@ -775,28 +774,6 @@ trait EnumeratesValues
     }
 
     /**
-     * Return only unique items from the collection array.
-     *
-     * @param  string|callable|null  $key
-     * @param  bool  $strict
-     * @return static
-     */
-    public function unique($key = null, $strict = false)
-    {
-        $callback = $this->valueRetriever($key);
-
-        $exists = [];
-
-        return $this->reject(function ($item, $key) use ($callback, $strict, &$exists) {
-            if (in_array($id = $callback($item, $key), $exists, $strict)) {
-                return true;
-            }
-
-            $exists[] = $id;
-        });
-    }
-
-    /**
      * Return only unique items from the collection array using strict comparison.
      *
      * @param  string|callable|null  $key
@@ -834,7 +811,7 @@ trait EnumeratesValues
      *
      * @return array
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return array_map(function ($value) {

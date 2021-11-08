@@ -3,10 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Request;
-use Session;
-use App;
-use Config;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 
 
 class SetLocale
@@ -19,13 +19,8 @@ class SetLocale
      * @param string|null $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle(\Illuminate\Http\Request $request, Closure $next, $guard = null)
     {
-        // Force Language to English
-        if (is_imet_environment()) {
-            App::setLocale('en');
-        }
-
         // Switch locale (set in session)
         if (Request::has('lang') && in_array(Request::input('lang'), ['fr', 'en', 'sp', 'pt'])) {
             Session::put('locale', Request::input('lang'));

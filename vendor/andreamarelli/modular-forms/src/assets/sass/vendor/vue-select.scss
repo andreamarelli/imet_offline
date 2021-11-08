@@ -1,0 +1,68 @@
+@import "../components/forms";
+@import "~vue-select/src/scss/vue-select.scss";
+
+
+
+// ##############################
+// ########  vue-select  ########
+// ##############################
+
+.v-select{
+
+  font-family: $fontFamily-1;
+  font-size: $input_font-size;
+
+  .vs__dropdown-toggle{
+    @extend .field-edit-base;
+    padding: 6px 12px;
+    .vs__selected-options{
+      padding: 0;
+      .vs__selected{ // applied to multiple
+        padding: 1px 4px;
+        margin:  0 5px 3px 0;
+      }
+      .vs__search{
+        padding: 0;
+        margin: 0;
+      }
+    }
+    .vs__actions{
+      padding: 0;
+      .vs__clear{
+        fill: $contextual-danger;
+        line-height: 1em;
+      }
+      .vs__open-indicator{
+        transform: scale(0.8);
+      }
+    }
+  }
+
+  .vs__dropdown-menu{
+    padding-bottom: 0;
+    > li.vs__dropdown-option{
+      margin: 0;
+      padding-left: 15px;
+      &:hover,
+      &.vs__dropdown-option--selected{
+        background-color: $primary-300;
+      }
+      &.vs__dropdown-option--highlight{
+        background-color: $primary-800;
+        color: $white;
+      }
+    }
+  }
+
+}
+
+.v-select.vs--single{
+  .vs__dropdown-toggle{
+    .vs__selected-options{
+      .vs__selected{
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
+}

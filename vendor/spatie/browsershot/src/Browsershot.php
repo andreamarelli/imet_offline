@@ -38,8 +38,8 @@ class Browsershot
     /** @var \Spatie\Image\Manipulations */
     protected $imageManipulations;
 
-    const POLLING_REQUEST_ANIMATION_FRAME = 'raf';
-    const POLLING_MUTATION = 'mutation';
+    public const POLLING_REQUEST_ANIMATION_FRAME = 'raf';
+    public const POLLING_MUTATION = 'mutation';
 
     /**
      * @param string $url
@@ -48,7 +48,7 @@ class Browsershot
      */
     public static function url(string $url)
     {
-        return (new static)->setUrl($url);
+        return (new static())->setUrl($url);
     }
 
     /**
@@ -58,7 +58,7 @@ class Browsershot
      */
     public static function html(string $html)
     {
-        return (new static)->setHtml($html);
+        return (new static())->setHtml($html);
     }
 
     public function __construct(string $url = '', bool $deviceEmulate = false)
@@ -147,6 +147,13 @@ class Browsershot
     public function setExtraHttpHeaders(array $extraHTTPHeaders)
     {
         $this->setOption('extraHTTPHeaders', $extraHTTPHeaders);
+
+        return $this;
+    }
+
+    public function setExtraNavigationHttpHeaders(array $extraNavigationHTTPHeaders)
+    {
+        $this->setOption('extraNavigationHTTPHeaders', $extraNavigationHTTPHeaders);
 
         return $this;
     }
@@ -380,12 +387,12 @@ class Browsershot
 
     public function blockUrls($array)
     {
-        return $this->setOption('blockUrls', json_encode($array));
+        return $this->setOption('blockUrls', $array);
     }
 
     public function blockDomains($array)
     {
-        return $this->setOption('blockDomains', json_encode($array));
+        return $this->setOption('blockDomains', $array);
     }
 
     public function pages(string $pages)
@@ -457,6 +464,16 @@ class Browsershot
     public function delay(int $delayInMilliseconds)
     {
         return $this->setDelay($delayInMilliseconds);
+    }
+
+    public function setUserDataDir(string $absolutePath)
+    {
+        return $this->addChromiumArguments(['user-data-dir' => $absolutePath]);
+    }
+
+    public function userDataDir(string $absolutePath)
+    {
+        return $this->setUserDataDir($absolutePath);
     }
 
     public function writeOptionsToFile()
@@ -585,7 +602,6 @@ class Browsershot
 
         return $this->callBrowser($command);
     }
-
 
     public function evaluate(string $pageFunction): string
     {

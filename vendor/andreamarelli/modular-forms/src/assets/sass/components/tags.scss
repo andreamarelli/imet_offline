@@ -1,0 +1,53 @@
+@import "../abstracts/all";
+
+.tag{
+  font-family: $fontFamily-1;
+  font-size: .8em;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 8px;
+  display: inline-block;
+
+  &{
+    color: $primary-600;
+    border: 2px solid $primary-600;
+    &:hover{
+      color: $primary-600;
+      text-decoration: none;
+    }
+  }
+
+  &.red{
+    color: $red-400;
+    border: 2px solid $red-400;
+    &:hover{
+      color: $red-400;
+      text-decoration: none;
+    }
+  }
+
+  &.yellow{
+    color: $contextual-warning;
+    border: 2px solid $contextual-warning;
+    &:hover{
+      color: $contextual-warning;
+      text-decoration: none;
+    }
+  }
+
+  &.big{
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+  &.small{
+    font-size: 0.8rem;
+    padding: 1px 8px;
+  }
+  &.tag-white{
+    color: $white;
+    border: 2px solid $white;
+    &:hover{
+      color: $white;
+    }
+  }
+}

@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'sqlite'),
+    'default' => env('DB_CONNECTION', 'ofac'),
 
     /*
     |--------------------------------------------------------------------------
@@ -36,15 +36,19 @@ return [
     'connections' => [
 
         'ofac' => [
-            'driver'   => 'pgsql',
-            'host'     => env('DB_HOST'),
-            'database' => env('DB_DATABASE'),
-            'username' => env('DB_USERNAME'),
-            'password' => env('DB_PASSWORD'),
-            'port'     => env('DB_PORT', '5432'),
-            'charset'  => 'utf8',
-            'prefix'   => ''
-        ]
+            'driver' => 'pgsql',
+//            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '5433'),
+            'database' => env('DB_DATABASE', 'imetdb'),
+            'username' => env('DB_USERNAME', 'default'),
+            'password' => env('DB_PASSWORD', 'secret'),
+            'charset' => 'utf8',
+            'prefix' => '',
+//            'prefix_indexes' => true,
+//            'schema' => 'public',
+//            'sslmode' => 'prefer',
+        ],
 
     ],
 
@@ -74,7 +78,7 @@ return [
 
     'redis' => [
 
-        'client' => env('REDIS_CLIENT', 'predis'),
+        'client' => env('REDIS_CLIENT', 'phpredis'),
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),

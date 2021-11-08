@@ -12,6 +12,7 @@ return [
     |
     */
 
+    'password'  => 'As senhas devem ter pelo menos oito caracteres e devem ser iguais.',
     'reset'     => 'A palavra-passe foi redefinida!',
     'sent'      => 'O lembrete para a palavra-passe foi enviado!',
     'throttled' => 'Por favor aguarde, antes de tentar novamente.',

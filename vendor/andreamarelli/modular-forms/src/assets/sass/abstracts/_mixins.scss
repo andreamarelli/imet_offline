@@ -1,0 +1,115 @@
+@import "colors";
+@import "paths";
+
+[v-cloak] {
+  display: none;
+}
+
+@mixin force-break(){
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+@mixin transition($type: all, $time: 0.36s, $ease: cubic-bezier(0.4, 0.0, 1, 1)) {
+  -webkit-transition: $type $time $ease;
+  -moz-transition: $type $time $ease;
+  -ms-transition: $type $time $ease;
+  -o-transition: $type $time $ease;
+  transition: $type $time $ease;
+}
+
+@mixin hover-bg($bg: $gray-50, $iBg: white) {
+  background-color: $bg;
+  border-bottom-color: $primary-600;
+  cursor: pointer;
+  > i {
+    background-color: $iBg;
+    border-color: $primary-600;
+
+    &:before {
+      background-color: $primary-600;
+    }
+  }
+}
+
+@mixin boxSizing() {
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box;
+}
+
+@mixin boxGradient($firstColor, $secondColor) {
+  background-color: $firstColor;
+  background-image: -webkit-gradient(linear, left top, left bottom, from($firstColor), to($secondColor));
+  background-image: -webkit-linear-gradient(top, $firstColor, $secondColor);
+  background-image: -moz-linear-gradient(top, $firstColor, $secondColor);
+  background-image: -o-linear-gradient(top, $firstColor, $secondColor);
+  background-image: linear-gradient(to bottom, $firstColor, $secondColor);
+}
+
+@mixin unSelectable() {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+@mixin selector_border-radius($radius: 4px){
+  border-radius: 0;
+  &:first-child {
+    border-top-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+  }
+  &:last-child{
+    border-right: none;
+    border-top-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+  }
+}
+@mixin selector_border-radius-vertical($radius: 4px){
+  border-radius: 0;
+  &:first-child {
+    border-top-left-radius: $radius;
+    border-top-right-radius: $radius;
+  }
+  &:last-child{
+    border-bottom: none;
+    border-bottom-left-radius: $radius;
+    border-bottom-right-radius: $radius;
+  }
+}
+
+
+//  ######  Icons  ######
+
+@mixin icon-primary() {
+  background-color: $gray-50;
+  padding: 10px;
+  border-radius: 50%;
+  border: 1px solid white;
+  width: 40px;
+  height: 40px;
+}
+
+@mixin icon-primary-s() {
+  @include icon-primary;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  &:before {
+    background-color: $primary-600;
+  }
+}
+
+@mixin icon-white-s() {
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid white;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  &:before {
+    background-color: $primary-600;
+  }
+}

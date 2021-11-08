@@ -2,11 +2,8 @@
 
 namespace App\Console;
 
-use App\Jobs\GenerateThumbnails;
-use App\Jobs\RefreshCache;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
 
 class Kernel extends ConsoleKernel
 {
@@ -15,7 +12,9 @@ class Kernel extends ConsoleKernel
      *
      * @var array
      */
-    protected $commands = [];
+    protected $commands = [
+        //
+    ];
 
     /**
      * Define the application's command schedule.
@@ -25,8 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->job(new RefreshCache)->dailyAt('04:20');
-        $schedule->job(new GenerateThumbnails())->dailyAt('04:30');
+        // $schedule->command('inspire')->hourly();
     }
 
     /**

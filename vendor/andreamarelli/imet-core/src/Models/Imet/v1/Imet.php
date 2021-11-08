@@ -1,0 +1,97 @@
+<?php
+
+namespace AndreaMarelli\ImetCore\Models\Imet\v1;
+
+
+use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewees;
+use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewers;
+
+class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
+{
+    public const version = 'v1';
+
+    public static $modules = [
+
+        'general_info' => [
+            Modules\Context\ResponsablesInterviewers::class,
+            Modules\Context\ResponsablesInterviewees::class,
+            Modules\Context\GeneralInfo::class,
+            Modules\Context\Governance::class,
+            Modules\Context\SpecialStatus::class,
+            Modules\Context\Networks::class,
+            Modules\Context\Missions::class,
+            Modules\Context\Contexts::class,
+            Modules\Context\Objectives1::class
+        ],
+        'areas'                 => [
+            Modules\Context\GeographicalLocation::class,
+            Modules\Context\Areas::class,
+            Modules\Context\ControlLevel::class,
+            Modules\Context\Sectors::class,
+            Modules\Context\TerritorialReferenceContext::class,
+            Modules\Context\Objectives2::class,
+        ],
+        'resources'             => [
+            Modules\Context\ManagementStaff::class,
+            Modules\Context\ManagementStaffPartners::class,
+            Modules\Context\ManagementStaffCommunities::class,
+            Modules\Context\FinancialResources::class,
+            Modules\Context\FinancialAvailableResources::class,
+            Modules\Context\FinancialResourcesBudgetLines::class,
+            Modules\Context\FinancialResourcesPartners::class,
+            Modules\Context\Equipments::class,
+            Modules\Context\Objectives3::class,
+        ],
+        'key_elements'          => [
+            Modules\Context\AnimalSpecies::class,
+            Modules\Context\VegetalSpecies::class,
+            Modules\Context\Habitats::class,
+            Modules\Context\HabitatsMarine::class,
+            Modules\Context\LandCover::class,
+            Modules\Context\NonSustainableUsage::class,
+            Modules\Context\Objectives4::class,
+        ],
+        'threats'               => [
+            Modules\Context\MenacesPressions::class,
+            Modules\Context\Objectives5::class,
+        ],
+        'climate'               => [
+            Modules\Context\ClimateChangeImportanceElements::class,
+            Modules\Context\ClimateChange::class,
+            Modules\Context\Objectives6::class,
+        ],
+        'ecosystem_services'    => [
+            Modules\Context\EcosystemServices::class,
+            Modules\Context\EcosystemServicesTendance::class,
+            Modules\Context\Objectives7::class,
+        ],
+        'objectives'            => [
+            Modules\Context\Objectives1::class,
+            Modules\Context\Objectives2::class,
+            Modules\Context\Objectives3::class,
+            Modules\Context\Objectives4::class,
+            Modules\Context\Objectives5::class,
+            Modules\Context\Objectives6::class,
+            Modules\Context\Objectives7::class,
+        ]
+    ];
+
+    public function responsible_interviees()
+    {
+        return $this->hasMany(ResponsablesInterviewees::class, $this->primaryKey, 'FormID')
+            ->select(['FormID','Name']);
+    }
+
+    public function responsible_interviers()
+    {
+        return $this->hasMany(ResponsablesInterviewers::class, $this->primaryKey, 'FormID')
+            ->select(['FormID','Name']);
+    }
+
+
+    public function assessment()
+    {
+        return $this->hasOne(Assessment::class, 'formid', 'FormID');
+    }
+
+}
