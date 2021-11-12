@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'dc25a2417e03b74b8d7f3d4355339077677efad0',
+        'reference' => '79bdca83b3053b08891ad5f8a86668b5211cf2df',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -27,7 +27,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => '7f1dc251ae298e9b46304e72f670473ccb4d7c09',
+            'reference' => 'f319b696e13a1c85cd4bdaeb189c536854ed61bf',
             'dev_requirement' => false,
         ),
         'asm89/stack-cors' => array(
@@ -609,7 +609,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'dc25a2417e03b74b8d7f3d4355339077677efad0',
+            'reference' => '79bdca83b3053b08891ad5f8a86668b5211cf2df',
             'dev_requirement' => false,
         ),
         'laravel/serializable-closure' => array(

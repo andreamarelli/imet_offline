@@ -109,8 +109,8 @@ abstract class Animal extends BaseModel
     public static function getByTaxonomy(string $taxonomy = null, string $separator = '|')
     {
         return static::isTaxonomy($taxonomy)
-            ? static::where(static::parseTaxonomy($taxonomy, $separator))
-                ->firstOrFail()
+            ? (static::where(static::parseTaxonomy($taxonomy, $separator))
+                    ->first() ?? new static())
             : new static();
     }
 
