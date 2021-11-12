@@ -313,6 +313,7 @@ return array(
     'AndreaMarelli\\ModularForms\\Models\\Utils\\Currency' => $vendorDir . '/andreamarelli/modular-forms/src/Models/Utils/Currency.php',
     'AndreaMarelli\\ModularForms\\Models\\Utils\\ProtectedArea' => $vendorDir . '/andreamarelli/modular-forms/src/Models/Utils/ProtectedArea.php',
     'AndreaMarelli\\ModularForms\\ServiceProvider' => $vendorDir . '/andreamarelli/modular-forms/src/ServiceProvider.php',
+    'App\\Console\\Commands\\PostUpdate' => $baseDir . '/app/Console/Commands/PostUpdate.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',

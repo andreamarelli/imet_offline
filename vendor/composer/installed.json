@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/andreamarelli/imet-core.git",
-                "reference": "31204b594016fb6e4dbb3c536910199721223420"
+                "reference": "45bd2710f5a99deeea7f428f26e478303be1a6c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/31204b594016fb6e4dbb3c536910199721223420",
-                "reference": "31204b594016fb6e4dbb3c536910199721223420",
+                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/45bd2710f5a99deeea7f428f26e478303be1a6c4",
+                "reference": "45bd2710f5a99deeea7f428f26e478303be1a6c4",
                 "shasum": ""
             },
             "require": {
@@ -23,7 +23,7 @@
             "require-dev": {
                 "orchestra/testbench": "^6.0"
             },
-            "time": "2021-11-05T16:36:46+00:00",
+            "time": "2021-11-12T14:28:04+00:00",
             "default-branch": true,
             "type": "library",
             "extra": {
@@ -62,12 +62,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/andreamarelli/modular-forms.git",
-                "reference": "7f1dc251ae298e9b46304e72f670473ccb4d7c09"
+                "reference": "f319b696e13a1c85cd4bdaeb189c536854ed61bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/modular-forms/zipball/7f1dc251ae298e9b46304e72f670473ccb4d7c09",
-                "reference": "7f1dc251ae298e9b46304e72f670473ccb4d7c09",
+                "url": "https://api.github.com/repos/andreamarelli/modular-forms/zipball/f319b696e13a1c85cd4bdaeb189c536854ed61bf",
+                "reference": "f319b696e13a1c85cd4bdaeb189c536854ed61bf",
                 "shasum": ""
             },
             "require": {
@@ -87,7 +87,7 @@
             "require-dev": {
                 "orchestra/testbench": "^6.0"
             },
-            "time": "2021-10-29T09:17:20+00:00",
+            "time": "2021-11-12T14:26:49+00:00",
             "default-branch": true,
             "type": "library",
             "extra": {
