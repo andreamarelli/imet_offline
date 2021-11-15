@@ -58,6 +58,8 @@ function get_custom_list(string $type): array
 
     if ($type == "Country") {
         $list = \AndreaMarelli\ImetCore\Models\Country::selectionList();
+    } elseif ($type == "ProtectedArea") {
+        $list = \AndreaMarelli\ImetCore\Models\ProtectedArea::selectionList();
     }
 
     // ######################################

@@ -78,13 +78,15 @@ Trait Upgrade
      */
     protected static function renameField($record, $from, $to)
     {
-        $record = static::addField($record, $to);
-        $record[$to] = $record[$from];
-        $record = static::dropField($record, $from);
-        if(array_key_exists($from.'_BYTEA', $record)){
-            $record = static::addField($record, $to.'_BYTEA');
-            $record[$to.'_BYTEA'] = $record[$from.'_BYTEA'];
-            $record = static::dropField($record, $from.'_BYTEA');
+        if(array_key_exists($from, $record)){
+            $record = static::addField($record, $to);
+            $record[$to] = $record[$from];
+            $record = static::dropField($record, $from);
+            if(array_key_exists($from.'_BYTEA', $record)){
+                $record = static::addField($record, $to.'_BYTEA');
+                $record[$to.'_BYTEA'] = $record[$from.'_BYTEA'];
+                $record = static::dropField($record, $from.'_BYTEA');
+            }
         }
         return $record;
     }

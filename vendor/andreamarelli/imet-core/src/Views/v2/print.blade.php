@@ -26,9 +26,9 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
 
         <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) }}" class="btn-nav rounded" style="margin-bottom: 20px;">@lang_u('modular-forms::common.go_back')</a>
 
-        @component('layouts.components.title_ribbon')
-                @lang('imet-core::common.imet')
-        @endcomponent
+        <h2>
+            @lang('imet-core::common.imet')
+        </h2>
 
         <div class="entity-heading">
             <div class="id">#{{ $item->getKey() }}</div>

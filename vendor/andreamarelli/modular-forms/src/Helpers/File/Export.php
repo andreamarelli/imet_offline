@@ -16,9 +16,10 @@ trait Export
      *
      * @param $path
      * @param $data
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @param bool $download
+     * @return string|\Symfony\Component\HttpFoundation\BinaryFileResponse
      */
-    public static function exportToJSON($path, $data): BinaryFileResponse
+    public static function exportToJSON($path, $data, bool $download = true)
     {
         $path = Storage::disk(File::PRIVATE_STORAGE)->path('') . $path;
 
@@ -26,7 +27,9 @@ trait Export
         fwrite($handle, json_encode($data));
         fclose($handle);
 
-        return File::download($path);
+        return $download
+            ? File::download($path)
+            : $path;
     }
 
     /**
