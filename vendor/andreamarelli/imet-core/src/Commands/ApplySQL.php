@@ -3,7 +3,9 @@
 namespace AndreaMarelli\ImetCore\Commands;
 
 use AndreaMarelli\ImetCore\Jobs;
+use AndreaMarelli\ModularForms\Helpers\File\File;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Storage;
 
 class ApplySQL extends Command
 {
@@ -41,6 +43,17 @@ class ApplySQL extends Command
     public function handle(): int
     {
         $sql_file = $this->argument('filename');
+
+        if(!Storage::exists($sql_file)){
+            $this->error('File not found at ' . $sql_file);
+            $sql_file = Storage::disk('imet_db_sql')->path(basename($sql_file));
+            $this->info('Trying from vendor folder (' . $sql_file . ')');
+        }
+        if(!Storage::exists($sql_file)){
+            $this->error('File not found at ' . $sql_file. '. Cannot apply SQL!!');
+            return 1;
+        }
+
         $this->dispatch(Jobs\ApplySQL::class, $sql_file);
         return 0;
     }

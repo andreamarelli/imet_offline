@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/andreamarelli/imet-core.git",
-                "reference": "a649b4435bf2eff4aad0e9537d81b24b3918209d"
+                "reference": "b3972aaf82ff4e00885dc299adf56451bbbeecb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/a649b4435bf2eff4aad0e9537d81b24b3918209d",
-                "reference": "a649b4435bf2eff4aad0e9537d81b24b3918209d",
+                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/b3972aaf82ff4e00885dc299adf56451bbbeecb6",
+                "reference": "b3972aaf82ff4e00885dc299adf56451bbbeecb6",
                 "shasum": ""
             },
             "require": {
@@ -23,7 +23,7 @@
             "require-dev": {
                 "orchestra/testbench": "^6.0"
             },
-            "time": "2021-11-15T09:31:00+00:00",
+            "time": "2021-11-16T14:00:09+00:00",
             "default-branch": true,
             "type": "library",
             "extra": {
