@@ -33,7 +33,7 @@ final class Versions
      * @internal
      */
     const VERSIONS          = array (
-  'andreamarelli/imet-core' => 'dev-scaling_up@ecff0c9e02e7af7c26c21e0864cb122f621c78de',
+  'andreamarelli/imet-core' => 'dev-scaling_up@ac93f2a1c8f2584baf4689999183ac8c28fb4b3a',
   'andreamarelli/modular-forms' => 'dev-master@5f7e266f6b6cfc742cc5a65e912660b769bcf6da',
   'asm89/stack-cors' => 'v2.0.3@9cb795bf30988e8c96dd3c40623c48a877bc6714',
   'brick/math' => '0.9.3@ca57d18f028f84f777b2168cd1911b0dee2343ae',
