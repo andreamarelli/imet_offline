@@ -43,19 +43,27 @@ class ApplySQL extends Command
     public function handle(): int
     {
         $sql_file = $this->argument('filename');
+        $basename = basename($sql_file);
 
-        if(!Storage::exists($sql_file)){
-            $this->error('File not found at ' . $sql_file);
-            $sql_file = Storage::disk('imet_db_sql')->path(basename($sql_file));
-            $this->info('Trying from vendor folder (' . $sql_file . ')');
+        // File path as passed
+        if(Storage::exists($sql_file)){
+            $this->dispatch(Jobs\ApplySQL::class, $sql_file);
+            return 0;
         }
-        if(!Storage::exists($sql_file)){
-            $this->error('File not found at ' . $sql_file. '. Cannot apply SQL!!');
+
+        // File from vendor folder
+        else if(Storage::disk('imet_db_sql')->exists($basename)){
+            $this->dispatch(Jobs\ApplySQL::class, Storage::disk('imet_db_sql')->path($basename));
+            return 0;
+        }
+
+        // File not found
+        else {
+            $this->error('File not found at ' . Storage::disk('imet_db_sql')->path($basename). '. Cannot apply SQL!!');
             return 1;
         }
 
-        $this->dispatch(Jobs\ApplySQL::class, $sql_file);
-        return 0;
+
     }
 
 }
