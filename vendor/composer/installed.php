@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '79bdca83b3053b08891ad5f8a86668b5211cf2df',
+        'reference' => '97edb4b24a1e4b348ceaa87f1f4b735bcebe7ed1',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -18,7 +18,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => '08f3854bf8671ef2fc572174ea1c1900f01b60f4',
+            'reference' => '8d75c54e729f4a041a14e883aa54df16eb3ce454',
             'dev_requirement' => false,
         ),
         'andreamarelli/modular-forms' => array(
@@ -611,7 +611,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '79bdca83b3053b08891ad5f8a86668b5211cf2df',
+            'reference' => '97edb4b24a1e4b348ceaa87f1f4b735bcebe7ed1',
             'dev_requirement' => false,
         ),
         'laravel/serializable-closure' => array(

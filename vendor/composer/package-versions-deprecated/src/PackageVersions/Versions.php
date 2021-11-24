@@ -33,7 +33,7 @@ final class Versions
      * @internal
      */
     const VERSIONS          = array (
-  'andreamarelli/imet-core' => 'dev-master@08f3854bf8671ef2fc572174ea1c1900f01b60f4',
+  'andreamarelli/imet-core' => 'dev-master@8d75c54e729f4a041a14e883aa54df16eb3ce454',
   'andreamarelli/modular-forms' => 'dev-master@4b6146f6db7ba2a15279cbc99918887966eac511',
   'asm89/stack-cors' => 'v2.0.3@9cb795bf30988e8c96dd3c40623c48a877bc6714',
   'brick/math' => '0.9.3@ca57d18f028f84f777b2168cd1911b0dee2343ae',
@@ -184,7 +184,7 @@ final class Versions
   'seld/phar-utils' => '1.1.2@749042a2315705d2dfbbc59234dd9ceb22bf3ff0',
   'symfony/filesystem' => 'v5.3.4@343f4fe324383ca46792cae728a3b6e2f708fb32',
   'theseer/tokenizer' => '1.2.1@34a41e998c2183e22995f158c581e7b5e755ab9e',
-  'laravel/laravel' => 'dev-master@79bdca83b3053b08891ad5f8a86668b5211cf2df',
+  'laravel/laravel' => 'dev-master@97edb4b24a1e4b348ceaa87f1f4b735bcebe7ed1',
 );
 
     private function __construct()
