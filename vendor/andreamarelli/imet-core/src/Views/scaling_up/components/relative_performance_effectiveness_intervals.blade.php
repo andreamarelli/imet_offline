@@ -1,6 +1,5 @@
 <container_section :id="'{{$name}}'" :title="'{{$title}}'" :class="'upper_downa'">
     <template slot-scope="container">
-
         <div class="row">
             <div class="col-sm">
                 <div class="align-items-center">

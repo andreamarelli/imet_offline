@@ -18,7 +18,7 @@ class Basket extends Model
 
     public static function retrieve_by_scaling_id($id)
     {
-        return static::where('scaling_up_id', $id)->get();
+        return static::where('scaling_up_id', $id)->orderBy('id','asc')->get();
     }
 
     public static function save_item($item)

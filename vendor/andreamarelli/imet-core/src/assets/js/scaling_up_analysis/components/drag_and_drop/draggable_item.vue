@@ -39,7 +39,6 @@ export default {
     }
   },
   mounted() {
-    //console.log({item: this.item});
   },
   data: function () {
     return {}

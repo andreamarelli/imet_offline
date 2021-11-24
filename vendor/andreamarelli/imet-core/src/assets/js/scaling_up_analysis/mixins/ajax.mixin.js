@@ -1,4 +1,5 @@
 export default {
+    inject: ['stores'],
     props: {
         url: {
             type: String,
@@ -37,6 +38,7 @@ export default {
     data: function () {
         return {
             event_parameters: {},
+            scaling_up: null,
             func_parameter: {},
             url_parameter: {},
             show_loader: false,
@@ -65,7 +67,9 @@ export default {
             this.url_parameter = this.url;
         },
         load_procedure: async function () {
-
+            if(!this.func_parameter){
+                return null;
+            }
             if (this.lazy_load_parameters) {
                 this.$root.$on('incoming-data', async (parameters) => {
                     this.event_parameters = parameters.parameters ?? this.parameters;
@@ -108,7 +112,8 @@ export default {
                     data: {
                         _token: window.Laravel.csrfToken,
                         func: this.func_parameter,
-                        parameter: this.parameters_man()
+                        parameter: this.parameters_man(),
+                        scaling_id: this.stores.BaseStore.get_scaling_up()
                     },
                     timeout: 3 * 10000
                 });

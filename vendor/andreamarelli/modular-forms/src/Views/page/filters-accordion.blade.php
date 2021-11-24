@@ -1,15 +1,17 @@
 <?php
 /** @var string $filter_content */
 /** @var string $url */
-/** @var string $method [optional]*/
+/** @var string $method [optional] */
 /** @var \Illuminate\Http\Request $request [optional] */
 /** @var boolean $expanded [optional] */
+/** @var boolean $accordion_title [optional] */
+/** @var boolean $submit_button_label [optional] */
 
-$method = $method ?? 'GET';
-$url = \Illuminate\Support\Str::contains($url, url('/'))
-    ? $url
-    : url('/').'/'.$url;
-$expanded = $expanded ?? false;
+$method              = $method ?? 'GET';
+$url                 = \Illuminate\Support\Str::contains($url, url('/')) ? $url : url('/') . '/' . $url;
+$expanded            = $expanded ?? false;
+$accordion_title     = $accordion_title ?? trans('modular-forms::common.filters');
+$submit_button_label = $submit_button_label ?? trans('modular-forms::common.apply_filters');
 
 ?>
 
@@ -17,7 +19,7 @@ $expanded = $expanded ?? false;
     @component('modular-forms::page.accordion', [
                 'accordion_group_id' => 'accordion-filters',
                 'accordion_id' => 'accordion-filters-1',
-                'accordion_title' => mb_strtoupper(trans('modular-forms::common.filters')),
+                'accordion_title' => mb_strtoupper($accordion_title),
                 'expanded' => $expanded,
             ])
 
@@ -30,7 +32,7 @@ $expanded = $expanded ?? false;
                 </div>
 
                 <div class="text-right">
-                    <button type="submit" class="btn-nav rounded">@lang_u('modular-forms::common.apply_filters')</button>
+                    <button type="submit" class="btn-nav rounded">{{ ucfirst($submit_button_label) }}</button>
                 </div>
 
             </form>

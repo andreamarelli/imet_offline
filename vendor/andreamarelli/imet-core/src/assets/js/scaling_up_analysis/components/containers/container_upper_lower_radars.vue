@@ -49,7 +49,7 @@ export default {
       default: 180
     },
     indicators: {
-      type: Array,
+      type: [Array, Object],
       default: () => {
       }
     },
@@ -136,7 +136,6 @@ export default {
             );
           }
         });
-    //console.log(this.values);
   }
 }
 </script>

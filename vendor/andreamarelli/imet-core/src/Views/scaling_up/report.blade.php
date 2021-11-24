@@ -13,22 +13,17 @@
 @endif
 
 @section('content')
-    <script>
-
-
-    </script>
     <div id="imet_report">
-
         <app :scaling_up_id="{{$scaling_up_id}}">
-
             <template>
                 <div class="container">
                     <div class="row h-150 mb-5">
                         <div class="col-sm text-center">
-                            <strong>Scaling up analysis report for ({{$protected_areas}})</strong>
+                            <strong>{{trans('imet-core::analysis_report.title')}} ({{$protected_areas}})</strong>
                         </div>
                     </div>
                 </div>
+                @include('imet-core::scaling_up.components.wdpa_names')
                 @include('imet-core::scaling_up.components.scaling_up_template')
                 @foreach($templates as $key => $template)
                     @include('imet-core::scaling_up.components.'.$template['name'],
@@ -49,7 +44,6 @@
                 url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController::class, 'get_ajax_responses']) }}'
             }
         });
-
     </script>
 
     <style>

@@ -7,8 +7,12 @@ export default class BaseStore {
         this.init();
     }
 
-    init(){
+    init() {
 
+    }
+
+    get_scaling_up(){
+        return this.scaling_up_id;
     }
 
     is_country_enabled() {
@@ -17,6 +21,11 @@ export default class BaseStore {
 
     toggle_country_enabled() {
         return this.is_country != this.is_country;
+    }
+
+    find_config_by_name(config, name) {
+        const items = config.find(item => item.name === name);
+        return items;
     }
 
     add_color_to_value(values, id, colors) {
@@ -39,12 +48,16 @@ export default class BaseStore {
             return {};
         }
         const items = Object.values(values.Average);
-
         items.forEach((item, idx) => {
-            values.Average[idx] = {value: item, itemStyle: {color: colors[idx]}};
+            values.Average[idx] = {
+                value: item['value'],
+                'upper limit': item['upper limit'],
+                itemStyle: {color: colors[idx]}
+            };
         });
+        const result = {'Average': Object.keys(values.Average).map((k) => values.Average[k])};
 
-        return values;
+        return result
     }
 
     parse_indicators(indicators) {
@@ -52,7 +65,7 @@ export default class BaseStore {
     }
 
     is_visible(values) {
-        if(typeof values === 'undefined'){
+        if (typeof values === 'undefined') {
             return false;
         }
         return Object.keys(values).length;

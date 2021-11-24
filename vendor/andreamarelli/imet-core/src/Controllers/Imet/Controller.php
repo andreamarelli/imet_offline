@@ -518,7 +518,7 @@ class Controller extends __Controller
             }
         } catch (Exception $e) {
             report($e);
-            return response()->json(["message" => trans('modular-forms::common.upload.generic_error')], 500);
+            return response()->json(["message" => $e->getMessage()], 500);
         }
 
         return response()->json($files);
