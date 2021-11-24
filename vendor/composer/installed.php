@@ -18,7 +18,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => '2b9951db222e5a7b932192649763fb81b62691fc',
+            'reference' => '08f3854bf8671ef2fc572174ea1c1900f01b60f4',
             'dev_requirement' => false,
         ),
         'andreamarelli/modular-forms' => array(
