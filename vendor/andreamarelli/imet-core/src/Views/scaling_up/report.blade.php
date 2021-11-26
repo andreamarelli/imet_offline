@@ -19,7 +19,7 @@
                 <div class="container">
                     <div class="row h-150 mb-5">
                         <div class="col-sm text-center">
-                            <strong>{{trans('imet-core::analysis_report.title')}} ({{$protected_areas}})</strong>
+                            <strong>{{trans('imet-core::analysis_report.title')}} ({{$protected_areas_names}})</strong>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                 position: relative;
             }
 
-             .contailer .smallMenu {
+            .contailer .smallMenu {
                 position: -webkit-sticky;
                 display: inline-block;
                 margin-bottom: 0;
