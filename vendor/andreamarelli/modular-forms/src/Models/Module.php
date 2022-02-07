@@ -357,6 +357,8 @@ class Module extends BaseModel
             $model = new static();
             // Inject Form id
             $data[$model::$foreign_key] = $form_id;
+            // Remove primary key
+            unset($data[$model->getKeyName()]);
             // Fill model with data
             $model->fill($data);
             $model->save();

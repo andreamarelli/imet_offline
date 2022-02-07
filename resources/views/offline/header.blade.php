@@ -1,6 +1,6 @@
 <?php
-    $uri = \Illuminate\Support\Facades\Route::getCurrentRequest()->path();
-    $home = $uri==='admin/imet' || $uri==='admin/v1' || $uri==='admin/v2';
+$uri = \Illuminate\Support\Facades\Route::getCurrentRequest()->path();
+$home = $uri === 'admin/imet' || $uri === 'admin/v1' || $uri === 'admin/v2' || strpos($uri, 'admin/imet/scaling_up') > -1;
 ?>
 @if(!\Illuminate\Support\Facades\Auth::guest())
 
@@ -18,11 +18,12 @@
 
         <ul class="menu-header">
             <li>
-                <a>{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('user-circle', '', '1.2em') !!}&nbsp;{{ \Illuminate\Support\Facades\Auth::user()->getName() }}</a>
+                <a>{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('user-circle', '', '1.2em') !!}
+                    &nbsp;{{ \Illuminate\Support\Facades\Auth::user()->getName() }}</a>
             </li>
             @if($home)
                 <li>
-                    <a >{!! \AndreaMarelli\ModularForms\Helpers\Template::flag(strtolower(\Illuminate\Support\Facades\App::getLocale()), '') !!}</a>
+                    <a>{!! \AndreaMarelli\ModularForms\Helpers\Template::flag(strtolower(\Illuminate\Support\Facades\App::getLocale()), '') !!}</a>
                     <ul class="language_selector">
                         <li>@lang('imet-core::common.switch_language'):</li>
                         @foreach(trans('imet-core::common.languages') as $lang=>$label)
