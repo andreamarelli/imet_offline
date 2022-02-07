@@ -1,123 +1,143 @@
 @import "../../../../vendor/andreamarelli/modular-forms/src/Assets/sass/abstracts/colors";
 
-.footer_ribbon.imet{
-  font-size: 1em;
+.footer_ribbon.imet {
+    font-size: 1em;
 }
 
-#imet_header{
-  display: flex;
-  justify-content: space-between;
-  background-color: $gray-50;
-  padding: 0 10px;
+#imet_header {
+    display: flex;
+    justify-content: space-between;
+    background-color: $gray-50;
+    padding: 0 10px;
 }
 
-.language_selector{
-  padding: 10px 0 20px 30px;
-  li{
-    text-align: left;
-    white-space: nowrap;
-    &:first-of-type{
-      padding: 0 15px 0 25px;
+.language_selector {
+    padding: 10px 0 20px 30px;
+
+    li {
+        text-align: left;
+        white-space: nowrap;
+
+        &:first-of-type {
+            padding: 0 15px 0 25px;
+        }
+
+        a {
+            padding: 8px 30px;
+        }
     }
-    a{
-      padding: 8px 30px;
-    }
-  }
 }
 
 
-
-#imet_report{
-  #map{
-    height: 400px;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  #radar{
-    margin-right: 20px;
-    width: 400px;
-    text-align: center;
-  }
-  #buttons{
-    text-align: right;
-  }
-  @media print {
-    #buttons{
-      display: none;
+#imet_report {
+    #map {
+        height: 400px;
+        width: 100%;
+        margin-bottom: 20px;
     }
-  }
 
-  table td, table th{
-    padding: 5px;
-    text-align: center;
-    border: 1px solid white;
-    background-color: white;
-  }
-  table th,
-  .bordered{
-    border: 1px solid #ccc;
-  }
-  table td.avg_index{
-    text-transform: uppercase;
-    font-weight: bold;
-    color: black;
-  }
-  table td.avg_sub_index{
-    font-weight: bold;
-    color: black;
-  }
-
-  table#global_scores th,
-  table#global_scores td{
-    font-weight: bold;
-  }
-  table#detailed_scores{
-    font-size: 0.9em;
-    table-layout: fixed;
-    width: 100%;
-    td{
-      word-break: break-word;
+    #radar {
+        margin-right: 20px;
+        width: 400px;
+        text-align: center;
     }
-  }
 
-  .score_success{
-    color: white;
-    background-color: #00A74B !important;
-    border: 1px solid #ccc;
-    -webkit-print-color-adjust: exact;
-  }
-  .score_warning{
-    color: black;
-    background-color: yellow !important;
-    border: 1px solid #ccc;
-    -webkit-print-color-adjust: exact;
-  }
-  .score_alert{
-    color: black;
-    background-color: orange !important;
-    border: 1px solid #ccc;
-    -webkit-print-color-adjust: exact;
-  }
-  .score_danger{
-    color: white;
-    background-color: darkred !important;
-    border: 1px solid #ccc;
-    -webkit-print-color-adjust: exact;
-  }
+    #buttons {
+        text-align: right;
+    }
 
-  .swot{
-    width: 99%;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
-  }
+    @media print {
+        #buttons {
+            display: none;
+        }
+    }
 
-  div.dopa_not_available{
-    width: 100%;
-    font-size: 1.3em;
-    text-align: center;
-    padding: 60px 0;
-    color: #00A74B;
-  }
+    table td, table th {
+        padding: 5px;
+        text-align: center;
+        border: 1px solid white;
+        background-color: white;
+    }
+
+    table th,
+    .bordered {
+        border: 1px solid #ccc;
+    }
+
+    table td.avg_index {
+        text-transform: uppercase;
+        font-weight: bold;
+        color: black;
+    }
+
+    table td.avg_sub_index {
+        font-weight: bold;
+        color: black;
+    }
+
+    table#global_scores th,
+    table#global_scores td {
+        font-weight: bold;
+    }
+
+    table#detailed_scores {
+        font-size: 0.9em;
+        table-layout: fixed;
+        width: 100%;
+
+        td {
+            word-break: break-word;
+        }
+    }
+
+    .score_no {
+        color: black;
+        background-color: grey !important;
+        border: 1px solid #ccc;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .score_success {
+        color: white;
+        background-color: #00A74B !important;
+        border: 1px solid #ccc;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .score_warning {
+        color: black;
+        background-color: yellow !important;
+        border: 1px solid #ccc;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .score_alert {
+        color: black;
+        background-color: orange !important;
+        border: 1px solid #ccc;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .score_danger {
+        color: white;
+        background-color: darkred !important;
+        border: 1px solid #ccc;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .swot {
+        width: 99%;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+    }
+
+    div.dopa_not_available {
+        width: 100%;
+        font-size: 1.3em;
+        text-align: center;
+        padding: 60px 0;
+        color: #00A74B;
+    }
 }

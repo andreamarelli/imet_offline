@@ -15,6 +15,7 @@ return [
     'error_connection' => 'Something went wrong, please check your internet connection.',
     'average_explained' => '* Average calculated based on the set of protected areas participating in the scaling-up exercise',
     'download_files' => 'Download',
+    'no_value' => 'No value',
     'general_info' => [
         'country' => 'Country',
         'network' => 'Network of',

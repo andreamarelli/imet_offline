@@ -3,6 +3,7 @@
 
 return [
     'conclusions' => 'Conclusions',
+    'title' => 'Scaling up analysis report for ',
     'average_contribution_management' => 'Average contribution of the management cycle elements',
     'governance_management' => 'Governance and management',
     'key_conservation_elements' => 'Key conservation elements',
@@ -17,6 +18,134 @@ return [
     'download_files' => 'Download',
     'print' => 'print',
     'protected_area' => 'protected area',
+    'custom_names' => 'Protected areas names',
+    'apply' => 'Apply',
+    'no_value' => 'No value',
+    'more_than_one_file' => 'You cannot download only one file',
+    'sections' => [
+        'first' => '1. Location of selected PAs',
+        'second' => '2. General elements of the protected areas',
+        'third' => '3. Key elements of conservation',
+        'fourth' => '4. Overall management of effectiveness scores',
+        'fifth' => '5. Grouping',
+        'sixth' => '6. Analysis per element of the management cycle',
+        'seventh' => '7. Comparison of a Protected Area within a PA network',
+        'eighth' => '8. Additional Option: Digital information per Protected Area'
+    ],
+    'element_diagrams' => [
+        'context' => [
+            'main' => [
+                'header' => '6.1 Management Context',
+                'title' => '6.1.1 Management context overall scores',
+                'radar' => '6.1.1.1 Radar visualization of the management context indicators',
+                'ranking' => '6.1.1.2 Ranking of Management Context indicators',
+                'average_contribution' => '6.1.1.3 Average contribution and variability of Management Context indicators',
+                'datatable' => '6.1.1.4 Data table of Management Context indicators'
+            ],
+            'context_value_and_importance' => [
+                'title' => '6.1.2 Value and Importance sub-indicators',
+                'radar' => '6.1.2.1 Radar visualization of Value and Importance sub-indicators',
+                'ranking' => '6.1.2.2 Ranking of Value and Importance sub-indicators',
+                'average_contribution' => '6.1.2.3 Average contribution and variability of Value and Importance sub-indicators',
+                'datatable' => '6.1.2.4 Data table of Value and Importance sub-indicators',
+            ]
+        ],
+        'threats' => [
+            'threats' => [
+                'title' => '6.1.3 Threats indicator',
+                'radar' => '6.1.3.1 Radar visualization of threats sub-indicators for each protected area',
+                'ranking' => '6.1.3.2 Average contribution of each threat category of threat',
+                'average_contribution' => '6.1.3.3 Average contribution and variability of threat categories sub-indicators',
+                'datatable' => '6.1.3.4 Ranking per threats categories sub-indicators'
+            ]
+        ],
+        'planning' => [
+            'main' => [
+                'header' => '6.2 Planning',
+                'radar' => '6.2.1 Radar visualization of Planning indicators',
+                'ranking' => '6.2.2 Ranking of Planning indicators',
+                'average_contribution' => '6.2.3 Average contribution and variability of Planning indicators',
+                'datatable' => '6.2.4 Data table of Planning indicators'
+            ]
+        ],
+        'inputs' => [
+            'main' => [
+                'header' => '6.3 Inputs',
+                'radar' => '6.3.1 Radar visualization of Inputs indicators',
+                'ranking' => '6.3.2 Ranking of Inputs indicators',
+                'average_contribution' => '6.3.3 Average contribution and variability of Inputs indicators',
+                'datatable' => '6.3.4 Data table of Inputs indicators',
+            ]
+        ],
+        'process' => [
+            'process_sub_indicators' => [
+                'header' => '6.4 Processes',
+                'title' => '6.4.1 Six Sub Elements of the Process',
+                'radar' => '6.4.1.1 Radar visualization of Process sub-elements',
+                'ranking' => '6.4.1.2 Ranking of Process Sub-elements',
+                'average_contribution' => '6.4.1.3 Average contribution and variability of Process sub-elements',
+                'datatable' => '6.4.1.4 Data table of Process sub-elements',
+            ],
+            'process_internal_management_systems_processes' => [
+                'title' => 'PR A: Internal management systems and processes',
+                'radar' => 'Radar visualization of Internal management systems and processes',
+                'ranking' => 'Ranking of Internal management systems and processes',
+                'average_contribution' => 'Average contribution and variability of Internal management systems and processes',
+                'datatable' => 'Data table of Internal management systems and processes'
+            ],
+            'process_management_protection_values' => [
+                'title' => 'PR B: Management / Protection of the values',
+                'radar' => 'Radar visualization of Management / Protection of the values',
+                'ranking' => 'Ranking of Management / Protection of the values',
+                'average_contribution' => 'Average contribution and variability of Management / Protection of the values',
+                'datatable' => 'Data table of Management / Protection of the values'
+            ],
+            'process_stakeholders_relationships' => [
+                'title' => 'PR C: Stakeholder relations',
+                'radar' => 'Radar  visualization of Stakeholder relations',
+                'ranking' => 'Ranking of Stakeholder relations',
+                'average_contribution' => 'Average contribution and variability of Stakeholder relations',
+                'datatable' => 'Data table of Stakeholder relations',
+            ],
+            'process_tourism_management' => [
+                'title' => 'PR D: Tourism management',
+                'ranking' => 'Ranking of Tourism management',
+                'average_contribution' => 'Average contribution and variability of Tourism management',
+                'datatable' => 'Data table of Tourism management',
+            ],
+            'process_monitoring_and_research' => [
+                'title' => 'PR E: Monitoring and Research',
+                'ranking' => 'Ranking of Monitoring and Research',
+                'average_contribution' => 'Average contribution and variability of Monitoring and Research',
+                'datatable' => 'Data table of Monitoring and Research',
+            ],
+            'process_effects_of_climate_change' => [
+                'title' => 'PR F: Management of the effects of climate change and ecosystem services',
+                'ranking' => 'Ranking of Management of the effects of climate change and ecosystem services',
+                'average_contribution' => 'Average contribution and variability of Management of the effects of climate change and ecosystem services',
+                'datatable' => 'Data table of Management of the effects of climate change and ecosystem services',
+            ]
+
+        ],
+        'outputs' => [
+            'main' => [
+                'header' => '6.5 Outputs',
+                'radar' => '6.5.1 Radar visualization of Outputs indicators',
+                'ranking' => '6.5.2 Ranking of Outputs indicators',
+                'average_contribution' => '6.5.3 Average contribution and variability of Outputs indicators',
+                'datatable' => '6.5.4 Data table of Outputs indicators',
+            ]
+        ],
+        'outcomes' => [
+            'main' => [
+                'header' => '6.6 Outcomes',
+                'radar' => '6.6.1 Radar visualization of Outcomes indicators',
+                'ranking' => '6.6.2 Ranking of Outcomes indicators',
+                'average_contribution' => '6.6.3 Average contribution and variability of Outcomes indicators',
+                'datatable' => '6.6.4 Data table of Outcomes indicators',
+            ]
+        ],
+    ],
     'general_info' => [
         'country' => 'Country',
         'network' => 'Network of',
@@ -32,11 +161,14 @@ return [
         'objectives' => 'Objectives'
     ],
     'grouping' => [
+        'title' => '5.1 Grouping',
         'add_country' => 'Add by country',
         'reset' => 'Reset',
         'add_group' => 'Add group',
         'render_radar' => 'Render radar',
         'render_scatter' => 'Render scatter',
+        'scatter_plot' => '5.3 Groups visualization with a scatter plot',
+        'radar' => '5.2 Groups visualization with a radar',
         'group' => 'Group'
     ],
     'management_context' => [

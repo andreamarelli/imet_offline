@@ -23,6 +23,7 @@ export default {
       if (Object.keys(this.values).length > 1) {
         this.chart = echarts.init(this.$el);
         this.chart.setOption(this.radar_options);
+
         this.chart.on('legendselectchanged', (params) => {
           this.$root.$emit(`radar_data_${this.event_key}`, params);
         });

@@ -30,33 +30,43 @@ export default {
   },
   data: function () {
     return {
-      data: []
+      data: [],
+
     }
   },
   mounted() {
+    this.sortBy = this.default_order;
     this.$root.$on(`radar_data_${this.event_key}`, (params) => {
       params.selected['lower limit'] = false;
       params.selected['upper limit'] = false;
       this.parse_data(params.selected);
     });
+
     this.parse_data();
   },
   methods: {
     parse_data: function (selected = null) {
+
       const values = Object.entries({...this.values});
       const data = [];
-
       values.forEach((value, idx) => {
         if ((selected !== null && selected[value[0]]) || (selected === null && value[1]['legend_selected'])) {
+            const item = {};
+            this.columns.forEach((column, idx) => {
+                if(column['field'] !== "name") {
+                    item[column['field']] = value[1][idx-1];
+                }
+            })
           data.push({
             name: value[0],
-            context: value[1][0] || value[1]['context'],
-            planning: value[1][5] || value[1]['planning'],
-            inputs: value[1][4] || value[1]['inputs'],
-            process: value[1][3] || value[1]['process'],
-            outputs: value[1][2] || value[1]['outputs'],
-            outcomes: value[1][1] || value[1]['outcomes'],
-            imet_index: value[1][6] || value[1]['imet_index'],
+              ...item,
+            // context: value[1][0] || value[1]['context'],
+            // planning: value[1][5] || value[1]['planning'],
+            // inputs: value[1][4] || value[1]['inputs'],
+            // process: value[1][3] || value[1]['process'],
+            // outputs: value[1][2] || value[1]['outputs'],
+            // outcomes: value[1][1] || value[1]['outcomes'],
+            // imet_index: value[1][6] || value[1]['imet_index'],
             color: value[1]['color']
           })
         }
@@ -67,7 +77,3 @@ export default {
 
 }
 </script>
-
-<style scoped>
-
-</style>

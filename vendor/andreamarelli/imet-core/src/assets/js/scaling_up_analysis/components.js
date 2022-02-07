@@ -16,6 +16,7 @@ Vue.component('map_view',    require('./components/map_view.vue').default);
 Vue.component('preview_template',    require('./components/preview_template.vue').default);
 
 Vue.component('container', require('./components/containers/container.vue').default);
+Vue.component('container_view', require('./components/containers/container_view.vue').default);
 Vue.component('container_section',    require('./components/containers/container_section.vue').default);
 Vue.component('container_radars', require('./components/containers/container_radars.vue').default);
 Vue.component('container_upper_lower_radars', require('./components/containers/container_upper_lower_radars.vue').default);
@@ -36,6 +37,7 @@ Vue.component('treemap', require('./components/various_charts/treemap.vue').defa
 Vue.component('scaling_dopa_chart_bar',    require('./components/various_charts/scaling_dopa_chart_bar.vue').default);
 Vue.component('scaling_dopa_chart_doughnut',    require('./components/various_charts/scaling_dopa_chart_doughnut.vue').default);
 Vue.component('scatter',    require('./components/various_charts/scatter.vue').default);
+Vue.component('radar_threats', require('./components/various_charts/radar_threats.vue').default);
 
 Vue.component('action_buttons',    require('./components/action_buttons.vue').default);
 Vue.component('html_to_image', require('./tools/html_to_image.vue').default);
@@ -43,6 +45,8 @@ Vue.component('html_to_image', require('./tools/html_to_image.vue').default);
 Vue.component('basket', require('./components/basket.vue').default);
 
 Vue.component('small_menu',    require('./components/menus/small_menu.vue').default);
+Vue.component('small_menu_analysis_per_elements',    require('./components/menus/small_menu_analysis_per_elements.vue').default);
+
 
 Vue.component('imet_basic_bars',        require('./components/imet_basic_bars.vue').default);
 Vue.component('action-button',          require('./components/action-button.vue').default);

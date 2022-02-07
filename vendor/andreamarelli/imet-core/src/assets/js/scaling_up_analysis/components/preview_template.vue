@@ -16,7 +16,7 @@ export default {
   name: "preview_template",
   props: {
     scaling_up_id: {
-      type: String,
+      type: [String, Number],
       default: ''
     }
   },

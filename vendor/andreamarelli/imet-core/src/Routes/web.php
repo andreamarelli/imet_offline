@@ -8,8 +8,6 @@ use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1;
 use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2;
-use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController;
-use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpBasketController;
 use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
 use AndreaMarelli\ImetCore\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
@@ -77,8 +75,6 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
         });
 
-        // Scaling Up Analysis - do not provide to offline
-        Route::get('scaling_up', function(){ abort(404); });
 
         Route::group(['prefix' => 'tools'], function () {
             Route::get('export_csv', [Controller::class, 'exportListCSV'])->name('csv_list');

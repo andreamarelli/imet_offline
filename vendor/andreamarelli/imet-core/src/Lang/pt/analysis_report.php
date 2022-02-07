@@ -12,6 +12,7 @@ return [
     'add_analysis' => 'Add to analysis',
     'error_wrong' => 'An error occurred',
     'error_connection' => 'Something went wrong, please check your internet connection.',
+    'no_value' => 'No value',
     'general_info' => [
         'country' => 'Country',
         'network' => 'Network of',

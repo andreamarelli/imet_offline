@@ -2,20 +2,18 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2;
 use AndreaMarelli\ImetCore\Models\Encoder;
+use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet_Eval;
+use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ModularForms\Helpers\File\File;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-
 use function view;
 
 
@@ -64,7 +62,7 @@ class ControllerV2 extends Controller
             unset($records[0]['prev_year_selection']);
             $request->merge(['records_json' => json_encode($records)]);
             if($prev_year_selection!==null && $prev_year_selection!=='no_import'){
-                return (new Controller())->store_prefilled($request, $prev_year_selection);
+                return $this->store_prefilled($request, $prev_year_selection);
             }
         }
 
