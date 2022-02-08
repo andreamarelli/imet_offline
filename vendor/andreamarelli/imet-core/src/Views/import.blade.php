@@ -16,7 +16,6 @@
         </div>
         <div class="module-body">
             <br/>
-            <br/>
             <multiple-files-upload></multiple-files-upload>
         </div>
     </div>

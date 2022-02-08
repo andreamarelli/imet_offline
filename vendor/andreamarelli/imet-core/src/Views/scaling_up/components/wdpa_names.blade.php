@@ -8,7 +8,7 @@ $submit_button_label = $submit_button_label ?? @trans('imet-core::analysis_repor
     @slot('filter_content')
         @foreach($protected_areas as $key => $pa)
             {!! \AndreaMarelli\ModularForms\Helpers\Input\Input::label('name', $pa->name) !!}
-            {!! \AndreaMarelli\ModularForms\Helpers\Input\Input::text($pa->FormID  , $custom_names[$pa->FormID] )!!}
+            {!! \AndreaMarelli\ModularForms\Helpers\Input\Input::text($pa->FormID, $custom_names[$pa->FormID] )!!}
         @endforeach
         {!! \AndreaMarelli\ModularForms\Helpers\Input\Input::hidden('save_form', 1) !!}
     @endslot

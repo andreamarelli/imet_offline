@@ -47,8 +47,11 @@ export default {
                     ...this.get_colors()
                 ],
                 grid: {
-                    width: '80%',
-                    height: '80%'
+                    left: "10%",
+                    right: "0%",
+                    bottom: "3%",
+                    width: "80%",
+                    height: "85%"
                 },
                 title: {
                     text: this.title,

@@ -2,6 +2,7 @@
 
 
 return [
+    'scaling_up' => 'Scaling Up',
     'conclusions' => 'Conclusions',
     'title' => 'Scaling up analysis report for ',
     'average_contribution_management' => 'Average contribution of the management cycle elements',
@@ -21,6 +22,8 @@ return [
     'custom_names' => 'Protected areas names',
     'apply' => 'Apply',
     'no_value' => 'No value',
+    'select_all' => 'Select all',
+    'reset' => 'Reset',
     'more_than_one_file' => 'You cannot download only one file',
     'sections' => [
         'first' => '1. Location of selected PAs',
@@ -288,6 +291,13 @@ return [
             ]
         ],
 
+    ],
+    'overall' => [
+        'imet_indicator_ranking' => 'IMET Indicator ranking',
+        'radar_visualization' => 'Radar visualization of IMET synthetic indicators',
+        'scatter_visualization' => 'Scatter plot visualization on IMET synthetic',
+        'average_contribution' => 'Average contribution and variability of IMET synthetic indicators',
+        'synthetic_indicators' => 'Data table of IMET synthetic indicators'
     ],
     'assessment' => [
         'ctx101' => 'Responsibility for filling the form: Management team and partners and external support for analysis and management evaluation',

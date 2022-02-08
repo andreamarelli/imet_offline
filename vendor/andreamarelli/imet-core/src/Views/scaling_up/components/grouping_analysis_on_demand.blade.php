@@ -58,6 +58,7 @@
                                                              :name="'grouping'">
                                                             <div class="col-sm">
                                                                 <scaling_radar :width=1128 :height=700
+                                                                               :event_key="'grouping'"
                                                                                :single="false"
                                                                                :unselect_legends_on_load="false"
                                                                                :show_legends="true"
@@ -82,6 +83,8 @@
                                                          v-if="container.props.stores.BaseStore.is_visible(data_elements.props.values.radar)">
                                                         <div class="col-sm">
                                                             <datatable_interact_with_radar
+                                                                :event_key="'grouping'"
+                                                                :values_with_indicators_keys="true"
                                                                 :values="data_elements.props.values.radar"
                                                                 :columns="container.props.config.group_analysis_on_demand.columns"></datatable_interact_with_radar>
                                                         </div>

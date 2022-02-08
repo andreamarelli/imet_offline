@@ -74,11 +74,6 @@ class ScalingUpAnalysisController
      * @param null $items
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    /**
-     * @param Request $request
-     * @param null $items
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
     public function report_scaling_up(Request $request, $items = null)
     {
         $scaling_up_id = null;
@@ -137,6 +132,10 @@ class ScalingUpAnalysisController
         $pa_ids = implode(',', array_keys($protected_areas));
         $custom_names = $this->retrieve_custom_names($scaling_up_id);
         $protected_areas_names = implode(', ', $custom_names);
+
+        usort($protected_areas, function($a, $b){
+            return $a['name'] > $b['name'];
+        });
 
         $templates_names = [
             ['name' => "map_view", 'title' => trans('imet-core::analysis_report.sections.first'), 'snapshot_id' => "map_view", 'exclude_elements' => ''],

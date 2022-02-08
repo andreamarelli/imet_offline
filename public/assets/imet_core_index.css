@@ -70,14 +70,28 @@
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/templates/imet_radar.vue?vue&type=style&index=0&id=f8a1467a&lang=scss&scoped=true& ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************/
 
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/inputs/multiple-files-upload.vue?vue&type=style&index=0&id=cadb8ebe&lang=scss&scoped=true& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************/
-.vue-dropzone[data-v-cadb8ebe] {
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/inputs/multiple-files-upload.vue?vue&type=style&index=0&lang=scss& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************/
+.vue-dropzone {
   height: 300px;
   max-height: 300px;
   overflow: auto;
   background: #fff;
+  margin-bottom: 10px;
+}
+.vue-dropzone .files {
+    display: flex;
+    gap: 30px;
+}
+.vue-dropzone .files .file-row {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+}
+.vue-dropzone .files .file-row .progress {
+        flex-grow: 1;
 }
 
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
@@ -432,6 +446,12 @@
   width: 100%; }
   #imet_report table#detailed_scores td {
     word-break: break-word; }
+
+#imet_report .score_no {
+  color: black;
+  background-color: grey !important;
+  border: 1px solid #ccc;
+  -webkit-print-color-adjust: exact; }
 
 #imet_report .score_success {
   color: white;

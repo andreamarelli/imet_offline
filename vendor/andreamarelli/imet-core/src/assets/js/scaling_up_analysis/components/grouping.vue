@@ -152,6 +152,7 @@ export default {
 
             return {id: i[1].FormID, name: i[1].name, 'list': null, country: i[1].Country_name.name}
         });
+        this.list.sort((a, b) => a.name.localeCompare(b.name));
         this.countriesList = [...new Set(this.countriesList)];
 
         this.init_components();

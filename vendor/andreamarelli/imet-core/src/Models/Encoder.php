@@ -38,6 +38,9 @@ class Encoder extends Model
     {
         if($encoders!==null){
             foreach ($encoders as $encoder){
+                 // Remove primary key
+                unset($encoder['id']);
+                // Create model and fill it with data
                 $item = new Encoder();
                 $item->fill($encoder);
                 $item['FormID'] = $form_id;
