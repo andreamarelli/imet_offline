@@ -53,4 +53,5 @@ Vue.component('action-button',          require('./components/action-button.vue'
 Vue.component('action-button-cookie',   require('./components/action-button-cookie.vue').default);
 Vue.component('label-cloud',            require('./components/label-cloud.vue').default);
 Vue.component('dopa_coverage_table',            require('./components/dopa_coverage_table.vue').default);
+Vue.component('checkboxes_list', require('./components/checkboxes_list.vue').default);
 

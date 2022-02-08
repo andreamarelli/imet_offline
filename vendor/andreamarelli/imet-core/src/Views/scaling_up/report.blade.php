@@ -31,6 +31,7 @@
                                    'title' => $template['title'],
                                    'snapshot_id' => $template['snapshot_id'],
                                    'exclude_elements' => $template['exclude_elements'],
+                                   'pas' => ($custom_names)
                                 ])
                 @endforeach
             </template>

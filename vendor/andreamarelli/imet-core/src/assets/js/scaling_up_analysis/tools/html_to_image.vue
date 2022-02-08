@@ -53,8 +53,9 @@ export default {
             window.element = element;
             this.show_hide_excluded_elements();
             this.hide_editor(element);
+
             window.htmlToImage.toPng(document.getElementById(this.random_element), {
-                canvasWidth: 1024,
+                canvasWidth: size,
                 filter: (node) => {
                     const classNames = node?.className;
                     const id = node?.id;

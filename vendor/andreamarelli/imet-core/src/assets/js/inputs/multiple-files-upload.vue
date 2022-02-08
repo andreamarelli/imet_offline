@@ -1,6 +1,5 @@
 <template>
     <div>
-        <button class="btn btn-danger mb-2" v-on:click="clearDropzone">{{ Locale.getLabel('modular-forms::common.upload.remove_all') }}</button>
         <vue-dropzone
             ref="myVueDropzone"
             id="dropzone"
@@ -15,6 +14,7 @@
                 <h3 class="dropzone-custom-title">{{ Locale.getLabel('modular-forms::common.upload.multiple_files_description') }}</h3>
             </div>
         </vue-dropzone>
+        <button class="btn btn-danger mb-2" v-show="files_added>0" v-on:click="clearDropzone">{{ Locale.getLabel('modular-forms::common.upload.remove_all') }}</button>
     </div>
 </template>
 
@@ -54,7 +54,8 @@ export default {
                 dictRemoveFile: Locale.getLabel('modular-forms::common.upload.dict_remove_file'),
                 dictMaxFilesExceeded: Locale.getLabel('modular-forms::common.upload.dictMaxFilesExceeded'),
             },
-            formatTypes: ["application/json", "application/zip"]
+            formatTypes: ["application/json", "application/zip"],
+            files_added: 0
         };
     },
     mounted: function () {
@@ -67,17 +68,14 @@ export default {
             return `<div class="table table-striped files" id="previews">
                 <div id="template" class="file-row">
                     <div>
-                        <span class="preview"><img data-dz-thumbnail/></span>
-                    </div>
-                     <div>
                         <p class="name" data-dz-name></p>
                     </div>
                     <div>
                         <p class="size" data-dz-size></p>
-                        <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                    </div>
+                    <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"
                              aria-valuenow="0">
-                            <div class="progress-bar progress-bar-success" id="total-progress" style="width:0%;" data-dz-uploadprogress></div>
-                        </div>
+                        <div class="progress-bar progress-bar-success" id="total-progress" style="width:0%;" data-dz-uploadprogress></div>
                     </div>
                 </div>
             </div>
@@ -87,6 +85,7 @@ export default {
             file.previewTemplate.querySelector("a.dz-remove").style.display = value;
         },
         clearDropzone() {
+            this.files_added = 0;
             this.$refs.myVueDropzone.removeAllFiles();
         },
         progressBarConfiguration(file, label, color = 'blue', width = '100%') {
@@ -97,6 +96,8 @@ export default {
             selector.style.width = width;
         },
         fileAdded(file) {
+
+            this.files_added++
             this.hideShowRemoveLink(file, 'none');
 
             //remove the last file and added to the top of the list
@@ -143,11 +144,28 @@ export default {
 
 </script>
 
-<style lang="scss" type="text/scss" scoped>
+<style lang="scss">
 .vue-dropzone {
     height: 300px;
     max-height:300px;
     overflow:auto;
     background:#fff;
+    margin-bottom: 10px;
+
+    .files{
+        display: flex;
+        gap: 30px;
+        .file-row{
+            flex-grow: 1;
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            .progress{
+                flex-grow: 1;
+            }
+        }
+    }
+
+
 }
 </style>

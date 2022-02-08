@@ -4,6 +4,7 @@
 /** @var \Illuminate\Http\Request $request */
 /** @var array $countries */
 /** @var array $years */
+
 /** @var boolean $filter_selected */
 
 use AndreaMarelli\ImetCore\Models\Role;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 
 $can_encode = \AndreaMarelli\ImetCore\Models\User::isAdmin(Auth::user()) || Role::isEncoder(Auth::user());
-$url        = URL::route('index');
+$url = URL::route('scaling_up');
 ?>
 
 @extends('layouts.admin')
@@ -30,7 +31,7 @@ $url        = URL::route('index');
 
 @section('content')
 
-    <h1>Scaling Up</h1>
+    <h1>@lang('imet-core::analysis_report.scaling_up')</h1>
 
     @include('imet-core::components.common_filters', [
         'request'=>$request,
@@ -40,11 +41,12 @@ $url        = URL::route('index');
         'years' => $years
     ])
 
-    <br />
+    <br/>
     <div id="sortable_list">
 
         <div id="cloud">
-            <label-cloud :cookie-name="'analysis'" :url="'{{url('admin/imet')}}/scaling_up/{items}'" :source-of-data="'cookie'"></label-cloud>
+            <label-cloud :cookie-name="'analysis'" :url="'{{url('admin/imet')}}/scaling_up/{items}'"
+                         :source-of-data="'cookie'"></label-cloud>
         </div>
         <action-button-cookie
             :class-name="'btn btn-success'"
@@ -95,13 +97,14 @@ $url        = URL::route('index');
                             <strong style="font-size: 1.1em;">@{{ item.name }}</strong>
                             {{-- wdpa_id --}}
                             <span v-if="item.wdpa_id!==null">
-                                (<a target="_blank" :href="'{{ \AndreaMarelli\ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet::WEBSITE_URL }}'+ item.wdpa_id">@{{ item.wdpa_id }}</a>)
+                                (<a target="_blank"
+                                    :href="'{{ \AndreaMarelli\ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet::WEBSITE_URL }}'+ item.wdpa_id">@{{ item.wdpa_id }}</a>)
                             </span>
-                            <br />
+                            <br/>
                             {{-- country --}}
                             <flag :iso2=item.country.iso2></flag>&nbsp;&nbsp;<i>@{{ item.country.name }}</i>
                         </div>
-                        <br />
+                        <br/>
                         {{-- language --}}
                         <div>
                             {{ ucfirst(trans('imet-core::common.encoding_language')) }}:
@@ -121,7 +124,7 @@ $url        = URL::route('index');
                     ></imet_encoders_responsibles>
                 </td>
                 <td>
-                    <imet_radar :width=150 :height=150 :values=item.assessment_radar ></imet_radar>
+                    <imet_radar :width=150 :height=150 :values=item.assessment_radar></imet_radar>
                 </td>
                 <td class="align-baseline text-center" style="white-space: nowrap;">
 

@@ -41,10 +41,16 @@ export default {
             type: Boolean,
             default: false
         },
-        radar_indicators_for_negative:{
+        radar_indicators_for_negative: {
             type: Array,
             default: () => {
                 return [];
+            }
+        },
+        always_first_in_legend: {
+            type: Array,
+            default: () => {
+                return [0, 1, 2];
             }
         }
     },
@@ -57,7 +63,7 @@ export default {
     },
     computed: {
         radar_options() {
-            let items = [];
+            let items = {};
             if (this.single) {
                 items = this.singleData();
             } else {
@@ -72,11 +78,12 @@ export default {
                 //nameGap: 0,
                 ...items.legends,
                 grid: {
-                    "left": "3%",
-                    "right": "4%",
-                    "bottom": "3%",
+                    left: "10%",
+                    right: "0%",
+                    bottom: "3%",
+                    width: "80%",
+                    height: "82%",
                     "containLabel": true,
-                    "top":"19%"
                 },
                 radar: {
                     indicator: items.indicators,
@@ -140,7 +147,7 @@ export default {
                     text: value.replace(' ', '\n'), max: 100
                 }
 
-                if(this.radar_indicators_for_negative.includes(key)){
+                if (this.radar_indicators_for_negative.includes(key)) {
                     item.max = 100;
                     item.min = -100;
                 }
@@ -175,7 +182,11 @@ export default {
                 .forEach(([key, value]) => {
                     legends.push({name: key});
                 });
-            return this.legends(legends);
+            let on_top = [];
+            if (this.always_first_in_legend.length) {
+                on_top = legends.slice(0, 3)
+            }
+            return this.legends([...on_top, ...legends.sort((a, b) => a.name.localeCompare(b.name))]);
         },
         singleData: function () {
             const render_items = [];
@@ -194,16 +205,16 @@ export default {
             let legends = [];
             const render_items = [];
 
-
             if (this.show_legends) {
                 legends = this.setLegends(this.values);
             }
             const negative_indicators = [];
-            Object.entries({...this.values}).reverse().forEach((data, key) => {
+            const values = JSON.parse(JSON.stringify(this.values));
+
+            Object.entries(values).forEach((data, key) => {
                 const item = this.radar_item();
                 const name = data.shift();
                 item.name = name;
-
                 Object.entries(data)
                     .forEach(([key, value]) => {
                         if (value === Object(value)) {
@@ -222,16 +233,31 @@ export default {
                                 trigger: 'item'
                             };
                             //todo check it again
-                            //delete value['lineStyle'];
-                            //delete value['color'];
-                            //delete value['label_show'];
-                            value = Object.values(value);
+                            delete value['lineStyle'];
+                            delete value['color'];
+                            delete value['width'];
+                            delete value['legend_selected'];
+
+                            indicators = [];
+
+                            for (const val in value) {
+                                if (isNaN(val)) {
+                                    const index = this.indicators.findIndex(element => {
+                                        if (element.toLowerCase().includes(val)) {
+                                            return true;
+                                        }
+                                    });
+                                    indicators[index] = value[val];
+                                } else {
+                                    indicators.push(value[val]);
+                                }
+                            }
                         }
-                        const index = this.find_if_array_has_negative_values(value);
-                        if(index > -1){
+                        const index = this.find_if_array_has_negative_values(indicators);
+                        if (index > -1) {
                             negative_indicators.push(index);
                         }
-                        item.value = value;
+                        item.value = indicators;
 
                     });
                 render_items.push(item);
@@ -240,14 +266,13 @@ export default {
             indicators = this.setIndicators(negative_indicators);
             return {render_items, legends, indicators};
         },
-        find_if_array_has_negative_values: function(array){
+        find_if_array_has_negative_values: function (array) {
             return array.findIndex(value => value < 0);
         },
         radar_item: function () {
             return {
                 value: [],
                 name: '',
-
                 itemStyle: {
                     color: null
                 },

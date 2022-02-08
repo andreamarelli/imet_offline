@@ -9,7 +9,7 @@ class ScalingUpWdpa extends Model
 {
     public $timestamps = false;
     protected $table = 'imet.scaling_up_wdpas';
-    protected $fillable = ['scaling_id', 'FormID', 'name', 'Country', 'wdpa_id'];
+    protected $fillable = ['scaling_id', 'FormID', 'name', 'Country', 'wdpa_id', 'color'];
 
     public static function retrieve_by_scaling_id($id)
     {
@@ -34,7 +34,9 @@ class ScalingUpWdpa extends Model
     {
         $saved_pas = [];
         foreach ($areas as $k => $area) {
-            $saved_pas[] = static::create(['scaling_id' => $scaling_id, 'FormID' => $area->FormID, 'name' => $area->name, 'Country' => $area->Country, 'wdpa_id' => $area->wdpa_id]);
+            $rand = str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
+            $rand_color = '#' . $rand;
+            $saved_pas[] = static::create(['scaling_id' => $scaling_id, 'FormID' => $area->FormID, 'name' => $area->name, 'Country' => $area->Country, 'wdpa_id' => $area->wdpa_id, 'color' => $rand_color]);
         }
         return $saved_pas;
     }
