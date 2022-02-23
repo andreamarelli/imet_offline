@@ -2,11 +2,9 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\EvalController;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
-
 use function response;
 
 trait Assessment{
@@ -43,6 +41,12 @@ trait Assessment{
                 'process' => 'get_imet_evaluation_stats_step4',
                 'outputs' => 'get_imet_evaluation_stats_step5',
                 'outcomes' => 'get_imet_evaluation_stats_step6',
+                'process_pr1_pr6' => 'get_imet_evaluation_stats_step_process_pr1_pr6',
+                'process_pr7_pr9' => 'get_imet_evaluation_stats_step_process_pr7_pr9',
+                'process_pr10_pr12' => 'get_imet_evaluation_stats_step_process_pr10_pr12',
+                'process_pr13_pr14' => 'get_imet_evaluation_stats_step_process_pr13_pr14',
+                'process_pr15_pr16' => 'get_imet_evaluation_stats_step_process_pr15_pr16',
+                'process_pr17_pr18' => 'get_imet_evaluation_stats_step_process_pr17_pr18'
             ];
 
             $function = $step === 'global'

@@ -160,7 +160,7 @@ export default {
                         formatter: (param) => {
                             let sum = 0;
                             bars.forEach(item => {
-                                sum += item.data[param.dataIndex];
+                                sum += parseFloat(item.data[param.dataIndex]);
                             });
 
                             return sum.toFixed(1);

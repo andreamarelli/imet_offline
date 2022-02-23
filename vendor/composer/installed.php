@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '97edb4b24a1e4b348ceaa87f1f4b735bcebe7ed1',
+        'reference' => '99fb856ffdf7a46c1122eadf6e3ee0d96a16b78e',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -18,7 +18,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => 'ac3d7e9f5b93be4e5155a0f8ce60a4f32ec0ff0f',
+            'reference' => '86cd80a99b82a0480f30aa8e5f0132c5b1d33b27',
             'dev_requirement' => false,
         ),
         'andreamarelli/modular-forms' => array(
@@ -29,7 +29,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => '9ada50c009dcbb4bbe51d4d1290895d5a2ae95b5',
+            'reference' => '31afa89fec9aca7fc6514277b52c9b934e09de1e',
             'dev_requirement' => false,
         ),
         'asm89/stack-cors' => array(
@@ -611,7 +611,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '97edb4b24a1e4b348ceaa87f1f4b735bcebe7ed1',
+            'reference' => '99fb856ffdf7a46c1122eadf6e3ee0d96a16b78e',
             'dev_requirement' => false,
         ),
         'laravel/serializable-closure' => array(

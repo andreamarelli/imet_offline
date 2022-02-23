@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScali
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ModularForms\Helpers\File\Compress;
+use AndreaMarelli\ModularForms\Helpers\File\Zip;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -173,7 +173,9 @@ class ScalingUpAnalysisController
         }
 
         if (count($files) > 1) {
-            $path = Compress::zipFile($files, "Scaling_up", false);
+            $path = Zip::compress($files,
+                                      "Scaling_up_" . count($files) . "_" . date('m-d-Y_hisu') . ".zip",
+                                      false);
             return File::download($path);
         } else {
             return trans("imet-core::analysis_report.more_than_one_file");

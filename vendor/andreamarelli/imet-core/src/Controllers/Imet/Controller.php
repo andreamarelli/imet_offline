@@ -12,7 +12,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v1;
 use AndreaMarelli\ImetCore\Models\Imet\v2;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ModularForms\Helpers\File\Compress;
+use AndreaMarelli\ModularForms\Helpers\File\Zip;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\HTTP;
 use AndreaMarelli\ModularForms\Helpers\Locale;
@@ -26,6 +26,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 use function imet_offline_version;
 use function redirect;
@@ -318,7 +319,7 @@ class Controller extends __Controller
         $path = $files[0];
         if (count($files) > 1) {
             $fileName = "IMETS_" . count($files) . "_" . date('m-d-Y_hisu') . ".zip";
-            $path = Compress::zipFile($files, $fileName);
+            $path = Zip::compress($files, $fileName);
         }
         return File::download($path);
     }
@@ -500,12 +501,15 @@ class Controller extends __Controller
             $import = new static();
             //and then check if is zip or json
             if (in_array($ext, ['zip'])) {
-                $extractFiles = Compress::extractFilesFromZipFile($uploaded['temp_filename']);
-
+                $extractFiles = Zip::extract($uploaded['temp_filename']);
+                $num_extracted = 0;
                 foreach ($extractFiles as $item) {
-                    $json = json_decode(Upload::getUploadFileContent(['temp_filename' => $item]), true);
-                    $files[] = $import->import(new Request(), $json, false);
-                    File::removeFiles([$item], FILE::PUBLIC_STORAGE, "temp/");
+                    if(Str::endsWith($item, '.json') && $num_extracted < 10){
+                        $json = json_decode(Upload::getUploadFileContent(['temp_filename' => $item]), true);
+                        $files[] = $import->import(new Request(), $json, false);
+                        File::removeFiles([$item], FILE::PUBLIC_STORAGE, "temp/");
+                        $num_extracted++;
+                    }
                 }
             } else {
                 $json = json_decode(Upload::getUploadFileContent($uploaded), true);

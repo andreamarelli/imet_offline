@@ -1,19 +1,19 @@
 <div class="row">
-    <div class="col-12 mb-5" v-for="(value, index) in data.props"
+    <div class="col-12 " v-for="(value, index) in data.props"
          :id="'{{$name}}-'+index">
-        <div class="col-12 mb-5" v-for="(section_data, section) in value" :id="'{{$name}}-'+section">
+        <div class="col-12" v-for="(section_data, section) in value" :id="'{{$name}}-'+section">
             <div class="align-items-center "
                  v-for="(tableValue, tableIndex) in container.props.config.element_diagrams[section]">
-                <div class="col-12 mb-5">
-                    <div v-if="tableValue['menu']['title']" :id="'menu-title-'+section+'-'+tableValue['name']"
+                <div v-if="tableValue['menu']['radar'] !== ''" class="col-12 mb-5">
+                    <?php if (!$dontShowTitle) { ?><div v-if="tableValue['menu']['title']" :id="'menu-title-'+section+'-'+tableValue['name']"
                          class="list-key-numbers horizontal">
                         <div class="list-head" v-html="tableValue['menu']['title']"></div>
-                    </div>
-                    <div class="list-key-numbers horizontal">
+                    </div> <?php } else {  } ?>
+                    <div  class="list-key-numbers horizontal">
                         <div class="list-head" :id="'menu-radar-'+section+'-'+tableValue['name']"
                              v-html="tableValue['menu']['radar']"></div>
                     </div>
-                    <div v-if="tableValue['menu']['radar'] !== ''"
+                    <div
                          :id="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'scaling-radar'">
                         <container_actions :data="section_data"
                                            :name="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'scaling-radar'"
@@ -29,7 +29,7 @@
                             </template>
                         </container_actions>
                     </div>
-                    <div v-if="tableValue['menu']['radar'] !== ''"
+                    <div
                          :id="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'scaling-datatable-radar'">
                         <container_actions :data="section_data"
                                            :name="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'scaling-datatable-radar'"
@@ -43,7 +43,7 @@
                         </container_actions>
                     </div>
                 </div>
-                <div class="list-key-numbers horizontal mt-5">
+                <div class="list-key-numbers horizontal mt-1">
                     <div class="list-head" :id="'menu-ranking-'+section+'-'+tableValue['name']"
                          v-html="tableValue['menu']['ranking']"></div>
                 </div>
@@ -63,7 +63,7 @@
                         </template>
                     </container_actions>
                 </div>
-                <div class="list-key-numbers horizontal mt-5">
+                <div class="list-key-numbers horizontal mt-1">
                     <div class="list-head" :id="'menu-average-contribution-'+section+'-'+tableValue['name']"
                          v-html="tableValue['menu']['average_contribution']"></div>
                 </div>
@@ -81,7 +81,7 @@
                         </template>
                     </container_actions>
                 </div>
-                <div class="list-key-numbers horizontal mt-5">
+                <div class="list-key-numbers horizontal mt-1">
                     <div class="list-head" :id="'menu-datatable-'+section+'-'+tableValue['name']"
                          v-html="tableValue['menu']['datatable']"></div>
                 </div>

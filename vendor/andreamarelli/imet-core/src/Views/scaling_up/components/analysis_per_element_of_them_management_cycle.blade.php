@@ -10,7 +10,7 @@
                         :parameters="'{{$pa_ids}},context'"
                         :func="'analysis_per_element_of_the_management_cycle'">
                         <template slot-scope="data" class="col-24">
-                            @include('imet-core::scaling_up.components.analysis_element', ['name' => $name])
+                            @include('imet-core::scaling_up.components.analysis_element', ['name' => $name, 'dontShowTitle' => false])
                             <container
                                 :loaded_at_once="true"
                                 :url=url
@@ -32,7 +32,7 @@
                         :parameters="'{{$pa_ids}},planning'"
                         :func="'analysis_per_element_of_the_management_cycle'">
                         <template slot-scope="data" class="col-24">
-                            @include('imet-core::scaling_up.components.analysis_element', ['name' => $name])
+                            @include('imet-core::scaling_up.components.analysis_element', ['name' => $name, 'dontShowTitle' => false])
                         </template>
                     </container_view>
                     <container_view
@@ -43,7 +43,7 @@
                         :parameters="'{{$pa_ids}},inputs'"
                         :func="'analysis_per_element_of_the_management_cycle'">
                         <template slot-scope="data" class="col-24">
-                            @include('imet-core::scaling_up.components.analysis_element', ['name' => $name])
+                            @include('imet-core::scaling_up.components.analysis_element', ['name' => $name, 'dontShowTitle' => false])
                         </template>
                     </container_view>
                     <container_view
@@ -51,10 +51,9 @@
                         :loaded_at_once="container.props.show_view"
                         :title="container.props.config.element_diagrams.process[0].menu.header"
                         :url=url
-                        :parameters="'{{$pa_ids}},process'"
-                        :func="'analysis_per_element_of_the_management_cycle'">
+                        >
                         <template slot-scope="data" class="col-24">
-                            @include('imet-core::scaling_up.components.analysis_element', ['name' => $name])
+                            @include('imet-core::scaling_up.components.analysis_process_elements', ['name' => $name])
                         </template>
                     </container_view>
                     <container_view
@@ -64,7 +63,7 @@
                         :parameters="'{{$pa_ids}},outputs'"
                         :func="'analysis_per_element_of_the_management_cycle'">
                         <template slot-scope="data" class="col-24">
-                            @include('imet-core::scaling_up.components.analysis_element', ['name' => $name])
+                            @include('imet-core::scaling_up.components.analysis_element', ['name' => $name, 'dontShowTitle' => false])
                         </template>
                     </container_view>
                     <container_view
@@ -74,7 +73,7 @@
                         :parameters="'{{$pa_ids}},outcomes'"
                         :func="'analysis_per_element_of_the_management_cycle'">
                         <template slot-scope="data" class="col-24">
-                            @include('imet-core::scaling_up.components.analysis_element', ['name' => $name])
+                            @include('imet-core::scaling_up.components.analysis_element', ['name' => $name, 'dontShowTitle' => false])
                         </template>
                     </container_view>
                 </div>
