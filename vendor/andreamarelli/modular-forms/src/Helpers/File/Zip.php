@@ -4,40 +4,46 @@
 namespace AndreaMarelli\ModularForms\Helpers\File;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use ZipArchive;
-use AndreaMarelli\ModularForms\Models\Traits\Upload;
 
 class Zip
 {
     /**
      * retrieve zip file from temp folder open it and extract files
+     *
      * @param string $zip_path
+     * @param boolean $remove_zip
+     * @param boolean $return_full_path
      * @return array
+     * @throws \Exception
      */
-    public static function extract(string $zip_path): array
+    public static function extract(string $zip_path, bool $remove_zip = true, bool $return_full_path = false): array
     {
-        $zip_path = $zip_path===basename($zip_path)
-            ? Storage::disk(File::PUBLIC_STORAGE)->path(Upload::$UPLOAD_PATH) . $zip_path
-            : $zip_path;
-        $path = rtrim(dirname($zip_path), '/') . '/';
+        $unzip_path = $unzip_path ?? dirname($zip_path);
+        $relative_path = Str::replace(Storage::path(''), '', $unzip_path);
 
-        $files = [];
-
-        // Read ZIP archive and files
+        // Read ZIP archive and extract files
         $zip = new ZipArchive;
         $zipStatus = $zip->open($zip_path);
         if ($zipStatus !== true) {
-            return $files;
+            throw new \Exception('Unable to extract the archive.');
         }
-        for ($i = 0; $i < $zip->count(); $i++) {
-            $files[] = $zip->getNameIndex($i);
-        }
-
-        $zip->extractTo($path, $files);
+        $zip->extractTo($unzip_path);
         $zip->close();
 
-        File::removeFiles([$zip_path], FILE::PUBLIC_STORAGE, "temp/");
-        return [$files, $path];
+        // Read extracted files' paths
+        $files = [];
+        foreach(Storage::files($relative_path) as $file){
+            $files[] = $return_full_path ? Storage::path($file) : $file;
+        }
+
+        // Remove source ZIP archive
+        if($remove_zip){
+            unlink($zip_path);
+        }
+
+        return $files;
     }
 
 
@@ -51,7 +57,7 @@ class Zip
     public static function compress(array $files, string $zip_path, bool $remove_files = true) : string
     {
         $zip_path = $zip_path===basename($zip_path)
-            ? Storage::disk(File::PRIVATE_STORAGE)->path('') . $zip_path
+            ? Storage::disk(File::TEMP_STORAGE)->path('') . $zip_path
             : $zip_path;
 
         // Create ZIP and add files
@@ -64,7 +70,9 @@ class Zip
 
         // Remove source files
         if ($remove_files) {
-            File::removeFiles($files);
+            foreach ($files as $file) {
+                unlink($file);
+            }
         }
 
         return $zip_path;

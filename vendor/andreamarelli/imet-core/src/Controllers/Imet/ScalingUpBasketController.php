@@ -4,6 +4,7 @@ namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
 use AndreaMarelli\ImetCore\Controllers\__Controller;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Basket as BasketModel;
+use AndreaMarelli\ModularForms\Helpers\File\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,8 +20,7 @@ class ScalingUpBasketController extends __Controller
     {
         $item = BasketModel::find($id);
         if ($item) {
-            $disk = Storage::disk(BasketModel::$UPLOAD_DISK);
-            $disk->delete($item->item);
+            Storage::disk(BasketModel::BASKET_DISK)->delete($item->item);
             return BasketModel::destroy($item->id);
         }
 

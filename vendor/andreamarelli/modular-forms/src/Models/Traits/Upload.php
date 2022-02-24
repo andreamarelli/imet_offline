@@ -10,8 +10,6 @@ use PDO;
 
 trait Upload {
 
-    public static $UPLOAD_DISK = File::PUBLIC_STORAGE;
-    public static $UPLOAD_PATH = 'temp/';
     protected static $DOWNLOAD_ROUTE=  '/file/';
 
     public static $upload_object =  [
@@ -31,7 +29,7 @@ trait Upload {
      */
     public static function uploadFile($uploaded_file): ?array
     {
-        $temp_filename = Storage::disk(self::$UPLOAD_DISK)->putFile(static::$UPLOAD_PATH, $uploaded_file);
+        $temp_filename = Storage::disk(File::TEMP_STORAGE)->putFile('', $uploaded_file);
         $original_filename = $uploaded_file->getClientOriginalName();
         if($temp_filename){
             $temp_filename = basename($temp_filename);
@@ -123,7 +121,7 @@ trait Upload {
             if($file_content === null) abort('404');
             return [$file_content, $file_name];
         } elseif(array_key_exists('temp_filename', $params)){
-            $file_content = Storage::disk(self::$UPLOAD_DISK)->get(static::$UPLOAD_PATH.$params['temp_filename']);
+            $file_content = Storage::disk(File::TEMP_STORAGE)->get($params['temp_filename']);
             $file_name = $params['original_filename'];
             return [$file_content, $file_name];
         }
@@ -248,7 +246,7 @@ trait Upload {
     {
         if(!empty($uploads)){
 
-            $storage = Storage::disk(self::$UPLOAD_DISK);
+            $storage = Storage::disk(File::TEMP_STORAGE);
 
             foreach ($uploads as $field_key=>$upload){
                 $fileName = $fileContent = null;
@@ -258,7 +256,7 @@ trait Upload {
                     // From uploaded file
                     if(array_key_exists('path', $upload)){
                         $fileName = $upload['original_filename'];
-                        $fileContent = $storage->get(self::$UPLOAD_PATH.$upload['path']);
+                        $fileContent = $storage->get($upload['path']);
                     }
                     // From JSON import
                     elseif(array_key_exists('file_content', $upload)){
@@ -304,8 +302,8 @@ trait Upload {
      */
     public static function getUploadFileContent($upload): string
     {
-        $storage = Storage::disk(self::$UPLOAD_DISK);
-        return $storage->get(self::$UPLOAD_PATH.$upload['temp_filename']);
+        $storage = Storage::disk(File::TEMP_STORAGE);
+        return $storage->get($upload['temp_filename']);
     }
 
     /**
@@ -316,8 +314,8 @@ trait Upload {
      */
     public static function getUploadFileInfo($upload): array
     {
-        $storage = Storage::disk(self::$UPLOAD_DISK);
-        $path = self::$UPLOAD_PATH.$upload['temp_filename'];
+        $storage = Storage::disk(File::TEMP_STORAGE);
+        $path = $upload['temp_filename'];
         return [
             'size' => $storage->size($path),
             'format' => File::getMediaType($storage->path($path))

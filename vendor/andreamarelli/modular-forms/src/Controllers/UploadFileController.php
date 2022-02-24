@@ -46,7 +46,7 @@ class UploadFileController extends Controller
     public static function download($hash): BinaryFileResponse
     {
         [$file_content, $file_name] = Module::getFileByHash($hash);
-        $disk = Storage::disk(File::PRIVATE_STORAGE);
+        $disk = Storage::disk(File::TEMP_STORAGE);
         $disk->put($hash, $file_content);
         $file_path = $disk->path($hash);
         return response()

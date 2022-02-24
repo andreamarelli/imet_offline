@@ -25,6 +25,8 @@ class ApplySQL extends Command
      */
     protected $description = 'Apply SQL file to IMET offline database';
 
+    private $storage;
+
     /**
      * Create a new command instance.
      *
@@ -32,6 +34,7 @@ class ApplySQL extends Command
      */
     public function __construct()
     {
+        $this->storage = Storage::disk('imet_db_sql');
         parent::__construct();
     }
 
@@ -52,14 +55,14 @@ class ApplySQL extends Command
         }
 
         // File from vendor folder
-        else if(Storage::disk('imet_db_sql')->exists($basename)){
-            $this->dispatch(Jobs\ApplySQL::class, Storage::disk('imet_db_sql')->path($basename));
+        else if($this->storage->exists($basename)){
+            $this->dispatch(Jobs\ApplySQL::class, $this->storage->path($basename));
             return 0;
         }
 
         // File not found
         else {
-            $this->error('File not found at ' . Storage::disk('imet_db_sql')->path($basename). '. Cannot apply SQL!!');
+            $this->error('File not found at ' . $this->storage->path($basename). '. Cannot apply SQL!!');
             return 1;
         }
 

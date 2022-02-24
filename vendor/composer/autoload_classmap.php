@@ -280,7 +280,7 @@ return array(
     'AndreaMarelli\\ModularForms\\Helpers\\File\\Hash' => $vendorDir . '/andreamarelli/modular-forms/src/Helpers/File/Hash.php',
     'AndreaMarelli\\ModularForms\\Helpers\\File\\Zip' => $vendorDir . '/andreamarelli/modular-forms/src/Helpers/File/Zip.php',
     'AndreaMarelli\\ModularForms\\Helpers\\Geo\\PostGis' => $vendorDir . '/andreamarelli/modular-forms/src/Helpers/Geo/PostGis.php',
-    'AndreaMarelli\\ModularForms\\Helpers\\Geo\\PostGisBin' => $vendorDir . '/andreamarelli/modular-forms/src/Helpers/Geo/PostGisBin.php',
+    'AndreaMarelli\\ModularForms\\Helpers\\Geo\\PostGisSHP' => $vendorDir . '/andreamarelli/modular-forms/src/Helpers/Geo/PostGisSHP.php',
     'AndreaMarelli\\ModularForms\\Helpers\\Geo\\PostGisToGeoJSON' => $vendorDir . '/andreamarelli/modular-forms/src/Helpers/Geo/PostGisToGeoJSON.php',
     'AndreaMarelli\\ModularForms\\Helpers\\Geo\\Wkt' => $vendorDir . '/andreamarelli/modular-forms/src/Helpers/Geo/Wkt.php',
     'AndreaMarelli\\ModularForms\\Helpers\\HTTP' => $vendorDir . '/andreamarelli/modular-forms/src/Helpers/HTTP.php',

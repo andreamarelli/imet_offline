@@ -21,7 +21,7 @@ trait Export
      */
     public static function exportToJSON($path, $data, bool $download = true)
     {
-        $path = Storage::disk(File::PRIVATE_STORAGE)->path('') . $path;
+        $path = Storage::disk(File::TEMP_STORAGE)->path('') . $path;
 
         $handle = fopen($path, 'w');
         fwrite($handle, json_encode($data));
@@ -41,7 +41,7 @@ trait Export
      */
     public static function exportToCSV($path, $data): BinaryFileResponse
     {
-        $path = Storage::disk(File::PRIVATE_STORAGE)->path('') . $path;
+        $path = Storage::disk(File::TEMP_STORAGE)->path('') . $path;
 
         // Append keys as first row
         array_unshift($data, array_keys($data[0]));
@@ -71,7 +71,7 @@ trait Export
      */
     public static function exportToXLS($path, $data): BinaryFileResponse
     {
-        $path = Storage::disk(File::PRIVATE_STORAGE)->path('') . $path;
+        $path = Storage::disk(File::TEMP_STORAGE)->path('') . $path;
 
         $columns = array_keys($data[0]);
         // Initialize XLS file
@@ -102,7 +102,7 @@ trait Export
      */
     public static function exportToPDF($path, $htmlContent): BinaryFileResponse
     {
-        $path = Storage::disk(File::PRIVATE_STORAGE)->path('') . $path;
+        $path = Storage::disk(File::TEMP_STORAGE)->path('') . $path;
 
         Browsershot::html($htmlContent)
             ->emulateMedia('screen')
@@ -125,7 +125,7 @@ trait Export
      */
     public static function exportToGeoJSON($path, $data): BinaryFileResponse
     {
-        $path = Storage::disk(File::PRIVATE_STORAGE)->path('') . $path;
+        $path = Storage::disk(File::TEMP_STORAGE)->path('') . $path;
 
         $handle = fopen($path, 'w');
         fwrite($handle, $data);

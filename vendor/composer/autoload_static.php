@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit620d1834619d944e3bddfb2e2a64e507
+class ComposerStaticInit699d5c347e53dabe7a8091ef2c1ef71f
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -1022,7 +1022,7 @@ class ComposerStaticInit620d1834619d944e3bddfb2e2a64e507
         'AndreaMarelli\\ModularForms\\Helpers\\File\\Hash' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/File/Hash.php',
         'AndreaMarelli\\ModularForms\\Helpers\\File\\Zip' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/File/Zip.php',
         'AndreaMarelli\\ModularForms\\Helpers\\Geo\\PostGis' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/Geo/PostGis.php',
-        'AndreaMarelli\\ModularForms\\Helpers\\Geo\\PostGisBin' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/Geo/PostGisBin.php',
+        'AndreaMarelli\\ModularForms\\Helpers\\Geo\\PostGisSHP' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/Geo/PostGisSHP.php',
         'AndreaMarelli\\ModularForms\\Helpers\\Geo\\PostGisToGeoJSON' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/Geo/PostGisToGeoJSON.php',
         'AndreaMarelli\\ModularForms\\Helpers\\Geo\\Wkt' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/Geo/Wkt.php',
         'AndreaMarelli\\ModularForms\\Helpers\\HTTP' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/HTTP.php',
@@ -7716,10 +7716,10 @@ class ComposerStaticInit620d1834619d944e3bddfb2e2a64e507
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit620d1834619d944e3bddfb2e2a64e507::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit620d1834619d944e3bddfb2e2a64e507::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit620d1834619d944e3bddfb2e2a64e507::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit620d1834619d944e3bddfb2e2a64e507::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit699d5c347e53dabe7a8091ef2c1ef71f::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit699d5c347e53dabe7a8091ef2c1ef71f::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit699d5c347e53dabe7a8091ef2c1ef71f::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit699d5c347e53dabe7a8091ef2c1ef71f::$classMap;
 
         }, null, ClassLoader::class);
     }

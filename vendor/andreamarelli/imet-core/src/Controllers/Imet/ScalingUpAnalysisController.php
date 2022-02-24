@@ -160,7 +160,8 @@ class ScalingUpAnalysisController
     }
 
     /**
-     * export scaling up images in zip file
+     * Export scaling up images in zip file
+     *
      * @param int $scaling_id
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|string
      */
@@ -169,7 +170,7 @@ class ScalingUpAnalysisController
         $files = [];
         $scaling_up = Basket::where('scaling_up_id', $scaling_id)->get();
         foreach ($scaling_up as $record) {
-            $files[] = Storage::disk(File::PUBLIC_FOLDER)->path('') . $record->item;
+            $files[] = Storage::disk(Basket::BASKET_DISK)->path('') . $record->item;
         }
 
         if (count($files) > 1) {

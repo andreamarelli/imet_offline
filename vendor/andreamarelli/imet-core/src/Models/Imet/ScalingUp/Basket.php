@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Storage;
 
 class Basket extends Model
 {
-    public static $UPLOAD_DISK = File::PUBLIC_FOLDER;
-    public static $UPLOAD_FOLDER = 'basket/';
+    public const BASKET_DISK = 'public_folder';
+    public const BASKET_FOLDER = 'basket/';
+
     public $timestamps = false;
     protected $table = 'imet.scaling_up_basket';
     protected $fillable = ['item', 'order', 'comment', 'scaling_up_id'];
@@ -30,15 +31,11 @@ class Basket extends Model
         $record = BasketModel::create(["order" => 1, 'scaling_up_id' => $item['scaling_up_id']]);
         $imageName = $record->id . '.png';
 
-        $disk = Storage::disk(BasketModel::$UPLOAD_DISK);
-        if (!$disk->exists(BasketModel::$UPLOAD_FOLDER)) {
-            $disk->makeDirectory(BasketModel::$UPLOAD_FOLDER);
-        }
-        $image_path = BasketModel::$UPLOAD_FOLDER . $imageName;
+        $disk = Storage::disk(self::BASKET_DISK);
+        $image_path = self::BASKET_FOLDER . $imageName;
         if ($disk->put($image_path, base64_decode($image))) {
             $record->item = $image_path;// BasketModel::create(["item" => $imageName, "order" => 1]);
             $record->comment = $item['comment'];
-
             $record->save();
             return json_encode($record);
         }

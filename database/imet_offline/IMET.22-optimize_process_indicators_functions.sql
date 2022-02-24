@@ -377,7 +377,7 @@ END;
 $$;
 
 
-CREATE VIEW imet_assessment.v_imet_eval_stat_step4 AS
+CREATE OR REPLACE VIEW imet_assessment_v2.v_imet_eval_stat_step4 AS
 WITH table0 AS (
     SELECT v_imet_forms."FormID" AS formid,
            v_imet_forms."Year",

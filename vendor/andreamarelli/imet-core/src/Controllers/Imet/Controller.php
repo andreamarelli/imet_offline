@@ -26,7 +26,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 use function imet_offline_version;
 use function redirect;
@@ -303,16 +306,17 @@ class Controller extends __Controller
     }
 
     /**
-     * export Imet's json in batch (zip file) or if only one is selected as json file
+     * Export IMET json in batch (zip file) or if only one is selected as json file
+     *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
-     * @throws \PhpOffice\PhpSpreadsheet\Exception
-     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
-    public function export_batch(Request $request)
+    public function export_batch(Request $request): BinaryFileResponse
     {
         $imetIds = explode(",", $request->input('selection'));
         $imets = Imet::whereIn('FormID', $imetIds)->get();
+
+        $files = [];
         foreach ($imets as $imet) {
             $files[] = $this->export($imet, true, false);
         }
@@ -329,9 +333,10 @@ class Controller extends __Controller
      *
      * @param Imet $item
      * @param bool $to_file
+     * @param bool $download
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|array
      */
-    public function export(Imet $item, $to_file = true, $download = true)
+    public function export(Imet $item, bool $to_file = true, bool $download = true)
     {
         $imet_id = $item->getKey();
         $imet_form = $item
@@ -501,20 +506,21 @@ class Controller extends __Controller
             $import = new static();
             //and then check if is zip or json
             if (in_array($ext, ['zip'])) {
-                $extractFiles = Zip::extract($uploaded['temp_filename']);
+                $uploaded_path = Storage::disk(File::TEMP_STORAGE)->path( $uploaded['temp_filename']);
+                $extractFiles = Zip::extract($uploaded_path);
                 $num_extracted = 0;
                 foreach ($extractFiles as $item) {
                     if(Str::endsWith($item, '.json') && $num_extracted < 10){
                         $json = json_decode(Upload::getUploadFileContent(['temp_filename' => $item]), true);
                         $files[] = $import->import(new Request(), $json, false);
-                        File::removeFiles([$item], FILE::PUBLIC_STORAGE, "temp/");
+                        Storage::disk(File::TEMP_STORAGE)->delete($item);
                         $num_extracted++;
                     }
                 }
             } else {
                 $json = json_decode(Upload::getUploadFileContent($uploaded), true);
                 $files[] = $import->import(new Request(), $json, false);
-                File::removeFiles([$uploaded['temp_filename']], FILE::PUBLIC_STORAGE, "temp/");
+                Storage::disk(File::TEMP_STORAGE)->delete($uploaded['temp_filename']);
             }
 
             if (count($files) === 0 || (count($files) === 1 && isset($files[0]) && $files[0]['status'] === 'error')) {
