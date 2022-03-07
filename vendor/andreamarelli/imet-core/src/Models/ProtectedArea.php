@@ -16,6 +16,7 @@ use Illuminate\Support\Collection;
  * @property string $name
  * @property string $iucn_category
  * @property string $creation_date
+ * @property numeric $area
  *
  * @package AndreaMarelli\ImetCore\Models
  */
@@ -26,7 +27,8 @@ class ProtectedArea extends BaseProtectedArea
     public $primaryKey = 'global_id';
 
     /**
-     * Get by global_id (to be deprecated)
+     * @deprecated
+     * Get by global_id
      *
      * @param $global_id
      * @return \AndreaMarelli\ImetCore\Models\ProtectedArea|\Illuminate\Database\Eloquent\Model|object|null
@@ -40,11 +42,11 @@ class ProtectedArea extends BaseProtectedArea
     /**
      * Get protected areas' countries
      *
-     * @return array
+     * @return \AndreaMarelli\ImetCore\Models\Country[]|\Illuminate\Database\Eloquent\Collection
      */
     public static function getCountries()
     {
-        $countries = static::selectRaw('regexp_split_to_table(country, \'\;\') as iso3')
+        $countries = (new ProtectedArea)->selectRaw('regexp_split_to_table(country, \'\;\') as iso3')
             ->distinct()
             ->get()
             ->pluck('iso3')
@@ -86,17 +88,4 @@ class ProtectedArea extends BaseProtectedArea
         });
     }
 
-    /**
-     * @return string
-     */
-    public function rawQueryToImet(): string
-    {
-        $values = "'".$this->global_id."', ";
-        $values .= "'".$this->country."', ";
-        $values .= "'".$this->wdpa_id."', ";
-        $values .= "'".str_replace("'", "''", $this->name)."', ";
-        $values .= "'".$this->iucn_category."', ";
-        $values .= $this->creation_date!==null ? "'".$this->creation_date."'" : "NULL";
-        return 'INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('.$values.');';
-    }
 }

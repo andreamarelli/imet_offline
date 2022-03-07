@@ -66,4 +66,6 @@ return [
     'upgrade_success'   => 'Upgrade to IMET v2 successfully completed',
     'upgrade_failed'    => 'Error in upgrading to IMET v2',
 
+    'synthetic_indicator' => 'synthetic indicator',
+
 ];

@@ -1,5 +1,5 @@
 <template>
-    <div class="smallMenu" style="min-height: 50px;">
+    <div :class="className" style="min-height: 50px;">
         <div class="standalone js-smallMenu" id="smallMenu" v-if="list_names.length > 1">
             <div :class="is_selected(idx)" v-for="(item, idx) in list_names" v-html="item"
                  @click="scroll_to_section(idx)">
@@ -25,6 +25,10 @@ export default {
         ids: {
             type: String,
             default: ''
+        },
+        className: {
+            type: String,
+            default: 'smallMenu'
         }
     },
     data: function () {

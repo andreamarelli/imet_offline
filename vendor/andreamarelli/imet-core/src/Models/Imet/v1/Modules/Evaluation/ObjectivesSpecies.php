@@ -24,6 +24,20 @@ class ObjectivesSpecies extends Modules\Component\ImetModule_Eval
         $this->module_info = trans('imet-core::v1_evaluation.ObjectivesSpecies.module_info');
 
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Eval_ObjectivesC13',
+            'fields' => [
+                'Status', 'Benchmark1', 'Benchmark2', 'Benchmark3', 'Objective'
+            ]
+        ];
     }
 }

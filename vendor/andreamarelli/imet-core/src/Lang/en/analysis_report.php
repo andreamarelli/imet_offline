@@ -25,15 +25,17 @@ return [
     'select_all' => 'Select all',
     'reset' => 'Reset',
     'more_than_one_file' => 'You cannot download only one file',
+    'navigation_menu' => 'Navigation menu',
     'sections' => [
-        'first' => '1. Location of selected PAs',
-        'second' => '2. General elements of the protected areas',
-        'third' => '3. Key elements of conservation',
-        'fourth' => '4. Overall management of effectiveness scores',
-        'fifth' => '5. Grouping',
-        'sixth' => '6. Analysis per element of the management cycle',
-        'seventh' => '7. Comparison of a Protected Area within a PA network',
-        'eighth' => '8. Additional Option: Digital information per Protected Area'
+        'first' => 'Location of selected PAs',
+        'second' => 'General elements of the protected areas',
+        'third' => 'Key elements of conservation',
+        'fourth' => 'Overall management of effectiveness scores',
+        'fifth' => 'Grouping',
+        'sixth' => 'Analysis per element of the management cycle',
+        'seventh' => 'Comparison of a Protected Area within a PA network',
+        'eighth' => 'Additional Option: Digital information per Protected Area',
+        'list_of_names' => 'List of PAs',
     ],
     'element_diagrams' => [
         'context' => [
@@ -351,5 +353,42 @@ return [
         'pr13_14' => 'Tourism management',
         'pr15_16' => 'Monitoring and Research',
         'pr17_18' => 'Management of the effects of climate change and ecosystem services'
+    ],
+    'guidance' => [
+        'custom_names' => 'PROTECTED AREAS NAMES',
+        'list_of_pas' => 'List of Protected Areas names',
+        'map' => ' Location of selected PAs',
+        'general_elements' => 'General elements of the protected areas',
+        'key_elements' => 'Key Elements of Conservation',
+        'overall' => 'Overall management of effectiveness',
+        'grouping' => ' Grouping',
+        'analysis_per_element' => 'Analysis per element of the management cycle',
+        'context' => ['main' => 'Management Context'],
+        'planning' => ['main' => 'Planning'],
+        'inputs' => ['main' => 'Inputs'],
+        'process' => [
+            'main' => 'Processes',
+            'overall' => 'Six Sub Elements of the Process',
+            'pr1_pr6' => 'PR A: Internal management systems and processes',
+            'pr7_pr9' => 'PR B: Management / Protection of the values',
+            'pr10_pr12' => 'PR C: Stakeholder relations',
+            'pr13_pr14' => 'PR D: Tourism management',
+            'pr15_pr16' => 'PR E: Monitoring and Research',
+            'pr17_pr18' => 'PR F: Management of the effects of climate change and ecosystem services',
+        ],
+        'outputs' => ['main' => 'Outputs'],
+        'outcomes' => ['main' => 'Outcomes'],
+        'relative_performance' => 'Comparison of a Protected Area within a PA network',
+        'additional_options' => [
+            'main' => 'Additional Option: Digital information per Protected Area',
+            'management_effectiveness' => ' Management effectiveness analysis',
+            'specific_actions_mention' => ' Summary of key elements affecting the management elements',
+            'total_carbon' => 'Total carbon',
+            'terestial_ecoregions' => 'Terestial ecoregions',
+            'marine_ecoregions' => 'Marine ecoregions',
+            'copernicus' => 'Copernicus Global Land Cover',
+            'forest_cover' => 'Forest Cover',
+            'protected_area_coverage_and_connectivity' => 'Protected area coverage and connectivity',
+            'land_degradation' => 'Land degradation']
     ]
 ];

@@ -43,6 +43,7 @@ class Controller extends __Controller
 {
     use Pame;
     use Backup;
+    use ConvertSQLite;
 
     protected static $form_class = Imet::class;
     protected static $form_view_prefix = 'imet-core::';
@@ -384,14 +385,13 @@ class Controller extends __Controller
      * Import a full IMET from json file
      *
      * @param \Illuminate\Http\Request|null $request
-     * @param string|null $json
+     * @param $json
      * @param boolean $returnJson
-     * @return \Illuminate\Http\JsonResponse
+     * @return array|\Illuminate\Http\JsonResponse|string[]
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     * @throws \ReflectionException
      * @throws \Throwable
      */
-    public function import(Request $request, $json = null, $returnJson = true)
+    public function import(Request $request, $json = null, bool $returnJson = true)
     {
         try {
             if ($json === null) {
@@ -403,7 +403,14 @@ class Controller extends __Controller
 
             $imet_version = $json['Imet']['imet_version'] ?? null;
             $version = $json['Imet']['version'];
+
             DB::beginTransaction();
+
+            // Non-Wdpa protected area
+            if(array_key_exists('NonWdpaProtectedArea', $json)){
+                $wdpa_id = ProtectedAreaNonWdpa::import($json['NonWdpaProtectedArea']);
+                $json['Imet']['wdpa_id'] = $wdpa_id;
+            }
 
             if ($version === 'v1') {
                 // Create new form and return ID
@@ -413,11 +420,6 @@ class Controller extends __Controller
                 $modules_imported['Evaluation'] = v1\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
                 Encoder::importModule($formID, $json['Encoders'] ?? null);
             } elseif ($version === 'v2') {
-                // Non-Wdpa protected area
-                if(array_key_exists('NonWdpaProtectedArea', $json)){
-                    $wdpa_id = ProtectedAreaNonWdpa::import($json['NonWdpaProtectedArea']);
-                    $json['Imet']['wdpa_id'] = $wdpa_id;
-                }
                 // Create new form and return ID
                 $formID = v2\Imet::importForm($json['Imet']);
                 // Populate Imet & Imet_Eval modules
@@ -426,6 +428,7 @@ class Controller extends __Controller
                 Encoder::importModule($formID, $json['Encoders'] ?? null);
             }
             DB::commit();
+
             $response['modules'] = $modules_imported;
         } catch (Exception $e) {
             DB::rollback();

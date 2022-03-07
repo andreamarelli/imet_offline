@@ -30,4 +30,18 @@ class Governance extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Governance',
+            'fields' => [
+                'Partner','InstitutionType','PartnershipsType1','PartnershipsType2','PartnershipsType3', 'Type', 'Comments'
+            ]
+        ];
+    }
 }

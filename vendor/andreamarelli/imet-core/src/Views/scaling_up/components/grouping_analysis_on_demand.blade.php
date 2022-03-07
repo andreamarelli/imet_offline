@@ -1,4 +1,5 @@
-<container_section :id="'{{$name}}'" :title="'{{$title}}'">
+<container_section :id="'{{$name}}'" :title="'{{$title}}'" :code="'{{$code}}'"
+                   :guidance="'{{trans('imet-core::analysis_report.guidance.grouping')}}'">
     <template slot-scope="container">
         <div class="align-items-center">
             <div class="list-key-numbers horizontal">

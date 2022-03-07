@@ -1,4 +1,6 @@
-<container_section :id="'{{$name}}'" :title="'{{$title}}'">
+<container_section :id="'{{$name}}'" :title="'{{$title}}'" :code="'{{$code}}'"
+                   :guidance="'{{trans('imet-core::analysis_report.guidance.overall')}}'"
+>
     <template slot-scope="container">
         <div class="row">
             <div class="col-sm">

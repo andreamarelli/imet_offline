@@ -4,11 +4,11 @@
 /** @var string $index */
 /** @var bool $synthetic_indicator */
 
-$synthetic_indicator = isset($synthetic_indicator) ? $synthetic_indicator : false;
+$synthetic_indicator = $synthetic_indicator ?? false;
 
 if($synthetic_indicator){
     $code = '';
-    $title = '<b class="text-uppercase">'.trans('imet-core::v2_common.synthetic_indicator').'</b>';
+    $title = '<b class="text-uppercase">'.trans('imet-core::common.synthetic_indicator').'</b>';
     $rating =  'synthetic_indicator';
 } else {
     $code = isset($index) ? "{{ labels['".$index."'].code }}" : "{{ labels[index].code }}";
@@ -31,7 +31,7 @@ $echo_rating = "{{ ".$rating." }}";
             <div class="histogram-row__progress-bar__limit-left">0%</div>
             <div class="histogram-row__progress-bar__bar">
                 <div class="progress">
-                    @include('imet-core::v2.evaluation.management_effectiveness.components.progress_bar', ['rating' => $rating])
+                    @include('imet-core::components.management_effectiveness.progress_bar', ['rating' => $rating])
                 </div>
             </div>
             <div class="histogram-row__progress-bar__limit-right">100%</div>
@@ -41,7 +41,7 @@ $echo_rating = "{{ ".$rating." }}";
             <div class="histogram-row__progress-bar__limit-left">0%</div>
             <div class="histogram-row__progress-bar__bar">
                 <div class="progress">
-                    @include('imet-core::v2.evaluation.management_effectiveness.components.progress_bar', ['rating' => $rating])
+                    @include('imet-core::components.management_effectiveness.progress_bar', ['rating' => $rating])
                 </div>
             </div>
             <div class="histogram-row__progress-bar__limit-right">100%</div>
@@ -50,7 +50,7 @@ $echo_rating = "{{ ".$rating." }}";
             <div class="histogram-row__progress-bar__limit-left">-100%</div>
             <div class="histogram-row__progress-bar__bar">
                 <div class="progress">
-                    @include('imet-core::v2.evaluation.management_effectiveness.components.progress_bar', ['rating' => $rating, 'is_negative' => true])
+                    @include('imet-core::components.management_effectiveness.progress_bar', ['rating' => $rating, 'is_negative' => true])
                 </div>
             </div>
             <div class="histogram-row__progress-bar__limit-right">0%</div>
@@ -60,13 +60,13 @@ $echo_rating = "{{ ".$rating." }}";
             <div class="histogram-row__progress-bar__limit-left">-100%</div>
             <div class="histogram-row__progress-bar__bar">
                 <div class="progress" v-if="<?php echo $rating; ?><0">
-                    @include('imet-core::v2.evaluation.management_effectiveness.components.progress_bar', ['rating' => $rating, 'is_negative' => true])
+                    @include('imet-core::components.management_effectiveness.progress_bar', ['rating' => $rating, 'is_negative' => true])
                 </div>
                 <div class="progress" v-else></div>
             </div>
             <div class="histogram-row__progress-bar__bar">
                 <div class="progress" v-if="<?php echo $rating; ?>>0">
-                    @include('imet-core::v2.evaluation.management_effectiveness.components.progress_bar', ['rating' => $rating])
+                    @include('imet-core::components.management_effectiveness.progress_bar', ['rating' => $rating])
                 </div>
                 <div class="progress" v-else></div>
             </div>

@@ -24,4 +24,21 @@ class Template{
         return '';
     }
 
+    /**
+     * Return country flag from ISO
+     *
+     * @param $iso
+     * @return string
+     * @throws \Exception
+     */
+    public static function flag($iso): string
+    {
+        if($iso!=''){
+            $country = Country::getByISO($iso);
+            $iso = $country->iso2;
+            return BaseTemplate::flag($iso, $country->Name);
+        }
+        return '';
+    }
+
 }

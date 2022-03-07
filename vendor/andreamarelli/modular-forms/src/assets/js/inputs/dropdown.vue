@@ -75,7 +75,7 @@
 
             _getPair(item){
               return  {
-                  label: this.option_list[item],
+                  label: this.option_list[item] ?? item,
                   code: item
               };
             },

@@ -2,10 +2,12 @@
     <div>
         <div class="" @click="toggle_view()">
 
-            <div  :id="'menu-header-header-main'"
+            <div :id="'menu-header-header-main'"
                  class="list-key-numbers horizontal">
                 <div class="list-head"><span class="fas fa-fw"
-                                             :class="{'fa-plus': !data.show_view,'fa-minus':data.show_view}"></span> {{title}}</div>
+                                             :class="{'fa-plus': !data.show_view,'fa-minus':data.show_view}"></span>
+                    {{ title }}
+                </div>
             </div>
         </div>
         <div class="bg-white collapse" :class="{show: data.show_view}">
@@ -20,6 +22,7 @@
                 <div v-else-if="error_wrong" class="dopa_not_available"
                      v-html="stores.BaseStore.localization('imet-core::analysis_report.error_wrong')"></div>
                 <div v-else class="container-menu">
+                    <guidance :text="guidance"/>
                     <!--        <small_menu v-if="show_menu" :items="data.values.diagrams"></small_menu>-->
                     <slot :props="data"></slot>
                 </div>
@@ -66,7 +69,12 @@ export default {
         title: {
             type: String,
             default: ''
+        },
+        guidance: {
+            type: String,
+            default: ''
         }
+
     },
     watch: {
         loaded_once: {

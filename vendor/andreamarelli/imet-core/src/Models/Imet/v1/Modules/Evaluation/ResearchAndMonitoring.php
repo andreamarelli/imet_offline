@@ -29,6 +29,20 @@ class ResearchAndMonitoring extends Modules\Component\ImetModule_Eval
         $this->ratingLegend = trans('imet-core::v1_evaluation.ResearchAndMonitoring.ratingLegend');
 
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Eval_ResearchAndMonitoring',
+            'fields' => [
+                'Program', 'EvaluationScore', 'Comments'
+            ]
+        ];
     }
 }

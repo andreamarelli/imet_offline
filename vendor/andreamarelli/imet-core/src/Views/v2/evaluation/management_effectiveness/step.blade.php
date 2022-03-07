@@ -16,15 +16,15 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
         {{-- C11->C15 statistics --}}
         <div style="margin-bottom: 20px;">
             <div v-for="(item, index) in intermediate_values">
-                @include('imet-core::v2.evaluation.management_effectiveness.components.histogram_row', ['row_type' => '0_to_100', 'values' => 'intermediate_values'])
+                @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100', 'values' => 'intermediate_values'])
             </div>
         </div>
 
         {{-- C1->C3 statistics --}}
         <div style="margin-bottom: 30px;">
-            <div>@include('imet-core::v2.evaluation.management_effectiveness.components.histogram_row', ['row_type' => '0_to_100', 'values' => 'values', 'index' => 'c1'])</div>
-            <div>@include('imet-core::v2.evaluation.management_effectiveness.components.histogram_row', ['row_type' => 'minus100_to_100', 'values' => 'values', 'index' => 'c2'])</div>
-            <div>@include('imet-core::v2.evaluation.management_effectiveness.components.histogram_row', ['row_type' => 'minus100_to_0', 'values' => 'values', 'index' => 'c3'])</div>
+            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100', 'values' => 'values', 'index' => 'c1'])</div>
+            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_100', 'values' => 'values', 'index' => 'c2'])</div>
+            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_0', 'values' => 'values', 'index' => 'c3'])</div>
         </div>
 
     @elseif($step=='process')
@@ -32,7 +32,7 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
         {{-- Step related statistics --}}
         <div style="margin-bottom: 20px;">
             <div v-for="(item, index) in values">
-                @include('imet-core::v2.evaluation.management_effectiveness.components.histogram_row', ['row_type' => '0_to_100_full_width', 'values' => 'values'])
+                @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100_full_width', 'values' => 'values'])
             </div>
         </div>
 
@@ -44,9 +44,9 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
 
         {{-- Step related statistics --}}
         <div style="margin-bottom: 20px;">
-            <div>@include('imet-core::v2.evaluation.management_effectiveness.components.histogram_row', ['row_type' => '0_to_100', 'values' => 'values', 'index' => 'oc1'])</div>
-            <div>@include('imet-core::v2.evaluation.management_effectiveness.components.histogram_row', ['row_type' => 'minus100_to_100', 'values' => 'values', 'index' => 'oc2'])</div>
-            <div>@include('imet-core::v2.evaluation.management_effectiveness.components.histogram_row', ['row_type' => 'minus100_to_100', 'values' => 'values', 'index' => 'oc3'])</div>
+            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100', 'values' => 'values', 'index' => 'oc1'])</div>
+            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_100', 'values' => 'values', 'index' => 'oc2'])</div>
+            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_100', 'values' => 'values', 'index' => 'oc3'])</div>
         </div>
 
     @else
@@ -54,7 +54,7 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
         {{-- Step related statistics --}}
         <div style="margin-bottom: 30px;">
             <div v-for="(item, index) in values">
-                @include('imet-core::v2.evaluation.management_effectiveness.components.histogram_row', ['row_type' => '0_to_100_full_width', 'values' => 'values'])
+                @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100_full_width', 'values' => 'values'])
             </div>
         </div>
 
@@ -63,7 +63,7 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
     {{-- Step synthetic indicator --}}
     <div style="padding-top: 20px; border-top: 1px solid #aaa;">
         <div>
-            @include('imet-core::v2.evaluation.management_effectiveness.components.histogram_row', ['row_type' => '0_to_100_full_width', 'synthetic_indicator' => true])
+            @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100_full_width', 'synthetic_indicator' => true])
         </div>
     </div>
 

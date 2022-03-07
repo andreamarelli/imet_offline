@@ -29,6 +29,20 @@ class ManagementStaff extends Modules\Component\ImetModule
         $this->module_info = trans('imet-core::v1_context.ManagementStaff.module_info');
 
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'ManagementStaff',
+            'fields' => [
+                'Function',  'ExpectedPermanent', 'ActualPermanent', 'Observations', 'Source'
+            ]
+        ];
     }
 }

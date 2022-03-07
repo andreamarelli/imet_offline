@@ -31,4 +31,20 @@ class Sectors extends Modules\Component\ImetModule
         parent::__construct($attributes);
 
     }
+
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Sectors',
+            'fields' => [
+                'Name', 'UnderControlArea', 'UnderControlPatrolKm', 'UnderControlPatrolManDay', 'Objectives', 'Restrictions',
+                'SectorMap','Source','Observations'
+            ]
+        ];
+    }
 }

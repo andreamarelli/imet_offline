@@ -9,8 +9,6 @@ return [
     'methodology'   => 'Questão de Avaliação',
     'criteria'      => 'Classificação',
 
-    'synthetic_indicator' => 'Indicador sintético',
-
     'steps' => [
         'general_info'          => 'Informações gerais sobre a área protegida',
         'areas'                 => 'Áreas, limites e índice de forma, nível de controlo',

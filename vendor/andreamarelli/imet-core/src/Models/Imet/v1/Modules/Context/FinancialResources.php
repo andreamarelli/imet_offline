@@ -23,9 +23,21 @@ class FinancialResources extends Modules\Component\ImetModule
 
         $this->module_info = trans('imet-core::v1_context.FinancialResources.module_info');
 
-
-
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'FinancialResources',
+            'fields' => [
+                'Currency', 'ReferenceYear', 'ManagementFinancialPlanCosts', 'OperationalWorkPlanCosts', 'TotalBudget'
+            ]
+        ];
     }
 }

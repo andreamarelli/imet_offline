@@ -11,8 +11,6 @@ return [
     'methodology'   => 'Méthodologie',
     'criteria'      => 'Critères - Concept mesuré - Variables',
 
-    'synthetic_indicator' => 'indicateur synthese',
-
     'steps' => [
         'general_info'     => 'Informations générales',
         'areas'                 => 'Superficies, limites et indice de forme, niveau de contrôle',

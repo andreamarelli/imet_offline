@@ -49,17 +49,15 @@ if($version==='v1'){
             ])
 
             {{-- Analysis Report --}}
-            @if($version==='v2')
-                @include('modular-forms::buttons._generic', [
-                    'controller' => $controller_report,
-                    'action' =>'report',
-                    'item' => 'item.FormID',
-                    'label' => ucfirst(trans('imet-core::common.report')),
-                    'icon' => 'flag-checkered',
-                    'class' => 'yellow',
-                    'new_page' => false
-                ])
-            @endif
+            @include('modular-forms::buttons._generic', [
+                'controller' => $controller_report,
+                'action' =>'report',
+                'item' => 'item.FormID',
+                'label' => ucfirst(trans('imet-core::common.report')),
+                'icon' => 'flag-checkered',
+                'class' => 'yellow',
+                'new_page' => false
+            ])
 
         </div>
     </div>

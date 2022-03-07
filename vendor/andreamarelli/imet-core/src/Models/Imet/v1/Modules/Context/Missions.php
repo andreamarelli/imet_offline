@@ -27,9 +27,23 @@ class Missions extends Modules\Component\ImetModule
             ['name' => 'Observation',  'type' => 'text-area',   'label' => trans('imet-core::v1_context.Missions.fields.Observation')],
         ];
 
-
-
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Missions',
+            'fields' => [
+                'LocalVision', 'LocalMission', 'LocalObjective', 'LocalSource', 'LocalManagementPlan',
+                'InternationalVision','InternationalMission','InternationalObjective', 'InternationalSource', 'InternationalManagementPlan',
+                'Observation'
+            ]
+        ];
     }
 }

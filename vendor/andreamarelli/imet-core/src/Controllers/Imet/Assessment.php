@@ -35,23 +35,23 @@ trait Assessment{
 
         if($version!==null) {
             $functions = [
-                'context' => 'get_imet_evaluation_stats_step1',
-                'planning' => 'get_imet_evaluation_stats_step2',
-                'inputs' => 'get_imet_evaluation_stats_step3',
-                'process' => 'get_imet_evaluation_stats_step4',
-                'outputs' => 'get_imet_evaluation_stats_step5',
-                'outcomes' => 'get_imet_evaluation_stats_step6',
-                'process_pr1_pr6' => 'get_imet_evaluation_stats_step_process_pr1_pr6',
-                'process_pr7_pr9' => 'get_imet_evaluation_stats_step_process_pr7_pr9',
-                'process_pr10_pr12' => 'get_imet_evaluation_stats_step_process_pr10_pr12',
-                'process_pr13_pr14' => 'get_imet_evaluation_stats_step_process_pr13_pr14',
-                'process_pr15_pr16' => 'get_imet_evaluation_stats_step_process_pr15_pr16',
-                'process_pr17_pr18' => 'get_imet_evaluation_stats_step_process_pr17_pr18'
+                'context' => 'get_imet_evaluation_stats_by_formid_step1',
+                'planning' => 'get_imet_evaluation_stats_by_formid_step2',
+                'inputs' => 'get_imet_evaluation_stats_by_formid_step3',
+                'process' => 'get_imet_evaluation_stats_by_formid_step4',
+                'outputs' => 'get_imet_evaluation_stats_by_formid_step5',
+                'outcomes' => 'get_imet_evaluation_stats_by_formid_step6',
+                'process_pr1_pr6' => 'get_imet_evaluation_stats_step_by_formid_process_pr1_pr6',
+                'process_pr7_pr9' => 'get_imet_evaluation_stats_step_by_formid_process_pr7_pr9',
+                'process_pr10_pr12' => 'get_imet_evaluation_stats_step_by_formid_process_pr10_pr12',
+                'process_pr13_pr14' => 'get_imet_evaluation_stats_step_by_formid_process_pr13_pr14',
+                'process_pr15_pr16' => 'get_imet_evaluation_stats_step_by_formid_process_pr15_pr16',
+                'process_pr17_pr18' => 'get_imet_evaluation_stats_step_by_formid_process_pr17_pr18'
             ];
 
             $function = $step === 'global'
-                ? $assessment_schema . '.get_imet_evaluation_stats_step_summary(' . $item . '::text)'
-                : $assessment_schema . '.' . $functions[$step] . '(' . $item . ')';
+                ? $assessment_schema . ".get_imet_evaluation_stats_step_by_formid_summary('" . $item . "'::text)"
+                : $assessment_schema . "." . $functions[$step] . "('" . $item . "')";
 
             $stats = (array) DB::select(DB::raw('SELECT row_to_json(' . $function . ');'));
             $stats = $stats === [] ? $stats : json_decode($stats[0]->row_to_json, true);
@@ -171,6 +171,39 @@ trait Assessment{
                 ]
             ],
         ];
+    }
+
+
+    public static function score_class($value, $additional_classes=''): string
+    {
+        if($value===null){
+            $class = 'score_no';
+        } elseif($value===0){
+            $class = 'score_danger';
+        } elseif($value<34){
+            $class = 'score_alert';
+        } elseif($value<51){
+            $class = 'score_warning';
+        } else {
+            $class = 'score_success';
+        }
+        return 'class="'.$class.' '.$additional_classes.'"';
+    }
+
+    public static function score_class_threats($value, $additional_classes=''): string
+    {
+        if($value===null){
+            $class = 'score_no';
+        } elseif($value<-51){
+            $class = 'score_danger';
+        } elseif($value<-34){
+            $class = 'score_alert';
+        } elseif($value<-1){
+            $class = 'score_warning';
+        } else {
+            $class = 'score_success';
+        }
+        return 'class="'.$class.' '.$additional_classes.'"';
     }
 
 }

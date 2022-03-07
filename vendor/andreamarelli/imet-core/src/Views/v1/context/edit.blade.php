@@ -19,12 +19,14 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
 
 @section('content')
 
-    <h2>@lang_u('imet-core::common.context_long')</h2>
-    <div class="entity-heading">
-        <div class="id">#{{ $item->getKey() }}</div>
-        <div class="name">{{ $item->Name }}</div>
-        <div class="location">{!! \AndreaMarelli\ImetCore\Helpers\Template::flag_and_name($item->Country) !!}</div>
-    </div>
+{{--    <h2>@lang_u('imet-core::common.context_long')</h2>--}}
+{{--    <div class="entity-heading">--}}
+{{--        <div class="id">#{{ $item->getKey() }}</div>--}}
+{{--        <div class="name">{{ $item->Name }}</div>--}}
+{{--        <div class="location">{!! \AndreaMarelli\ImetCore\Helpers\Template::flag_and_name($item->Country) !!}</div>--}}
+{{--    </div>--}}
+
+    @include('imet-core::components.heading', ['phase' => 'context'])
 
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [

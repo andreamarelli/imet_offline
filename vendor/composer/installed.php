@@ -18,7 +18,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => 'a3bfe0c8483a372610569fca9d71ac6acbb99650',
+            'reference' => 'e5be7765c1bc66288a767b1eb8908a9791158768',
             'dev_requirement' => false,
         ),
         'andreamarelli/modular-forms' => array(
@@ -29,7 +29,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => 'e3aebea5b889e5edfdabf9fab98bfce912459a27',
+            'reference' => '8a7223c3af41b90a4ae384d2d190c82af73a36db',
             'dev_requirement' => false,
         ),
         'asm89/stack-cors' => array(

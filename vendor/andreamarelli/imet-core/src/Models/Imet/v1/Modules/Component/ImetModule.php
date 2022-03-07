@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\App;
 class ImetModule extends Module
 {
     use Upgrade;
+    use ConvertSQLite;
 
     public const CREATED_AT = 'UpdateDate';
     public const UPDATED_AT = 'UpdateDate';

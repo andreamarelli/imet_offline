@@ -14,4 +14,19 @@ class Objectives2 extends _Objectives
         parent::__construct($attributes);
 
     }
+
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Objectives2',
+            'fields' => [
+                'Status', 'Benchmark1', 'Benchmark2', 'Benchmark3', 'Objective'
+            ]
+        ];
+    }
 }

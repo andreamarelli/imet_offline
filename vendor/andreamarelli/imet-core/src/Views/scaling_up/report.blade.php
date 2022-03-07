@@ -23,11 +23,37 @@
                         </div>
                     </div>
                 </div>
-                @include('imet-core::scaling_up.components.wdpa_names')
+                <div class="scrollButtons mr-3" style="width:200px;">
+                    <div class="content">
+                        <span class="m-1">{{trans('imet-core::analysis_report.navigation_menu')}}</span>
+                        <span>
+                            <select class="form-control" @change="goTo($event)">
+                                <option
+                                    value="names">{{ trans('imet-core::analysis_report.guidance.custom_names') }}</option>
+                                <option
+                                    value="list_of_names">{{ trans('imet-core::analysis_report.sections.list_of_names') }}</option>
+                                @foreach($templates as $key => $template)
+                                    <option value="{{ $template['name'] }}">{{ $template['title'] }}</span>
+                                @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div id="names"></div>
                 @include('imet-core::scaling_up.components.scaling_up_template')
+                @include('imet-core::scaling_up.components.wdpa_names')
+                @include('imet-core::scaling_up.components.protected_areas',
+                                [   'name' => 'list_of_names' ,
+                                   'code' => '',
+                                   'title' => trans('imet-core::analysis_report.sections.list_of_names'),
+                                   'snapshot_id' => '',
+                                   'exclude_elements' => '',
+                                   'pas' => ($custom_names)
+                                ])
                 @foreach($templates as $key => $template)
                     @include('imet-core::scaling_up.components.'.$template['name'],
                                 [   'name' => $template['name'],
+                                   'code' => '',
                                    'title' => $template['title'],
                                    'snapshot_id' => $template['snapshot_id'],
                                    'exclude_elements' => $template['exclude_elements'],
@@ -43,12 +69,27 @@
             el: '#imet_report',
             data: {
                 url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController::class, 'get_ajax_responses']) }}'
+            },
+            methods: {
+                goTo: function (event) {
+                    window.ModularForms.Mixins.Animation.scrollPageToAnchor(event.target.value);
+                }
             }
         });
-    </script>
 
+    </script>
     <style>
         @media screen {
+
+            .scrollButtons {
+                bottom: 120px;
+            }
+
+            .scrollButtons div:hover {
+                background-color: #14532D;
+                color: white;
+            }
+
             .contailer {
                 position: relative;
             }

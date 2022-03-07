@@ -31,8 +31,32 @@ class VegetalSpecies extends Modules\Component\ImetModule
         $this->module_info = trans('imet-core::v1_context.VegetalSpecies.module_info');
         $this->ratingLegend = trans('imet-core::v1_context.VegetalSpecies.ratingLegend');
 
-
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'SpeciesVegetalPresence',
+            'fields' => [
+                'Species',
+                "FlagshipSpecies",
+                "EndangeredSpecies",
+                "EndemicSpecies",
+                "ExploitedSpecies",
+                "InvasiveSpecies",
+                "InsufficientDataSpecies",
+                'PopulationEstimation',
+                'DesiredPopulation',
+                'TrendRating',
+                'Reliability',
+                'Comments'
+            ]
+        ];
     }
 }

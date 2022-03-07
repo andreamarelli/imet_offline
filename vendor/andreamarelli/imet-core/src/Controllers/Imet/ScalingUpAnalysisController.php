@@ -7,8 +7,8 @@ use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScali
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ModularForms\Helpers\File\Zip;
 use AndreaMarelli\ModularForms\Helpers\File\File;
+use AndreaMarelli\ModularForms\Helpers\File\Zip;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -49,7 +49,7 @@ class ScalingUpAnalysisController
         $custom_names = [];
         $items = ScalingUpWdpa::retrieve_by_scaling_id($scaling_up_id);
         foreach ($items as $item) {
-            $custom_names[$item->FormID] = $item->name;
+            $custom_names[$item->FormID] =  $item;
         }
         return $custom_names;
     }
@@ -90,7 +90,7 @@ class ScalingUpAnalysisController
                 if (Imet::where('FormID', $value)->count() === 0) {
                     return false;
                 }
-            }else{
+            } else {
                 return false;
             }
 
@@ -130,22 +130,25 @@ class ScalingUpAnalysisController
         }
 
         $pa_ids = implode(',', array_keys($protected_areas));
-        $custom_names = $this->retrieve_custom_names($scaling_up_id);
+        $custom_items = $this->retrieve_custom_names($scaling_up_id);
+        $custom_names = array_map(function($v) {
+            return $v->name;
+        },$custom_items);
         $protected_areas_names = implode(', ', $custom_names);
 
-        usort($protected_areas, function($a, $b){
+        usort($protected_areas, function ($a, $b) {
             return $a['name'] > $b['name'];
         });
 
         $templates_names = [
-            ['name' => "map_view", 'title' => trans('imet-core::analysis_report.sections.first'), 'snapshot_id' => "map_view", 'exclude_elements' => ''],
-            ['name' => "general_elements", 'title' => trans('imet-core::analysis_report.sections.second'), 'snapshot_id' => "general_elements", 'exclude_elements' => ''],
-            ['name' => "key_elements_of_conservation", 'title' => trans('imet-core::analysis_report.sections.third'), 'snapshot_id' => "management_context", 'exclude_elements' => ''],
-            ['name' => "overall_management_effectiveness_scores", 'title' => trans('imet-core::analysis_report.sections.fourth'), 'snapshot_id' => "evaluation_of_protected_area_management_cycle", 'exclude_elements' => ''],
-            ['name' => 'grouping_analysis_on_demand', 'title' => trans('imet-core::analysis_report.sections.fifth'), 'snapshot_id' => "grouping_analysis_on_demand", 'exclude_elements' => 'js-grouping-action-buttons,start-zone,js-render-buttons'],
-            ['name' => "analysis_per_element_of_them_management_cycle", 'title' => trans('imet-core::analysis_report.sections.sixth'), 'snapshot_id' => "elements_diagrams", 'exclude_elements' => ''],
-            ['name' => "relative_performance_effectiveness_intervals", 'title' => trans('imet-core::analysis_report.sections.seventh'), 'snapshot_id' => "relative_performance_effectiveness_intervals", 'exclude_elements' => 'smallMenu'],
-            ['name' => "additional_option_digital_information_per_pa", 'title' => trans('imet-core::analysis_report.sections.eighth'), 'snapshot_id' => "additional_option_digital_information_per_pa", 'exclude_elements' => ''],
+            ['name' => "map_view", 'title' => trans('imet-core::analysis_report.sections.first'), 'snapshot_id' => "map_view", 'exclude_elements' => '', 'code' => 'S1'],
+            ['name' => "general_elements", 'title' => trans('imet-core::analysis_report.sections.second'), 'snapshot_id' => "general_elements", 'exclude_elements' => '', 'code' => 'S2'],
+            ['name' => "key_elements_of_conservation", 'title' => trans('imet-core::analysis_report.sections.third'), 'snapshot_id' => "management_context", 'exclude_elements' => '', 'code' => 'S3'],
+            ['name' => "overall_management_effectiveness_scores", 'title' => trans('imet-core::analysis_report.sections.fourth'), 'snapshot_id' => "evaluation_of_protected_area_management_cycle", 'exclude_elements' => '', 'code' => 'S4'],
+            ['name' => 'grouping_analysis_on_demand', 'title' => trans('imet-core::analysis_report.sections.fifth'), 'snapshot_id' => "grouping_analysis_on_demand", 'exclude_elements' => 'js-grouping-action-buttons,start-zone,js-render-buttons', 'code' => 'S5'],
+            ['name' => "analysis_per_element_of_them_management_cycle", 'title' => trans('imet-core::analysis_report.sections.sixth'), 'snapshot_id' => "elements_diagrams", 'exclude_elements' => '', 'code' => 'S6'],
+            ['name' => "relative_performance_effectiveness_intervals", 'title' => trans('imet-core::analysis_report.sections.seventh'), 'snapshot_id' => "relative_performance_effectiveness_intervals", 'exclude_elements' => 'smallMenu', 'code' => 'S7'],
+            ['name' => "additional_option_digital_information_per_pa", 'title' => trans('imet-core::analysis_report.sections.eighth'), 'snapshot_id' => "additional_option_digital_information_per_pa", 'exclude_elements' => '', 'code' => 'S8'],
         ];
 
         return view('imet-core::scaling_up.report', [
@@ -155,7 +158,8 @@ class ScalingUpAnalysisController
             'scaling_up_id' => $scaling_up_id,
             'protected_areas' => $protected_areas,
             'custom_names' => $custom_names,
-            'request' => $request
+            'request' => $request,
+            'custom_items' => $custom_items
         ]);
     }
 
@@ -175,8 +179,8 @@ class ScalingUpAnalysisController
 
         if (count($files) > 1) {
             $path = Zip::compress($files,
-                                      "Scaling_up_" . count($files) . "_" . date('m-d-Y_hisu') . ".zip",
-                                      false);
+                "Scaling_up_" . count($files) . "_" . date('m-d-Y_hisu') . ".zip",
+                false);
             return File::download($path);
         } else {
             return trans("imet-core::analysis_report.more_than_one_file");

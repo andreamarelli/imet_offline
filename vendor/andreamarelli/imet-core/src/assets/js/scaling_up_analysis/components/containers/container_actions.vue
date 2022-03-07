@@ -4,9 +4,9 @@
             <slot :props="data"></slot>
         </div>
         <div class="mb-2 mt-2">
-            <div class="mt-3 text-black-50 font-weight-bold generic-comments">{{ title }} :</div>
+            <div  v-if="show_comments" class="mt-3 text-black-50 font-weight-bold generic-comments">{{ title }} :</div>
             <p>
-                <editor :save_data="get_data" :event_id="event_data"></editor>
+                <editor v-if="show_comments" :save_data="get_data" :event_id="event_data"></editor>
             </p>
             <div class="row">
                 <div class="col">
@@ -94,7 +94,7 @@ export default {
     watch: {
         values: {
             async handler(n, o) {
-                if (n.image_src && n.comment != null) {
+                if (n.image_src && ((this.show_comments && n.comment != null) || !this.show_comments)) {
                     const item = await this.stores.BasketStore.save(n);
                     window.vueBus.$emit('add-section-template', item);
                     this.loading = false;

@@ -35,4 +35,31 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
 
     }
+
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Eval_ManagementActivities',
+            'fields' => [
+                'Activity', 'EvaluationScore', 'Comments', 'GroupActivity'
+            ]
+        ];
+    }
+
+    /**
+     * Review data from SQLITE
+     *
+     * @param $record
+     * @param $sqlite_connection
+     * @return array
+     */
+    protected static function conversionDataReview($record, $sqlite_connection): array
+    {
+        return static::convertGroupLabelToKey($record, 'GroupActivity');
+    }
 }

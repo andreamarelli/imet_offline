@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
+use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
@@ -77,17 +78,26 @@ class ReportControllerV1 extends Controller {
      * @return array
      * @throws \ReflectionException
      */
-    private function __retrieve_report_data($item)
+    private function __retrieve_report_data($item): array
     {
         $form_id = $item->getKey();
 
-        $api_available = DOPA::apiAvailable();
+        $api_available = $show_api = false;
         $wdpa_extent = $dopa_radar = $dopa_indicators = null;
-        if($api_available){
-            $wdpa_extent = [];
-            $dopa_radar =  DOPA::get_wdpa_radarplot($item->wdpa_id);
-            $dopa_indicators =  DOPA::get_wdpa_all_inds($item->wdpa_id);
+
+        if(!ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
+            $show_api = true;
+            $api_available = DOPA::apiAvailable();
+            if ($api_available) {
+                $wdpa_extent     = [];
+                $dopa_radar      = DOPA::get_wdpa_radarplot($item->wdpa_id);
+                $dopa_indicators = DOPA::get_wdpa_all_inds($item->wdpa_id);
+            }
+        } else {
+            $show_non_wdpa = true;
+            $non_wdpa = ProtectedAreaNonWdpa::find($item->wdpa_id)->toArray();
         }
+
         $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
         $vision = Modules\Context\Missions::getModuleRecords($form_id);
 
@@ -119,9 +129,12 @@ class ReportControllerV1 extends Controller {
             ],
             'report' => \AndreaMarelli\ImetCore\Models\Imet\v1\Report::getByForm($form_id),
             'connection' => $api_available,
+            'show_api' => $show_api,
             'wdpa_extent' => $wdpa_extent[0]->extent ?? null,
             'dopa_radar' =>  $dopa_radar,
             'dopa_indicators' => $dopa_indicators[0] ?? null,
+            'show_non_wdpa' => $show_non_wdpa ?? false,
+            'non_wdpa' => $non_wdpa ?? null,
             'general_info' => $general_info['records'][0] ?? null,
             'vision' => $vision['records'][0] ?? null,
             'area' => Modules\Context\Areas::getArea($form_id)

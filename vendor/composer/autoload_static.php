@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit699d5c347e53dabe7a8091ef2c1ef71f
+class ComposerStaticInit93e38a73583edb33eb8e2de5ceda4edc
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -749,6 +749,7 @@ class ComposerStaticInit699d5c347e53dabe7a8091ef2c1ef71f
 
     public static $classMap = array (
         'AndreaMarelli\\ImetCore\\Commands\\ApplySQL' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/ApplySQL.php',
+        'AndreaMarelli\\ImetCore\\Commands\\ConvertSQLite' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/ConvertSQLite.php',
         'AndreaMarelli\\ImetCore\\Commands\\Export' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/Export.php',
         'AndreaMarelli\\ImetCore\\Commands\\GetSerialNumber' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/GetSerialNumber.php',
         'AndreaMarelli\\ImetCore\\Commands\\Import' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/Import.php',
@@ -756,12 +757,14 @@ class ComposerStaticInit699d5c347e53dabe7a8091ef2c1ef71f
         'AndreaMarelli\\ImetCore\\Commands\\PopulateMetadata' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/PopulateMetadata.php',
         'AndreaMarelli\\ImetCore\\Commands\\PopulateSpecies' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/PopulateSpecies.php',
         'AndreaMarelli\\ImetCore\\Commands\\SetSerialNumber' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/SetSerialNumber.php',
+        'AndreaMarelli\\ImetCore\\Commands\\UpdateProtectedAreas' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/UpdateProtectedAreas.php',
         'AndreaMarelli\\ImetCore\\Commands\\Utils' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/Utils.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\Assessment' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/Assessment.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\Backup' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/Backup.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\Controller' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/Controller.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\ControllerV1' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/ControllerV1.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\ControllerV2' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/ControllerV2.php',
+        'AndreaMarelli\\ImetCore\\Controllers\\Imet\\ConvertSQLite' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/ConvertSQLite.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\EvalController' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/EvalController.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\EvalControllerV1' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/EvalControllerV1.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\EvalControllerV2' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/EvalControllerV2.php',
@@ -796,6 +799,7 @@ class ComposerStaticInit699d5c347e53dabe7a8091ef2c1ef71f
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v1\\Assessment' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v1/Assessment.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v1\\Imet' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v1/Imet.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v1\\Imet_Eval' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v1/Imet_Eval.php',
+        'AndreaMarelli\\ImetCore\\Models\\Imet\\v1\\Modules\\Component\\ConvertSQLite' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v1/Modules/Component/ConvertSQLite.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v1\\Modules\\Component\\ImetModule' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v1/Modules/Component/ImetModule.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v1\\Modules\\Component\\ImetModule_Eval' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v1/Modules/Component/ImetModule_Eval.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v1\\Modules\\Context\\AnimalSpecies' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v1/Modules/Context/AnimalSpecies.php',
@@ -7716,10 +7720,10 @@ class ComposerStaticInit699d5c347e53dabe7a8091ef2c1ef71f
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit699d5c347e53dabe7a8091ef2c1ef71f::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit699d5c347e53dabe7a8091ef2c1ef71f::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit699d5c347e53dabe7a8091ef2c1ef71f::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit699d5c347e53dabe7a8091ef2c1ef71f::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit93e38a73583edb33eb8e2de5ceda4edc::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit93e38a73583edb33eb8e2de5ceda4edc::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit93e38a73583edb33eb8e2de5ceda4edc::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit93e38a73583edb33eb8e2de5ceda4edc::$classMap;
 
         }, null, ClassLoader::class);
     }

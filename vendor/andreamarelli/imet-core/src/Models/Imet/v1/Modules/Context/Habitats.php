@@ -28,6 +28,26 @@ class Habitats extends Modules\Component\ImetModule
         $this->ratingLegend = trans('imet-core::v1_context.Habitats.ratingLegend');
 
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Habitats',
+            'fields' => [
+                'EcosystemType',
+                'Value',
+                'Area',
+                'DesiredConservationStatus',
+                'Trend',
+                'Reliability',
+                'Sectors'
+            ]
+        ];
     }
 }

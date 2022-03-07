@@ -17,6 +17,7 @@ Vue.component('preview_template',    require('./components/preview_template.vue'
 
 Vue.component('container', require('./components/containers/container.vue').default);
 Vue.component('container_view', require('./components/containers/container_view.vue').default);
+Vue.component('container_analysis_management_cycle', require('./components/container_analysis_management_cycle.vue').default);
 Vue.component('container_section',    require('./components/containers/container_section.vue').default);
 Vue.component('container_radars', require('./components/containers/container_radars.vue').default);
 Vue.component('container_upper_lower_radars', require('./components/containers/container_upper_lower_radars.vue').default);
@@ -43,6 +44,7 @@ Vue.component('action_buttons',    require('./components/action_buttons.vue').de
 Vue.component('html_to_image', require('./tools/html_to_image.vue').default);
 
 Vue.component('basket', require('./components/basket.vue').default);
+Vue.component('guidance',    require('./components/guidance.vue').default);
 
 Vue.component('small_menu',    require('./components/menus/small_menu.vue').default);
 Vue.component('small_menu_analysis_per_elements',    require('./components/menus/small_menu_analysis_per_elements.vue').default);

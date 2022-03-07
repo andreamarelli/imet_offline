@@ -36,14 +36,6 @@ class Habitats extends Modules\Component\ImetModule
         return $vue_data;
     }
 
-//    public static function convert_v1_to_v2($record)
-//    {
-//        $record = static::dropField($record, 'Trend');
-//        $record = static::dropField($record, 'Reliability');
-//        $record = static::addField($record, 'Comments');
-//        return $record;
-//    }
-
     public static function updateModule(Request $request): array
     {
         static::forceLanguage($request->input('form_id'));

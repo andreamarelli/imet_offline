@@ -28,6 +28,20 @@ class AchievedResults extends Modules\Component\ImetModule_Eval
         $this->max_rows = 5;
 
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Eval_AchievedResults',
+            'fields' => [
+                'Activity', 'EvaluationScore', 'Percentage', 'Comments'
+            ]
+        ];
     }
 }

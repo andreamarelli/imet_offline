@@ -71,11 +71,6 @@ class Areas extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-//    public static function convert_v1_to_v2($record)    {
-//        $record = static::addField($record, 'BoundaryLength');
-//        return $record;
-//    }
-
     public static function getArea($form_id)
     {
         $areas = static::getModuleRecords($form_id)['records'];

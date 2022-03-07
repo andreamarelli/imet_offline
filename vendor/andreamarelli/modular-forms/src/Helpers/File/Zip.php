@@ -13,12 +13,13 @@ class Zip
      * retrieve zip file from temp folder open it and extract files
      *
      * @param string $zip_path
+     * @param string $unzip_path
      * @param boolean $remove_zip
      * @param boolean $return_full_path
      * @return array
      * @throws \Exception
      */
-    public static function extract(string $zip_path, bool $remove_zip = true, bool $return_full_path = false): array
+    public static function extract(string $zip_path, $unzip_path = null, bool $remove_zip = true, bool $return_full_path = false): array
     {
         $unzip_path = $unzip_path ?? dirname($zip_path);
         $relative_path = Str::replace(Storage::path(''), '', $unzip_path);

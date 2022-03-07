@@ -45,12 +45,6 @@ class FinancialResourcesBudgetLines extends Modules\Component\ImetModule
             );
     }
 
-//    public static function convert_v1_to_v2($record)
-//    {
-//        $record = static::forceCurrency($record, 'Currency', ['Amount']);
-//        return $record;
-//    }
-
     public static function copyCurrencyFromCTX213($data)
     {
         if(!empty($data['FinancialResources'])){

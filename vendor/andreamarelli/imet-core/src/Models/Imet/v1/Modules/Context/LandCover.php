@@ -37,6 +37,28 @@ class LandCover extends Modules\Component\ImetModule
         $this->ratingLegend = trans('imet-core::v1_context.LandCover.ratingLegend');
 
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'LandCover',
+            'fields' => [
+                'CoverType',
+                'HistoricalArea',
+                'PreviousEstimationArea',
+                'CurrentEstimationArea',
+                'Trend',
+                'Reliability',
+                'Notes',
+                'HistoricalAreaData',
+                'PreviousEstimationAreaData'
+            ]
+        ];
     }
 }

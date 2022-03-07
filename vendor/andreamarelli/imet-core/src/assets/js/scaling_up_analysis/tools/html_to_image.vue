@@ -62,7 +62,7 @@ export default {
                     if (typeof classNames !== 'string') {
                         return true;
                     }
-                    const exclude = ['add_item', 'carrot', 'generic-comments', 'exclude-element', 'dropzone-areas', 'js-smallMenu'];
+                    const exclude = ['add_item', 'carrot', 'generic-comments', 'exclude-element', 'dropzone-areas', 'js-smallMenu', 'guidance'];
 
                     return !exclude.some(val => classNames.includes(val));
                 }

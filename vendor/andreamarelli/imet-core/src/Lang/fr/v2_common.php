@@ -9,8 +9,6 @@ return [
     'methodology'   => 'Question posée',
     'criteria'      => 'Notation',
 
-    'synthetic_indicator' => 'indicateur synthese',
-
     'steps' => [
         'general_info'          => 'Informations générales sur l\'aire protégée',
         'areas'                 => 'Superficies, limites et indice de forme, niveau de contrôle',

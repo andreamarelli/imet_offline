@@ -107,7 +107,7 @@ return [
         ],
         'groups' => [
             'conventions'   => 'Reconnaissances et inscriptions dans les listes de conventions internationales (Patrimoine Mondial, RAMSAR, etc.,)',
-            'networks'      => 'Statut d\'appartenance à un réseau international officialement reconnus  (MAB, RAPAC, etc.,)',
+            'networks'      => 'Statut d\'appartenance à un réseau international officialement reconnus (MAB, RAPAC, etc.,)',
             'conservation'  => 'Statut d\'intérêt pour la conservation par des organismes internationaux (IBA, AZE, etc.,)',
             'marine_pa'     => 'Statut des aires protégées marines'
         ],

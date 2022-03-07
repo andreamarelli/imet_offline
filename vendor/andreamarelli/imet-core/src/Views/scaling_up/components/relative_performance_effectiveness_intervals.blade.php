@@ -1,4 +1,6 @@
-<container_section :id="'{{$name}}'" :title="'{{$title}}'" :class="'upper_downa'">
+<container_section :id="'{{$name}}'" :title="'{{$title}}'" :class="'upper_downa'" :code="'{{$code}}'"
+                   :guidance="'{{trans('imet-core::analysis_report.guidance.relative_performance')}}'"
+>
     <template slot-scope="container">
         <div class="row">
             <div class="col-sm">

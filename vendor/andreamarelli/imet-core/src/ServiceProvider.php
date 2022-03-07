@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore;
 
 use AndreaMarelli\ImetCore\Commands\ApplySQL;
+use AndreaMarelli\ImetCore\Commands\ConvertSQLite;
 use AndreaMarelli\ImetCore\Commands\Export;
 use AndreaMarelli\ImetCore\Commands\GetSerialNumber;
 use AndreaMarelli\ImetCore\Commands\Import;
@@ -10,6 +11,7 @@ use AndreaMarelli\ImetCore\Commands\InitDB;
 use AndreaMarelli\ImetCore\Commands\PopulateMetadata;
 use AndreaMarelli\ImetCore\Commands\PopulateSpecies;
 use AndreaMarelli\ImetCore\Commands\SetSerialNumber;
+use AndreaMarelli\ImetCore\Commands\UpdateProtectedAreas;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 
@@ -49,13 +51,15 @@ class ServiceProvider extends BaseServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 ApplySQL::class,
+                ConvertSQLite::class,
                 Export::class,
                 GetSerialNumber::class,
                 Import::class,
                 InitDB::class,
                 PopulateMetadata::class,
                 PopulateSpecies::class,
-                SetSerialNumber::class
+                SetSerialNumber::class,
+                UpdateProtectedAreas::class
             ]);
         }
     }

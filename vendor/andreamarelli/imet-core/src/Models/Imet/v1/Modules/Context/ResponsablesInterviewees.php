@@ -34,4 +34,19 @@ class ResponsablesInterviewees extends Modules\Component\ImetModule
             ->map->only(['Name', 'Institution', 'Function'])
             ->toArray();
     }
+
+
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'EncodingResponsables',
+            'fields' => ['Name', 'Institution', 'Function', 'Contacts', 'EncodingDate', 'EncodingDuration'],
+            'query_conditions' => [['Role', '=', 'interviewee']]
+        ];
+    }
 }

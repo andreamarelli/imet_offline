@@ -53,14 +53,6 @@ class FinancialAvailableResources extends Modules\Component\ImetModule
             );
     }
 
-//    public static function convert_v1_to_v2($record)
-//    {
-//        $record = static::replacePredefinedValue($record, 'BudgetType', 'Budget total annuel disponible de fonctionnement', 'Budget total annuel disponible pour le fonctionnement');
-//        $record = static::replacePredefinedValue($record, 'BudgetType', 'Budget total annuel disponible d\'investissement', 'Budget total annuel disponible pour les investissements');
-//        $record = static::forceCurrency($record, 'Currency', ['NationalBudget', 'OwnRevenues', 'Disputes', 'Partners']);
-//        return $record;
-//    }
-
     public static function copyCurrencyFromCTX213($data)
     {
         if(!empty($data['FinancialResources'])){

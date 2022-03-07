@@ -2,6 +2,8 @@
 
 namespace AndreaMarelli\ModularForms\Helpers\Geo;
 
+use Illuminate\Support\Facades\DB;
+
 class PostGis {
 
     private $query;
@@ -108,6 +110,16 @@ class PostGis {
             $this->query = $function.'('.$this->query.')';
         }
         return $this;
+    }
+
+    public static function getSRID($table_name, $geometry_column = 'geom')
+    {
+        [$schema, $table] = explode('.', $table_name);
+        $result = DB::select(DB::raw("SELECT Find_SRID('" . $schema . "', '" . $table . "', '" . $geometry_column . "') as srid"));
+        if($result){
+            return $result[0]->srid;
+        }
+        return null;
     }
 
 }

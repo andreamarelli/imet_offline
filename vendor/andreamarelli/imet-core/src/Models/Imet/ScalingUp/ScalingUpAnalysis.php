@@ -768,7 +768,7 @@ class ScalingUpAnalysis extends Model
             });
             $percentile_10 = static::round_number(static::get_percentile($values, 10));
             $percentile_90 = static::round_number(static::get_percentile($values, 90));
-            $average_value = static::round_number(array_sum($values) / count($values));
+            $average_value = count($values) ? static::round_number(array_sum($values) / count($values)) : 0;//check
             $average[] = $average_value;
             $average_contribution['data']['Average'][$i] = ["value" => $average_value, "upper limit" => [$percentile_10, $percentile_90],
                 "label" => trans('imet-core::v2_common.assessment.' . $v), "itemStyle" => ["color" => $colors],
@@ -799,7 +799,7 @@ class ScalingUpAnalysis extends Model
 
     private static function get_average(array $array)
     {
-        return static::round_number(array_sum($array) / count($array));
+        return count($array) ? static::round_number(array_sum($array) / count($array)) : 0;
     }
 
     /**
@@ -1455,6 +1455,7 @@ class ScalingUpAnalysis extends Model
     static function get_percentile($array, $percentile)
     {
         sort($array);
+        $result = 0;
         $index = ($percentile / 100) * count($array);
         if (floor($index) == $index) {
             if (isset($array[$index - 1])) {

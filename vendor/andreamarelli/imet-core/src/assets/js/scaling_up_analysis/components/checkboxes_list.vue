@@ -52,6 +52,10 @@ export default {
             type: Object,
             default: () => {
             }
+        },
+        event: {
+            type: String,
+            default: ''
         }
     },
     data: function () {
@@ -65,7 +69,7 @@ export default {
         Object.entries(this.items).forEach(val => {
             areas.push({'FormID': val[0], 'name': val[1]})
         });
-        areas.sort((a, b) =>  a.name.localeCompare(b.name));
+        areas.sort((a, b) => a.name.localeCompare(b.name));
         this.pas = areas;
     },
     methods: {
@@ -88,12 +92,16 @@ export default {
             return this.checkboxes.join(',');
         },
         enable_overall: function () {
-            if(this.show_overall){
-                setTimeout(() => {
-                    this.show_overall = !this.show_overall;
-                }, 500)
+            if (this.event) {
+                this.$parent.$emit(this.event, this.checkboxes_ids())
+            } else {
+                if (this.show_overall) {
+                    setTimeout(() => {
+                        this.show_overall = !this.show_overall;
+                    }, 500)
+                }
+                this.show_overall = !this.show_overall;
             }
-            this.show_overall = !this.show_overall;
 
         },
         button_status: function () {

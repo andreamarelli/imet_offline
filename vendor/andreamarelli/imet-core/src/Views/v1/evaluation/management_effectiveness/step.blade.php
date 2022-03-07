@@ -2,83 +2,73 @@
 /** @var String $step */
 /** @var int $item_id */
 
-$assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1::assessment($item_id, $step, true)->getContent());
+$assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::assessment($item_id, $step, true)->getContent());
 
 ?>
 
-<div id="assessment_step_{{ $step }}">
-    <h5>@lang('imet-core::v1_common.steps_eval.'.$step)</h5>
 
-    <div class="row">
-        <div class="col-lg-8 step_indicators">
-            {{-- Step related statistics --}}
-            <div class="row" v-for="(item, index) in values">
-                <div class="col-lg-1 text-center text-uppercase"><b>@{{ labels[index].code }}</b></div>
-                <div class="col-lg-4 text-left">@{{ labels[index].title }}</div>
-                <div class="col-lg-7 text-left">
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-striped"
-                             role="progressbar"
-                             :class="[item>0 ? '' : 'progress-bar-negative']"
-                             :style="{ width:  Math.abs(item) + '%', backgroundColor: step_color}">
-                            <span v-if="item!==null">@{{ item }}</span>
-                        </div>
-                    </div>
-                </div>
+<div id="assessment_step_{{ $step }}" class="assessment_step">
+    <h5>@lang('imet-core::v2_common.steps_eval.'.$step)</h5>
+
+
+    @if($step=='context')
+
+        {{-- C11->C15 statistics --}}
+        <div style="margin-bottom: 20px;">
+            <div v-for="(item, index) in intermediate_values">
+                @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100', 'values' => 'intermediate_values'])
             </div>
         </div>
-        <div class="col-lg-4 synthetic_indicator">
-            {{-- Step synthetic indicator --}}
-            <b class="text-uppercase">@lang('imet-core::v1_common.synthetic_indicator')</b>
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped"
-                     role="progressbar"
-                     :style="{ width:  Math.abs(api_data.avg_indicator) + '%', backgroundColor: step_color}">
-                    <span v-if="synthetic_indicator!==null">@{{ synthetic_indicator }}</span>
-                </div>
+
+        {{-- C1->C3 statistics --}}
+        <div style="margin-bottom: 30px;">
+            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100', 'values' => 'values', 'index' => 'c1'])</div>
+            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_100', 'values' => 'values', 'index' => 'c2'])</div>
+            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_0', 'values' => 'values', 'index' => 'c3'])</div>
+        </div>
+
+    @elseif($step=='process')
+
+        {{-- Step related statistics --}}
+        <div style="margin-bottom: 20px;">
+            <div v-for="(item, index) in values">
+                @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100_full_width', 'values' => 'values'])
             </div>
         </div>
-    </div>
 
-    <div class="row" v-if="current_step==='context' || current_step==='process'">
-        <br />
-        <div class="col-lg-8 step_indicators">
-            {{-- Step related statistics --}}
-            <div class="row" v-for="(item, index) in intermediate_values">
-                <div class="col-lg-1 text-center text-uppercase"><b>@{{ labels[index].code }}</b></div>
-                <div class="col-lg-4 text-left">@{{ labels[index].title }}</div>
-                <div class="col-lg-7 text-left">
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-striped"
-                             role="progressbar"
-                             :style="{ width: Math.abs(item) + '%', backgroundColor: step_color}">
-                            <span v-if="item!==null">@{{ item }}</span>
-                        </div>
-                    </div>
-                </div>
+        <div style="margin-bottom: 30px;">
+            <div id="imet_process_radar" style="height: 250px;"></div>
+        </div>
+
+    @elseif($step=='outcomes')
+
+        {{-- Step related statistics --}}
+        <div style="margin-bottom: 20px;">
+            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100', 'values' => 'values', 'index' => 'oc1'])</div>
+            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_100', 'values' => 'values', 'index' => 'oc2'])</div>
+            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_100', 'values' => 'values', 'index' => 'oc3'])</div>
+        </div>
+
+    @else
+
+        {{-- Step related statistics --}}
+        <div style="margin-bottom: 30px;">
+            <div v-for="(item, index) in values">
+                @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100_full_width', 'values' => 'values'])
             </div>
+        </div>
+
+    @endif
+
+    {{-- Step synthetic indicator --}}
+    <div style="padding-top: 20px; border-top: 1px solid #aaa;">
+        <div>
+            @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100_full_width', 'synthetic_indicator' => true])
         </div>
     </div>
 
 </div>
 
-
-<style>
-    .progress{
-        margin: 2px 0;
-    }
-    .progress-bar{
-        color: #000000;
-        font-weight: bold;
-    }
-    .progress-bar-negative{
-        display: block;
-        float: right;
-    }
-    .synthetic_indicator{
-        font-size: 1.2em;
-    }
-</style>
 
 <script>
 
@@ -92,7 +82,8 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
             form_id: '{{ $item_id }}',
             step_indexes: [],
             step_indexes_intermediate: [],
-            step_color: '#000'
+            step_color: '#000',
+            chart: null
         },
 
         beforeMount(){
@@ -102,6 +93,14 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
         mounted(){
             let _this = this;
             _this.init_properties();
+
+            if(_this.current_step==='process'){
+                _this.chart = echarts.init(document.getElementById('imet_process_radar'));
+                if(_this.chart !== null) {
+                    _this.chart.setOption(_this.get_radar_options());
+                }
+            }
+
             window.vueBus.$on('refresh_assessment', function(){
                 _this.refresh_values();
             });
@@ -111,12 +110,19 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
             labels(){
                 let _this = this;
                 let labels = {};
-                Object.entries(_this.api_labels).forEach(function (item) {
-                    labels[item[0]] = {
-                        code: item[1]['code_label'],
-                        title: item[1]['title_fr']
-                    }
-                });
+                if(this.api_labels!==null){
+                    Object.entries(_this.api_labels).forEach(function (item) {
+                        labels[item[0]] = {
+                            code: item[1]['code_label'],
+                            title: item[1]['title_' + Locale.getLocale()],
+                            min: 0,
+                            max: 100
+                        };
+                        if(labels[item[0]].code==='C2' || labels[item[0]].code==='C3'){
+                            labels[item[0]].min = -100;
+                        }
+                    });
+                }
                 return labels;
             },
             values(){
@@ -188,14 +194,78 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
             refresh_values: function(){
                 let _this = this;
 
-                windows.axios({
+                window.axios({
                     url: window.Laravel.baseUrl + 'api/imet/assessment/'+_this.form_id+'/'+_this.current_step,
-                    type: "get",
+                    method: "get",
                 })
                     .then(function (response) {
                         _this.api_data = response.data;
+                        if(_this.chart !== null) {
+                            _this.chart.setOption(_this.get_radar_options());
+                        }
                     });
 
+            },
+
+            get_radar_options: function () {
+                let _this = this;
+
+                let values = Object.values(this.intermediate_values).reverse();
+
+                let indicator = [];
+                Object.keys(this.intermediate_values).reverse().forEach(function(code){
+                    indicator.push({text: _this.labels[code].title, max: 100});
+                });
+
+                return {
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: [_this.api_data.name]
+                    },
+                    radar: {
+                        indicator: indicator,
+                        radius: 80,
+                        startAngle: 150,
+                        center: ['50%','55%'],
+                        name: {
+                            textStyle: {
+                                color: '#111'
+                            }
+                        },
+                    },
+
+                    series: [
+                        {
+                            type: 'radar',
+                            data: [
+                                {
+                                    value: values,
+                                    itemStyle: {
+                                        color: '#7CB5EC'
+                                    },
+                                    areaStyle:{
+                                        color: '#7CB5EC',
+                                        opacity: 0.4,
+                                    },
+                                    symbolSize: 6,
+                                    name: _this.api_data.name,
+                                    label: {
+                                        normal: {
+                                            fontWeight: 'bold',
+                                            color: '#222',
+                                            show: true,
+                                            formatter: function(params) {
+                                                return params.value;
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                };
             }
         }
 
