@@ -2416,6 +2416,13 @@ label {
 div.field-disabled {
   display: inline-block; }
 
+.field-error {
+  border-color: #F87171; }
+
+.error-message {
+  color: #F87171;
+  font-weight: bold; }
+
 input.captcha-input {
   max-width: 200px; }
 
