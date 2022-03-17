@@ -9,7 +9,6 @@ use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2;
 use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
-use AndreaMarelli\ImetCore\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['setLocale', 'web']], function () {
@@ -75,7 +74,6 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
         });
 
-
         Route::group(['prefix' => 'tools'], function () {
             Route::get('export_csv', [Controller::class, 'exportListCSV'])->name('csv_list');
             Route::get('export_csv/{ids}/{module_key}', [Controller::class, 'exportModuleToCsv'])->name('csv');
@@ -83,13 +81,6 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         });
 
 
-    });
-
-    // Roles
-    Route::group(['prefix' => 'admin/role/imet'], function () {
-        Route::match(['get', 'post'], 'imet', [RoleController::class, 'index']);
-        Route::post('imet/grant', [RoleController::class, 'grant']);
-        Route::post('imet/revoke', [RoleController::class, 'revoke']);
     });
 
     /*

@@ -9,8 +9,8 @@
     "license": "MIT",
     "require": {
         "php": ">=7.2",
-        "andreamarelli/imet-core": "dev-master",
-        "andreamarelli/modular-forms": "dev-master",
+        "andreamarelli/imet-core": "dev-beta",
+        "andreamarelli/modular-forms": "dev-beta",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",

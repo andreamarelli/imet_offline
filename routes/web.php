@@ -6,23 +6,23 @@ use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpBasketController;
 use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
 use AndreaMarelli\ImetCore\Controllers\SpeciesController;
 use AndreaMarelli\ModularForms\Controllers\UploadFileController;
-use App\Http\Controllers\StaffController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 
-Route::group(['middleware' => 'web'], function () {
+Route::middleware(['web', 'auth'])->group(function () {
 
-    Route::get('/', function () { return Redirect::to('admin/confirm_user'); });
+    Route::get('/', function () { return Redirect::to('confirm_user'); });
 
-    // Authentication Routes
-    Route::get('admin/confirm_user', [StaffController::class, 'confirm_offline_user']);
-    Route::patch('admin/staff/{item}', [StaffController::class, 'update_offline']);
+    // User routes
+    Route::get('confirm_user', [UserController::class, 'confirm_offline_user']);
+    Route::patch('confirm_user', [UserController::class, 'update_offline_user'])->name('update_offline_user');
 
 
     Route::get('file/{hash}',      [UploadFileController::class, 'download']);
 
-    Route::group(['prefix' => 'ajax'], function () {
+    Route::prefix('ajax')->group(function () {
         Route::post('upload', [UploadFileController::class, 'upload']);
         Route::get('download', [UploadFileController::class, 'download']);
         Route::group(['prefix' => 'search'], function () {

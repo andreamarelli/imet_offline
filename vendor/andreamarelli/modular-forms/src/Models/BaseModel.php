@@ -2,14 +2,11 @@
 
 namespace AndreaMarelli\ModularForms\Models;
 
-use AndreaMarelli\ModularForms\Models\User\Person;
+use AndreaMarelli\ModularForms\Models\User\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use ReflectionClass;
 
@@ -54,27 +51,6 @@ class BaseModel extends Model
         $key = $key!=null ? $key : (new static())->primaryKey;
         $model = static::where($key, $id)->first();
         return $model!==null ? $model->getAttribute( static::LABEL) : null;
-    }
-
-    /**
-     * Relation
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function update_by_user(): HasOne
-    {
-        return $this->hasOne(Person::class, (new Person())->getKeyName(), $this::UPDATED_BY);
-    }
-
-    /**
-     * Relation
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function created_by_user(): ?HasOne
-    {
-        if(static::CREATED_BY !== null){
-            return $this->hasOne(Person::class, (new Person())->getKeyName(), $this::UPDATED_BY);
-        }
-        return null;
     }
 
     /**
@@ -168,7 +144,7 @@ class BaseModel extends Model
         return [
             'date' => $date!==null ? Carbon::parse($date)->toDateTimeString(): null,
             'id' => $user,
-            'name' => $user!==null ? Person::find($this->{static::UPDATED_BY})->Name : null
+            'name' => $user!==null ? User::find($this->{static::UPDATED_BY})->getName() : null
         ];
     }
 

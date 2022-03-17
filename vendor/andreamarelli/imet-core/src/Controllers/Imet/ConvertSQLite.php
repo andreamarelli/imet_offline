@@ -20,8 +20,13 @@ trait ConvertSQLite{
      */
     public static function convert($imet, $sqlite_connection): array
     {
+        // skip if test
+        if($imet->Country === 'AWY'){
+            return [];
+        }
+
         // Retrieve WDPAID
-        [$wdpa, $pa_name] = Modules\Component\ImetModule::conversionIdentifyPa($imet, $sqlite_connection);
+        [$wdpa, $pa_name] = Modules\Component\ImetModule::identifySqlitePa($imet, $sqlite_connection);
 
         // no WDPA nor NAME found: cannot identify
         if (empty($wdpa) && empty($pa_name)){

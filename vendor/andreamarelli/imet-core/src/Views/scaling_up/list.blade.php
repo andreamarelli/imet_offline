@@ -7,11 +7,8 @@
 
 /** @var boolean $filter_selected */
 
-use AndreaMarelli\ImetCore\Models\Role;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 
-$can_encode = \AndreaMarelli\ImetCore\Models\User::isAdmin(Auth::user()) || Role::isEncoder(Auth::user());
 $url = URL::route('scaling_up');
 ?>
 
@@ -133,7 +130,7 @@ $url = URL::route('scaling_up');
                         @include('imet-core::components.button_show', ['version' => 'v2'])
                     </span>
 
-                    @if($can_encode)
+                    @can('encode-imets')
 
                         {{-- Edit --}}
                         <span v-if="item.version==='v1'">

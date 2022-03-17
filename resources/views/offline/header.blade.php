@@ -19,7 +19,7 @@ $home = $uri === 'admin/imet' || $uri === 'admin/v1' || $uri === 'admin/v2' || s
         <ul class="menu-header">
             <li>
                 <a>{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('user-circle', '', '1.2em') !!}
-                    &nbsp;{{ \Illuminate\Support\Facades\Auth::user()->getName() }}</a>
+                    &nbsp;{{ \App\Models\User::find(Auth::id())->getName() }}</a>
             </li>
             @if($home)
                 <li>

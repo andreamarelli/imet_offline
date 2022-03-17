@@ -12,6 +12,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v1;
 use AndreaMarelli\ImetCore\Models\Imet\v2;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
+use AndreaMarelli\ImetCore\Models\Report;
 use AndreaMarelli\ModularForms\Helpers\File\Zip;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\HTTP;
@@ -355,6 +356,7 @@ class Controller extends __Controller
             'Evaluation' => $imet_form['version'] === 'v1'
                 ? v1\Imet_Eval::exportModules($imet_id)
                 : v2\Imet_Eval::exportModules($imet_id),
+            'Report' => Report::export($imet_id)
         ];
 
         if(ProtectedAreaNonWdpa::isNonWdpa($imet_form['wdpa_id'])){
@@ -419,6 +421,7 @@ class Controller extends __Controller
                 $modules_imported['Context'] = v1\Imet::importModules($json['Context'], $formID, $imet_version);
                 $modules_imported['Evaluation'] = v1\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
                 Encoder::importModule($formID, $json['Encoders'] ?? null);
+                Report::import($formID, $json['Report'] ?? null);
             } elseif ($version === 'v2') {
                 // Create new form and return ID
                 $formID = v2\Imet::importForm($json['Imet']);
@@ -426,6 +429,7 @@ class Controller extends __Controller
                 $modules_imported['Context'] = v2\Imet::importModules($json['Context'], $formID, $imet_version);
                 $modules_imported['Evaluation'] = v2\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
                 Encoder::importModule($formID, $json['Encoders'] ?? null);
+                Report::import($formID, $json['Report'] ?? null);
             }
             DB::commit();
 

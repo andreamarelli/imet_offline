@@ -104,7 +104,7 @@ class Networks extends Modules\Component\ImetModule
             $pas = json_decode($record['ProtectedAreas']);
             $pas = array_filter($pas);
             $pas = collect($pas)->map(function ($pa) use ($sqlite_connection) {
-                return Modules\Component\ImetModule::identifyByProtectedAreaID($pa, $sqlite_connection);
+                return Modules\Component\ImetModule::wdpaBySqliteProtectedAreaID($pa, $sqlite_connection);
             })->toArray();
             $pas = array_filter($pas);
             $record['ProtectedAreas'] = implode(',', $pas);

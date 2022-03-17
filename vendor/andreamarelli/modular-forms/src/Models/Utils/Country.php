@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 
+if(!defined('UPPER_LOCALE')) {
+    define('UPPER_LOCALE', Locale::upper());
+}
+if(!defined('LOWER_LOCALE')) {
+    define('LOWER_LOCALE', Locale::lower());
+}
+
 
 abstract class Country extends BaseModel
 {

@@ -20,7 +20,7 @@ trait ConvertSQLite{
      * @param $sqlite_connection
      * @return string|null
      */
-    public static function identifyByProtectedAreaID($id, $sqlite_connection): ?string
+    public static function wdpaBySqliteProtectedAreaID($id, $sqlite_connection): ?string
     {
         $knowledge_base = $sqlite_connection->table('knowledgebase_protectedareas')
             ->select()
@@ -36,34 +36,34 @@ trait ConvertSQLite{
      * @param $sqlite_connection
      * @return array|null[]
      */
-    public static function conversionIdentifyPa($imet, $sqlite_connection): array
+    public static function identifySqlitePa($imet, $sqlite_connection): array
     {
-        // Using ProtectedAreaID
-        $wdpa = static::identifyByProtectedAreaID($imet->ProtectedAreaID, $sqlite_connection);
+        // Try to retrieve WPDA
+        $knowledge_base = $sqlite_connection->table('knowledgebase_protectedareas')
+            ->select()
+            ->where('id', $imet->ProtectedAreaID)
+            ->first();
+        $wdpa = $knowledge_base->WDPA ?? null;
+        if($wdpa === null){
+            $general_info = $sqlite_connection->table('ProtectedAreas_GeneralInfo')
+                ->select(['CompleteName', 'CompleteNameWDPA', 'UsedName', 'WDPA'])
+                ->where('FormID', $imet->FormID)
+                ->first();
+            $wdpa = trim($general_info->WDPA ?? null) ?? null;
+        }
+
+        // Valid WDPA found
         if(!empty($wdpa)
             && $pa = ProtectedArea::where('wdpa_id', $wdpa)->first()){
             return [$wdpa, $pa->name];
         }
 
-        // Using "GeneralInfo" WDPA
-        $generalInfo = $sqlite_connection->table('ProtectedAreas_GeneralInfo')
-            ->select(['CompleteName', 'CompleteNameWDPA', 'UsedName', 'WDPA'])
-            ->where('FormID', $imet->FormID)
-            ->first();
-        if($generalInfo){
-            $wdpa = trim($generalInfo->WDPA);
-            if(!empty($wdpa)
-                && $pa = ProtectedArea::where('wdpa_id', $wdpa)->first()){
-                return [$wdpa, $pa->name];
-            }
-
-            // NO valid WDPA: return only name (from "GeneralInfo")
-            return [null, $generalInfo->CompleteNameWDPA
-                ?? $generalInfo->CompleteName
-                ?? $generalInfo->UsedName];
-        }
-
-        return [null, null];
+        // NO valid WDPA: return only name
+        return [null, $general_info->CompleteNameWDPA
+            ?? $general_info->CompleteName
+            ?? $general_info->UsedName
+            ?? $knowledge_base->PaName
+            ?? null];
     }
 
     /**
