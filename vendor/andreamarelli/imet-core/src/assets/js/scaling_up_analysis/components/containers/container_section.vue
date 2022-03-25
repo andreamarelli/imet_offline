@@ -20,7 +20,6 @@
 <script>
 
 
-
 export default {
     name: "container_section",
     inject: ['stores', 'config'],
@@ -48,6 +47,10 @@ export default {
             type: String,
             default: ''
         },
+        event_name: {
+            type: String,
+            default: ''
+        }
     },
     data: function () {
         return {
@@ -60,8 +63,15 @@ export default {
             }
         }
     },
+    mounted() {
+        if (this.event_name) {
+            this.$root.$on(this.event_name, () => {
+                this.data.show_view = true;
+            });
+        }
+    },
     methods: {
-        code_is_visible(){
+        code_is_visible() {
             return this.code.length;
         },
         toggle_view: async function () {

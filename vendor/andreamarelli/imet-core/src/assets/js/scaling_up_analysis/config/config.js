@@ -32,6 +32,7 @@ export default {
             {'outcomes': '#00B050'}],
         context: [
             {
+                key: 'overall_scores',
                 name: 'main',
                 menu: {
                     header: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.context.main.header'),
@@ -61,6 +62,7 @@ export default {
                 ]
             },
             {
+                key: 'context_value_and_importance',
                 name: 'context_value_and_importance',
                 menu: {
                     title: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.context.context_value_and_importance.title'),
@@ -208,27 +210,27 @@ export default {
                         "field": "name"
                     },
                     {
-                        "label": `PR1-6: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr1_6')}`,
+                        "label": `PR A: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr1_6')}`,
                         "field": "pr1_6"
                     },
                     {
-                        "label": `PR7-9: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr7_9')}`,
+                        "label": `PR B: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr7_9')}`,
                         "field": "pr7_9",
                     },
                     {
-                        "label": `PR10-12: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr10_12')}`,
+                        "label": `PR C: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr10_12')}`,
                         "field": "pr10_12"
                     },
                     {
-                        "label": `PR13-14: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr13_14')}`,
+                        "label": `PR D: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr13_14')}`,
                         "field": "pr13_14"
                     },
                     {
-                        "label": `PR15-16: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr15_16')}`,
+                        "label": `PR E: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr15_16')}`,
                         "field": "pr15_16"
                     },
                     {
-                        "label": `PR17-18: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr17_18')}`,
+                        "label": `PR F: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr17_18')}`,
                         "field": "pr17_18"
                     }
                 ]

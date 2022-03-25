@@ -2,7 +2,7 @@
     :title="'{{$title}}'"
     :id="'{{$name}}'"
     :code="'{{$code}}'"
-    :guidance="'{{trans('imet-core::analysis_report.guidance.general_elements')}}'">
+    :guidance="'imet-core::analysis_report.guidance.general_elements'">
     <template slot-scope="container">
         <div class="row" id="{{$name}}-image">
             <div class="col">

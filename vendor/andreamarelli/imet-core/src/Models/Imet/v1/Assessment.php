@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Assessment extends Model
 {
-    protected $table = 'imet_assessment.v_imet_eval_stat_step_summary';
+    protected $table = 'imet_assessment_v1_to_v2.v_imet_eval_stat_step_summary';
     protected $primaryKey = 'formid';
 
     public function radar(): array

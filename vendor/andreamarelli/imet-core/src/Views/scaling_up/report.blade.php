@@ -26,15 +26,13 @@
                 <div class="scrollButtons mr-3" style="width:200px;">
                     <div class="content">
                         <span class="m-1">{{trans('imet-core::analysis_report.navigation_menu')}}</span>
-                        <span>
-                            <select class="form-control" @change="goTo($event)">
-                                <option
-                                    value="names">{{ trans('imet-core::analysis_report.guidance.custom_names') }}</option>
-                                <option
-                                    value="list_of_names">{{ trans('imet-core::analysis_report.sections.list_of_names') }}</option>
-                                @foreach($templates as $key => $template)
-                                    <option value="{{ $template['name'] }}">{{ $template['title'] }}</span>
-                                @endforeach
+                        <select class="form-control" @change="goTo($event)">
+                            <option
+                                value="names">{{ trans('imet-core::analysis_report.custom_names') }}</option>
+                            @foreach($templates as $key => $template)
+                                <option value="{{ $template['name'] }}">{{$template['code']}}
+                                    . {{ $template['title'] }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -42,18 +40,10 @@
                 <div id="names"></div>
                 @include('imet-core::scaling_up.components.scaling_up_template')
                 @include('imet-core::scaling_up.components.wdpa_names')
-                @include('imet-core::scaling_up.components.protected_areas',
-                                [   'name' => 'list_of_names' ,
-                                   'code' => '',
-                                   'title' => trans('imet-core::analysis_report.sections.list_of_names'),
-                                   'snapshot_id' => '',
-                                   'exclude_elements' => '',
-                                   'pas' => ($custom_names)
-                                ])
                 @foreach($templates as $key => $template)
                     @include('imet-core::scaling_up.components.'.$template['name'],
                                 [   'name' => $template['name'],
-                                   'code' => '',
+                                   'code' => $template['code'],
                                    'title' => $template['title'],
                                    'snapshot_id' => $template['snapshot_id'],
                                    'exclude_elements' => $template['exclude_elements'],
@@ -65,6 +55,8 @@
     </div>
 
     <script>
+
+
         new Vue({
             el: '#imet_report',
             data: {
@@ -77,9 +69,41 @@
             }
         });
 
+
     </script>
     <style>
         @media screen {
+            .popover-header {
+                font-size: 0.9em;
+                font-style: italic;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            .popover-body {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .popover-body a {
+                margin: 3px;
+            }
+
+            .sub-title {
+                font-weight: 600;
+                padding: 8px 8px 8px 10px;
+                background-color: #fafafa;
+                color: #525252;
+                font-size: 1.1rem;
+                line-height: 1.3em;
+                border-top: 1px dashed #d4d4d4;
+                display: block;
+            }
+
+            .sub-title-second {
+                font-weight: normal;
+                font-size: 1.0rem;
+            }
 
             .scrollButtons {
                 bottom: 120px;
@@ -137,6 +161,22 @@
             .contailer .smallMenu .standalone div:hover {
                 background-color: #4cae4c;
                 color: Black;
+            }
+
+            .popover-header {
+                font-size: 0.9em;
+                font-style: italic;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            .popover-body {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .popover-body a {
+                margin: 3px;
             }
         }
 

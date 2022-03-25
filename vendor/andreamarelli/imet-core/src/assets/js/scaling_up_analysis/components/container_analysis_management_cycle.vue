@@ -3,8 +3,8 @@
         <div class="" @click="toggle_view()">
 
             <div :id="'menu-header-header-main'"
-                 class="list-key-numbers horizontal">
-                <div class="list-head"><span class="fas fa-fw"
+                 :class="parent_class_name+' horizontal'">
+                <div :class="class_name"><span class="fas fa-fw"
                                              :class="{'fa-plus': !data.show_view,'fa-minus':data.show_view}"></span>
                     {{ title }}
                 </div>
@@ -62,6 +62,14 @@ export default {
         guidance: {
             type: String,
             default: ''
+        },
+        parent_class_name: {
+            type: String,
+            default: 'list-key-numbers'
+        },
+        class_name:{
+            type: String,
+            default: 'list-head'
         }
     },
     data: function () {

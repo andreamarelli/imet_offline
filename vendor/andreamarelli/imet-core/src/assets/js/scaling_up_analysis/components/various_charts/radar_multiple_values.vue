@@ -193,7 +193,7 @@ export default {
             const item = this.radar_item();
             const indicators = [];
             let legends = [];
-            Object.entries(this.values).reverse().forEach((data, key) => {
+                Object.entries(this.values).reverse().forEach((data, key) => {
                 indicators.push({text: data[0].replace(' ', '\n'), max: 100});
                 item.value.push(data[1]);
             });
@@ -238,20 +238,7 @@ export default {
                             delete value['width'];
                             delete value['legend_selected'];
 
-                            indicators = [];
-
-                            for (const val in value) {
-                                if (isNaN(val)) {
-                                    const index = this.indicators.findIndex(element => {
-                                        if (element.toLowerCase().includes(val)) {
-                                            return true;
-                                        }
-                                    });
-                                    indicators[index] = value[val];
-                                } else {
-                                    indicators.push(value[val]);
-                                }
-                            }
+                            indicators = Object.values(value);
                         }
                         const index = this.find_if_array_has_negative_values(indicators);
                         if (index > -1) {

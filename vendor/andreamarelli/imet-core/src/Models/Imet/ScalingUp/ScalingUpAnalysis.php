@@ -95,11 +95,16 @@ class ScalingUpAnalysis extends Model
     public static function get_protected_area($form_ids, $show_original_names = false)
     {
         $protected_area = [];
+        $categories = [];
         foreach ($form_ids as $form_id) {
             $protected_area[$form_id] = static::protected_areas_duplicate_fixes($form_id, true, $show_original_names);
+            $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
+            if ($general_info['records'][0]) {
+                $categories[$form_id] = static::get_category_of_protected_area($general_info['records'][0]);
+            }
         }
 
-        return $protected_area;
+        return ["models" => $protected_area, "categories" => $categories];
     }
 
     /**
@@ -216,6 +221,12 @@ class ScalingUpAnalysis extends Model
         return [implode(', ', $wdpa_name), implode(', ', $main_values)];
     }
 
+    private static function get_category_of_protected_area($general_info)
+    {
+        $iucn_category = $general_info['IUCNCategory1'] === 'Not Reported' ? '' : "(" . $general_info['IUCNCategory1'] . ")";
+        return $general_info['NationalCategory'] . $iucn_category;
+    }
+
     /**
      * @param $form_ids
      * @return \array[][]
@@ -257,8 +268,7 @@ class ScalingUpAnalysis extends Model
                 }
                 $generalElements['network'][] = $general_info['CompleteName'];
 
-                $iucn_category = $general_info['IUCNCategory1'] === 'Not Reported' ? '' : "(" . $general_info['IUCNCategory1'] . ")";
-                $generalElements['categories'][] = $general_info['NationalCategory'] . $iucn_category;
+                $generalElements['categories'][] = static::get_category_of_protected_area($general_info);
                 if ($networks['records'][0]['id'] !== null) {
                     $result = static::transboundary_areas($networks['records'], $form_id);
                     $generalElements['values_network'][] = $result[1];
@@ -528,9 +538,9 @@ class ScalingUpAnalysis extends Model
 
         return ['status' => 'success', 'execition_time' => $execution_time, 'data' => [
             'values' => $index_ranking['data']['values'],
+            'averages_six_elements' => $averages_six_elements['data'],
             'radar' => $radars['data']['diagrams'],
             'scatter' => $scatter_plots['data']['scatter'],
-            'averages_six_elements' => $averages_six_elements['data'],
             'assessments' => $assessments['data']['assessments']
         ]];
     }
@@ -750,7 +760,7 @@ class ScalingUpAnalysis extends Model
      * @param null $options
      * @return array
      */
-    public static function average_contribution_calculations($data, &$average, &$average_contribution, $pa, $colors, $options = null, $keep_locale, $label): array
+    public static function average_contribution_calculations($data, &$average, &$average_contribution, $pa, $colors, $options = null, $keep_locale, $label, $type = ""): array
     {
         $average = [];
         $i = 0;
@@ -776,7 +786,12 @@ class ScalingUpAnalysis extends Model
             if (is_numeric($index)) {
                 $average_contribution['data']['Average'][$i]["indicator"] = trans($label . ($v), [], $keep_locale);
             } else {
-                $average_contribution['data']['Average'][$i]["indicator"] = static::indicator_label($v, $label);
+                if($type==="process"){
+                    $average_contribution['data']['Average'][$i]["indicator"] = static::indicator_label($v, $label, 'imet-core::analysis_report.legends.');
+                }else{
+                    $average_contribution['data']['Average'][$i]["indicator"] = static::indicator_label($v, $label);
+                }
+
             }
 
             $i++;
@@ -792,9 +807,9 @@ class ScalingUpAnalysis extends Model
      * @param $label
      * @return string
      */
-    public static function indicator_label($id, $label): string
+    public static function indicator_label($id, $label, $path = 'imet-core::v2_common.assessment.'): string
     {
-        return strtoupper(trans('imet-core::v2_common.assessment.' . $id)[0]) . " " . trans($label . $id);
+        return strtoupper(trans($path . $id)[0]) . " " . trans($label . $id);
     }
 
     private static function get_average(array $array)
@@ -878,8 +893,12 @@ class ScalingUpAnalysis extends Model
             foreach ($values as $v => $value) {
                 if ($v !== "avg") {
 
+                    if($custom_type==="process"){
+                        $name = static::indicator_label($v, 'imet-core::analysis_report.assessment.', 'imet-core::analysis_report.legends.');
+                    }else{
+                        $name = static::indicator_label($v, 'imet-core::analysis_report.assessment.');
+                    }
 
-                    $name = static::indicator_label($v, 'imet-core::analysis_report.assessment.');
                     $indicators[$i] = $name;
                     $ranking['legends'][$v] = $name;
                     $correction_value = $value;
@@ -904,7 +923,7 @@ class ScalingUpAnalysis extends Model
         $ranking['values'] = $ranking_values;
         $average = [];
         $keep_locale = App::getLocale();
-        static::average_contribution_calculations($data[$type], $average, $average_contribution, $pa, $colors[$type], $options, $keep_locale, 'imet-core::analysis_report.assessment.');
+        static::average_contribution_calculations($data[$type], $average, $average_contribution, $pa, $colors[$type], $options, $keep_locale, 'imet-core::analysis_report.assessment.', $custom_type);
 
         foreach ($valuesIndicators as $k => $v) {
             $upperLimit[$k] = max($v);
@@ -1201,12 +1220,13 @@ class ScalingUpAnalysis extends Model
         $colors = ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc', '#f8f9fa'];
         $indicator = [
             'context' => [],
-            'planning' => [],
-            'inputs' => [],
-            'process' => [],
+            'outcomes' => [],
             'outputs' => [],
-            'outcomes' => []
+            'process' => [],
+            'inputs' => [],
+            'planning' => [],
         ];
+
         foreach ($parameters as $form) {
             $form_ids[] = $form['id'];
             $groups[$form['group']] = [$form['group'], $form['name']];
@@ -1214,8 +1234,10 @@ class ScalingUpAnalysis extends Model
 
         $assessments = count($assessments) ? $assessments : static::get_assessments($form_ids);
 
+        $key = 0;
         foreach ($indicator as $indi => $value) {
             foreach ($assessments['data']['assessments'] as $assessment) {
+
                 foreach ($parameters as $form) {
                     if ($form['id'] === $assessment['formid']) {
                         $indicator[$indi][$form['group']][] = $assessment[$indi];
@@ -1228,11 +1250,12 @@ class ScalingUpAnalysis extends Model
         foreach ($indicator as $indi => $value) {
             foreach ($groups as $key => $group) {
                 $average[$group[1]][$indi] = static::round_number(array_sum($indicator[$indi][$key]) / count($indicator[$indi][$key]));
-                $average[$group[1]]['color'] = $colors[$group[0] - 1];
-                $average[$group[1]]['legend_selected'] = true;
+                if(!isset($average[$group[1]]['color'])) {
+                    $average[$group[1]]['color'] = $colors[$group[0] - 1];
+                    $average[$group[1]]['legend_selected'] = true;
+                }
             }
         }
-        krsort($average);
 
         return ['status' => 'success', 'data' => ['radar' => $average]];
     }
@@ -1250,11 +1273,12 @@ class ScalingUpAnalysis extends Model
         $colors = ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc', '#f8f9fa'];
         $indicator = [
             'context' => [],
+            'outcomes' => [],
             'planning' => [],
             'inputs' => [],
             'process' => [],
             'outputs' => [],
-            'outcomes' => []
+
         ];
 
         foreach ($parameters as $form) {

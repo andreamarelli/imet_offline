@@ -1,51 +1,33 @@
 <div class="row">
     <div class="col-12 " v-for="(value, index) in data.props"
          :id="'{{$name}}-'+index">
+
         <div class="col-12" v-for="(section_data, section) in value" :id="'{{$name}}-'+section">
             <div class="align-items-center "
                  v-for="(tableValue, tableIndex) in container.props.config.element_diagrams[section]">
-                <div v-if="tableValue['menu']['radar'] !== ''" class="col-12 mb-5">
-                    <?php if (!$dontShowTitle) { ?><div v-if="tableValue['menu']['title']" :id="'menu-title-'+section+'-'+tableValue['name']"
-                         class="list-key-numbers horizontal">
-                        <div class="list-head" v-html="tableValue['menu']['title']"></div>
-                    </div> <?php } else {  } ?>
-                    <div  class="list-key-numbers horizontal">
-                        <div class="list-head" :id="'menu-radar-'+section+'-'+tableValue['name']"
-                             v-html="tableValue['menu']['radar']"></div>
+                <div v-if="tableValue['menu']['radar'] !== ''">
+                    <div>
+                        <guidance :text="'imet-core::analysis_report.guidance.context.'+tableValue['key']"/>
                     </div>
-                    <div
-                         :id="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'scaling-radar'">
-                        <container_actions :data="section_data"
-                                           :name="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'scaling-radar'"
-                                           :event_image="'save_entire_block_as_image'">
-                            <template slot-scope="data_elements">
-                                <scaling_radar class="sm" :height=700
-                                               :single="false"
-                                               :radar_indicators_for_negative="data_elements.props[tableValue['name']].radar.radar_indicators_for_negative"
-                                               :unselect_legends_on_load="true"
-                                               :show_legends="true"
-                                               :indicators="data_elements.props[tableValue['name']].radar.indicators"
-                                               :values="data_elements.props[tableValue['name']].radar.values"></scaling_radar>
-                            </template>
-                        </container_actions>
-                    </div>
-                    <div
-                         :id="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'scaling-datatable-radar'">
-                        <container_actions :data="section_data"
-                                           :name="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'scaling-datatable-radar'"
-                                           :event_image="'save_entire_block_as_image'">
-                            <template slot-scope="data_elements">
-                                <datatable_interact_with_radar class="col-sm"
-                                                               :values="data_elements.props[tableValue['name']].radar.values"
-                                                               :columns="container.props.stores.BaseStore.find_config_by_name(container.props.config.element_diagrams[section], tableValue['name']).columns"></datatable_interact_with_radar>
+                    <?php if (!$dontShowTitle) { ?>
+                    <div v-if="tableValue['menu']['title']" :id="'menu-title-'+section+'-'+tableValue['name']"
+                         class="horizontal">
 
-                            </template>
-                        </container_actions>
-                    </div>
+                        <div class="sub-title" v-html="tableValue['menu']['title']"></div>
+                    </div> <?php } else { ?>
+
+                    <?php
+                    } ?>
                 </div>
-                <div class="list-key-numbers horizontal mt-1">
-                    <div class="list-head" :id="'menu-ranking-'+section+'-'+tableValue['name']"
-                         v-html="tableValue['menu']['ranking']"></div>
+                <div class=" horizontal mt-1">
+                    <div class="sub-title {{ $sub_class ?? '' }}" :id="'menu-ranking-'+section+'-'+tableValue['name']">
+                        <span v-html="tableValue['menu']['ranking']"></span>
+                        <popover>
+                            <template>
+                                {{trans('imet-core::analysis_report.guidance.info.ranking')}}
+                            </template>
+                        </popover>
+                    </div>
                 </div>
                 <div :id="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'category-stack'">
                     <container_actions :data="section_data"
@@ -63,9 +45,16 @@
                         </template>
                     </container_actions>
                 </div>
-                <div class="list-key-numbers horizontal mt-1">
-                    <div class="list-head" :id="'menu-average-contribution-'+section+'-'+tableValue['name']"
-                         v-html="tableValue['menu']['average_contribution']"></div>
+                <div class="horizontal mt-1">
+                    <div class="sub-title {{ $sub_class ?? '' }}"
+                         :id="'menu-average-contribution-'+section+'-'+tableValue['name']">
+                        <span v-html="tableValue['menu']['average_contribution']"></span>
+                        <popover>
+                            <template>
+                                {{trans('imet-core::analysis_report.guidance.info.average_contribution')}}
+                            </template>
+                        </popover>
+                    </div>
                 </div>
                 <div :id="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'bar-error'">
                     <container_actions :data="section_data"
@@ -81,9 +70,59 @@
                         </template>
                     </container_actions>
                 </div>
-                <div class="list-key-numbers horizontal mt-1">
-                    <div class="list-head" :id="'menu-datatable-'+section+'-'+tableValue['name']"
-                         v-html="tableValue['menu']['datatable']"></div>
+                <div v-if="tableValue['menu']['radar'] !== ''">
+
+                    <div class="horizontal">
+                        <div class="sub-title {{ $sub_class ?? '' }}"
+                             :id="'menu-radar-'+section+'-'+tableValue['name']">
+                            <span v-html="tableValue['menu']['radar']"></span>
+                            <popover>
+                                <template>
+                                    {{trans('imet-core::analysis_report.guidance.context.radar')}}
+                                </template>
+                            </popover>
+                        </div>
+                    </div>
+                    <div
+                        :id="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'scaling-radar'">
+                        <container_actions :data="section_data"
+                                           :name="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'scaling-radar'"
+                                           :event_image="'save_entire_block_as_image'">
+                            <template slot-scope="data_elements">
+                                <scaling_radar class="sm" :height=700
+                                               :single="false"
+                                               :radar_indicators_for_negative="data_elements.props[tableValue['name']].radar.radar_indicators_for_negative"
+                                               :unselect_legends_on_load="true"
+                                               :show_legends="true"
+                                               :indicators="data_elements.props[tableValue['name']].radar.indicators"
+                                               :values="data_elements.props[tableValue['name']].radar.values"></scaling_radar>
+                            </template>
+                        </container_actions>
+                    </div>
+                    <div
+                        :id="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'scaling-datatable-radar'">
+                        <container_actions :data="section_data"
+                                           :name="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'scaling-datatable-radar'"
+                                           :event_image="'save_entire_block_as_image'">
+                            <template slot-scope="data_elements">
+                                <datatable_interact_with_radar class="col-sm"
+                                                               :values="data_elements.props[tableValue['name']].radar.values"
+                                                               :columns="container.props.stores.BaseStore.find_config_by_name(container.props.config.element_diagrams[section], tableValue['name']).columns"></datatable_interact_with_radar>
+
+                            </template>
+                        </container_actions>
+                    </div>
+                </div>
+                <div class="horizontal mt-1">
+                    <div class="sub-title {{ $sub_class ?? '' }}"
+                         :id="'menu-datatable-'+section+'-'+tableValue['name']">
+                        <span v-html="tableValue['menu']['datatable']"></span>
+                        <popover>
+                            <template>
+                                {{trans('imet-core::analysis_report.guidance.info.datatable')}}
+                            </template>
+                        </popover>
+                    </div>
                 </div>
                 <div :id="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'table-scaling'">
                     <container_actions :data="section_data"

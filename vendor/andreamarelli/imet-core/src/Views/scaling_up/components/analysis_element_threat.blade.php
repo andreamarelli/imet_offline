@@ -1,28 +1,18 @@
-<div class="list-key-numbers horizontal">
-    <div class="list-head" v-html="container.props.config.element_diagrams.threats.menu.title"></div>
+<div>
+    <guidance :text="'imet-core::analysis_report.guidance.context.threats'"/>
 </div>
-<div class="list-key-numbers horizontal">
-    <div class="list-head" v-html="container.props.config.element_diagrams.threats.menu.radar"></div>
+<div class="horizontal">
+    <div class="sub-title" v-html="container.props.config.element_diagrams.threats.menu.title"></div>
 </div>
-<div :id="'{{$name}}-radar-threat'">
-    <container_actions :data="data.props.values" :name="'{{$name}}-radar-threat'"
-                       :event_image="'save_entire_block_as_image'"
-                       :exclude_elements="'{{$exclude_elements}}'">
-        <template slot-scope="v">
-            <div v-if="v.props.radar">
-                <radar_threats class="sm"
-                               :height=700
-                               :single="false"
-                               :unselect_legends_on_load="true"
-                               :show_legends="true"
-                               :indicators="v.props.radar.indicators"
-                               :values="v.props.radar.values"></radar_threats>
-            </div>
-        </template>
-    </container_actions>
-</div>
-<div class="list-key-numbers horizontal">
-    <div class="list-head" v-html="container.props.config.element_diagrams.threats.menu.ranking"></div>
+<div class="horizontal">
+    <div class="sub-title sub-title-second">
+        <span v-html="container.props.config.element_diagrams.threats.menu.ranking"></span>
+        <popover>
+            <template>
+                {{trans('imet-core::analysis_report.guidance.info.ranking')}}
+            </template>
+        </popover>
+    </div>
 </div>
 <div :id="'{{$name}}-ranking-threat'">
     <container_actions :data="data.props.values" :name="'{{$name}}-ranking-threat'"
@@ -48,8 +38,15 @@
         </template>
     </container_actions>
 </div>
-<div class="list-key-numbers horizontal">
-    <div class="list-head" v-html="container.props.config.element_diagrams.threats.menu.average_contribution"></div>
+<div class="horizontal">
+    <div class="sub-title sub-title-second">
+        <span v-html="container.props.config.element_diagrams.threats.menu.average_contribution"></span>
+        <popover>
+            <template>
+                {{trans('imet-core::analysis_report.guidance.info.average_contribution')}}
+            </template>
+        </popover>
+    </div>
 </div>
 <div :id="'{{$name}}-average-contribution-threat'">
     <container_actions :data="data.props.values"
@@ -67,8 +64,43 @@
         </template>
     </container_actions>
 </div>
-<div class="list-key-numbers horizontal">
-    <div class="list-head" v-html="container.props.config.element_diagrams.threats.menu.datatable"></div>
+<div class="horizontal">
+    <div class="sub-title sub-title-second">
+        <span v-html="container.props.config.element_diagrams.threats.menu.radar"></span>
+        <popover>
+            <template>
+                {{trans('imet-core::analysis_report.guidance.info.radar')}}
+            </template>
+        </popover>
+    </div>
+</div>
+<div :id="'{{$name}}-radar-threat'">
+    <container_actions :data="data.props.values" :name="'{{$name}}-radar-threat'"
+                       :event_image="'save_entire_block_as_image'"
+                       :exclude_elements="'{{$exclude_elements}}'">
+        <template slot-scope="v">
+            <div v-if="v.props.radar">
+                <radar_threats class="sm"
+                               :height=700
+                               :single="false"
+                               :unselect_legends_on_load="true"
+                               :show_legends="true"
+                               :indicators="v.props.radar.indicators"
+                               :values="v.props.radar.values"></radar_threats>
+            </div>
+        </template>
+    </container_actions>
+</div>
+
+<div class="horizontal">
+    <div class="sub-title sub-title-second">
+        <span v-html="container.props.config.element_diagrams.threats.menu.datatable"></span>
+        <popover>
+            <template>
+                {{trans('imet-core::analysis_report.guidance.info.datatable')}}
+            </template>
+        </popover>
+    </div>
 </div>
 <div v-for="(value, index) in data.props.values.values" class="align-items-center" :id="'{{$name}}-'+index">
     <container_actions :data="value" :name="'{{$name}}-'+index"

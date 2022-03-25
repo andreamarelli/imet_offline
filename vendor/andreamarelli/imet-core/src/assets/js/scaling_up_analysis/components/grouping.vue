@@ -44,6 +44,7 @@
             <div class="col-24 mt-5 mb-5">
                 <button type="button" @click="show_diagrams('radar')" class="btn btn-success">
                     {{ stores.BaseStore.localization('imet-core::analysis_report.grouping.render_radar') }}
+
                 </button>
                 <button type="button" @click="show_diagrams('scatter',{func:'get_scatter_grouping_analysis'})"
                         class="btn btn-success">
@@ -54,8 +55,18 @@
         <div class="col-sm" v-if="show_selected_legend" >
             <div class="list-key-numbers horizontal">
                 <div class="list-head" v-if="type==='scatter'">{{ stores.BaseStore.localization('imet-core::analysis_report.grouping.scatter_plot') }}
+                    <popover>
+                        <template>
+                            {{stores.BaseStore.localization('imet-core::analysis_report.guidance.info.group_scatter')}}
+                        </template>
+                    </popover>
                 </div>
                 <div class="list-head"  v-else-if="type==='radar'">{{ stores.BaseStore.localization('imet-core::analysis_report.grouping.radar') }}
+                    <popover>
+                        <template>
+                            {{stores.BaseStore.localization('imet-core::analysis_report.guidance.info.group_radar')}}
+                        </template>
+                    </popover>
                 </div>
             </div>
         </div>

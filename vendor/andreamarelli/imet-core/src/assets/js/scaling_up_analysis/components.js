@@ -45,6 +45,7 @@ Vue.component('html_to_image', require('./tools/html_to_image.vue').default);
 
 Vue.component('basket', require('./components/basket.vue').default);
 Vue.component('guidance',    require('./components/guidance.vue').default);
+Vue.component('popover',    require('./components/popover.vue').default);
 
 Vue.component('small_menu',    require('./components/menus/small_menu.vue').default);
 Vue.component('small_menu_analysis_per_elements',    require('./components/menus/small_menu_analysis_per_elements.vue').default);

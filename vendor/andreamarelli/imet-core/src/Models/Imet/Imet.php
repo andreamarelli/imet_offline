@@ -123,7 +123,7 @@ class Imet extends Form
             $query->whereRaw('unaccent(name) ILIKE unaccent(?)', '%'.$request->input('search').'%')
                 ->orWhere('wdpa_id', 'LIKE', '%'.$request->input('search').'%');
         }
-        $this->where('version', static::version);
+        $query->where('version', static::version);
 
         // sort
         $query

@@ -1,5 +1,5 @@
 <container_section :id="'{{$name}}'" :title="'{{$title}}'" :code="'{{$code}}'"
-                   :guidance="'{{trans('imet-core::analysis_report.guidance.key_elements')}}'">
+                   :guidance="'imet-core::analysis_report.guidance.key_elements'">
     <template slot-scope="container">
         <div class="row">
             <div class="col-sm">

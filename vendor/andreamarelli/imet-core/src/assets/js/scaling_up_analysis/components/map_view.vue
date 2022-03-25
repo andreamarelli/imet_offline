@@ -129,7 +129,6 @@ export default {
 
                     pa.unshift('WDPAID')
                     pa.unshift('in')
-                    console.log({pa})
                     //
                     window.report_map.setFilter("wdpaSelected", pa);
                    // window.report_map.setFilter("wdpaBase", pa);
