@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-12 ml-2">
         <container_analysis_management_cycle
+            id="process"
             :title="container.props.config.element_diagrams.process[0].menu.title"
             :url=url
             :type="'process'"
@@ -17,6 +18,7 @@
 <div class="row">
     <div class="col-12 ml-2">
         <container_analysis_management_cycle
+            id="process_pr1_pr6"
             :title="container.props.config.element_diagrams.process_pr1_pr6[0].menu.title"
             :url=url
             :type="'process_pr1_pr6'"
@@ -33,7 +35,7 @@
 <div class="row">
     <div class="col-12 ml-2">
         <container_analysis_management_cycle
-
+            id="process_pr7_pr9"
             :title="container.props.config.element_diagrams.process_pr7_pr9[0].menu.title"
             :url=url
             :type="'process_pr7_pr9'"
@@ -50,6 +52,7 @@
 <div class="row">
     <div class="col-12 ml-2">
         <container_analysis_management_cycle
+            id="process_pr10_pr12"
             :title="container.props.config.element_diagrams.process_pr10_pr12[0].menu.title"
             :url=url
             :type="'process_pr10_pr12'"
@@ -66,6 +69,7 @@
 <div class="row">
     <div class="col-12 ml-2">
         <container_analysis_management_cycle
+            id="process_pr13_pr14"
             :title="container.props.config.element_diagrams.process_pr13_pr14[0].menu.title"
             :url=url
             :type="'process_pr13_pr14'"
@@ -82,6 +86,7 @@
 <div class="row">
     <div class="col-12 ml-2">
         <container_analysis_management_cycle
+            id="process_pr15_pr16"
             :title="container.props.config.element_diagrams.process_pr15_pr16[0].menu.title"
             :url=url
             :type="'process_pr15_pr16'"
@@ -98,6 +103,7 @@
 <div class="row">
     <div class="col-12 ml-2">
         <container_analysis_management_cycle
+            id="process_pr17_pr18"
             :title="container.props.config.element_diagrams.process_pr17_pr18[0].menu.title"
             :url=url
             :type="'process_pr17_pr18'"

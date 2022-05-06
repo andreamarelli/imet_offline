@@ -5,7 +5,7 @@
             <div :id="'menu-header-header-main'"
                  :class="parent_class_name+' horizontal'">
                 <div :class="class_name"><span class="fas fa-fw"
-                                             :class="{'fa-plus': !data.show_view,'fa-minus':data.show_view}"></span>
+                                               :class="{'fa-plus': !data.show_view,'fa-minus':data.show_view}"></span>
                     {{ title }}
                 </div>
             </div>
@@ -35,12 +35,14 @@
 
 <script>
 
+import container_event from './containers/container_event.vue';
 
 export default {
     name: "container_analysis_management_cycle.vue",
     inject: ['stores'],
     mixins: [
-        window.ImetCore.ScalingUp.Mixins.ajax
+        window.ImetCore.ScalingUp.Mixins.ajax,
+        container_event
     ],
     props: {
         show_menu: {
@@ -67,7 +69,7 @@ export default {
             type: String,
             default: 'list-key-numbers'
         },
-        class_name:{
+        class_name: {
             type: String,
             default: 'list-head'
         }
@@ -77,7 +79,8 @@ export default {
             data: {
                 values: {},
                 show_view: false,
-                loaded_once: false
+                loaded_once: false,
+                parameters: []
             }
         }
     },
@@ -85,6 +88,7 @@ export default {
         init: async function () {
             this.$on('apply_filter', async (parameters) => {
                 this.event_parameters = (parameters + ',' + this.type).split(',');
+                this.data.parameters = parameters;
                 this.func_parameter = this.func;
                 this.url_parameter = this.url;
                 await this.load_procedure();

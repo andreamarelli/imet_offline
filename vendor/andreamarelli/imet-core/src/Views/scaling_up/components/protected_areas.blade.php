@@ -7,17 +7,39 @@
                                :event_image="'save_entire_block_as_image'"
                                :exclude_elements="'{{$exclude_elements}}'">
                 <template>
-                    @foreach($custom_items as $key => $pa)
-                        <div class="row justify-content-center mb-2">
-                            <div class="col-5">{{ $protected_areas['models'][$pa->FormID]->name }} - {{ $protected_areas['categories'][$pa->FormID] }}</div>
-                            <div class="col-1">
-                                <div class="ml-auto"
-                                     style="background-color: {{ $custom_items[$pa->FormID]->color }};width:30px;height: 20px; ">
-                                </div>
-                            </div>
-                            <div class="col-5">{{ $custom_items[$pa->FormID]->name }}</div>
-                        </div>
-                    @endforeach
+                    <table id="short_names" class="table module-table table-bordered">
+
+                        <thead>
+                        <tr>
+                            <th class="text-center">{{trans('imet-core::analysis_report.name')}}</th>
+                            <th class="text-center">{{trans('imet-core::analysis_report.category')}}</th>
+                            <th class="text-center">{{trans('imet-core::analysis_report.short_name')}}</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        @foreach($custom_items as $key => $pa)
+                            <tr class="module-table-item">
+                                {{--  fields  --}}
+
+                                <td class="text-center width90px border">{{ $protected_areas['models'][$pa->FormID]->name }}
+                                </td>
+                                <td class="text-center width60px border">{{ $protected_areas['categories'][$pa->FormID] }}
+                                </td>
+                                <td class="text-center width90px border">
+                                    <div class="row">
+                                        <div class="col-2 ml-3"
+                                             style="background-color: {{ $custom_items[$pa->FormID]->color }}; height:20px;"></div>
+                                        <div class="col-9"> {{ $custom_items[$pa->FormID]->name }}</div>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                        @endforeach
+                        </tbody>
+                    </table>
                 </template>
             </container_actions>
         </div>

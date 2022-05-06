@@ -6,7 +6,7 @@
                 <div class="align-items-center">
                     <container_view
                         :loaded_at_once="true"
-                        :title="'Management effectiveness analysis'"
+                        :title="'{{trans('imet-core::analysis_report.additional_options.management_effectiveness_analysis')}}'"
                         :guidance="'imet-core::analysis_report.guidance.additional_options.management_effectiveness'">
                         <template slot-scope="data" class="col-24">
                             @include('imet-core::scaling_up.components.management_effectiveness_analysis', ['name' => $name])
@@ -14,7 +14,7 @@
                     </container_view>
                     <container_view
                         :loaded_at_once="true"
-                        :title="'Summary of key elements affecting the management elements'"
+                        :title="'{{trans('imet-core::analysis_report.additional_options.summary_key_elements_affecting_management_elements')}}'"
                         :guidance="'imet-core::analysis_report.guidance.additional_options.specific_actions_mention'">
                         <template slot-scope="data" class="col-24">
                             @include('imet-core::scaling_up.components.specific_actions_mention', ['name' => $name])

@@ -1,8 +1,8 @@
-<div>
-    <guidance :text="'imet-core::analysis_report.guidance.context.threats'"/>
-</div>
 <div class="horizontal">
     <div class="sub-title" v-html="container.props.config.element_diagrams.threats.menu.title"></div>
+</div>
+<div>
+    <guidance :text="'imet-core::analysis_report.guidance.context.threats'"/>
 </div>
 <div class="horizontal">
     <div class="sub-title sub-title-second">
@@ -22,11 +22,12 @@
             <div v-if="v.props.ranking">
                 <bar_category_stack
                     :show_y_axis="false"
-                    :show_option_label="true"
+                    :label_position="'bottom'"
+                    :show_option_label="container.props.config.element_diagrams.threats.ranking_labels"
                     :grid='{"grid": {
                                             "left": "3%",
                                             "right": "4%",
-                                            "bottom": "3%",
+                                            "bottom": "5%",
                                             "containLabel": true,
                                             "top":"19%"
                                             }}'
@@ -55,6 +56,7 @@
         <template slot-scope="v">
             <div v-if="v.props.average_contribution">
                 <imet_bar_error
+                    :error_color="'#fff000'"
                     :axis_dimensions_x="{max:100}"
                     :show_legends="true"
                     :values="v.props.average_contribution.data"
@@ -97,7 +99,7 @@
         <span v-html="container.props.config.element_diagrams.threats.menu.datatable"></span>
         <popover>
             <template>
-                {{trans('imet-core::analysis_report.guidance.info.datatable')}}
+                {{trans('imet-core::analysis_report.guidance.threats.datatable')}}
             </template>
         </popover>
     </div>

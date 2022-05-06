@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\hasOne;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 use function session;
@@ -326,17 +327,15 @@ class Imet extends Form
             (new Controller)->backup($item);
         }
 
-        $user = Auth::user()
-            ->person
-            ->only(['first_name', 'last_name', 'organisation', 'function']);
+        $user_info = Auth::user()->getInfo();
 
-        if(Encoder::where('first_name', $user['first_name'])
-                ->where('last_name', $user['last_name'])
+        if(Encoder::where('first_name', $user_info['first_name'])
+                ->where('last_name', $user_info['last_name'])
                 ->where('FormID', $item)
                 ->whereDate(static::UPDATED_AT, Carbon::today())
                 ->count()===0){
             $encoder =  new Encoder();
-            $encoder->fill($user);
+            $encoder->fill($user_info);
             $encoder['FormID'] = $item;
             $encoder->save();
         }
@@ -356,7 +355,7 @@ class Imet extends Form
     {
         $records = static::upgradeModules($records, $imet_version);
         $modules_imported = [];
-        /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule $module_class */
+        /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule|\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule_Eval $module_class */
         foreach (static::allModules() as $module_class) {
             if (array_key_exists($module_class::getShortClassName(), $records)) {
                 $modules_imported[] = $module_class::getShortClassName();
@@ -378,7 +377,7 @@ class Imet extends Form
     public static function upgradeModules($data, $imet_version = null): array
     {
         $upgraded_data = [];
-        /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule $module_class */
+        /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule|\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule_Eval $module_class */
         foreach (static::allModules() as $module_class) {
             if(array_key_exists($module_class::getShortClassName(), $data)){
                 $upgraded_data[$module_class::getShortClassName()]

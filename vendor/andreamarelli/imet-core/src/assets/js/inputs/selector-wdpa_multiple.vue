@@ -63,7 +63,7 @@
 
 <style lang="scss" scoped>
 
-    @import "vendor/andreamarelli/modular-forms/src/Assets/sass/abstracts/all";
+    @import "vendor/andreamarelli/modular-forms/src/assets/sass/abstracts/all";
 
     .module-container .selector-wdpa_multiple {
 

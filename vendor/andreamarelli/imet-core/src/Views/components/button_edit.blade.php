@@ -1,7 +1,7 @@
 <?php
 /** @var String $version */
 
-if($version==='v1'){
+if ($version === 'v1') {
     $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class;
     $controller_eval = \AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1::class;
     $controller_report = \AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1::class;
@@ -9,14 +9,16 @@ if($version==='v1'){
     $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class;
     $controller_eval = \AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::class;
     $controller_report = \AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2::class;
+    $controller_cross_analysis = \AndreaMarelli\ImetCore\Controllers\Imet\CrossAnalysisController::class;
 }
 ?>
 
 <span class="imet_encode_popover">
 
     <button class="btn-nav small yellow"
-       role="button"
-       data-toggle="popover" data-trigger="focus" data-placement="top" :data-popover-content="'popover_edit_'+item.FormID" >
+            role="button"
+            data-toggle="popover" data-trigger="focus" data-placement="top"
+            :data-popover-content="'popover_edit_'+item.FormID">
         {!! AndreaMarelli\ModularForms\Helpers\Template::icon('pen', 'white') !!}
     </button>
 
@@ -48,6 +50,19 @@ if($version==='v1'){
                 'new_page' => false
             ])
 
+            @if($version==='v2')
+                {{-- Cross Analysis --}}
+                @include('modular-forms::buttons._generic', [
+                    'controller' => $controller_cross_analysis,
+                    'action' =>'cross_analysis',
+                    'item' => 'item.FormID',
+                    'label' => ucfirst(trans('imet-core::common.cross_analysis')),
+                    'icon' => 'chart-bar',
+                    'class' => 'yellow',
+                    'new_page' => false
+                ])
+            @endif
+
             {{-- Analysis Report --}}
             @include('modular-forms::buttons._generic', [
                 'controller' => $controller_report,
@@ -66,17 +81,19 @@ if($version==='v1'){
 
 @push('scripts')
     <style>
-        .popover-header{
+        .popover-header {
             font-size: 0.9em;
             font-style: italic;
             font-weight: bold;
             text-align: center;
         }
-        .popover-body{
+
+        .popover-body {
             display: flex;
             flex-direction: column;
         }
-        .popover-body a{
+
+        .popover-body a {
             margin: 3px;
         }
     </style>
@@ -84,27 +101,27 @@ if($version==='v1'){
     @push('scripts')
         @once
 
-        <script>
+            <script>
 
-            // ###########################  Bootstrap popover  ###########################
-            window.onload = function(){
+                // ###########################  Bootstrap popover  ###########################
+                window.onload = function () {
 
-                $('[data-toggle="popover"]').popover({
-                    html : true,
-                    content: function() {
-                        return document
-                            .getElementById(this.getAttribute('data-popover-content'))
-                            .querySelector(".popover-body").innerHTML;
-                    },
-                    title: function() {
-                        return document
-                            .getElementById(this.getAttribute('data-popover-content'))
-                            .querySelector(".popover-heading").innerHTML;
-                    }
-                });
-            }
+                    $('[data-toggle="popover"]').popover({
+                        html: true,
+                        content: function () {
+                            return document
+                                .getElementById(this.getAttribute('data-popover-content'))
+                                .querySelector(".popover-body").innerHTML;
+                        },
+                        title: function () {
+                            return document
+                                .getElementById(this.getAttribute('data-popover-content'))
+                                .querySelector(".popover-heading").innerHTML;
+                        }
+                    });
+                }
 
-        </script>
+            </script>
         @endonce
     @endpush
 @endpush

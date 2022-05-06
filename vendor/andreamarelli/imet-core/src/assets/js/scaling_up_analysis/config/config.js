@@ -42,6 +42,7 @@ export default {
                     average_contribution: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.context.main.average_contribution'),
                     datatable: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.context.main.datatable'),
                 },
+                ranking_labels: false,
                 columns: [
                     {
                         "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
@@ -54,10 +55,12 @@ export default {
                     {
                         "label": `C2: ${window.Locale.getLabel('imet-core::analysis_report.assessment.c2')}`,
                         "field": "c2",
+                        "extra_label": ` ${window.Locale.getLabel('imet-core::analysis_report.scale.negative_positive')}`
                     },
                     {
                         "label": `C3: ${window.Locale.getLabel('imet-core::analysis_report.assessment.c3')}`,
-                        "field": "c3"
+                        "field": "c3",
+                        "extra_label": ` ${window.Locale.getLabel('imet-core::analysis_report.scale.zero_negative')}`
                     }
                 ]
             },
@@ -71,7 +74,7 @@ export default {
                     average_contribution: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.context.context_value_and_importance.average_contribution'),
                     datatable: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.context.context_value_and_importance.datatable'),
                 },
-
+                ranking_labels: false,
                 columns: [
                     {
                         "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
@@ -103,6 +106,7 @@ export default {
         threats:
             {
                 name: 'threats',
+                ranking_labels: false,
                 menu: {
                     title: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.threats.threats.title'),
                     radar: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.threats.threats.radar'),
@@ -121,6 +125,7 @@ export default {
                     average_contribution: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.planning.main.average_contribution'),
                     datatable: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.planning.main.datatable'),
                 },
+                ranking_labels: false,
                 columns: [
                     {
                         "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
@@ -164,6 +169,7 @@ export default {
                     average_contribution: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.inputs.main.average_contribution'),
                     datatable: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.inputs.main.datatable'),
                 },
+                ranking_labels: false,
                 columns: [
                     {
                         "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
@@ -204,6 +210,7 @@ export default {
                     average_contribution: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_sub_indicators.average_contribution'),
                     datatable: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_sub_indicators.datatable'),
                 },
+                ranking_labels: false,
                 columns: [
                     {
                         "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
@@ -418,6 +425,7 @@ export default {
                     average_contribution: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.outputs.main.average_contribution'),
                     datatable: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.outputs.main.datatable'),
                 },
+                ranking_labels: false,
                 columns: [
                     {
                         "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
@@ -450,6 +458,7 @@ export default {
                     datatable: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.outcomes.main.datatable'),
 
                 },
+                ranking_labels: false,
                 columns: [
                     {
                         "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
@@ -462,10 +471,12 @@ export default {
                     {
                         "label": `O/C2: ${window.Locale.getLabel('imet-core::analysis_report.assessment.oc2')}`,
                         "field": "oc2",
+                        "extra_label": ` ${window.Locale.getLabel('imet-core::analysis_report.scale.negative_positive')}`
                     },
                     {
                         "label": `O/C3: ${window.Locale.getLabel('imet-core::analysis_report.assessment.oc3')}`,
-                        "field": "oc3"
+                        "field": "oc3",
+                        "extra_label": ` ${window.Locale.getLabel('imet-core::analysis_report.scale.negative_positive')}`
                     }
                 ]
 
@@ -484,7 +495,40 @@ export default {
                 },
                 {
                     field: 'area_prot_mar_perc',
-                    label: window.Locale.getLabel('imet-core::analysis_report.protected_area_coverage_and_connectivity.protected_marin_area'),
+                    label: window.Locale.getLabel('imet-core::analysis_report.protected_area_coverage_and_connectivity.protected_marine_area'),
+                    color: '#8ecfe0'
+                },
+                {
+                    field: 'protconn',
+                    label: window.Locale.getLabel('imet-core::analysis_report.protected_area_coverage_and_connectivity.protected_connected_land'),
+                    color: '#91ad41'
+                }
+            ],
+            table_bar_indicators: [
+                {
+                    field: 'area_terr_km2',
+                    label: window.Locale.getLabel('imet-core::analysis_report.protected_area_coverage_and_connectivity.total_land_area')
+                },
+                {
+                    field: 'area_prot_terr_km2',
+                    label: window.Locale.getLabel('imet-core::analysis_report.protected_area_coverage_and_connectivity.protected_land_area')
+                },
+                {
+                    field: 'area_prot_terr_perc',
+                    label: window.Locale.getLabel('imet-core::analysis_report.protected_area_coverage_and_connectivity.terrestrial_coverage'),
+                    color: '#cae5a1'
+                },
+                {
+                    field: 'area_mar_km2',
+                    label: window.Locale.getLabel('imet-core::analysis_report.protected_area_coverage_and_connectivity.total_marine_area')
+                },
+                {
+                    field: 'area_prot_mar_km2',
+                    label: window.Locale.getLabel('imet-core::analysis_report.protected_area_coverage_and_connectivity.protected_marine_area')
+                },
+                {
+                    field: 'area_prot_mar_perc',
+                    label: window.Locale.getLabel('imet-core::analysis_report.protected_area_coverage_and_connectivity.marine_coverage'),
                     color: '#8ecfe0'
                 },
                 {

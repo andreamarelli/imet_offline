@@ -13,6 +13,9 @@
             <div class="mt-5 p-2 border border-dark" v-if="show_more && key_exist('.table')"
                  v-html="stores.BaseStore.localization(text+'.table')">
             </div>
+            <div class="mt-2" v-if="show_more && key_exist('.extra_info')"
+                 v-html="stores.BaseStore.localization(text+'.extra_info')">
+            </div>
         </div>
     </div>
 </template>

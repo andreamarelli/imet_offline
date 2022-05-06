@@ -8,6 +8,7 @@ use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1;
 use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2;
+use AndreaMarelli\ImetCore\Controllers\Imet\CrossAnalysisController;
 use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
 use Illuminate\Support\Facades\Route;
 
@@ -65,6 +66,9 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
                 Route::get('{item}/show/{step?}',   [EvalControllerV2::class, 'show']);
                 Route::get('{item}/print',          [EvalControllerV2::class, 'print']);
                 Route::patch('{item}',           [EvalControllerV2::class, 'update']);
+            });
+            Route::group(['prefix' => 'cross-analysis'], function () {
+                Route::get('{item}',   [CrossAnalysisController::class, 'cross_analysis']);
             });
             Route::group(['prefix' => 'report'], function () {
                 Route::get('{item}/edit', [ReportControllerV2::class, 'report']);

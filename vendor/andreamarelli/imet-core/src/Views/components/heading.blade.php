@@ -50,6 +50,10 @@
            class="step @if('evaluation'==$phase) selected @endif"
         >@lang_u('imet-core::common.evaluation_long')</a>
 
+        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\CrossAnalysisController::class, 'cross_analysis'], [$item->getKey()]) }}"
+           class="step @if('cross-analysis'==$phase) selected @endif"
+        >@lang_u('imet-core::common.cross_analysis_long')</a>
+
         <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2::class, 'report'], [$item->getKey()]) }}"
            class="step @if('report'==$phase) selected @endif"
         >@lang_u('imet-core::common.report_long')</a>

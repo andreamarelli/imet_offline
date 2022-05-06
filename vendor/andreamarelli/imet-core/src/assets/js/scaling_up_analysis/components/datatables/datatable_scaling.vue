@@ -9,7 +9,7 @@
             <tr>
                 <th v-for="(column, idx) in columns" @click="sort(column.field)"
                     :style="idx === 0 ? 'width:15%;' : 'width:11%;'">
-                    {{ column.label.charAt(0).toUpperCase() + column.label.slice(1) }} <i
+                    {{ column.label.charAt(0).toUpperCase() + column.label.slice(1) }} {{ (column.extra_label) }} <i
                     :class="sort_icon(column.field)"/>
                 </th>
             </tr>
@@ -23,21 +23,35 @@
             </tr>
         </table>
         <div class="row" style="font-size: 12px">
-            <div class="col-sm text-right">
+            <div class="col-3 text-right">
                 {{ stores.BaseStore.localization("imet-core::analysis_report.scaling_legend") }} :
             </div>
-            <div class="col-sm">
+            <div class="col-8">
                 <div class="row">
                     <div class="col text-center" :class="score_class(null)">
-                        {{ stores.BaseStore.localization("imet-core::analysis_report.no_value") }}
+                        {{ stores.BaseStore.localization("imet-core::analysis_report.no_value").toLowerCase() }}
                     </div>
-                    <div class="col text-center" :class="score_class(0)">0</div>
-                    <div class="col text-center" :class="score_class(10)">1-33</div>
-                    <div class="col text-center" :class="score_class(34)">34-50</div>
-                    <div class="col text-center" :class="score_class(51)">51-100</div>
+                    <div class="col text-center" :class="score_class(-52)">
+                        -100 {{ stores.BaseStore.localization("imet-core::analysis_report.to").toLowerCase() }} -51
+                    </div>
+                    <div class="col text-center" :class="score_class(-35)">
+                        -50 {{ stores.BaseStore.localization("imet-core::analysis_report.to").toLowerCase() }} -34
+                    </div>
+                    <div class="col text-center" :class="score_class(-1)">
+                        -33 {{ stores.BaseStore.localization("imet-core::analysis_report.to").toLowerCase() }} 0
+                    </div>
+                    <div class="col text-center" :class="score_class(10)">1
+                        {{ stores.BaseStore.localization("imet-core::analysis_report.to").toLowerCase() }} 33
+                    </div>
+                    <div class="col text-center" :class="score_class(34)">34
+                        {{ stores.BaseStore.localization("imet-core::analysis_report.to").toLowerCase() }} 50
+                    </div>
+                    <div class="col text-center" :class="score_class(51)">51
+                        {{ stores.BaseStore.localization("imet-core::analysis_report.to").toLowerCase() }} 100
+                    </div>
                 </div>
             </div>
-            <div class="col-sm align-self-center"></div>
+            <div class="col-1 align-self-center"></div>
         </div>
 
     </div>
@@ -116,6 +130,10 @@ export default {
 
             if (value === null) {
                 addClass = 'score_no';
+            } else if (value <= -51) {
+                addClass = 'score_danger_alert';
+            } else if (value < -33 && value > -51) {
+                addClass = 'score_danger_warning';
             } else if (value <= 0) {
                 addClass = 'score_danger';
             } else if (value > 0 && value < 34) {

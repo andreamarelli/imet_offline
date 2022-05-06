@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 /**
  * Class User
  *
+ * @property string $name
  * @mixin \Illuminate\Database\Eloquent\Model
  * @mixin \Illuminate\Database\Eloquent\Builder
  * @package AndreaMarelli\ModularForms\Models\User
@@ -40,11 +41,27 @@ class User extends Authenticatable
 
     /**
      * Retrieve the name of the user
-     * @return mixed
+     *
+     * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
+    }
+
+
+    /**
+     * Retrieve user's personal info (requires to be overridden)
+     * @return array
+     */
+    public function getInfo(): array
+    {
+        return [
+            "first_name" => null,
+            "last_name" => null,
+            "organisation" => null,
+            "function" => null,
+        ];
     }
 
 

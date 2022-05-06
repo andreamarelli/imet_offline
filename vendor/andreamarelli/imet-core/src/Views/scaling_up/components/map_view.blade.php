@@ -1,7 +1,3 @@
-<div>
-    <guidance :text="'imet-core::analysis_report.guidance.special_information'"/>
-</div>
-
 <container_section :id="'{{$name}}'" :title="'{{$title}}'" :code="'{{$code}}'"
                    :guidance="'imet-core::analysis_report.guidance.map'"
 >

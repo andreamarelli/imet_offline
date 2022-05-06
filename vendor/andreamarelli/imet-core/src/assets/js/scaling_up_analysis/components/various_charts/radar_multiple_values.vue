@@ -47,6 +47,12 @@ export default {
                 return [];
             }
         },
+        radar_indicators_for_zero_negative: {
+            type: Array,
+            default: () => {
+                return [];
+            }
+        },
         always_first_in_legend: {
             type: Array,
             default: () => {
@@ -135,7 +141,7 @@ export default {
                     render_items.push(item);
                 })
             }
-            ;
+
             return render_items;
         },
         setIndicators: function (negative_indicators) {
@@ -150,6 +156,13 @@ export default {
                 if (this.radar_indicators_for_negative.includes(key)) {
                     item.max = 100;
                     item.min = -100;
+                    item.text += ` \n ${window.Locale.getLabel('imet-core::analysis_report.scale.negative_positive')} `;
+                }
+
+                if (this.radar_indicators_for_zero_negative.includes(key)) {
+                    item.max = 0;
+                    item.min = -100;
+                    item.text += ` \n ${window.Locale.getLabel('imet-core::analysis_report.scale.zero_negative')}`;
                 }
                 return item;
             });
@@ -193,7 +206,7 @@ export default {
             const item = this.radar_item();
             const indicators = [];
             let legends = [];
-                Object.entries(this.values).reverse().forEach((data, key) => {
+            Object.entries(this.values).reverse().forEach((data, key) => {
                 indicators.push({text: data[0].replace(' ', '\n'), max: 100});
                 item.value.push(data[1]);
             });

@@ -50,6 +50,10 @@ export default {
             type: Object,
             default: () => {
             }
+        },
+        error_color: {
+            type: String,
+            default: ''
         }
     },
 
@@ -256,7 +260,8 @@ export default {
                     name: 'error',
                     itemStyle: {
                         normal: {
-                            borderWidth: 1.5
+                            borderWidth: 1.5,
+                            color: this.error_color
                         }
                     },
                     renderItem: this.render_item,

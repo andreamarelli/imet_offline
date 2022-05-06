@@ -125,12 +125,12 @@ const callChrome = async pup => {
             }
 
             if (request.options && request.options.blockUrls) {
-                request.options.blockUrls.forEach(function(value) {
-                    if (interceptedRequest.url().indexOf(value) >= 0) {
+                for (const element of request.options.blockUrls) {
+                    if (interceptedRequest.url().indexOf(element) >= 0) {
                         interceptedRequest.abort();
                         return;
                     }
-                });
+                }
             }
 
             if (request.options && request.options.extraNavigationHTTPHeaders) {

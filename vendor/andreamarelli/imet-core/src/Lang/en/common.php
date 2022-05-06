@@ -51,9 +51,11 @@ return [
 
     'context'           => 'context',
     'evaluation'        => 'evaluation',
+    'cross_analysis'        => 'cross analysis',
     'report'            => 'analysis report',
     'context_long'      => 'intervention context',
     'evaluation_long'   => 'management evaluation',
+    'cross_analysis_long'   => 'cross analysis',
     'report_long'       => 'analysis report',
 
     'import_imet'       => 'Import IMET from file',
@@ -67,5 +69,8 @@ return [
     'upgrade_failed'    => 'Error in upgrading to IMET v2',
 
     'synthetic_indicator' => 'synthetic indicator',
+
+    'cross_analysis_info' => 'Cross-analysis function aims to spot possible inconsistencies in IMET scores. It investigates whether scores within a pair (or a triplet) of IMET items were significantly different. The threshold for significant differences is set at the level of 20 percentage points for questions measured on the scale (min:0 – max:100). Below are provided those indicators, for which the difference exceeding the predefined threshold was established in your assessment. Since cross-analysis is for advisory purposes only, no suggestions are provided regarding the direction of discrepancy or possible changes that could be implemented. The responses can remain unchanged but should be double checked by the management team. Additional comments can be added in the selected questions to explain the significant score difference.',
+    'nothing_found' => 'Nothing found',
 
 ];

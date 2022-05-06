@@ -346,12 +346,12 @@ class Browsershot
 
     public function mobile(bool $mobile = true)
     {
-        return $this->setOption('viewport.isMobile', true);
+        return $this->setOption('viewport.isMobile', $mobile);
     }
 
     public function touch(bool $touch = true)
     {
-        return $this->setOption('viewport.hasTouch', true);
+        return $this->setOption('viewport.hasTouch', $touch);
     }
 
     public function landscape(bool $landscape = true)
@@ -530,12 +530,12 @@ class Browsershot
 
         $command = $this->createScreenshotCommand($targetPath);
 
-        $this->callBrowser($command);
+        $output = $this->callBrowser($command);
 
         $this->cleanupTemporaryHtmlFile();
 
         if (! file_exists($targetPath)) {
-            throw CouldNotTakeBrowsershot::chromeOutputEmpty($targetPath, $command);
+            throw CouldNotTakeBrowsershot::chromeOutputEmpty($targetPath, $output, $command);
         }
 
         if (! $this->imageManipulations->isEmpty()) {
@@ -593,12 +593,12 @@ class Browsershot
     {
         $command = $this->createPdfCommand($targetPath);
 
-        $this->callBrowser($command);
+        $output = $this->callBrowser($command);
 
         $this->cleanupTemporaryHtmlFile();
 
         if (! file_exists($targetPath)) {
-            throw CouldNotTakeBrowsershot::chromeOutputEmpty($targetPath);
+            throw CouldNotTakeBrowsershot::chromeOutputEmpty($targetPath, $output);
         }
     }
 
@@ -797,7 +797,7 @@ class Browsershot
         }
     }
 
-    protected function callBrowser(array $command)
+    protected function callBrowser(array $command): string
     {
         $fullCommand = $this->getFullCommand($command);
 

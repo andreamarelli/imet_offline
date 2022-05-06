@@ -8,7 +8,7 @@
                             :loaded_at_once="container.props.show_view"
                             :url=url
                             :parameters="'{{$pa_ids}}'"
-                            :func="'management_context'"
+                            :func="'get_management_context'"
 
                     >
                         <template slot-scope="data">

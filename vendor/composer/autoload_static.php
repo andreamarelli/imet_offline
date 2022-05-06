@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
+class ComposerStaticInit3435a065f70e6ee01e09d6b7362dcf7e
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -709,6 +709,7 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\ControllerV1' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/ControllerV1.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\ControllerV2' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/ControllerV2.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\ConvertSQLite' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/ConvertSQLite.php',
+        'AndreaMarelli\\ImetCore\\Controllers\\Imet\\CrossAnalysisController' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/CrossAnalysisController.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\EvalController' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/EvalController.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\EvalControllerV1' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/EvalControllerV1.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\EvalControllerV2' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/EvalControllerV2.php',
@@ -724,6 +725,7 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'AndreaMarelli\\ImetCore\\Helpers\\API\\DOPA\\Wdpa' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Helpers/API/DOPA/Wdpa.php',
         'AndreaMarelli\\ImetCore\\Helpers\\Math' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Helpers/Math.php',
         'AndreaMarelli\\ImetCore\\Helpers\\ModuleKey' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Helpers/ModuleKey.php',
+        'AndreaMarelli\\ImetCore\\Helpers\\ScalingUp\\Common' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Helpers/ScalingUp/Common.php',
         'AndreaMarelli\\ImetCore\\Helpers\\Template' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Helpers/Template.php',
         'AndreaMarelli\\ImetCore\\Jobs\\ApplySQL' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Jobs/ApplySQL.php',
         'AndreaMarelli\\ImetCore\\Jobs\\PopulateMetadata' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Jobs/PopulateMetadata.php',
@@ -734,10 +736,15 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'AndreaMarelli\\ImetCore\\Models\\Currency' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Currency.php',
         'AndreaMarelli\\ImetCore\\Models\\Encoder' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Encoder.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\Components\\Upgrade' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/Components/Upgrade.php',
+        'AndreaMarelli\\ImetCore\\Models\\Imet\\CrossAnalysis\\CrossAnalysis' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/CrossAnalysis/CrossAnalysis.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\Imet' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/Imet.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\ScalingUp\\Basket' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/ScalingUp/Basket.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\ScalingUp\\ScalingUpAnalysis' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/ScalingUp/ScalingUpAnalysis.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\ScalingUp\\ScalingUpWdpa' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/ScalingUp/ScalingUpWdpa.php',
+        'AndreaMarelli\\ImetCore\\Models\\Imet\\ScalingUp\\Sections\\AverageContribution' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/ScalingUp/Sections/AverageContribution.php',
+        'AndreaMarelli\\ImetCore\\Models\\Imet\\ScalingUp\\Sections\\Radar' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/ScalingUp/Sections/Radar.php',
+        'AndreaMarelli\\ImetCore\\Models\\Imet\\ScalingUp\\Sections\\Ranking' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/ScalingUp/Sections/Ranking.php',
+        'AndreaMarelli\\ImetCore\\Models\\Imet\\ScalingUp\\Sections\\Scatter' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/ScalingUp/Sections/Scatter.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v1\\Assessment' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v1/Assessment.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v1\\Imet' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v1/Imet.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v1\\Imet_Eval' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v1/Imet_Eval.php',
@@ -951,6 +958,8 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'AndreaMarelli\\ModularForms\\Controllers\\FormController' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Controllers/FormController.php',
         'AndreaMarelli\\ModularForms\\Controllers\\Traits\\API' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Controllers/Traits/API.php',
         'AndreaMarelli\\ModularForms\\Controllers\\UploadFileController' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Controllers/UploadFileController.php',
+        'AndreaMarelli\\ModularForms\\Exceptions\\MissingUploadShpException' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Exceptions/MissingUploadShpException.php',
+        'AndreaMarelli\\ModularForms\\Exceptions\\WrongFieldsUploadShpException' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Exceptions/WrongFieldsUploadShpException.php',
         'AndreaMarelli\\ModularForms\\Helpers\\API\\API' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/API/API.php',
         'AndreaMarelli\\ModularForms\\Helpers\\API\\DOPA\\Country' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/API/DOPA/Country.php',
         'AndreaMarelli\\ModularForms\\Helpers\\API\\DOPA\\DOPA' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/API/DOPA/DOPA.php',
@@ -4015,6 +4024,15 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'League\\CommonMark\\Extension\\DescriptionList\\Renderer\\DescriptionTermRenderer' => __DIR__ . '/..' . '/league/commonmark/src/Extension/DescriptionList/Renderer/DescriptionTermRenderer.php',
         'League\\CommonMark\\Extension\\DisallowedRawHtml\\DisallowedRawHtmlExtension' => __DIR__ . '/..' . '/league/commonmark/src/Extension/DisallowedRawHtml/DisallowedRawHtmlExtension.php',
         'League\\CommonMark\\Extension\\DisallowedRawHtml\\DisallowedRawHtmlRenderer' => __DIR__ . '/..' . '/league/commonmark/src/Extension/DisallowedRawHtml/DisallowedRawHtmlRenderer.php',
+        'League\\CommonMark\\Extension\\Embed\\Bridge\\OscaroteroEmbedAdapter' => __DIR__ . '/..' . '/league/commonmark/src/Extension/Embed/Bridge/OscaroteroEmbedAdapter.php',
+        'League\\CommonMark\\Extension\\Embed\\DomainFilteringAdapter' => __DIR__ . '/..' . '/league/commonmark/src/Extension/Embed/DomainFilteringAdapter.php',
+        'League\\CommonMark\\Extension\\Embed\\Embed' => __DIR__ . '/..' . '/league/commonmark/src/Extension/Embed/Embed.php',
+        'League\\CommonMark\\Extension\\Embed\\EmbedAdapterInterface' => __DIR__ . '/..' . '/league/commonmark/src/Extension/Embed/EmbedAdapterInterface.php',
+        'League\\CommonMark\\Extension\\Embed\\EmbedExtension' => __DIR__ . '/..' . '/league/commonmark/src/Extension/Embed/EmbedExtension.php',
+        'League\\CommonMark\\Extension\\Embed\\EmbedParser' => __DIR__ . '/..' . '/league/commonmark/src/Extension/Embed/EmbedParser.php',
+        'League\\CommonMark\\Extension\\Embed\\EmbedProcessor' => __DIR__ . '/..' . '/league/commonmark/src/Extension/Embed/EmbedProcessor.php',
+        'League\\CommonMark\\Extension\\Embed\\EmbedRenderer' => __DIR__ . '/..' . '/league/commonmark/src/Extension/Embed/EmbedRenderer.php',
+        'League\\CommonMark\\Extension\\Embed\\EmbedStartParser' => __DIR__ . '/..' . '/league/commonmark/src/Extension/Embed/EmbedStartParser.php',
         'League\\CommonMark\\Extension\\ExtensionInterface' => __DIR__ . '/..' . '/league/commonmark/src/Extension/ExtensionInterface.php',
         'League\\CommonMark\\Extension\\ExternalLink\\ExternalLinkExtension' => __DIR__ . '/..' . '/league/commonmark/src/Extension/ExternalLink/ExternalLinkExtension.php',
         'League\\CommonMark\\Extension\\ExternalLink\\ExternalLinkProcessor' => __DIR__ . '/..' . '/league/commonmark/src/Extension/ExternalLink/ExternalLinkProcessor.php',
@@ -4162,6 +4180,7 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'League\\CommonMark\\Renderer\\Block\\DocumentRenderer' => __DIR__ . '/..' . '/league/commonmark/src/Renderer/Block/DocumentRenderer.php',
         'League\\CommonMark\\Renderer\\Block\\ParagraphRenderer' => __DIR__ . '/..' . '/league/commonmark/src/Renderer/Block/ParagraphRenderer.php',
         'League\\CommonMark\\Renderer\\ChildNodeRendererInterface' => __DIR__ . '/..' . '/league/commonmark/src/Renderer/ChildNodeRendererInterface.php',
+        'League\\CommonMark\\Renderer\\DocumentRendererInterface' => __DIR__ . '/..' . '/league/commonmark/src/Renderer/DocumentRendererInterface.php',
         'League\\CommonMark\\Renderer\\HtmlDecorator' => __DIR__ . '/..' . '/league/commonmark/src/Renderer/HtmlDecorator.php',
         'League\\CommonMark\\Renderer\\HtmlRenderer' => __DIR__ . '/..' . '/league/commonmark/src/Renderer/HtmlRenderer.php',
         'League\\CommonMark\\Renderer\\Inline\\NewlineRenderer' => __DIR__ . '/..' . '/league/commonmark/src/Renderer/Inline/NewlineRenderer.php',
@@ -4721,7 +4740,6 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'PHPUnit\\Framework\\MockObject\\MockObject' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MockObject/MockObject.php',
         'PHPUnit\\Framework\\MockObject\\MockTrait' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MockObject/MockTrait.php',
         'PHPUnit\\Framework\\MockObject\\MockType' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MockObject/MockType.php',
-        'PHPUnit\\Framework\\MockObject\\MockedCloneMethod' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MockObject/Api/MockedCloneMethod.php',
         'PHPUnit\\Framework\\MockObject\\OriginalConstructorInvocationRequiredException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MockObject/Exception/OriginalConstructorInvocationRequiredException.php',
         'PHPUnit\\Framework\\MockObject\\ReflectionException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MockObject/Exception/ReflectionException.php',
         'PHPUnit\\Framework\\MockObject\\ReturnValueNotConfiguredException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MockObject/Exception/ReturnValueNotConfiguredException.php',
@@ -4752,7 +4770,6 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'PHPUnit\\Framework\\MockObject\\UnknownClassException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MockObject/Exception/UnknownClassException.php',
         'PHPUnit\\Framework\\MockObject\\UnknownTraitException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MockObject/Exception/UnknownTraitException.php',
         'PHPUnit\\Framework\\MockObject\\UnknownTypeException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MockObject/Exception/UnknownTypeException.php',
-        'PHPUnit\\Framework\\MockObject\\UnmockedCloneMethod' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MockObject/Api/UnmockedCloneMethod.php',
         'PHPUnit\\Framework\\MockObject\\Verifiable' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MockObject/Verifiable.php',
         'PHPUnit\\Framework\\NoChildTestSuiteException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Exception/NoChildTestSuiteException.php',
         'PHPUnit\\Framework\\OutputError' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Exception/OutputError.php',
@@ -5057,6 +5074,7 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'PhpOffice\\PhpSpreadsheet\\Calculation\\DateTimeExcel\\YearFrac' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/DateTimeExcel/YearFrac.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\Engine\\ArrayArgumentHelper' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Engine/ArrayArgumentHelper.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\Engine\\ArrayArgumentProcessor' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Engine/ArrayArgumentProcessor.php',
+        'PhpOffice\\PhpSpreadsheet\\Calculation\\Engine\\BranchPruner' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Engine/BranchPruner.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\Engine\\CyclicReferenceStack' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Engine/CyclicReferenceStack.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\Engine\\Logger' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Engine/Logger.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\Engineering' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Engineering.php',
@@ -5108,6 +5126,9 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'PhpOffice\\PhpSpreadsheet\\Calculation\\FormulaParser' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/FormulaParser.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\FormulaToken' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/FormulaToken.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\Functions' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Functions.php',
+        'PhpOffice\\PhpSpreadsheet\\Calculation\\Information\\ErrorValue' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Information/ErrorValue.php',
+        'PhpOffice\\PhpSpreadsheet\\Calculation\\Information\\ExcelError' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Information/ExcelError.php',
+        'PhpOffice\\PhpSpreadsheet\\Calculation\\Information\\Value' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Information/Value.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\Internal\\MakeMatrix' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Internal/MakeMatrix.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\Internal\\WildcardMatch' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Internal/WildcardMatch.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\Logical' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Logical.php',
@@ -5117,6 +5138,7 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'PhpOffice\\PhpSpreadsheet\\Calculation\\LookupRef' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/LookupRef.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\LookupRef\\Address' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/LookupRef/Address.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\LookupRef\\ExcelMatch' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/LookupRef/ExcelMatch.php',
+        'PhpOffice\\PhpSpreadsheet\\Calculation\\LookupRef\\Filter' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/LookupRef/Filter.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\LookupRef\\Formula' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/LookupRef/Formula.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\LookupRef\\HLookup' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/LookupRef/HLookup.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\LookupRef\\Helpers' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/LookupRef/Helpers.php',
@@ -5129,6 +5151,8 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'PhpOffice\\PhpSpreadsheet\\Calculation\\LookupRef\\Offset' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/LookupRef/Offset.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\LookupRef\\RowColumnInformation' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/LookupRef/RowColumnInformation.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\LookupRef\\Selection' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/LookupRef/Selection.php',
+        'PhpOffice\\PhpSpreadsheet\\Calculation\\LookupRef\\Sort' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/LookupRef/Sort.php',
+        'PhpOffice\\PhpSpreadsheet\\Calculation\\LookupRef\\Unique' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/LookupRef/Unique.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\LookupRef\\VLookup' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/LookupRef/VLookup.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\MathTrig' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/MathTrig.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\MathTrig\\Absolute' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/MathTrig/Absolute.php',
@@ -5214,9 +5238,14 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'PhpOffice\\PhpSpreadsheet\\Calculation\\Token\\Stack' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Token/Stack.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\Web' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Web.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\Web\\Service' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Web/Service.php',
+        'PhpOffice\\PhpSpreadsheet\\CellReferenceHelper' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/CellReferenceHelper.php',
         'PhpOffice\\PhpSpreadsheet\\Cell\\AddressHelper' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/AddressHelper.php',
+        'PhpOffice\\PhpSpreadsheet\\Cell\\AddressRange' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/AddressRange.php',
         'PhpOffice\\PhpSpreadsheet\\Cell\\AdvancedValueBinder' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/AdvancedValueBinder.php',
         'PhpOffice\\PhpSpreadsheet\\Cell\\Cell' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Cell.php',
+        'PhpOffice\\PhpSpreadsheet\\Cell\\CellAddress' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/CellAddress.php',
+        'PhpOffice\\PhpSpreadsheet\\Cell\\CellRange' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/CellRange.php',
+        'PhpOffice\\PhpSpreadsheet\\Cell\\ColumnRange' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/ColumnRange.php',
         'PhpOffice\\PhpSpreadsheet\\Cell\\Coordinate' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Coordinate.php',
         'PhpOffice\\PhpSpreadsheet\\Cell\\DataType' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/DataType.php',
         'PhpOffice\\PhpSpreadsheet\\Cell\\DataValidation' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/DataValidation.php',
@@ -5224,6 +5253,7 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'PhpOffice\\PhpSpreadsheet\\Cell\\DefaultValueBinder' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/DefaultValueBinder.php',
         'PhpOffice\\PhpSpreadsheet\\Cell\\Hyperlink' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/Hyperlink.php',
         'PhpOffice\\PhpSpreadsheet\\Cell\\IValueBinder' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/IValueBinder.php',
+        'PhpOffice\\PhpSpreadsheet\\Cell\\RowRange' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/RowRange.php',
         'PhpOffice\\PhpSpreadsheet\\Cell\\StringValueBinder' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Cell/StringValueBinder.php',
         'PhpOffice\\PhpSpreadsheet\\Chart\\Axis' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Chart/Axis.php',
         'PhpOffice\\PhpSpreadsheet\\Chart\\Chart' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Chart/Chart.php',
@@ -5269,8 +5299,9 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'PhpOffice\\PhpSpreadsheet\\Reader\\IReader' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/IReader.php',
         'PhpOffice\\PhpSpreadsheet\\Reader\\Ods' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Ods.php',
         'PhpOffice\\PhpSpreadsheet\\Reader\\Ods\\AutoFilter' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Ods/AutoFilter.php',
-        'PhpOffice\\PhpSpreadsheet\\Reader\\Ods\\BaseReader' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Ods/BaseReader.php',
+        'PhpOffice\\PhpSpreadsheet\\Reader\\Ods\\BaseLoader' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Ods/BaseLoader.php',
         'PhpOffice\\PhpSpreadsheet\\Reader\\Ods\\DefinedNames' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Ods/DefinedNames.php',
+        'PhpOffice\\PhpSpreadsheet\\Reader\\Ods\\FormulaTranslator' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Ods/FormulaTranslator.php',
         'PhpOffice\\PhpSpreadsheet\\Reader\\Ods\\PageSettings' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Ods/PageSettings.php',
         'PhpOffice\\PhpSpreadsheet\\Reader\\Ods\\Properties' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Ods/Properties.php',
         'PhpOffice\\PhpSpreadsheet\\Reader\\Security\\XmlScanner' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Security/XmlScanner.php',
@@ -5280,6 +5311,8 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'PhpOffice\\PhpSpreadsheet\\Reader\\Xls\\Color\\BIFF5' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xls/Color/BIFF5.php',
         'PhpOffice\\PhpSpreadsheet\\Reader\\Xls\\Color\\BIFF8' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xls/Color/BIFF8.php',
         'PhpOffice\\PhpSpreadsheet\\Reader\\Xls\\Color\\BuiltIn' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xls/Color/BuiltIn.php',
+        'PhpOffice\\PhpSpreadsheet\\Reader\\Xls\\ConditionalFormatting' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xls/ConditionalFormatting.php',
+        'PhpOffice\\PhpSpreadsheet\\Reader\\Xls\\DataValidationHelper' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xls/DataValidationHelper.php',
         'PhpOffice\\PhpSpreadsheet\\Reader\\Xls\\ErrorCode' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xls/ErrorCode.php',
         'PhpOffice\\PhpSpreadsheet\\Reader\\Xls\\Escher' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xls/Escher.php',
         'PhpOffice\\PhpSpreadsheet\\Reader\\Xls\\MD5' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xls/MD5.php',
@@ -5303,6 +5336,7 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'PhpOffice\\PhpSpreadsheet\\Reader\\Xlsx\\SheetViews' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xlsx/SheetViews.php',
         'PhpOffice\\PhpSpreadsheet\\Reader\\Xlsx\\Styles' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xlsx/Styles.php',
         'PhpOffice\\PhpSpreadsheet\\Reader\\Xlsx\\Theme' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xlsx/Theme.php',
+        'PhpOffice\\PhpSpreadsheet\\Reader\\Xlsx\\WorkbookView' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xlsx/WorkbookView.php',
         'PhpOffice\\PhpSpreadsheet\\Reader\\Xml' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xml.php',
         'PhpOffice\\PhpSpreadsheet\\Reader\\Xml\\PageSettings' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xml/PageSettings.php',
         'PhpOffice\\PhpSpreadsheet\\Reader\\Xml\\Properties' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Xml/Properties.php',
@@ -5416,6 +5450,10 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'PhpOffice\\PhpSpreadsheet\\Worksheet\\RowDimension' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/RowDimension.php',
         'PhpOffice\\PhpSpreadsheet\\Worksheet\\RowIterator' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/RowIterator.php',
         'PhpOffice\\PhpSpreadsheet\\Worksheet\\SheetView' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/SheetView.php',
+        'PhpOffice\\PhpSpreadsheet\\Worksheet\\Table' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/Table.php',
+        'PhpOffice\\PhpSpreadsheet\\Worksheet\\Table\\Column' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/Table/Column.php',
+        'PhpOffice\\PhpSpreadsheet\\Worksheet\\Table\\TableStyle' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/Table/TableStyle.php',
+        'PhpOffice\\PhpSpreadsheet\\Worksheet\\Validations' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/Validations.php',
         'PhpOffice\\PhpSpreadsheet\\Worksheet\\Worksheet' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Worksheet/Worksheet.php',
         'PhpOffice\\PhpSpreadsheet\\Writer\\BaseWriter' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/BaseWriter.php',
         'PhpOffice\\PhpSpreadsheet\\Writer\\Csv' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Csv.php',
@@ -5443,6 +5481,7 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'PhpOffice\\PhpSpreadsheet\\Writer\\Xls' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xls.php',
         'PhpOffice\\PhpSpreadsheet\\Writer\\Xls\\BIFFwriter' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xls/BIFFwriter.php',
         'PhpOffice\\PhpSpreadsheet\\Writer\\Xls\\CellDataValidation' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xls/CellDataValidation.php',
+        'PhpOffice\\PhpSpreadsheet\\Writer\\Xls\\ConditionalHelper' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xls/ConditionalHelper.php',
         'PhpOffice\\PhpSpreadsheet\\Writer\\Xls\\ErrorCode' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xls/ErrorCode.php',
         'PhpOffice\\PhpSpreadsheet\\Writer\\Xls\\Escher' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xls/Escher.php',
         'PhpOffice\\PhpSpreadsheet\\Writer\\Xls\\Font' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xls/Font.php',
@@ -5466,6 +5505,7 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
         'PhpOffice\\PhpSpreadsheet\\Writer\\Xlsx\\RelsVBA' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xlsx/RelsVBA.php',
         'PhpOffice\\PhpSpreadsheet\\Writer\\Xlsx\\StringTable' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xlsx/StringTable.php',
         'PhpOffice\\PhpSpreadsheet\\Writer\\Xlsx\\Style' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xlsx/Style.php',
+        'PhpOffice\\PhpSpreadsheet\\Writer\\Xlsx\\Table' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xlsx/Table.php',
         'PhpOffice\\PhpSpreadsheet\\Writer\\Xlsx\\Theme' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xlsx/Theme.php',
         'PhpOffice\\PhpSpreadsheet\\Writer\\Xlsx\\Workbook' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xlsx/Workbook.php',
         'PhpOffice\\PhpSpreadsheet\\Writer\\Xlsx\\Worksheet' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xlsx/Worksheet.php',
@@ -7329,10 +7369,10 @@ class ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit391bd62f6d9eff84fcdb901d7f013ac6::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit3435a065f70e6ee01e09d6b7362dcf7e::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit3435a065f70e6ee01e09d6b7362dcf7e::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit3435a065f70e6ee01e09d6b7362dcf7e::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit3435a065f70e6ee01e09d6b7362dcf7e::$classMap;
 
         }, null, ClassLoader::class);
     }

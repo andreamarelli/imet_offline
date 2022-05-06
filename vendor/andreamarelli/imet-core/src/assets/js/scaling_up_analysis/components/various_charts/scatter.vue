@@ -117,13 +117,12 @@ export default {
             if (this.data.length > 0) {
                 this.chart = echarts.init(this.$el);
                 this.chart.setOption(this.bar_options);
-
                 this.chart.on('legendselectchanged', (params) => {
                     this.$root.$emit(`scatter_data_${this.event_key}`, params);
                 });
             }
         },
-        get_colors(){
+        get_colors() {
             return this.data.map(i => i.itemStyle.borderColor);
         },
         get_legends() {
@@ -135,13 +134,13 @@ export default {
             return {
                 data: legends
                     .sort((a, b) => {
-                    return a.name > b.name ? 1 : -1
-                })
+                        return a.name > b.name ? 1 : -1
+                    })
             };
         },
         series: function () {
             const items = [];
-            this.data.forEach(record => {
+            this.data.forEach((record, idx) => {
                 items.push({
                     tooltip: {
                         show: false
@@ -151,7 +150,7 @@ export default {
                     name: record['name'],
                     symbol: "rect",
                     symbolSize: function (data) {
-                        return Math.sqrt(data[2]) * 5;
+                        return Math.sqrt(data[2]) * (5 + idx);
                     },
                     emphasis: {
                         focus: 'self'

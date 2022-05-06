@@ -9,7 +9,7 @@
                         :title="'Total carbon'"
                         :url=url
                         :parameters="'{{$pa_ids}}'"
-                        :func="'getTotalCarbon'"
+                        :func="'get_total_carbon'"
                         :guidance="'imet-core::analysis_report.guidance.digital_information.total_carbon'">
                         <template slot-scope="data">
                             @include('imet-core::scaling_up.components.total_carbon', ['name' => $name])

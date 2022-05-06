@@ -47,4 +47,20 @@ class ScalingUpWdpa extends Model
         $record->save();
         return json_encode($record);
     }
+
+    /**
+     * @param int $form_id
+     * @param $scaling_id
+     * @return array
+     */
+    public static function getCustomNames(int $form_id, $scaling_id)
+    {
+        $protected_area = static::getByFormID($scaling_id, $form_id);
+        if (($protected_area)) {
+            return $protected_area;
+        }
+
+        return null;
+    }
+
 }

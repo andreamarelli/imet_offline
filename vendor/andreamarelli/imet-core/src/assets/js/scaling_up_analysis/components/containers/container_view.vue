@@ -34,13 +34,14 @@
 <script>
 
 import small_menu from './../menus/small_menu.vue';
-
+import container_event from './container_event.vue';
 
 export default {
-    name: "container.vue",
+    name: "container_view",
     inject: ['stores'],
     mixins: [
-        window.ImetCore.ScalingUp.Mixins.ajax
+        window.ImetCore.ScalingUp.Mixins.ajax,
+        container_event
     ],
     components: {
         small_menu
@@ -93,7 +94,6 @@ export default {
             }
         }
     },
-
     methods: {
         success: function (response) {
             if (response.status === false) {

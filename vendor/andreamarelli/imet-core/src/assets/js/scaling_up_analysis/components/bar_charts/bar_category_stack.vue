@@ -10,6 +10,10 @@ export default {
         window.ImetCore.ScalingUp.Mixins.resize
     ],
     props: {
+        label_position: {
+            type: String,
+            default: 'top'
+        },
         show_option_label: {
             type: Boolean,
             default: false
@@ -71,7 +75,11 @@ export default {
         }
     },
     computed: {
+
         bar_options() {
+            this.grid.grid.containLabel = function () {
+                return this.show_option_label;
+            };
             return {
                 legend: {
                     data: Object.values(this.legends),
@@ -147,6 +155,7 @@ export default {
             });
 
             bars.map((bar, index) => {
+
                 if (this.show_option_label) {
                     bar.label = {
                         show: true,
@@ -155,7 +164,7 @@ export default {
                 } else if (index === bars.length - 1) {
                     bar.label = {
                         show: true,
-                        position: 'top',
+                        position: this.label_position,
                         color: '#000',
                         formatter: (param) => {
                             let sum = 0;
@@ -165,7 +174,6 @@ export default {
 
                             return sum.toFixed(1);
                         }
-
                     }
                 }
                 return bar;

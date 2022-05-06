@@ -2,11 +2,11 @@
 
 namespace AndreaMarelli\ModularForms\Helpers\Geo;
 
+use AndreaMarelli\ModularForms\Exceptions\MissingUploadShpException;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\File\Zip;
 use BadMethodCallException;
 use ErrorException;
-use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
@@ -24,9 +24,9 @@ class PostGisSHP {
      *
      * @param $zip_path
      * @param string|null $table_name
-     * @param string|null $table_SRID
+     * @param string|null $primary_table_SRID
      * @return string
-     * @throws \Exception
+     * @throws \AndreaMarelli\ModularForms\Exceptions\MissingUploadShpException
      */
     public static function shp2pgsql($zip_path, string $table_name = null, string $primary_table_SRID = null): string
     {
@@ -38,7 +38,7 @@ class PostGisSHP {
         $unzip_path = $storage->path($unzip_path_prefix);
 
         // Extract files from ZIP and remove it
-        $files = Zip::extract($zip_path,  $unzip_path, false, true);   // TODO: $remove_zip to true
+        $files = Zip::extract($zip_path,  $unzip_path, true, true);
 
         // Search for SHP file
         $shp_path = null;
@@ -48,7 +48,7 @@ class PostGisSHP {
             }
         }
         if($shp_path===null){
-            throw new Exception('.shp file not found');
+            throw new MissingUploadShpException();
         }
 
         // Convert SHP to PostGis (with shp2pgsql binary) and return temporary table name

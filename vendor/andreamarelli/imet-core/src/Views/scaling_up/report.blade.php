@@ -23,21 +23,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="scrollButtons mr-3" style="width:200px;">
-                    <div class="content">
-                        <span class="m-1">{{trans('imet-core::analysis_report.navigation_menu')}}</span>
-                        <select class="form-control" @change="goTo($event)">
-                            <option
-                                value="names">{{ trans('imet-core::analysis_report.custom_names') }}</option>
-                            @foreach($templates as $key => $template)
-                                <option value="{{ $template['name'] }}">{{$template['code']}}
-                                    . {{ $template['title'] }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
+                @include('imet-core::scaling_up.components.navigation_menu', ['templates'=> $templates])
 
                 <div id="names"></div>
+                <div>
+                    <guidance :text="'imet-core::analysis_report.guidance.special_information'"/>
+                </div>
                 @include('imet-core::scaling_up.components.scaling_up_template')
                 @include('imet-core::scaling_up.components.wdpa_names')
                 @foreach($templates as $key => $template)
@@ -64,7 +55,26 @@
             },
             methods: {
                 goTo: function (event) {
-                    window.ModularForms.Mixins.Animation.scrollPageToAnchor(event.target.value);
+                    let element = event.target.value;
+                    if(element === '#'){
+                        return;
+                    }
+                    if (['process', 'process_pr1_pr6', 'process_pr7_pr9', 'process_pr10_pr12', 'process_pr13_pr14', 'process_pr15_pr16', 'process_pr17_pr18'].includes(element)) {
+                        let event_element = 'analysis_per_element_of_them_management_cycle';
+                        this.$root.$emit(event_element);
+                        setTimeout(() => {
+                            this.$root.$emit('sub_elem_4');
+                        }, 500);
+                        setTimeout(() => {
+                            window.ModularForms.Mixins.Animation.scrollPageTo($('#' + element).offset().top);
+                        }, 500);
+                    } else {
+                        this.$root.$emit(element);
+                        setTimeout(() => {
+                            window.ModularForms.Mixins.Animation.scrollPageToAnchor(element);
+                        }, 500);
+                    }
+
                 }
             }
         });

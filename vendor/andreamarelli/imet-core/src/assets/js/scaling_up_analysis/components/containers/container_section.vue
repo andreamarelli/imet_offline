@@ -18,11 +18,14 @@
 </template>
 
 <script>
-
+import container_event from './container_event.vue';
 
 export default {
     name: "container_section",
     inject: ['stores', 'config'],
+    mixins: [
+        container_event
+    ],
     provide: {
         state:
             {
@@ -46,10 +49,6 @@ export default {
         guidance: {
             type: String,
             default: ''
-        },
-        event_name: {
-            type: String,
-            default: ''
         }
     },
     data: function () {
@@ -61,13 +60,6 @@ export default {
                 config: this.config,
                 stores: this.stores
             }
-        }
-    },
-    mounted() {
-        if (this.event_name) {
-            this.$root.$on(this.event_name, () => {
-                this.data.show_view = true;
-            });
         }
     },
     methods: {
