@@ -1,9 +1,14 @@
 <?php
 /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Imet $item */
+/** @var array $warnings */
+
+use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
+use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2
+use Illuminate\Support\Facades\App;
 
 // Force Language
-if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
-    \Illuminate\Support\Facades\App::setLocale($item->language);
+if ($item->language != App::getLocale()) {
+    App::setLocale($item->language);
 }
 $i = 0;
 ?>
@@ -12,7 +17,7 @@ $i = 0;
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['show' => false, 'links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
+        action([Controller::class, 'index']) => trans('imet-core::common.imet_short')
     ]])
 @endsection
 
@@ -45,8 +50,8 @@ $i = 0;
                                     <td class="col-1">{{ $warning['code'] }}</td>
                                     <td class="col-11">
                                         <strong> <a
-                                                href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::class, 'edit'], [$item->getKey(), $warning['step']]) }}#{{$warning['key']}}"
-                                            >{{ $warning['question'] }}</a>
+                                                href="{{ action([EvalControllerV2::class, 'edit'], [$item->getKey(), $warning['step']]) }}#{{$warning['key']}}"
+                                            >{!! $warning['question'] !!}</a>
                                         </strong>
                                     </td>
                                 </tr>

@@ -63,7 +63,8 @@ class Imet_Eval extends Imet{
         'outputs' => [
             Modules\Evaluation\WorkProgramImplementation::class,
             Modules\Evaluation\AchievedResults::class,
-            Modules\Evaluation\AreaDomination::class
+            Modules\Evaluation\AreaDomination::class,
+            Modules\Evaluation\AreaDominationMPA::class
         ],
         'outcomes' => [
             Modules\Evaluation\AchievedObjectives::class,

@@ -4,6 +4,9 @@
 /** @var Mixed $vue_data */
 /** @var String $group_key (optional - only for GROUP_TABLE) */
 
+use \AndreaMarelli\ImetCore\Helpers\Template;
+use \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
+
 $group_key = $group_key ?? '';
 
 $table_id = $definitions['module_type'] === 'GROUP_TABLE'
@@ -23,12 +26,18 @@ $tr_record = $definitions['module_type'] === 'GROUP_TABLE'
         <tr>
             @foreach($definitions['fields'] as $index=>$field)
                 @if($field['type']!=='hidden')
-                    <th class="text-center">{{ ucfirst($field['label'] ?? '') }}</th>
+                    @if($index==3)
+                        <th class="text-center">
+                            {!! Template::module_scope(ImetModule::TERRESTRIAL) . ' ' . ucfirst($field['label'] ?? '') !!}
+                        </th>
+                    @else
+                        <th class="text-center">{{ ucfirst($field['label'] ?? '') }}</th>
+                    @endif
                 @endif
-                @if($index==1)
+                @if($index==2)
                     <th class="text-center">@lang('imet-core::v2_context.Sectors.area_percentage')</th>
                 @endif
-                @if($index==3)
+                @if($index==4)
                     <th class="text-center">@lang('imet-core::v2_context.Sectors.average_time')</th>
                 @endif
             @endforeach
@@ -50,7 +59,7 @@ $tr_record = $definitions['module_type'] === 'GROUP_TABLE'
                         'group_key' => $group_key
                     ])
                 </td>
-                @if($index==1)
+                @if($index==2)
                     <td>
                         <input type="text" disabled="disabled"
                                class="input-number field-edit text-right"
@@ -58,7 +67,7 @@ $tr_record = $definitions['module_type'] === 'GROUP_TABLE'
                         />
                     </td>
                 @endif
-                @if($index==3)
+                @if($index==4)
                     <td>
                         <input type="text" disabled="disabled"
                                class="input-number field-edit text-right"
@@ -82,6 +91,7 @@ $tr_record = $definitions['module_type'] === 'GROUP_TABLE'
         </tr>
 
         <tr>
+            <td></td>
             <td></td>
             <td>
                 <input type="text" disabled="disabled"

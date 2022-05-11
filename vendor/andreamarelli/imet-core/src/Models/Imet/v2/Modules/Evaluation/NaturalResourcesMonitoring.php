@@ -29,6 +29,29 @@ class NaturalResourcesMonitoring extends Modules\Component\ImetModule_Eval
         $this->ratingLegend = trans('imet-core::v2_evaluation.NaturalResourcesMonitoring.ratingLegend');
 
         parent::__construct($attributes);
-
     }
+
+    public static function upgradeModule($record, $imet_version = null)
+    {
+        // ####  v2.7 -> v2.8 (marine pas)  ####
+        $record = static::replacePredefinedValue($record, 'Aspect',
+         'Monitoring ecosystems and habitats',
+         'Monitoring habitats and related dimensions of land cover, land use, land take');
+        $record = static::replacePredefinedValue($record, 'Aspect',
+         'Suivi des écosystèmes et des habitats',
+         'Suivi des habitats et les dimensions connexes de couverture terrestre, utilisation et occupation des sols');
+        $record = static::replacePredefinedValue($record, 'Aspect',
+         'Monitorização de ecossistemas e habitats',
+         'Monitorização de habitats e as dimensões relacionadas da cobertura do solo, uso e ocupação');
+        $record = static::replacePredefinedValue($record, 'Aspect',
+         'Monitoreo de los ecosistemas y los hábitats',
+         'Monitoreo de los hábitats y las dimensiones relacionadas de la cobertura del suelo, uso del suelo y tenencia del territorio');
+        $record = static::dropIfPredefinedValueObsolete($record, 'Aspect', 'Monitoring land cover–land use–land take');
+        $record = static::dropIfPredefinedValueObsolete($record, 'Aspect', 'Suivi de la couverture terrestre, utilisation et occupation des sols');
+        $record = static::dropIfPredefinedValueObsolete($record, 'Aspect', 'Monitorização de terrenos (cobretura do solo, uso e ocupacão)');
+        $record = static::dropIfPredefinedValueObsolete($record, 'Aspect', 'Monitoreo de la cobertura del suelo  - uso del suelo - tenencia del territorio');
+
+        return $record;
+    }
+
 }

@@ -54,7 +54,7 @@ return [
         'module_info' => 'Establish and describe conservation objectives for the governance, partnerships and the designation of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
     ],
     'Objectives2' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>land areas, boundaries, configuration index and area domination</b> of the protected area</b><br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe conservation objectives for <b>boundaries, configuration index, extension of patrols and law enforcement and territorial context</b> of the protected area</b><br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
     ],
     'Objectives3' => [
         'module_info' => 'Establish and describe conservation objectives for <b>human and financial resources/support from partnerships in managing</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
@@ -108,6 +108,7 @@ return [
             'IUCNCategory1' => '1st IUCN category',
             'IUCNCategory2' => '2nd IUCN category',
             'IUCNCategory3' => '3rd IUCN category',
+            'MarineDesignation' => 'Marine designation',
             'Country' => 'Country',
             'CreationYear' => 'Year created',
             'Institution' => 'Supervisory institution(s)',
@@ -118,7 +119,33 @@ return [
             'ReferenceTextDocument' => '',
             'ReferenceTextValues' => 'What is the importance of the protected area and its main values for which it has been designated? (Provide a list and then a brief description)',
         ],
-        'IUCNCategories' => 'IUCN category(ies) (protected areas with more classifications for internal zoning)',
+        'module_info' => '<b>Introduction to typology</b>: IMET identifies three categories of protected areas: (1) Terrestrial (2)
+            Marine and Coastal (3) OECM - Other Effective Conservation Measures by Area.<br />In the Governance section (CTX 1.2)
+            you can refine the management and governance typology of these three protected area typologies. If you are analysing a
+            Protected and Conserved Areas (PCAs), you can specify the territorial context in CTX 2.4.Protected area (general definition):
+            A protected area is a clearly defined geographical space, recognised, dedicated and managed, through legal or other effective means,
+            to achieve the long term conservation of nature with associated ecosystem services and cultural values. (IUCN Definition 2008)',
+        'type_info' => [
+            'terrestrial' => 'A terrestrial protected area (TPA) is a portion of land protected by special restrictions 
+            and laws for the conservation of the natural environment. They include large tracts of land 
+            set aside for the protection of wildlife and its habitat; areas of great natural beauty or unique interest; 
+            areas containing rare forms of plant and animal life; areas representing unusual geologic formation; places 
+            of historic and prehistoric interest; areas containing ecosystems of special importance for scientific 
+            investigation and study; and areas which safeguard the needs of the biosphere. (GEMET- DODERO / WPR) 
+            (we check for a CBD description)',
+            'marine_and_coastal' => 'A marine and coastal protected area (MPA or MCPA) is "an area within or adjacent 
+            to the marine environment, together with its overlying waters and associated flora, fauna, and historical and 
+            cultural features, which has been reserved by legislation or other effective means, including custom, with the 
+            effect that its marine and/or coastal biodiversity enjoys a higher level of protection than its surroundings" 
+            (Convention on Biological Diversity – CBD)',
+            'oecm' => 'A geographically defined area other than a Protected Area, which is governed and managed in ways 
+            that achieve positive and sustained long-term outcomes for the insitu conservation of biodiversity, with 
+            associated ecosystem functions and services and where applicable, cultural, spiritual, socio–economic, and 
+            other locally relevant values” (CBD, 2018)',
+            'icca' => 'A natural and/or modified ecosystems, containing significant biodiversity values, ecological benefits 
+            and cultural values, voluntarily conserved by indigenous peoples and local communities, through customary laws 
+            or other effective means (CBD -Recognising and Supporting ICCAs)'
+        ]
     ],
 
     'Governance' => [
@@ -222,8 +249,8 @@ return [
             'AdministrativeArea' => 'Administrative surface',
             'WDPAArea' => 'Surface according to WDPA',
             'GISArea' => 'Actual surface (GIS for the park or the authority responsible for protected areas) corresponding to the uploaded file',
-            'TerrestrialArea' => 'Mixed protected areas (terrestrial and marine) = Terrestrial (the coastal zone must be included in the terrestrial protected area)',
-            'MarineArea' => 'Mixed protected areas: Marine area',
+            'TerrestrialArea' => 'Terrestrial protected area',
+            'MarineArea' => 'Marine and coastal protected area',
             'PercentageNationalNetwork' => 'Surface % of national network of protected areas',
             'PercentageEcoregion' => 'Surface % of ecoregion',
             'PercentageTransnationalNetwork' => 'Surface % of transboundary network',
@@ -234,22 +261,23 @@ return [
     ],
 
     'Sectors' => [
-        'title' => 'Area domination of the sectors of the protected area',
+        'title' => 'Patrolling and Enforcement: Terrestrial area or sectors and/or Marine and coastal area or sectors',
         'fields' => [
             'Name' => 'Sector',
-            'UnderControlArea' => 'Km² under protection',
+            'TerrestrialOrMarine' => 'Terrestrial or marine?',
+            'UnderControlArea' => 'Km² of area covered by patrol',
             'UnderControlPatrolKm' => 'Km of patrols',
-            'UnderControlPatrolManDay' => 'Ranger * day of patrol',
+            'UnderControlPatrolManDay' => 'Day of patrol',
             'SectorMap' => 'Zoning maps',
             'Source' => 'Source',
             'Observations' => 'Notes',
         ],
         'area_percentage'               => '% of the area',
-        'average_time'                  => 'Average ranger * d * km² of the total area'
+        'average_time'                  => 'Average patrol * d * km² of the sector'
     ],
 
     'TerritorialReferenceContext' => [
-        'title' => 'Baseline territorial context of the protected area',
+        'title' => 'Baseline territorial context (Landscape) of the Protected Area',
         'fields' => [
             'FunctionalHasNoTakeArea' => 'Is the functional ecosystem area correspondent to the no-take area?',
             'FunctionalArea' => 'Estimate the functional ecosystem area that is important for the maintenance of biodiversity of the protected area (e.g. home ranges of flagship species ): a) in Km² and b) in Km as width of the outer strip',
@@ -259,12 +287,59 @@ return [
             'BenefitPopulation' => 'Estimate the size of local population living within the socio-economic area of influence',
             'BenefitSocioEconomicAspects' => 'List and describe the socio-economic and administrative factors (e.g. traditional or modern roles about natural resources establish by traditional and modern authorities) that influence the protected area management',
             'SpillOverArea' => 'Estimate the SPILL-OVER effects in the marine protected area, i.e., the size of the area crucial to maintain the ecosystem services provisioning (fishing) delivered by the protected area: a) in km² and b) in metres as width of the outer strip',
+            'SpillOverEvalPredatory0_500' => '',
+            'SpillOverEvalPredatory500_1000' => '',
+            'SpillOverEvalPredatory200_3000' => '',
+            'SpillOverEvalComposition0_500' => '',
+            'SpillOverEvalComposition500_1000' => '',
+            'SpillOverEvalComposition200_3000' => '',
+            'SpillOverEvalDistance0_500' => '',
+            'SpillOverEvalDistance500_1000' => '',
+            'SpillOverEvalDistance200_3000' => '',
+        ],
+        'info' => [
+            'spillover_eval' =>
+                'The net movement of individuals from marine reserves (also known as no-take marine protected areas) to 
+                the remaining fishing grounds is known as spill-over. Spill-over can contribute to poverty alleviation, 
+                although its effect is modulated by the number of fishermen and fishing intensity. Generally:<ul>
+                <li>Strong spill-over positive effect when the fishery is mismanaged</li>
+                <li>Light spill-over positive effect when the fishery is well managed but positive effect for species with greater movement and slower growth.</li>
+                <li>Evaluate the spill-over effect from a reserve is able to provide a net benefit for a fishery (from Garry Russ & Angel Alcala, Enhanced biodiversity beyond marine reserve boundaries: the cup spill-over):<ul>
+                <li>predatory fish (large, predatory fish are more common inside and just outside reserves than farther away)</li>
+                <li>composition outside and inside (the community composition outside the reserves becomes more like that inside over time)</li>
+                <li>distance of detection of spill-over effect (distance from the border and the time after reserve establishment is the variables with the strongest effect on fish abundance; fish caching: A) 500 m and closer; B) 500 to 1000 m; C) 2000 to 3000 m</li></ul></li></ul>',
+            'spill_over_variation' => 'SPILL-OVER variation inside vs outside MPA',
+            'variation' => 'Variation inside vs outside MPA',
+            '0_500' => '0 to 500m',
+            '500_1000' => '500 to 1000m',
+            '2000_3000' => '2000 to 3000m',
+            'predatory' => 'Predatory fish',
+            'composition' => 'Fish community composition',
+            'distance' => 'Spill-over effect distance',
+        ],
+        'ratingLegend' => [
+            'SpillOverEvalPredatory0_500' => [
+                '-2' => 'Strong negative difference',
+                '-1' => 'Least negative difference',
+                '0' => 'No difference',
+            ]
         ],
         'categories' => [
             'FunctionalEcosystemArea' => 'Functional ecosystem area',
             'BenefitsOfEcosystemServicesArea' => 'Area that benefits of the ecosystem services of the protected area',
             'SpillOverArea' => 'Area of SPILL-OVER effects',
-        ]
+        ],
+        'module_info' => '<b>Landscape</b>: Linked governance and management of a protected area and its surrounding territories 
+          can contribute to biodiversity conservation and climate resilience, maintenance of natural resources and ecosystem 
+          services that ensure sustainable development of local communities. <br />
+          <b>Protected and Conserved Areas (PCAs)</b>: They are one of the most effective tools for preventing loss of 
+          natural ecosystems and species, as well as to achieve long-term sustainable development, including Aichi targets 
+          11 and 12 and several Sustainable Development Goals (SDGs). In some regions, PCAs are the center of economic 
+          development, through tourism, sustainable use of resources and as sources of freshwater. PCAs also contribute 
+          to food security through maintenance of the ecosystem services that support agriculture, by protecting resources 
+          essential for crop breeding programmes, and by providing space for traditional biodiversity-friendly farming and 
+          grazing systems. PCAs also have a major role to play in climate resilience, both by storing and sequestering carbon, 
+          and by ensuring that ecosystems continue to provide goods and services to human societies (WWF).',
     ],
 
     'ManagementStaff' => [
@@ -389,10 +464,10 @@ return [
             'group12' => 'Links and connections of the protected area with the outer world'
         ],
         'predefined_values' => [
-            'group0' =>  ['Offices','Patrol posts','Barrier points','Scientific buildings','Garage and workshop','Miscellaneous services (magazine, radio, etc.)','Health care centre'],
+            'group0' =>  ['Offices','Patrol posts','Barrier points','Scientific buildings','Garage and workshop','Room for dive bottles and other dive gear', 'Boat sheds', 'Car-Boat parking', 'Miscellaneous services (magazine, radio, etc.)','Health care centre'],
             'group1' =>  ['For officers and deputy officers', 'For ranger staff', 'For support staff'],
             'group2' =>  ['Hotels (guest capacity)', 'Eco-lodges (guest capacity)', 'Encampments (guest capacity)', 'Reception facilities for tourists', 'Viewpoints or Observation points', 'Available tourist routes (km)'],
-            'group3' =>  ['Cars', 'Motorbike/Quads', 'Bicycles', 'Boats', 'Pirogues', 'Aeroplane, microlight', 'Heavy engines'],
+            'group3' =>  ['Cars', 'Motorbike/Quads', 'Bicycles', 'Boats', 'Outboard motors', 'Pirogues', 'Aeroplane, microlight', 'Heavy engines'],
             'group4' =>  ['Weapons', 'Cartridges', 'Uniforms', 'Rations (per diem)', 'GPS, compasses', 'Camping and bush equipment'],
             'group5' =>  ['VHF/HF radios', 'V-SAT', 'Landline telephones', 'GSM telephones', 'Satellite telephones', 'Internet connection'],
             'group6' =>  ['Desktop computers', 'Printers', 'Photocopiers', 'Laptop computers'],
@@ -452,16 +527,16 @@ return [
             'Reliability' => 'Reliability',
             'Comments' => 'Source / Note',
         ],
-        'module_info' => 'Favourable conservation status:<br />From Natura 2000, the conservation status of species is considered ‘favourable’ when:<ul><li>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of the plants that are assumed to exist (see the lists available and park information), a limited number of key plants of the protected area<br /> <b>Species types</b> <ul> <li><b>PHA</b>: Flagship species</li> <li><b>MEN</b>: Endangered (threatened) species</li> <li><b>END</b>: Endemic species</li> <li><b>EXP</b>: Exploited species</li> <li><b>INV</b>: Invasive species</li> <li><b>INS</b>: Species with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring programme and generation of multiannual trend graph.<br /> <b>',
+        'module_info' => 'Favourable conservation status:<br />From Natura 2000, the conservation status of species is considered ‘favourable’ when:<ul><li>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of the plants that are assumed to exist (see the lists available and park information), a limited number of key plants of the protected area<br /> <b>Species types</b> <ul> <li><b>PHA</b>: Flagship species</li> <li><b>MEN</b>: Endangered (threatened) species</li> <li><b>END</b>: Endemic species</li> <li><b>EXP</b>: Exploited species</li> <li><b>INV</b>: Invasive species</li> <li><b>INS</b>: Species with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring programme and generation of multiannual trend graph.<br />',
         'warning_on_save' =>
             'WARNING!! <br /> Any modification may cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
     'Habitats' => [
-        'title' => 'Ecosystem, habitats, land cover-use-take selected as indicators for the protected area and that will need to be monitored over time',
+        'title' => 'Habitats selected as indicators for the protected area and that will need to be monitored over time',
         'fields' => [
-            'EcosystemType' => 'Type of ecosystem or habitat',
+            'EcosystemType' => 'Type of habitat',
             'Value' => 'Description of the status or value',
             'Area' => 'Surface area (ha)',
             'DesiredConservationStatus' => 'Favourable conservation status',
@@ -470,46 +545,7 @@ return [
             'Sectors' => 'Sectors',
             'Comments' => 'Comments / Source'
         ],
-        'module_info' => 'Note: Favourable conservation status:<br />From Natura 2000, the conservation status of a natural habitat is considered ‘favourable’ when:<ul><li><li>its natural range and areas it covers within that range are stable or increasing, and</li><li>the specific structure and functions which are necessary for its long-term maintenance exist and are likely to continue to exist for the foreseeable future</li></ul>Rating: Select and evaluate the most important ecosystem and habitat-related parameters of terrestrial and freshwater ecosystems and habitats of the protected area.<br /> <b>Note</b>: Habitat evaluation is still emerging as a discipline, since it is highly complex. The classification provides for the following division of territory: Biome, Ecoregion, Ecosystem, Habitat. Habitat characteristics/values can be assessed as: <ul> <li>i) under threat of extinction (within their natural range),</li> <li>ii) having a reduced natural range,</li> <li>iii) in decline,</li> <li>iv) an outstanding example of specific characteristics, etc.</li> </ul> Assessment of habitats can also be performed from the perspective of: <ul> <li>i) reproduction,</li> <li>ii) nutrition,</li> <li>iii) species protection, etc.</li> </ul> <br /> <b>',
-        'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following
-            evaluation modules (if already encoded): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
-    ],
-
-    'HabitatsMarine' => [
-        'title' => 'Presence, extent and distribution of key marine habitats',
-        'fields' => [
-            'HabitatType' => 'Habitats and stratus',
-            'Presence' => 'Presence',
-            'Area' => 'Extent of habitat (estimated, in ha)',
-            'Fragmentation' => 'Fragmentation of the habitat',
-            'Source' => 'Source',
-            'Description' => 'Description',
-        ],
-        'predefined_values' => [
-            'Mangroves',
-            'Seaweed',
-            'Coral reef',
-            'Tidal swamps, coastal swamps',
-            'Ecosystem of coastal marine waters',
-            'Pelagic stratus',
-            'Abyssal stratus',
-            'Benthic stratus',
-            'Open sea'
-        ],
-        'module_info' => '<i><span style="color: Blue;">Indicateur</span></i>: Marin habitats with important and significant features of the protected area, Land cover-use-take<br /> <i><span style="color: Blue;">Sous indicateur</span></i>: <b><span style="font-style: normal;">Presence, extent and distribution of key marine habitats</span></b>'
-    ],
-
-    'LandCover' => [
-        'title' => 'Maintenance of land cover-use-take [for aggregate values see point CTX 2.2]',
-        'fields' => [
-            'CoverType' => 'Land cover-use-take categories',
-            'HistoricalArea' => 'Surface (ha)',
-            'ConservationStatusArea' => 'Favourable conservation status (ha)',
-            'Notes' => 'Source / Note',
-            'HistoricalAreaData' => 'Baseline date',
-        ],
-        'module_info' => 'Rating: Evaluate the most important elements of land cover-use-take for the management of the protected area<br />Land cover-use-take categories (example: forest, savannah, water, crops/plantations, dwellings, roads, etc.)',
+        'module_info' => 'Note: Favourable conservation status:<br />From Natura 2000, the conservation status of a natural habitat is considered ‘favourable’ when:<ul><li><li>its natural range and areas it covers within that range are stable or increasing, and</li><li>the specific structure and functions which are necessary for its long-term maintenance exist and are likely to continue to exist for the foreseeable future</li></ul>Rating: Select and evaluate the most important ecosystem and habitat-related parameters of terrestrial and marine habitats of the protected area.<br /> <b>Note</b>: Habitat evaluation is still emerging as a discipline, since it is highly complex. The classification provides for the following division of territory: Biome, Ecoregion, Ecosystem, Habitat. Habitat characteristics/values can be assessed as: <ul> <li>i) under threat of extinction (within their natural range),</li> <li>ii) having a reduced natural range,</li> <li>iii) in decline,</li> <li>iv) an outstanding example of specific characteristics, etc.</li> </ul> Assessment of habitats can also be performed from the perspective of: <ul> <li>i) reproduction,</li> <li>ii) nutrition,</li> <li>iii) species protection, etc.</li> </ul>',
         'warning_on_save' =>
             'WARNING!! <br /> Any modification may cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
@@ -558,56 +594,88 @@ return [
                 'Urban and residential areas',
                 'Commercial areas',
                 'Tourist and recreational areas',
-                'Enclave areas'],
+                'Enclave areas',
+                'Shipping lanes, ports, marine constructions',
+                'Inland activities'
+            ],
             'group1' => [
                 'Shifting cultivation',
                 'Smallholder farming',
                 'Large agro-industrial enterprises',
-                'Production fruits/ vegetable garden'],
+                'Production fruits/ vegetable garden'
+            ],
             'group2' => [
                 'Small plantations',
-                'Agro-industrial plantations'],
+                'Agro-industrial plantations'
+            ],
             'group3' => [
                 'Nomadic grazing',
                 'Livestock farming and grazing on small farms',
-                'Agro-industrial livestock farming and grazing'],
+                'Agro-industrial livestock farming and grazing'
+            ],
             'group4' => [
                 'Subsistence or artisanal aquaculture',
-                'Industrial aquaculture'],
+                'Over nutrient',
+                'Industrial aquaculture'
+            ],
             'group6' => [
                 'Drilling (gas and oil)',
                 'Mining or quarrying operations',
-                'Renewable energies'],
+                'Renewable abiotic energy use'
+            ],
             'group7' => [
                 'Roads',
                 'Utility and communication networks and lines (power, telephone, aqueduct, etc.)',
                 'Maritime waterways and shipping lanes',
+                'Commercial boating',
+                'Private boating',
                 'Air corridors',
-                'Railways'],
+                'Railways'
+            ],
             'group8' => [
                 'Hunting of land animals',
-                'Harvesting of live animals'],
+                'Harvesting of live animals'
+            ],
             'group9' => [
                 'Plant gathering',
-                'Plant harvesting'],
+                'Plant harvesting'
+            ],
             'group10' => [
                 'Small-scale lumber operations',
                 'Large-scale fuelwood operations',
                 'Small-scale fuelwood operations',
                 'Large-scale lumber operations',
-                'Battens/poles for construction'],
+                'Battens/poles for construction'
+            ],
             'group11' => [
                 'Subsistence or small-scale fishing',
                 'Large-scale fishing',
                 'Subsistence or small-scale harvesting of aquatic resources',
                 'Large-scale harvesting of aquatic resources',
-                'Shellfish harvesting'],
+                'Shellfish harvesting',
+                'Illegal taking/removal of marine fauna',
+                'Overfishing and destructive fishing',
+                'Endangered species exploitation',
+                'Trawlers/purse-seiners',
+            ],
             'group12' => [
                 'Recreational activities',
-                'Wars, civil unrest and military exercises',
-                'Works and other activities'],
+                'Works and other activities',
+                'Noise and other forms of pollution',
+                'Outdoor sports, leisure and recreational activities',
+                'Multiple human intrusions and disturbances',
+                'Recreational fishing hook and line',
+                'Recreational fishing spearfishing',
+                'Bathing and trampling',
+                'Scuba-diving',
+                'Wars, civil unrest and military exercises'
+            ],
             'group13' => [
-                'Frequency and intensity of fires'],
+                'Frequency and intensity of fires',
+                'Human induced changes in hydraulic conditions',
+                'Changes in abiotic conditions',
+                'Changes in biotic conditions'
+            ],
             'group14' => [
                 'Surface water abstraction (domestic usage))',
                 'Surface water abstraction (commercial usage)',
@@ -619,46 +687,65 @@ return [
                 'Underground water abstraction (usage unknown)',
                 'Small dams',
                 'Large dams',
-                'Dams (size unknown)'],
+                'Dams (size unknown)'
+            ],
             'group16' => [
                 'Invasive introduced species or diseases',
                 'Problematic indigenous species or diseases',
                 'Problematic species or diseases of unknown origin',
                 'Introduced genetic material',
                 'Viral or prion diseases',
-                'Disease of unknown cause'],
+                'Disease of unknown cause',
+                'Biocenotic evolution',
+                'Interspecific faunal relations',
+                'Multiple ecosystem modifications'
+            ],
             'group17' => [
-                'Waste water and sewers',],
+                'Waste water and sewers',
+                'Leaks',
+                'Plastics'
+            ],
             'group18' => [
                 'Oil slick',
-                'Mining leak'],
+                'Ship discharges',
+                'Mining leak'
+            ],
             'group19' => [
                 'Nutrient load',
                 'Soil erosion and sedimentation',
-                'Herbicides and pesticides'],
+                'Herbicides and pesticides',
+                'Watershed-based pollution'
+            ],
             'group20' => [
                 'Municipal waste',
                 'Litter from cars / Flotsam & jetsam from recreational boats',
                 'Construction debris',
-                'Waste that entangles wildlife'],
+                'Waste that entangles wildlife'
+            ],
             'group21' => [
                 'Acid rain',
                 'Pollution cloud',
-                'Ozone'],
+                'Ozone'
+            ],
             'group22' => [
                 'Light pollution',
                 'Heat pollution',
-                'Noise pollution'],
+                'Noise pollution'
+            ],
             'group23' => [
                 'Volcanoes',
                 'Earthquakes and tsunamis',
-                'Avalanches and landslides'],
+                'Avalanches and landslides',
+                'Abiotic natural processes'
+            ],
             'group24' => [
                 'Damage and changes to habitat',
                 'Droughts',
                 'Extreme temperatures',
                 'Storms and flooding',
-                'Other: Increased rainfall and seasonal changes'],
+                'Increased rainfall and seasonal changes',
+                'Warming, acidification, bleaching, deoxygenation'
+            ],
             'group25' => [
                 'Human-Wildlife Conflict'
             ]
@@ -768,16 +855,16 @@ return [
             'group9' => 'Supporting services',
         ],
         'predefined_values' => [
-            'group0' => ['Water supply - illegal', 'Water supply - legal', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.) - illegal', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.) - legal', 'Human food - animal (wild / farmed meat, seafood, insects) - illegal', 'Human food - animal (wild / farmed meat, seafood, insects) - legal', 'Medicines and blue biotechnology (fish oil) - illegal', 'Medicines and blue biotechnology (fish oil) - legal', 'Fish / livestock feed (wild, farmed, bait) - illegal', 'Fish / livestock feed (wild, farmed, bait) - legal'],
-            'group1' => ['High value timber - illegal', 'High value timber - legal', 'Timber for local construction - illegal', 'Timber for local construction - legal','Stems - fibres (palms, kenaf, etc.) - illegal', 'Stems - fibres (palms, kenaf, etc.) - legal', 'Other fibres (leaves, fruits...) (kapok, coco, etc.) - illegal', 'Other fibres (leaves, fruits...) (kapok, coco, etc.) - legal', 'Ornamental and aquaria resources (seeds, shells and fishes collection) - illegal', 'Ornamental and aquaria resources (seeds, shells and fishes collection) - legal', 'Sand (building) - illegal', 'Sand (building) - legal', 'Cultivation land (agriculture, livestock, forests) - illegal', 'Cultivation land (agriculture, livestock, forests) - legal'],
+            'group0' => ['Water supply - illegal', 'Water supply - legal', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.) - illegal', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.) - legal', 'Human food - animal (wild / farmed meat, insects) - illegal', 'Human food - animal (wild / farmed meat, insects) - legal', 'Medicines and blue biotechnology (fish oil) - illegal', 'Medicines and blue biotechnology (fish oil) - legal', 'Fish / livestock feed (wild, farmed, bait) - illegal', 'Fish / livestock feed (wild, farmed, bait) - legal'],
+            'group1' => ['High value timber - illegal', 'High value timber - legal', 'Timber for local construction - illegal', 'Timber for local construction - legal','Stems - fibres (palms, kenaf, etc.) - illegal', 'Stems - fibres (palms, kenaf, etc.) - legal', 'Other fibres (leaves, fruits...) (kapok, coco, etc.) - illegal', 'Other fibres (leaves, fruits...) (kapok, coco, etc.) - legal', 'Ornamental and aquaria resources (seeds, shells and fishes collection) - illegal', 'Ornamental and aquaria resources (seeds, shells and fishes collection) - legal', 'Sand (building) - illegal', 'Sand (building) - legal', 'Algal/shells - illegal', 'Algal/shells - legal', 'Cultivation land (agriculture, livestock, forests) - illegal', 'Cultivation land (agriculture, livestock, forests) - legal'],
             'group2' => ['Fuelwood and biofuels - illegal', 'Fuelwood and biofuels - legal', 'Water for energy - illegal', 'Water for energy - legal', 'Fertiliser - illegal', 'Fertiliser - legal'],
-            'group3' => ['Gas regulation (C sequestration)', 'Waste burial / removal / neutralisation', 'Waste regulation (nutrient uptake)'],
+            'group3' => ['Gas regulation (C sequestration)', 'Waste burial / removal / neutralisation', 'Waste regulation (nutrient uptake)', 'Prevention of coastal erosion'],
             'group4' => ['Flood control', 'Drought control', 'Storm protection', 'Water erosion control', 'Wind erosion control', 'Prevention of coastal erosion'],
-            'group5' => ['Aesthetic (ecosystem integrity) benefits', 'Ecotourism and nature watching', 'Walking, hiking and general recreation', 'Snorkeling, boating and diving', 'Hunting or fishing if permitted', 'Specified traditional fishing'],
+            'group5' => ['Aesthetic (ecosystem integrity) benefits', 'Ecotourism and nature watching', 'Walking, hiking and general recreation', 'Boating, swimming and diving', 'Snorkeling, boating and diving', 'Hunting or fishing if permitted', 'Specified traditional fishing'],
             'group6' => ['Science - Research', 'Educational', 'Cultural heritage'],
             'group7' => ['Symbolic or historic', 'Sacred or religious'],
             'group8' => ['ex situ conservation'],
-            'group9' => ['Net primary production (vegetation)', 'Nutrient cycling (litter decomposition and mineralisation)', 'Important habitats (bird nesting sites - sea spawning grounds - nursery habitats)', 'Habitat former species (eg. corals)', 'Pollination (plants)', 'Water cycling', 'Seascape: habitat heterogeneity/complexity (supporting diversity)'],
+            'group9' => ['Net primary production (vegetation)', 'Nutrient cycling (litter decomposition and mineralisation)', 'Important habitats (bird nesting sites - sea spawning grounds - nursery habitats)', 'Formation of seascape', 'Habitat former species (eg. corals)', 'Pollination (plants)', 'Water cycling', 'Seascape: habitat heterogeneity/complexity (supporting diversity)'],
         ],
         'categories' => [
             'title1' => 'Provisioning',

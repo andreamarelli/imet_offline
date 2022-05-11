@@ -31,5 +31,19 @@ class RegulationsAdequacy extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
+    public static function get_marine_predefined(): array
+    {
+        $predefined = (new static())->predefined_values['values'];
+        return [
+            $predefined[9],
+            $predefined[10],
+            $predefined[11],
+            $predefined[12],
+            $predefined[13],
+            $predefined[14],
+            $predefined[15]
+        ];
+    }
+
 
 }

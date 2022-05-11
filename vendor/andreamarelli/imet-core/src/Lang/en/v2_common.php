@@ -9,6 +9,9 @@ return [
     'methodology'   => 'Evaluation question',
     'criteria'      => 'Rating',
 
+    'terrestrial' => 'terrestrial',
+    'marine' => 'marine and coastal',
+
     'steps' => [
         'general_info'          => 'General Information about the protected area',
         'areas'                 => 'Areas, boundaries and shape index, level of control',

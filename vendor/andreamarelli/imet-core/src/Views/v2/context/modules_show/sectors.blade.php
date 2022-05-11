@@ -3,6 +3,9 @@
 /** @var Mixed $definitions */
 /** @var Mixed $records */
 
+use \AndreaMarelli\ImetCore\Helpers\Template;
+use \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
+
 $table_id = 'table_'.$definitions['module_key'];
 $group_key = '';
 
@@ -18,12 +21,18 @@ $sumUnderControlArea = $UnderControlPatrolKm = $UnderControlPatrolManDay = 0
     <tr>
         @foreach($definitions['fields'] as $f_index=>$field)
             @if($field['type']!=='hidden')
-                <th class="text-center">{{ ucfirst($field['label'] ?? '') }}</th>
+                @if($f_index==3)
+                    <th class="text-center">
+                        {!! Template::module_scope(ImetModule::TERRESTRIAL) . ' ' . ucfirst($field['label'] ?? '') !!}
+                    </th>
+                @else
+                    <th class="text-center">{{ ucfirst($field['label'] ?? '') }}</th>
+                @endif
             @endif
-            @if($f_index==1)
+            @if($f_index==2)
                 <th class="text-center">@lang('imet-core::v2_context.Sectors.area_percentage')</th>
             @endif
-            @if($f_index==3)
+            @if($f_index==4)
                 <th class="text-center">@lang('imet-core::v2_context.Sectors.average_time')</th>
             @endif
         @endforeach
@@ -56,14 +65,14 @@ $sumUnderControlArea = $UnderControlPatrolKm = $UnderControlPatrolManDay = 0
                             'value' => $record[$field['name']]
                        ])
                     </td>
-                    @if($f_index==1)
+                    @if($f_index==2)
                         <td>
                             @include('modular-forms::module.show.field', [
                                 'type' => 'numeric',
                                 'value' => $area_percentage
                            ])
                         </td>
-                    @elseif($f_index==3)
+                    @elseif($f_index==4)
                         <td>
                             @include('modular-forms::module.show.field', [
                                 'type' => 'numeric',
@@ -77,6 +86,7 @@ $sumUnderControlArea = $UnderControlPatrolKm = $UnderControlPatrolManDay = 0
         @endforeach
 
         <tr>
+            <td></td>
             <td></td>
             <td>
                 @include('modular-forms::module.show.field', [

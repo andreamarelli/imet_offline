@@ -41,6 +41,55 @@ class BoundaryLevel extends Modules\Component\ImetModule_Eval
 
     }
 
+    public static function upgradeModule($record, $imet_version = null)
+    {
+        // ####  v2.7 -> v2.8 (marine pas)  ####
+        $record = static::replacePredefinedValue($record,
+         'Adequacy',
+     'Boundaries marked by specific marks (e.g. buoys, signs, posts, beacons, fences, etc.)',
+     'Clearly demarcated, unambiguous and therefore easily interpreted boundaries (e.g., signs, posts, markers, fences, buoys, etc.)');
+        $record = static::replacePredefinedValue($record,
+         'Adequacy',
+     'Adéquation des limites marquées par des marques spécifiques (p. ex. panneaux, poteaux, balises, clôtures, etc.)',
+     'Limites clairement délimitées, non ambiguës et donc faciles à interpréter (p. ex. panneaux, poteaux, balises, clôtures, bouées, etc.)');
+        $record = static::replacePredefinedValue($record,
+         'Adequacy',
+     'Limites demarcados por marcas específicas (por exemplo, sinais, postes, balizas, vedações, etc.)',
+     'Limites claramente demarcados, inequívocos e, portanto, facilmente interpretados (por exemplo, sinais, postes, marcadores, cercas, bóias, etc.)');
+        $record = static::replacePredefinedValue($record,
+         'Adequacy',
+     'Límites marcados por marcas específicas (por ejemplo, señales, postes, balizas, vallas, etc.)',
+     'Límites claramente demarcados, inequívocos y, por lo tanto, fáciles de interpretar (por ejemplo, señales, postes, marcadores, cercas, boyas, etc.)');
+
+        $record = static::replacePredefinedValue($record,
+         'Adequacy',
+     'Collaboration in the demarcation of boundaries',
+     'Collaboration approach including national agencies and relevant stakeholders in the demarcation of boundaries');
+        $record = static::replacePredefinedValue($record,
+         'Adequacy',
+     'Collaboration des parties prenantes à la démarcation des frontières',
+     'Approche de collaboration incluant les agences nationales et les parties prenantes concernées dans la démarcation des frontières');
+        $record = static::replacePredefinedValue($record,
+         'Adequacy',
+     'Colaboração na demarcação dos limites',
+     'Abordagem de colaboração, incluindo agências nacionais e partes interessadas relevantes na demarcação dos limites');
+        $record = static::replacePredefinedValue($record,
+         'Adequacy',
+     'Colaboración en la demarcación de fronteras',
+     'Enfoque de colaboración que incluye agencias nacionales y partes interesadas relevantes en la demarcación de fronteras');
+
+        return $record;
+    }
+
+    public static function get_marine_predefined(): array
+    {
+        $predefined = (new static())->predefined_values['values'];
+        return [
+            $predefined[12],
+            $predefined[13]
+        ];
+    }
+
 
 
 }

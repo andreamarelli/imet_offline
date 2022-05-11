@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context;
 
+use AndreaMarelli\ImetCore\Helpers\Template;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 
 class Areas extends Modules\Component\ImetModule
@@ -30,12 +31,12 @@ class Areas extends Modules\Component\ImetModule
             [
                 'name' => 'TerrestrialArea',
                 'type' => 'numeric',
-                'label' => trans('imet-core::v2_context.Areas.fields.TerrestrialArea')
+                'label' => Template::module_scope(static::TERRESTRIAL).trans('imet-core::v2_context.Areas.fields.TerrestrialArea')
             ],
             [
                 'name' => 'MarineArea',
                 'type' => 'numeric',
-                'label' => trans('imet-core::v2_context.Areas.fields.MarineArea')
+                'label' => Template::module_scope(static::MARINE).trans('imet-core::v2_context.Areas.fields.MarineArea')
             ],
             [
                 'name' => 'PercentageNationalNetwork',

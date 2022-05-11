@@ -3,10 +3,19 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vue_data */
 
+use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions;
 use Illuminate\Support\Facades\View;
 
+$vue_data['marine_predefined'] = MenacesPressions::get_marine_predefined();
+
 $view_groupTable = View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vue_data', 'definitions']))->render();
+
+// Inject marine icon on criteria
+$view_groupTable = ImetModule::injectIconToPredefinedCriteriaWithVue(ImetModule::MARINE, $view_groupTable, "is_marine(item['Value'])");
+
+// Inject marine/terrestrial icon on title
+$view_groupTable = ImetModule::injectIconToGroups($view_groupTable, MenacesPressions::get_marine_groups(), MenacesPressions::get_terrestrial_groups());
 
     // Inject titles
     foreach(MenacesPressions::$groupByCategory as $i => $category){
@@ -124,6 +133,10 @@ $view_groupTable = View::make('modular-forms::module.edit.type.group_table', com
             },
 
             methods: {
+
+                is_marine(value){
+                    return this.marine_predefined.includes(value);
+                },
 
                 calculate_stats: function(values, rows=false){
 

@@ -24,7 +24,7 @@ class Governance extends Modules\Component\ImetModule
         ];
 
         $this->module_common_fields = [
-            ['name' => 'Type',      'type' => 'dropdown-ImetV2_GovernanceType',   'label' => trans('imet-core::v2_context.Governance.fields.Type')],
+            ['name' => 'Type',      'type' => 'suggestion_multiple-ImetV2_GovernanceType',   'label' => trans('imet-core::v2_context.Governance.fields.Type')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.Governance.fields.Comments')],
         ];
 

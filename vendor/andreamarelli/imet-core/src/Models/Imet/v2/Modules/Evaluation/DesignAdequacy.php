@@ -31,5 +31,16 @@ class DesignAdequacy extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
+    public static function get_marine_predefined(): array
+    {
+        $predefined = (new static())->predefined_values['values'];
+        return [
+            $predefined[7],
+            $predefined[8],
+            $predefined[9],
+            $predefined[10],
+            $predefined[11]
+        ];
+    }
 
 }

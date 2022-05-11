@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Helpers;
 
 use AndreaMarelli\ImetCore\Models\Country;
+use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 use AndreaMarelli\ModularForms\Helpers\Template as BaseTemplate;
 
 class Template{
@@ -39,6 +40,18 @@ class Template{
             return BaseTemplate::flag($iso, $country->Name);
         }
         return '';
+    }
+
+    public static function module_scope($scope){
+        $common_attributes = 'data-toggle="tooltip" data-placement="top"';
+        if($scope==ImetModule::TERRESTRIAL_AND_MARINE){
+            return '<img src="/assets/images/tree.png" '.$common_attributes.' data-original-title="' . ucfirst(trans('imet-core::v2_common.terrestrial')) . '" />
+                        <img src="/assets/images/fish.png" '.$common_attributes.' data-original-title="' . ucfirst(trans('imet-core::v2_common.marine')) . '" />';
+        } elseif ($scope==ImetModule::TERRESTRIAL){
+            return '<img src="/assets/images/tree.png" '.$common_attributes.' data-original-title="' . ucfirst(trans('imet-core::v2_common.terrestrial')) . '" />';
+        } elseif ($scope==ImetModule::MARINE){
+            return '<img src="/assets/images/fish.png" '.$common_attributes.' data-original-title="' . ucfirst(trans('imet-core::v2_common.marine')) . '" />';
+        }
     }
 
 }

@@ -3,46 +3,33 @@
 /** @var Mixed $definitions */
 /** @var Mixed $records */
 
+use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions;
 use Illuminate\Support\Facades\View;
 use \Wa72\HtmlPageDom\HtmlPageCrawler;
+use \Wa72\HtmlPageDom\Helpers;
 
 $page = View::make('modular-forms::module.show.type.group_table', compact(['definitions', 'records']))->render();
-$dom = HtmlPageCrawler::create(
-    \Wa72\HtmlPageDom\Helpers::trimNewlines($page)
-);
 
-$stats = array_key_exists('FormID', $records[0]) ? MenacesPressions::getStats($records[0]['FormID']) : null;
 
-    // Inject titles (with category stats)
+// Inject marine icon on criteria
+$page = ImetModule::injectIconToPredefinedCriteria(ImetModule::MARINE, $page, MenacesPressions::get_marine_predefined());
+
+// Inject marine/terrestrial icon on title
+$page = ImetModule::injectIconToGroups($page, MenacesPressions::get_marine_groups(), MenacesPressions::get_terrestrial_groups());
+
+
+$dom = HtmlPageCrawler::create(Helpers::trimNewlines($page));
+
+    // Inject titles
     $groupByCategory = MenacesPressions::$groupByCategory;
     foreach($groupByCategory as $i => $category){
-//        $title = ' <div class="module-row">
-//                        <div style="width: 60%;">
-//                            <h3>'.($i+1).'. '.trans('imet-core::v2_context.MenacesPressions.categories.title'.($i+1)).'</h3>
-//                        </div>
-//                        <div class="module-row__input">
-//
-//                            <div class="row progress_bar" style="margin-top: 25px">
-//                                <div class="col-lg-1 progress_bar_limits">-100%</div>
-//                                <div class="col-lg-10 progress_bar_container">
-//                                    <div class="progress">
-//                                        <div class="progress-bar progress-bar-striped progress-bar-negative"
-//                                             role="progressbar"
-//                                             style="width: '.$stats['category_stats'][$i].'%; background-color: #85c79b;">
-//                                            <span>'.$stats['category_stats'][$i].' %</span>
-//                                        </div>
-//                                    </div>
-//                                </div>
-//                                <div class="col-lg-1 progress_bar_limits">0%</div>
-//                            </div>
-//
-//                        </div>
-//                   </div>';
         $title = ' <h3>'.($i+1).'. '.trans('imet-core::v2_context.MenacesPressions.categories.title'.($i+1)).'</h3>';
         $dom->filter('h5.group_title_'.$definitions['module_key'].'_'.$category[0])->eq(0)->before($title);
     }
-    // inject row stats
+
+    // inject column with row stats
+    $stats = array_key_exists('FormID', $records[0]) ? MenacesPressions::getStats($records[0]['FormID']) : null;
     foreach(MenacesPressions::$groupByCategory as $i => $category){
         foreach ($category as $group){
             $dom->filter('table#group_table_imet__v2__context__menaces_pressions_'.$group.' > tbody > tr')

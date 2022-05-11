@@ -2,9 +2,11 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v2;
 
+use AndreaMarelli\ImetCore\Helpers\Template;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialAvailableResources;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesBudgetLines;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesPartners;
+use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Habitats;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewers;
 use Illuminate\Database\Eloquent\Builder;
@@ -50,8 +52,6 @@ class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
             Modules\Context\AnimalSpecies::class,
             Modules\Context\VegetalSpecies::class,
             Modules\Context\Habitats::class,
-            Modules\Context\HabitatsMarine::class,
-            Modules\Context\LandCover::class,
             Modules\Context\Objectives4::class,
         ],
         'threats'               => [
@@ -139,6 +139,11 @@ class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
             $data = FinancialResourcesBudgetLines::copyCurrencyFromCTX213($data);
             $data = FinancialResourcesPartners::copyCurrencyFromCTX213($data);
         }
+
+        // ####  v2.7 -> v2.8 (marine pas):  merge CTX 4.3.1, 4.3.2, 4.4 into 4.3 ####
+        $data = Habitats::mergeFromCTX432($data);
+        $data = Habitats::mergeFromCTX44($data);
+
         return parent::upgradeModules($data, $imet_version);
     }
 

@@ -10,7 +10,7 @@ class LawEnforcementImplementation extends Modules\Component\ImetModule_Eval
 
     public function __construct(array $attributes = []) {
 
-        $this->module_type = 'TABLE';
+        $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'PR8';
         $this->module_title = trans('imet-core::v2_evaluation.LawEnforcementImplementation.title');
         $this->module_fields = [
@@ -19,9 +19,17 @@ class LawEnforcementImplementation extends Modules\Component\ImetModule_Eval
             ['name' => 'Comments',  'type' => 'text-area',               'label' => trans('imet-core::v2_evaluation.LawEnforcementImplementation.fields.Comments')],
         ];
 
+        $this->module_groups = [
+            'group0' => trans('imet-core::v2_evaluation.LawEnforcementImplementation.groups.group0'),
+            'group1' => trans('imet-core::v2_evaluation.LawEnforcementImplementation.groups.group1'),
+        ];
+
         $this->predefined_values = [
             'field' => 'Element',
-            'values' => trans('imet-core::v2_evaluation.LawEnforcementImplementation.predefined_values')
+            'values' => [
+                'group0' => trans('imet-core::v2_evaluation.LawEnforcementImplementation.predefined_values.group0'),
+                'group1' => trans('imet-core::v2_evaluation.LawEnforcementImplementation.predefined_values.group1')
+            ]
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.LawEnforcementImplementation.module_info_EvaluationQuestion');
@@ -29,6 +37,43 @@ class LawEnforcementImplementation extends Modules\Component\ImetModule_Eval
         $this->ratingLegend = trans('imet-core::v2_evaluation.LawEnforcementImplementation.ratingLegend');
 
         parent::__construct($attributes);
+    }
 
+    public static function get_terrestrial_groups(): array
+    {
+        $groups = (new static())->module_groups;
+        return [
+            $groups['group0']
+        ];
+    }
+
+    public static function get_marine_groups(): array
+    {
+        $groups = (new static())->module_groups;
+        return [
+            $groups['group1']
+        ];
+    }
+
+    public static function upgradeModule($record, $imet_version = null)
+    {
+        // ####  v2.7 -> v2.8 (marine pas)  ####
+        if(empty($imet_version) or $imet_version < 'v2.7.6b'){
+            // add new "group_key" filed and set to "group0"
+            $record = static::addField($record, 'group_key');
+            $record = static::replaceGroup($record, 'group_key', null, 'group0');
+        }
+
+        $record = static::replacePredefinedValue($record, 'Element',
+                                                 'Non collaborative (technology: radar, optical-infrared, radio monitoring Vs technology poor performance, qualified rangers)',
+                                                 'Non collaborative (technology: digital data, aerial monitoring, etc. Vs technology poor performance, qualified rangers)');
+        $record = static::replacePredefinedValue($record, 'Element',
+                                                 'Não colaborativo (tecnologia: radar, infravermelho óptico, tecnologia de monitorização de rádio Vs mau desempenho, rangers fiscais qualificados)',
+                                                 'Não colaborativo (tecnologia: dados digitais, monitoramento aéreo, etc Vs mau desempenho, rangers fiscais qualificados)');
+        $record = static::replacePredefinedValue($record, 'Element',
+                                                 'No colaborativo (tecnología: radar, óptico-infrarrojo, vigilancia por radio vs. tecnología de bajo rendimiento, guardaparques calificados)',
+                                                 'No colaborativo (tecnología: datos digitales, vigilancia por aéreo, etc. vs. tecnología de bajo rendimiento, guardaparques calificados)');
+
+        return $record;
     }
 }

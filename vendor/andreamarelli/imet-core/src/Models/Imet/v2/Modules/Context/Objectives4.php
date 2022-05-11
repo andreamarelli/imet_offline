@@ -8,7 +8,7 @@ class Objectives4 extends _Objectives
 
     public function __construct(array $attributes = []) {
 
-        $this->module_code = 'CTX 4.5';
+        $this->module_code = 'CTX 4.4';
         $this->module_info = trans('imet-core::v2_context.Objectives4.module_info');
 
         parent::__construct($attributes);

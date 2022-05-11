@@ -8,18 +8,19 @@
   flex-wrap: nowrap;
 }
 .pgr-bar .pgr-bar__bar[data-v-6acae958] {
-  flex-grow: 1;
+    flex-grow: 1;
 }
 .pgr-bar .pgr-bar__limit-left[data-v-6acae958] {
-  width: 30px;
-  text-align: right;
-  padding-right: 3px;
+    width: 30px;
+    text-align: right;
+    padding-right: 3px;
 }
 .pgr-bar .pgr-bar__limit-right[data-v-6acae958] {
-  width: 30px;
-  text-align: left;
-  padding-left: 3px;
+    width: 30px;
+    text-align: left;
+    padding-left: 3px;
 }
+
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/templates/imet_charts.vue?vue&type=style&index=0&id=02895ee8&lang=scss&scoped=true& ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -29,41 +30,42 @@
 }
 @media (min-width: 1000px) {
 .container[data-v-02895ee8] {
-    flex-direction: row;
+      flex-direction: row;
 }
 .container .imet_histogram[data-v-02895ee8] {
-    flex-grow: 1;
+        flex-grow: 1;
 }
 }
 @media (max-width: 999px) {
 .container[data-v-02895ee8] {
-    flex-direction: column;
-    align-items: center;
+      flex-direction: column;
+      align-items: center;
 }
 .container .imet_histogram[data-v-02895ee8] {
-    width: 100%;
+        width: 100%;
 }
 }
 .container .imet_histogram .imet_histogram__row[data-v-02895ee8] {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
 }
 .container .imet_histogram .imet_histogram__row .imet_histogram__label[data-v-02895ee8] {
-  width: 210px;
-  padding-left: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+      width: 210px;
+      padding-left: 10px;
+      padding-top: 5px;
+      padding-bottom: 5px;
 }
 .container .imet_histogram .imet_histogram__row .imet_histogram__value[data-v-02895ee8] {
-  width: 40px;
+      width: 40px;
 }
 .container .imet_histogram .imet_histogram__row .imet_histogram__progress_bar[data-v-02895ee8] {
-  flex-grow: 1;
+      flex-grow: 1;
 }
 .container .imet_radar[data-v-02895ee8] {
-  text-align: center;
+    text-align: center;
 }
+
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/templates/imet_radar.vue?vue&type=style&index=0&id=f8a1467a&lang=scss&scoped=true& ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -79,18 +81,19 @@
   margin-bottom: 10px;
 }
 .vue-dropzone .files {
-  display: flex;
-  gap: 30px;
+    display: flex;
+    gap: 30px;
 }
 .vue-dropzone .files .file-row {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
 }
 .vue-dropzone .files .file-row .progress {
-  flex-grow: 1;
+        flex-grow: 1;
 }
+
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/inputs/selector-wdpa_multiple.vue?vue&type=style&index=0&id=0400f0a6&lang=scss&scoped=true& ***!
   \************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -105,12 +108,13 @@
   vertical-align: top;
 }
 .module-container .selector-wdpa_multiple .field-preview i.removeItem[data-v-0400f0a6] {
-  color: #F87171;
-  cursor: pointer;
+    color: #F87171;
+    cursor: pointer;
 }
 .module-container .selector-wdpa_multiple .field-preview i.removeItem[data-v-0400f0a6]:hover {
-  color: #262626;
+      color: #262626;
 }
+
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/drag_and_drop/drop_drag_area.vue?vue&type=style&index=0&id=3d51b738&scoped=true&lang=css& ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -123,6 +127,7 @@
   max-height: 400px;
   overflow: auto;
 }
+
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/drag_and_drop/draggable_item.vue?vue&type=style&index=0&id=51b0ed01&scoped=true&lang=css& ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -132,6 +137,7 @@
   padding: 5px;
   min-height: 100px;
 }
+
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/grouping.vue?vue&type=style&index=0&id=178e51d2&scoped=true&lang=css& ***!
   \*********************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -158,6 +164,7 @@
   min-height: 200px;
   width: 300px;
 }
+
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/editor.vue?vue&type=style&index=0&id=1f9912fc&lang=scss&scoped=true& ***!
   \********************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -172,9 +179,10 @@
 }
 @media screen {
 .text-editor-print[data-v-1f9912fc] {
-    display: none;
+      display: none;
 }
 }
+
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/various_charts/scaling_dopa_chart_doughnut.vue?vue&type=style&index=0&id=79452bd2&lang=scss&scoped=true& ***!
   \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -182,6 +190,7 @@
   min-height: 300px;
   min-width: 400px;
 }
+
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/basket/preview_item.vue?vue&type=style&index=0&id=7e14b858&scoped=true&lang=css& ***!
   \********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -200,6 +209,7 @@
   display: block;
   right: 5px;
 }
+
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/basket.vue?vue&type=style&index=0&id=b0a25256&scoped=true&lang=css& ***!
   \*******************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -269,6 +279,7 @@
   right: 0;
   /* On mouse-over, make the elements appear as they should */
 }
+
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/label-cloud.vue?vue&type=style&index=0&id=37d478c6&lang=scss&scoped=true& ***!
   \*************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -277,6 +288,7 @@
   overflow: auto;
   background: #fff;
 }
+
 /*!****************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/assets/index.scss ***!
   \****************************************************************************************************************/
@@ -284,247 +296,220 @@
 .imet_modules .field-enabled,
 .imet_modules .field-preview,
 .imet_modules .field-disabled {
-  color: #404040;
-}
+  color: #404040; }
+
+.imet_modules .module-header .module-type {
+  /* for marine/terrestrial icons */
+  padding: 6px 15px; }
 
 .imet_name {
   display: flex;
-  flex-direction: column;
-}
-.imet_name .imet_pa_name {
-  font-size: 1.1em;
-  flex-grow: 1;
-}
+  flex-direction: column; }
+  .imet_name .imet_pa_name {
+    font-size: 1.1em;
+    flex-grow: 1; }
 
 .imet_responsible {
   font-size: 0.85em;
-  text-align: left;
-}
-.imet_responsible ul {
-  margin: 0;
-  padding-inline-start: 15px;
-}
-.imet_responsible ul li {
-  line-height: 1.4em;
-}
-.imet_responsible button {
-  margin-top: 5px;
-}
-.imet_responsible .hidden {
-  display: none !important;
-}
+  text-align: left; }
+  .imet_responsible ul {
+    margin: 0;
+    padding-inline-start: 15px; }
+    .imet_responsible ul li {
+      line-height: 1.4em; }
+  .imet_responsible button {
+    margin-top: 5px; }
+  .imet_responsible .hidden {
+    display: none !important; }
 
 .histogram-row {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-}
-.histogram-row .histogram-row__code {
-  width: 45px;
-}
-.histogram-row .histogram-row__title {
-  width: 340px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-.histogram-row .histogram-row__value {
-  width: 55px;
-}
-.histogram-row .histogram-row__progress-bar {
-  font-size: 10px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-}
-.histogram-row .histogram-row__progress-bar .histogram-row__progress-bar__bar,
-.histogram-row .histogram-row__progress-bar .histogram-row__progress-bar__spacer {
-  flex-grow: 1;
-}
-.histogram-row .histogram-row__progress-bar .histogram-row__progress-bar__limit-left {
-  width: 40px;
-  text-align: right;
-  padding-right: 3px;
-}
-.histogram-row .histogram-row__progress-bar .histogram-row__progress-bar__limit-right {
-  width: 40px;
-  text-align: left;
-  padding-left: 3px;
-}
+  flex-wrap: nowrap; }
+  .histogram-row .histogram-row__code {
+    width: 45px; }
+  .histogram-row .histogram-row__title {
+    width: 340px;
+    padding-left: 5px;
+    padding-right: 5px; }
+  .histogram-row .histogram-row__value {
+    width: 55px; }
+  .histogram-row .histogram-row__progress-bar {
+    font-size: 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap; }
+    .histogram-row .histogram-row__progress-bar .histogram-row__progress-bar__bar,
+    .histogram-row .histogram-row__progress-bar .histogram-row__progress-bar__spacer {
+      flex-grow: 1; }
+    .histogram-row .histogram-row__progress-bar .histogram-row__progress-bar__limit-left {
+      width: 40px;
+      text-align: right;
+      padding-right: 3px; }
+    .histogram-row .histogram-row__progress-bar .histogram-row__progress-bar__limit-right {
+      width: 40px;
+      text-align: left;
+      padding-left: 3px; }
 
 .progress_bar_label,
 .progress_bar,
 .progress_bar_container {
-  padding: 0;
-}
+  padding: 0; }
 
 .progress_bar_limits {
   font-size: 10px;
   padding: 0 3px 0 0;
-  text-align: right;
-}
+  text-align: right; }
 
 .progress_bar_limits_left {
   font-size: 10px;
   padding: 0 0 0 3px;
-  text-align: left;
-}
+  text-align: left; }
 
 .progress {
   margin: 2px 0;
   vertical-align: bottom;
-  background-color: #F5F5F5;
-}
+  background-color: #F5F5F5; }
 
 .progress-bar {
   color: #000000;
   font-weight: bold;
-  -webkit-print-color-adjust: exact;
-}
+  -webkit-print-color-adjust: exact; }
 
 .progress-bar-negative {
   float: right;
   color: Red;
-  margin-left: auto;
-}
+  margin-left: auto; }
 
 .synthetic_indicator {
-  font-size: 1.2em;
-}
+  font-size: 1.2em; }
 
 .footer_ribbon.imet {
-  font-size: 1em;
-}
+  font-size: 1em; }
 
 #imet_header {
   display: flex;
   justify-content: space-between;
   background-color: #FAFAFA;
-  padding: 0 10px;
-}
+  padding: 0 10px; }
 
 .language_selector {
-  padding: 10px 0 20px 30px;
-}
-.language_selector li {
-  text-align: left;
-  white-space: nowrap;
-}
-.language_selector li:first-of-type {
-  padding: 0 15px 0 25px;
-}
-.language_selector li a {
-  padding: 8px 30px;
-}
+  padding: 10px 0 20px 30px; }
+  .language_selector li {
+    text-align: left;
+    white-space: nowrap; }
+    .language_selector li:first-of-type {
+      padding: 0 15px 0 25px; }
+    .language_selector li a {
+      padding: 8px 30px; }
 
 #imet_report #map {
   height: 400px;
   width: 100%;
-  margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
+
 #imet_report #radar {
   margin-right: 20px;
   width: 400px;
-  text-align: center;
-}
+  text-align: center; }
+
 #imet_report #buttons {
-  text-align: right;
-}
+  text-align: right; }
+
 @media print {
   #imet_report #buttons {
-    display: none;
-  }
-}
+    display: none; } }
+
 #imet_report table td, #imet_report table th {
   padding: 5px;
   text-align: center;
   border: 1px solid white;
-  background-color: white;
-}
+  background-color: white; }
+
 #imet_report table th,
 #imet_report .bordered {
-  border: 1px solid #ccc;
-}
+  border: 1px solid #ccc; }
+
 #imet_report table td.avg_index {
   text-transform: uppercase;
   font-weight: bold;
-  color: black;
-}
+  color: black; }
+
 #imet_report table td.avg_sub_index {
   font-weight: bold;
-  color: black;
-}
+  color: black; }
+
 #imet_report table#global_scores th,
 #imet_report table#global_scores td {
-  font-weight: bold;
-}
+  font-weight: bold; }
+
 #imet_report table#detailed_scores {
   font-size: 0.9em;
   table-layout: fixed;
-  width: 100%;
-}
-#imet_report table#detailed_scores td {
-  word-break: break-word;
-}
+  width: 100%; }
+  #imet_report table#detailed_scores td {
+    word-break: break-word; }
+
 #imet_report .score_no {
   color: black;
   background-color: grey !important;
   border: 1px solid #ccc;
-  -webkit-print-color-adjust: exact;
-}
+  -webkit-print-color-adjust: exact; }
+
 #imet_report .score_success {
   color: white;
   background-color: #00A74B !important;
   border: 1px solid #ccc;
-  -webkit-print-color-adjust: exact;
-}
+  -webkit-print-color-adjust: exact; }
+
 #imet_report .score_warning {
   color: black;
   background-color: yellow !important;
   border: 1px solid #ccc;
-  -webkit-print-color-adjust: exact;
-}
+  -webkit-print-color-adjust: exact; }
+
 #imet_report .score_alert {
   color: black;
   background-color: orange !important;
   border: 1px solid #ccc;
-  -webkit-print-color-adjust: exact;
-}
+  -webkit-print-color-adjust: exact; }
+
 #imet_report .score_danger {
   color: white;
   background-color: darkred !important;
   border: 1px solid #ccc;
-  -webkit-print-color-adjust: exact;
-}
+  -webkit-print-color-adjust: exact; }
+
 #imet_report .score_danger_warning {
   color: white;
   background-color: indianred !important;
   border: 1px solid #ccc;
-  -webkit-print-color-adjust: exact;
-}
+  -webkit-print-color-adjust: exact; }
+
 #imet_report .score_danger_alert {
   color: white;
   background-color: red !important;
   border: 1px solid #ccc;
-  -webkit-print-color-adjust: exact;
-}
+  -webkit-print-color-adjust: exact; }
+
 #imet_report .score_danger_failed {
   color: white;
   background-color: orangered !important;
   border: 1px solid #ccc;
-  -webkit-print-color-adjust: exact;
-}
+  -webkit-print-color-adjust: exact; }
+
 #imet_report .swot {
   width: 99%;
   display: grid;
   grid-template-columns: 50% 50%;
   grid-column-gap: 10px;
-  grid-row-gap: 10px;
-}
+  grid-row-gap: 10px; }
+
 #imet_report div.dopa_not_available {
   width: 100%;
   font-size: 1.3em;
   text-align: center;
   padding: 60px 0;
-  color: #00A74B;
-}
+  color: #00A74B; }
+

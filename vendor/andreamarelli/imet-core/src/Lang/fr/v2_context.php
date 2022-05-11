@@ -54,7 +54,7 @@ return [
         'module_info' => 'Établir et décrire les objectifs de conservation relatifs à la <b>gouvernance, les partenariats et la désignation </b> de l\'aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives2' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation relatifs à <b> l’extension, les limites, l’indice de configuration et la protection </b> de l\'aire protégée</b><br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'XXXXXXXXX Établir et décrire les objectifs de conservation relatifs à <b>les limites, l’indice de configuration, extension of patrols and law enforcement and territorial context</b> de l\'aire protégée</b><br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives3' => [
         'module_info' => 'Établir et décrire les objectifs de conservation relatifs aux <b>pour les ressources humaines, financières et matérielles pour la gestion </b> de l\'aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
@@ -108,6 +108,7 @@ return [
             'IUCNCategory1' => 'Catégorie UICN principale',
             'IUCNCategory2' => 'Autre catégorie UICN',
             'IUCNCategory3' => 'Autre catégorie UICN',
+            'MarineDesignation' => 'XXXXXXXXX Marine designation',
             'Country' => 'Pays',
             'CreationYear' => 'Année de création',
             'Institution' => 'Institution de tutelle',
@@ -117,6 +118,33 @@ return [
             'ReferenceText' => 'Référence du texte de création en cours de validité',
             'ReferenceTextDocument' => '',
             'ReferenceTextValues' => 'Quelle est l’importance de l’aire protégée et les principales valeurs pour lesquelles elle a été désignée ? (Fournir une liste, puis une brève description)',
+        ],
+        'module_info' => 'XXXXXXXXX <b>Introduction to typology</b>: IMET identifies three categories of protected areas: (1) Terrestrial (2)
+            Marine and Coastal (3) OECM - Other Effective Conservation Measures by Area.<br />In the Governance section (CTX 1.2)
+            you can refine the management and governance typology of these three protected area typologies. If you are analysing a
+            Protected and Conserved Areas (PCAs), you can specify the territorial context in CTX 2.4.Protected area (general definition):
+            A protected area is a clearly defined geographical space, recognised, dedicated and managed, through legal or other effective means,
+            to achieve the long term conservation of nature with associated ecosystem services and cultural values. (IUCN Definition 2008)',
+        'type_info' => [
+            'terrestrial' => 'XXXXXXXXX A terrestrial protected area (TPA) is a portion of land protected by special restrictions 
+            and laws for the conservation of the natural environment. They include large tracts of land 
+            set aside for the protection of wildlife and its habitat; areas of great natural beauty or unique interest; 
+            areas containing rare forms of plant and animal life; areas representing unusual geologic formation; places 
+            of historic and prehistoric interest; areas containing ecosystems of special importance for scientific 
+            investigation and study; and areas which safeguard the needs of the biosphere. (GEMET- DODERO / WPR) 
+            (we check for a CBD description)',
+            'marine_and_coastal' => 'XXXXXXXXX A marine and coastal protected area (MPA or MCPA) is "an area within or adjacent 
+            to the marine environment, together with its overlying waters and associated flora, fauna, and historical and 
+            cultural features, which has been reserved by legislation or other effective means, including custom, with the 
+            effect that its marine and/or coastal biodiversity enjoys a higher level of protection than its surroundings" 
+            (Convention on Biological Diversity – CBD)',
+            'oecm' => 'XXXXXXXXX A geographically defined area other than a Protected Area, which is governed and managed in ways 
+            that achieve positive and sustained long-term outcomes for the insitu conservation of biodiversity, with 
+            associated ecosystem functions and services and where applicable, cultural, spiritual, socio–economic, and 
+            other locally relevant values” (CBD, 2018)',
+            'icca' => 'XXXXXXXXX A natural and/or modified ecosystems, containing significant biodiversity values, ecological benefits 
+            and cultural values, voluntarily conserved by indigenous peoples and local communities, through customary laws 
+            or other effective means (CBD -Recognising and Supporting ICCAs)'
         ]
     ],
 
@@ -221,8 +249,8 @@ return [
             'WDPAArea' => 'Superficie WDPA',
             'GISArea' => 'Superficie SIG correspondante au fichier téléchargé (données résultants d’une analyse SIG réalisée par l’aire protégée ou par l’autorité nationale responsable des aires protégées)',
             'BoundaryLength' => 'Longueur des limites',
-            'TerrestrialArea' => 'AP mixte: Superficie terrestre (inclus la zone côtière)',
-            'MarineArea' => 'AP mixte: Superficie marine',
+            'TerrestrialArea' => 'XXXXXXXXX Superficie protégée terrestre',
+            'MarineArea' => 'XXXXXXXXX Superficie protégée marine et côtière',
             'PercentageNationalNetwork' => '% par rapport au réseau national des aires protégées',
             'PercentageEcoregion' => '% par rapport à l’écorégion ou à chacune des écorégions pour le cas des aires protégées appartenant à plusieurs réseaux',
             'PercentageTransnationalNetwork' => '% par rapport réseau transfrontalier',
@@ -233,22 +261,23 @@ return [
     ],
 
     'Sectors' => [
-        'title' => 'Niveau de contrôle de l’aire protégée (ou par secteurs de l’aire protégée)',
+        'title' => 'XXXXXXXXX Patrolling and Enforcement: Terrestrial area or sectors and/or Marine and coastal area or sectors',
         'fields' => [
-            'Name' => 'Aire protégée ou nom de secteur',
-            'UnderControlArea' => 'Km² sous contrôle',
+            'Name' => 'Secteur',
+            'TerrestrialOrMarine' => 'XXXXXXXXX Terrestrial or marine?',
+            'UnderControlArea' => 'Km² de surface couverte par la patrouille',
             'UnderControlPatrolKm' => 'Km de patrouille',
-            'UnderControlPatrolManDay' => 'Homme * jours de patrouille',
+            'UnderControlPatrolManDay' => 'Jours de patrouille',
             'SectorMap' => 'Carte de zonage',
             'Source' => 'Source',
             'Observations' => 'Observations',
         ],
         'area_percentage'               => '% de la surface',
-        'average_time'                  => 'Moyenne homme * j * Km² de la surface totale'
+        'average_time'                  => 'Patrouille moyenne * j * Km² de secteur'
     ],
 
     'TerritorialReferenceContext' => [
-        'title' => 'Contexte territorial de référence de l’aire protégée',
+        'title' => 'Contexte territorial de référence (XXXXXXXXX Landscape) de l’Aire Protégée',
         'fields' => [
             'FunctionalHasNoTakeArea' => 'L’aire de l’écosystème fonctionnel correspond-elle à la zone de non-prélèvement ?',
             'FunctionalArea' => 'Estimer la superficie de l’écosystème fonctionnel importante pour le maintien de la biodiversité de l’aire protégée (habitats, espèces clés, etc.) : a) en Km² et b) en Km de largeur de la bande extérieure',
@@ -258,6 +287,42 @@ return [
             'BenefitPopulation' => 'Estimer la population locale vivant dans l’aire d’influence socio-économique',
             'BenefitSocioEconomicAspects' => 'Énumérer et décrire les facteurs socio-économiques et administratifs (p. ex. les normes coutumières et  modernes qui régissent ou influencent la gestion des ressources naturelles)',
             'SpillOverArea' => 'Estimer les effets du débordement (spill-over) des zones de conservation strictes. Zone de débordement pour maintenir l’approvisionnement en services écosystémiques (p. ex. pêche) fournis par l’aire protégée : a) en km² et b) en mètres de largeur de la bande extérieure',
+            'SpillOverEvalPredatory0_500' => '',
+            'SpillOverEvalPredatory500_1000' => '',
+            'SpillOverEvalPredatory200_3000' => '',
+            'SpillOverEvalComposition0_500' => '',
+            'SpillOverEvalComposition500_1000' => '',
+            'SpillOverEvalComposition200_3000' => '',
+            'SpillOverEvalDistance0_500' => '',
+            'SpillOverEvalDistance500_1000' => '',
+            'SpillOverEvalDistance200_3000' => '',
+        ],
+        'info' => [
+            'spillover_eval' =>
+                'XXXXXXXXX The net movement of individuals from marine reserves (also known as no-take marine protected areas) to 
+                the remaining fishing grounds is known as spill-over. Spill-over can contribute to poverty alleviation, 
+                although its effect is modulated by the number of fishermen and fishing intensity. Generally:<ul>
+                <li>Strong spill-over positive effect when the fishery is mismanaged</li>
+                <li>Light spill-over positive effect when the fishery is well managed but positive effect for species with greater movement and slower growth.</li>
+                <li>Evaluate the spill-over effect from a reserve is able to provide a net benefit for a fishery (from Garry Russ & Angel Alcala, Enhanced biodiversity beyond marine reserve boundaries: the cup spill-over):<ul>
+                <li>predatory fish (large, predatory fish are more common inside and just outside reserves than farther away)</li>
+                <li>composition outside and inside (the community composition outside the reserves becomes more like that inside over time)</li>
+                <li>distance of detection of spill-over effect (distance from the border and the time after reserve establishment is the variables with the strongest effect on fish abundance; fish caching: A) 500 m and closer; B) 500 to 1000 m; C) 2000 to 3000 m</li></ul></li></ul>',
+            'spill_over_variation' => 'XXXXXXXXX SPILL-OVER variation inside vs outside MPA',
+            'variation' => 'XXXXXXXXX Variation inside vs outside MPA',
+            '0_500' => 'XXXXXXXXX 0 to 500m',
+            '500_1000' => '5XXXXXXXXX 00 to 1000m',
+            '2000_3000' => 'XXXXXXXXX 2000 to 3000m',
+            'predatory' => 'XXXXXXXXX Predatory fish',
+            'composition' => 'XXXXXXXXX Fish community composition',
+            'distance' => 'XXXXXXXXX Spill-over effect distance',
+        ],
+        'ratingLegend' => [
+            'SpillOverEvalPredatory0_500' => [
+                '-2' => 'XXXXXXXXX Strong negative difference',
+                '-1' => 'XXXXXXXXX Least negative difference',
+                '0' => 'XXXXXXXXX No difference',
+            ]
         ],
         'categories' => [
             'FunctionalEcosystemArea' => 'Aire fonctionnelle de l’écosystème',
@@ -388,10 +453,10 @@ return [
             'group12' => 'Liens et connexions de l’aire protégée avec le monde extérieur',
         ],
         'predefined_values' => [
-            'group0' => ['Bureaux','Postes de patrouille','Points de barrières','Bâtiments scientifiques','Garage et atelier','Services divers (magazine, radio, etc.)','Dispensaires'],
+            'group0' => ['Bureaux','Postes de patrouille','Points de barrières','Bâtiments scientifiques','Garage et atelier','XXXXXXXXX Room for dive bottles and other dive gear', 'XXXXXXXXX Boat sheds', 'XXXXXXXXX Car-Boat parking', 'Services divers (magazine, radio, etc.)','Dispensaires'],
             'group1' => ['pour Officiers et sous-officiers', 'pour les Agents', 'pour le Personnel d\'appui', 'pour le Personnel scientifique'],
             'group2' => ['Hôtels (capacité d’accueil)', 'Eco-lodges (capacité d’accueil)', 'Campements', 'Accueils des touristes', 'Points de vue ou points d’observation (miradors)', 'Parcours touristiques aménagés'],
-            'group3' => ['Voitures','Motos/Quads','Vélos','Bateaux, Pirogues','Avion, ULM','Jet ski','Animaux (chevaux)'],
+            'group3' => ['Voitures','Motos/Quads','Vélos','Bateaux', 'XXXXXXXXX Outboard motors', 'Pirogues','Avion, ULM','Jet ski','Animaux (chevaux)'],
             'group4' => ['Radar de contrôle','Armements','Cartouches','Tenues','Rations','GPS, Boussoles', 'Matériel de camping et de brousse'],
             'group5' => ['Radios VHF-HF','V-SAT','Téléphones fixes','Téléphones GSM','Téléphones satellitaires','Connexion internet'],
             'group6' => ['Ordinateurs fixes','Ordinateurs portables','Imprimantes','Photocopieurs','Onduleur'],
@@ -410,7 +475,6 @@ return [
                 '3' => 'Tout à fait adéquat (91-100 % des besoins)',
             ]
         ],
-        'module_info' => 'Evaluation : Évaluer l\'adequation des infrastructures, des équipements et des installations'
     ],
 
     'AnimalSpecies' => [
@@ -459,9 +523,9 @@ return [
     ],
 
     'Habitats' => [
-        'title' => 'L’écosystème et les habitats choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi dans le temps',
+        'title' => 'Habitats choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi dans le temps',
         'fields' => [
-            'EcosystemType' => 'Type d\'écosystème ou d\'habitat',
+            'EcosystemType' => 'Type d\'habitat',
             'Value' => 'Description de l’état ou de la valeur',
             'Area' => 'Surface (ha)',
             'DesiredConservationStatus' => 'Etat de conservation souhaité',
@@ -470,46 +534,7 @@ return [
             'Sectors' => 'Secteurs',
             'Comments' => 'Commentaires / Source',
         ],
-        'module_info' =>'État de conservation favorable : Selon Natura 2000, l’état de conservation d’un habitat naturel est considéré comme « favorable » lorsque:<ul><li>son aire de répartition naturelle et les zones qu’il couvre à l’intérieur de cette aire sont stables ou en augmentation, et</li><li>la structure et les fonctions spécifiques qui sont nécessaires à son maintien à long terme existent et sont susceptibles de continuer à exister dans un avenir prévisible</li></ul>Sur la base de plusieurs paramètres relatifs aux habitats (externe = irremplaçabilité et internes = spécificités de l\'aire protégée), le gestionnaire détermine les spécificités des habitats terrestres et d\'eau douce de l\'aire protégée qui devront faire l\'objet d\'un suivi dans le temps.<br /> <b>Note</b>: l\'évaluation des écosystemes et habitats est une discipline très complexe. La classification prévoit la division de territoire suivante : Biome, Ecorégion, Ecosystème, Habitat. Les caractéristiques de l\'habitat / valeurs peuvent être évaluées comme : <ul> <li>i) sous la menace d\'extinction (au sein de leur aire de répartition naturelle),</li> <li>ii) ayant une aire de répartition naturelle réduite,</li> <li>iii) en déclin,</li> <li>iv) un exemple exceptionnel de caractéristiques spécifiques, etc.</li> </ul> Les Caractéristiques / Valeurs des écosystèmes et habitats peuvent être estimées comme spécifique pour : <ul> <li>i) la reproduction,</li> <li>ii) la nutrition,</li> <li>iii) la protection des espèces, etc.</li> </ul>',
-        'warning_on_save' =>
-            'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
-            d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
-    ],
-
-    'HabitatsMarine' => [
-        'title' => 'Présence, étendue et distribution des habitats et stratus marins clés',
-        'fields' => [
-            'HabitatType' => 'Habitats et stratus',
-            'Presence' => 'Présence',
-            'Area' => 'Etendue de l\'habitat (estimation ha)',
-            'Fragmentation' => 'Fragmentation de l\'habitat',
-            'Source' => 'Source',
-            'Description' => 'Descriptif',
-        ],
-        'predefined_values' => [
-            'Mangroves',
-            'Algues',
-            'Barrière corallienne',
-            'Marais maritimes, marais littoraux',
-            'Ecosystème d\'eaux marines côtières',
-            'Stratus pélagique',
-            'Stratus abyssal',
-            'Stratus benthique',
-            'Mer ouverte'
-        ],
-        'module_info' => '<i><span style="color: Blue;">Indicateur</span></i>: Habitats marins à caractéristiques importantes et significatives de l’aire protégée, Couverture et Utilisation des sols (Land cover et Land use)<br /> <i><span style="color: Blue;">Sous indicateur</span></i>: <b><span style="font-style: normal;">Présence, étendue et distribution des habitats et stratus marins clés</span></b>'
-    ],
-
-    'LandCover' => [
-        'title' => 'Gestion de la couverture, de l’utilisation et de l’occupation des terres [pour les valeurs globales, voir le point 2.2] choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi au fil du temps',
-        'fields' => [
-            'CoverType' => 'Catégories',
-            'HistoricalArea' => 'Surface (ha)',
-            'ConservationStatusArea' => 'Etat de conservation souhaité (ha)',
-            'Notes' => 'Source / Observations',
-            'HistoricalAreaData' => 'Date de ligne da base',
-        ],
-        'module_info' => 'Maintien de la couverture terrestre (land cover), utilisation des sols (land use) et occupation des sols (land take) [valeurs totales voir point CTX 2.2]</span></b><br /> <b>Catégories de couverture du sol ou land cover</b> (exemple : Forêt,  Savane arbustive, Savane herbacée, Prairies, Eau, Cultures / Plantations, Habitations, Routes, etc.)',
+        'module_info' =>'État de conservation favorable : Selon Natura 2000, l’état de conservation d’un habitat naturel est considéré comme « favorable » lorsque:<ul><li>son aire de répartition naturelle et les zones qu’il couvre à l’intérieur de cette aire sont stables ou en augmentation, et</li><li>la structure et les fonctions spécifiques qui sont nécessaires à son maintien à long terme existent et sont susceptibles de continuer à exister dans un avenir prévisible</li></ul>Sur la base de plusieurs paramètres relatifs aux habitats (externe = irremplaçabilité et internes = spécificités de l\'aire protégée), le gestionnaire détermine les spécificités des habitats terrestres et marine de l\'aire protégée qui devront faire l\'objet d\'un suivi dans le temps.<br /> <b>Note</b>: l\'évaluation des écosystemes et habitats est une discipline très complexe. La classification prévoit la division de territoire suivante : Biome, Ecorégion, Ecosystème, Habitat. Les caractéristiques de l\'habitat / valeurs peuvent être évaluées comme : <ul> <li>i) sous la menace d\'extinction (au sein de leur aire de répartition naturelle),</li> <li>ii) ayant une aire de répartition naturelle réduite,</li> <li>iii) en déclin,</li> <li>iv) un exemple exceptionnel de caractéristiques spécifiques, etc.</li> </ul> Les Caractéristiques / Valeurs des écosystèmes et habitats peuvent être estimées comme spécifique pour : <ul> <li>i) la reproduction,</li> <li>ii) la nutrition,</li> <li>iii) la protection des espèces, etc.</li> </ul>',
         'warning_on_save' =>
             'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
@@ -558,7 +583,9 @@ return [
                 'Zones urbaines et habitations',
                 'Zones commerciales',
                 'Zones touristiques et récréatives',
-                'Zones des enclaves'
+                'Zones des enclaves',
+                'XXXXXXXXX Shipping lanes, ports, marine constructions',
+                'XXXXXXXXX Inland activities'
             ],
             'group1' => [
                 'Agriculture itinérante',
@@ -577,6 +604,7 @@ return [
             ],
             'group4' => [
                 'Aquaculture de subsistance ou artisanale',
+                'XXXXXXXXX Over nutrient',
                 'Aquaculture industrielle'
             ],
             'group6' => [
@@ -588,6 +616,8 @@ return [
                 'Routes',
                 'Réseaux et lignes de services publics et de communication (électricité, téléphone, aqueduc, etc.)',
                 'Voies navigables et voies de navigation maritimes',
+                'XXXXXXXXX Commercial boating',
+                'XXXXXXXXX Private boating',
                 'Couloirs aériens',
                 'Voies ferrées'
             ],
@@ -611,15 +641,29 @@ return [
                 'Pêche à grande échelle',
                 'Récolte de ressources aquatiques de subsistance ou à petite échelle',
                 'Récolte de ressources aquatiques à grande échelle',
-                'Récolte de coquillages'
+                'Récolte de coquillages',
+                'XXXXXXXXX Illegal taking/removal of marine fauna',
+                'XXXXXXXXX Overfishing and destructive fishing',
+                'XXXXXXXXX Endangered species exploitation',
+                'XXXXXXXXX Trawlers/purse-seiners',
             ],
             'group12' => [
                 'Activités récréatives',
-                'Guerres, troubles civils et exercices militaires',
-                'Travaux et autres activités'
+                'Travaux et autres activités',
+                'XXXXXXXXX Noise and other forms of pollution',
+                'XXXXXXXXX Outdoor sports, leisure and recreational activities',
+                'XXXXXXXXX Multiple human intrusions and disturbances',
+                'XXXXXXXXX Recreational fishing hook and line',
+                'XXXXXXXXX Recreational fishing spearfishing',
+                'XXXXXXXXX Bathing and trampling',
+                'XXXXXXXXX Scuba-diving',
+                'Guerres, troubles civils et exercices militaires'
             ],
             'group13' => [
-                'Fréquence et intensité des incendies'
+                'Fréquence et intensité des incendies',
+                'XXXXXXXXX Human induced changes in hydraulic conditions',
+                'XXXXXXXXX Changes in abiotic conditions',
+                'XXXXXXXXX Changes in biotic conditions'
             ],
             'group14' => [
                 'Prélèvement d\'eau de surface (utilisation domestique)',
@@ -640,18 +684,26 @@ return [
                 'Espèces ou maladies problématiques d\'origine inconnue',
                 'Matériel génétique introduit',
                 'Maladies virales ou prion',
-                'Maladie de cause inconnue'
+                'Maladie de cause inconnue',
+                'XXXXXXXXX Biocenotic evolution',
+                'XXXXXXXXX Interspecific faunal relations',
+                'XXXXXXXXX Multiple ecosystem modifications'
             ],
             'group17' => [
-                'Eaux usées et égouts',],
+                'Eaux usées et égouts',
+                'XXXXXXXXX Leaks',
+                'XXXXXXXXX Plastics'
+            ],
             'group18' => [
                 'Marée noire ou nappe de pétrole',
+                'XXXXXXXXX Ship discharges',
                 'Fuite d\'exploitation minière'
             ],
             'group19' => [
                 'Charge en éléments nutritifs',
                 'Erosion des sols et sédimentation',
-                'Herbicides et pesticides'
+                'Herbicides et pesticides',
+                'XXXXXXXXX Watershed-based pollution'
             ],
             'group20' => [
                 'Déchets des villes',
@@ -673,14 +725,16 @@ return [
             'group23' => [
                 'Volcans',
                 'Tremblements de terre et tsunamis',
-                'Avalanches et glissements de terrain'
+                'Avalanches et glissements de terrain',
+                'XXXXXXXXX Abiotic natural processes'
             ],
             'group24' => [
                 'Altération et modification de l\'habitat',
                 'Sécheresses',
                 'Températures extrêmes',
                 'Tempêtes et inondations',
-                'Augmentation des pluies et changements saisonniers'
+                'Augmentation des pluies et changements saisonniers',
+                'XXXXXXXXX Warming, acidification, bleaching, deoxygenation'
             ],
             'group25' => [
                 'Conflit Homme-Faune'
@@ -791,16 +845,16 @@ return [
             'group9' => 'Support / Soutien',
         ],
         'predefined_values' => [
-            'group0' => ['Approvisionnement en eau (disponibilité, épuration) - illégal', 'Approvisionnement en eau (disponibilité, épuration) - légal', 'Alimentation humaine - végétale  (tubercules, feuilles, fruits, miel, champignons, etc.) - illégal', 'Alimentation humaine - végétale (tubercules, feuilles, fruits, miel, champignons, etc.) - légal', 'Alimentation humaine - animale (viande sauvage/d’élevage, poisson, insectes) - illégal', 'Alimentation humaine - animal (viande sauvage/d’élevage, poisson, insectes) - légal', 'Médicaments / pharmacopée - illégal', 'Médicaments / pharmacopée - légal', 'Aliments pour l’élevage (poissons et bétail) - illégal', 'Aliments pour l’élevage (poissons et bétail) - légal'],
-            'group1' => ['Bois à haute valeur économique - illégal', 'Bois à haute valeur économique - légal','Bois pour la construction locale - illégal', 'Bois pour la construction locale - légal', 'Fibres de tiges (palmiers, kénaf, jute, etc.) - illégal', 'Fibres de tiges (palmiers, kénaf, jute, etc.) - légal', 'Autres fibres (kapok, coco,  etc.) - illégal', 'Autres fibres (kapok, coco,  etc.) - légal', 'Ornementale (graines, coquilles, etc.) - illégal', 'Ornementale (graines, coquilles, etc.) - légal', 'Sable (bâtiment) - illégal', 'Sable (bâtiment) - légal', 'Terres cultivées (agriculture, élevage, forêts) - illégal', 'Terres cultivées (agriculture, élevage, forêts) - légal'],
+            'group0' => ['Approvisionnement en eau (disponibilité, épuration) - illégal', 'Approvisionnement en eau (disponibilité, épuration) - légal', 'Alimentation humaine - végétale  (tubercules, feuilles, fruits, miel, champignons, etc.) - illégal', 'Alimentation humaine - végétale (tubercules, feuilles, fruits, miel, champignons, etc.) - légal', 'Alimentation humaine - animale (viande sauvage/d’élevage, insectes) - illégal', 'Alimentation humaine - animal (viande sauvage/d’élevage, insectes) - légal', 'Médicaments / pharmacopée - illégal', 'Médicaments / pharmacopée - légal', 'Aliments pour l’élevage (poissons et bétail) - illégal', 'Aliments pour l’élevage (poissons et bétail) - légal'],
+            'group1' => ['Bois à haute valeur économique - illégal', 'Bois à haute valeur économique - légal','Bois pour la construction locale - illégal', 'Bois pour la construction locale - légal', 'Fibres de tiges (palmiers, kénaf, jute, etc.) - illégal', 'Fibres de tiges (palmiers, kénaf, jute, etc.) - légal', 'Autres fibres (kapok, coco,  etc.) - illégal', 'Autres fibres (kapok, coco,  etc.) - légal', 'Ornementale (graines, coquilles, etc.) - illégal', 'Ornementale (graines, coquilles, etc.) - légal', 'Sable (bâtiment) - illégal', 'Sable (bâtiment) - légal', 'Algues/coquillages - illégal', 'Algues/coquillages - légal', 'Terres cultivées (agriculture, élevage, forêts) - illégal', 'Terres cultivées (agriculture, élevage, forêts) - légal'],
             'group2' => ['Bois de feu et biocarburants - illégal', 'Bois de feu et biocarburants - légal', 'Eau pour énergie - illégal', 'Eau pour énergie - légal', 'Engrais (production – transformation) - illégal', 'Engrais (production – transformation) - légal'],
-            'group3' => ['Régulation du gaz (séquestration du C)', 'Enterrement/décomposition/neutralisation des déchets', 'Régulation des déchets (absorption d’éléments nutritifs)'],
+            'group3' => ['Régulation du gaz (séquestration du C)', 'Enterrement/décomposition/neutralisation des déchets', 'Régulation des déchets (absorption d’éléments nutritifs)', 'Contrôle de l’érosion éolienne'],
             'group4' => ['Contrôle des inondations', 'Lutte contre la sécheresse', 'Protection contre les tempêtes', 'Contrôle de l’érosion par l’eau', 'Contrôle de l’érosion éolienne'],
-            'group5' => ['Esthétique (intégrité de l’écosystème)', 'Ecotourisme et observation de la nature', 'Marche, randonnée pédestre et loisirs généraux', 'Chasse ou pêche si autorisée'],
+            'group5' => ['Esthétique (intégrité de l’écosystème)', 'Ecotourisme et observation de la nature', 'Marche, randonnée pédestre et loisirs généraux', 'XXXXXXXXX Boating, swimming and diving', 'Chasse ou pêche si autorisée'],
             'group6' => ['Science — Recherche', 'Education', 'Patrimoine culturel/héritage'],
             'group7' => ['Symboliqu ou Historique', 'Sacré ou Religieuse'],
             'group8' => ['Conservation ex-situ'],
-            'group9' => ['Production primaire nette (végétation)', 'Cycle des nutriments (décomposition et minéralisation de la litière)', 'Formation de l’habitat des espèces (lieux de nidification des oiseaux)', 'Pollinisation (plantes)', 'Cycle de l’eau', 'Autres'],
+            'group9' => ['Production primaire nette (végétation)', 'Cycle des nutriments (décomposition et minéralisation de la litière)', 'Formation de l’habitat des espèces (XXXXXXXXX)', 'XXXXXXXXX Formation of seascape', 'Pollinisation (plantes)', 'Cycle de l’eau'],
         ],
         'categories' => [
             'title1' => 'Approvisionnement',
@@ -832,4 +886,5 @@ return [
             'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.5</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
+
 ];

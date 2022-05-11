@@ -24,7 +24,19 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
             ['name' => 'BenefitSocioEconomicAspects',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.BenefitSocioEconomicAspects')],
             ['name' => 'SpillOverKm2',  'type' => 'numeric',   'label' => ''],
             ['name' => 'SpillOverKm',  'type' => 'numeric',   'label' => ''],
+            ['name' => 'SpillOverEvalPredatory0_500', 'type' => 'imet-core::rating-Minus2to0', 'label' => trans('imet-core::v2_context.TerritorialReferenceContext.info.spill_over_variation')],
+            ['name' => 'SpillOverEvalPredatory500_1000', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalPredatory200_3000', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalComposition0_500', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalComposition500_1000', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalComposition200_3000', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalDistance0_500', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalDistance500_1000', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalDistance200_3000', 'type' => 'imet-core::rating-Minus2to0', 'label' => '']
         ];
+
+        $this->module_info = trans('imet-core::v2_context.TerritorialReferenceContext.module_info');
+        $this->ratingLegend = trans('imet-core::v2_context.TerritorialReferenceContext.ratingLegend');
 
         parent::__construct($attributes);
     }
@@ -32,15 +44,14 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
 
     public static function upgradeModule($record, $imet_version = null)
     {
+        // ####  v2.2 -> v2.3 ####
         $record = static::addField($record, 'FunctionalHasNoTakeArea');
         $record = static::renameField($record, 'ReferenceEcosystemAreaEstimation', 'FunctionalKm2');
         $record = static::addField($record, 'FunctionalKm');
         $record = static::renameField($record, 'ReferenceEcosystemAreaPopulation', 'FunctionalPopulation');
-
         $record = static::renameField($record, 'FunctionalArea', 'BenefitKm2');
         $record = static::addField($record, 'BenefitKm');
         $record = static::addField($record, 'BenefitPopulation');
-
         $record = static::renameField($record, 'SocioEconomicAspects', 'BenefitSocioEconomicAspects');
         $record = static::addField($record, 'SpillOverKm2');
         $record = static::addField($record, 'SpillOverKm');

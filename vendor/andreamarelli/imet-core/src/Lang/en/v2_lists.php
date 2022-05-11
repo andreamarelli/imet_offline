@@ -36,9 +36,35 @@ return [
     ],
 
     'PaType' => [
-        'Terrestrial',
-        'Marine',
-        'Mixed'
+        'terrestrial'           => 'Terrestrial',
+        'marine_and_coastal'    => 'Marine and coastal',
+        'oecm_terrestrial'      => 'OECMs (Other effective area-based conservation measures) - Terrestrial',
+        'oecm_marine'           => 'OECMs (Other effective area-based conservation measures) - Marine',
+        'icca_terrestrial'      => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Terrestrial',
+        'icca_marine'           => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Marine'
+    ],
+
+    'IUCNDesignation' => [
+        'IA' => 'IA Strict Nature Reserve',
+        'IB' => 'IB Wilderness Area',
+        'II' => 'II National Park',
+        'III' => 'III Natural Monument or Feature',
+        'IV' => 'IV HABITAT/Species Management Area',
+        'V' => 'V Protected Seascape',
+        'VI' => 'VI Protected Area with Sustainable Use of Natural Resources',
+        'not_reported' => 'Not reported'
+    ],
+
+    'MarineDesignation' => [
+        'No-Entry zone',
+        'No-Take zone',
+        'Multi-purposes MPA - Buffer zones for traditional use',
+        'Multi-purposes MPA - Buffer zones for educational and/or recreational activities',
+        'Multi-purposes MPA - Other',
+        'Marine reserves',
+        'Wildlife refuges',
+        'Fish management zone',
+        'Other',
     ],
 
     'EcoType' => [
@@ -82,13 +108,21 @@ return [
     ],
 
     'GovernanceType' => [
-        'Governance by the government',
-        'Shared governance',
-        'Private governance',
-        'Governance by local communities and indigenous populations	'
+        'Community-based conservation (CBC)',
+        'CBM (Community-based management (CBM)',
+        'CBA (Conservation Based Area)',
+        'Locally Managed Marine Areas - LMMA',
+        'Indigenous Community Conserved Areas - ICCAs',
+        'Protected and Conserved Areas (PCAs)',
+        'Other'
     ],
 
-    'Designation' => [
+    'TerrestrialOrMarine' => [
+        'terrestrial' => 'Terrestrial',
+        'marine' => 'Marine',
+    ],
+
+    'SpecialDesignation' => [
         'ASEAN Heritage Parks (ASEAN)',
         'Alliance for Zero Extinction Sites (AZE)',
         'Barcelona Convention',
@@ -107,23 +141,41 @@ return [
         'World Heritage Sites'
     ],
 
-    'LandCoverUseTake' => [
-        'Forest',
-        'Savannah shrublands',
-        'Herbaceous savannah',
-        'Grasslands',
-        'Water',
-        'Crops/Plantations',
-        'Dwellings',
-        'Roads'
-    ],
-
     'SpeciesReliability' => [
         'High', 'Medium', 'Poor'
     ],
 
-    'MarineHabitatsPresence' => [
-        'Présent', 'Absent', 'Dominant'
+    'Habitats' => [
+        # Forest
+        'Forest temperate',
+        'Forest boreal',
+        'Subtropical/tropical moist lowland',
+        'Subtropical/tropical moist montane',
+        'Subtropical/tropical dry',
+        'Subtropical/tropical swamp',
+        # Savanna
+        'Savanna-moist',
+        'Savanna-dry',
+        # Shrubland
+        'Shrubland-Subtropical/tropical dry',
+        'Shrubland-Subtropical/tropical moist',
+        'Shrubland-Subtropical/tropical high altitude',
+        'Shrubland temperate',
+        'Shrubland boreal',
+        # Grassland
+        'Grassland Temperate',
+        'Grassland subtropical/tropical high altitude',
+        'Grassland subtropical/tropical dry',
+        # Wetlands
+        'Wetlands (inland)-Permanent freshwater lakes',
+        'Wetlands (inland)',
+        'Wetlands (inland)-Tundra wetlands',
+        # Rocky Areas, Desert
+        'Desert – Temperate',
+        'Desert – Cold',
+        'Desert - Hot',
+        # Artificial
+        'Plantations'
     ],
 
     'EcosystemServicesImportance' => [

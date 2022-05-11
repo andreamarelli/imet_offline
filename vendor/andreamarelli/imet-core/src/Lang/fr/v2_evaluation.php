@@ -28,7 +28,7 @@ return [
                 '3' => 'Forte intégration',
             ]
         ],
-        'module_subTitle' => 'Valeur et importance: Désignations spéciales',
+        'module_subTitle' => 'Valeur et importance: Désignations',
         'module_info_EvaluationQuestion' => [
             'L’aire protégée tient-elle compte des valeurs et de l’importance des désignations nationales, régionales ou internationales dans sa gestion ?'
         ],
@@ -80,17 +80,13 @@ return [
     ],
 
     'ImportanceHabitats' => [
-        'title' => 'Habitats terrestres et marins — couverture terrestre, utilisation et occupation du sol',
+        'title' => 'Habitats terrestres et marins (couverture terrestre, utilisation et occupation du sol)',
         'fields' => [
             'Aspect' => 'Critère — Concept mesuré — Variable ',
             'EvaluationScore' => 'Intégration',
             'EvaluationScore2' => 'Valeur/importance régionale et mondiale',
             'IncludeInStatistics' => 'À prioriser dans la gestion',
             'Comments' => 'Commentaires/Explication',
-        ],
-        'groups' => [
-            'group0' => 'Identifier les habitats les plus importants de l’aire protégée',
-            'group1' => 'Identifier les éléments les plus importants de la couverture terrestre, l’utilisation et l’occupation du sol à l’intérieur et à l’extérieur de l’aire protégée',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -107,10 +103,10 @@ return [
         ],
         'module_subTitle' => 'Valeurs et importance — Habitats terrestres et marins - couverture terrestre, utilisation et occupation du sol',
         'module_info_EvaluationQuestion' => [
-            'L’aire protégée a-t-elle clairement identifié et intégré les habitats terrestres et marins les plus importants et les éléments de couverture terrestre, utilisation et occupation du sol dans la gestion ?'
+            'L’aire protégée a-t-elle clairement identifié et intégré les habitats terrestres et marins les plus importants et les éléments connexes de couverture terrestre, utilisation et occupation du sol dans la gestion ?'
         ],
         'module_info_Rating' => [
-            'Évaluer le niveau d’intégration dans la gestion de l’aire protégée d’un minimum de 3 à un maximum de 10 des habitats et éléments les plus représentatifs et les plus importants des types de couverture terrestre, d’utilisation et d’occupation du sol (sur la base de l’analyse du contexte d’intervention, points CTX 4.3.1 et 4.3.2, automatiquement reportés ci-dessous). La valeur/importance régionale et mondiale des habitats et de la couverture terrestre est une mesure dans laquelle elle : i) représente, au niveau local, national ou mondial, l’environnement naturel de plantes ou d’animaux clés ; (ii) influence un processus ou une communauté écologique et [iii] affecte une politique de gestion axée sur l’habitat/la couverture terrestre'
+            'Évaluer le niveau d’intégration dans la gestion de l’aire protégée d’un minimum de 3 à un maximum de 10 des habitats et éléments connexes les plus représentatifs et les plus importants des types de couverture terrestre, d’utilisation et d’occupation du sol (sur la base de l’analyse du contexte d’intervention, points CTX 4.3, automatiquement reportés ci-dessous). La valeur/importance régionale et mondiale des habitats est une mesure dans laquelle elle : i) représente, au niveau local, national ou mondial, l’environnement naturel de plantes ou d’animaux clés ; (ii) influence un processus ou une communauté écologique et [iii] affecte une politique de gestion axée sur l’habitat'
         ],
         'validation_3to10' => 'Veuillez inclure dans la gestion au moins 3 et au plus 10 habitats.',
         'warning_on_save' =>
@@ -119,7 +115,7 @@ return [
     ],
 
     'ObjectivesHabitats' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation pour le maintien des habitats terrestres et marins et les éléments les plus importants de la couverture terrestre, l’utilisation et l’occupation du sol et de l’occupation du sol de l’aire protégée. Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion dans l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs de conservation pour le maintien des habitats terrestres et marins et les éléments connexes de la couverture terrestre, l’utilisation et l’occupation du sol et de l’occupation du sol de l’aire protégée. Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion dans l’aire protégée'
     ],
 
     'ImportanceClimateChange' => [
@@ -189,11 +185,11 @@ return [
     ],
 
     'SupportsAndConstraints' => [
-        'title' => 'Contraintes ou soutiens externes',
+        'title' => 'Contraintes/conflits ou soutiens/conformités externes',
         'fields' => [
             'Aspect' => 'Critère — Concept mesuré — Variable',
             'EvaluationScore' => 'Influence/pouvoir des parties prenantes',
-            'EvaluationScore2' => 'Niveau des contraintes ou soutiens',
+            'EvaluationScore2' => 'Niveau des contraintes/conflits ou soutiens/conformités',
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
@@ -244,27 +240,26 @@ return [
                 'N/A' => 'n\'est pas impliquée dans le processus'
             ],
             'EvaluationScore2' => [
-                '-3' => 'Contraintes importantes',
-                '-2' => 'Contraintes modérées',
-                '-1' => 'Contraintes faibles',
-                '0' => 'Ni contraintes, ni soutiens de la partie prenante',
-                '+1' => 'Supports faibles',
-                '+2' => 'Supports modérés',
-                '+3' => 'Supports importantes',
-
+                '-3' => 'Contraintes/conflits importantes',
+                '-2' => 'Contraintes/conflits modérées',
+                '-1' => 'Contraintes/conflits faibles',
+                '0' => 'Ni contraintes/conflits, ni soutiens/conformités de la partie prenante',
+                '+1' => 'Supports/conformités faibles',
+                '+2' => 'Supports/conformités modérés',
+                '+3' => 'Supports/conformités importantes',
             ],
         ],
         'module_info_EvaluationQuestion' => [
-            'La gestion de l’aire protégée est-elle soumise à des contraintes ou bénéficie-t-elle de facteurs d’appui liés à l’environnement politique, institutionnel et social extérieur ?',
-            'L’environnement politique, institutionnel et civil peut entraver (contraintes externes) ou faciliter (soutiens externes) les activités de conservation de l’aire protégée. Les contraintes ou les soutiens par l’environnement politique, institutionnel et civil extérieur peuvent être mesurés par leur intensité et par l’influence/le pouvoir des parties prenantes qui limitent ou soutiennent l’aire protégée'
+            'La gestion de l’aire protégée est-elle soumise à des contraintes/conflits ou bénéficie-t-elle de facteurs d’appui liés à l’environnement politique, institutionnel et social extérieur ?',
+            'L’environnement politique, institutionnel et civil peut entraver (contraintes/conflits externes) ou faciliter (soutiens/conformités externes) les activités de conservation de l’aire protégée. Les contraintes/conflits ou les soutiens/conformités par l’environnement politique, institutionnel et civil extérieur peuvent être mesurés par leur intensité et par l’influence/le pouvoir des parties prenantes qui limitent ou soutiennent l’aire protégée'
         ],
         'module_info_Rating' => [
-            'Évaluer les contraintes ou les facteurs d’appui les plus importants de l’environnement politique, institutionnel et civil extérieur dans la gestion de l’aire protégée'
+            'Évaluer les contraintes/conflits ou les facteurs d’appui les plus importants de l’environnement politique, institutionnel et civil extérieur dans la gestion de l’aire protégée'
         ]
     ],
 
     'ObjectivesSupportsAndConstraints' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation pour les contraintes ou les facteurs de soutien de l’aire protégée. Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs de conservation pour les contraintes/conflits ou les facteurs de soutien/conformité de l’aire protégée. Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
 
     'Menaces' => [
@@ -275,7 +270,7 @@ return [
             'Comments' => 'Commentaires/Explication',
         ],
         'module_info_EvaluationQuestion' => [
-            'L’aire protégée a-t-elle clairement identifié et intégré les menaces qui pourraient affecter la biodiversité, le patrimoine culturel ou les services écosystémiques dans sa gestion ? '
+            'L’aire protégée a-t-elle clairement identifié et intégré les menaces qui pourraient affecter la biodiversité, le patrimoine culturel ou les services écosystémiques dans sa gestion ?'
         ],
         'module_info_Rating' => [
             'Évaluer le niveau d’intégration des menaces les plus importantes dans la gestion de l’aire protégée sur la base de l’analyse du contexte d’intervention, calculateur de menaces, point  CTX 5.1 et automatiquement reporté ci-dessous'
@@ -302,11 +297,17 @@ return [
             'Règlement interne pour la gestion de l’aire protégée',
             'Ratification et application des conventions internationales [CITES, CDB, Nagoya, CMS, Patrimoine mondial, RAMSAR, etc.]',
             'Lois sur les aires protégées et la conservation',
-            'Classification des corridors pour la de la migration de la faune',
             'Lois sur la gestion des ressources naturelles [complémentaires aux lois sur la conservation]',
             'Lois et conventions sur la recherche en matière de biodiversité et de ressources naturelles',
             'Lois sur les droits fonciers',
-            'Droit coutumier'
+            'Droit coutumier',
+            'XXXXXXXXX Voluntary agreements, including public private partnerships (which can include e.g., voluntary biodiversity offset schemes)',
+            'XXXXXXXXX Taxes, charges, user fees (e.g. entrance fees to marine parks)',
+            'XXXXXXXXX Certification, eco labelling (e.g. MSC Marine Stewardship Council)',
+            'XXXXXXXXX Spatial and temporal fishing closures; limits on number and size of vessels (input controls); other re-strictions or prohibitions on use (e.g. CITES)',
+            'XXXXXXXXX Standards (e.g. MARPOL for ships); bans on dynamite fishing or fishing gear',
+            'XXXXXXXXX Catch limits or quotas (output controls)',
+            'XXXXXXXXX Licenses e.g. aquaculture and offshore windfarms'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -340,7 +341,12 @@ return [
             'Zone frontalière [zones situées à proximité immédiate des frontières à l’extérieur de l’aire protégée et qui sont soumises à des règles spéciales d’utilisation des ressources]',
             'Zones tampons [zones entourant une aire protégée, où une gestion spéciale de l’utilisation des ressources et des mesures spéciales de développement sont entreprises afin d’améliorer la valeur de conservation de l’aire protégée]',
             'Corridors de migration',
-            'Intégrité du/des bassins versants pour le captage d’eau'
+            'Intégrité du/des bassins versants pour le captage d’eau',
+            'XXXXXXXXX No-Use zone',
+            'XXXXXXXXX No-take zone',
+            'XXXXXXXXX Buffer zones for traditional use',
+            'XXXXXXXXX Buffer zones for educational and/or recreational activities',
+            'XXXXXXXXX Multi-use zone'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -373,15 +379,17 @@ return [
             'Correspondance des limites marquées en ce qui concerne le statut juridique',
             'Adéquation des limites marquées',
             'Limites marquées par des éléments naturels (p. ex., rivières)',
-            'Adéquation des limites marquées par des marques spécifiques (p. ex. panneaux, poteaux, balises, clôtures, etc.)',
+            'Limites clairement délimitées, non ambiguës et donc faciles à interpréter (p. ex. panneaux, poteaux, balises, clôtures, bouées, etc.)',
             'Reconnaissance des limites par les autorités',
             'Reconnaissance des limites par les communautés/utilisateurs',
-            'Collaboration des parties prenantes à la démarcation des frontières',
+            'Approche de collaboration incluant les agences nationales et les parties prenantes concernées dans la démarcation des frontières',
             'Publication d’informations sur la démarcation des limites de l’aire protégée',
             'Définition et démarcation des frontières conformes aux statuts juridiques et au droit international, si nécessaire',
             'Délimitation de l’aire protégée à l’aide de la source officielle de données géographiques de référence',
             'Limites de l’aire protégée enregistrées avec coordonnées géographiques (degré, min, sec)',
             'Délimitation des zones d’utilisation des aires protégées (zonage)',
+            'XXXXXXXXX Demarcation of boundaries, or part of them, that are ambulatory [e.g. banks, rivers, etc.] and may need to be revised',
+            'XXXXXXXXX Demarcation by natural elements using a clear statement (e.g. tidal or river flooding data – average low water, average high water, etc.)'
         ],
         'ratingLegend' => [
             'Boundaries' => [
@@ -402,7 +410,7 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Les limites de l’aire protégée sont-elles bien marquées et reconnues d’une manière adéquate ?',
+            'Les limites de l’aire protégée sont-elles bien marquées et reconnues d’une manière adéquate?',
             'La démarcation ou délimitation physique d’une aire protégée est souvent une obligation légale. La démarcation doit indiquer la limite de l’aire protégée établie par la loi. La délimitation physique des aires protégées sert l’objectif juridique, car elle permet de définir où le cadre juridique [par exemple les sanctions] relatif à l’aire protégée s’applique et doit être appliqué. Il convient toutefois de noter que, si elle est utile, la démarcation à elle seule ne constitue pas une mesure suffisante pour assurer la protection. La connaissance et l’acceptation des limites de l’aire protégée par les parties prenantes sont cependant une nécessité pour une conservation efficace.'
         ],
         'module_info_Rating' => [
@@ -445,36 +453,34 @@ return [
     ],
 
     'WorkPlan' => [
-        'title' => 'Plan de travail/d’action annuel ou pluriannuel',
+        'title' => 'Plan de travail/d’action (terrestre) ou plan de suivi (MPA)',
         'fields' => [
-            'PlanExistence' => 'A) Existe-t-il un plan de travail/d’action ?',
-            'PlanUptoDate' => 'Le plan de travail/d’action est-il à jour (couvrant la période en cours) ?',
-            'PlanApproved' => 'Le plan de travail/d’action a-t-il été approuvé ?',
-            'PlanImplemented' => 'Le plan de travail/d’action est-il mis en œuvre ?',
-            'VisionAdequacy' => 'B) Adéquation des activités et des résultats du plan de travail/d’action par rapport aux objectifs du plan de gestion',
-            'PlanAdequacyScore' => 'C) Adéquation concernant la clarté et l’applicabilité des activités et des résultats attendus du plan de travail/d’action',
+            'PlanExistence' => 'A) Existe-t-il un plan de travail/d’action ou plan de suivi ?',
+            'PlanUptoDate' => 'Le plan de travail/d’action ou plan de suivi est-il à jour (couvrant la période en cours) ?',
+            'PlanApproved' => 'Le plan de travail/d’action ou plan de suivi a-t-il été approuvé ?',
+            'PlanImplemented' => 'Le plan de travail/d’action ou plan de suivi est-il mis en œuvre ?',
+            'VisionAdequacy' => 'B) Adéquation des activités et des résultats du plan de travail/d’action ou plan de suivi par rapport aux objectifs du plan de gestion',
+            'PlanAdequacyScore' => 'C) Adéquation concernant la clarté et l’applicabilité des activités et des résultats attendus du plan de travail/d’action ou plan de suivi',
             'Comments' => 'Commentaires/Explication',
         ],
         'ratingLegend' => [
             'PlanAdequacyScore' => [
-                '0' => 'Les activités et des résultats du plan de travail/d’action sont totalement inadéquats par rapport aux objectifs du plan de gestion (0-30% des besoins)',
-                '1' => 'Les activités et des résultats du plan de travail/d’action sont inadéquats par rapport aux objectifs du plan de gestion (31-60% des besoins)',
-                '2' => 'Les activités et des résultats du plan de travail/d’action sont adéquats par rapport aux objectifs du plan de gestion (61-90% des besoins)',
-                '3' => 'Les activités et des résultats du plan de travail/d’action sont totalement adéquats par rapport aux objectifs du plan de gestion (91-100% des besoins)',
+                '0' => 'Les activités et des résultats du plan de travail/d’action ou plan de suivi sont totalement inadéquats par rapport aux objectifs du plan de gestion (0-30% des besoins)',
+                '1' => 'Les activités et des résultats du plan de travail/d’action ou plan de suivi sont inadéquats par rapport aux objectifs du plan de gestion (31-60% des besoins)',
+                '2' => 'Les activités et des résultats du plan de travail/d’action ou plan de suivi sont adéquats par rapport aux objectifs du plan de gestion (61-90% des besoins)',
+                '3' => 'Les activités et des résultats du plan de travail/d’action ou plan de suivi sont totalement adéquats par rapport aux objectifs du plan de gestion (91-100% des besoins)',
             ],
             'VisionAdequacy' => [
-                '0' => 'Le plan de travail/d’action ne présente pas des activités et des résultats attendus pas de tout clairs et applicables (0-30% des besoins)',
-                '1' => 'Le plan de travail/d’action ne présente pas des activités et des résultats attendus insuffisamment clairs et applicables',
-                '2' => 'Le plan de travail/d’action présente des activités et des résultats attendus suffisamment clairs et applicables',
-                '3' => 'Le plan de travail/d’action présente des activités et des résultats attendus parfaitement clairs et applicables'
+                '0' => 'Le plan de travail/d’action ou plan de suivi ne présente pas des activités et des résultats attendus pas de tout clairs et applicables (0-30% des besoins)',
+                '1' => 'Le plan de travail/d’action ou plan de suivi ne présente pas des activités et des résultats attendus insuffisamment clairs et applicables',
+                '2' => 'Le plan de travail/d’action ou plan de suivi présente des activités et des résultats attendus suffisamment clairs et applicables',
+                '3' => 'Le plan de travail/d’action ou plan de suivi présente des activités et des résultats attendus parfaitement clairs et applicables'
             ]
         ],
+        'module_info_Rating' => 'Évaluer : A) l’état du plan de travail/d’action ou plan de suivi, B) l’adéquation des activités et des résultats du plan de travail/d’action ou plan de suivi par rapport aux objectifs du plan de gestion et C) l’adéquation concernant la clarté et l’applicabilité des activités et des résultats attendus du plan de travail/d’action ou plan de suivi',
         'module_info_EvaluationQuestion' => [
-            'Existe-t-il un plan de travail/d’action annuel ; est-il adéquat et pratique à mettre en œuvre pour l’aire protégée ?',
+            'Existe-t-il un plan de travail/d’action ou plan de suivi annuel ; est-il adéquat et pratique à mettre en œuvre pour l’aire protégée ?',
             'Un plan de travail/plan d’action est un plan détaillé décrivant les actions ou activités concrètes qui doivent être menées (et par qui, ou/et quand) afin d’atteindre les résultats établis dans le plan de gestion de l’aire protégée. Un plan de travail ou d’action permet de suivre les progrès accomplis dans l’atteinte des résultats de l’aire protégée. Le plan de travail/plan d’action couvre généralement une période fixe (par exemple l’année civile) et crée un lien au sein de l’équipe, car chaque membre est conscient de son rôle individuel, et fournit les efforts et les informations nécessaires pour assurer le succès dans la conservation de l’aire protégée'
-        ],
-        'module_info_Rating' => [
-            'Évaluer : A) l’état du plan de travail/d’action, B) l’adéquation des activités et des résultats du plan de travail/d’action par rapport aux objectifs du plan de gestion et C) l’adéquation concernant la clarté et l’applicabilité des activités et des résultats attendus du plan de travail/d’action'
         ]
     ],
 
@@ -490,10 +496,10 @@ return [
             'Espèces animales — phare, en voie de disparition, endémique,... -',
             'Espèces de plantes — phare, en voie de disparition, endémique,... -',
             'Atténuation des menaces pour l’aire protégée',
-            'Services écosystémiques — Approvisionnement (utilisation durable)',
-            'Services écosystémiques - Régulation (utilisation durable)',
-            'Services écosystémiques — Culturels (utilisation durable)',
-            'Services écosystémiques — Support / Soutien',
+            'Services écosystémiques — Approvisionnement (nourriture, produits de la mer, matériel, qualité de l\'eau, etc. utilisation durable)',
+            'Services écosystémiques - Régulation (protection contre les tempêtes et le littoral, érosion hydrique, etc. utilisation durable)',
+            'Services écosystémiques — Culturels (tourisme, pêche traditionnelle, etc. utilisation durable)',
+            'Services écosystémiques — Support / Soutien (frayères marines - habitats de nourricerie, etc.)',
             'Adaptation au changement climatique',
             'Gouvernance',
             'Soutien à l’économie locale',
@@ -512,11 +518,11 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Les objectifs fixés dans le plan de gestion pour l’aire protégée sont-ils adéquats ?',
+            'Les objectifs fixés dans le plan de gestion pour l’aire protégée sont-ils adéquats?',
             'La gestion des aires protégées se fait de plus en plus selon l’approche de la « gestion par objectifs ». La gestion par objectifs exige une approche proactive, c’est-à-dire qu’elle est conçue pour atteindre un ensemble précis d’objectifs ou des états souhaités de conservation, plutôt que réactive, c’est-à-dire qu’elle répond simplement aux problèmes qui se posent. Les objectifs et l’état souhaité, qui doivent être atteints par les mesures de conservation de l’aire protégée, doivent être clairement compris. Ils doivent être bien définis et formulés de manière à faciliter le suivi, mais ils doivent également se rapporter aux valeurs clés de l’aire protégée (p.ex. espèces ou écosystèmes importants) ou aux principales zones d’activité de gestion (p. ex. tourisme, éducation). Dans cet outil, nous faisons une distinction importante entre les résultats et les effets/impacts :<ul><li>Les effets/impacts se rapportent aux aux changements liés aux OBJECTIFS/ÉTATS SOUHAITES à long terme ou à la vision exprimés dans le plan de gestion et caractérisant une situation visée ou souhaitée, à la fin de la période considérée. Ces objectifs sont généralement des énoncés spécifiques concernant les valeurs clés de l’aire protégée (p. ex. les espèces ou les services écosystémiques importants) ou les principaux domaines d’activités de gestion (p. ex. tourisme, éducation).<li>Les résultats/extrants se rapportent à la réalisation d’ACTIVITES à court terme (ou à relativement court terme), généralement mesurés de manière quantitative, et qui contribuent avec d’autres réalisations à atteindre les objectifs/états souhaités à long terme.'
         ],
         'module_info_Rating' => [
-            'Évaluer l’adéquation de la formulation des objectifs du plan de gestion pour les éléments clés de l’aire protégée (sur la base de l’analyse du contexte d’intervention, points CTX1.5 ; CTX 4, 5, 6, 7 et contexte de gestion, points de C 1.1 à C 1.5)'
+            'Évaluer l’adéquation de la formulation des objectifs du plan de gestion pour les éléments clés de l’aire protégée (sur la base de l’analyse du contexte d’intervention, points CTX1.5; CTX 4, 5, 6, 7 et contexte de gestion, points de C 1.1 à C 1.5)'
         ]
     ],
 
@@ -534,7 +540,7 @@ return [
         'groups' => [
             'group0' => 'Espèces animales (phares, en voie de disparition, endémiques,....)',
             'group1' => 'Espèces de plantes (phares, en voie de disparition, endémiques,....) ',
-            'group2' => 'Habitats et couverture terrestre, utilisation et occupation du sol à l’intérieur et à l’extérieur de l’aire protégée',
+            'group2' => 'Habitats et les dimensions connexes de couverture terrestre, utilisation et occupation du sol à l’intérieur et à l’extérieur de l’aire protégée',
             'group3' => 'Menaces qui pèsent sur l’aire protégée',
             'group4' => 'Effets du changement climatique sur les éléments clés de l’aire protégée',
             'group5' => 'Services écosystémiques fournis par l’aire protégée'
@@ -846,7 +852,7 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Le budget et les ressources financières sont-ils bien gérés pour répondre aux exigences et priorités essentielles de gestion de l’aire protégée ?',
+            'Le budget et les ressources financières sont-ils bien gérés pour répondre aux exigences et priorités essentielles de gestion de l’aire protégée?',
             'La gestion budgétaire et financière d’une aire protégée doit être solide pour assurer  l’allocation adéquate des fonds, la prévision dynamique et détaillée des coûts, et la planification stratégique. La gestion budgétaire et financière ne se limitent pas à la tenue de registres comptables. C’est un élément essentiel de la planification, de l’organisation, du contrôle et du suivi des ressources financières afin d’atteindre les objectifs de conservation de l’aire protégée. Une gestion budgétaire et financière efficace n’est possible que si l’on dispose d’une bonne gestion et d’un bon plan de travail avec des politiques, des stratégies et des objectifs fixés clairs.'
         ],
         'module_info_Rating' => [
@@ -891,11 +897,10 @@ return [
         'groups' => [
             'group0' => 'Espèces animales (phares, en voie de disparition, endémiques,....)',
             'group1' => 'Espèces de plantes (phares, en voie de disparition, endémiques,....)',
-            'group2' => 'Habitats les plus importants de l’aire protégée',
-            'group3' => 'Couverture terrestre, utilisation et occupation des sols',
-            'group4' => 'Gestion visant à atténuer les menaces qui pèsent sur l’aire protégée',
-            'group5' => 'Services Ecosystémiques',
-            'group6' => 'Autre'
+            'group2' => 'Habitats les plus importants et les dimensions connexes de l’aire protégée',
+            'group3' => 'Gestion visant à atténuer les menaces qui pèsent sur l’aire protégée',
+            'group4' => 'Services Ecosystémiques',
+            'group5' => 'Autre'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -908,7 +913,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Existe-t-il des mesures de gestion spécifiques pour les valeurs clés et les menaces qui pèsent sur l’aire protégée ?',
-            'Le principal objectif de gestion des aires protégées est la conservation/restauration des valeurs naturelles et culturelles associées. Pour préserver ces valeurs et minimiser les menaces les plus importantes, les gestionnaires devraient utiliser les lignes directrices, les mesures et les meilleures pratiques de gestion disponibles. Les actions peuvent inclure la conservation/restauration d’espèces animales et végétales, la couverture terrestre et la gestion de diverses menaces (note : pour les actions d’adaptation au changement climatique et de gestion des services écosystémiques, voir PR 17 et PR 18). Exemples d’actions : gestion des animaux ou des plantes, gestion de l’environnement physique, gestion du feu, travaux de végétalisation, contrôle des espèces envahissantes, gestion des ressources culturelles, réduction des menaces, etc.'
+            'Le principal objectif de gestion des aires protégées est la conservation/restauration des valeurs naturelles et culturelles associées. Pour préserver ces valeurs et minimiser les menaces les plus importantes, les gestionnaires devraient utiliser les lignes directrices, les mesures et les meilleures pratiques de gestion disponibles. Les actions peuvent inclure la conservation/restauration d’espèces animales et végétales, l\'habitat et la gestion de diverses menaces (note : pour les actions d’adaptation au changement climatique et de gestion des services écosystémiques, voir PR 17 et PR 18). Exemples d’actions : gestion des animaux ou des plantes, gestion de l’environnement physique, gestion du feu, travaux de végétalisation, contrôle des espèces envahissantes, gestion des ressources culturelles, réduction des menaces, etc.'
         ],
         'module_info_Rating' => [
             'Énumérez au moins trois valeurs, menaces et autres éléments et évaluez l’adéquation des mesures de gestion connexes (sur la base de l’analyse du contexte d’intervention, points CTX 4 et CTX 5)'
@@ -921,19 +926,39 @@ return [
             'Adequacy' => 'Evaluation: Adéquation de l’organisation et des activités des patrouilles de surveillance',
             'Comments' => 'Commentaires/Explication',
         ],
+        'groups' => [
+            'group0' => 'XXXXXXXXX Ranger patrol management',
+            'group1' => 'XXXXXXXXX Sea ranger patrol management',
+        ],
         'predefined_values' => [
-            'Gestion stratégique proactive',
-            'Procédures d’opération normalisées [PON]',
-            'Procédures d’exploitation d’emergence',
-            'Procédures d’intervention rapide',
-            'Tactiques adaptables et diverses (p. ex. types de patrouilles complémentaires, comme les points d’observation, les patrouilles assistées par véhicule, les embuscades, etc.)',
-            'Processus décisionnel efficace pour les procédures d’exploitation normalisées et d’urgence',
-            'Gestion des unités d’élite (surveillants les plus performants)',
-            'Salle de contrôle des opérations',
-            'Poste de surveillance / Barrières de contrôle — dans le parc',
-            'Poste de surveillance / Barrières de contrôle — en dehors du parc',
-            'Patrouilles de plusieurs jours',
-            'Utilisation de l’information SMART-RBM pour mener des briefings de patrouille et de débriefing'
+            'group0' => [
+                'Gestion stratégique proactive',
+                'XXXXXXXXX Collaborative surveillance (protection achieved through a combination of enforcement and collaboration with communities)',
+                'Procédures d’opération normalisées [PON]',
+                'Procédures d’exploitation d’emergence',
+                'Procédures d’intervention rapide',
+                'XXXXXXXXX Non collaborative (technology: digital data, aerial monitoring, etc. Vs technology poor performance, qualified rangers)',
+                'Tactiques adaptables et diverses (p. ex. types de patrouilles complémentaires, comme les points d’observation, les patrouilles assistées par véhicule, les embuscades, etc.)',
+                'XXXXXXXXX Enforcement strategies that combine technology with sea patrols (eg. satellite monitoring and vehicle/boats-assisted patrols)',
+                'Processus décisionnel efficace pour les procédures d’exploitation normalisées et d’urgence',
+                'Gestion des unités d’élite (surveillants les plus performants)',
+                'Salle de contrôle des opérations',
+                'Poste de surveillance / Barrières de contrôle — dans le parc',
+                'Poste de surveillance / Barrières de contrôle — en dehors du parc',
+                'Patrouilles de plusieurs jours',
+                'Utilisation de l’information SMART-RBM pour mener des briefings de patrouille et de débriefing'
+            ],
+            'group1' => [
+                'XXXXXXXXX Enforcement strategies that combine technology with sea patrols (satellite monitoring and hydrophones, electronic sensors, etc.)',
+                'XXXXXXXXX Use of visual and basic electronic sensors for sea patrols (radar, optical/infrared)',
+                'XXXXXXXXX Protection achieved through a combination of enforcement and collaboration with communities',
+                'XXXXXXXXX Use of collaborative surveillance (real time and large area coverage, low investments vs time interval and recurring coasts, regulations and incentives, transceivers deactivated)',
+                'XXXXXXXXX Use of non-collaborative (technology: radar, optical/infrared, radio monitoring vs technology poor performance, qualified personnel)',
+                'XXXXXXXXX Integration between collaborative and non-collaborative surveillance systems in the protected area.',
+                'XXXXXXXXX Enforcement patrols held during the night and other random hours',
+                'XXXXXXXXX Regular participation in specialized training (International Maritime Organization –IMO- basic training, reading and using nautical charts, search and rescue, basic outboard motor maintenance course, etc.)',
+                'XXXXXXXXX Continuous update and distribution of a simple fact sheet outlining zoning, regulations, restrictions, and fines or sanctions',
+            ]
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -961,17 +986,31 @@ return [
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
-            'group0' => 'A) Gestion du renseignement et des enquêtes',
-            'group1' => 'B) Traitement des éléments de preuve, développement de cas et actions en justice',
+            'group0' => 'A) Gestion du renseignement et des enquêtes - Terrestre',
+            'group0b' => 'A) Gestion du renseignement et des enquêtes - Maritime et côtier',
+            'group1' => 'B) Traitement des éléments de preuve, développement de cas et actions en justice - Terrestre',
+            'group1b' => 'B) Traitement des éléments de preuve, développement de cas et actions en justice - Maritime et côtier',
         ],
         'predefined_values' => [
             'group0' => [
-                'Unités de renseignement et d’enquête orientant les actions des patrouilles de surveillants',
+                'Unités de renseignement et d’enquête orientant et soutenant les actions des patrouilles de surveillants',
                 'Organisation du système des informateurs',
                 'Support informatique au renseignement',
                 'Système d’organisation et d’analyse de données de renseignement',
                 'Collaboration interinstitutions [p. ex., procureurs au sein du service de la protection de la nature ou unité spécialisée dans la répression des infractions liées aux espèces sauvages]',
                 'Collaboration interinstitutions avec les ONG [p. ex., le réseau EAGLE, l’Afrique centrale et occidentale]'
+            ],
+            'group0b' => [
+                'XXXXXXXXX Intelligence and investigation units orienting and supporting sea patrol operations',
+                'XXXXXXXXX Detection and punishment of the illegal activities (such as fisheries and harvesting)',
+                'XXXXXXXXX Knowledge of boarding legal requirements',
+                'XXXXXXXXX Boarding protocols: inspections, required documents, what to check and look for, documenting the inspection',
+                'XXXXXXXXX Interrogating and confronting suspicious crews on illegal activities',
+                'XXXXXXXXX Standardized boarding report used consistently and correctly',
+                'XXXXXXXXX Level of personal security during boarding',
+                'XXXXXXXXX Use of a risk assessment model (GAR -GREEN-AMBER-RED or equivalent/other)',
+                'XXXXXXXXX Use of database for recording and tracking information on violations',
+                'XXXXXXXXX Collaboration with NGOs specialised in marine laws, enforcement, etc. (e.g. Environmental Law Institute (ELI) Ocean Program)'
             ],
             'group1' => [
                 'Gestion des scènes de crime',
@@ -980,7 +1019,15 @@ return [
                 'Poursuite des suspects',
                 'Surveillance des cas et des délinquants',
                 'Jugements obtenus au tribunal'
-            ]
+            ],
+            'group1b' => [
+                'XXXXXXXXX Training workshops for judges, attorneys, and lawyers on marine and fisheries-related rules and regulations',
+                'XXXXXXXXX Ability to seize and detain vessels after transgression',
+                'XXXXXXXXX Ability to restrict sailing within the MPA borders by issuing authorization permits',
+                'XXXXXXXXX Seizure of fishing gear',
+                'XXXXXXXXX Ability to enforce temporary suspension of permits for ships, crew members, or ship-owners',
+                'XXXXXXXXX Ability to revoke of operating licenses for ships, ship-owners, agents, maritime personnel, or fishers',
+            ],
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -1061,8 +1108,8 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Les parties prenantes contribuent-elles à la gestion de l’aire protégée afin de mieux comprendre et appuyer la réalisation des objectifs de l’aire protégée ?',
-            'Dans de nombreuses aires protégées, une partie ou la totalité des parties prenantes concernées coopèrent de manière substantielle à la prise de décision de la gestion concernant les activités et leur mise en œuvre à l’intérieur ou à l’extérieur de l’aire protégée. Cette coopération peut prendre la forme d’accords formels ou informels. Le niveau de coopération entre les parties prenantes dans une aire protégée dépend d’une variété de facteurs, mais en particulier de la spécificité des acteurs, des pressions et d’autres influences qui découlent de ces dernières, ainsi que de la biodiversité et des services écosystémiques fournis par l’aire protégée. Cette étape de l’analyse permet d’évaluer comment une partie ou la totalité des parties prenantes concernées sont impliquées dans la gestion de l’aire protégée, relativement aux quatre aspects suivants : (P) planification  ; (PG) planification et gestion, (B/A) bénéfices/assistance aux communautés locales, (IEC) information, éducation environnementale et communication au profit de la sensibilisation et l’engagement des communautés. Le niveau optimal de coopération des parties prenantes devrait être déterminé pour chaque aire protégée individuellement, car chaque aire protégée est unique'
+            'Les parties prenantes contribuent-elles à la gestion de l’aire protégée afin de mieux comprendre et appuyer la réalisation des objectifs de l’aire protégée?',
+            'Dans de nombreuses aires protégées, une partie ou la totalité des parties prenantes concernées coopèrent de manière substantielle à la prise de décision de la gestion concernant les activités et leur mise en œuvre à l’intérieur ou à l’extérieur de l’aire protégée. Cette coopération peut prendre la forme d’accords formels ou informels. Le niveau de coopération entre les parties prenantes dans une aire protégée dépend d’une variété de facteurs, mais en particulier de la spécificité des acteurs, des pressions et d’autres influences qui découlent de ces dernières, ainsi que de la biodiversité et des services écosystémiques fournis par l’aire protégée. Cette étape de l’analyse permet d’évaluer comment une partie ou la totalité des parties prenantes concernées sont impliquées dans la gestion de l’aire protégée, relativement aux quatre aspects suivants : (P) planification; (PG) planification et gestion, (B/A) bénéfices/assistance aux communautés locales, (IEC) information, éducation environnementale et communication au profit de la sensibilisation et l’engagement des communautés. Le niveau optimal de coopération des parties prenantes devrait être déterminé pour chaque aire protégée individuellement, car chaque aire protégée est unique'
 
         ],
         'module_info_Rating' => [
@@ -1083,10 +1130,11 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-                'Soutien aux activités locales (gestion des services écosystémiques, atténuation du changement climatique, etc.)',
+                'Soutien aux activités locales (gestion des services écosystémiques - gestion de l\'approvisionnement, adaptation au changement climatique, etc.)',
                 'Soutien aux entreprises locales (p. ex. transformation des produits de l’agriculture, de la pêche, de la forêt, etc.)',
                 'Soutien aux voies de financement locales',
                 'Soutien à la production alimentaire et aux petites exploitations agricoles',
+                'XXXXXXXXX Purchase of agriculture products for tourism and staff',
                 'Soutien aux activités touristiques privées',
                 'Soutien aux produits traditionnels et à l’artisanat pour les touristes',
                 'Soutient à la résolution des conflits homme-faune – compensation',
@@ -1098,11 +1146,15 @@ return [
                 'Emploi de surveillants de la région',
                 'Fourniture d’énergie électrique, connexion électrique',
                 'Approvisionnement en eau',
-                'Appui à la construction, à l’entretien et à l’amélioration des routes extérieures'
+                'Appui à la construction, à l’entretien et à l’amélioration des routes extérieures',
+                'XXXXXXXXX Support for human-wildlife conflict resolution–compensation',
+                'XXXXXXXXX Support small scale fisheries',
+                'XXXXXXXXX Support for the construction of boat sheds',
+                'XXXXXXXXX Support for the construction of boat parking'
             ],
             'group1' => [
                 'Renforcement de la sécurité dans la région en favorisant de meilleures conditions de vie et de production',
-                'Minimisation des conflits et renforcement de la gestion et de l’utilisation durables des services écosystémiques',
+                'Minimisation des conflits et renforcement de la gestion et de l’utilisation durables des services écosystémiques (approvisionnement et culture)',
                 'Fourniture d’infrastructures éducatives (bâtiments)',
                 'Prestation de services éducatifs (enseignement)',
                 'Fourniture d’infrastructures de santé (bâtiments, eau potable)',
@@ -1255,8 +1307,7 @@ return [
             'Utilisation des données issues de suivi pour induire des changements dans la gestion de l’aire protégée',
             'Suivi des principaux objectifs de conservation',
             'Suivi des espèces (espèces phares, en voie de disparition, endémiques, ....)',
-            'Suivi des écosystèmes et des habitats',
-            'Suivi de la couverture terrestre, utilisation et occupation des sols',
+            'Suivi des habitats et les dimensions connexes de couverture terrestre, utilisation et occupation des sols',
             'Suivi des écosystèmes d’eau douce (lacs, rivières, petits étangs et ruisseaux)',
             'Suivi du niveau de bien-être matériel des populations de l’aire protégée et de sa zone tampon',
             'Suivi du niveau de bien-être immatériel des populations de l’aire protégée et de sa zone tampon',
@@ -1293,12 +1344,11 @@ return [
         ],
         'predefined_values' => [
             'Rôle de la recherche et de la surveillance écologique à long terme dans la gestion de l’aire protégée',
-            'Utilisation des capacités institutionnelles et des ressources techniques pour lancer et coordonner les activités de recherche',
+            'Fonds/installations et capacités institutionnels et/ou externes pour promouvoir et coordonner les activités de recherche',
             'Accessibilité et sécurité des données issues de la recherche',
             'Soutien de la gestion grâce à la recherche et aux données de surveillance écologique à long terme',
             'Recherche et surveillance écologique à long terme des espèces (espèces phares, menacées, endémiques, etc.)',
-            'Recherche et surveillance écologique à long terme des écosystèmes et des habitats',
-            'Recherche et surveillance écologique à long terme de la couverture terrestre, utilisation et occupation des sols',
+            'Recherche et surveillance écologique à long terme des habitats et les dimensions connexes de la couverture terrestre, utilisation et occupation des sols',
             'Recherche et surveillance écologique à long terme des écosystèmes d’eau douce (lacs, rivières, petits étangs et ruisseaux)',
             'Recherche et surveillance à long terme du bien-être humain de la population de l’aire protégée et de ses zons tampons',
             'Recherche et surveillance à long terme des menaces pour l’aire protégée',
@@ -1333,7 +1383,7 @@ return [
         ],
         'predefined_values' => [
             'Gestion de l’adaptation pour les espèces (p. ex. espèces transférées, etc.)',
-            'Gestion de l’adaptation pour les habitats et le territoire (couverture terrestre, utilisation et occupation des sols à l’intérieur et à l’extérieur de l’aire protégée (éviter la fragmentation des forêts, les sols dénudés, etc.)',
+            'Gestion de l’adaptation pour les habitats et les dimensions connexes de couverture terrestre, utilisation et occupation des sols à l’intérieur et à l’extérieur de l’aire protégée (éviter la fragmentation des forêts, les sols dénudés, etc.)',
             'Gestion de l’adaptation pour les services écosystémiques',
             'Réduire les facteurs de stress qui amplifient les impacts climatiques (p. ex. augmenter la connectivité, contrôler les espèces envahissantes, etc.)',
             'Soutient ou restauration du processus et de la fonction de l’écosystème pour favoriser la résilience (p. ex. restaurer la végétation dégradée, etc.)',
@@ -1497,6 +1547,64 @@ return [
         ]
     ],
 
+    'AreaDominationMPA' => [
+        'title' => 'XXXXXXXX Enforcement in MPA',
+        'fields' => [
+            'Activity' => 'XXXXXXXX Range of activities subject to analysis',
+            'Patrol' => 'Area covered by patrols',
+            'RapidIntervention' => 'Rapid intervention capacity',
+            'DetectionRemoteSensing' => 'XXXXXXXX Detection via remote-sensing tools (ie vessel monitoring systems VMS)',
+            'SpecialMeansRapidIntervention' => 'XXXXXXXX Special means supporting rapid intervention',
+        ],
+        'groups' => [
+            'group0' => 'XXXXXXXX Sanctuary',
+            'group1' => 'XXXXXXXX No-take areas / Marine reserve',
+            'group2' => 'XXXXXXXX Buffer zones for traditional use',
+            'group3' => 'XXXXXXXX Buffer zones for educational and/or recreational activities',
+            'group4' => 'XXXXXXXX Dockside enforcement for vessels that come to port'
+        ],
+        'predefined_values' => [
+            'group0' => [
+                'XXXXXXXX All activities/uses prohibited'
+            ],
+            'group1' => [
+                'XXXXXXXX Prohibited activities (e.g. fishing or extraction of any kind, anchoring, boating, dumping, etc.)',
+                'XXXXXXXX Allowed activities (e.g. research and monitoring, etc.)'
+            ],
+            'group2' => [
+                'XXXXXXXX Prohibited activities (e.g. illegal fishing and specified legal fishing methods, anchoring, dumping)',
+                'XXXXXXXX Allowed activities (e.g. limited and specified traditional fishing and boating, swimming and diving, anchoring on mooring buoys, research, etc.) '
+            ],
+            'group3' => [
+                'XXXXXXXX Allowed activities (e.g. limited and specified traditional fishing and boating, swimming and diving, anchoring on mooring buoys, research and education, etc.)'
+            ],
+            'group4' => [
+                'XXXXXXXX Activities used to gather information that may that shed light on patterns of illicit behaviours. Dockside strategies should be tailored to promote the most appropriate enforcement for large MPAs or to address enforcement problems in smaller, near-shore MPAs.'
+            ],
+        ],
+        'ratingLegend' => [
+            'Patrol' => [
+                '0' => 'Area covered by patrols survey is minimal (from 0 to 25% of the surface area)',
+                '1' => 'Area covered by patrols survey is limited (from 26 to 50% of the surface area)',
+                '2' => 'Area  covered by patrols survey is fair (from 51 to 75% of the surface area)',
+                '3' => 'Area covered by patrols survey is very good (more than 76% of the surface area)',
+            ],
+            'RapidIntervention' => [
+                '0' => 'Rapid intervention capacity in the protected area is minimal (from 0 to 25% of the surface area)',
+                '1' => 'Rapid intervention capacity in the protected area is limited (from 26 to 50% of the surface area)',
+                '2' => 'Rapid intervention capacity in the protected area is fair (from 51 to 75% of the surface area)',
+                '3' => 'Rapid intervention capacity in the protected area is very good (more than 76% of the surface area)',
+            ],
+        ],
+        'module_info_EvaluationQuestion' => [
+            'XXXXXXXX What is the current extent of enforcement in MPA?',
+            'XXXXXXXX Enforcement in MPA refers to the ability of park management to create presence in a given area, for example through regular patrols surveys, rapid interventions or airborne surveillance or detection via remote-sensing tools. Where required, this presence needs to be imposed frequently and effectively to address threats such as poaching or illegal activities. The aim of high enforcement in MPA is to prevent or minimise illegal activities affecting the biodiversity, cultural or historical values, and to enforce the protection of the protected area and its boundaries'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the area domination based on the percentage of the protected area’s surface area where the management is present or can be present through (A) patrols surveys; (B) rapid interventions; (C) using special means'
+        ]
+    ],
+
     'AchievedObjectives' => [
         'title' => 'Atteinte des objectifs de conservation à long terme du plan de gestion',
         'fields' => [
@@ -1521,7 +1629,7 @@ return [
         ]
     ],
 
-    'KeyConservationTrend'=> [
+    'KeyConservationTrend' => [
         'title' => 'Conditions et tendances des éléments clés de la conservation de l’aire protégée',
         'fields' => [
             'Element' => 'Critère — Concept mesuré — Variable',
@@ -1533,7 +1641,7 @@ return [
         'groups' => [
             'group0' => 'Conditions et tendances de conservation des espèces animales clés ',
             'group1' => 'Conditions et tendances de conservation des espèces de plantes clés ',
-            'group2' => 'Conditions et tendances de conservation des terres (couverture terrestre, utilisation et occupation des sols)',
+            'group2' => 'Conditions et tendances de conservation des habitats et des éléments connexes de la couverture terrestre, l’utilisation et l’occupation du sol',
             'group3' => 'Situation et tendances des menaces qui pèsent sur l’aire protégée',
             'group4' => 'Adaptation au changement climatique',
             'group5' => 'Conditions et tendances de conservation des services écosystémiques'
@@ -1567,7 +1675,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Quelles sont les conditions et les tendances pour les éléments clés de la conservation de l’aire protégée ?',
-            'Les principaux objectifs de gestion de l’aire protégée sont la conservation/restauration des valeurs naturelles et les avantages que les humains tirent de l’environnement naturel et du maintien du fonctionnement des écosystèmes (services écosystémiques). Les gestionnaires devraient assurer la conservation/restauration des valeurs clés (espèces animales et végétales, couverture terrestre, etc.) et le maintien des services écosystémiques d’approvisionnement, de régulation, de culture et de soutien, en garantissant les valeurs et avantages des aires protégées pour tous'
+            'Les principaux objectifs de gestion de l’aire protégée sont la conservation/restauration des valeurs naturelles et les avantages que les humains tirent de l’environnement naturel et du maintien du fonctionnement des écosystèmes (services écosystémiques). Les gestionnaires devraient assurer la conservation/restauration des valeurs clés (espèces animales et végétales, habitats, etc.) et le maintien des services écosystémiques d’approvisionnement, de régulation, de culture et de soutien, en garantissant les valeurs et avantages des aires protégées pour tous'
         ],
         'module_info_Rating' => [
             'Évaluer : A) les conditions et B) les tendances des éléments clés de conservation de l’aire protégée (sur la base des éléments du Contexte : C 1, divers éléments clés et C3, menaces, Processus : PR7 — Gestion des valeurs et des éléments clés de l’aire protégée, PR 17 Adaptation au changement climatique et PR18 — Gestion des services écosystémiques',
@@ -1588,8 +1696,8 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-                'Création ou renforcement des activités locales de production (production alimentaire, petite agriculture, artisanat, etc.)',
-                'Contribution au développement communautaire (approvisionnement en électricité et/ou en eau, commerce, routes entre les villages, etc.)',
+                'XXXXXXXXX Local activities strengthened (food production, small-scale farming, small-scale fishing, handicraft, services for the protected area, etc.)',
+                'XXXXXXXXX Support to local business (power supply, water supply, commerce, roads between villages, boat sheds, boat parking, etc.)',
                 'Services écosystémiques d’approvisionnement (nourriture,matériaux, etc) ',
                 'Revenus touristiques',
                 'Conflit homme-faune',

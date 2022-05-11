@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use Illuminate\Support\Str;
 
 class ManagementActivities extends Modules\Component\ImetModule_Eval
 {
@@ -25,10 +26,8 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
             'group0' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group0'),
             'group1' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group1'),
             'group2' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group2'),
-            'group3' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group3'),
             'group4' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group4'),
-            'group5' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group5'),
-            'group6' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group6'),
+            'group5' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group5')
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.ManagementActivities.module_info_EvaluationQuestion');
@@ -47,7 +46,6 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
      */
     public static function getModuleRecords($form_id, $collection = null): array
     {
-
         $module_records = parent::getModuleRecords($form_id, $collection);
         $empty_record = static::getEmptyRecord($form_id);
 
@@ -62,10 +60,7 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
                     return $item['IncludeInStatistics'] && $item['group_key']==="group1";
                 })->pluck('Aspect')->toArray(),
                 'group2' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item){
-                    return $item['IncludeInStatistics'] && $item['group_key']==="group0";
-                })->pluck('Aspect')->toArray(),
-                'group3' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item){
-                    return $item['IncludeInStatistics'] && $item['group_key']==="group1";
+                    return $item['IncludeInStatistics'];
                 })->pluck('Aspect')->toArray(),
                 'group4' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item){
                     return $item['IncludeInStatistics'];
@@ -78,6 +73,17 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
 
         $module_records['records'] =  static::arrange_records($preLoaded, $records, $empty_record);
         return $module_records;
+    }
+
+    public static function upgradeModule($record, $imet_version = null)
+    {
+        // ####  v2.7 -> v2.8 (marine pas)  ####
+        if(empty($imet_version) or $imet_version < 'v2.7.6b'){
+            // group3 merged into group2
+            $record = static::replaceGroup($record, 'group_key', 'group3', 'group2');
+        }
+
+        return $record;
     }
 
 

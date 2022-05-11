@@ -14,7 +14,7 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
 
     public function __construct(array $attributes = []) {
 
-        $this->module_type = 'GROUP_TABLE';
+        $this->module_type = 'TABLE';
         $this->module_code = 'C1.3';
         $this->module_title = trans('imet-core::v2_evaluation.ImportanceHabitats.title');
         $this->module_fields = [
@@ -23,11 +23,6 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
             ['name' => 'EvaluationScore2',  'type' => 'imet-core::rating-1to3',   'label' => trans('imet-core::v2_evaluation.ImportanceHabitats.fields.EvaluationScore2')],
             ['name' => 'IncludeInStatistics',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_evaluation.ImportanceHabitats.fields.IncludeInStatistics')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ImportanceHabitats.fields.Comments')],
-        ];
-
-        $this->module_groups = [
-            'group0' => trans('imet-core::v2_evaluation.ImportanceHabitats.groups.group0'),
-            'group1' => trans('imet-core::v2_evaluation.ImportanceHabitats.groups.group1'),
         ];
 
         $this->module_subTitle = trans('imet-core::v2_evaluation.ImportanceHabitats.module_subTitle');
@@ -56,10 +51,7 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
         $records = $module_records['records'];
         $preLoaded = [
             'field' => 'Aspect',
-            'values' => [
-                'group0' => Modules\Context\Habitats::getModule($form_id)->pluck('EcosystemType')->toArray(),
-                'group1' => Modules\Context\LandCover::getModule($form_id)->pluck('CoverType')->toArray()
-            ]
+            'values' => Modules\Context\Habitats::getModule($form_id)->pluck('EcosystemType')->toArray()
         ];
         $module_records['records'] =  static::arrange_records($preLoaded, $records, $empty_record);
         return $module_records;

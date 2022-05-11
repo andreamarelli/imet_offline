@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../andreamarelli/imet-core',
             'aliases' => array(),
-            'reference' => '26905eb0a626cab604717c1c0fdca95361e86ed4',
+            'reference' => '6aae0db45af2ccec7ff7477cb17325ecab4a7bdb',
             'dev_requirement' => false,
         ),
         'andreamarelli/modular-forms' => array(

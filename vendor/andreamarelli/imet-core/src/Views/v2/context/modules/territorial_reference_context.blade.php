@@ -2,11 +2,16 @@
 /** @var Mixed $definitions */
 $definitions['label_width'] = 7;
 
+use \AndreaMarelli\ImetCore\Helpers\Template;
+use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
+
 ?>
 
 @foreach($definitions['fields'] as $i => $field)
 
-    @if($i===1)
+
+    @if($field['name']==='FunctionalKm2')
+
 
         <h3>@lang('imet-core::v2_context.TerritorialReferenceContext.categories.FunctionalEcosystemArea')</h3>
 
@@ -36,7 +41,8 @@ $definitions['label_width'] = 7;
 
         </div>
 
-    @elseif($i===4)
+    @elseif($field['name']==='BenefitKm2')
+
 
         <h3>@lang('imet-core::v2_context.TerritorialReferenceContext.categories.BenefitsOfEcosystemServicesArea')</h3>
 
@@ -66,9 +72,10 @@ $definitions['label_width'] = 7;
 
         </div>
 
-    @elseif($i===8)
+    @elseif($field['name']==='SpillOverKm2')
 
-        <h3>@lang('imet-core::v2_context.TerritorialReferenceContext.categories.SpillOverArea')</h3>
+
+        <h3>{!!  Template::module_scope(ImetModule::MARINE) !!} @lang('imet-core::v2_context.TerritorialReferenceContext.categories.SpillOverArea')</h3>
 
         <div class="module-row">
 
@@ -96,7 +103,118 @@ $definitions['label_width'] = 7;
 
         </div>
 
-    @elseif($i!==2 && $i!==5 && $i!==9)
+    @elseif($field['name'] === 'BenefitSocioEconomicAspects')
+
+        <div class="font-weight-bold">{!! $field['label'] !!}</div>
+        <div class="BenefitSocioEconomicAspects">
+            {{-- input field --}}
+            @include('modular-forms::module.edit.field.module-to-vue', [
+                'definitions' => $definitions,
+                'field' => $field,
+                'vue_record_index' => '0'
+            ])
+        </div>
+
+    @elseif($field['name'] === 'SpillOverEvalPredatory0_500')
+
+        <div class="font-weight-bold">{!! trans('imet-core::v2_context.TerritorialReferenceContext.info.spillover_eval') !!}</div>
+
+        <table class="SpillOverEval">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th colspan="3" class="text-center">
+                        {!! trans('imet-core::v2_context.TerritorialReferenceContext.info.variation') !!}
+                    </th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>{!! trans('imet-core::v2_context.TerritorialReferenceContext.info.0_500') !!}</th>
+                    <th>{!! trans('imet-core::v2_context.TerritorialReferenceContext.info.500_1000') !!}</th>
+                    <th>{!! trans('imet-core::v2_context.TerritorialReferenceContext.info.2000_3000') !!}</th>
+                </tr>
+            </thead>
+            <tb>
+                <tr>
+                    <td>{!! trans('imet-core::v2_context.TerritorialReferenceContext.info.predatory') !!}</td>
+                    <td>
+                        @include('modular-forms::module.edit.field.module-to-vue', [
+                            'definitions' => $definitions,
+                            'field' => $definitions['fields'][$i],
+                            'vue_record_index' => '0'
+                        ])
+                    </td>
+                    <td>
+                        @include('modular-forms::module.edit.field.module-to-vue', [
+                            'definitions' => $definitions,
+                            'field' => $definitions['fields'][$i+1],
+                            'vue_record_index' => '0'
+                        ])
+                    </td>
+                    <td>
+                        @include('modular-forms::module.edit.field.module-to-vue', [
+                            'definitions' => $definitions,
+                            'field' => $definitions['fields'][$i+2],
+                            'vue_record_index' => '0'
+                        ])
+                    </td>
+                </tr>
+                <tr>
+                    <td>{!! trans('imet-core::v2_context.TerritorialReferenceContext.info.composition') !!}</td>
+                    <td>
+                        @include('modular-forms::module.edit.field.module-to-vue', [
+                            'definitions' => $definitions,
+                            'field' => $definitions['fields'][$i+3],
+                            'vue_record_index' => '0'
+                        ])
+                    </td>
+                    <td>
+                        @include('modular-forms::module.edit.field.module-to-vue', [
+                            'definitions' => $definitions,
+                            'field' => $definitions['fields'][$i+4],
+                            'vue_record_index' => '0'
+                        ])
+                    </td>
+                    <td>
+                        @include('modular-forms::module.edit.field.module-to-vue', [
+                            'definitions' => $definitions,
+                            'field' => $definitions['fields'][$i+5],
+                            'vue_record_index' => '0'
+                        ])
+                    </td>
+                </tr>
+                <tr>
+                    <td>{!! trans('imet-core::v2_context.TerritorialReferenceContext.info.distance') !!}</td>
+                    <td>
+                        @include('modular-forms::module.edit.field.module-to-vue', [
+                            'definitions' => $definitions,
+                            'field' => $definitions['fields'][$i+6],
+                            'vue_record_index' => '0'
+                        ])
+                    </td>
+                    <td>
+                        @include('modular-forms::module.edit.field.module-to-vue', [
+                            'definitions' => $definitions,
+                            'field' => $definitions['fields'][$i+7],
+                            'vue_record_index' => '0'
+                        ])
+                    </td>
+                    <td>
+                        @include('modular-forms::module.edit.field.module-to-vue', [
+                            'definitions' => $definitions,
+                            'field' => $definitions['fields'][$i+8],
+                            'vue_record_index' => '0'
+                        ])
+                    </td>
+                </tr>
+            </tb>
+        </table>
+
+    @elseif($field['name']!=='FunctionalKm'
+            and $field['name']!=='BenefitKm'
+            and $field['name']!=='SpillOverKm'
+            and !\Illuminate\Support\Str::contains($field['name'], 'SpillOverEval'))
+
 
         @component('modular-forms::module.field_container', [
                 'name' => $field['name'],
@@ -118,3 +236,21 @@ $definitions['label_width'] = 7;
 @endforeach
 
 @include('modular-forms::module.edit.script', compact(['collection', 'vue_data', 'definitions']))
+
+@push('scripts')
+    <style>
+        .BenefitSocioEconomicAspects{
+            padding: 10px 10px 40px 10px;
+        }
+        .BenefitSocioEconomicAspects span span{
+            max-width: 100%;
+        }
+        table.SpillOverEval{
+            max-width: 750px;
+        }
+        table.SpillOverEval td,
+        table.SpillOverEval th{
+            padding: 10px;
+        }
+    </style>
+@endpush

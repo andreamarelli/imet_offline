@@ -13,7 +13,7 @@ return [
     ],
 
     'ImportanceClassification' => [
-        'title' => 'Special Designations',
+        'title' => 'Designations',
         'fields' => [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Integration',
@@ -28,7 +28,7 @@ return [
                 '3' => 'high integration',
             ]
         ],
-        'module_subTitle' => 'Value and Importance - Special Designations',
+        'module_subTitle' => 'Value and Importance - Designations',
         'module_info_EvaluationQuestion' => [
             'Has the protected area included the values and importance of national, regional or international designations in its management?'
         ],
@@ -39,7 +39,6 @@ return [
 
     'ObjectivesClassification' => [
         'module_info' => 'Establish and describe conservation objectives for <b>the current national, regional or international designation(s) </b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
-
     ],
 
     'ImportanceSpecies' => [
@@ -81,17 +80,13 @@ return [
     ],
 
     'ImportanceHabitats' => [
-        'title' => 'Terrestrial and marine habitats - land-cover, land-change and land-take',
+        'title' => 'Terrestrial and marine habitats (land-cover, land-change and land-take)',
         'fields' => [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Integration',
             'EvaluationScore2'=> 'Regional and global value/importance',
             'IncludeInStatistics' => 'To prioritise in management',
             'Comments' => 'Comments/Explanation',
-        ],
-        'groups' => [
-            'group0' => 'Identify the most important habitats of the protected area',
-            'group1' => 'Identify the most important elements of land cover, land-change and land-take inside and outside the protected area',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -108,10 +103,10 @@ return [
         ],
         'module_subTitle' => 'Value and Importance - Terrestrial and marine habitats - land-cover, land-change and land-take',
         'module_info_EvaluationQuestion' => [
-            'Has the protected area clearly identified and integrated the most important terrestrial and marine habitats and dimensions of land-cover, land-change and land-take in its management'
+            'Has the protected area clearly identified and integrated the most important terrestrial and marine habitats and related dimensions of land-cover, land-change and land-take in its management?'
         ],
         'module_info_Rating' => [
-            'Evaluate the level of integration in the management of the protected area of 3 to 10 of the most representative and important habitats and dimensions of land-cover, land-change and land-take types (based on the analysis of the Context of Intervention, points 4.3.1 and 4.3.2, automatically reported below). (The regional and global value/importance of habitats and of land-cover is a degree to which it: (i) represents at the regional or global level the natural environment of key plants or animals; (ii) influences an ecological process or community and (iii) affects a habitat / land cover directed management policy)'
+            'Evaluate the level of integration in the management of the protected area of 3 to 10 of the most representative and important habitats and related dimensions of land-cover, land-change and land-take types (based on the analysis of the Context of Intervention, points 4.3, automatically reported below). (The regional and global value/importance of habitats is a degree to which it: (i) represents at the regional or global level the natural environment of key plants or animals; (ii) influences an ecological process or community and (iii) affects a habitat directed management policy)'
         ],
         'validation_3to10' => 'Please include in statistics not less than 3 and not more than 10 of the key species',
         'warning_on_save' =>
@@ -120,7 +115,7 @@ return [
     ],
 
     'ObjectivesHabitats' => [
-        'module_info' => 'Establish and describe conservation objectives for maintaining of <b>maintaining terrestrial and marine habitats and the most important land-cover, land-change and land-take elements</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe conservation objectives for maintaining of <b>maintaining terrestrial and marine habitats and related dimensions of land-cover, land-change and land-take elements</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
     ],
 
     'ImportanceClimateChange' => [
@@ -190,33 +185,13 @@ return [
     ],
 
     'SupportsAndConstraints' => [
-        'title' => 'External constraints or supports',
+        'title' => 'External constraints/conflicts or supports/compliances',
         'fields' => [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Influence/power of the stakeholders',
-            'EvaluationScore2'=> 'Level of the constraint or support',
+            'EvaluationScore2'=> 'Level of the constraint/conflict or support/compliance',
             'Comments' => 'Comments/Explanation',
         ],
-        /*'predefined_values' => [
-            'Governor',
-            'Territorial authorities (prefecture and sub-prefecture)',
-            'Local elected officials and community leaders (ministers for the district, members of parliament and senators)',
-            'Local communities',
-            'Traditional authorities',
-            'Civil society',
-            'Human rights',
-            'Ministry responsible for technical supervision',
-            'Parks directorate',
-            'Inter-sector coordination agencies',
-            'Military justice',
-            'Civil justice',
-            'Ground forces and paramilitary police forces',
-            'Naval forces',
-            'Police forces',
-            'High-profile residents of the buffer zone',
-            'Senior representatives of government'
-        ],*/
-
         'groups' => [
             'group0' => 'Local community',
             'group1' => 'Government',
@@ -228,6 +203,7 @@ return [
                 'Traditional authorities',
                 'Indigenous peoples',
                 'Communities living close to or in the park',
+                'Communities not living close to or in the park',
                 'Rightholders',
                 'Landowners',
                 'Local users of natural resources',
@@ -264,26 +240,26 @@ return [
                 '3' => 'High influence/power'
             ],
             'EvaluationScore2' => [
-                '-3' => 'Severe constraints ',
-                '-2' => 'Moderate constraints',
-                '-1' => 'Minor constraints',
-                '0' => 'No constraints but also no support role',
-                '+1' => 'Minor supports',
-                '+2' => 'Moderate supports',
-                '+3' => 'Strong supports',
+                '-3' => 'Severe constraints/conflicts',
+                '-2' => 'Moderate constraints/conflicts',
+                '-1' => 'Minor constraints/conflicts',
+                '0' => 'No constraints/conflicts but also no support role',
+                '+1' => 'Minor supports/compliances',
+                '+2' => 'Moderate supports/compliances',
+                '+3' => 'Strong supports/compliances',
             ],
         ],
         'module_info_EvaluationQuestion' => [
-            'Is the protected area management subject to constraints or does it benefit from supporting factors arising from the external political, institutional and social environment?',
-            '<i>The political, institutional and civil environment can obstruct (external constraints) or facilitate (external supports) conservation activities of the protected area. The constraints or supports by the external political, institutional and civil environment can be measured by their intensity, and by the influence/power of the stakeholders in constraining or supporting the protected area.</i>'
+            'Is the protected area management subject to constraints/conflicts or does it benefit from supporting/complying factors arising from the external political, institutional and social environment?',
+            '<i>The political, institutional and civil environment can obstruct (external constraints/conflicts ) or facilitate (external supports/compliances) conservation activities of the protected area. The constraints/conflicts or supports/compliances by the external political, institutional and civil environment can be measured by their intensity, and by the influence/power of the stakeholders in constraining/conflicting or supporting/complying the protected area.</i>'
         ],
         'module_info_Rating' => [
-            'Evaluate the most important constraints or supporting factors from the external political, institutional and civil environment in the management of the protected area'
+            'Evaluate the most important constraints/conflicts or supporting/complying factors from the external political, institutional and civil environment in the management of the protected area'
         ]
     ],
 
     'ObjectivesSupportsAndConstraints' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>constraints or supporting factors</b> for the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe conservation objectives for <b>constraints/conflicts or supporting/complying factors</b> for the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
     ],
 
     'Menaces' => [
@@ -325,6 +301,13 @@ return [
             'Laws and conventions on research about biodiversity and natural resources',
             'Laws on land rights',
             'Customary law',
+            'Voluntary agreements, including public private partnerships (which can include e.g., voluntary biodiversity offset schemes)',
+            'Taxes, charges, user fees (e.g. entrance fees to marine parks)',
+            'Certification, eco labelling (e.g. MSC Marine Stewardship Council)',
+            'Spatial and temporal fishing closures; limits on number and size of vessels (input controls); other re-strictions or prohibitions on use (e.g. CITES)',
+            'Standards (e.g. MARPOL for ships); bans on dynamite fishing or fishing gear',
+            'Catch limits or quotas (output controls)',
+            'Licenses e.g. aquaculture and offshore windfarms'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -358,7 +341,12 @@ return [
             'Border zone (areas near borders immediately outside of the protected area that have special rules on resources use)',
             'Buffer zones (areas surrounding a protected area, where special management of resources use and special development measures are undertaken in order to enhance the conservation value of the protected area)',
             'Corridors',
-            'Integrity of water catchment'
+            'Integrity of water catchment',
+            'No-Use zone',
+            'No-take zone',
+            'Buffer zones for traditional use',
+            'Buffer zones for educational and/or recreational activities',
+            'Multi-use zone'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -391,15 +379,17 @@ return [
             'Correspondence of the marked boundaries with respect to the legal standing',
             'Adequacy of marked boundaries',
             'Boundaries marked by natural elements (e.g. rivers)',
-            'Boundaries marked by specific marks (e.g. buoys, signs, posts, beacons, fences, etc.)',
+            'Clearly demarcated, unambiguous and therefore easily interpreted boundaries (e.g., signs, posts, markers, fences, buoys, etc.)',
             'Recognition of boundaries by the authorities',
             'Recognition of boundaries by communities/users',
-            'Collaboration in the demarcation of boundaries',
+            'Collaboration approach including national agencies and relevant stakeholders in the demarcation of boundaries',
             'Publication of information of the boundaries demarcation',
             'Demarcation and development of legal boundaries consistent with legal statutes and international laws if necessary',
             'Demarcation using the official source of reference data',
             'Boundaries recorded with geographic coordinates (degree, min, sec)',
             'Demarcation of PA use zones (zoning)',
+            'Demarcation of boundaries, or part of them, that are ambulatory [e.g. banks, rivers, etc.] and may need to be revised',
+            'Demarcation by natural elements using a clear statement (e.g. tidal or river flooding data – average low water, average high water, etc.)'
         ],
         'ratingLegend' => [
             'Boundaries' => [
@@ -463,22 +453,22 @@ return [
     ],
 
     'WorkPlan' => [
-        'title' => 'Work/Action plan',
+        'title' => 'Work/Action plan (terrestrial) or Monitoring plan (MPA)',
         'fields' => [
-            'PlanExistence' => 'A) Is there a Work/Action plan? Yes/no',
-            'PlanUptoDate' => 'Is the Work/Action plan up to date (covering the current period)? Yes/no',
-            'PlanApproved' => 'Has the Work/Action plan been officially approved? Yes/no',
-            'PlanImplemented' => 'Is the Work/Action plan being implemented? Yes/no',
-            'VisionAdequacy' => 'B) Adequacy of the activities and results of the work/action plan in relation to the objectives of the management plan',
-            'PlanAdequacyScore' => 'C) Adequacy regarding the clarity and applicability of the activities and established results of the work/action plan',
+            'PlanExistence' => 'A) Is there a work/action plan or monitoring plan? Yes/no',
+            'PlanUptoDate' => 'Is the work/action plan or monitoring plan up to date (covering the current period)? Yes/no',
+            'PlanApproved' => 'Has the work/action plan or monitoring plan been officially approved? Yes/no',
+            'PlanImplemented' => 'Is the work/action plan or monitoring plan being implemented? Yes/no',
+            'VisionAdequacy' => 'B) Adequacy of the activities and results of the work/action plan or monitoring plan in relation to the objectives of the management plan',
+            'PlanAdequacyScore' => 'C) Adequacy regarding the clarity and applicability of the activities and established results of the work/action plan or monitoring plan',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
             'VisionAdequacy' => [
-                '0' => 'The activities and results of the work/action plan are fully inadequate in relation to the objectives of the management plan (0-30% of needs)',
-                '1' => 'The activities and results of the work/action plan are inadequate in relation to the objectives of the management plan (31-60% of needs)',
-                '2' => 'The activities and results of the work/action plan are adequate in relation to the objectives of the management plan (61-90% of needs)',
-                '3' => 'The activities and results of the work/action plan are fully adequate in relation to the objectives of the management plan (91-100% of needs)'
+                '0' => 'The activities and results of the work/action plan or monitoring plan are fully inadequate in relation to the objectives of the management plan (0-30% of needs)',
+                '1' => 'The activities and results of the work/action plan or monitoring plan are inadequate in relation to the objectives of the management plan (31-60% of needs)',
+                '2' => 'The activities and results of the work/action plan or monitoring plan are adequate in relation to the objectives of the management plan (61-90% of needs)',
+                '3' => 'The activities and results of the work/action plan or monitoring plan are fully adequate in relation to the objectives of the management plan (91-100% of needs)'
             ],
             'PlanAdequacyScore' => [
                 '0' => 'The clarity and applicability of activities and expected results are fully inadequate',
@@ -487,10 +477,10 @@ return [
                 '3' => 'The clarity and applicability of activities and expected results are fully adequate'
             ],
         ],
-        'module_info_Rating' => 'Evaluate: A) the status of the work/action plan, B) the adequacy of the activities and results of the work/action plan in relation to the objectives of the management plan and C) the adequacy regarding the clarity and applicability of the activities and established results of the work/action plan',
+        'module_info_Rating' => 'XXX Evaluate: A) the status of the work/action plan or monitoring plan, B) the adequacy of the activities and results of the work/action plan or monitoring plan in relation to the objectives of the management plan and C) the adequacy regarding the clarity and applicability of the activities and established results of the work/action plan or monitoring plan',
         'module_info_EvaluationQuestion' => [
-            'Is there a work/action plan, is it adequate and practical to implement for the protected area?',
-            'A work/action plan is a detailed plan outlining concrete actions or activities that need to be carried out (and by whom, where and when) in order to achieve outputs and outcomes established in the management plan of the protected area. A work/action plan allows monitoring progress in achieving outputs and outcomes of the protected area. The work/action plan usually covers a fixed period (e.g. calendar year) and creates a bond within the team, as each member is aware of his/her individual role, as well as provides necessary information to ensure the success of the protected area in its conservation efforts.'
+            'Is there a work/action plan or monitoring plan, is it adequate and practical to implement for the protected area?',
+            'A work/action plan or monitoring plan is a detailed plan outlining concrete actions or activities that need to be carried out (and by whom, where and when) in order to achieve outputs and outcomes established in the management plan of the protected area. A work/action plan or monitoring plan allows monitoring progress in achieving outputs and outcomes of the protected area. The work/action plan or monitoring plan usually covers a fixed period (e.g. calendar year) and creates a bond within the team, as each member is aware of his/her individual role, as well as provides necessary information to ensure the success of the protected area in its conservation efforts.'
         ]
     ],
 
@@ -506,10 +496,10 @@ return [
             'Animal species – flagship, endangered, endemic, … –',
             'Plants species – flagship, endangered, endemic, … –',
             'Mitigation of the direct and indirect threats to the protected area',
-            'Ecosystem services – Provisioning (sustainable use)',
-            'Ecosystem services – Regulating (sustainable use)',
-            'Ecosystem services – Cultural (sustainable use)',
-            'Ecosystem services – Supporting',
+            'Ecosystem services – Provisioning (food, seafood, materiel, water quality, etc. sustainable use)',
+            'Ecosystem services – Regulating (storm and coastal protection, water erosion, etc. sustainable use)',
+            'Ecosystem services – Cultural (tourism, traditional fishing, etc. sustainable use)',
+            'Ecosystem services – Supporting (sea spawning grounds - nursery habitats, etc.)',
             'Climate change adaptation',
             'Governance',
             'Support to the local economy',
@@ -550,7 +540,7 @@ return [
         'groups' => [
             'group0' => 'Animal species (flagship, endangered, endemic, …)',
             'group1' => 'Plant species (flagship, endangered, endemic, …)',
-            'group2' => 'Habitats and the land cover - use - take in and outside of the protected area',
+            'group2' => 'Habitats and related dimensions of land cover - use - take in and outside of the protected area',
             'group3' => 'Threats to the protected area',
             'group4' => 'Effects of climate change on key elements of the protected area',
             'group5' => 'Ecosystem services provided by the protected area'
@@ -907,11 +897,9 @@ return [
         'groups' => [
             'group0' => 'Animal species (flagship, endangered, endemic, …)',
             'group1' => 'Plant species (flagship, endangered, endemic, …)',
-            'group2' => 'Habitats the most important of the protected area',
-            'group3' => 'Land cover the protected area (land cover - use - take)',
+            'group2' => 'Habitats the most important and related dimensions of the protected area',
             'group4' => 'Management to mitigate threats to the protected area',
-            'group5' => 'Ecosystem services',
-            'group6' => 'Other',
+            'group5' => 'Ecosystem services'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -924,7 +912,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Are there in place specific management actions for the key values and threats to the protected area?',
-            'The primary management objective of protected areas is conservation/restoration of natural and associated cultural values.To preserve these values and minimise the most significant threats, managers should identify and use the available management guidelines, measures and best practices. Actions can include conservation/restoration of animal and plant species, land cover and managing various threats (note: for the climate change adaptation and ecosystem services management actions see PR 17 and PR 18). Examples of actions: management of animals or plants, management of the physical environment, managing fire, revegetation work, controlling invasive species, management of cultural resources, minimise threats, etc.'
+            'The primary management objective of protected areas is conservation/restoration of natural and associated cultural values.To preserve these values and minimise the most significant threats, managers should identify and use the available management guidelines, measures and best practices. Actions can include conservation/restoration of animal and plant species, habitats and managing various threats (note: for the climate change adaptation and ecosystem services management actions see PR 17 and PR 18). Examples of actions: management of animals or plants, management of the physical environment, managing fire, revegetation work, controlling invasive species, management of cultural resources, minimise threats, etc.'
         ],
         'module_info_Rating' => [
             'List three or more key values, threats and other key elements and evaluate the adequacy of related management actions (based on the analysis of the context of intervention points CTX 4 and 5)'
@@ -937,22 +925,39 @@ return [
             'Adequacy'=> 'Adequacy of ranger patrols management',
             'Comments' => 'Comments/Explanation',
         ],
+        'groups' => [
+            'group0' => 'Ranger patrol management',
+            'group1' => 'Sea ranger patrol management',
+        ],
         'predefined_values' => [
-            'Proactive strategic management',
-            'Collaborative surveillance (protection achieved through a combination of enforcement and collaboration with communities)',
-            'Standard operating procedures (SOPs)',
-            'Emergency operating procedures',
-            'Rapid intervention procedures',
-            'Non collaborative (technology: radar, optical-infrared, radio monitoring Vs technology poor performance, qualified rangers)',
-            'Adaptable and diverse tactics (e.g. complementary patrol types, such as observation points, vehicle/boats-assisted patrols, and ambushes, etc.)',
-            'Enforcement strategies that combine technology with sea patrols (eg. satellite monitoring and vehicle/boats-assisted patrols)',
-            'Efficient decision-making process for standard and emergency operating procedures',
-            'Elite units (highest performing rangers/scouts) management',
-            'Operations control room',
-            'Outposts/pickets - inside park',
-            'Outposts/pickets - outside park',
-            'Multi-day patrols',
-            'Use of SMART-MIST-RBM information to conduct law enforcement patrols briefing and debriefing',
+            'group0' => [
+                'Proactive strategic management',
+                'Collaborative surveillance (protection achieved through a combination of enforcement and collaboration with communities)',
+                'Standard operating procedures (SOPs)',
+                'Emergency operating procedures',
+                'Rapid intervention procedures',
+                'Non collaborative (technology: digital data, aerial monitoring, etc. Vs technology poor performance, qualified rangers)',
+                'Adaptable and diverse tactics (e.g. complementary patrol types, such as observation points, vehicle/boats-assisted patrols, and ambushes, etc.)',
+                'Enforcement strategies that combine technology with sea patrols (eg. satellite monitoring and vehicle/boats-assisted patrols)',
+                'Efficient decision-making process for standard and emergency operating procedures',
+                'Elite units (highest performing rangers/scouts) management',
+                'Operations control room',
+                'Outposts/pickets - inside park',
+                'Outposts/pickets - outside park',
+                'Multi-day patrols',
+                'Use of SMART-MIST-RBM information to conduct law enforcement patrols briefing and debriefing',
+            ],
+            'group1' => [
+                'Enforcement strategies that combine technology with sea patrols (satellite monitoring and hydrophones, electronic sensors, etc.)',
+                'Use of visual and basic electronic sensors for sea patrols (radar, optical/infrared)',
+                'Protection achieved through a combination of enforcement and collaboration with communities',
+                'Use of collaborative surveillance (real time and large area coverage, low investments vs time interval and recurring coasts, regulations and incentives, transceivers deactivated)',
+                'Use of non-collaborative (technology: radar, optical/infrared, radio monitoring vs technology poor performance, qualified personnel)',
+                'Integration between collaborative and non-collaborative surveillance systems in the protected area.',
+                'Enforcement patrols held during the night and other random hours',
+                'Regular participation in specialized training (International Maritime Organization –IMO- basic training, reading and using nautical charts, search and rescue, basic outboard motor maintenance course, etc.)',
+                'Continuous update and distribution of a simple fact sheet outlining zoning, regulations, restrictions, and fines or sanctions',
+            ]
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -981,17 +986,31 @@ return [
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
-            'group0' => 'A) Intelligence and investigation management',
-            'group1' => 'B) Evidence handling, case development and legal action',
+            'group0' => 'A) Intelligence and investigation management - Terrestrial',
+            'group0b' => 'A) Intelligence and investigation management - Marine and coastal',
+            'group1' => 'B) Evidence handling, case development and legal action - Terrestrial',
+            'group1b' => 'B) Evidence handling, case development and legal action - Marine and coastal',
         ],
         'predefined_values' => [
             'group0' => [
-                'Intelligence and investigations units orienting ranger patrols actions ',
+                'Intelligence and investigations units orienting and supporting ranger patrols actions',
                 'Organisation of informants system ',
                 'Informatics support for intelligence',
                 'System for intelligence data organisation and analysis',
                 'Inter-agency collaboration (e.g. prosecutors within the wildlife service or specialised wildlife crime prosecution unit)',
                 'Inter-agency collaboration with NGOs (e.g. EAGLE Network, Central/West Africa)'
+            ],
+            'group0b' => [
+                'Intelligence and investigation units orienting and supporting sea patrol operations',
+                'Detection and punishment of the illegal activities (such as fisheries and harvesting)',
+                'Knowledge of boarding legal requirements',
+                'Boarding protocols: inspections, required documents, what to check and look for, documenting the inspection',
+                'Interrogating and confronting suspicious crews on illegal activities',
+                'Standardized boarding report used consistently and correctly',
+                'Level of personal security during boarding',
+                'Use of a risk assessment model (GAR -GREEN-AMBER-RED or equivalent/other)',
+                'Use of database for recording and tracking information on violations',
+                'Collaboration with NGOs specialised in marine laws, enforcement, etc. (e.g. Environmental Law Institute (ELI) Ocean Program)'
             ],
             'group1' => [
                 'Crime scene management',
@@ -1000,6 +1019,14 @@ return [
                 'Prosecution of suspects',
                 'Monitoring cases and offender',
                 'Judgements obtained in court'
+            ],
+            'group1b' => [
+                'Training workshops for judges, attorneys, and lawyers on marine and fisheries-related rules and regulations',
+                'Ability to seize and detain vessels after transgression',
+                'Ability to restrict sailing within the MPA borders by issuing authorization permits',
+                'Seizure of fishing gear',
+                'Ability to enforce temporary suspension of permits for ships, crew members, or ship-owners',
+                'Ability to revoke of operating licenses for ships, ship-owners, agents, maritime personnel, or fishers',
             ]
         ],
         'ratingLegend' => [
@@ -1102,11 +1129,11 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-                'Support for local activities (e.g. ecosystem services management, climate change mitigation, etc.)',
+                'Support for local activities (e.g. ecosystem services - provisioning management, climate change adaptation, etc.)',
                 'Support for local business (e.g. processing of agricultural, fishing, forest products, etc.)',
                 'Support for local funding pathways',
                 'Support for food production and small farming',
-                'Purchase of agriculture products for tourism and staff',
+                'Purchase of agriculture products or seafood for tourism and staff',
                 'Support for tourism businesses',
                 'Support for traditional products and crafts for tourists',
                 'Support for human-wildlife conflict resolutions - compensation',
@@ -1119,10 +1146,14 @@ return [
                 'Provide power supply, electrical connection',
                 'Provide water supply - connection',
                 'Support for the construction, maintenance and improvement of external roads',
+                'Support for human-wildlife conflict resolution–compensation',
+                'Support small scale fisheries',
+                'Support for the construction of boat sheds',
+                'Support for the construction of boat parking'
             ],
             'group1' => [
                 'Strengthening of security in the area',
-                'Minimisation of conflicts and strengthening of the sustainable management and use of ecosystem services',
+                'Minimisation of conflicts and strengthening of the sustainable management and use of ecosystem services (provisioning and cultural)',
                 'Provision of education infrastructure (i.e. buildings)',
                 'Provision of educational services (teaching)',
                 'Provision of health infrastructure (i.e. buildings, clean water)',
@@ -1256,7 +1287,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Does the protected area manage and mitigate visitor impacts appropriately?',
-            'Promoting recreation and tourism so that visitors can learn about and appreciate a protected area, without damaging the values for which it was established, can be challenging. Visitors can negatively impact both resources and the experience of other visitors, or may also unknowingly offend cultural standards. Adequate monitoring, management and mitigation of visitor impacts are fundamental to sustainable tourism management strategies, but are often overlooked once the plan is underway. Without proper knowledge of the effects of tourist activities on the site’s natural environment and the surrounding communities it is impossible to establish whether the management of the ecotourism of the protected area is successful'
+            'Promoting recreation and tourism so that visitors can learn about and appreciate a protected area, without damaging the values for which it was established, can be challenging. Visitors can negatively impact both resources and the experience of other visitors or may also unknowingly offend cultural standards. Adequate monitoring, management and mitigation of visitor impacts are fundamental to sustainable tourism management strategies, but are often overlooked once the plan is underway. Without proper knowledge of the effects of tourist activities on the site’s natural environment and the surrounding communities it is impossible to establish whether the management of the ecotourism of the protected area is successful'
         ],
         'module_info_Rating' => 'Evaluate the management of visitors’ impact on the protected area (environmental tourism)'
     ],
@@ -1275,8 +1306,7 @@ return [
             'Use of data from monitoring to induce changes in the management of the protected area',
             'Monitoring main conservation objectives',
             'Monitoring of species (flagship, endangered, endemic, …) ',
-            'Monitoring ecosystems and habitats',
-            'Monitoring land cover–land use–land take',
+            'Monitoring habitats and related dimensions of land cover, land use, land take',
             'Monitoring freshwater ecosystems (lakes, rivers, and the smaller ponds and streams)',
             'Monitoring material living standard of populations in the protected area and its buffer area',
             'Monitoring immaterial living standards of populations in the protected area and its buffer area',
@@ -1313,12 +1343,11 @@ return [
         ],
         'predefined_values' => [
             'Research and long-term ecological monitoring role in the management of the protected area',
-            'Use of institutional capabilities and technical resources to initiate and coordinate research activities',
+            'Institutional and /or external funds/facilities and capabilities to promote and coordinate research activities.',
             'Accessibility and security of the data from research',
             'Management support from research and long-term ecological monitoring data',
             'Research and long-term ecological monitoring of species (flagship, endangered, endemic, etc.)',
-            'Research and long-term ecological monitoring of terrestrial ecosystems and land use (land cover – land use – land take)',
-            'Research and long-term ecological monitoring of marine ecosystems and habitats',
+            'Research and long-term ecological monitoring of habitats and related dimensions of land cover, land use, land take',
             'Research and long-term ecological monitoring of freshwater ecosystems (lakes, rivers, and the smaller ponds and streams)',
             'Research and long-term monitoring of human well-being of the communities in the protected area and in the buffer areas',
             'Research and long-term monitoring of threats to the protected area',
@@ -1352,7 +1381,7 @@ return [
         ],
         'predefined_values' => [
             'Managing adaptation of species (e.g. translocate species, etc.)',
-            'Managing adaptation of habitats and the land cover – use – take in and outside of the protected area (avoid forest fragmentation, bare ground, etc.)',
+            'Managing adaptation of habitats and the related dimensions of land cover – use – take in and outside of the protected area (avoid forest fragmentation, bare ground, etc.)',
             'Managing adaptation of ecosystem services',
             'Reducing stressors that amplify climate impacts (e.g. increase connectivity, control invasive species, etc.)',
             'Sustaining or restoring ecosystem process and function to promote resilience (e.g. restore degraded vegetation, etc.)',
@@ -1517,6 +1546,64 @@ return [
         ]
     ],
 
+    'AreaDominationMPA' => [
+        'title' => 'Enforcement in MPA',
+        'fields' => [
+            'Activity' => 'Range of activities subject to analysis',
+            'Patrol' => 'Area covered by patrols',
+            'RapidIntervention' => 'Rapid intervention capacity',
+            'DetectionRemoteSensing' => 'Detection via remote-sensing tools (ie vessel monitoring systems VMS)',
+            'SpecialMeansRapidIntervention' => 'Special means supporting rapid intervention',
+        ],
+        'groups' => [
+            'group0' => 'Sanctuary',
+            'group1' => 'No-take areas / Marine reserve',
+            'group2' => 'Buffer zones for traditional use',
+            'group3' => 'Buffer zones for educational and/or recreational activities',
+            'group4' => 'Dockside enforcement for vessels that come to port'
+        ],
+        'predefined_values' => [
+            'group0' => [
+                'All activities/uses prohibited'
+            ],
+            'group1' => [
+                'Prohibited activities (e.g. fishing or extraction of any kind, anchoring, boating, dumping, etc.)',
+                'Allowed activities (e.g. research and monitoring, etc.)'
+            ],
+            'group2' => [
+                'Prohibited activities (e.g. illegal fishing and specified legal fishing methods, anchoring, dumping)',
+                'Allowed activities (e.g. limited and specified traditional fishing and boating, swimming and diving, anchoring on mooring buoys, research, etc.) '
+            ],
+            'group3' => [
+                'Allowed activities (e.g. limited and specified traditional fishing and boating, swimming and diving, anchoring on mooring buoys, research and education, etc.)'
+            ],
+            'group4' => [
+                'Activities used to gather information that may that shed light on patterns of illicit behaviours. Dockside strategies should be tailored to promote the most appropriate enforcement for large MPAs or to address enforcement problems in smaller, near-shore MPAs.'
+            ],
+        ],
+        'ratingLegend' => [
+            'Patrol' => [
+                '0' => 'Area covered by patrols survey is minimal (from 0 to 25% of the surface area)',
+                '1' => 'Area covered by patrols survey is limited (from 26 to 50% of the surface area)',
+                '2' => 'Area  covered by patrols survey is fair (from 51 to 75% of the surface area)',
+                '3' => 'Area covered by patrols survey is very good (more than 76% of the surface area)',
+            ],
+            'RapidIntervention' => [
+                '0' => 'Rapid intervention capacity in the protected area is minimal (from 0 to 25% of the surface area)',
+                '1' => 'Rapid intervention capacity in the protected area is limited (from 26 to 50% of the surface area)',
+                '2' => 'Rapid intervention capacity in the protected area is fair (from 51 to 75% of the surface area)',
+                '3' => 'Rapid intervention capacity in the protected area is very good (more than 76% of the surface area)',
+            ],
+        ],
+        'module_info_EvaluationQuestion' => [
+            'What is the current extent of enforcement in MPA?',
+            'Enforcement in MPA refers to the ability of park management to create presence in a given area, for example through regular patrols surveys, rapid interventions or airborne surveillance or detection via remote-sensing tools. Where required, this presence needs to be imposed frequently and effectively to address threats such as poaching or illegal activities. The aim of high enforcement in MPA is to prevent or minimise illegal activities affecting the biodiversity, cultural or historical values, and to enforce the protection of the protected area and its boundaries'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the area domination based on the percentage of the protected area’s surface area where the management is present or can be present through (A) patrols surveys; (B) rapid interventions; (C) using special means'
+        ]
+    ],
+
     'AchievedObjectives' => [
         'title' => 'Achievement of long-term conservation objectives of the management',
         'fields' => [
@@ -1542,7 +1629,7 @@ return [
         ]
     ],
 
-    'KeyConservationTrend'=> [
+    'KeyConservationTrend' => [
         'title' => 'Conditions and trends for the key conservation elements of the protected area',
         'fields' => [
             'Element' => 'Key conservation element',
@@ -1554,7 +1641,7 @@ return [
         'groups' => [
             'group0' => 'Conservation conditions and trends for key animal species',
             'group1' => 'Conservation conditions and trends for key plant species',
-            'group2' => 'Conservation conditions and trends for habitats, land cover-use–take',
+            'group2' => 'Conservation conditions and trends for habitats and related dimensions of land cover-use–take',
             'group3' => 'Situation and trends for threats to the protected area',
             'group4' => 'Adaptation to climate change',
             'group5' => 'Conservation conditions and trends for ecosystem services of the protected area '
@@ -1588,7 +1675,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'What are the conditions and trends for the key conservation elements of the protected area?',
-            'The main management goals / objectives of the protected area are the conservation/restoration of natural values and the benefits that humans get from the natural environment and from properly functioning ecosystems (ecosystem services). Managers should ensure the conservation/restoration of key values (animal and plant species, land cover, etc.) and the preservation of provisioning, regulating, cultural and supporting ecosystem services, ensuring the values and benefits of protected areas for all'
+            'The main management goals / objectives of the protected area are the conservation/restoration of natural values and the benefits that humans get from the natural environment and from properly functioning ecosystems (ecosystem services). Managers should ensure the conservation/restoration of key values (animal and plant species, habitats, etc.) and the preservation of provisioning, regulating, cultural and supporting ecosystem services, ensuring the values and benefits of protected areas for all'
         ],
         'module_info_Rating' => [
             'Evaluate: A) the conditions and B) the trends of the key conservation elements of the protected area (based on the Context 1 and 3, Process elements PR7 – Managing the values and key elements of the protected area with specific actions, PR 17 adaptation to climate change and PR18 – Management of the ecosystem services)'
@@ -1609,8 +1696,8 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-                'Creation or strenghening of local production activities (food production, small farming, handicraft,etc.)',
-                'contribution to local development (power and/or water supply, small business, roads between villages, etc.)',
+                'Local activities strengthened (food production, small-scale farming, small-scale fishing, handicraft, services for the protected area, etc.)',
+                'Support to local business (power supply, water supply, commerce, roads between villages, boat sheds, boat parking, etc.)',
                 'Tourism incomes',
                 'Human-wildlife conflict',
                 'Employments of locals',

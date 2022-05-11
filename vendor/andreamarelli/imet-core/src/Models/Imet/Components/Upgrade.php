@@ -116,7 +116,7 @@ Trait Upgrade
      */
     protected static function dropIfPredefinedValueObsolete($record, $field, $old_value)
     {
-        return $record[$field]===$old_value ? null : $record;
+        return $record!==null && $record[$field]===$old_value ? null : $record;
     }
 
     /**
@@ -125,6 +125,7 @@ Trait Upgrade
      * @param $value
      * @param $list_key
      * @return mixed
+     * @throws \Exception
      */
     protected static function dropIfValueNotInPredefinedList($value, $list_key)
     {
@@ -150,6 +151,12 @@ Trait Upgrade
                 $record[$f] = Currency::exchange($record[$f], $currency, 'EUR');
             }
         }
+        return $record;
+    }
+
+    protected static function replaceGroup($record, $group_field, $old_group, $new_group)
+    {
+        $record[$group_field] = $record[$group_field]===$old_group ? $new_group : $record[$group_field];
         return $record;
     }
 

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit3435a065f70e6ee01e09d6b7362dcf7e
+class ComposerStaticInit8772e88397103406a464f0e920409a8c
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -872,8 +872,6 @@ class ComposerStaticInit3435a065f70e6ee01e09d6b7362dcf7e
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Modules\\Context\\GeographicalLocation' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v2/Modules/Context/GeographicalLocation.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Modules\\Context\\Governance' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v2/Modules/Context/Governance.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Modules\\Context\\Habitats' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v2/Modules/Context/Habitats.php',
-        'AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Modules\\Context\\HabitatsMarine' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v2/Modules/Context/HabitatsMarine.php',
-        'AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Modules\\Context\\LandCover' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v2/Modules/Context/LandCover.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Modules\\Context\\ManagementStaff' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v2/Modules/Context/ManagementStaff.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Modules\\Context\\ManagementStaffCommunities' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v2/Modules/Context/ManagementStaffCommunities.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Modules\\Context\\ManagementStaffPartners' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v2/Modules/Context/ManagementStaffPartners.php',
@@ -898,6 +896,7 @@ class ComposerStaticInit3435a065f70e6ee01e09d6b7362dcf7e
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Modules\\Evaluation\\AchievedResults' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v2/Modules/Evaluation/AchievedResults.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Modules\\Evaluation\\AdministrativeManagement' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v2/Modules/Evaluation/AdministrativeManagement.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Modules\\Evaluation\\AreaDomination' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v2/Modules/Evaluation/AreaDomination.php',
+        'AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Modules\\Evaluation\\AreaDominationMPA' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v2/Modules/Evaluation/AreaDominationMPA.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Modules\\Evaluation\\AssistanceActivities' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v2/Modules/Evaluation/AssistanceActivities.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Modules\\Evaluation\\BoundaryLevel' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v2/Modules/Evaluation/BoundaryLevel.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Modules\\Evaluation\\BudgetAdequacy' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v2/Modules/Evaluation/BudgetAdequacy.php',
@@ -7369,10 +7368,10 @@ class ComposerStaticInit3435a065f70e6ee01e09d6b7362dcf7e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit3435a065f70e6ee01e09d6b7362dcf7e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit3435a065f70e6ee01e09d6b7362dcf7e::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit3435a065f70e6ee01e09d6b7362dcf7e::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit3435a065f70e6ee01e09d6b7362dcf7e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit8772e88397103406a464f0e920409a8c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit8772e88397103406a464f0e920409a8c::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit8772e88397103406a464f0e920409a8c::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit8772e88397103406a464f0e920409a8c::$classMap;
 
         }, null, ClassLoader::class);
     }
