@@ -125,6 +125,13 @@ $other_attributes = $other ?? '';
             :taggable=true
             {!! $vue_attributes !!} {!! $rules_attribute !!} {!! $other_attributes !!}
         ></dropdown>
+    @elseif(substr_count($type, "suggestion_multiple-")>0)
+        <dropdown
+                :taggable=true
+                :multiple="true"
+                data-values='@json($cached_list)'
+                {!! $vue_attributes !!} {!! $rules_attribute !!} {!! $other_attributes !!}
+        ></dropdown>
     @elseif(substr_count($type, "dropdown_multiple-")>0)
         <dropdown
             :multiple="true"

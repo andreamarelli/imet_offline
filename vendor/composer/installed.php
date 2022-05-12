@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../andreamarelli/imet-core',
             'aliases' => array(),
-            'reference' => '6aae0db45af2ccec7ff7477cb17325ecab4a7bdb',
+            'reference' => '045257d7494b69c60ad28c5bbb53bceaa230af66',
             'dev_requirement' => false,
         ),
         'andreamarelli/modular-forms' => array(
@@ -25,7 +25,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../andreamarelli/modular-forms',
             'aliases' => array(),
-            'reference' => '7ddc383eb248495548cef55d716e98a415ab5dcc',
+            'reference' => '47890f6ed1aea3476f3c50969adf30fecd66fd31',
             'dev_requirement' => false,
         ),
         'asm89/stack-cors' => array(

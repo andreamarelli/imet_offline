@@ -3,7 +3,7 @@
 /** @var array $warnings */
 
 use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
-use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2
+use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2;
 use Illuminate\Support\Facades\App;
 
 // Force Language

@@ -15609,6 +15609,8 @@ table.preload_preview {
 .v-select {
   font-family: Montserrat, sans-serif;
   font-size: 13px; }
+  .v-select.vs--single .vs__dropdown-toggle .vs__selected-options .vs__selected {
+    text-align: left; }
   .v-select .vs__dropdown-toggle {
     padding: 6px 12px; }
     .v-select .vs__dropdown-toggle .vs__selected-options {
@@ -15627,7 +15629,8 @@ table.preload_preview {
       .v-select .vs__dropdown-toggle .vs__actions .vs__open-indicator {
         transform: scale(0.8); }
   .v-select .vs__dropdown-menu {
-    padding-bottom: 0; }
+    padding-bottom: 0;
+    width: fit-content; }
     .v-select .vs__dropdown-menu > li.vs__dropdown-option {
       margin: 0;
       padding-left: 15px; }
