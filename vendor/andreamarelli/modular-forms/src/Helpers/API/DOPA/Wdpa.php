@@ -96,21 +96,6 @@ trait Wdpa
     }
 
     /**
-     * Returns some details, but most importantly the extent of a protected area based on the WDPA ID
-     *
-     * @param $wdpa
-     * @return mixed
-     */
-    public static function get_wdpa_extent($wdpa)
-    {
-        return self::request(self::URL_PREFIX . 'd6biopamarest/d6biopama/get_wdpa_extent', [
-            'format' => 'json',
-            'wdpa_id' => $wdpa
-        ]);
-    }
-
-
-    /**
      * Returns Terrestrial/Marine Habitat Diversity
      *
      * For terrestrial protected areas as merged services from: protected_sites.wdpa, hdi.get_thdi_country_pa(),
@@ -121,10 +106,11 @@ trait Wdpa
      *
      * @param $wdpa
      * @param bool $terrestrial
+     * @param int $on_error
      * @return mixed
      *
      */
-    public static function get_wdpa_radarplot($wdpa, $terrestrial = true)
+    public static function get_wdpa_radarplot($wdpa, bool $terrestrial = true, int $on_error = DOPA::ON_ERROR_RESPONSE)
     {
         $url = $terrestrial
             ? 'd6dopa40/protected_sites/get_wdpa_terrestrial_radarplot'
@@ -132,7 +118,7 @@ trait Wdpa
         return self::request(self::URL_PREFIX . $url, [
             'format' => 'json',
             'wdpaid' => $wdpa
-        ]);
+        ], $on_error);
     }
 
     /**

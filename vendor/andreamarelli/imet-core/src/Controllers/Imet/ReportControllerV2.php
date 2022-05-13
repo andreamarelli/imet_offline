@@ -89,7 +89,7 @@ class ReportControllerV2 extends Controller {
             $api_available = DOPA::apiAvailable();
             if($api_available){
                 $wdpa_extent = [];
-                $dopa_radar =  DOPA::get_wdpa_radarplot($item->wdpa_id);
+                $dopa_radar      = DOPA::get_wdpa_radarplot($item->wdpa_id, true, DOPA::ON_ERROR_ARRAY);
                 $dopa_indicators =  DOPA::get_wdpa_all_inds($item->wdpa_id);
             }
         } else {

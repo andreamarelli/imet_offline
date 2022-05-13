@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit31bef0f4b56bd904203c70a44a46f57e
+class ComposerStaticInit14cab9dc5661a1d504e9c43518f41cf6
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -7207,9 +7207,9 @@ class ComposerStaticInit31bef0f4b56bd904203c70a44a46f57e
         'Symfony\\Polyfill\\Php80\\PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/PhpToken.php',
         'Symfony\\Polyfill\\Php81\\Php81' => __DIR__ . '/..' . '/symfony/polyfill-php81/Php81.php',
         'Tests\\CreatesApplication' => __DIR__ . '/../..' . '/tests/CreatesApplication.php',
+        'Tests\\Feature\\ApiTest' => __DIR__ . '/../..' . '/tests/Feature/ApiTest.php',
         'Tests\\Feature\\RoutesTest' => __DIR__ . '/../..' . '/tests/Feature/RoutesTest.php',
         'Tests\\TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
-        'Tests\\Unit\\ExampleTest' => __DIR__ . '/../..' . '/tests/Unit/ExampleTest.php',
         'TheSeer\\Tokenizer\\Exception' => __DIR__ . '/..' . '/theseer/tokenizer/src/Exception.php',
         'TheSeer\\Tokenizer\\NamespaceUri' => __DIR__ . '/..' . '/theseer/tokenizer/src/NamespaceUri.php',
         'TheSeer\\Tokenizer\\NamespaceUriException' => __DIR__ . '/..' . '/theseer/tokenizer/src/NamespaceUriException.php',
@@ -7368,10 +7368,10 @@ class ComposerStaticInit31bef0f4b56bd904203c70a44a46f57e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit31bef0f4b56bd904203c70a44a46f57e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit31bef0f4b56bd904203c70a44a46f57e::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit31bef0f4b56bd904203c70a44a46f57e::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit31bef0f4b56bd904203c70a44a46f57e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit14cab9dc5661a1d504e9c43518f41cf6::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit14cab9dc5661a1d504e9c43518f41cf6::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit14cab9dc5661a1d504e9c43518f41cf6::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit14cab9dc5661a1d504e9c43518f41cf6::$classMap;
 
         }, null, ClassLoader::class);
     }
