@@ -11,7 +11,8 @@ use AndreaMarelli\ImetCore\Commands\InitDB;
 use AndreaMarelli\ImetCore\Commands\PopulateMetadata;
 use AndreaMarelli\ImetCore\Commands\PopulateSpecies;
 use AndreaMarelli\ImetCore\Commands\SetSerialNumber;
-use AndreaMarelli\ImetCore\Commands\UpdateProtectedAreas;
+use AndreaMarelli\ImetCore\Commands\UpdateProtectedAreasAPI;
+use AndreaMarelli\ImetCore\Commands\UpdateProtectedAreasCSV;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 
@@ -59,7 +60,8 @@ class ServiceProvider extends BaseServiceProvider
                 PopulateMetadata::class,
                 PopulateSpecies::class,
                 SetSerialNumber::class,
-                UpdateProtectedAreas::class
+                UpdateProtectedAreasAPI::class,
+                UpdateProtectedAreasCSV::class
             ]);
         }
     }

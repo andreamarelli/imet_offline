@@ -103,6 +103,7 @@ class ScalingUpAnalysisController
     public function get_ajax_responses(Request $request)
     {
         $locale = App::getLocale();
+        //dd($locale);
         $action = $request->input('func');
         $parameters = $request->input('parameter');
         $type = $request->input('type', '');
@@ -149,7 +150,7 @@ class ScalingUpAnalysisController
         $ids = explode(',', $items);
         foreach ($ids as $id) {
             if ($request->input($id)) {
-                ScalingUpWdpa::update_item($scaling_up_id, $id, $request->input($id));
+                ScalingUpWdpa::update_item($scaling_up_id, $id, $request->input($id), $request->input('color-'.$id ));
             }
         }
     }
@@ -221,12 +222,17 @@ class ScalingUpAnalysisController
         $custom_names = array_map(function ($v) {
             return $v->name;
         }, $custom_items);
+       // dd($custom_items);
+        $custom_colors = array_map(function ($v) {
+            return $v->color;
+        }, $custom_items);
+
         $protected_areas_names = implode(', ', $custom_names);
 
         uasort($protected_areas['models'], function ($a, $b) {
             return $a['name'] > $b['name'];
         });
-
+        App::setLocale($locale);
         $templates_names = [
             ['name' => "protected_areas", 'title' => trans('imet-core::analysis_report.sections.list_of_names'), 'snapshot_id' => "protected_areas", 'exclude_elements' => '', 'code' => '0'],
             ['name' => "map_view", 'title' => trans('imet-core::analysis_report.sections.first'), 'snapshot_id' => "map_view", 'exclude_elements' => '', 'code' => '1'],
@@ -240,7 +246,8 @@ class ScalingUpAnalysisController
             ['name' => "digital_information_per_protected_area", 'title' => trans('imet-core::analysis_report.sections.ninth'), 'snapshot_id' => "digital_information_per_protected_area", 'exclude_elements' => '', 'code' => '9'],
         ];
 
-        App::setLocale($locale);
+
+
         return view('imet-core::scaling_up.report', [
             'templates' => $templates_names,
             'pa_ids' => $pa_ids,
@@ -248,6 +255,7 @@ class ScalingUpAnalysisController
             'scaling_up_id' => $scaling_up_id,
             'protected_areas' => $protected_areas,
             'custom_names' => $custom_names,
+            'custom_colors' => $custom_colors,
             'request' => $request,
             'custom_items' => $custom_items
         ]);

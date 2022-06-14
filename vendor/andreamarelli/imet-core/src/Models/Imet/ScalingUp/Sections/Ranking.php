@@ -59,12 +59,21 @@ class Ranking
                     $indicators_process_number = $indicators_numbers[$id];
                 }
 
-                $correction_value = Common::ranking_values_correction(Common::values_correction($v, $value), $indicators_divide_length, $indicators_process_number, $v);
+                if (count($indicators_process_number) > 0) {
+                    $correction_value = Common::ranking_values_correction(Common::values_correction($v, $value), $indicators_divide_length, $indicators_process_number, $v);
+                } else {
+                    $correction_value = Common::values_correction($v, $value);
+                   // echo $correction_value;
+                }
 
                 $ranking['legends'][$v] = $name;
-                $ranking_values[$name][] = $corrected_values[] = $correction_value;
-
+                $ranking_values[$name][] =  $correction_value;
+                if((string)$correction_value !== "-"){
+                    $corrected_values[] = $correction_value;
+                }
+               // echo "\n\n";
             }
+
             $sort_keys[] = array_sum($corrected_values);
             $ranking['xAxis'][] = $protected_area;
         }
@@ -74,13 +83,13 @@ class Ranking
         foreach ($ranking_values as $name => $ranking_value) {
             $new_ranking['xAxis'] = [];
             foreach ($sort_keys as $k => $val) {
-                if (isset($ranking_value[$k])) {
+                //if (isset($ranking_value[$k])) {
                     $new_ranking['values'][$name][] = $ranking_value[$k];
-                }
+               // }
                 $new_ranking['xAxis'][] = $ranking['xAxis'][$k];
             }
         }
-
+//dd($new_ranking);
         $new_ranking['legends'] = $ranking['legends'];
         return $new_ranking;
     }
@@ -139,7 +148,11 @@ class Ranking
 
             $collect_values = [];
             foreach ($protected_areas[$j]['category_stats'] as $k => $protected_area) {
-                $value = Common::round_number((-1 * (double)$protected_area));
+                if($protected_area === ""){
+                    $value = "-";
+                }else {
+                    $value = Common::round_number((-1 * (double)$protected_area));
+                }
                 $ranking_raw_values[$form_id][] = $collect_values[] = $value;
             }
             $sort_keys[$form_id] = array_sum($collect_values);

@@ -27,24 +27,4 @@ class HTTP
         return true;
     }
 
-    /**
-     * Wrap file_get_contents for using behind a reverse proxy
-     *
-     * @param $url
-     * @return false|string
-     */
-    public static function get_contents($url)
-    {
-        $context = [];
-        if (isset($_SERVER['HTTPS_PROXY'])) {
-            $context = [
-                'http' => [
-                    'proxy' => 'tcp://' . str_replace('http://', '', $_SERVER['HTTPS_PROXY']),
-                    'request_fulluri' => true,
-                ]
-            ];
-        }
-        return file_get_contents($url, false, stream_context_create($context));
-    }
-
 }

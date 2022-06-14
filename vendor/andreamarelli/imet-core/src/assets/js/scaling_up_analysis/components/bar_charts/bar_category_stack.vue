@@ -168,8 +168,11 @@ export default {
                         color: '#000',
                         formatter: (param) => {
                             let sum = 0;
+
                             bars.forEach(item => {
-                                sum += parseFloat(item.data[param.dataIndex]);
+                                if(item.data[param.dataIndex] !== "-") {
+                                    sum += parseFloat(item.data[param.dataIndex]);
+                                }
                             });
 
                             return sum.toFixed(1);

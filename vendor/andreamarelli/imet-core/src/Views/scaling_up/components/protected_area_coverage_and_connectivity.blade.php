@@ -26,6 +26,7 @@
                     </div>
                 </div>
             </div>
+            @include('imet-core::scaling_up.components.copyright_dopa')
         </template>
     </container_actions>
 </div>

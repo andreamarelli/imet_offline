@@ -72,7 +72,11 @@ export default {
         class_name: {
             type: String,
             default: 'list-head'
-        }
+        },
+        inverse: {
+            type: Boolean,
+            default: false
+        },
     },
     data: function () {
         return {

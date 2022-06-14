@@ -2,10 +2,6 @@
     <div class='bar' style="min-height: 200px"></div>
 </template>
 
-<style lang="scss" scoped>
-
-</style>
-
 <script>
 
 export default {

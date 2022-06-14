@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit14cab9dc5661a1d504e9c43518f41cf6
+class ComposerStaticInit63915eb3ea298c79d8e378b3fc82c21f
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -701,7 +701,8 @@ class ComposerStaticInit14cab9dc5661a1d504e9c43518f41cf6
         'AndreaMarelli\\ImetCore\\Commands\\PopulateMetadata' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/PopulateMetadata.php',
         'AndreaMarelli\\ImetCore\\Commands\\PopulateSpecies' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/PopulateSpecies.php',
         'AndreaMarelli\\ImetCore\\Commands\\SetSerialNumber' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/SetSerialNumber.php',
-        'AndreaMarelli\\ImetCore\\Commands\\UpdateProtectedAreas' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/UpdateProtectedAreas.php',
+        'AndreaMarelli\\ImetCore\\Commands\\UpdateProtectedAreasAPI' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/UpdateProtectedAreasAPI.php',
+        'AndreaMarelli\\ImetCore\\Commands\\UpdateProtectedAreasCSV' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/UpdateProtectedAreasCSV.php',
         'AndreaMarelli\\ImetCore\\Commands\\Utils' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/Utils.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\Assessment' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/Assessment.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\Backup' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/Backup.php',
@@ -969,10 +970,6 @@ class ComposerStaticInit14cab9dc5661a1d504e9c43518f41cf6
         'AndreaMarelli\\ModularForms\\Helpers\\File\\File' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/File/File.php',
         'AndreaMarelli\\ModularForms\\Helpers\\File\\Hash' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/File/Hash.php',
         'AndreaMarelli\\ModularForms\\Helpers\\File\\Zip' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/File/Zip.php',
-        'AndreaMarelli\\ModularForms\\Helpers\\Geo\\PostGis' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/Geo/PostGis.php',
-        'AndreaMarelli\\ModularForms\\Helpers\\Geo\\PostGisSHP' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/Geo/PostGisSHP.php',
-        'AndreaMarelli\\ModularForms\\Helpers\\Geo\\PostGisToGeoJSON' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/Geo/PostGisToGeoJSON.php',
-        'AndreaMarelli\\ModularForms\\Helpers\\Geo\\Wkt' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/Geo/Wkt.php',
         'AndreaMarelli\\ModularForms\\Helpers\\HTTP' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/HTTP.php',
         'AndreaMarelli\\ModularForms\\Helpers\\Input\\DropDown' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/Input/DropDown.php',
         'AndreaMarelli\\ModularForms\\Helpers\\Input\\DropDownVue' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Helpers/Input/DropDownVue.php',
@@ -7368,10 +7365,10 @@ class ComposerStaticInit14cab9dc5661a1d504e9c43518f41cf6
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit14cab9dc5661a1d504e9c43518f41cf6::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit14cab9dc5661a1d504e9c43518f41cf6::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit14cab9dc5661a1d504e9c43518f41cf6::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit14cab9dc5661a1d504e9c43518f41cf6::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit63915eb3ea298c79d8e378b3fc82c21f::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit63915eb3ea298c79d8e378b3fc82c21f::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit63915eb3ea298c79d8e378b3fc82c21f::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit63915eb3ea298c79d8e378b3fc82c21f::$classMap;
 
         }, null, ClassLoader::class);
     }

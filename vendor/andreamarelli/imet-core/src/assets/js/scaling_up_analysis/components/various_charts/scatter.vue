@@ -26,6 +26,10 @@ export default {
             type: String,
             default: ''
         },
+        label_axis_y2_show: {
+            type: Boolean,
+            default: false
+        },
         height: {
             type: String,
             default: '800px'
@@ -38,7 +42,12 @@ export default {
         event_key: {
             type: String,
             default: ''
-        }
+        },
+        scatter_dimension_names: {
+            type: Array,
+            default: () => {
+            }
+        },
     },
     computed: {
         bar_options() {
@@ -61,7 +70,7 @@ export default {
                     ...this.get_legends()
                 },
                 tooltip: {
-                    trigger: 'axis',
+                    trigger: 'item',
                     axisPointer: {
                         type: 'shadow'
                     }
@@ -88,7 +97,7 @@ export default {
                     min: 0,
                     max: 100,
                     show: true,
-                    name: this.label_axis_y2,
+                    name: this.label_axis_y2_show ? this.label_axis_y2 : '',
                     nameLocation: 'middle',
                     nameGap: -30
                 }],
@@ -117,6 +126,7 @@ export default {
             if (this.data.length > 0) {
                 this.chart = echarts.init(this.$el);
                 this.chart.setOption(this.bar_options);
+
                 this.chart.on('legendselectchanged', (params) => {
                     this.$root.$emit(`scatter_data_${this.event_key}`, params);
                 });
@@ -140,10 +150,14 @@ export default {
         },
         series: function () {
             const items = [];
+            const _this = this;
             this.data.forEach((record, idx) => {
                 items.push({
                     tooltip: {
-                        show: false
+                        show: true,
+                        formatter(params) {
+                            return `<b>${_this.label_axis_y}</b>: ${params.value[1]}<br/><b>${_this.label_axis_x}</b>: ${params.value[0]}<br/><b>${_this.label_axis_y2}</b>: ${params.value[2]}`;
+                        }
                     },
                     data: [record],
                     type: 'scatter',
@@ -156,6 +170,7 @@ export default {
                         focus: 'self'
                     },
                     label: {
+                        show: true,
                         formatter: function (param) {
                             return param.data['name'];
                         }

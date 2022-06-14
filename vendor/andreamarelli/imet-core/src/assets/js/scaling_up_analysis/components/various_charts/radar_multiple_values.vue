@@ -244,6 +244,7 @@ export default {
                             }
                             item.tooltip = {
                                 trigger: 'item'
+
                             };
                             //todo check it again
                             delete value['lineStyle'];
@@ -257,17 +258,32 @@ export default {
                         if (index > -1) {
                             negative_indicators.push(index);
                         }
+
                         item.value = indicators;
 
                     });
                 render_items.push(item);
             });
-            render_items.push(...this.createItemsForScalingNumbers());
             indicators = this.setIndicators(negative_indicators);
+            render_items.push(...this.createItemsForScalingNumbers());
+
+            render_items.map(item => {
+                item.tooltip.formatter = (params, ticket) => {
+                    let html = '';
+                    html = params.data.name+"<br/>";
+                    for(const val in params.data.value){
+                        if(indicators[val] !== undefined) {
+                            html += indicators[val]?.text + " : " + params.value[val] + "<br/>";
+                        }
+                    }
+                    return html
+                };
+                return item;
+            });
             return {render_items, legends, indicators};
         },
         find_if_array_has_negative_values: function (array) {
-            return array.findIndex(value => value < 0);
+            return array.findIndex(value => ((value !="-" ? value < 0: false)));
         },
         radar_item: function () {
             return {

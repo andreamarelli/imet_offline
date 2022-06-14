@@ -16,6 +16,7 @@
     <div id="imet_report">
         <app :scaling_up_id="{{$scaling_up_id}}">
             <template>
+                @include('imet-core::scaling_up.components.scaling_up_template')
                 <div class="container">
                     <div class="row h-150 mb-5">
                         <div class="col-sm text-center">
@@ -24,12 +25,10 @@
                     </div>
                 </div>
                 @include('imet-core::scaling_up.components.navigation_menu', ['templates'=> $templates])
-
                 <div id="names"></div>
                 <div>
                     <guidance :text="'imet-core::analysis_report.guidance.special_information'"/>
                 </div>
-                @include('imet-core::scaling_up.components.scaling_up_template')
                 @include('imet-core::scaling_up.components.wdpa_names')
                 @foreach($templates as $key => $template)
                     @include('imet-core::scaling_up.components.'.$template['name'],

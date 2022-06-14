@@ -77,70 +77,6 @@ class ScalingUpAnalysis extends Model
         return ["models" => $protected_area, "categories" => $categories];
     }
 
-
-    /**
-     * get all the data for map view
-     * @param array $form_ids
-     * @return array
-     */
-    public static function get_maps_stats(array $form_ids): array
-    {
-        $country_indicators = [];
-        $dopa_stats = ['all_data' => [],
-            'area_prot_terr_km2' => 0,
-            'area_prot_mar_km2' => 0,
-            'countries' => ['area_tot_km2' => 0,
-                'area_prot_terr_km2' => 0,
-                'area_prot_mar_km2' => 0,
-                'area_prot_terr_perc' => 0,
-                'area_prot_mar_perc' => 0,
-                'area_mar_km2' => 0,
-                'area_terr_km2' => 0,
-                'protconn' => 0
-            ]];
-
-        $country_stats = $dopa_stats['countries'];
-
-        $protected_areas = [];
-        foreach ($form_ids as $key => $form_id) {
-            $protected_area = ScalingUpWdpa::getCustomNames($form_id, static::$scaling_id);
-            $name = $protected_area['name'];
-            $country = $protected_area['Country'];
-            $indicators = static::get_all_indicators_without_nulls($protected_area['wdpa_id']);
-
-            $protected_areas[] = $protected_area['wdpa_id'];
-            if (!isset($country_indicators[$country])) {
-                $country_indicators[$country] = DOPA::get_country_all_inds($country);
-                foreach ($country_stats as $key => $value) {
-                    $country_stats[$key] += $country_indicators[$country][0]->$key ?? 0;
-                }
-            }
-            if (isset($indicators[0])) {
-                $value = null;
-                if (property_exists($indicators[0], 'area_tot_km2')) {
-                    $value = $indicators[0]->area_tot_km2;
-                }
-                if ($indicators[0]->marine) {
-                    $dopa_stats['area_prot_mar_km2'] += $value;
-                } else {
-                    $dopa_stats['area_prot_terr_km2'] += $value;
-                }
-
-                $dopa_stats['all_data'][$name] = $indicators[0];
-            }
-        }
-
-        $total_coverage_of_protected_areas = $dopa_stats['area_prot_mar_km2'] + $dopa_stats['area_prot_terr_km2'];
-
-        $country_stats['area_terr_perc'] = $total_coverage_of_protected_areas > 0 ? ($dopa_stats['area_prot_terr_km2'] / $total_coverage_of_protected_areas) * 100 : 0;
-        $country_stats['area_mar_perc'] = $total_coverage_of_protected_areas > 0 ? ($dopa_stats['area_prot_mar_km2'] / $total_coverage_of_protected_areas) * 100 : 0;
-        $country_stats['area_prot_mar_km2'] = $dopa_stats['area_prot_mar_km2'];
-        $country_stats['area_prot_terr_km2'] = $dopa_stats['area_prot_terr_km2'];
-
-        return ['status' => 'success', 'data' => [$protected_areas, $country_stats]];
-    }
-
-
     /**
      * get general info of protected areas by form ids
      * @param array $form_ids
@@ -248,12 +184,10 @@ class ScalingUpAnalysis extends Model
                         } else {
                             $species_count[$group][$species] = 1;
                         }
-
                         $key_elements['species'][$group][$species][0][] = $name;
                     }
                 }
             }
-
             foreach ($array_elements as $keys => $element) {
                 if (count($retrieve_key_elements[$keys])) {
                     foreach ($retrieve_key_elements[$keys] as $key => $item) {
@@ -269,6 +203,7 @@ class ScalingUpAnalysis extends Model
         }
 
         foreach ($array_elements as $keys => $element) {
+
             foreach ($array_elements_count[$keys . '_count'] as $k => $value) {
                 $key_elements[$keys] = array_filter($key_elements[$keys], function ($v) {
                     return count($v[0]) > 1;
@@ -279,7 +214,7 @@ class ScalingUpAnalysis extends Model
                 });
 
                 $array_elements_count[$keys . '_count'] = array_filter($array_elements_count[$keys . '_count'], function ($v) {
-                    return ($v) > 1;
+                    return ($v)  > 1;
                 });
 
                 uasort($array_elements_count[$keys . '_count'], function ($a, $b) {
@@ -317,7 +252,7 @@ class ScalingUpAnalysis extends Model
     }
 
     /**
-     * get the theats categories for the protected areas by form ids
+     * get the threats categories for the protected areas by form ids
      * @param array $form_ids
      * @return array
      */
@@ -349,13 +284,19 @@ class ScalingUpAnalysis extends Model
                 }
             }
             foreach ($protected_areas[$j]['category_stats'] as $k => $protected_area) {
-                $value = Common::round_number((-1 * (double)$protected_area));
+                if ($protected_area === "") {
+                    $value = "-";
+                } else {
+                    $value = Common::round_number((-1 * (double)$protected_area));
+                }
+
                 $total_categories[$k][] = ["name" => $protected_areas_names[$form_id], "value" => $value, 'color' => $pa->color];
                 $data[$k][] = $valuesIndicators[$k][] = $value;
             }
         }
 
         $averages = AverageContribution::average_contribution_calculations($data, '#C23531', ['height' => '850px'], 'imet-core::v2_context.MenacesPressions.categories.title');
+
         usort($averages['average_contribution']['data']['Average'], function ($a, $b) {
             return -($a['value'] <=> $b['value']);
         });
@@ -592,6 +533,7 @@ class ScalingUpAnalysis extends Model
         $radar_indicators_for_negative = [];
         $radar_indicators_zero_negative = [];
         $radar_average = [];
+        $indicators_count_to_calculate_average = [];
 
         $filtered = Common::filtered_indicators_and_round_values($form_ids, $custom_type, $table_indicators);
 
@@ -630,6 +572,12 @@ class ScalingUpAnalysis extends Model
 
                     $rounded_value = Common::round_number($value);
                     $tables[$type][$idx][$v] = $valuesIndicators[$v][] = $rounded_value;
+
+                    if ((string)$value === "-") {
+                        $value = 0;
+                    } else {
+                        $indicators_count_to_calculate_average[$v] = array_key_exists($v, $indicators_count_to_calculate_average) ? $indicators_count_to_calculate_average[$v] + 1 : 1;
+                    }
                     $radar_average[$v] = array_key_exists($v, $radar_average) ? $radar_average[$v] + $value : $value;
                     $data[$type][$v][] = $correction_value;
                     $radar_protected_areas['values'][$protected_area][] = $rounded_value;
@@ -657,7 +605,7 @@ class ScalingUpAnalysis extends Model
         $analysis_diagrams_protected_areas['indicators'] = $indicators;
 
         foreach ($radar_average as $k => $item) {
-            $radar_protected_areas['values']['Average'][] = Common::round_number($item / count($form_ids));
+            $radar_protected_areas['values']['Average'][] = Common::round_number($item / $indicators_count_to_calculate_average[$k]);
         }
         $radar_protected_areas['values']['Average']['color'] = 'red';
         $radar_protected_areas['values']['Average']['legend_selected'] = true;
@@ -780,7 +728,8 @@ class ScalingUpAnalysis extends Model
         if ($api_available) {
             foreach ($form_ids as $key => $form_id) {
                 $protected_area = ScalingUpWdpa::getCustomNames($form_id, static::$scaling_id);
-                $dopa_stats[$form_id] = [$protected_area['name'] => static::get_all_indicators_without_nulls($protected_area['wdpa_id'])];
+                $wdpa_id = $protected_area['wdpa_id'];
+                $dopa_stats[$form_id] = [$protected_area['name'] => static::get_all_indicators_without_nulls($wdpa_id)];
             }
         } else {
             return ['status' => false];

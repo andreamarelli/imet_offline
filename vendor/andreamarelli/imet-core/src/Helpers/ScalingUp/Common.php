@@ -18,6 +18,10 @@ class Common
      */
     public static function round_number($val, int $round = 1)
     {
+        if ($val == "-") {
+            return $val;
+        }
+
         if ($val == 100 || $val == 0) {
             return $val;
         }
@@ -35,6 +39,12 @@ class Common
      */
     public static function get_average(array $array, int $items_number = 0): float
     {
+        array_walk($array, function (&$item, $key) {
+            if ((string)$item === "-") {
+                $item = 0;
+            }
+        });
+
         return $items_number ? array_sum($array) / $items_number : 0;
     }
 
@@ -119,9 +129,8 @@ class Common
         } else if (in_array($indicator, ["c2", "oc2", "oc3"])) {
             return static::round_number(50 + ((float)$value / 2), 3);
         }
-        if ((string)$value !== "") {
-            return $value;
-        }
+
+        return $value;
     }
 
     /**
@@ -135,6 +144,10 @@ class Common
     {
         if ($value === 0) {
             return 0;
+        }
+
+        if ((string)$value === "-") {
+            return $value;
         }
 
         //use it only for process indicators
@@ -163,15 +176,20 @@ class Common
                 $filtered[$form_id] = array_intersect_key($results[$form_id], $indicators);
             }
 
+
             array_walk($filtered[$form_id], function (&$item, $key) {
+
                 if ((string)$item !== "") {
                     $item = $item;
+                } else {
+                    $item = "-";
                 }
             });
 
             $number_of_indicators = count(array_filter($filtered[$form_id], function ($item) {
-                return (string)$item != "";
+                return (string)$item != "-";
             }));
+
 
             //loop through imet sub indicators to create an average value in order to sort in the ranking
             //and pass the correct value where needed

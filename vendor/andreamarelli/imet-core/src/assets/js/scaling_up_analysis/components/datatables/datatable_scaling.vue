@@ -14,7 +14,7 @@
                 </th>
             </tr>
             <tr v-for="(value, index) in items">
-                <td v-for="(column, idx) in columns" v-html="value[column.field]"
+                <td v-for="(column, idx) in columns" v-html="get_value(value[column.field])"
                     :class="idx === 0 ?'': score_class(value[column.field])"></td>
             </tr>
             <tr v-if="average.length > 0">
@@ -118,17 +118,25 @@ export default {
         })
     },
     methods: {
+        get_value:function (value) {
+            if(value === "-"){
+                return "";
+            }
+            return value;
+        },
         itemLabel: function (value) {
             if (value === 'Average') {
                 value = "* " + value;
             }
-
+            if(value === "-"){
+                return "";
+            }
             return value;
         },
         score_class: function (value, additional_classes = '') {
             let addClass = '';
 
-            if (value === null) {
+            if ([null,"-"].includes(value)) {
                 addClass = 'score_no';
             } else if (value <= -51) {
                 addClass = 'score_danger_alert';

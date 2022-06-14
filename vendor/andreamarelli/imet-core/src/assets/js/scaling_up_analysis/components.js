@@ -43,6 +43,7 @@ Vue.component('radar_threats', require('./components/various_charts/radar_threat
 
 Vue.component('action_buttons',    require('./components/action_buttons.vue').default);
 Vue.component('html_to_image', require('./tools/html_to_image.vue').default);
+Vue.component('color_picker', require('./tools/color_picker.vue').default);
 
 Vue.component('basket', require('./components/basket.vue').default);
 Vue.component('guidance',    require('./components/guidance.vue').default);

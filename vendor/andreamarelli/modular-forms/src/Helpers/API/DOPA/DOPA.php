@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ModularForms\Helpers\API\DOPA;
 
 use AndreaMarelli\ModularForms\Helpers\API\API;
+use Illuminate\Support\Facades\Http;
 
 class DOPA
 {
@@ -65,12 +66,7 @@ class DOPA
      */
     public static function apiAvailable(): bool
     {
-        try{
-            return file_get_contents(static::URL_PREFIX)!=='';
-        } catch (\Exception $e){
-            return false;
-        }
-
+        return Http::get(static::URL_PREFIX)->successful();
     }
 
 }

@@ -42,6 +42,11 @@
                                 :legends="data_elements.props[tableValue['name']].ranking.legends"
                                 :colors="container.props.config.color_correct_order"
                                 :values="data_elements.props[tableValue['name']].ranking.values"></bar_category_stack>
+                            <div class="row mb-1 mt-1" style="font-size: 12px">
+                                <div class="col-sm align-self-center">
+                                   {{ trans("imet-core::analysis_report.ranking_info_indicators") }}
+                                </div>
+                            </div>
                             <div class="row mb-3 mt-1" style="font-size: 12px;">
                                 <div class="col-sm align-self-center" v-if="tableValue['key'] =='overall_scores'">
                                     * {{ trans("imet-core::analysis_report.ranking_rescaled_indicators") }}
@@ -70,6 +75,7 @@
                         <template slot-scope="data_elements">
                             <imet_bar_error
                                 :axis_dimensions_x="{max:100}"
+                                :inverse_y="true"
                                 :show_legends="true"
                                 :values="data_elements.props[tableValue['name']].average_contribution.data"
                                 :height="data_elements.props[tableValue['name']].average_contribution.options.height"

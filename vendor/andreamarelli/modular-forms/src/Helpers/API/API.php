@@ -4,6 +4,7 @@ namespace AndreaMarelli\ModularForms\Helpers\API;
 
 use AndreaMarelli\ModularForms\Models\Cache;
 use Exception;
+use Illuminate\Support\Facades\Http;
 
 class API
 {
@@ -25,15 +26,15 @@ class API
         }
 
         // Execute request to API
-        $url = rtrim($url, '?') . '?';
-        $url = $url . http_build_query($params);
-        try {
-            $response = json_decode(file_get_contents($url));
+        $response = Http::get($url, $params);
+        if($response->successful()){
+            $response_json = $response->json();
             // store in cache
             Cache::put($cache_key, $response, static::CACHE_TTL);
-        } catch (Exception $e) {
-            return (object) ['error' => $e->getMessage()];
+            return json_decode(json_encode($response_json));
+        } else {
+            return (object) ['error' => 'Request to '.$url.' failed'];
         }
-        return (object) $response;
+
     }
 }

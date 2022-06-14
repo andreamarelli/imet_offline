@@ -34,18 +34,22 @@ class ScalingUpWdpa extends Model
     {
         $saved_pas = [];
         foreach ($areas as $k => $area) {
-            $rand_color = 'rgb(' . rand(30, 220) . ',' . rand(40, 220) . ',' . rand(35, 220) . ')';//str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
+            $rand_color = "#".substr(md5(rand()), 0, 6);//'rgb(' . rand(30, 220) . ',' . rand(40, 220) . ',' . rand(35, 220) . ')';//str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
             $saved_pas[] = static::create(['scaling_id' => $scaling_id, 'FormID' => $area->FormID, 'name' => $area->name, 'Country' => $area->Country, 'wdpa_id' => $area->wdpa_id, 'color' => $rand_color]);
         }
         return $saved_pas;
     }
 
-    public static function update_item($scaling_id, $form_id, $value)
+    public static function update_item($scaling_id, $form_id, $value, $color)
     {
-        $record = static::where(['scaling_id' => $scaling_id, 'FormID' => (int)$form_id])->first();
-        $record->name = $value;
-        $record->save();
-        return json_encode($record);
+        $record = static::where(['scaling_id' => $scaling_id, 'FormID' => $form_id])->first();
+        if ($record) {
+            $record->name = $value;
+            $record->color = $color;
+            $record->save();
+            return json_encode($record);
+        }
+        return null;
     }
 
     /**

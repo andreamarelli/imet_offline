@@ -127,9 +127,15 @@
                                                         <scatter
                                                             :label_axis_y="'@lang('imet-core::v2_common.steps_eval.context') , @lang('imet-core::v2_common.steps_eval.planning'), @lang('imet-core::v2_common.steps_eval.inputs')'"
                                                             :label_axis_x="'@lang('imet-core::v2_common.steps_eval.process')'"
-                                                            :label_axis_y2="''"
+                                                            :label_axis_y2="'@lang('imet-core::v2_common.steps_eval.outcomes'), @lang('imet-core::v2_common.steps_eval.outputs')'"
+                                                            :label_axis_y2_show="false"
                                                             :values='data_elements.props'
                                                         ></scatter>
+                                                        <div class="row mb-1 mt-1" style="font-size: 12px">
+                                                            <div class="col-sm align-self-center">
+                                                                {{ trans("imet-core::analysis_report.ranking_info_indicators") }}
+                                                            </div>
+                                                        </div>
                                                         <div class="row mb-3 mt-2" style="font-size: 12px;">
                                                             <div class="col-sm align-self-center">
                                                                 * {{ trans("imet-core::analysis_report.size_of_square") }}
