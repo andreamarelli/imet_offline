@@ -24,7 +24,6 @@ return array(
     'AndreaMarelli\\ImetCore\\Controllers\\Imet\\ControllerV1' => $vendorDir . '/andreamarelli/imet-core/src/Controllers/Imet/ControllerV1.php',
     'AndreaMarelli\\ImetCore\\Controllers\\Imet\\ControllerV2' => $vendorDir . '/andreamarelli/imet-core/src/Controllers/Imet/ControllerV2.php',
     'AndreaMarelli\\ImetCore\\Controllers\\Imet\\ConvertSQLite' => $vendorDir . '/andreamarelli/imet-core/src/Controllers/Imet/ConvertSQLite.php',
-    'AndreaMarelli\\ImetCore\\Controllers\\Imet\\CrossAnalysisController' => $vendorDir . '/andreamarelli/imet-core/src/Controllers/Imet/CrossAnalysisController.php',
     'AndreaMarelli\\ImetCore\\Controllers\\Imet\\EvalController' => $vendorDir . '/andreamarelli/imet-core/src/Controllers/Imet/EvalController.php',
     'AndreaMarelli\\ImetCore\\Controllers\\Imet\\EvalControllerV1' => $vendorDir . '/andreamarelli/imet-core/src/Controllers/Imet/EvalControllerV1.php',
     'AndreaMarelli\\ImetCore\\Controllers\\Imet\\EvalControllerV2' => $vendorDir . '/andreamarelli/imet-core/src/Controllers/Imet/EvalControllerV2.php',

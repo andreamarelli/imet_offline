@@ -67,9 +67,6 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
                 Route::get('{item}/print',          [EvalControllerV2::class, 'print']);
                 Route::patch('{item}',           [EvalControllerV2::class, 'update']);
             });
-            Route::group(['prefix' => 'cross-analysis'], function () {
-                Route::get('{item}',   [CrossAnalysisController::class, 'cross_analysis']);
-            });
             Route::group(['prefix' => 'report'], function () {
                 Route::get('{item}/edit', [ReportControllerV2::class, 'report']);
                 Route::get('{item}/show', [ReportControllerV2::class, 'report_show']);

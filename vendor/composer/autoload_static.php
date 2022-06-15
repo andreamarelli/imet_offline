@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit63915eb3ea298c79d8e378b3fc82c21f
+class ComposerStaticInitaef56c6a511f86cffe55e9be221605ab
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -710,7 +710,6 @@ class ComposerStaticInit63915eb3ea298c79d8e378b3fc82c21f
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\ControllerV1' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/ControllerV1.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\ControllerV2' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/ControllerV2.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\ConvertSQLite' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/ConvertSQLite.php',
-        'AndreaMarelli\\ImetCore\\Controllers\\Imet\\CrossAnalysisController' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/CrossAnalysisController.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\EvalController' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/EvalController.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\EvalControllerV1' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/EvalControllerV1.php',
         'AndreaMarelli\\ImetCore\\Controllers\\Imet\\EvalControllerV2' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/Imet/EvalControllerV2.php',
@@ -7365,10 +7364,10 @@ class ComposerStaticInit63915eb3ea298c79d8e378b3fc82c21f
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit63915eb3ea298c79d8e378b3fc82c21f::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit63915eb3ea298c79d8e378b3fc82c21f::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit63915eb3ea298c79d8e378b3fc82c21f::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit63915eb3ea298c79d8e378b3fc82c21f::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitaef56c6a511f86cffe55e9be221605ab::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitaef56c6a511f86cffe55e9be221605ab::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitaef56c6a511f86cffe55e9be221605ab::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitaef56c6a511f86cffe55e9be221605ab::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -33,6 +33,7 @@ return [
         'outcomes'                  => 'Outcomes',
         'objectives'                => 'Objectives',
         'management_effectiveness'  => 'Management Effectiveness',
+        'cross_analysis'  => 'Cross Analysis',
     ],
 
     'indexes' => [

@@ -9,7 +9,6 @@ if($version==='v1'){
     $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class;
     $controller_eval = \AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::class;
     $controller_report = \AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2::class;
-    $controller_cross_analysis = \AndreaMarelli\ImetCore\Controllers\Imet\CrossAnalysisController::class;
 }
 ?>
 
@@ -48,19 +47,6 @@ if($version==='v1'){
                 'class' => 'btn-success',
                 'new_page' => false
             ])
-
-            @if($version==='v2')
-                {{-- Cross Analysis --}}
-                @include('modular-forms::buttons._generic', [
-                    'controller' => $controller_cross_analysis,
-                    'action' =>'cross_analysis',
-                    'item' => 'item.FormID',
-                    'label' => ucfirst(trans('imet-core::common.cross_analysis')),
-                    'icon' => 'chart-bar',
-                    'class' => 'btn-success',
-                    'new_page' => false
-                ])
-            @endif
 
             {{-- Analysis Report --}}
             @if($version==='v2')

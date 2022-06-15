@@ -90,6 +90,18 @@ export default {
                     trigger: 'axis',
                     axisPointer: {
                         type: 'shadow'
+                    },
+                    formatter: function (params) {
+                        let tooltip_text = `${params[0].axisValueLabel} <br/>`;
+                        params.forEach(function (item) {
+
+                            if(item.value === -0){
+                                tooltip_text += `${item.marker} ${item.seriesName} : -</div> <br/>`;
+                            }else {
+                                tooltip_text += `${item.marker} ${item.seriesName} : ${item.value}</div> <br/>`;
+                            }
+                        });
+                        return tooltip_text;
                     }
                 },
 
@@ -145,32 +157,42 @@ export default {
                     type: 'bar',
                     stack: 'total',
                     label: {
-                        show: false
+                        show: false,
+                        position: this.label_position,
                     },
                     emphasis: {
                         focus: 'series'
                     },
-                    data: value[1]
+                    data: value[1].map((item, idx) => {
+                        if(item == '-'){
+                            return -0
+                        }
+                        return item
+                    })
                 })
             });
 
             bars.map((bar, index) => {
 
                 if (this.show_option_label) {
+
                     bar.label = {
                         show: true,
                         color: '#000'
                     }
                 } else if (index === bars.length - 1) {
+                    let has_value = false;
                     bar.label = {
                         show: true,
                         position: this.label_position,
                         color: '#000',
                         formatter: (param) => {
                             let sum = 0;
-
+                            has_value = true;
+                            if(index === bars.length - 1 && param.dataIndex === bars[index].data.length - 1) {
+                            }
                             bars.forEach(item => {
-                                if(item.data[param.dataIndex] !== "-") {
+                                if(item.data[param.dataIndex] !== '-') {
                                     sum += parseFloat(item.data[param.dataIndex]);
                                 }
                             });
@@ -178,9 +200,12 @@ export default {
                             return sum.toFixed(1);
                         }
                     }
+
                 }
+
                 return bar;
             })
+
 
             return bars;
         },
