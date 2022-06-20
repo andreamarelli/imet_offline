@@ -1584,16 +1584,16 @@ return [
         ],
         'ratingLegend' => [
             'Patrol' => [
-                '0' => 'Area covered by patrols survey is minimal (from 0 to 25% of the surface area)',
-                '1' => 'Area covered by patrols survey is limited (from 26 to 50% of the surface area)',
-                '2' => 'Area  covered by patrols survey is fair (from 51 to 75% of the surface area)',
-                '3' => 'Area covered by patrols survey is very good (more than 76% of the surface area)',
+                '0' => 'A área coberta pelo inquérito de patrulhas é mínima (de 0 a 25% da superfície)',
+                '1' => 'A área coberta pelo inquérito de patrulhas é limitada (de 26 a 50% da superfície)',
+                '2' => 'A área coberta pelo inquérito de patrulhas é justa (de 51 a 75% da área da superfície)',
+                '3' => 'A área coberta pelo inquérito de patrulhas é muito boa (mais de 76% da superfície)',
             ],
             'RapidIntervention' => [
-                '0' => 'Rapid intervention capacity in the protected area is minimal (from 0 to 25% of the surface area)',
-                '1' => 'Rapid intervention capacity in the protected area is limited (from 26 to 50% of the surface area)',
-                '2' => 'Rapid intervention capacity in the protected area is fair (from 51 to 75% of the surface area)',
-                '3' => 'Rapid intervention capacity in the protected area is very good (more than 76% of the surface area)',
+                '0' => 'A capacidade de intervenção rápida na área protegida é mínima (de 0 a 25% da área de superfície)',
+                '1' => 'A capacidade de intervenção rápida na área protegida é limitada (de 26 a 50% da superfície)',
+                '2' => 'A capacidade de intervenção rápida na área protegida é justa (de 51 a 75% da área de superfície)',
+                '3' => 'A capacidade de intervenção rápida na área protegida é muito boa (mais de 76% da superfície)',
             ],
         ],
         'module_info_EvaluationQuestion' => [
@@ -1601,7 +1601,7 @@ return [
             'A aplicação da MPA refere-se à capacidade da gestão do parque para criar presença numa determinada área, por exemplo através de levantamentos regulares de patrulhas, intervenções rápidas ou vigilância aérea ou detecção através de ferramentas de detecção remota. Quando necessário, esta presença tem de ser imposta com frequência e eficácia para enfrentar ameaças tais como a caça furtiva ou actividades ilegais. O objectivo de uma fiscalização elevada na MPA é prevenir ou minimizar as actividades ilegais que afectam a biodiversidade, os valores culturais ou históricos, e impor a protecção da área protegida e dos seus limites'
         ],
         'module_info_Rating' => [
-            'Evaluate the area domination based on the percentage of the protected area’s surface area where the management is present or can be present through (A) patrols surveys; (B) rapid interventions; (C) using special means'
+            'Avaliar o domínio da área com base na percentagem da superfície da área protegida onde a gestão está presente ou pode estar presente através de (A) inquéritos de patrulha; (B) intervenções rápidas; (C) utilização de meios especiais'
         ]
     ],
 

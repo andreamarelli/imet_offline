@@ -1584,16 +1584,16 @@ return [
         ],
         'ratingLegend' => [
             'Patrol' => [
-                '0' => 'Area covered by patrols survey is minimal (from 0 to 25% of the surface area)',
-                '1' => 'Area covered by patrols survey is limited (from 26 to 50% of the surface area)',
-                '2' => 'Area  covered by patrols survey is fair (from 51 to 75% of the surface area)',
-                '3' => 'Area covered by patrols survey is very good (more than 76% of the surface area)',
+                '0' => 'El área cubierta por patrullajes de vigilancia es mínima (de 0 a 25% de la superficie)',
+                '1' => 'El área cubierta por el estudio de patrullajes es limitada (del 26 al 50% de la superficie)',
+                '2' => 'El área cubierta por la encuesta de patrullajes es justa (del 51 al 75% de la superficie)',
+                '3' => 'El área cubierta por la encuesta de patrullajes es muy buena (más del 76% de la superficie)',
             ],
             'RapidIntervention' => [
-                '0' => 'Rapid intervention capacity in the protected area is minimal (from 0 to 25% of the surface area)',
-                '1' => 'Rapid intervention capacity in the protected area is limited (from 26 to 50% of the surface area)',
-                '2' => 'Rapid intervention capacity in the protected area is fair (from 51 to 75% of the surface area)',
-                '3' => 'Rapid intervention capacity in the protected area is very good (more than 76% of the surface area)',
+                '0' => 'La capacidad de intervención rápida en el área protegida es mínima (de 0 a 25% de la superficie)',
+                '1' => 'La capacidad de intervención rápida en la zona protegida es limitada (del 26 al 50% de la superficie)',
+                '2' => 'La capacidad de intervención rápida en el área protegida es justa (del 51 al 75% de la superficie)',
+                '3' => 'La capacidad de intervención rápida en la zona protegida es muy buena (más del 76% de la superficie)',
             ],
         ],
         'module_info_EvaluationQuestion' => [
@@ -1601,7 +1601,7 @@ return [
             'La aplicación de la ley en las AMP se refiere a la capacidad de la gestión del parque para crear una presencia en una zona determinada, por ejemplo, mediante patrullas periódicas, intervenciones rápidas o vigilancia aérea o detección mediante herramientas de teledetección. Cuando sea necesario, esta presencia debe imponerse con frecuencia y eficacia para hacer frente a amenazas como la caza furtiva o las actividades ilegales. El objetivo de la aplicación de la ley en las AMP es prevenir o minimizar las actividades ilegales que afectan a la biodiversidad y a los valores culturales o históricos, y hacer cumplir la protección del área protegida y sus límites'
         ],
         'module_info_Rating' => [
-            'Evaluate the area domination based on the percentage of the protected area’s surface area where the management is present or can be present through (A) patrols surveys; (B) rapid interventions; (C) using special means'
+            'Evaluar la dominación del área basándose en el porcentaje de la superficie del área protegida en el que la gestión está presente o puede estar presente a través de: (A) estudios de patrullaje; (B) intervenciones rápidas; (C) utilización de medios especiales'
         ]
     ],
 

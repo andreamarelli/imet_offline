@@ -1584,16 +1584,16 @@ return [
         ],
         'ratingLegend' => [
             'Patrol' => [
-                '0' => 'Area covered by patrols survey is minimal (from 0 to 25% of the surface area)',
-                '1' => 'Area covered by patrols survey is limited (from 26 to 50% of the surface area)',
-                '2' => 'Area  covered by patrols survey is fair (from 51 to 75% of the surface area)',
-                '3' => 'Area covered by patrols survey is very good (more than 76% of the surface area)',
+                '0' => 'La superficie de l’aire protégée contrôlée par les activités de patrouille est minimale (de 0 à 25 % de la superficie)',
+                '1' => 'La superficie de l’aire protégée contrôlée par les activités de patrouille est limitée (de 26 à 50 % de la superficie)',
+                '2' => 'La superficie de l’aire protégée contrôlée par les activités de patrouille est suffisante (de 51 à 75 % de la superficie)',
+                '3' => 'La superficie de l’aire protégée contrôlée par les activités de patrouille est très bonne (plus de 76 % de la superficie)',
             ],
             'RapidIntervention' => [
-                '0' => 'Rapid intervention capacity in the protected area is minimal (from 0 to 25% of the surface area)',
-                '1' => 'Rapid intervention capacity in the protected area is limited (from 26 to 50% of the surface area)',
-                '2' => 'Rapid intervention capacity in the protected area is fair (from 51 to 75% of the surface area)',
-                '3' => 'Rapid intervention capacity in the protected area is very good (more than 76% of the surface area)',
+                '0' => 'La capacité d’intervention rapide dans l’aire protégée est minime (de 0 à 25 % de la surface)',
+                '1' => 'La capacité d’intervention rapide dans l’aire protégée est limitée (de 26 à 50 % de la superficie)',
+                '2' => 'La capacité d’intervention rapide dans l’aire protégée est suffisante (de 51 à 75 % de la superficie)',
+                '3' => 'La capacité d’intervention rapide dans l’aire protégée est très bonne (plus de 76 % de la superficie)',
             ],
         ],
         'module_info_EvaluationQuestion' => [
@@ -1601,7 +1601,7 @@ return [
             'L’application de la loi dans les AMP fait référence à la capacité de la gestion du parc à créer une présence dans une aire donnée, par exemple par le biais de patrouilles régulières, d’enquêtes, d’interventions rapides, de surveillance aérienne ou de détection via des outils de télédétection. Si nécessaire, cette présence doit être imposée fréquemment et efficacement pour faire face aux menaces telles que la pêche ou les activités illégales. L’objectif de l’application stricte de la loi dans les AMP est de prévenir ou de minimiser les activités illégales affectant la biodiversité, les valeurs culturelles ou historiques, et de faire respecter la protection de l’aire protégée et de ses limites'
         ],
         'module_info_Rating' => [
-            'Evaluate the area domination based on the percentage of the protected area’s surface area where the management is present or can be present through (A) patrols surveys; (B) rapid interventions; (C) using special means'
+            'Évaluer le pourcentage de la superficie de l’aire protégée où le contrôle est assuré ou peut être assuré à travers (A) des activités de patrouille ; (B) des interventions rapides ; (C) des moyens spéciaux'
         ]
     ],
 

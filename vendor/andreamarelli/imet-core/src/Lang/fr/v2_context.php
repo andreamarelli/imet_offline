@@ -304,16 +304,16 @@ return [
         'info' => [
             'spillover_eval' =>
                 'Le mouvement net des individus des réserves marines (également connues sous le nom d’aires marines protégées 
-                 sans prélèvement) vers les zones de pêche restantes est connu sous le nom de spill-over. Le débordement 
-                 peut contribuer à la réduction de la pauvreté des populations, bien que son effet soit modulé par le nombre 
-                 de pêcheurs et l’intensité de la pêche. En général:
-                 <ul>
-                    <li>Strong spill-over positive effect when the fishery is mismanaged</li>
-                    <li>Light spill-over positive effect when the fishery is well managed but positive effect for species with greater movement and slower growth.</li>
-                    <li>Evaluate the spill-over effect from a reserve is able to provide a net benefit for a fishery (from Garry Russ & Angel Alcala, Enhanced biodiversity beyond marine reserve boundaries: the cup spill-over):<ul>
-                    <li>predatory fish (large, predatory fish are more common inside and just outside reserves than farther away)</li>
-                    <li>composition outside and inside (the community composition outside the reserves becomes more like that inside over time)</li>
-                    <li>distance of detection of spill-over effect (distance from the border and the time after reserve establishment is the variables with the strongest effect on fish abundance; fish caching: A) 500 m and closer; B) 500 to 1000 m; C) 2000 to 3000 m</li>
+                sans prélèvement) vers les zones de pêche restantes est connu sous le nom de spill-over. Le débordement 
+                peut contribuer à la réduction de la pauvreté des populations, bien que son effet soit modulé par le nombre 
+                de pêcheurs et l’intensité de la pêche. En général:
+                <ul>
+                    <li>Fort effet positif de débordement (spill-over) lorsque la pêche est mal gérée</li>
+                    <li>Léger effet de débordement (spill-over) positif lorsque la pêche est bien gérée, mais un effet positif pour les espèces à plus grand mouvement et à croissance plus lente</li>
+                    <li>Évaluer l’effet de débordement (spill-over) d’une réserve capable de fournir un bénéfice net pour une pêcherie (de Garry Russ & Angel Alcala, Enhanced biodiversity beyond marine reserve boundaries: the cup spill-over):<ul>
+                    <li>les poissons prédateurs (les gros poissons prédateurs sont plus fréquents à l’intérieur et juste à l’extérieur des réserves que plus loin)</li>
+                    <li>composition à l’extérieur et à l’intérieur (la composition de la communauté à l’extérieur des réserves se rapproche de celle à l’intérieur au fil du temps)</li>
+                    <li>distance de détection de l’effet de débordement (la distance par rapport à la limite et le temps écoulé après la création de la réserve sont les variables qui ont l’effet le plus fort sur l’abondance des poissons; prédation des poissons: A) 500 m et moins; B) 500 à 1000 m; C) 2000 à 3000 m</li>
                 </ul>',
             'spill_over_variation' => 'SPILL-OVER Variation à l’intérieur et à l’extérieur de l’AMP',
             'variation' => 'Variation à l’intérieur et à l’extérieur de l’AMP',

@@ -335,7 +335,20 @@ return [
             'FunctionalEcosystemArea' => 'Área funcional del ecosistema',
             'BenefitsOfEcosystemServicesArea' => 'Área que se beneficia de los servicios y/o funciones del ecosistema del área protegida',
             'SpillOverArea' => 'Área de efectos de derrame',
-        ]
+        ],
+        'module_info' => '<b>Paisaje</b>: La gobernanza y la gestión vinculadas de un área protegida y sus territorios circundantes 
+            pueden contribuir a la conservación de la biodiversidad y la resiliencia climática, el mantenimiento de los 
+            recursos naturales y los servicios ecosistémicos que garantizan el desarrollo sostenible de las comunidades 
+            locales.<br />
+            <b>Áreas Protegidas y Conservadas (APC)</b>: Son una de las herramientas más eficaces para prevenir la pérdida 
+            de ecosistemas y especies naturales, así como para lograr el desarrollo sostenible a largo plazo, incluidas 
+            las metas 11 y 12 de Aichi y varios Objetivos de Desarrollo Sostenible (ODS). En algunas regiones, las ACP son 
+            el centro del desarrollo económico, a través del turismo, el uso sostenible de los recursos y como fuentes de 
+            agua dulce. Las ACP también contribuyen a la seguridad alimentaria mediante el mantenimiento de los servicios 
+            ecosistémicos que apoyan la agricultura, protegiendo los recursos esenciales para los programas de cultivo y 
+            proporcionando espacio para los sistemas agrícolas y de pastoreo tradicionales respetuosos con la biodiversidad. 
+            Las ACP también desempeñan un papel importante en la resiliencia climática, tanto al almacenar y secuestrar 
+            carbono como al garantizar que los ecosistemas sigan proporcionando bienes y servicios a las sociedades humanas (WWF).',
     ],
 
     'ManagementStaff' => [
