@@ -307,7 +307,7 @@ return [
                 <li>Evaluate the spill-over effect from a reserve is able to provide a net benefit for a fishery (from Garry Russ & Angel Alcala, Enhanced biodiversity beyond marine reserve boundaries: the cup spill-over):<ul>
                 <li>predatory fish (large, predatory fish are more common inside and just outside reserves than farther away)</li>
                 <li>composition outside and inside (the community composition outside the reserves becomes more like that inside over time)</li>
-                <li>distance of detection of spill-over effect (distance from the border and the time after reserve establishment is the variables with the strongest effect on fish abundance; fish caching: A) 500 m and closer; B) 500 to 1000 m; C) 2000 to 3000 m</li></ul></li></ul>',
+                <li>distance of detection of spill-over effect (distance from the border and the time after reserve establishment is the variables with the strongest effect on fish abundance; fish caching: A) 500 m and closer; B) 500 to 1000 m; C) 2000 to 3000 m</li></ul>',
             'spill_over_variation' => 'SPILL-OVER variation inside vs outside MPA',
             'variation' => 'Variation inside vs outside MPA',
             '0_500' => '0 to 500m',

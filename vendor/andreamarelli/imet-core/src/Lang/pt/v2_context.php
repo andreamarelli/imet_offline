@@ -54,7 +54,7 @@ return [
         'module_info' => 'Estabelecer e descrever objectivos de conservação para a governação, parcerias e a designação da área protegida <br/> Os objectivos inseridos abaixo serão utilizados para melhorar a gestão, e mais especificamente para o planeamento, mobilização de recursos (insumos), fases do processo, e para o controlo das actividades de gestão da área protegida'
     ],
     'Objectives2' => [
-        'module_info' => 'XXXXXXXXX Estabelecer e descrever objectivos de conservação para <b>limites, índice de configuração, extension of patrols and law enforcement and territorial context</b> da área protegida<br/>. Os objectivos inseridos abaixo serão utilizados para melhorar a gestão, e mais especificamente para o planeamento, mobilização de recursos (insumos), fases do processo, e para o controlo das actividades de gestão da área protegida'
+        'module_info' => 'Estabelecer e descrever objectivos de conservação relativos aos <b>limites, índice de configuração, extensão das patrulhas e aplicação da lei e contexto territorial</b> da área protegida<br/>. Os objectivos inseridos abaixo serão utilizados para melhorar a gestão, e mais especificamente para o planeamento, mobilização de recursos (insumos), fases do processo, e para o controlo das actividades de gestão da área protegida'
     ],
     'Objectives3' => [
         'module_info' => 'Estabelecer e descrever objectivos de conservação para osde recursos <b>humanos e financeiros/apoio de parcerias e infra-estruturas, equipamento e instalações na gestão </b>da área protegida.<br/> Os objectivos inseridos abaixo serão utilizados para melhorar a gestão, e mais especificamente para o planeamento, mobilização de recursos (insumos), fases do processo, e para o controlo das actividades de gestão da área protegida'
@@ -102,13 +102,13 @@ return [
             'CompleteName' => 'Nome completo da área protegida',
             'CompleteNameWDPA' => 'Nome pelo qual a área protegida é referida',
             'WDPA' => 'Nome da área protegida no sítio da WDPA',
-            'UsedName' => 'Código do sítio WDPA (a partir dos códigos em www.unep-wcmc.org/wdpa/)',
+            'UsedName' => 'Código do sítio WDPA (a partir dos códigos em <a href="http://www.unep-wcmc.org/wdpa/">www.unep-wcmc.org/wdpa/</a>)',
             'Type' => 'tipologia',
             'NationalCategory' => 'Categoria Nacional',
             'IUCNCategory1' => '1ª categoria da UICN',
             'IUCNCategory2' => '2ª categoria da UICN',
             'IUCNCategory3' => '3ª categoria da UICN',
-            'MarineDesignation' => 'XXXXXXXXX Marine designation',
+            'MarineDesignation' => 'Designação marinha',
             'Country' => 'País',
             'CreationYear' => 'Ano de Criacao',
             'Institution' => 'Instituição(ões) supervisora(s)',
@@ -119,32 +119,32 @@ return [
             'ReferenceTextDocument' => '',
             'ReferenceTextValues' => 'Qual é a importância da área protegida e dos seus principais valores para os quais foi designada? (Fornecer uma lista e depois uma breve descrição).',
         ],
-        'module_info' => 'XXXXXXXXX <b>Introduction to typology</b>: IMET identifies three categories of protected areas: (1) Terrestrial (2)
-            Marine and Coastal (3) OECM - Other Effective Conservation Measures by Area.<br />In the Governance section (CTX 1.2)
-            you can refine the management and governance typology of these three protected area typologies. If you are analysing a
-            Protected and Conserved Areas (PCAs), you can specify the territorial context in CTX 2.4.Protected area (general definition):
-            A protected area is a clearly defined geographical space, recognised, dedicated and managed, through legal or other effective means,
-            to achieve the long term conservation of nature with associated ecosystem services and cultural values. (IUCN Definition 2008)',
+        'module_info' => '<b>Introdução à tipologia</b>: O IMET identifica três categorias de áreas protegidas: (1) Terrestre 
+            (2) Marinha e Costeira (3) OECM - Outras Medidas de Conservação Eficazes por Área. Na secção Governança (CTX 1.2) 
+            pode refinar a tipologia de gestão e governança destas três tipologias de áreas protegidas. Se estiver a analisar 
+            uma Área Protegida e Conservada (ZPC), pode especificar o contexto territorial no CTX 2.4.Área Protegida (definição geral): 
+            Uma área protegida é um espaço geográfico claramente definido, reconhecido, dedicado e gerido, através de meios legais ou 
+            outros meios eficazes, para alcançar a conservação a longo prazo da natureza com serviços ecossistémicos e valores 
+            culturais associados. (Definição da UICN 2008)',
         'type_info' => [
-            'terrestrial' => 'XXXXXXXXX A terrestrial protected area (TPA) is a portion of land protected by special restrictions 
-            and laws for the conservation of the natural environment. They include large tracts of land 
-            set aside for the protection of wildlife and its habitat; areas of great natural beauty or unique interest; 
-            areas containing rare forms of plant and animal life; areas representing unusual geologic formation; places 
-            of historic and prehistoric interest; areas containing ecosystems of special importance for scientific 
-            investigation and study; and areas which safeguard the needs of the biosphere. (GEMET- DODERO / WPR) 
-            (we check for a CBD description)',
-            'marine_and_coastal' => 'XXXXXXXXX A marine and coastal protected area (MPA or MCPA) is "an area within or adjacent 
-            to the marine environment, together with its overlying waters and associated flora, fauna, and historical and 
-            cultural features, which has been reserved by legislation or other effective means, including custom, with the 
-            effect that its marine and/or coastal biodiversity enjoys a higher level of protection than its surroundings" 
-            (Convention on Biological Diversity – CBD)',
-            'oecm' => 'XXXXXXXXX A geographically defined area other than a Protected Area, which is governed and managed in ways 
-            that achieve positive and sustained long-term outcomes for the insitu conservation of biodiversity, with 
-            associated ecosystem functions and services and where applicable, cultural, spiritual, socio–economic, and 
-            other locally relevant values” (CBD, 2018)',
-            'icca' => 'XXXXXXXXX A natural and/or modified ecosystems, containing significant biodiversity values, ecological benefits 
-            and cultural values, voluntarily conserved by indigenous peoples and local communities, through customary laws 
-            or other effective means (CBD -Recognising and Supporting ICCAs)'
+            'terrestrial' => 'Uma área protegida terrestre (TPA) é uma porção de terra protegida por restrições e leis especiais 
+                para a conservação do ambiente natural. Incluem grandes extensões de terra destinadas à protecção da vida 
+                selvagem e do seu habitat; áreas de grande beleza natural ou de interesse único; áreas contendo formas 
+                raras de vida vegetal e animal; áreas representando formação geológica invulgar; lugares de interesse 
+                histórico e pré-histórico; áreas contendo ecossistemas de especial importância para a investigação científica 
+                e estudo; e áreas que preservam as necessidades da biosfera. (GEMET- DODERO / WPR) (procuramos uma descrição da CDB)',
+            'marine_and_coastal' => 'Uma área marinha e costeira protegida (MPA ou MCPA) é "uma área dentro ou adjacente ao 
+                meio marinho, juntamente com as suas águas sobrejacentes e características de flora, fauna e históricas e 
+                culturais associadas, que foi reservada pela legislação ou outros meios eficazes, incluindo os costumes, 
+                com o efeito de que a sua biodiversidade marinha e/ou costeira goza de um nível de protecção mais elevado 
+                do que a sua envolvente" (Convenção sobre a Diversidade Biológica - CDB)',
+            'oecm' => 'Uma área geograficamente definida que não seja uma Área Protegida, que é governada e gerida de forma 
+                a alcançar resultados positivos e sustentáveis a longo prazo para a conservação in situ da biodiversidade, 
+                com funções e serviços ecossistémicos associados e, quando aplicável, culturais, espirituais, socioeconómicos 
+                e outros valores localmente relevantes" (CDB, 2018)',
+            'icca' => 'Um ecossistema natural e/ou modificado, contendo valores de biodiversidade significativos, benefícios 
+                ecológicos e valores culturais, voluntariamente conservados pelos povos indígenas e comunidades locais, 
+                através de leis consuetudinárias ou outros meios eficazes (CBD -Recognising and Supporting ICCAs)'
         ]
     ],
 
@@ -249,8 +249,8 @@ return [
             'Administrative Area' => 'Superficie Administrativa',
             'WDPAArea' => 'Superficie de acordo com a WDPA',
             'GISArea' => 'Superficie Actual (GIS para o parque ou autoridade responsável para a área protegida) correspondente ao carregamento dos arquivos',
-            'Terrestrial Area' => 'XXXXXXXXX area protegidas terrestre',
-            'Marine Area' => 'XXXXXXXXX área protegidas marinha e costeira',
+            'Terrestrial Area' => 'Área Protegida Terrestre',
+            'Marine Area' => 'Área protegida marinha e costeira',
             'PercentageNationalNetwork' => '% da Superficie da rede nacional de áreas protegidas',
             'PercentageEcoregion' => '% da Superficie da ecoregião',
             'PercentageTransnationalNetwork' => ' % da superficie da rede transfronteiriça',
@@ -261,10 +261,10 @@ return [
     ],
 
     'Sectors' => [
-        'title' => 'XXXXXXXXX Patrolling and Enforcement: Terrestrial area or sectors and/or Marine and coastal area or sectors',
+        'title' => 'Patrulhamento e Aplicação da Lei: Zona ou sectores terrestres e/ou zona ou sectores marinhos e costeiros',
         'fields' => [
             'Name' => 'Sector',
-            'TerrestrialOrMarine' => 'XXXXXXXXX Terrestrial or marine?',
+            'TerrestrialOrMarine' => 'Terrestre ou marinho?',
             'UnderControlArea' => 'Km² de área coberta por patrulha',
             'UnderControlPatrolKm' => 'Km de patrulhas',
             'UnderControlPatrolManDay' => 'Dia de patrulha',
@@ -277,7 +277,7 @@ return [
     ],
 
     'TerritorialReferenceContext' => [
-        'title' => 'Contexto territorial de base (XXXXXXXXX Landscape) da Área Protegida',
+        'title' => 'Contexto territorial de base (Paisagem) da Área Protegida',
         'fields' => [
             'FunctionalHasNoTakeArea' => 'será a área funcional do ecossistema correspondente a área de proibição de colecta de recursos?',
             'FunctionalArea' => 'Estimativar da área funcional do ecossistema importante para a manutenção dos serviços biodiversidade da área protegida (por exemplo, área de distribuição de gamas domésticas de espécies emblemáticas): a) em Km² e b) como largura da faixa exterior.',
@@ -299,29 +299,32 @@ return [
         ],
         'info' => [
             'spillover_eval' =>
-                'XXXXXXXXX The net movement of individuals from marine reserves (also known as no-take marine protected areas) to 
-                the remaining fishing grounds is known as spill-over. Spill-over can contribute to poverty alleviation, 
-                although its effect is modulated by the number of fishermen and fishing intensity. Generally:<ul>
-                <li>Strong spill-over positive effect when the fishery is mismanaged</li>
-                <li>Light spill-over positive effect when the fishery is well managed but positive effect for species with greater movement and slower growth.</li>
-                <li>Evaluate the spill-over effect from a reserve is able to provide a net benefit for a fishery (from Garry Russ & Angel Alcala, Enhanced biodiversity beyond marine reserve boundaries: the cup spill-over):<ul>
-                <li>predatory fish (large, predatory fish are more common inside and just outside reserves than farther away)</li>
-                <li>composition outside and inside (the community composition outside the reserves becomes more like that inside over time)</li>
-                <li>distance of detection of spill-over effect (distance from the border and the time after reserve establishment is the variables with the strongest effect on fish abundance; fish caching: A) 500 m and closer; B) 500 to 1000 m; C) 2000 to 3000 m</li></ul></li></ul>',
-            'spill_over_variation' => 'XXXXXXXXX SPILL-OVER variation inside vs outside MPA',
-            'variation' => 'XXXXXXXXX Variation inside vs outside MPA',
-            '0_500' => 'XXXXXXXXX 0 to 500m',
-            '500_1000' => '5XXXXXXXXX 00 to 1000m',
-            '2000_3000' => 'XXXXXXXXX 2000 to 3000m',
-            'predatory' => 'XXXXXXXXX Predatory fish',
-            'composition' => 'XXXXXXXXX Fish community composition',
-            'distance' => 'XXXXXXXXX Spill-over effect distance',
+                'O movimento das redes de indivíduos das reservas marinhas (também conhecidas como áreas protegidas marinhas 
+                sem capturas) para os restantes pesqueiros é conhecido como derrame. Os derrames podem contribuir para a 
+                redução da pobreza, embora o seu efeito seja modulado pelo número de pescadores e pela intensidade da pesca. 
+                Em geral:
+                <ul>
+                    <li>Forte efeito transbordamento (spill-over) positivo quando a pesca é mal gerida</li>
+                    <li>Efeito positivo de transbordamento (spill-over) quando a pesca é bem gerida, mas efeito positivo para espécies com maior movimento e crescimento mais lento</li>
+                    <li>Avaliar o efeito de transbordamento (spill-over) de uma reserva é capaz de proporcionar um benefício líquido para uma pesca (de Garry Russ & Angel Alcala, Enhanced biodiversity beyond marine reserve boundaries: the cup spill-over):<ul>
+                    <li>peixes predadores (peixes grandes e predadores são mais comuns dentro e logo fora das reservas do que em sítios mais afastados)</li>
+                    <li>composição fora e dentro (a composição da comunidade fora das reservas torna-se mais parecida com a composição dentro das reservas com o tempo)</li>
+                    <li>distância de detecção do efeito de spill-over (a distância da fronteira e o tempo após o estabelecimento da reserva são as variáveis com maior efeito sobre a abundância de peixe; caching de peixe: A) 500 m e mais próximo; B) 500 a 1000 m; C) 2000 a 3000 m</li>
+                </ul>',
+            'spill_over_variation' => 'Transbordamento (spill-over) variação dentro vs. MPA fora',
+            'variation' => 'Variação dentro vs. MPA fora',
+            '0_500' => '0 a 500m',
+            '500_1000' => '500 a 1000m',
+            '2000_3000' => '2000 a 3000m',
+            'predatory' => 'Peixes predadores',
+            'composition' => 'Composição da comunidade de peixes',
+            'distance' => 'Distância de efeito de derrame',
         ],
         'ratingLegend' => [
             'SpillOverEvalPredatory0_500' => [
-                '-2' => 'XXXXXXXXX Strong negative difference',
-                '-1' => 'XXXXXXXXX Least negative difference',
-                '0' => 'XXXXXXXXX No difference',
+                '-2' => 'Diferença negativa forte',
+                '-1' => 'Menos diferença negativa',
+                '0' => 'Sem diferença',
             ]
         ],
         'categories' => [
@@ -453,10 +456,10 @@ return [
             'group12' => 'Ligações e conexigações da área protegida com o mundo exterior'
         ],
         'predefined_values' => [
-            'group0' => ['Escritórios', 'Postos de Patrulha', 'Pontos de barreira', 'Edifícios científicos', 'Garagem e oficina', 'XXXXXXXXX Room for dive bottles and other dive gear', 'XXXXXXXXX Boat sheds', 'XXXXXXXXX Car-Boat parking', 'Diversos (revista, rádio, etc.)', 'Centro de cuidados de saúde'],
+            'group0' => ['Escritórios', 'Postos de Patrulha', 'Pontos de barreira', 'Edifícios científicos', 'Garagem e oficina', 'Espaço para garrafas de mergulho e outros equipamentos de mergulho', 'Galpões de barcos', 'Estacionamento de carros-barcos', 'Diversos (revista, rádio, etc.)', 'Centro de cuidados de saúde'],
             'group1' => ['Para os oficiais e seus adjuntos', 'Para o pessoal de fiscalização', 'Para o pessoal de apoio'],
             'group2' => ['Hotéis (capacidade para hospedes)', 'Eco-lodges (capacidade para hóspedes)', 'Acampamentos (capacidade para hóspedes)', 'Instalações de acolhimento para turistas', 'Pontos de visualizacao ou pontos de observação', 'Rotas turísticas disponíveis (km)'],
-            'group3' => ['Carros', 'Motociclos/Quadros', 'Bicicletas', 'Barcos', 'XXXXXXXXX Outboard motors', 'Pirogues', 'Aeroplano, microlight', 'Motores pesados'],
+            'group3' => ['Carros', 'Motociclos/Quadros', 'Bicicletas', 'Barcos', 'Motores de popa', 'Pirogues', 'Aeroplano, microlight', 'Motores pesados'],
             'group4' => ['armas', 'Cartuchos', 'Uniformes', 'Racoes (per diem)', 'GPS, bússulas', 'Equipamento de  campismo'],
             'group5' => ['Radios VHF/HF', 'V-SAT', 'Telefones fixos', 'Telefones GSM', 'Telefones Satelite', 'Conexão de Internet'],
             'group6' => ['Computadores de Secretária', 'Impressoras', 'Fotocopiadoras', 'Computadores portáteis'],
@@ -584,8 +587,8 @@ return [
                 'Áreas comerciais',
                 'Áreas turísticas e recreativas',
                 'Áreas de enclave',
-                'XXXXXXXXX Shipping lanes, ports, marine constructions',
-                'XXXXXXXXX Inland activities'
+                'Pistas de navegação, portos, construções marítimas',
+                'Actividades no interior'
             ],
             'group1' => [
                 'Agricultura itinerante',
@@ -604,7 +607,7 @@ return [
             ],
             'group4' => [
                 'Aquacultura de subsistência ou artesanal',
-                'XXXXXXXXX Over nutrient',
+                'Sobre nutriente',
                 'Aquacultura industrial'
             ],
             'group6' => [
@@ -616,8 +619,8 @@ return [
                 'Estradas',
                 'Redes e linhas de utilidade e comunicação (electricidade, telefone, aqueduto, etc.)',
                 'Vias navegáveis marítimas e vias navegáveis para Navios',
-                'XXXXXXXXX Commercial boating',
-                'XXXXXXXXX Private boating',
+                'Navegação comercial',
+                'Náutica de recreio privada',
                 'Corredores aéreos',
                 'Caminhos-de-ferro'
             ],
@@ -642,28 +645,28 @@ return [
                 'Colheita em pequena escala ou de subsistência dos recursos aquáticos',
                 'Colheita em grande escala dos recursos aquáticos',
                 'Colheita de marisco',
-                'XXXXXXXXX Illegal taking/removal of marine fauna',
-                'XXXXXXXXX Overfishing and destructive fishing',
-                'XXXXXXXXX Endangered species exploitation',
-                'XXXXXXXXX Trawlers/purse-seiners',
+                'Tomada/retirada ilegal de fauna marinha',
+                'Sobrepesca e pesca destrutiva',
+                'Exploração de espécies ameaçadas de extinção',
+                'Arrastões/encarregadores',
             ],
             'group12' => [
                 'Actividades recreativas',
                 'Obras e outras actividades',
-                'XXXXXXXXX Noise and other forms of pollution',
-                'XXXXXXXXX Outdoor sports, leisure and recreational activities',
-                'XXXXXXXXX Multiple human intrusions and disturbances',
-                'XXXXXXXXX Recreational fishing hook and line',
-                'XXXXXXXXX Recreational fishing spearfishing',
-                'XXXXXXXXX Bathing and trampling',
-                'XXXXXXXXX Scuba-diving',
+                'Ruído e outras formas de poluição',
+                'Actividades desportivas, de lazer e recreativas ao ar livre',
+                'Múltiplas intrusões e distúrbios humanos',
+                'Anzol e linha de pesca recreativa',
+                'Pesca recreativa de caça submarina',
+                'Banho e atropelamento',
+                'Mergulho em Scuba-diving',
                 'Guerras, tumultos civis e exercícios militares',
             ],
             'group13' => [
                 'Frequência e intensidade dos incêndios',
-                'XXXXXXXXX Human induced changes in hydraulic conditions',
-                'XXXXXXXXX Changes in abiotic conditions',
-                'XXXXXXXXX Changes in biotic conditions'
+                'Alterações induzidas pelo homem nas condições hidráulicas',
+                'Alterações nas condições abióticas',
+                'Alterações nas condições bióticas'
             ],
             'group14' => [
                 'Captação de águas superficiais (uso doméstico)',
@@ -685,25 +688,25 @@ return [
                 'Material genético introduzido',
                 'Doenças virais ou priónicas',
                 'Doença de causa desconhecida',
-                'XXXXXXXXX Biocenotic evolution',
-                'XXXXXXXXX Interspecific faunal relations',
-                'XXXXXXXXX Multiple ecosystem modifications'
+                'Evolução biocenótica',
+                'Relações faunísticas interespecíficas',
+                'Modificações múltiplas no ecossistema'
             ],
             'group17' => [
                 'Águas residuais e esgotos',
-                'XXXXXXXXX Leaks',
-                'XXXXXXXXX Plastics'
+                'Vazamentos de líquido e gás',
+                'Plásticos'
             ],
             'group18' => [
                 'Mancha de óleo',
-                'XXXXXXXXX Ship discharges',
+                'Descargas de navios',
                 'Vazamentos nas minas'
             ],
             'group19' => [
                 'Carga nutritiva',
                 'Erosão do solo e sedimentação',
                 'Herbicidas e pesticidas',
-                'XXXXXXXXX Watershed-based pollution'
+                'Poluição baseada na bacia hidrográfica'
             ],
             'group20' => [
                 'Resíduos municipais',
@@ -725,7 +728,7 @@ return [
                 'Vulcões',
                 'Terramotos e tsunamis',
                 'Avalanches e desabamentos de terras',
-                'XXXXXXXXX Abiotic natural processes'
+                'Processos naturais abióticos'
             ],
             'group24' => [
                 'Danos e alterações no habitat',
@@ -733,7 +736,7 @@ return [
                 'Temperaturas extremas',
                 'Tempestades e cheias',
                 'Aumento da precipitação e mudanças sazonais',
-                'XXXXXXXXX Warming, acidification, bleaching, deoxygenation'
+                'Aquecimento, acidificação, branqueamento, desoxigenação'
             ],
             'group25' => [
                 'Conflito Homem Fauna Selvagem'
@@ -849,11 +852,11 @@ return [
             'group2' => ['Lenha e biocombustíveis - ilegal', 'Lenha e biocombustíveis - legal', 'Água para a energia - ilegal', 'Água para a energia - legal', 'Fertilizante - ilegal', 'Fertilizante - legal'],
             'group3' => ['Regulação de gás (C sequestro de C)', 'Enterro/remoção/neutralização de resíduos', 'Prevenção da erosão costeira'],
             'group4' => ['Controlo das cheias', 'Controlo da Seca', 'Protecção contra tempestades', 'Controlo da erosão da água', 'Controlo da erosão Ecological', 'Prevenção da erosão costeira'],
-            'group5' => ['Benefícios estéticos (integridade do ecossistema)', 'Ecoturismo e observação da natureza', 'Caminhadas, escaladas de montanhas e recreacao em geral', 'XXXXXXXXX Boating, swimming and diving', 'Mergulho com tubo de respiração, navegação e mergulho', 'Caça ou pesca, se for permitida', 'Pesca tradicional específica'],
+            'group5' => ['Benefícios estéticos (integridade do ecossistema)', 'Ecoturismo e observação da natureza', 'Caminhadas, escaladas de montanhas e recreacao em geral', 'Navegação, natação e mergulho', 'Mergulho com tubo de respiração, navegação e mergulho', 'Caça ou pesca, se for permitida', 'Pesca tradicional específica'],
             'group6' => ['Ciência - Investigação', 'Educação', 'Património cultural'],
             'group7' => ['Simbólico ou histórico', 'Sagrado ou religioso'],
             'group8' => ['conservacao ex situ'],
-            'group9' => ['Produção primária líquida (vegetação)', 'Ciclagem de nutrientes (decomposição e mineralização do lixo)', 'Habitats importantes (nidificação de aves - desova junto ao mar - habitats viveiros)', 'XXXXXXXXX Formation of seascape', 'Habitat de antigas espécies (por exemplo, corais)', 'Polinização (plantas)', 'ciclismo aquático', 'Paisagem marítima: heterogeneidade/complexidade de habitat (apoiando a diversidade)'],
+            'group9' => ['Produção primária líquida (vegetação)', 'Ciclagem de nutrientes (decomposição e mineralização do lixo)', 'Habitats importantes (nidificação de aves - desova junto ao mar - habitats viveiros)', 'Formação da paisagem marítima', 'Habitat de antigas espécies (por exemplo, corais)', 'Polinização (plantas)', 'ciclismo aquático', 'Paisagem marítima: heterogeneidade/complexidade de habitat (apoiando a diversidade)'],
         ],
         'categories' => [
             'title1' => 'Aprovisionamento',

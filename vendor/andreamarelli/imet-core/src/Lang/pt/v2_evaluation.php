@@ -301,13 +301,13 @@ return [
             'Leis e convenções sobre investigação sobre biodiversidade e recursos naturais',
             'Leis sobre direitos de terra',
             'Direito consuetudinário (ver P2)',
-            'XXXXXXXXX Voluntary agreements, including public private partnerships (which can include e.g., voluntary biodiversity offset schemes)',
-            'XXXXXXXXX Taxes, charges, user fees (e.g. entrance fees to marine parks)',
-            'XXXXXXXXX Certification, eco labelling (e.g. MSC Marine Stewardship Council)',
-            'XXXXXXXXX Spatial and temporal fishing closures; limits on number and size of vessels (input controls); other re-strictions or prohibitions on use (e.g. CITES)',
-            'XXXXXXXXX Standards (e.g. MARPOL for ships); bans on dynamite fishing or fishing gear',
-            'XXXXXXXXX Catch limits or quotas (output controls)',
-            'XXXXXXXXX Licenses e.g. aquaculture and offshore windfarms'
+            'Acordos voluntários, incluindo parcerias público-privadas (que podem incluir, por exemplo, esquemas voluntários de compensação da biodiversidade)',
+            'Impostos, encargos, taxas de utilização (por exemplo, taxas de entrada em parques marítimos)',
+            'Certificação, rotulagem ecológica (por exemplo, MSC Marine Stewardship Council)',
+            'Encerramentos de pesca espaciais e temporais; limites de número e tamanho de embarcações (controlos de entrada); outras restrições ou proibições de utilização (por exemplo, CITES)',
+            'Normas (por exemplo, MARPOL para navios); proibição da pesca de dinamite ou artes de pesca',
+            'Limites ou quotas de captura (controlos de saída)',
+            'Licenças e.g. aquacultura e parques eólicos offshore'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -342,11 +342,11 @@ return [
             'Zonas tampão (áreas em redor de uma área protegida, onde são empreendidas medidas especiais de gestão da utilização dos recursos e medidas especiais de desenvolvimento a fim de aumentar o valor de conservação da área protegida)',
             'Corridores',
             'Integridade das bacias hidrográficas',
-            'XXXXXXXXX No-Use zone',
-            'XXXXXXXXX No-take zone',
-            'XXXXXXXXX Buffer zones for traditional use',
-            'XXXXXXXXX Buffer zones for educational and/or recreational activities',
-            'XXXXXXXXX Multi-use zone'
+            'Zona de não utilização (No-Use zone)',
+            'Zona de não tomada (No-take zone)',
+            'Zonas tampão para uso tradicional',
+            'Zonas tampão para actividades educativas e/ou recreativas',
+            'Zona multiuso'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -388,8 +388,8 @@ return [
             'Demarcação utilizando a fonte oficial de dados de referência',
             'Limites registados com coordenadas geográficas (grau, min, seg)',
             'Demarcação de zonas de utilização de AP (zoneamento)',
-            'XXXXXXXXX Demarcation of boundaries, or part of them, that are ambulatory [e.g. banks, rivers, etc.] and may need to be revised',
-            'XXXXXXXXX Demarcation by natural elements using a clear statement (e.g. tidal or river flooding data – average low water, average high water, etc.)'
+            'Demarcação de fronteiras, ou parte delas, que são ambulatórias [por exemplo, margens, rios, etc.] e podem precisar de ser revistas',
+            'Demarcação por elementos naturais utilizando uma declaração clara (por exemplo, dados de marés ou de inundações fluviais - média de águas baixas, média de águas altas, etc.)'
         ],
         'ratingLegend' => [
             'Boundaries' => [
@@ -927,8 +927,8 @@ return [
             'Comments' => 'Comentários/Explicação',
         ],
         'groups' => [
-            'group0' => 'XXXXXXXXX Ranger patrol management',
-            'group1' => 'XXXXXXXXX Sea ranger patrol management',
+            'group0' => 'Gestão de patrulhas de Ranger',
+            'group1' => 'Gestão de patrulhas de guarda-marinha',
         ],
         'predefined_values' => [
             'group0' => [
@@ -949,15 +949,15 @@ return [
                 'Utilização de informações SMART-RBM para realizar relatórios e informacoes breves sobre o patrulhamento'
             ],
             'group1' => [
-                'XXXXXXXXX Enforcement strategies that combine technology with sea patrols (satellite monitoring and hydrophones, electronic sensors, etc.)',
-                'XXXXXXXXX Use of visual and basic electronic sensors for sea patrols (radar, optical/infrared)',
-                'XXXXXXXXX Protection achieved through a combination of enforcement and collaboration with communities',
-                'XXXXXXXXX Use of collaborative surveillance (real time and large area coverage, low investments vs time interval and recurring coasts, regulations and incentives, transceivers deactivated)',
-                'XXXXXXXXX Use of non-collaborative (technology: radar, optical/infrared, radio monitoring vs technology poor performance, qualified personnel)',
-                'XXXXXXXXX Integration between collaborative and non-collaborative surveillance systems in the protected area.',
-                'XXXXXXXXX Enforcement patrols held during the night and other random hours',
-                'XXXXXXXXX Regular participation in specialized training (International Maritime Organization –IMO- basic training, reading and using nautical charts, search and rescue, basic outboard motor maintenance course, etc.)',
-                'XXXXXXXXX Continuous update and distribution of a simple fact sheet outlining zoning, regulations, restrictions, and fines or sanctions',
+                'Não colaborativo (tecnologia: dados digitais, monitorização aérea, etc.). Tecnologia Vs, mau desempenho, rangers qualificados)',
+                'Utilização de sensores electrónicos visuais e básicos para patrulhas marítimas (radar, óptico/infravermelho)',
+                'Protecção conseguida através de uma combinação de aplicação e colaboração com as comunidades',
+                'Utilização de vigilância colaborativa (cobertura em tempo real e de grandes áreas, baixos investimentos versus intervalos de tempo e costas recorrentes, regulamentos e incentivos, transceptores desactivados)',
+                'Utilização de não-colaborativo (tecnologia: radar, óptico/infravermelho, monitorização de rádio vs. mau desempenho tecnológico, pessoal qualificado)',
+                'Integração entre sistemas de vigilância colaborativa e não colaborativa na área protegida',
+                'Patrulhas de aplicação da lei realizadas durante a noite e outras horas aleatórias',
+                'Participação regular em formação especializada (Organização Marítima Internacional -IMO- formação básica, leitura e utilização de cartas náuticas, busca e salvamento, curso básico de manutenção de motores fora de borda, etc.)',
+                'Actualização contínua e distribuição de uma simples folha de factos delineando o zoneamento, regulamentos, restrições e multas ou sanções',
             ]
         ],
         'ratingLegend' => [
@@ -1002,16 +1002,16 @@ return [
                 'Colaboração inter-agências com ONG (por exemplo, EAGLE Network, África Central/Oeste)'
             ],
             'group0b' => [
-                'XXXXXXXXX Intelligence and investigation units orienting and supporting sea patrol operations',
-                'XXXXXXXXX Detection and punishment of the illegal activities (such as fisheries and harvesting)',
-                'XXXXXXXXX Knowledge of boarding legal requirements',
-                'XXXXXXXXX Boarding protocols: inspections, required documents, what to check and look for, documenting the inspection',
-                'XXXXXXXXX Interrogating and confronting suspicious crews on illegal activities',
-                'XXXXXXXXX Standardized boarding report used consistently and correctly',
-                'XXXXXXXXX Level of personal security during boarding',
-                'XXXXXXXXX Use of a risk assessment model (GAR -GREEN-AMBER-RED or equivalent/other)',
-                'XXXXXXXXX Use of database for recording and tracking information on violations',
-                'XXXXXXXXX Collaboration with NGOs specialised in marine laws, enforcement, etc. (e.g. Environmental Law Institute (ELI) Ocean Program)'
+                'Unidades de inteligência e investigação que orientam e apoiam as operações de patrulha marítima',
+                'Detecção e punição das actividades ilegais (como a pesca e a colheita)',
+                'Conhecimento dos requisitos legais de embarque',
+                'Protocolos de embarque: inspecções, documentos necessários, o que verificar e procurar, documentação da inspecção',
+                'Interrogar e confrontar tripulações suspeitas sobre actividades ilegais',
+                'Relatório de embarque padronizado utilizado de forma consistente e correcta',
+                'Nível de segurança pessoal durante o embarque',
+                'Utilização de um modelo de avaliação de risco (GAR -GREEN-AMBER-RED or ou equivalente/outro)',
+                'Utilização de base de dados para registo e acompanhamento de informações sobre violações',
+                'Colaboração com ONG especializadas em leis marinhas, aplicação, etc. (por exemplo, Environmental Law Institute (ELI) Ocean Program)'
             ],
             'group1' => [
                 'Gestão da cena do crime',
@@ -1022,12 +1022,12 @@ return [
                 'Acórdãos obtidos em tribunal'
             ],
             'group1b' => [
-                'XXXXXXXXX Training workshops for judges, attorneys, and lawyers on marine and fisheries-related rules and regulations',
-                'XXXXXXXXX Ability to seize and detain vessels after transgression',
-                'XXXXXXXXX Ability to restrict sailing within the MPA borders by issuing authorization permits',
-                'XXXXXXXXX Seizure of fishing gear',
-                'XXXXXXXXX Ability to enforce temporary suspension of permits for ships, crew members, or ship-owners',
-                'XXXXXXXXX Ability to revoke of operating licenses for ships, ship-owners, agents, maritime personnel, or fishers',
+                'Workshops de formação para juízes, advogados e advogados sobre normas e regulamentos marinhos e relacionados com a pesca',
+                'Capacidade de apreender e deter navios após transgressã',
+                'Capacidade de restringir a navegação dentro das fronteiras da MPA através da emissão de autorizações',
+                'Apreensão de artes de pesca',
+                'Capacidade de impor a suspensão temporária das autorizações para navios, tripulantes ou armadores',
+                'Capacidade de revogação de licenças de exploração de navios, armadores, agentes, pessoal marítimo, ou pescadores',
             ],
         ],
         'ratingLegend' => [
@@ -1147,10 +1147,10 @@ return [
                 'Fornecimento de energia, ligação eléctrica',
                 'Fornecimento de água',
                 'Apoio à construção, manutenção e melhoramento de estradas externas',
-                'XXXXXXXXX Support for human-wildlife conflict resolution–compensation',
-                'XXXXXXXXX Support small scale fisheries',
-                'XXXXXXXXX Support for the construction of boat sheds',
-                'XXXXXXXXX Support for the construction of boat parking'
+                'Apoio à resolução de conflitos humano-vida selvagem-compensação',
+                'Apoiar a pesca em pequena escala',
+                'Apoio para a construção de hangares de barcos',
+                'Apoio para a construção de estacionamento de barcos'
             ],
             'group1' => [
                 'Reforço da segurança na zona',
@@ -1548,38 +1548,38 @@ return [
     ],
 
     'AreaDominationMPA' => [
-        'title' => 'XXXXXXXX Enforcement in MPA',
+        'title' => 'Aplicação da lei em MPA',
         'fields' => [
-            'Activity' => 'XXXXXXXX Range of activities subject to analysis',
+            'Activity' => 'Gama de actividades sujeitas a análise',
             'Patrol' => 'Area covered by patrols',
             'RapidIntervention' => 'Rapid intervention capacity',
-            'DetectionRemoteSensing' => 'XXXXXXXX Detection via remote-sensing tools (ie vessel monitoring systems VMS)',
-            'SpecialMeansRapidIntervention' => 'XXXXXXXX Special means supporting rapid intervention',
+            'DetectionRemoteSensing' => 'Detecção através de ferramentas de detecção remota (ou seja, sistemas de monitorização de navios VMS)',
+            'SpecialMeansRapidIntervention' => 'Significado especial de apoio à intervenção rápida',
         ],
         'groups' => [
-            'group0' => 'XXXXXXXX Sanctuary',
-            'group1' => 'XXXXXXXX No-take areas / Marine reserve',
-            'group2' => 'XXXXXXXX Buffer zones for traditional use',
-            'group3' => 'XXXXXXXX Buffer zones for educational and/or recreational activities',
-            'group4' => 'XXXXXXXX Dockside enforcement for vessels that come to port'
+            'group0' => 'Santuário',
+            'group1' => 'Zonas de não consumo (No-take areas) / Reserva marinha',
+            'group2' => 'Zonas tampão para uso tradicional',
+            'group3' => 'Zonas amortecedoras para actividades educativas e/ou recreativas',
+            'group4' => 'Aplicação da doca para embarcações que chegam ao porto'
         ],
         'predefined_values' => [
             'group0' => [
-                'XXXXXXXX All activities/uses prohibited'
+                'Todas as actividades/utilizações proibidas'
             ],
             'group1' => [
-                'XXXXXXXX Prohibited activities (e.g. fishing or extraction of any kind, anchoring, boating, dumping, etc.)',
-                'XXXXXXXX Allowed activities (e.g. research and monitoring, etc.)'
+                'Actividades proibidas (por exemplo, pesca ou extracção de qualquer tipo, ancoragem, navegação, despejo, etc.)',
+                'Actividades permitidas (por exemplo, investigação e monitorização, etc.)'
             ],
             'group2' => [
-                'XXXXXXXX Prohibited activities (e.g. illegal fishing and specified legal fishing methods, anchoring, dumping)',
-                'XXXXXXXX Allowed activities (e.g. limited and specified traditional fishing and boating, swimming and diving, anchoring on mooring buoys, research, etc.) '
+                'Actividades proibidas (por exemplo, pesca ilegal e métodos de pesca legais especificados, ancoragem, descarga)',
+                'Actividades permitidas (por exemplo, pesca e navegação tradicional limitada e especificada, natação e mergulho, ancoragem em bóias de amarração, investigação, etc.)'
             ],
             'group3' => [
-                'XXXXXXXX Allowed activities (e.g. limited and specified traditional fishing and boating, swimming and diving, anchoring on mooring buoys, research and education, etc.)'
+                'Actividades permitidas (por exemplo, pesca e navegação tradicional limitada e especificada, natação e mergulho, ancoragem em bóias de amarração, investigação e educação, etc.)'
             ],
             'group4' => [
-                'XXXXXXXX Activities used to gather information that may that shed light on patterns of illicit behaviours. Dockside strategies should be tailored to promote the most appropriate enforcement for large MPAs or to address enforcement problems in smaller, near-shore MPAs.'
+                'Actividades utilizadas para recolher informações que possam lançar luz sobre padrões de comportamentos ilícitos. As estratégias das docas devem ser adaptadas para promover a aplicação mais apropriada para os grandes MPAs ou para resolver problemas de aplicação em MPAs mais pequenos e próximos da costa'
             ],
         ],
         'ratingLegend' => [
@@ -1597,8 +1597,8 @@ return [
             ],
         ],
         'module_info_EvaluationQuestion' => [
-            'XXXXXXXX What is the current extent of enforcement in MPA?',
-            'XXXXXXXX Enforcement in MPA refers to the ability of park management to create presence in a given area, for example through regular patrols surveys, rapid interventions or airborne surveillance or detection via remote-sensing tools. Where required, this presence needs to be imposed frequently and effectively to address threats such as poaching or illegal activities. The aim of high enforcement in MPA is to prevent or minimise illegal activities affecting the biodiversity, cultural or historical values, and to enforce the protection of the protected area and its boundaries'
+            'Qual é a actual extensão da aplicação da lei na MPA?',
+            'A aplicação da MPA refere-se à capacidade da gestão do parque para criar presença numa determinada área, por exemplo através de levantamentos regulares de patrulhas, intervenções rápidas ou vigilância aérea ou detecção através de ferramentas de detecção remota. Quando necessário, esta presença tem de ser imposta com frequência e eficácia para enfrentar ameaças tais como a caça furtiva ou actividades ilegais. O objectivo de uma fiscalização elevada na MPA é prevenir ou minimizar as actividades ilegais que afectam a biodiversidade, os valores culturais ou históricos, e impor a protecção da área protegida e dos seus limites'
         ],
         'module_info_Rating' => [
             'Evaluate the area domination based on the percentage of the protected area’s surface area where the management is present or can be present through (A) patrols surveys; (B) rapid interventions; (C) using special means'
@@ -1696,8 +1696,8 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-                'XXXXXXXXX Local activities strengthened (food production, small-scale farming, small-scale fishing, handicraft, services for the protected area, etc.)',
-                'XXXXXXXXX Support to local business (power supply, water supply, commerce, roads between villages, boat sheds, boat parking, etc.)',
+                'Actividades locais reforçadas (produção alimentar, agricultura em pequena escala, pesca em pequena escala, artesanato, serviços para a área protegida, etc.)',
+                'Apoio às empresas locais (abastecimento de energia eléctrica, abastecimento de água, comércio, estradas entre aldeias, barracões de barcos, estacionamento de barcos, etc.)',
                 'Provisão de serviços ecossistémicos (alimentos, material rustico, etc)',
                 'Rendimento turístico',
                 'Conflito entre homem e fauna selvagem',

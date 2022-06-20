@@ -134,7 +134,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
                     <th>{!! trans('imet-core::v2_context.TerritorialReferenceContext.info.2000_3000') !!}</th>
                 </tr>
             </thead>
-            <tb>
+            <tbody>
                 <tr>
                     <td>{!! trans('imet-core::v2_context.TerritorialReferenceContext.info.predatory') !!}</td>
                     <td>
@@ -207,7 +207,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
                         ])
                     </td>
                 </tr>
-            </tb>
+            </tbody>
         </table>
 
     @elseif($field['name']!=='FunctionalKm'

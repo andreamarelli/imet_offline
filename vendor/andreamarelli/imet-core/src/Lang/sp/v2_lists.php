@@ -36,8 +36,8 @@ return [
     ],
 
     'PaType' => [
-        'terrestrial'           => 'XXXXXXXXX Terrestrial',
-        'marine_and_coastal'    => 'XXXXXXXXX Marine and coastal',
+        'terrestrial'           => 'Terrestre',
+        'marine_and_coastal'    => 'Marina y costera',
         'oecm_terrestrial'      => 'OECMs (Other effective area-based conservation measures) - Terrestrial',
         'oecm_marine'           => 'OECMs (Other effective area-based conservation measures) - Marine',
         'icca_terrestrial'      => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Terrestrial',
@@ -45,26 +45,26 @@ return [
     ],
 
     'IUCNDesignation' => [
-        'IA'    => 'XXXXXXXXX IA Strict Nature Reserve',
-        'IB'    => 'XXXXXXXXX IB Wilderness Area',
-        'II'    => 'XXXXXXXXX II National Park',
-        'III'   => 'XXXXXXXXX III Natural Monument or Feature',
-        'IV'    => 'XXXXXXXXX IV HABITAT/Species Management Area',
-        'V'     => 'XXXXXXXXX V Protected Seascape',
-        'VI'    => 'XXXXXXXXX VI Protected Area with Sustainable Use of Natural Resources',
+        'IA'    => 'IA Reserva Natural Estricta ',
+        'IB'    => 'IB Área natural silvestre',
+        'II'    => 'II Parque Nacional',
+        'III'   => 'III Monumento o elemento natural',
+        'IV'    => 'IV Área de manejo de hábitats / especies',
+        'V'     => 'V Paisaje terrestre y marino protegido',
+        'VI'    => 'VI Área protegida manejada',
         'not_reported' => 'Not reported'
     ],
 
     'MarineDesignation' => [
-        'XXXXXXXXX No-Entry zone',
-        'XXXXXXXXX No-Take zone',
-        'XXXXXXXXX Multi-purposes MPA - Buffer zones for traditional use',
-        'XXXXXXXXX Multi-purposes MPA - Buffer zones for educational and/or recreational activities',
-        'XXXXXXXXX Multi-purposes MPA - Other',
-        'XXXXXXXXX Marine reserves',
-        'XXXXXXXXX Wildlife refuges',
-        'XXXXXXXXX Fish management zone',
-        'XXXXXXXXX Other',
+        'Zona de exclusión (No-Entry zone)',
+        'Zona de no captura (No-Take zone)',
+        'AMP polivalente - Zonas de amortiguación para usos tradicionales',
+        'AMP polivalente - Zonas de amortiguación para actividades educativas y/o recreativas',
+        'AMP polivalente - Otros ',
+        'Reservas marinas',
+        'Refugios de vida silvestre',
+        'Zona de gestión pesquera',
+        'Otros',
     ],
 
     'EcoType' => [
@@ -108,13 +108,13 @@ return [
     ],
 
     'GovernanceType' => [
-        'XXXXXXXXX Community-based conservation (CBC)',
-        'XXXXXXXXX CBM (Community-based management (CBM)',
-        'XXXXXXXXX CBA (Conservation Based Area)',
-        'XXXXXXXXX Locally Managed Marine Areas - LMMA',
-        'XXXXXXXXX Indigenous Community Conserved Areas - ICCAs',
-        'XXXXXXXXX Protected and Conserved Areas (PCAs)',
-        'XXXXXXXXX Other'
+        'Conservación basada en la comunidad (Community-based conservation-CBC)',
+        'Gestión basada en la comunidad (Community-based management-CBM)',
+        'Área basada en la conservación (Conservation Based Area-CBA)',
+        'Áreas marinas gestionadas localmente (Locally Managed Marine Areas-LMMA)',
+        'Áreas Conservadas por Comunidades Indígenas (Indigenous Community Conserved Areas-ICCAs)',
+        'Áreas Protegidas y Conservadas (Protected and Conserved Areas-PCAs)',
+        'Otros'
     ],
 
     'TerrestrialOrMarine' => [

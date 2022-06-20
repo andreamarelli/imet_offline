@@ -45,26 +45,26 @@ return [
     ],
 
     'IUCNDesignation' => [
-        'IA'    => 'XXXXXXXXX IA Strict Nature Reserve',
-        'IB'    => 'XXXXXXXXX IB Wilderness Area',
-        'II'    => 'XXXXXXXXX II National Park',
-        'III'   => 'XXXXXXXXX III Natural Monument or Feature',
-        'IV'    => 'XXXXXXXXX IV HABITAT/Species Management Area',
-        'V'     => 'XXXXXXXXX V Protected Seascape',
-        'VI'    => 'XXXXXXXXX VI Protected Area with Sustainable Use of Natural Resources',
+        'IA'    => 'IA Réserve naturelle intégrale',
+        'IB'    => 'IB Zone de nature sauvage',
+        'II'    => 'II Parc national',
+        'III'   => 'III Natural Monument or Feature',
+        'IV'    => 'IV Aire de gestion des habitats/espèces',
+        'V'     => 'V Paysage terrestre/marin protégé',
+        'VI'    => 'VI Zone de gestion de ressources protégées',
         'not_reported' => 'Not reported'
     ],
 
     'MarineDesignation' => [
-        'XXXXXXXXX No-Entry zone',
-        'XXXXXXXXX No-Take zone',
-        'XXXXXXXXX Multi-purposes MPA - Buffer zones for traditional use',
-        'XXXXXXXXX Multi-purposes MPA - Buffer zones for educational and/or recreational activities',
-        'XXXXXXXXX Multi-purposes MPA - Other',
-        'XXXXXXXXX Marine reserves',
-        'XXXXXXXXX Wildlife refuges',
-        'XXXXXXXXX Fish management zone',
-        'XXXXXXXXX Other',
+        'Zone d’interdiction d’accès (No-Entry zone)',
+        'Zone de non-prélèvement (No-Take zone)',
+        'AMP à buts multiples — Zones tampons pour l’utilisation traditionnelle',
+        'AMP à buts multiples — Zones tampons pour les activités éducatives et/ou récréatives',
+        'AMP à buts multiples — Autre ',
+        'Réserves marines ',
+        'Refuges pour la faune sauvage',
+        'Zone de gestion de pêche',
+        'Autre',
     ],
 
     'EcoType' => [
@@ -108,13 +108,13 @@ return [
     ],
 
     'GovernanceType' => [
-        'XXXXXXXXX Community-based conservation (CBC)',
-        'XXXXXXXXX CBM (Community-based management (CBM)',
-        'XXXXXXXXX CBA (Conservation Based Area)',
-        'XXXXXXXXX Locally Managed Marine Areas - LMMA',
-        'XXXXXXXXX Indigenous Community Conserved Areas - ICCAs',
-        'XXXXXXXXX Protected and Conserved Areas (PCAs)',
-        'XXXXXXXXX Other'
+        'Conservation à base communautaire (CBC - Community-based conservation)',
+        'Gestion à base communautaire (CBM - Community-based managemen)',
+        'Aire basée sur la conservation (CBA - Conservation Based Area)',
+        'Aires marines gérées localement (LMMA - Locally Managed Marine Areas)',
+        'Aires conservées par les communautés autochtones (ICCAs - ndigenous Community Conserved Areas)',
+        'Aires protégées et conservées (PCAs - Protected and Conserved Areas)',
+        'Autre'
     ],
 
     'TerrestrialOrMarine' => [
