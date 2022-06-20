@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/andreamarelli/imet-core.git",
-                "reference": "8ad095c8f70b3d5b493049975d55411927eda34b"
+                "reference": "6fa0f12728106cae5c7399c0347b54383a0cfd53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/8ad095c8f70b3d5b493049975d55411927eda34b",
-                "reference": "8ad095c8f70b3d5b493049975d55411927eda34b",
+                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/6fa0f12728106cae5c7399c0347b54383a0cfd53",
+                "reference": "6fa0f12728106cae5c7399c0347b54383a0cfd53",
                 "shasum": ""
             },
             "require": {
@@ -23,7 +23,7 @@
             "require-dev": {
                 "orchestra/testbench": "^6.0"
             },
-            "time": "2022-06-20T13:01:16+00:00",
+            "time": "2022-06-20T14:27:13+00:00",
             "type": "library",
             "extra": {
                 "laravel": {
@@ -61,12 +61,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/andreamarelli/modular-forms.git",
-                "reference": "ee93c1b3752ef00ef45c5ef55522c39a6a6e6d67"
+                "reference": "e988c69fccd8daf4ae0a06c9444d8e61138e2ff6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/modular-forms/zipball/ee93c1b3752ef00ef45c5ef55522c39a6a6e6d67",
-                "reference": "ee93c1b3752ef00ef45c5ef55522c39a6a6e6d67",
+                "url": "https://api.github.com/repos/andreamarelli/modular-forms/zipball/e988c69fccd8daf4ae0a06c9444d8e61138e2ff6",
+                "reference": "e988c69fccd8daf4ae0a06c9444d8e61138e2ff6",
                 "shasum": ""
             },
             "require": {
@@ -86,7 +86,7 @@
             "require-dev": {
                 "orchestra/testbench": "^6.0"
             },
-            "time": "2022-06-15T18:46:22+00:00",
+            "time": "2022-06-17T12:05:37+00:00",
             "type": "library",
             "extra": {
                 "laravel": {

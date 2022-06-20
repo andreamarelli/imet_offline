@@ -331,7 +331,20 @@ return [
             'FunctionalEcosystemArea' => 'Área Funcional de ecossistema',
             'BenefitsOfEcosystemServicesArea' => 'Area que beneficia dos servicos ecossistémicos da área protegida',
             'SpillOverArea' => 'Area dos efeitos de derrame',
-        ]
+        ],
+        'module_info' => '<b>Paisagem</b>: A governação e gestão ligadas de uma área protegida e dos seus territórios circundantes 
+            podem contribuir para a conservação da biodiversidade e resiliência climática, manutenção dos recursos naturais 
+            e serviços ecossistémicos que asseguram o desenvolvimento sustentável das comunidades locais.<br />
+            <b>Áreas Protegidas e Conservadas (ZCAs)</b>: São uma das ferramentas mais eficazes para prevenir a perda de 
+            ecossistemas naturais e espécies, bem como para alcançar um desenvolvimento sustentável a longo prazo, incluindo 
+            os objectivos 11 e 12 de Aichi e vários Objectivos de Desenvolvimento Sustentável (ODS). Em algumas regiões, as 
+            APC são o centro do desenvolvimento económico, através do turismo, da utilização sustentável dos recursos e como 
+            fontes de água doce. Os APC também contribuem para a segurança alimentar através da manutenção dos serviços 
+            ecossistémicos que apoiam a agricultura, protegendo os recursos essenciais para os programas de cultivo, e 
+            fornecendo espaço para os sistemas tradicionais de agricultura e pastagem amigos da biodiversidade. Os APC 
+            também têm um papel importante a desempenhar na resiliência climática, tanto através do armazenamento e 
+            sequestro de carbono, como assegurando que os ecossistemas continuem a fornecer bense serviços às sociedades 
+            humanas (WWF).'
     ],
 
     'ManagementStaff' => [

@@ -28,7 +28,13 @@ $two_cols = $two_cols ?? false;
         @if($two_cols)
             <main class="two-col">
                 <nav class="sidebar">
-                    @yield('page_sidebar')
+                    <div class="sidebar_menu_anchor_mobile">
+                        <i class="fas fa-bars"></i>
+                        @yield('page_sidebar_anchor_label')
+                    </div>
+                    <div class="sidebar_menu">
+                        @yield('page_sidebar')
+                    </div>
                 </nav>
                 <section class="content">
                     @yield('page_content')

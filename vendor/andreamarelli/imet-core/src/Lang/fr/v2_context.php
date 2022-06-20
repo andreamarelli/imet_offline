@@ -335,7 +335,18 @@ return [
             'FunctionalEcosystemArea' => 'Aire fonctionnelle de l’écosystème',
             'BenefitsOfEcosystemServicesArea' => 'Zone qui bénéficie des services écosystémiques fournis par l’aire protégée',
             'SpillOverArea' => 'Zone de débordement (spill-over)',
-        ]
+        ],
+        'module_info' => '<b>Landscape</b>: Linked governance and management of a protected area and its surrounding territories 
+          can contribute to biodiversity conservation and climate resilience, maintenance of natural resources and ecosystem 
+          services that ensure sustainable development of local communities. <br />
+          <b>Protected and Conserved Areas (PCAs)</b>: They are one of the most effective tools for preventing loss of 
+          natural ecosystems and species, as well as to achieve long-term sustainable development, including Aichi targets 
+          11 and 12 and several Sustainable Development Goals (SDGs). In some regions, PCAs are the center of economic 
+          development, through tourism, sustainable use of resources and as sources of freshwater. PCAs also contribute 
+          to food security through maintenance of the ecosystem services that support agriculture, by protecting resources 
+          essential for crop breeding programmes, and by providing space for traditional biodiversity-friendly farming and 
+          grazing systems. PCAs also have a major role to play in climate resilience, both by storing and sequestering carbon, 
+          and by ensuring that ecosystems continue to provide goods and services to human societies (WWF).',
     ],
 
     'ManagementStaff' => [

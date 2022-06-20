@@ -3437,65 +3437,67 @@ main {
     main.two-col > nav.sidebar {
       width: 35%;
       padding: 8% 45px 5% 0; }
-      main.two-col > nav.sidebar h2 {
+      main.two-col > nav.sidebar .sidebar_menu_anchor_mobile {
+        display: none; }
+      main.two-col > nav.sidebar .sidebar_menu h2 {
         font-size: 1.9em;
         margin-bottom: 30px; }
-      main.two-col > nav.sidebar > ul {
+      main.two-col > nav.sidebar .sidebar_menu > ul {
         border-bottom: 1px solid #E5E5E5;
         font-family: Montserrat, sans-serif;
         -webkit-padding-start: 0;
         list-style: none; }
-        main.two-col > nav.sidebar > ul * {
+        main.two-col > nav.sidebar .sidebar_menu > ul * {
           color: #525252;
           font-weight: normal; }
-          main.two-col > nav.sidebar > ul * a:hover {
+          main.two-col > nav.sidebar .sidebar_menu > ul * a:hover {
             text-decoration: none;
             color: #166534; }
-        main.two-col > nav.sidebar > ul > li.selected > ul {
+        main.two-col > nav.sidebar .sidebar_menu > ul > li.selected > ul {
           max-height: none;
           padding: 10px 0 30px; }
-        main.two-col > nav.sidebar > ul > li.selected > a {
+        main.two-col > nav.sidebar .sidebar_menu > ul > li.selected > a {
           font-weight: 700; }
-          main.two-col > nav.sidebar > ul > li.selected > a:after {
+          main.two-col > nav.sidebar .sidebar_menu > ul > li.selected > a:after {
             font-family: "Font Awesome 5 Free";
             content: "\f105";
             position: absolute;
             right: 0;
             top: 50%;
             margin-top: -8px; }
-        main.two-col > nav.sidebar > ul > li > a {
+        main.two-col > nav.sidebar .sidebar_menu > ul > li > a {
           display: block;
           padding: 10px 10px 10px 0;
           font-size: 1.3em;
           position: relative;
           border-top: 1px solid #E5E5E5; }
-        main.two-col > nav.sidebar > ul > li > ul {
+        main.two-col > nav.sidebar .sidebar_menu > ul > li > ul {
           overflow: hidden;
           max-height: 0;
           padding: 0;
           list-style: none;
           transition-property: all;
           transition-duration: .3s; }
-          main.two-col > nav.sidebar > ul > li > ul.hover {
+          main.two-col > nav.sidebar .sidebar_menu > ul > li > ul.hover {
             max-height: 500px;
             padding: 10px 0 30px; }
-          main.two-col > nav.sidebar > ul > li > ul > li > a {
+          main.two-col > nav.sidebar .sidebar_menu > ul > li > ul > li > a {
             display: block;
             padding: 6px 0 6px 20px;
             position: relative; }
-            main.two-col > nav.sidebar > ul > li > ul > li > a:before {
+            main.two-col > nav.sidebar .sidebar_menu > ul > li > ul > li > a:before {
               font-family: "Font Awesome 5 Free";
               content: "\f105";
               position: absolute;
               left: 0; }
-          main.two-col > nav.sidebar > ul > li > ul > li > ul {
+          main.two-col > nav.sidebar .sidebar_menu > ul > li > ul > li > ul {
             font-size: .9em; }
-            main.two-col > nav.sidebar > ul > li > ul > li > ul li {
+            main.two-col > nav.sidebar .sidebar_menu > ul > li > ul > li > ul li {
               list-style: disc; }
-              main.two-col > nav.sidebar > ul > li > ul > li > ul li a {
+              main.two-col > nav.sidebar .sidebar_menu > ul > li > ul > li > ul li a {
                 padding: 5px 0;
                 display: block; }
-      main.two-col > nav.sidebar a.side-button {
+      main.two-col > nav.sidebar .sidebar_menu a.side-button {
         font-family: "Varela Round", sans-serif;
         font-size: .9em;
         display: block;
@@ -3511,14 +3513,14 @@ main {
         transition: background-color 0.36s cubic-bezier(0.4, 0, 1, 1);
         /*text-transform: uppercase;*/
         position: relative; }
-        main.two-col > nav.sidebar a.side-button:hover {
+        main.two-col > nav.sidebar .sidebar_menu a.side-button:hover {
           background-color: #86EFAC;
           color: #262626;
           text-decoration: none; }
-        main.two-col > nav.sidebar a.side-button img, main.two-col > nav.sidebar a.side-button span.flag-icon {
+        main.two-col > nav.sidebar .sidebar_menu a.side-button img, main.two-col > nav.sidebar .sidebar_menu a.side-button span.flag-icon {
           position: absolute;
           left: 15px;
           top: 20px; }
-        main.two-col > nav.sidebar a.side-button.no_icon {
+        main.two-col > nav.sidebar .sidebar_menu a.side-button.no_icon {
           padding: 18px 12px 18px 12px; }
 
