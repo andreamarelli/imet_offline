@@ -54,6 +54,32 @@ class EcosystemServices extends Modules\Component\ImetModule
         $this->module_info = trans('imet-core::v1_context.EcosystemServices.module_info');
         $this->ratingLegend = trans('imet-core::v1_context.EcosystemServices.ratingLegend');
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'EcosystemServices',
+            'fields' => [
+                'Element', 'Importance', null, null, 'Observations', 'GroupElement'
+            ]
+        ];
+    }
+
+    /**
+     * Review data from SQLITE
+     *
+     * @param $record
+     * @param $sqlite_connection
+     * @return array
+     */
+    protected static function conversionDataReview($record, $sqlite_connection): array
+    {
+        return static::convertGroupLabelToKey($record, 'GroupElement');
     }
 }

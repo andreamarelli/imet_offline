@@ -12,7 +12,8 @@ use AndreaMarelli\ImetCore\Models\Imet\v1;
 use AndreaMarelli\ImetCore\Models\Imet\v2;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ModularForms\Helpers\File\Compress;
+use AndreaMarelli\ImetCore\Models\Report;
+use AndreaMarelli\ModularForms\Helpers\File\Zip;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\HTTP;
 use AndreaMarelli\ModularForms\Helpers\Locale;
@@ -26,6 +27,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 use function imet_offline_version;
 use function redirect;
@@ -39,6 +44,7 @@ class Controller extends __Controller
 {
     use Pame;
     use Backup;
+    use ConvertSQLite;
 
     protected static $form_class = Imet::class;
     protected static $form_view_prefix = 'imet-core::';
@@ -302,23 +308,24 @@ class Controller extends __Controller
     }
 
     /**
-     * export Imet's json in batch (zip file) or if only one is selected as json file
+     * Export IMET json in batch (zip file) or if only one is selected as json file
+     *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
-     * @throws \PhpOffice\PhpSpreadsheet\Exception
-     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
-    public function export_batch(Request $request)
+    public function export_batch(Request $request): BinaryFileResponse
     {
         $imetIds = explode(",", $request->input('selection'));
         $imets = Imet::whereIn('FormID', $imetIds)->get();
+
+        $files = [];
         foreach ($imets as $imet) {
             $files[] = $this->export($imet, true, false);
         }
         $path = $files[0];
         if (count($files) > 1) {
             $fileName = "IMETS_" . count($files) . "_" . date('m-d-Y_hisu') . ".zip";
-            $path = Compress::zipFile($files, $fileName);
+            $path = Zip::compress($files, $fileName);
         }
         return File::download($path);
     }
@@ -328,9 +335,10 @@ class Controller extends __Controller
      *
      * @param Imet $item
      * @param bool $to_file
+     * @param bool $download
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|array
      */
-    public function export(Imet $item, $to_file = true, $download = true)
+    public function export(Imet $item, bool $to_file = true, bool $download = true)
     {
         $imet_id = $item->getKey();
         $imet_form = $item
@@ -348,6 +356,7 @@ class Controller extends __Controller
             'Evaluation' => $imet_form['version'] === 'v1'
                 ? v1\Imet_Eval::exportModules($imet_id)
                 : v2\Imet_Eval::exportModules($imet_id),
+            'Report' => Report::export($imet_id)
         ];
 
         if(ProtectedAreaNonWdpa::isNonWdpa($imet_form['wdpa_id'])){
@@ -378,14 +387,13 @@ class Controller extends __Controller
      * Import a full IMET from json file
      *
      * @param \Illuminate\Http\Request|null $request
-     * @param string|null $json
+     * @param $json
      * @param boolean $returnJson
-     * @return \Illuminate\Http\JsonResponse
+     * @return array|\Illuminate\Http\JsonResponse|string[]
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     * @throws \ReflectionException
      * @throws \Throwable
      */
-    public function import(Request $request, $json = null, $returnJson = true)
+    public function import(Request $request, $json = null, bool $returnJson = true)
     {
         try {
             if ($json === null) {
@@ -397,7 +405,14 @@ class Controller extends __Controller
 
             $imet_version = $json['Imet']['imet_version'] ?? null;
             $version = $json['Imet']['version'];
+
             DB::beginTransaction();
+
+            // Non-Wdpa protected area
+            if(array_key_exists('NonWdpaProtectedArea', $json)){
+                $wdpa_id = ProtectedAreaNonWdpa::import($json['NonWdpaProtectedArea']);
+                $json['Imet']['wdpa_id'] = $wdpa_id;
+            }
 
             if ($version === 'v1') {
                 // Create new form and return ID
@@ -406,20 +421,18 @@ class Controller extends __Controller
                 $modules_imported['Context'] = v1\Imet::importModules($json['Context'], $formID, $imet_version);
                 $modules_imported['Evaluation'] = v1\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
                 Encoder::importModule($formID, $json['Encoders'] ?? null);
+                Report::import($formID, $json['Report'] ?? null);
             } elseif ($version === 'v2') {
-                // Non-Wdpa protected area
-                if(array_key_exists('NonWdpaProtectedArea', $json)){
-                    $wdpa_id = ProtectedAreaNonWdpa::import($json['NonWdpaProtectedArea']);
-                    $json['Imet']['wdpa_id'] = $wdpa_id;
-                }
                 // Create new form and return ID
                 $formID = v2\Imet::importForm($json['Imet']);
                 // Populate Imet & Imet_Eval modules
                 $modules_imported['Context'] = v2\Imet::importModules($json['Context'], $formID, $imet_version);
                 $modules_imported['Evaluation'] = v2\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
                 Encoder::importModule($formID, $json['Encoders'] ?? null);
+                Report::import($formID, $json['Report'] ?? null);
             }
             DB::commit();
+
             $response['modules'] = $modules_imported;
         } catch (Exception $e) {
             DB::rollback();
@@ -500,17 +513,21 @@ class Controller extends __Controller
             $import = new static();
             //and then check if is zip or json
             if (in_array($ext, ['zip'])) {
-                $extractFiles = Compress::extractFilesFromZipFile($uploaded['temp_filename']);
-
+                $uploaded_path = Storage::disk(File::TEMP_STORAGE)->path( $uploaded['temp_filename']);
+                $extractFiles = Zip::extract($uploaded_path);
+                $num_extracted = 0;
                 foreach ($extractFiles as $item) {
-                    $json = json_decode(Upload::getUploadFileContent(['temp_filename' => $item]), true);
-                    $files[] = $import->import(new Request(), $json, false);
-                    File::removeFiles([$item], FILE::PUBLIC_STORAGE, "temp/");
+                    if(Str::endsWith($item, '.json') && $num_extracted < 10){
+                        $json = json_decode(Upload::getUploadFileContent(['temp_filename' => $item]), true);
+                        $files[] = $import->import(new Request(), $json, false);
+                        Storage::disk(File::TEMP_STORAGE)->delete($item);
+                        $num_extracted++;
+                    }
                 }
             } else {
                 $json = json_decode(Upload::getUploadFileContent($uploaded), true);
                 $files[] = $import->import(new Request(), $json, false);
-                File::removeFiles([$uploaded['temp_filename']], FILE::PUBLIC_STORAGE, "temp/");
+                Storage::disk(File::TEMP_STORAGE)->delete($uploaded['temp_filename']);
             }
 
             if (count($files) === 0 || (count($files) === 1 && isset($files[0]) && $files[0]['status'] === 'error')) {

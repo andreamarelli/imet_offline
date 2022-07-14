@@ -59,4 +59,31 @@ class Equipments extends Modules\Component\ImetModule
         parent::__construct($attributes);
 
     }
+
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Equipments',
+            'fields' => [
+                'Resource', 'AdequacyLevel', 'GroupResources'
+            ]
+        ];
+    }
+
+    /**
+     * Review data from SQLITE
+     *
+     * @param $record
+     * @param $sqlite_connection
+     * @return array
+     */
+    protected static function conversionDataReview($record, $sqlite_connection): array
+    {
+        return static::convertGroupLabelToKey($record, 'GroupResources');
+    }
 }

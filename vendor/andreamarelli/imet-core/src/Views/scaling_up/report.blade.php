@@ -16,6 +16,7 @@
     <div id="imet_report">
         <app :scaling_up_id="{{$scaling_up_id}}">
             <template>
+                @include('imet-core::scaling_up.components.scaling_up_template')
                 <div class="container">
                     <div class="row h-150 mb-5">
                         <div class="col-sm text-center">
@@ -23,11 +24,16 @@
                         </div>
                     </div>
                 </div>
+                @include('imet-core::scaling_up.components.navigation_menu', ['templates'=> $templates])
+                <div id="names"></div>
+                <div>
+                    <guidance :text="'imet-core::analysis_report.guidance.special_information'"/>
+                </div>
                 @include('imet-core::scaling_up.components.wdpa_names')
-                @include('imet-core::scaling_up.components.scaling_up_template')
                 @foreach($templates as $key => $template)
                     @include('imet-core::scaling_up.components.'.$template['name'],
                                 [   'name' => $template['name'],
+                                   'code' => $template['code'],
                                    'title' => $template['title'],
                                    'snapshot_id' => $template['snapshot_id'],
                                    'exclude_elements' => $template['exclude_elements'],
@@ -39,16 +45,84 @@
     </div>
 
     <script>
+
+
         new Vue({
             el: '#imet_report',
             data: {
                 url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController::class, 'get_ajax_responses']) }}'
+            },
+            methods: {
+                goTo: function (event) {
+                    let element = event.target.value;
+                    if(element === '#'){
+                        return;
+                    }
+                    if (['process', 'process_pr1_pr6', 'process_pr7_pr9', 'process_pr10_pr12', 'process_pr13_pr14', 'process_pr15_pr16', 'process_pr17_pr18'].includes(element)) {
+                        let event_element = 'analysis_per_element_of_them_management_cycle';
+                        this.$root.$emit(event_element);
+                        setTimeout(() => {
+                            this.$root.$emit('sub_elem_4');
+                        }, 500);
+                        setTimeout(() => {
+                            window.ModularForms.Mixins.Animation.scrollPageTo($('#' + element).offset().top);
+                        }, 500);
+                    } else {
+                        this.$root.$emit(element);
+                        setTimeout(() => {
+                            window.ModularForms.Mixins.Animation.scrollPageToAnchor(element);
+                        }, 500);
+                    }
+
+                }
             }
         });
-    </script>
 
+
+    </script>
     <style>
         @media screen {
+            .popover-header {
+                font-size: 0.9em;
+                font-style: italic;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            .popover-body {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .popover-body a {
+                margin: 3px;
+            }
+
+            .sub-title {
+                font-weight: 600;
+                padding: 8px 8px 8px 10px;
+                background-color: #fafafa;
+                color: #525252;
+                font-size: 1.1rem;
+                line-height: 1.3em;
+                border-top: 1px dashed #d4d4d4;
+                display: block;
+            }
+
+            .sub-title-second {
+                font-weight: normal;
+                font-size: 1.0rem;
+            }
+
+            .scrollButtons {
+                bottom: 120px;
+            }
+
+            .scrollButtons div:hover {
+                background-color: #14532D;
+                color: white;
+            }
+
             .contailer {
                 position: relative;
             }
@@ -96,6 +170,22 @@
             .contailer .smallMenu .standalone div:hover {
                 background-color: #4cae4c;
                 color: Black;
+            }
+
+            .popover-header {
+                font-size: 0.9em;
+                font-style: italic;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            .popover-body {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .popover-body a {
+                margin: 3px;
             }
         }
 

@@ -11,6 +11,9 @@
 /** @var array $vision */
 /** @var array $area */
 /** @var bool $connection */
+/** @var bool $show_api */
+/** @var bool $show_non_wdpa */
+/** @var Array $non_wdpa */
 
 // Force Language
 use Illuminate\Support\Facades\App;
@@ -19,31 +22,6 @@ if ($item->language != App::getLocale()) {
     App::setLocale($item->language);
 }
 
-function score_class($value, $additional_classes=''){
-    if($value===0){
-        $class = 'score_danger';
-    } elseif($value<34){
-        $class = 'score_alert';
-    } elseif($value<51){
-        $class = 'score_warning';
-    } else {
-        $class = 'score_success';
-    }
-    return 'class="'.$class.' '.$additional_classes.'"';
-}
-
-function score_class_threats($value, $additional_classes=''){
-    if($value<-51){
-        $class = 'score_danger';
-    } elseif($value<-34){
-        $class = 'score_alert';
-    } elseif($value<-1){
-        $class = 'score_warning';
-    } else {
-        $class = 'score_success';
-    }
-    return 'class="'.$class.' '.$additional_classes.'"';
-}
 ?>
 
 @extends('layouts.admin')
@@ -67,34 +45,41 @@ function score_class_threats($value, $additional_classes=''){
 
         @include('imet-core::components.heading', ['phase' => 'report'])
 
-        <div class="module-container">
-            <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.general_elements')</div></div>
-            <div class="module-body">
-                <div id="map" v-if=connection></div>
-                <div v-else class="dopa_not_available">@lang('imet-core::common.dopa_not_available')</div>
-                <div style="display: flex;">
-                    @if($connection)
-                        <div id="radar">
-                            <dopa_radar data='@json($dopa_radar)'></dopa_radar>
-                            &copy;Dopa Services
+        @if($show_api)
+            <div class="module-container">
+                <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.general_elements')</div></div>
+                <div class="module-body">
+                    <div id="map" v-if=connection></div>
+                    <div v-else class="dopa_not_available">@lang('imet-core::common.dopa_not_available')</div>
+                    <div style="display: flex;">
+                        @if($connection)
+                            <div id="radar">
+                                <dopa_radar data='@json($dopa_radar)'></dopa_radar>
+                                &copy;Dopa Services
+                            </div>
+                        @endif
+                        <div>
+                            <div><div class="strong">@lang('imet-core::v2_report.country'):</div>{{ $general_info['Country'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.name'):</div>{{ $general_info['CompleteName'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.category'):</div>{{ $general_info['NationalCategory'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.gazetting'):</div>{{ $general_info['CreationYear'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.surface'):</div>{{ $area }} [km2]</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.agency'):</div>{{ $general_info['Institution'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.biome'):</div>{{ $general_info['Biome']  }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.main_values_protected'):</div>{{ $general_info['ReferenceTextValues'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.vision'):</div>{{ $vision['LocalVision'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.mission'):</div>{{ $vision['LocalMission'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.objectives'):</div>{{ $vision['LocalObjective'] ?? '-' }}</div>
                         </div>
-                    @endif
-                    <div>
-                        <div><div class="strong">@lang('imet-core::v2_report.country'):</div>{{ $general_info['Country'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.name'):</div>{{ $general_info['CompleteName'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.category'):</div>{{ $general_info['NationalCategory'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.gazetting'):</div>{{ $general_info['CreationYear'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.surface'):</div>{{ $area }} [km2]</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.agency'):</div>{{ $general_info['Institution'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.biome'):</div>{{ $general_info['Biome']  }}</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.main_values_protected'):</div>{{ $general_info['ReferenceTextValues'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.vision'):</div>{{ $vision['LocalVision'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.mission'):</div>{{ $vision['LocalMission'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.objectives'):</div>{{ $vision['LocalObjective'] ?? '-' }}</div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
+
+        @include('imet-core::v2.report.components.non_wdpa', [
+            'show_non_wdpa' => $show_non_wdpa,
+            'non_wdpa' =>  $non_wdpa
+        ])
 
         <div class="module-container">
             <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.evaluation_elements')</div></div>
@@ -111,13 +96,13 @@ function score_class_threats($value, $additional_classes=''){
                         <th>@lang('imet-core::v1_common.indexes.imet')</th>
                     </tr>
                     <tr>
-                        <td {!! score_class($assessment['global']['context']) !!} >{{ $assessment['global']['context'] }}</td>
-                        <td {!! score_class($assessment['global']['planning']) !!} >{{ $assessment['global']['planning'] }}</td>
-                        <td {!! score_class($assessment['global']['inputs']) !!} >{{ $assessment['global']['inputs'] }}</td>
-                        <td {!! score_class($assessment['global']['process']) !!} >{{ $assessment['global']['process'] }}</td>
-                        <td {!! score_class($assessment['global']['outputs']) !!} >{{ $assessment['global']['outputs'] }}</td>
-                        <td {!! score_class($assessment['global']['outcomes']) !!} >{{ $assessment['global']['outcomes'] }}</td>
-                        <td {!! score_class($assessment['global']['imet_index']) !!} >{{ $assessment['global']['imet_index'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['context']) !!} >{{ $assessment['global']['context'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['planning']) !!} >{{ $assessment['global']['planning'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['inputs']) !!} >{{ $assessment['global']['inputs'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['process']) !!} >{{ $assessment['global']['process'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['outputs']) !!} >{{ $assessment['global']['outputs'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['outcomes']) !!} >{{ $assessment['global']['outcomes'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['imet_index']) !!} >{{ $assessment['global']['imet_index'] }}</td>
                     </tr>
                 </table>
             </div>
@@ -255,7 +240,7 @@ function score_class_threats($value, $additional_classes=''){
             <div class="scrollButtons" v-cloak>
                 {{-- Save --}}
                 <div class="standalone" v-show=status==='changed'>
-                    <form id="imet_report_form" method="post" action="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class, 'report_update'], [$item->getKey()]) }}" style="display: inline-block;">
+                    <form id="imet_report_form" method="post" action="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1::class, 'report_update'], [$item->getKey()]) }}" style="display: inline-block;">
                         @method('PATCH')
                         @csrf
                         <span @click="saveReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('save') !!} {{ ucfirst(trans('modular-forms::common.save')) }}</span>
@@ -407,7 +392,7 @@ function score_class_threats($value, $additional_classes=''){
                     this.error = false;
                     window.axios({
                         method: 'post',
-                        url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class, 'report_update'], ['item' => $item->getKey()]) }}',
+                        url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1::class, 'report_update'], ['item' => $item->getKey()]) }}',
                         data: {
                             _token: window.Laravel.csrfToken,
                             _method: 'PATCH',

@@ -39,6 +39,32 @@ class EcosystemServicesTendance extends Modules\Component\ImetModule
         $this->ratingLegend = trans('imet-core::v1_context.EcosystemServicesTendance.ratingLegend');
 
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'EcosystemServicesTendance',
+            'fields' => [
+                'Value', 'Description', 'DesiredStatus', 'Trend', 'Reliability', 'Notes', 'Group'
+            ]
+        ];
+    }
+
+    /**
+     * Review data from SQLITE
+     *
+     * @param $record
+     * @param $sqlite_connection
+     * @return array
+     */
+    protected static function conversionDataReview($record, $sqlite_connection): array
+    {
+        return static::convertGroupLabelToKey($record, 'Group');
     }
 }

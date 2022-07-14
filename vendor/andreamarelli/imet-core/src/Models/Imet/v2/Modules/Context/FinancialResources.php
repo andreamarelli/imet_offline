@@ -53,12 +53,6 @@ class FinancialResources extends Modules\Component\ImetModule
                 ->Currency ?? null;
     }
 
-//    public static function convert_v1_to_v2($record)
-//    {
-//        $record = static::forceCurrency($record, 'Currency', ['ManagementFinancialPlanCosts', 'OperationalWorkPlanCosts', 'TotalBudget']);
-//        return $record;
-//    }
-
     public static function getTotalBudget($form_id)
     {
         $records = static::getModuleRecords($form_id)['records'];

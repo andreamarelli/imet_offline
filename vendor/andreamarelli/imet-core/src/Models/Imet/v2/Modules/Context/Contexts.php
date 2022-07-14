@@ -31,13 +31,4 @@ class Contexts extends Modules\Component\ImetModule
 
     }
 
-//    public static function convert_v1_to_v2($record)    {
-//        $record = static::replacePredefinedValue(
-//            $record,
-//            'Context',
-//            'Political context (in country)',
-//            'Political context (country)'
-//        );
-//        return $record;
-//    }
 }

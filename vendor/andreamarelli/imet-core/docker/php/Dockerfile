@@ -1,7 +1,5 @@
 ARG PHP_VERSION=7.4
-FROM php:${PHP_VERSION}-fpm-alpine
-
-WORKDIR /var/www/html
+FROM php:${PHP_VERSION}-fpm-alpine3.14
 
 # Update
 RUN apk update
@@ -25,5 +23,18 @@ RUN install-php-extensions \
     pdo_pgsql \
     zip
 
+WORKDIR /var/www/html
+
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Add github token for composer
+ENV COMPOSER_HOME /var/www/.composer
+ARG COMPOSER_GITHUB_TOKEN
+RUN composer config -g github-oauth.github.com ${COMPOSER_GITHUB_TOKEN}
+
+# Use host user (to fix file permission). Required on Linux
+ARG UID
+RUN chown -R ${UID} /var/www/
+USER ${UID}
+

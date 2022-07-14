@@ -53,13 +53,6 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
         return $new_records;
     }
 
-
-//    public static function convert_v1_to_v2($record)
-//    {
-//        $record = static::addField($record, 'EvaluationScore');
-//        return $record;
-//    }
-
     private static function calculateEquipementAdequacy($form_id)
     {
         $adequacy = array_keys(trans('imet-core::v2_context.Equipments.groups'));

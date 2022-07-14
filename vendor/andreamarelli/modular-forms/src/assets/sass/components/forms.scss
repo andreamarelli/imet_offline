@@ -76,6 +76,13 @@ label{
 div.field-disabled{
   display: inline-block;
 }
+.field-error{
+  border-color: $contextual-danger;
+}
+.error-message{
+  color: $contextual-danger;
+  font-weight: bold;
+}
 
 input.captcha-input{
   max-width: 200px;
@@ -492,7 +499,7 @@ nav.steps{
       color: Black;
     }
     &.error{
-      background-color: $red-400;
+      background-color: $contextual-danger;
       color: Black;
     }
     &.scrollToTop, &.scrollToBottom{

@@ -29,8 +29,21 @@ class Contexts extends Modules\Component\ImetModule
 
         $this->module_info = trans('imet-core::v1_context.Contexts.module_info');
 
-
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Contexts',
+            'fields' => [
+                'Context', 'file', 'Summary', 'Source', 'Observations'
+            ]
+        ];
     }
 }

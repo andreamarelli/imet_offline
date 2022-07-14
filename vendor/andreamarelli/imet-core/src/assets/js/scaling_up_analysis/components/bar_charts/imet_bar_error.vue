@@ -50,7 +50,19 @@ export default {
             type: Object,
             default: () => {
             }
-        }
+        },
+        error_color: {
+            type: String,
+            default: ''
+        },
+        inverse_y: {
+            type: Boolean,
+            default: false
+        },
+        inverse_x: {
+            type: Boolean,
+            default: false
+        },
     },
 
     computed: {
@@ -65,9 +77,10 @@ export default {
                     data: legends
                 },
                 ...this.grid(),
-                xAxis: {...this.axis_dimensions_x},
+                xAxis: {...this.axis_dimensions_x, inverse:this.inverse_x},
                 yAxis: {
                     data: indicators,
+                    inverse:this.inverse_y,
                     axisLabel: {
                         fontSize: this.font_size,
                         interval: 0,
@@ -256,7 +269,8 @@ export default {
                     name: 'error',
                     itemStyle: {
                         normal: {
-                            borderWidth: 1.5
+                            borderWidth: 1.5,
+                            color: this.error_color
                         }
                     },
                     renderItem: this.render_item,
@@ -275,6 +289,7 @@ export default {
         draw_chart() {
             if (Object.keys(this.values).length > 0) {
                 this.chart = echarts.init(this.$el);
+
                 this.chart.setOption(this.bar_options);
             }
         }

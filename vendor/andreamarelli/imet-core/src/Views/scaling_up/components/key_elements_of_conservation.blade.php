@@ -1,4 +1,5 @@
-<container_section :id="'{{$name}}'" :title="'{{$title}}'">
+<container_section :id="'{{$name}}'" :title="'{{$title}}'" :code="'{{$code}}'"
+                   :guidance="'imet-core::analysis_report.guidance.key_elements'">
     <template slot-scope="container">
         <div class="row">
             <div class="col-sm">
@@ -7,7 +8,7 @@
                             :loaded_at_once="container.props.show_view"
                             :url=url
                             :parameters="'{{$pa_ids}}'"
-                            :func="'management_context'"
+                            :func="'get_management_context'"
 
                     >
                         <template slot-scope="data">

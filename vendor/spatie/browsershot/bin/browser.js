@@ -16,11 +16,27 @@ const request = args[0].startsWith('-f ')
 
 const requestsList = [];
 
+const consoleMessages = [];
+
+const failedRequests = [];
+
 const getOutput = async (page, request) => {
     let output;
 
     if (request.action == 'requestsList') {
         output = JSON.stringify(requestsList);
+
+        return output;
+    }
+
+    if (request.action == 'consoleMessages') {
+        output = JSON.stringify(consoleMessages);
+
+        return output;
+    }
+
+    if (request.action == 'failedRequests') {
+        output = JSON.stringify(failedRequests);
 
         return output;
     }
@@ -102,6 +118,32 @@ const callChrome = async pup => {
             });
         }
 
+        const contentUrl = request.options.contentUrl;
+        const parsedContentUrl = contentUrl ? contentUrl.replace(/\/$/, "") : undefined;
+        let pageContent;
+
+        if (contentUrl) {
+            pageContent = fs.readFileSync(request.url.replace('file://', ''));
+            request.url = contentUrl;
+        }
+
+        page.on('console',  message => consoleMessages.push({
+            type: message.type(),
+            message: message.text(),
+            location: message.location()
+        }));
+
+        page.on('response', function (response) {
+            if (response.status() >= 200 && response.status() <= 399) {
+                return;
+            }
+
+            failedRequests.push({
+                status: response.status(),
+                url: response.url(),
+            });
+        })
+
         page.on('request', interceptedRequest => {
             var headers = interceptedRequest.headers();
 
@@ -125,12 +167,12 @@ const callChrome = async pup => {
             }
 
             if (request.options && request.options.blockUrls) {
-                request.options.blockUrls.forEach(function(value) {
-                    if (interceptedRequest.url().indexOf(value) >= 0) {
+                for (const element of request.options.blockUrls) {
+                    if (interceptedRequest.url().indexOf(element) >= 0) {
                         interceptedRequest.abort();
                         return;
                     }
-                });
+                }
             }
 
             if (request.options && request.options.extraNavigationHTTPHeaders) {
@@ -140,7 +182,20 @@ const callChrome = async pup => {
                 }
             }
 
-            interceptedRequest.continue({headers});
+            if (pageContent) {
+                const interceptedUrl = interceptedRequest.url().replace(/\/$/, "");
+
+                // if content url matches the intercepted request url, will return the content fetched from the local file system
+                if (interceptedUrl === parsedContentUrl) {
+                    interceptedRequest.respond({
+                        headers,
+                        body: pageContent,
+                    });
+                    return;
+                }
+            }
+
+            interceptedRequest.continue({ headers });
         });
 
         if (request.options && request.options.dismissDialogs) {
@@ -248,6 +303,25 @@ const callChrome = async pup => {
 
         if (request.options.delay) {
             await page.waitForTimeout(request.options.delay);
+        }
+
+        if (request.options.initialPageNumber) {
+            await page.evaluate((initialPageNumber) => {
+                window.pageStart = initialPageNumber;
+
+                const style = document.createElement('style');
+                style.type = 'text/css';
+                style.innerHTML = '.empty-page { page-break-after: always; visibility: hidden; }';
+                document.getElementsByTagName('head')[0].appendChild(style);
+
+                const emptyPages = Array.from({length: window.pageStart}).map(() => {
+                    const emptyPage = document.createElement('div');
+                    emptyPage.className = "empty-page";
+                    emptyPage.textContent = "empty";
+                    return emptyPage;
+                });
+                document.body.prepend(...emptyPages);
+            }, request.options.initialPageNumber);
         }
 
         if (request.options.selector) {

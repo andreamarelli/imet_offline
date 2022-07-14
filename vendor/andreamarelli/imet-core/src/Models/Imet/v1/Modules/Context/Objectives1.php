@@ -12,6 +12,20 @@ class Objectives1 extends _Objectives
         $this->module_info = trans('imet-core::v1_context.Objectives1.module_info');
 
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Objectives1',
+            'fields' => [
+                'Status', 'Benchmark1', 'Benchmark2', 'Benchmark3', 'Objective'
+            ]
+        ];
     }
 }

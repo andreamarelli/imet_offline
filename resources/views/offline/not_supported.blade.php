@@ -1,6 +1,6 @@
 <?php
 // Force Authentication of user 0
-\Illuminate\Support\Facades\Auth::login(User::find(0), true);
+\Illuminate\Support\Facades\Auth::login((new App\Models\User)->find(0), true);
 
 //Retrieve Browser and version
 $agent = new \Jenssegers\Agent\Agent();

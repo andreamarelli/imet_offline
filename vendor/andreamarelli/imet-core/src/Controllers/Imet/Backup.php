@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Storage;
 
 trait Backup{
 
-    private $BACKUP_DISK = File::PUBLIC_STORAGE;
     private $BACKUP_FOLDER = 'backups';
 
     private $MAX_NUM_BACKUPS = 5;  // per each imet
@@ -49,7 +48,7 @@ trait Backup{
                 if($bck_date->diffInMinutes($now) > $this->MIN_MINUTES_DIFF){
                     // remove oldest backup when max num reached
                     if($num_backups >= $this->MAX_NUM_BACKUPS){
-                        Storage::disk($this->BACKUP_DISK)->delete( $oldest_backup);
+                        Storage::delete( $oldest_backup);
                     }
                     $this->execute_backup($form, $fileName);
                 }
@@ -84,7 +83,7 @@ trait Backup{
      */
     private function retrieve_existing_backups($imet_id): array
     {
-        $all_backups = Storage::disk($this->BACKUP_DISK)->files($this->BACKUP_FOLDER);
+        $all_backups = Storage::files($this->BACKUP_FOLDER);
         asort($all_backups);
         $form_backups = [];
         foreach ($all_backups as $backup){
@@ -99,12 +98,12 @@ trait Backup{
 
     private function execute_backup($form, $filename)
     {
-        if(!Storage::disk($this->BACKUP_DISK)->exists($this->BACKUP_FOLDER)){
-            Storage::disk($this->BACKUP_DISK)->makeDirectory($this->BACKUP_FOLDER);
+        if(!Storage::exists($this->BACKUP_FOLDER)){
+            Storage::makeDirectory($this->BACKUP_FOLDER);
         }
 
         $json = $this->export($form, false, false);
-        $handle = fopen(Storage::disk($this->BACKUP_DISK)->path($this->BACKUP_FOLDER) . '/' . $filename, 'w');
+        $handle = fopen(Storage::path($this->BACKUP_FOLDER) . '/' . $filename, 'w');
         fwrite($handle, json_encode($json));
         fclose($handle);
     }

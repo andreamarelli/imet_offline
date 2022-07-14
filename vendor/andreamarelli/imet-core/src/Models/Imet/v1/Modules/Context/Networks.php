@@ -72,4 +72,45 @@ class Networks extends Modules\Component\ImetModule
         }
         return $record;
     }
+
+
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Networks',
+            'fields' => [
+                'NetworkName', 'ProtectedAreas', 'NetworkType'
+            ]
+        ];
+    }
+
+    /**
+     * Review data from SQLITE
+     *
+     * @param $record
+     * @param $sqlite_connection
+     * @return array
+     */
+    protected static function conversionDataReview($record, $sqlite_connection): array
+    {
+        $record =  self::convertGroupLabelToKey($record, 'NetworkType');
+
+        if(!empty($record['ProtectedAreas'])){
+            $pas = json_decode($record['ProtectedAreas']);
+            $pas = array_filter($pas);
+            $pas = collect($pas)->map(function ($pa) use ($sqlite_connection) {
+                return Modules\Component\ImetModule::wdpaBySqliteProtectedAreaID($pa, $sqlite_connection);
+            })->toArray();
+            $pas = array_filter($pas);
+            $record['ProtectedAreas'] = implode(',', $pas);
+        }
+
+        return $record;
+    }
+
 }

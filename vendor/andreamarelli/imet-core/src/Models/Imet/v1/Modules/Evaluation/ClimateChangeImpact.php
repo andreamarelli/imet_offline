@@ -31,4 +31,19 @@ class ClimateChangeImpact extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
 
     }
+
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Eval_ClimateChangeImpact',
+            'fields' => [
+                'Impact', 'EvaluationScore', 'Comments'
+            ]
+        ];
+    }
 }

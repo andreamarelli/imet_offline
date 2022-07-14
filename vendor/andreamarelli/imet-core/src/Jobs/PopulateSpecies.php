@@ -46,7 +46,7 @@ class PopulateSpecies implements ShouldQueue
      */
     public function __construct()
     {
-        $this->storage_cache = Storage::disk(File::PRIVATE_STORAGE);
+        $this->storage_cache = Storage::disk(File::TEMP_STORAGE);
         $this->storage_csv = Storage::disk('imet_db_sql');
     }
 

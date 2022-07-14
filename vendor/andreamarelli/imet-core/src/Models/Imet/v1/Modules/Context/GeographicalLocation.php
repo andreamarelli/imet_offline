@@ -22,9 +22,21 @@ class GeographicalLocation extends Modules\Component\ImetModule
             ['name' => 'AdministrativeLocation',  'type' => 'text-area',   'label' => trans('imet-core::v1_context.GeographicalLocation.fields.AdministrativeLocation')],
         ];
 
-
-
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Localization',
+            'fields' => [
+                'LimitsExist', 'Shapefile', 'SourceSHP', 'Coordinates', 'SourceCoords', 'AdministrativeLocation'
+            ]
+        ];
     }
 }

@@ -14,15 +14,15 @@ class ProtectedPlanet
      * Execute request to API
      *
      * @param $url
-     * @param $params
+     * @param array $params
      * @return object
      */
-    private static function request($url, $params = []): object
+    private static function request($url, array $params = []): object
     {
         $params = array_merge($params, [
             'token' => config('modular-forms.protected_planet_api_key')
         ]);
-        return (object) API::execute_api_request($url, $params);
+        return API::execute_api_request($url, $params);
     }
 
     /**
@@ -31,7 +31,7 @@ class ProtectedPlanet
      */
     public static function get_country($country): object
     {
-        return (object) self::request(self::URL_PREFIX . 'countries/' .$country);
+        return self::request(self::URL_PREFIX . 'countries/' .$country);
     }
 
     /**
@@ -40,7 +40,24 @@ class ProtectedPlanet
      */
     public static function get_protected_area($protected_area): object
     {
-        return (object) self::request(self::URL_PREFIX . 'protected_areas/' .$protected_area);
+        return self::request(self::URL_PREFIX . 'protected_areas/' .$protected_area);
+    }
+
+    /**
+     * Retrieve protected areas by given country
+     *
+     * @param string $country
+     * @param int $page
+     * @param int $per_page
+     * @return object
+     */
+    public static function get_by_country(string $country, int $page = 1, int $per_page = 50): object
+    {
+        return self::request(self::URL_PREFIX . 'protected_areas/search', [
+            'country' => $country,
+            'page' => $page,
+            'per_page' => 50
+        ]);
     }
 
 }

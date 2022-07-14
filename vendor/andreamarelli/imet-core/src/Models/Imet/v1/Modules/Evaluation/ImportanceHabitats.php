@@ -34,4 +34,31 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
 
     }
+
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Eval_ImportanceC14',
+            'fields' => [
+                'Aspect',  'EvaluationScore', 'EvaluationScore2', 'Comments', 'GroupAspect'
+            ]
+        ];
+    }
+
+    /**
+     * Review data from SQLITE
+     *
+     * @param $record
+     * @param $sqlite_connection
+     * @return array
+     */
+    protected static function conversionDataReview($record, $sqlite_connection): array
+    {
+        return static::convertGroupLabelToKey($record, 'GroupAspect');
+    }
 }

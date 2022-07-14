@@ -35,7 +35,7 @@ class Import extends Command
      */
     public function __construct()
     {
-        $this->storage = Storage::disk(File::PUBLIC_STORAGE);
+        $this->storage = Storage::disk(File::TEMP_STORAGE);
         parent::__construct();
     }
 
@@ -71,7 +71,7 @@ class Import extends Command
             $this->info('All done.');
         } else {
             $this->warn('Nothing to import.');
-            $this->warn('No IMET json files found in storage/app/public.');
+            $this->warn('No IMET json files found in storage/app/temp.');
         }
         return 0;
     }

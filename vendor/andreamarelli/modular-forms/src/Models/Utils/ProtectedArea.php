@@ -15,15 +15,6 @@ abstract class ProtectedArea extends BaseModel
 
     public const LABEL = 'name';
 
-    public const EXPORT = [
-        'global_id',
-        'country',
-        'wdpa_id',
-        'name',
-        'iucn_category',
-        'creation_date'
-    ];
-
     /**
      * Scope a query by search key
      *

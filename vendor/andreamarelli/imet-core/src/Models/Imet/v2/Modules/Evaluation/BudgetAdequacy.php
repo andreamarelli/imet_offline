@@ -27,9 +27,4 @@ class BudgetAdequacy extends Modules\Component\ImetModule_Eval
 
     }
 
-//    public static function convert_v1_to_v2($record)
-//    {
-//        $record['EvaluationScore'] = null;
-//        return $record;
-//    }
 }

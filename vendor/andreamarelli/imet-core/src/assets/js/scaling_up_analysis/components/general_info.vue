@@ -17,41 +17,41 @@
           {{ info.network }}
         </template>
       </div>
-      <div>
-        <div class="strong">
-          {{ stores.BaseStore.localization('imet-core::analysis_report.general_info.transbondary_name') }}:
-        </div>
-        {{ info.landscapes }}
-      </div>
-      <div>
-        <div class="strong">
-          {{ stores.BaseStore.localization('imet-core::analysis_report.general_info.category_protected_area') }}:
-        </div>
-        {{ info.categories }}
-      </div>
-      <div>
-        <div class="strong">
-          {{ stores.BaseStore.localization('imet-core::analysis_report.general_info.main_values') }}:
-        </div>
-        {{ info.values_network }}
-      </div>
+<!--      <div>-->
+<!--        <div class="strong">-->
+<!--          {{ stores.BaseStore.localization('imet-core::analysis_report.general_info.transbondary_name') }}:-->
+<!--        </div>-->
+<!--        {{ info.landscapes }}-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        <div class="strong">-->
+<!--          {{ stores.BaseStore.localization('imet-core::analysis_report.general_info.category_protected_area') }}:-->
+<!--        </div>-->
+<!--        {{ info.categories }}-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        <div class="strong">-->
+<!--          {{ stores.BaseStore.localization('imet-core::analysis_report.general_info.main_values') }}:-->
+<!--        </div>-->
+<!--        {{ info.values_network }}-->
+<!--      </div>-->
       <div>
         <div class="strong">
           {{ stores.BaseStore.localization('imet-core::analysis_report.general_info.total_surface_protected') }}:
         </div>
         {{ info.total_surface_protected_areas }} [km2]
       </div>
-      <div>
-        <div class="strong">
-          {{ stores.BaseStore.localization('imet-core::analysis_report.general_info.total_surface_landscape') }}:
-        </div>
-        {{ info.total_surface_area_of_landscape_protected_areas }} [km2]
-      </div>
-      <div>
-        <div class="strong">{{ stores.BaseStore.localization('imet-core::analysis_report.general_info.agency') }}:
-        </div>
-        {{ info.agencies }}
-      </div>
+<!--      <div>-->
+<!--        <div class="strong">-->
+<!--          {{ stores.BaseStore.localization('imet-core::analysis_report.general_info.total_surface_landscape') }}:-->
+<!--        </div>-->
+<!--        {{ info.total_surface_area_of_landscape_protected_areas }} [km2]-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        <div class="strong">{{ stores.BaseStore.localization('imet-core::analysis_report.general_info.agency') }}:-->
+<!--        </div>-->
+<!--        {{ info.agencies }}-->
+<!--      </div>-->
       <div>
         <div class="strong">{{
             stores.BaseStore.localization('imet-core::analysis_report.general_info.ecoregions')

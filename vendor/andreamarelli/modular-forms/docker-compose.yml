@@ -2,22 +2,37 @@ version: '3'
 
 services:
 
-  composer:
+  php:
     build:
       context: .
       dockerfile: docker/php/Dockerfile
-    container_name: ${APP_NAME}_artisan
+      args:
+        - COMPOSER_GITHUB_TOKEN=${COMPOSER_GITHUB_TOKEN}
+        - UID=${UID-}
+    image: modular-forms_php
+    container_name: modular-forms_php
     volumes:
-      - ./:/var/www/
-    working_dir: /var/www/
+      - ./:/var/www/html
+
+  composer:
+    image: modular-forms_php
+    depends_on:
+      - php
+    container_name: modular-forms_composer
+    volumes:
+      - ./:/var/www/html
     entrypoint: [ 'composer' ]
     # docker-compose run --rm composer ______
 
   npm:
-    image: node:14-alpine3.13
-    container_name: ${APP_NAME}_npm
+    build:
+      context: .
+      dockerfile: docker/node/Dockerfile
+      args:
+        - UID=${UID-}
+    container_name: modular-forms_npm
     volumes:
-      - ./:/var/www/
-    working_dir: /var/www/
+      - ./:/var/www/html
     entrypoint: [ 'npm' ]
     # docker-compose run --rm npm ______
+

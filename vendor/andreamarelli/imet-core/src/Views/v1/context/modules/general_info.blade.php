@@ -3,8 +3,13 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vue_data */
 
+
     $imet = \AndreaMarelli\ImetCore\Models\Imet\v1\Imet::find($vue_data['form_id']);
-    $pa = \AndreaMarelli\ImetCore\Models\ProtectedArea::getByWdpa($imet->wdpa_id);
+    if(\AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)){
+        $pa = \AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa::find($imet->wdpa_id);
+    } else {
+        $pa = \AndreaMarelli\ImetCore\Models\ProtectedArea::getByWdpa($imet->wdpa_id);
+    }
 
     if($pa!==null){
         $vue_data['records'][0]['CompleteName']     = $vue_data['records'][0]['CompleteName']   ?? $pa->name;

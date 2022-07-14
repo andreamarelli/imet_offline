@@ -29,6 +29,20 @@ class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
         $this->ratingLegend = trans('imet-core::v1_evaluation.ClimateChangeMonitoring.ratingLegend');
 
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Eval_ClimateChangeMonitoring',
+            'fields' => [
+                'Program', 'EvaluationScore', 'Comments'
+            ]
+        ];
     }
 }

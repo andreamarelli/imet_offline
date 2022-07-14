@@ -9,10 +9,8 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class File
 {
-
     public const PUBLIC_STORAGE = 'public';
-    public const PRIVATE_STORAGE = 'private';
-    public const PUBLIC_FOLDER = 'public_folder';
+    public const TEMP_STORAGE = 'temp';
 
     use Export;
     use Hash;
@@ -103,6 +101,7 @@ class File
      */
     public static function download($filePath, $fileName = null, $deleteAfterSend = true): BinaryFileResponse
     {
+        $fileName = $fileName ?? basename($filePath);
         return response()
             ->download($filePath, $fileName)
             ->deleteFileAfterSend($deleteAfterSend);
@@ -143,19 +142,6 @@ class File
             return 'archive';
         } else {
             return 'other';
-        }
-    }
-
-    /**
-     * remove all files from path
-     * @param array $files
-     * @param string $disk
-     * @param string $path
-     */
-    public static function removeFiles(array $files, string  $disk = FILE::PRIVATE_STORAGE, string $path = ''): void
-    {
-        foreach ($files as $file) {
-            \Storage::disk($disk)->delete($path.basename($file));
         }
     }
 

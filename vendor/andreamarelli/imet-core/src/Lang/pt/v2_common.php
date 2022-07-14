@@ -9,8 +9,6 @@ return [
     'methodology'   => 'Questão de Avaliação',
     'criteria'      => 'Classificação',
 
-    'synthetic_indicator' => 'Indicador sintético',
-
     'steps' => [
         'general_info'          => 'Informações gerais sobre a área protegida',
         'areas'                 => 'Áreas, limites e índice de forma, nível de controlo',
@@ -20,6 +18,7 @@ return [
         'climate'               => 'Alterações climáticas e conservação',
         'ecosystem_services'    => 'Serviços de Ecossistema e dependência da comunidade',
         'objectives'            => 'Objectivos e Gestão',
+        'cross_analysis'  => 'Cross Analysis',
     ],
 
     'steps_eval' => [

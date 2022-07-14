@@ -70,7 +70,9 @@ class ProtectedAreaNonWdpa extends BaseModel
      */
     public static function export($id): array
     {
-        return static::find($id)
+        $pa = static::findOrNew($id);
+        $pa->id = $pa->id ?? $id;
+        return $pa
             ->makeHidden([static::UPDATED_AT, static::UPDATED_BY])
             ->toArray();
     }

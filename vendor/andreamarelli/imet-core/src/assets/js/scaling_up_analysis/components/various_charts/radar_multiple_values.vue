@@ -47,6 +47,12 @@ export default {
                 return [];
             }
         },
+        radar_indicators_for_zero_negative: {
+            type: Array,
+            default: () => {
+                return [];
+            }
+        },
         always_first_in_legend: {
             type: Array,
             default: () => {
@@ -135,7 +141,7 @@ export default {
                     render_items.push(item);
                 })
             }
-            ;
+
             return render_items;
         },
         setIndicators: function (negative_indicators) {
@@ -150,6 +156,13 @@ export default {
                 if (this.radar_indicators_for_negative.includes(key)) {
                     item.max = 100;
                     item.min = -100;
+                    item.text += ` \n ${window.Locale.getLabel('imet-core::analysis_report.scale.negative_positive')} `;
+                }
+
+                if (this.radar_indicators_for_zero_negative.includes(key)) {
+                    item.max = 0;
+                    item.min = -100;
+                    item.text += ` \n ${window.Locale.getLabel('imet-core::analysis_report.scale.zero_negative')}`;
                 }
                 return item;
             });
@@ -231,6 +244,7 @@ export default {
                             }
                             item.tooltip = {
                                 trigger: 'item'
+
                             };
                             //todo check it again
                             delete value['lineStyle'];
@@ -238,36 +252,38 @@ export default {
                             delete value['width'];
                             delete value['legend_selected'];
 
-                            indicators = [];
-
-                            for (const val in value) {
-                                if (isNaN(val)) {
-                                    const index = this.indicators.findIndex(element => {
-                                        if (element.toLowerCase().includes(val)) {
-                                            return true;
-                                        }
-                                    });
-                                    indicators[index] = value[val];
-                                } else {
-                                    indicators.push(value[val]);
-                                }
-                            }
+                            indicators = Object.values(value);
                         }
                         const index = this.find_if_array_has_negative_values(indicators);
                         if (index > -1) {
                             negative_indicators.push(index);
                         }
+
                         item.value = indicators;
 
                     });
                 render_items.push(item);
             });
-            render_items.push(...this.createItemsForScalingNumbers());
             indicators = this.setIndicators(negative_indicators);
+            render_items.push(...this.createItemsForScalingNumbers());
+
+            render_items.map(item => {
+                item.tooltip.formatter = (params, ticket) => {
+                    let html = '';
+                    html = params.data.name+"<br/>";
+                    for(const val in params.data.value){
+                        if(indicators[val] !== undefined) {
+                            html += indicators[val]?.text + " : " + params.value[val] + "<br/>";
+                        }
+                    }
+                    return html
+                };
+                return item;
+            });
             return {render_items, legends, indicators};
         },
         find_if_array_has_negative_values: function (array) {
-            return array.findIndex(value => value < 0);
+            return array.findIndex(value => ((value !="-" ? value < 0: false)));
         },
         radar_item: function () {
             return {

@@ -134,6 +134,10 @@ class Module extends BaseModel
             $names[] = 'not_available';
         }
 
+        // remove duplicates and empty values
+        $names = array_unique($names);
+        $names = array_filter($names);
+
         return $names;
     }
 

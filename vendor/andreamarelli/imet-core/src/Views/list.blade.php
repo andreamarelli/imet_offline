@@ -6,11 +6,8 @@
 /** @var array $years */
 /** @var boolean $filter_selected */
 
-use AndreaMarelli\ImetCore\Models\Role;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 
-$can_encode = \AndreaMarelli\ImetCore\Models\User::isAdmin(Auth::user()) || Role::isEncoder(Auth::user());
 $url        = URL::route('index');
 ?>
 
@@ -30,31 +27,31 @@ $url        = URL::route('index');
 
 @section('content')
 
-    @if($can_encode)
+    @can('encode-imets')
 
         <div class="functional_buttons">
-                {{-- Import json IMETs --}}
-                <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'import']) }}">
-                    {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-import', 'white') !!}
-                    {{ ucfirst(trans('modular-forms::common.import')) }}
-                </a>
-                {{-- Export json IMETs --}}
-                <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'export_view']) }}">
-                    {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-export', 'white') !!}
-                    {{ ucfirst(trans('modular-forms::common.export')) }}
-                </a>
-                {{-- Create new IMET --}}
-                @include('modular-forms::buttons.create', [
-                    'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class,
-                    'label' => trans('imet-core::v2_context.Create.title')
-                ])
-                <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, 'create_non_wdpa']) }}">
-                    {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('plus-circle', 'white') !!}
-                    {{ ucfirst(trans('imet-core::v2_context.CreateNonWdpa.title')) }}
-                </a>
+            {{-- Import json IMETs --}}
+            <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'import']) }}">
+                {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-import', 'white') !!}
+                {{ ucfirst(trans('modular-forms::common.import')) }}
+            </a>
+            {{-- Export json IMETs --}}
+            <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'export_view']) }}">
+                {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-export', 'white') !!}
+                {{ ucfirst(trans('modular-forms::common.export')) }}
+            </a>
+            {{-- Create new IMET --}}
+            @include('modular-forms::buttons.create', [
+                'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class,
+                'label' => trans('imet-core::v2_context.Create.title')
+            ])
+            <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, 'create_non_wdpa']) }}">
+                {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('plus-circle', 'white') !!}
+                {{ ucfirst(trans('imet-core::v2_context.CreateNonWdpa.title')) }}
+            </a>
         </div>
 
-    @endif
+    @endcan
 
     @include('imet-core::components.common_filters', [
         'request'=>$request,
@@ -128,7 +125,7 @@ $url        = URL::route('index');
                             @include('imet-core::components.button_show', ['version' => 'v2'])
                         </span>
 
-                    @if($can_encode)
+                    @can('encode-imets')
 
                         {{-- Edit --}}
                         <span v-if="item.version==='v1'">
@@ -150,7 +147,7 @@ $url        = URL::route('index');
                                 ])
                             </span>
 
-                    @endif
+                    @endcan
 
                     {{-- Export --}}
                     @include('modular-forms::buttons._generic', [
@@ -174,7 +171,7 @@ $url        = URL::route('index');
                             ])
                         </span>
 
-                    @if($can_encode)
+                    @can('encode-imets')
 
                         {{-- Delete --}}
                         @include('modular-forms::buttons.delete', [
@@ -182,7 +179,7 @@ $url        = URL::route('index');
                             'item' => 'item.FormID'
                         ])
 
-                    @endif
+                    @endcan
 
                 </td>
             </tr>

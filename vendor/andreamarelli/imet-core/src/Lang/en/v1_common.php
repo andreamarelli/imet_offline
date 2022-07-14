@@ -9,7 +9,6 @@ return [
     'methodology'   => 'Methodology',
     'criteria'      => 'Criteria - Measured concept  - Variables',
 
-    'synthetic_indicator' => 'synthetic indicator',
 
     'steps' => [
         'general_info'          => 'General Information',

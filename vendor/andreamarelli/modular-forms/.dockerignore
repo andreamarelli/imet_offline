@@ -1,0 +1,9 @@
+# git
+.git/
+
+# folders
+config/
+dist/
+node_modules/
+src/
+vendor/

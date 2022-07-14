@@ -28,7 +28,14 @@ $two_cols = $two_cols ?? false;
         @if($two_cols)
             <main class="two-col">
                 <nav class="sidebar">
-                    @yield('page_sidebar')
+                    <div id="sidebar_menu_anchor_mobile" class="btn-nav tag">
+                        <i class="fas fa-bars"></i>
+                        @yield('page_sidebar_anchor_label')
+                    </div>
+                    <div class="sidebar_menu">
+                        <i class="sidebar_close_button fas fa-times"></i>
+                        @yield('page_sidebar')
+                    </div>
                 </nav>
                 <section class="content">
                     @yield('page_content')
@@ -56,6 +63,14 @@ $two_cols = $two_cols ?? false;
     @push('scripts')
         <script>
             window.onload = function() {
+
+                // Responsive sidebar
+                document.querySelector('#sidebar_menu_anchor_mobile').addEventListener('click', function(){
+                    document.querySelector('.sidebar_menu').classList.add('active');
+                });
+                document.querySelector('.sidebar_close_button').addEventListener('click', function(){
+                    document.querySelector('.sidebar_menu').classList.remove('active');
+                });
 
                 document.querySelectorAll('.sidebar > ul > li')
                     .forEach(function(item) {

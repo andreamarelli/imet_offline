@@ -1,30 +1,35 @@
-<container_section :id="'{{$name}}'" :title="'{{$title}}'" :class="'upper_downa'">
+<container_section :id="'{{$name}}'" :title="'{{$title}}'" :class="'upper_downa'" :code="'{{$code}}'"
+                   :guidance="'imet-core::analysis_report.guidance.relative_performance'"
+>
     <template slot-scope="container">
         <div class="row">
             <div class="col-sm">
-                <div class="align-items-center">
-                    <container
-                            :loaded_at_once="container.props.show_view"
+                <checkboxes_list :items="{{json_encode($custom_names)}}">
+                    <template slot-scope="pas">
+                        <container
+                            :loaded_at_once="pas.props.show_view"
                             :url=url
-                            :parameters="'{{$pa_ids}}'"
+                            :parameters="pas.props.ids"
                             :func="'get_upper_lower_protected_areas_diagram_compare'"
                             :element="'{{$name}}'"
                             :show_menu="true"
-                    >
-                        <template slot-scope="data">
-                            <div class="contailer" v-for="(radar, index) in data.props.values">
-                                <small_menu :items="data.props.values.diagrams" :ids="'upper_lower_'" :exclude="'Average,upper limit,lower limit'"></small_menu>
-                                <container_upper_lower_radars :width=480 :height=600
-                                                              :unselect_legends_on_load="true"
-                                                              :single="false"
-                                                              :show_legends="true"
-                                                              :indicators='container.props.config.indicators'
-                                                              :radar="radar"
-                                ></container_upper_lower_radars>
-                            </div>
-                        </template>
-                    </container>
-                </div>
+                        >
+                            <template slot-scope="data">
+                                <div class="contailer" v-for="(radar, index) in data.props.values">
+                                    <small_menu :items="data.props.values.diagrams" :ids="'upper_lower_'"
+                                                :exclude="'Average,upper limit,lower limit'"></small_menu>
+                                    <container_upper_lower_radars :width=480 :height=600
+                                                                  :unselect_legends_on_load="true"
+                                                                  :single="false"
+                                                                  :show_legends="true"
+                                                                  :indicators='container.props.config.indicators'
+                                                                  :radar="radar"
+                                    ></container_upper_lower_radars>
+                                </div>
+                            </template>
+                        </container>
+                    </template>
+                </checkboxes_list>
             </div>
         </div>
     </template>

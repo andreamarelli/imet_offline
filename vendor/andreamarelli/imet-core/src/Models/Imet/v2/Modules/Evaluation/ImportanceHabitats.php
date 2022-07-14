@@ -72,12 +72,6 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
         return $vue_data;
     }
 
-//    public static function convert_v1_to_v2($record)
-//    {
-//        $record = static::addField($record, 'IncludeInStatistics');
-//        return $record;
-//    }
-
     /**
      * Check if the required number of items had been selected
      * @param Request $request

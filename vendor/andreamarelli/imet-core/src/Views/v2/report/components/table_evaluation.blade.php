@@ -1,50 +1,6 @@
 <?php
 /** @var array $assessment */
 
-$context_sub_avg = round(
-    ($assessment['context']['c11'] +
-        $assessment['context']['c12'] +
-        $assessment['context']['c13'] +
-        $assessment['context']['c14'] +
-        $assessment['context']['c15']
-    ) / 5, 2);
-
-$process_sub_avg_1 = round(
-    ($assessment['process']['pr1'] +
-        $assessment['process']['pr2'] +
-        $assessment['process']['pr3'] +
-        $assessment['process']['pr4'] +
-        $assessment['process']['pr5'] +
-        $assessment['process']['pr6']
-    ) /6 , 2);
-
-$process_sub_avg_2 = round(
-    ($assessment['process']['pr7'] +
-        $assessment['process']['pr8'] +
-        $assessment['process']['pr9']
-    ) /3 , 2);
-
-$process_sub_avg_3 = round(
-    ($assessment['process']['pr10'] +
-        $assessment['process']['pr11'] +
-        $assessment['process']['pr12']
-    ) /3 , 2);
-
-$process_sub_avg_4 = round(
-    ($assessment['process']['pr13'] +
-        $assessment['process']['pr14']
-    ) /2 , 2);
-
-$process_sub_avg_5 = round(
-    ($assessment['process']['pr15'] +
-        $assessment['process']['pr16']
-    ) /2 , 2);
-
-$process_sub_avg_6 = round(
-    ($assessment['process']['pr17'] +
-        $assessment['process']['pr18']
-    ) /2 , 2);
-
 ?>
 
 <table id="detailed_scores">
@@ -53,39 +9,29 @@ $process_sub_avg_6 = round(
     <tr>
         <th rowspan="2">
             @lang('imet-core::v2_common.steps_eval.context')
-            <h4><div {!! score_class($assessment['context']['avg_indicator'], 'badge') !!}>{{ $assessment['context']['avg_indicator'] }}</div></h4>
+            <h4><div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['context']['avg_indicator'], 'badge') !!}>{{ $assessment['context']['avg_indicator'] }}</div></h4>
         </th>
-        <td {!! score_class($assessment['context']['c1']) !!}>{{  trans('imet-core::v2_common.assessment.c1')[1] }}
-            <div>{{ $assessment['context']['c1'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['context']['c2']) !!}>{{  trans('imet-core::v2_common.assessment.c2')[1] }}
-            <div>{{ $assessment['context']['c2'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class_threats($assessment['context']['c3']) !!}>{{  trans('imet-core::v2_common.assessment.c3')[1] }}
-            <div>{{ $assessment['context']['c3'] ?? ' - ' }}</div>
-        </td>
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c1'], 'assessment_label' => trans('imet-core::v2_common.assessment.c1')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c2'], 'assessment_label' => trans('imet-core::v2_common.assessment.c2')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', [
+            'assessment_value' => $assessment['context']['c3'],
+            'assessment_label' => trans('imet-core::v2_common.assessment.c3')[1],
+            'threats' => true
+        ])
         <td colspan="5"></td>
     </tr>
     <tr>
         <td class="bordered">{{  trans('imet-core::v2_common.assessment.c1')[1] }}</td>
-        <td {!! score_class($assessment['context']['c11']) !!}>{{  trans('imet-core::v2_common.assessment.c11')[1] }}
-            <div>{{ $assessment['context']['c11'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['context']['c12']) !!}>{{  trans('imet-core::v2_common.assessment.c12')[1] }}
-            <div>{{ $assessment['context']['c12'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['context']['c13']) !!}>{{  trans('imet-core::v2_common.assessment.c13')[1] }}
-            <div>{{ $assessment['context']['c13'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['context']['c14']) !!}>{{  trans('imet-core::v2_common.assessment.c14')[1] }}
-            <div>{{ $assessment['context']['c14'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['context']['c15']) !!}>{{  trans('imet-core::v2_common.assessment.c15')[1] }}
-            <div>{{ $assessment['context']['c15'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($context_sub_avg, 'avg_sub_index') !!}>{{ trans('imet-core::v2_common.assessment.c1')[1] }}
-            <div>{{ $context_sub_avg ?? ' - ' }}</div>
-        </td>
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c11'], 'assessment_label' => trans('imet-core::v2_common.assessment.c11')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c12'], 'assessment_label' => trans('imet-core::v2_common.assessment.c12')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c13'], 'assessment_label' => trans('imet-core::v2_common.assessment.c13')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c14'], 'assessment_label' => trans('imet-core::v2_common.assessment.c14')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c15'], 'assessment_label' => trans('imet-core::v2_common.assessment.c15')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', [
+            'assessment_value' => $assessment['context']['c1'],
+            'assessment_label' => trans('imet-core::v2_common.assessment.c1')[1],
+            'additional_classes' => 'avg_sub_index'
+        ])
         <td></td>
     </tr>
 
@@ -93,26 +39,14 @@ $process_sub_avg_6 = round(
     <tr>
         <th>
             @lang('imet-core::v2_common.steps_eval.planning')
-            <h4><div {!! score_class($assessment['planning']['avg_indicator'], 'badge') !!}>{{ $assessment['planning']['avg_indicator'] }}</div></h4>
+            <h4><div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['planning']['avg_indicator'], 'badge') !!}>{{ $assessment['planning']['avg_indicator'] }}</div></h4>
         </th>
-        <td {!! score_class($assessment['planning']['p1']) !!}>{{  trans('imet-core::v2_common.assessment.p1')[1] }}
-            <div>{{ $assessment['planning']['p1'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['planning']['p2']) !!}>{{  trans('imet-core::v2_common.assessment.p2')[1] }}
-            <div>{{ $assessment['planning']['p2'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['planning']['p3']) !!}>{{  trans('imet-core::v2_common.assessment.p3')[1] }}
-            <div>{{ $assessment['planning']['p3'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['planning']['p4']) !!}>{{  trans('imet-core::v2_common.assessment.p4')[1] }}
-            <div>{{ $assessment['planning']['p4'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['planning']['p5']) !!}>{{  trans('imet-core::v2_common.assessment.p5')[1] }}
-            <div>{{ $assessment['planning']['p5'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['planning']['p6']) !!}>{{  trans('imet-core::v2_common.assessment.p6')[1] }}
-            <div>{{ $assessment['planning']['p6'] ?? ' - ' }}</div>
-        </td>
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['planning']['p1'], 'assessment_label' => trans('imet-core::v2_common.assessment.p1')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['planning']['p2'], 'assessment_label' => trans('imet-core::v2_common.assessment.p2')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['planning']['p3'], 'assessment_label' => trans('imet-core::v2_common.assessment.p3')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['planning']['p4'], 'assessment_label' => trans('imet-core::v2_common.assessment.p4')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['planning']['p5'], 'assessment_label' => trans('imet-core::v2_common.assessment.p5')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['planning']['p6'], 'assessment_label' => trans('imet-core::v2_common.assessment.p6')[1]])
         <td colspan="2"></td>
     </tr>
 
@@ -120,23 +54,13 @@ $process_sub_avg_6 = round(
     <tr>
         <th>
             @lang('imet-core::v2_common.steps_eval.inputs')
-            <h4><div {!! score_class($assessment['inputs']['avg_indicator'], 'badge') !!}>{{ $assessment['inputs']['avg_indicator'] }}</div></h4>
+            <h4><div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['inputs']['avg_indicator'], 'badge') !!}>{{ $assessment['inputs']['avg_indicator'] }}</div></h4>
         </th>
-        <td {!! score_class($assessment['inputs']['i1']) !!}>{{  trans('imet-core::v2_common.assessment.i1')[1] }}
-            <div>{{ $assessment['inputs']['i1'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['inputs']['i2']) !!}>{{  trans('imet-core::v2_common.assessment.i2')[1] }}
-            <div>{{ $assessment['inputs']['i2'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['inputs']['i3']) !!}>{{  trans('imet-core::v2_common.assessment.i3')[1] }}
-            <div>{{ $assessment['inputs']['i3'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['inputs']['i4']) !!}>{{  trans('imet-core::v2_common.assessment.i4')[1] }}
-            <div>{{ $assessment['inputs']['i4'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['inputs']['i5']) !!}>{{  trans('imet-core::v2_common.assessment.i5')[1] }}
-            <div>{{ $assessment['inputs']['i5'] ?? ' - ' }}</div>
-        </td>
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['inputs']['i1'], 'assessment_label' => trans('imet-core::v2_common.assessment.i1')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['inputs']['i2'], 'assessment_label' => trans('imet-core::v2_common.assessment.i2')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['inputs']['i3'], 'assessment_label' => trans('imet-core::v2_common.assessment.i3')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['inputs']['i4'], 'assessment_label' => trans('imet-core::v2_common.assessment.i4')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['inputs']['i5'], 'assessment_label' => trans('imet-core::v2_common.assessment.i5')[1]])
         <td colspan="3"></td>
     </tr>
 
@@ -145,121 +69,85 @@ $process_sub_avg_6 = round(
     <tr>
         <th rowspan="7">
             @lang('imet-core::v2_common.steps_eval.process')
-            <h4><div {!! score_class($assessment['process']['avg_indicator'], 'badge') !!}>{{ $assessment['process']['avg_indicator'] }}</div></h4>
+            <h4><div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['process']['avg_indicator'], 'badge') !!}>{{ $assessment['process']['avg_indicator'] }}</div></h4>
         </th>
-        <td {!! score_class($assessment['process']['pr1_6']) !!}>{{  trans('imet-core::v2_common.assessment.pr1_6')[1] }}
-            <div>{{ $assessment['process']['pr1_6'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['process']['pr7_9']) !!}>{{  trans('imet-core::v2_common.assessment.pr7_9')[1] }}
-            <div>{{ $assessment['process']['pr7_9'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['process']['pr10_12']) !!}>{{  trans('imet-core::v2_common.assessment.pr10_12')[1] }}
-            <div>{{ $assessment['process']['pr10_12'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['process']['pr13_14']) !!}>{{  trans('imet-core::v2_common.assessment.pr13_14')[1] }}
-            <div>{{ $assessment['process']['pr13_14'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['process']['pr15_16']) !!}>{{  trans('imet-core::v2_common.assessment.pr15_16')[1] }}
-            <div>{{ $assessment['process']['pr15_16'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['process']['pr17_18']) !!}>{{  trans('imet-core::v2_common.assessment.pr17_18')[1] }}
-            <div>{{ $assessment['process']['pr17_18'] ?? ' - ' }}</div>
-        </td>
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr1_6'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr1_6')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr7_9'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr7_9')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr10_12'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr10_12')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr13_14'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr13_14')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr15_16'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr15_16')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr17_18'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr17_18')[1]])
         <td colspan="2"></td>
     </tr>
     <tr>
         <td class="bordered">{{  trans('imet-core::v2_common.assessment.pr1_6')[1] }}</td>
-        <td {!! score_class($assessment['process']['pr1']) !!}>{{  trans('imet-core::v2_common.assessment.pr1')[1] }}
-            <div>{{ $assessment['process']['pr1'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['process']['pr2']) !!}>{{  trans('imet-core::v2_common.assessment.pr2')[1] }}
-            <div>{{ $assessment['process']['pr2'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['process']['pr3']) !!}>{{  trans('imet-core::v2_common.assessment.pr3')[1] }}
-            <div>{{ $assessment['process']['pr3'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['process']['pr4']) !!}>{{  trans('imet-core::v2_common.assessment.pr4')[1] }}
-            <div>{{ $assessment['process']['pr4'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['process']['pr5']) !!}>{{  trans('imet-core::v2_common.assessment.pr5')[1] }}
-            <div>{{ $assessment['process']['pr5'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['process']['pr6']) !!}>{{  trans('imet-core::v2_common.assessment.pr6')[1] }}
-            <div>{{ $assessment['process']['pr6'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($process_sub_avg_1, 'avg_sub_index') !!}>{{ trans('imet-core::v2_common.assessment.pr1_6')[1] }}
-            <div>{{ $process_sub_avg_1 ?? ' - ' }}</div>
-        </td>
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr1'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr1')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr2'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr2')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr3'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr3')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr4'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr4')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr5'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr5')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr6'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr6')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', [
+               'assessment_value' => $assessment['process']['pr1_6'],
+               'assessment_label' => trans('imet-core::v2_common.assessment.pr1_6')[1],
+               'additional_classes' => 'avg_sub_index'
+           ])
     </tr>
     <tr>
         <td class="bordered">{{  trans('imet-core::v2_common.assessment.pr7_9')[1] }}</td>
-        <td {!! score_class($assessment['process']['pr7']) !!}>{{  trans('imet-core::v2_common.assessment.pr7')[1] }}
-            <div>{{ $assessment['process']['pr7'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['process']['pr8']) !!}>{{  trans('imet-core::v2_common.assessment.pr8')[1] }}
-            <div>{{ $assessment['process']['pr8'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['process']['pr9']) !!}>{{  trans('imet-core::v2_common.assessment.pr9')[1] }}
-            <div>{{ $assessment['process']['pr9'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($process_sub_avg_2, 'avg_sub_index') !!}>{{ trans('imet-core::v2_common.assessment.pr7_9')[1] }}
-            <div>{{ $process_sub_avg_2 ?? ' - ' }}</div>
-        </td>
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr7'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr7')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr8'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr8')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr9'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr9')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', [
+            'assessment_value' => $assessment['process']['pr7_9'],
+            'assessment_label' => trans('imet-core::v2_common.assessment.pr7_9')[1],
+            'additional_classes' => 'avg_sub_index'
+        ])
         <td colspan="3"></td>
     </tr>
     <tr>
         <td class="bordered">{{  trans('imet-core::v2_common.assessment.pr10_12')[1] }}</td>
-        <td {!! score_class($assessment['process']['pr10']) !!}>{{  trans('imet-core::v2_common.assessment.pr10')[1] }}
-            <div>{{ $assessment['process']['pr7'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['process']['pr11']) !!}>{{  trans('imet-core::v2_common.assessment.pr11')[1] }}
-            <div>{{ $assessment['process']['pr11'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['process']['pr12']) !!}>{{  trans('imet-core::v2_common.assessment.pr12')[1] }}
-            <div>{{ $assessment['process']['pr12'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($process_sub_avg_3, 'avg_sub_index') !!}>{{ trans('imet-core::v2_common.assessment.pr10_12')[1] }}
-            <div>{{ $process_sub_avg_3 ?? ' - ' }}</div>
-        </td>
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr10'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr10')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr11'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr11')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr12'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr12')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', [
+            'assessment_value' => $assessment['process']['pr10_12'],
+            'assessment_label' => trans('imet-core::v2_common.assessment.pr10_12')[1],
+            'additional_classes' => 'avg_sub_index'
+        ])
         <td colspan="3"></td>
     </tr>
     <tr>
         <td class="bordered">{{  trans('imet-core::v2_common.assessment.pr13_14')[1] }}</td>
-        <td {!! score_class($assessment['process']['pr13']) !!}>{{  trans('imet-core::v2_common.assessment.pr13')[1] }}
-            <div>{{ $assessment['process']['pr13'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['process']['pr14']) !!}>{{  trans('imet-core::v2_common.assessment.pr14')[1] }}
-            <div>{{ $assessment['process']['pr14'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($process_sub_avg_4, 'avg_sub_index') !!}>{{ trans('imet-core::v2_common.assessment.pr13_14')[1] }}
-            <div>{{ $process_sub_avg_4 ?? ' - ' }}</div>
-        </td>
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr13'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr13')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr14'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr14')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', [
+            'assessment_value' => $assessment['process']['pr13_14'],
+            'assessment_label' => trans('imet-core::v2_common.assessment.pr13_14')[1],
+            'additional_classes' => 'avg_sub_index'
+        ])
         <td colspan="4"></td>
     </tr>
     <tr>
         <td class="bordered">{{  trans('imet-core::v2_common.assessment.pr15_16')[1] }}</td>
-        <td {!! score_class($assessment['process']['pr15']) !!}>{{  trans('imet-core::v2_common.assessment.pr15')[1] }}
-            <div>{{ $assessment['process']['pr15'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['process']['pr16']) !!}>{{  trans('imet-core::v2_common.assessment.pr16')[1] }}
-            <div>{{ $assessment['process']['pr16'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($process_sub_avg_5, 'avg_sub_index') !!}>{{ trans('imet-core::v2_common.assessment.pr15_16')[1] }}
-            <div>{{ $process_sub_avg_5 ?? ' - ' }}</div>
-        </td>
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr15'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr15')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr16'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr16')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', [
+            'assessment_value' => $assessment['process']['pr15_16'],
+            'assessment_label' => trans('imet-core::v2_common.assessment.pr15_16')[1],
+            'additional_classes' => 'avg_sub_index'
+        ])
         <td colspan="4"></td>
     </tr>
     <tr>
         <td class="bordered">{{  trans('imet-core::v2_common.assessment.pr17_18')[1] }}</td>
-        <td {!! score_class($assessment['process']['pr17']) !!}>{{  trans('imet-core::v2_common.assessment.pr17')[1] }}
-            <div>{{ $assessment['process']['pr17'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['process']['pr18']) !!}>{{  trans('imet-core::v2_common.assessment.pr18')[1] }}
-            <div>{{ $assessment['process']['pr18'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($process_sub_avg_6, 'avg_sub_index') !!}>{{ trans('imet-core::v2_common.assessment.pr17_18')[1] }}
-            <div>{{ $process_sub_avg_6 ?? ' - ' }}</div>
-        </td>
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr17'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr17')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr18'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr18')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', [
+            'assessment_value' => $assessment['process']['pr17_18'],
+            'assessment_label' => trans('imet-core::v2_common.assessment.pr17_18')[1],
+            'additional_classes' => 'avg_sub_index'
+        ])
         <td colspan="4"></td>
     </tr>
 
@@ -268,17 +156,11 @@ $process_sub_avg_6 = round(
     <tr>
         <th>
             @lang('imet-core::v2_common.steps_eval.outputs')
-            <h4><div {!! score_class($assessment['outputs']['avg_indicator'], 'badge') !!}>{{ $assessment['outputs']['avg_indicator'] }}</div></h4>
+            <h4><div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['outputs']['avg_indicator'], 'badge') !!}>{{ $assessment['outputs']['avg_indicator'] }}</div></h4>
         </th>
-        <td {!! score_class($assessment['outputs']['op1']) !!}>{{  trans('imet-core::v2_common.assessment.op1')[1] }}
-            <div>{{ $assessment['outputs']['op1'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['outputs']['op2']) !!}>{{  trans('imet-core::v2_common.assessment.op2')[1] }}
-            <div>{{ $assessment['outputs']['op2'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['outputs']['op3']) !!}>{{  trans('imet-core::v2_common.assessment.op3')[1] }}
-            <div>{{ $assessment['outputs']['op3'] ?? ' - ' }}</div>
-        </td>
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['outputs']['op1'], 'assessment_label' => trans('imet-core::v2_common.assessment.op1')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['outputs']['op1'], 'assessment_label' => trans('imet-core::v2_common.assessment.op2')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['outputs']['op3'], 'assessment_label' => trans('imet-core::v2_common.assessment.op3')[1]])
         <td colspan="5"></td>
     </tr>
 
@@ -287,17 +169,11 @@ $process_sub_avg_6 = round(
     <tr>
         <th>
             @lang('imet-core::v2_common.steps_eval.outcomes')
-            <h4><div {!! score_class($assessment['outcomes']['avg_indicator'], 'badge') !!}>{{ $assessment['outcomes']['avg_indicator'] }}</div></h4>
+            <h4><div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['outcomes']['avg_indicator'], 'badge') !!}>{{ $assessment['outcomes']['avg_indicator'] }}</div></h4>
         </th>
-        <td {!! score_class($assessment['outcomes']['oc1']) !!}>{{  trans('imet-core::v2_common.assessment.oc1')[1] }}
-            <div>{{ $assessment['outcomes']['oc1'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['outcomes']['oc2']) !!}>{{  trans('imet-core::v2_common.assessment.oc2')[1] }}
-            <div>{{ $assessment['outcomes']['oc2'] ?? ' - ' }}</div>
-        </td>
-        <td {!! score_class($assessment['outcomes']['oc3']) !!}>{{  trans('imet-core::v2_common.assessment.oc3')[1] }}
-            <div>{{ $assessment['outcomes']['oc3'] ?? ' - ' }}</div>
-        </td>
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['outcomes']['oc1'], 'assessment_label' => trans('imet-core::v2_common.assessment.oc1')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['outcomes']['oc2'], 'assessment_label' => trans('imet-core::v2_common.assessment.oc2')[1]])
+        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['outcomes']['oc3'], 'assessment_label' => trans('imet-core::v2_common.assessment.oc3')[1]])
         <td colspan="5"></td>
     </tr>
 

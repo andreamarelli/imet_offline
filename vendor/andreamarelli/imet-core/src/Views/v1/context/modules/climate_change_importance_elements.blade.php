@@ -5,7 +5,9 @@
 
 $labels = trans('imet-core::v1_context.ClimateChangeImportanceElements.Element');
 foreach ($vue_data['records'] as $index=>$record){
-    $vue_data['records'][$index]['Element'] = $labels[$index];
+    if(in_array($index, $labels)){
+        $vue_data['records'][$index]['Element'] = $labels[$index];
+    }
 }
 
 ?>

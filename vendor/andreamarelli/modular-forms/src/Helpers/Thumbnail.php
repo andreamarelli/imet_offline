@@ -58,6 +58,7 @@ class Thumbnail {
      *
      * @param $hash
      * @return null
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public static function generateByHash($hash): ?string
     {
@@ -69,14 +70,12 @@ class Thumbnail {
             [$original_file_content, $original_file_name] = Module::getFileByHash($hash);
             if($original_file_content==null) return null;
             $original_file_temp_path = $hash.'.'.pathinfo($original_file_name, PATHINFO_EXTENSION);
-            Storage::disk(File::PRIVATE_STORAGE)->put($original_file_temp_path, $original_file_content);
+            Storage::disk(File::TEMP_STORAGE)->put($original_file_temp_path, $original_file_content);
             try{
                 $thumb = static::generate($original_file_temp_path, $thumbnail_path, null, static::THUMB_MAX_WIDTH);
-            } catch (Exception $e){
-                $thumb = null;
-            }
+            } catch (Exception $e){}
 
-            Storage::disk(File::PRIVATE_STORAGE)->delete($original_file_temp_path);
+            Storage::disk(File::TEMP_STORAGE)->delete($original_file_temp_path);
         }
 
         return $thumb;
@@ -92,9 +91,9 @@ class Thumbnail {
      * @return string
      * @throws \ImagickException
      */
-    private static function generate($source_file_path, $thumbnail_filename, $height = null, $width = null): string
+    private static function generate($source_file_path, $thumbnail_filename, int $height = null, int $width = null): string
     {
-        $source_file_path = Storage::disk(File::PRIVATE_STORAGE)->path($source_file_path);
+        $source_file_path = Storage::disk(File::TEMP_STORAGE)->path($source_file_path);
         $quality = 70;
         $media_type = File::getMediaType($source_file_path);
 

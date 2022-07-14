@@ -11,12 +11,12 @@
 
 namespace Barryvdh\LaravelIdeHelper\Console;
 
+use Barryvdh\LaravelIdeHelper\ClassMapGenerator;
 use Barryvdh\LaravelIdeHelper\Contracts\ModelHookInterface;
 use Barryvdh\Reflection\DocBlock;
 use Barryvdh\Reflection\DocBlock\Context;
 use Barryvdh\Reflection\DocBlock\Serializer as DocBlockSerializer;
 use Barryvdh\Reflection\DocBlock\Tag;
-use Composer\Autoload\ClassMapGenerator;
 use Doctrine\DBAL\Exception as DBALException;
 use Doctrine\DBAL\Types\Type;
 use Illuminate\Console\Command;
@@ -361,6 +361,10 @@ class ModelsCommand extends Command
             if (Str::startsWith($type, 'decimal:')) {
                 $type = 'decimal';
             } elseif (Str::startsWith($type, 'custom_datetime:')) {
+                $type = 'date';
+            } elseif (Str::startsWith($type, 'date:')) {
+                $type = 'date';
+            } elseif (Str::startsWith($type, 'datetime:')) {
                 $type = 'date';
             } elseif (Str::startsWith($type, 'immutable_custom_datetime:')) {
                 $type = 'immutable_date';

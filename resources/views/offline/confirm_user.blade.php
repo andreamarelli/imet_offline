@@ -1,20 +1,14 @@
 <?php
 /** @var \App\Models\User $item */
-/** @var array $fields */
-
 
 ?>
-
 @extends('layouts.admin')
-
-@section('admin_breadcrumbs')
-    @include('modular-forms::page.breadcrumbs', ['show' => false, 'links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
-    ]])
-@endsection
 
 @section('content')
 
+<form method="post" id="confirm_form" action="{{ route('update_offline_user') }}">
+    @method('PATCH')
+    @csrf
 
     <div id="module_person__confirm_offline" class="module-container">
         <div class="module-header">
@@ -24,40 +18,63 @@
         </div>
 
         <div class="module-body">
-            <form method="post" id="confirm_form" action="{{ action([\App\Http\Controllers\StaffController::class, 'update_offline'], [$item->getKey()]) }}">
-                @method('PATCH')
-                @csrf
 
-                <div class="module_body">
+            {{-- fisrt name --}}
+            @component('modular-forms::module.field_container', [
+                    'name' => 'first_name',
+                    'label' => ucfirst(trans('auth.user.first_name')),
+                    'label_width' => 3
+                ])
+                <input id="first_name" type="text" class="field-edit" name="first_name" value="{{ $item->first_name }}" required autofocus>
+            @endcomponent
 
-                    @foreach($fields as $field)
+            {{-- last name --}}
+            @component('modular-forms::module.field_container', [
+                    'name' => 'last_name',
+                    'label' => ucfirst(trans('auth.user.last_name')),
+                    'label_width' => 3
+                ])
+                <input id="last_name" type="text" class="field-edit" name="last_name" value="{{ $item->last_name }}" required autofocus>
+            @endcomponent
 
-                        @component('modular-forms::module.field_container', [
-                            'name' => $field['name'],
-                            'label' => $field['label'] ?? '',
-                            'label_width' => 3
-                        ])
+            {{-- organisation --}}
+            @component('modular-forms::module.field_container', [
+                    'name' => 'organisation',
+                    'label' => ucfirst(trans('auth.user.organisation')),
+                    'label_width' => 3
+                ])
+                <input id="organisation" type="text" class="field-edit" name="organisation" value="{{ $item->organisation }}" required autofocus>
+            @endcomponent
 
-                            {{-- input field --}}
-                            {!! \AndreaMarelli\ModularForms\Helpers\Input\Input::text($field['name'], $item->{$field['name']}) !!}
+            {{-- function --}}
+            @component('modular-forms::module.field_container', [
+                    'name' => 'function',
+                    'label' => ucfirst(trans('auth.user.function')),
+                    'label_width' => 3
+                ])
+                <input id="function" type="text" class="field-edit" name="function" value="{{ $item->function }}" required autofocus>
+            @endcomponent
 
-                        @endcomponent
+            {{-- country --}}
+            @component('modular-forms::module.field_container', [
+                    'name' => 'function',
+                    'label' => ucfirst(trans('auth.user.country')),
+                    'label_width' => 3
+                ])
+                {!! \AndreaMarelli\ModularForms\Helpers\Input\DropDown::simple('country', $item->country, 'Country', 'required') !!}
+            @endcomponent
 
-                    @endforeach
-
-
-                </div>
-
-            </form>
         </div>
 
         <div class="module-bar save-bar">
             <div class="message"></div>
             <div class="buttons">
-                <button type="button" class="btn-nav small" onclick="document.getElementById('confirm_form').submit()">Save</button>
+                <button type="submit" class="btn-nav small">Save</button>
             </div>
         </div>
     </div>
+
+</form>
 
 @endsection
 

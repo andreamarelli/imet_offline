@@ -2,13 +2,21 @@
 /** @var string $phase */
 
 ?>
-<div class="id" style="margin-bottom: 4px;">IMET #{{ $item->getKey() }}</div>
+<div class="id" style="margin-bottom: 4px;">
+    IMET #{{ $item->getKey() }}
+    @if($item->version==='v1')
+        &nbsp;<span class="badge badge-secondary" style="vertical-align: text-top;">v1</span>
+    @elseif($item->version==='v2')
+        &nbsp;<span class="badge badge-success" style="vertical-align: text-top;">v2</span>
+    @endif
+
+</div>
 
 <div class="entity-heading">
     <div class="subtitle">{{ $item->Year }}</div>
     &nbsp;
     <div class="name">
-        {!! \AndreaMarelli\ModularForms\Helpers\Template::flag($item->Country) !!}
+        {!! \AndreaMarelli\ImetCore\Helpers\Template::flag($item->Country) !!}
         {{ $item->name }}
         @if(!\AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa::isNonWdpa( $item->wdpa_id))
             (<a target="_blank" href="{{ \AndreaMarelli\ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet::WEBSITE_URL  }}/{{ $item->wdpa_id }}">{{ $item->wdpa_id }}</a>)

@@ -2,7 +2,6 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\EvalController;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet_Eval;
 
 use function view;
@@ -22,16 +21,24 @@ class EvalControllerV2 extends EvalController
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function show($item, $step=null)
+    public function show($item, $step = null)
     {
         $this->authorize('view', (static::$form_class)::find($item));
 
         $form = new static::$form_class();
         $form = $form->find($item);
-        $step = $step==null ? 'context' : $step;
+        $step = $step == null ? 'context' : $step;
+
+        $steps = $this->steps($form);
+
+        list($warnings, $classes) = $this->get_cross_analysis($form);
+
         return view(static::$form_view_prefix . '.show', [
             'item' => $form,
-            'step' => $step
+            'steps' => $steps,
+            'step' => $step,
+            'warnings' => $warnings,
+            'classes' => $classes
         ]);
     }
 

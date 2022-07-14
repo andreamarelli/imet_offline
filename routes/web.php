@@ -1,31 +1,54 @@
 <?php
 
+use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
+use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController;
+use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpBasketController;
 use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
 use AndreaMarelli\ImetCore\Controllers\SpeciesController;
 use AndreaMarelli\ModularForms\Controllers\UploadFileController;
-use App\Http\Controllers\StaffController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 
-Route::group(['middleware' => 'web'], function () {
+Route::middleware(['web', 'auth'])->group(function () {
 
-    Route::get('/', function () { return Redirect::to('admin/confirm_user'); });
+    Route::get('/', function () { return Redirect::to('confirm_user'); });
 
-    // Authentication Routes
-    Route::get('admin/confirm_user', [StaffController::class, 'confirm_offline_user']);
-    Route::patch('admin/staff/{item}', [StaffController::class, 'update_offline']);
+    // User routes
+    Route::get('confirm_user', [UserController::class, 'confirm_offline_user']);
+    Route::patch('confirm_user', [UserController::class, 'update_offline_user'])->name('update_offline_user');
 
 
     Route::get('file/{hash}',      [UploadFileController::class, 'download']);
 
-    Route::group(['prefix' => 'ajax'], function () {
+    Route::prefix('ajax')->group(function () {
         Route::post('upload', [UploadFileController::class, 'upload']);
         Route::get('download', [UploadFileController::class, 'download']);
         Route::group(['prefix' => 'search'], function () {
             Route::post('protected_areas', [ProtectedAreaController::class, 'search']);
             Route::post('species', [SpeciesController::class, 'search']);
         });
+    });
+
+    // Scaling Up Analysis
+    Route::group(['prefix' => 'admin/imet/scaling_up', 'middleware' => 'setLocale'], function () {
+
+        Route::match(['get', 'post'],'/',      [Controller::class, 'scaling_up'])->name('scaling_up');;
+        Route::get('download/{scaling_id}', [ScalingUpAnalysisController::class, 'download_zip_file'])->name('download_scaling_up_files');
+        Route::post('analysis',     [ScalingUpAnalysisController::class, 'get_ajax_responses']);
+        Route::any('/{items}',    [ScalingUpAnalysisController::class, 'report_scaling_up'])->name('report_scaling_up');
+        Route::get('preview/{id}',[ScalingUpAnalysisController::class, 'preview_template'])->name('scaling_up_preview');
+
+
+        Route::group(['prefix' => 'basket'], function () {
+            Route::post('add',   [ScalingUpBasketController::class, 'save']);
+            Route::post('get',   [ScalingUpBasketController::class, 'retrieve']);
+            Route::post('all',   [ScalingUpBasketController::class, 'all']);
+            Route::delete('delete/{id}',[ScalingUpBasketController::class, 'delete']);
+            Route::post('clear', [ScalingUpBasketController::class, 'clear']);
+        });
+
     });
 
 });

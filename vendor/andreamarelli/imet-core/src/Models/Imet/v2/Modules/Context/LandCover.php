@@ -38,18 +38,6 @@ class LandCover extends Modules\Component\ImetModule
         return $vue_data;
     }
 
-//    public static function convert_v1_to_v2($record)
-//    {
-//        $record = static::dropField($record, 'PreviousEstimationArea');
-//        $record = static::dropField($record, 'CurrentEstimationArea');
-//        $record = static::dropField($record, 'Trend');
-//        $record = static::dropField($record, 'Reliability');
-//        $record = static::dropField($record, 'PreviousEstimationAreaData');
-//        $record = static::addField($record, 'ConservationStatusArea');
-//
-//        return $record;
-//    }
-
     public static function updateModule(Request $request): array
     {
         static::forceLanguage($request->input('form_id'));

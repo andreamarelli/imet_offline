@@ -77,4 +77,21 @@ class Areas extends Modules\Component\ImetModule
         return $area === 0 ? null : $area / 100; // ha->km2
     }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Areas',
+            'fields' => [
+                'AdministrativeArea', 'WDPAArea', 'GISArea', 'TerrestrialArea', 'MarineArea',
+                'PercentageNationalNetwork', 'PercentageEcoregion', 'PercentageTransnationalNetwork', 'PercentageLandscapeNetwork', 'Index',
+                'Observations'
+            ]
+        ];
+    }
+
 }

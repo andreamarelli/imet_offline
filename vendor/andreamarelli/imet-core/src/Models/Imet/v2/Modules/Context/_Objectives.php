@@ -24,13 +24,4 @@ class _Objectives extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-//    public static function convert_v1_to_v2($record)
-//    {
-//        $record = static::addField($record, 'Element');
-//        $record = static::dropField($record, 'Benchmark1');
-//        $record = static::dropField($record, 'Benchmark2');
-//        $record = static::dropField($record, 'Benchmark3');
-//        return $record;
-//    }
-
 }

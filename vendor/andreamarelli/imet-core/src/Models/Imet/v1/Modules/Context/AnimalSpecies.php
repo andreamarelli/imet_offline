@@ -31,8 +31,32 @@ class AnimalSpecies extends Modules\Component\ImetModule
         $this->module_info = trans('imet-core::v1_context.AnimalSpecies.module_info');
         $this->ratingLegend = trans('imet-core::v1_context.AnimalSpecies.ratingLegend');
 
-
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'SpeciesAnimalPresence',
+            'fields' => [
+                'SpeciesID',
+                "FlagshipSpecies",
+                "EndangeredSpecies",
+                "EndemicSpecies",
+                "ExploitedSpecies",
+                "InvasiveSpecies",
+                "InsufficientDataSpecies",
+                'PopulationEstimation',
+                'DesiredPopulation',
+                'TrendRating',
+                'Reliability',
+                'Comments'
+            ]
+        ];
     }
 }

@@ -20,9 +20,21 @@ class ManagementStaffPartners extends Modules\Component\ImetModule
             ['name' => 'Auxiliaries',  'type' => 'integer',   'label' => trans('imet-core::v1_context.ManagementStaffPartners.fields.Auxiliaries')],
         ];
 
-
-
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'ManagementStaffPartners',
+            'fields' => [
+                'Partner', 'Coordinators', 'Technicians', 'Auxiliaries'
+            ]
+        ];
     }
 }

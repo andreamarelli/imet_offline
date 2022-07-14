@@ -37,6 +37,28 @@ class NonSustainableUsage extends Modules\Component\ImetModule
         $this->ratingLegend = trans('imet-core::v1_context.NonSustainableUsage.ratingLegend');
 
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'NonSustainableUsage',
+            'fields' => [
+                'HabitatParameter',
+                'HistoricalArea',
+                'PreviousEstimationArea',
+                'CurrentEstimationArea',
+                'Trend',
+                'Reliability',
+                'Sectors',
+                'HistoricalAreaData',
+                'PreviousEstimationAreaData'
+            ]
+        ];
     }
 }

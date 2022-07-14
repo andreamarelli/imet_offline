@@ -1,4 +1,4 @@
-@import "../../../../vendor/andreamarelli/modular-forms/src/Assets/sass/abstracts/colors";
+@import "../../../../vendor/andreamarelli/modular-forms/src/assets/sass/abstracts/colors";
 
 .footer_ribbon.imet {
     font-size: 1em;
@@ -28,6 +28,9 @@
     }
 }
 
+nav.steps a.step.cross-analysis-warnings {
+    color: red !important;
+}
 
 #imet_report {
     #map {
@@ -121,6 +124,27 @@
     .score_danger {
         color: white;
         background-color: darkred !important;
+        border: 1px solid #ccc;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .score_danger_warning {
+        color: white;
+        background-color: indianred !important;
+        border: 1px solid #ccc;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .score_danger_alert {
+        color: white;
+        background-color: red !important;
+        border: 1px solid #ccc;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .score_danger_failed {
+        color: white;
+        background-color: orangered !important;
         border: 1px solid #ccc;
         -webkit-print-color-adjust: exact;
     }

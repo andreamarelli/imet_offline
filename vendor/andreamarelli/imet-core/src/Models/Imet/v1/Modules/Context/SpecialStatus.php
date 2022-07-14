@@ -3,6 +3,8 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context;
 
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Str;
 
 class SpecialStatus extends Modules\Component\ImetModule
 {
@@ -33,6 +35,33 @@ class SpecialStatus extends Modules\Component\ImetModule
 
 
         parent::__construct($attributes);
-
     }
+
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'SpecialStatus',
+            'fields' => [
+                'Designation', 'RegistrationDate', 'Code', 'Area', 'DesignationCriteria', 'upload', 'DesignationGroup'
+            ]
+        ];
+    }
+
+    /**
+     * Review data from SQLITE
+     *
+     * @param $record
+     * @param $sqlite_connection
+     * @return array
+     */
+    protected static function conversionDataReview($record, $sqlite_connection): array
+    {
+        return static::convertGroupLabelToKey($record, 'DesignationGroup');
+    }
+
 }

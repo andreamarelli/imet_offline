@@ -40,10 +40,4 @@ class HabitatsMarine extends Modules\Component\ImetModule
         return $record;
     }
 
-//    public static function convert_v1_to_v2($record)
-//    {
-//        $record = static::replacePredefinedValue($record, 'HabitatType', 'Barrière coralliènne', 'Barrière corallienne');
-//        return $record;
-//    }
-
 }

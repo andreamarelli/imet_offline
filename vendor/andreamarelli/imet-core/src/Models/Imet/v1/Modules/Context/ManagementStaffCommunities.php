@@ -23,9 +23,21 @@ class ManagementStaffCommunities extends Modules\Component\ImetModule
             ['name' => 'StaffNUmberRole3',  'type' => 'integer',   'label' => trans('imet-core::v1_context.ManagementStaffCommunities.fields.StaffNUmberRole3')],
         ];
 
-
-
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'ManagementStaffCommunities',
+            'fields' => [
+                'Community', 'Role1',  'StaffNUmberRole1', 'Role2',  'StaffNUmberRole2', 'Role3',  'StaffNUmberRole3'
+            ]
+        ];
     }
 }

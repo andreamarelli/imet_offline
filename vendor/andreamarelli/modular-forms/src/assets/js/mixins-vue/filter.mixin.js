@@ -47,7 +47,7 @@ export default {
                 let path = attribute.split('.');
                 value = item;
                 for (let i = 0; i < path.length; ++i) {
-                    value = value[path[i]];
+                    value = value.hasOwnProperty(path[i]) ? value[path[i]] : '';
                 }
             }
             /* simple attribute */

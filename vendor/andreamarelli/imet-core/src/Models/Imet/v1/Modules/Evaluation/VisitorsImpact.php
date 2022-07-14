@@ -37,6 +37,32 @@ class VisitorsImpact extends Modules\Component\ImetModule_Eval
         $this->ratingLegend = trans('imet-core::v1_evaluation.VisitorsImpact.ratingLegend');
 
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Eval_VisitorsImpact',
+            'fields' => [
+                'Impact',  'EvaluationScore', 'Comments', 'GroupImpact'
+            ]
+        ];
+    }
+
+    /**
+     * Review data from SQLITE
+     *
+     * @param $record
+     * @param $sqlite_connection
+     * @return array
+     */
+    protected static function conversionDataReview($record, $sqlite_connection): array
+    {
+        return static::convertGroupLabelToKey($record, 'GroupImpact');
     }
 }

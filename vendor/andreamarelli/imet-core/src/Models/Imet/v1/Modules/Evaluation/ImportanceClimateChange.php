@@ -29,8 +29,21 @@ class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
         $this->module_info_Rating = trans('imet-core::v1_evaluation.ImportanceClimateChange.module_info_Rating');
         $this->ratingLegend = trans('imet-core::v1_evaluation.ImportanceClimateChange.ratingLegend');
 
-
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Eval_ImportanceC15',
+            'fields' => [
+                'Aspect',  'EvaluationScore', 'Comments'
+            ]
+        ];
     }
 }

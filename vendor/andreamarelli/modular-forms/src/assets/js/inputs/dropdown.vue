@@ -7,6 +7,7 @@
         :multiple=multiple
         :create-option="newOption => ({ label: newOption, code: newOption })"
         v-on:input="sendToEmitter"
+        ref="select" @search:blur="clearSearch"
     ></v-select>
 
 </template>
@@ -75,9 +76,18 @@
 
             _getPair(item){
               return  {
-                  label: this.option_list[item],
+                  label: this.option_list[item] ?? item,
                   code: item
               };
+            },
+
+            /**
+             * Clear typed string as new option if user change focus without hitting enter to confirm (only for suggestion)
+             */
+            clearSearch(){
+                if(this.taggable){
+                    this.$refs.select.search = ''
+                }
             },
 
             getSelectedItem(){
@@ -111,7 +121,7 @@
                     }
                 }
                 // ensure initial selected value is in option list (if added by user)
-                if(this.value!==null && !(this.value in this.option_list)){
+                if(this.value!==null && !(this.value in this.option_list) && !this.multiple){
                     this.list.push(this._getPair(this.value));
                 }
                 this.list = this.sortList(this.list);

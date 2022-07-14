@@ -28,7 +28,6 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v1_evaluation.StaffCompetence.module_info_EvaluationQuestion');
         $this->module_info_Rating = trans('imet-core::v1_evaluation.StaffCompetence.module_info_Rating');
-        $this->module_info_Rating = trans('imet-core::v1_evaluation.StaffCompetence.module_info_Rating');
         $this->ratingLegend = trans('imet-core::v1_evaluation.StaffCompetence.ratingLegend');
 
         $this->max_rows = 14;
@@ -48,6 +47,21 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
         }
 
         return $predefined_values;
+    }
+
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'Eval_StaffCompetence',
+            'fields' => [
+                'Theme', 'EvaluationScore', 'PercentageLevel', 'Comments'
+            ]
+        ];
     }
 
 }

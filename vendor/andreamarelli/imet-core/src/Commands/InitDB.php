@@ -26,6 +26,8 @@ class InitDB extends Command
      */
     protected $description = 'Initialize IMET offline database';
 
+    private $storage;
+
     /**
      * Create a new command instance.
      *
@@ -33,6 +35,7 @@ class InitDB extends Command
      */
     public function __construct()
     {
+        $this->storage = Storage::disk('imet_db_sql');
         parent::__construct();
     }
 
@@ -43,11 +46,11 @@ class InitDB extends Command
      */
     public function handle(): int
     {
-        $sql_files = Storage::disk('imet_db_sql')->files();
+        $sql_files = $this->storage->files();
         sort($sql_files);
         foreach ($sql_files as $sql_file){
             if(Str::endsWith($sql_file, '.sql')){
-                $this->dispatch(Jobs\ApplySQL::class, Storage::disk('imet_db_sql')->path($sql_file));
+                $this->dispatch(Jobs\ApplySQL::class, $this->storage->path($sql_file));
             }
         }
 

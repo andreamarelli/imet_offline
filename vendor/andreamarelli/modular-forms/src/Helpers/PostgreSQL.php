@@ -9,6 +9,28 @@ use Illuminate\Support\Facades\DB;
 class PostgreSQL
 {
     /**
+     * Return the list of columns for the given table
+     * @param $table
+     * @return array
+     */
+    public static function getColumns($table)
+    {
+        $schema = 'public';
+        if(\Illuminate\Support\Str::contains($table, '.')){
+            [$schema, $table] = explode('.', $table);
+        }
+        return DB::table('information_schema.columns')
+            ->select(['column_name'])
+            ->where('table_schema', '<>', 'pg_catalog')
+            ->where('table_schema', '<>', 'information_schema')
+            ->where('table_schema', $schema)
+            ->where('table_name', $table)
+            ->get()
+            ->pluck('column_name')
+            ->toArray();
+    }
+
+    /**
      * Return the database column names
      *
      * @return \Illuminate\Support\Collection

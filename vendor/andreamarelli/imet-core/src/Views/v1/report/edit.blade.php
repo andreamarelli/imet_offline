@@ -10,6 +10,9 @@
 /** @var array $vision */
 /** @var array $area */
 /** @var bool  $connection */
+/** @var bool  $show_api */
+/** @var bool $show_non_wdpa */
+/** @var Array $non_wdpa */
 ?>
 
 @include('imet-core::v1.report.report', [
@@ -23,5 +26,8 @@
     'general_info' => $general_info,
     'vision' => $vision,
     'area' => $area,
-    'connection' => $connection
+    'connection' => $connection,
+    'show_api' => $show_api,
+    'show_non_wdpa' => $show_non_wdpa,
+    'non_wdpa' => $non_wdpa,
 ])

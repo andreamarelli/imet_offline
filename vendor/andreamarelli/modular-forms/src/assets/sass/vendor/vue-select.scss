@@ -12,9 +12,20 @@
   font-family: $fontFamily-1;
   font-size: $input_font-size;
 
+  &.vs--single{
+    .vs__dropdown-toggle {
+      .vs__selected-options {
+        .vs__selected { // applied to single
+          text-align: left;
+        }
+      }
+    }
+  }
+
   .vs__dropdown-toggle{
     @extend .field-edit-base;
     padding: 6px 12px;
+
     .vs__selected-options{
       padding: 0;
       .vs__selected{ // applied to multiple
@@ -40,6 +51,7 @@
 
   .vs__dropdown-menu{
     padding-bottom: 0;
+    width: fit-content;
     > li.vs__dropdown-option{
       margin: 0;
       padding-left: 15px;

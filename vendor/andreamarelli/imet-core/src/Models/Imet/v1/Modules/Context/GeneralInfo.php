@@ -39,9 +39,38 @@ class GeneralInfo extends Modules\Component\ImetModule
             ['name' => 'ReferenceTextValues',  'type' => 'text-area',   'label' => trans('imet-core::v1_context.GeneralInfo.fields.ReferenceTextValues')],
         ];
 
-
-
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'GeneralInfo',
+            'fields' => [
+                null,
+                'UsedName',
+                'CompleteNameWDPA',
+                'WDPA',
+                null,
+                'NationalCategory',
+                'IUCNCategory1',
+                'IUCNCategory2',
+                'IUCNCategory3',
+                null,
+                'CreationYear',
+                'Institution',
+                'Biome',
+                'Ecoregions',
+                'Ecotype',
+                'ReferenceText',
+                'ReferenceTextDocument',
+                'ReferenceTextValues'
+            ]
+        ];
     }
 }

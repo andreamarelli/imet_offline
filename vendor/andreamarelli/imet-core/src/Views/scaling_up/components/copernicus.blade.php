@@ -15,6 +15,7 @@
                                   :values="data_elements.props">
                 </datatable_custom>
             </div>
+            @include('imet-core::scaling_up.components.copyright_dopa')
         </template>
     </container_actions>
 </div>

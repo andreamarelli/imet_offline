@@ -2,7 +2,7 @@
 /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Imet $item */
 
 // Force Language
-if($item->language != \Illuminate\Support\Facades\App::getLocale()){
+if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
     \Illuminate\Support\Facades\App::setLocale($item->language);
 }
 
@@ -22,35 +22,38 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
 
 @section('content')
 
-    <h2>@lang_u('imet-core::common.evaluation_long')</h2>
-    <div class="entity-heading">
-        <div class="id">#{{ $item->getKey() }}</div>
-        <div class="name">{{ $item->Name }}</div>
-        <div class="location">{!! \AndreaMarelli\ImetCore\Helpers\Template::flag_and_name($item->Country) !!}</div>
-    </div>
+    @include('imet-core::components.heading', ['phase' => 'evaluation'])
 
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [
         'url' => action([\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::class, 'show'], ['item' => $item->getKey()]),
         'current_step' => $step,
         'label_prefix' =>  'imet-core::v2_common.steps_eval.',
-        'steps' => array_keys($item::modules())
+        'classes' => $classes,
+        'steps' => $steps
     ])
 
-    {{-- management effectiveness --}}
-    @include('imet-core::v2.evaluation.management_effectiveness.management_effectiveness', [
-        'item_id' => $item->getKey(),
-        'step' => $step
-    ])
 
-    {{--  Modules (by step) --}}
-    <div class="imet_modules">
-        @foreach($item::modules()[$step] as $module)
-            @include('modular-forms::module.show.container', [
-                'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class,
-                'module_class' => $module,
-                'form_id' => $item->getKey()])
-        @endforeach
-    </div>
+    @if($step=='cross_analysis')
+        @include('imet-core::v2.cross_analysis.index', [
+            'item_id' => $item->getKey(),
+            'warnings' => $warnings
+        ])
+    @else
+        {{-- management effectiveness --}}
+        @include('imet-core::v2.evaluation.management_effectiveness.management_effectiveness', [
+            'item_id' => $item->getKey(),
+            'step' => $step
+        ])
 
+        {{--  Modules (by step) --}}
+        <div class="imet_modules">
+            @foreach($item::modules()[$step] as $module)
+                @include('modular-forms::module.show.container', [
+                    'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class,
+                    'module_class' => $module,
+                    'form_id' => $item->getKey()])
+            @endforeach
+        </div>
+    @endif
 @endsection

@@ -38,4 +38,20 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
 
         return $record;
     }
+
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'TerritorialReferenceContext',
+            'fields' => [
+                'ReferenceEcosystemAreaEstimation', 'ReferenceEcosystemAreaPopulation', 'EcologicalAspects', 'FunctionalArea',
+                 'FunctionalAreaPopulation', 'SocioEconomicAspects', 'SpillOverEffect'
+            ]
+        ];
+    }
 }

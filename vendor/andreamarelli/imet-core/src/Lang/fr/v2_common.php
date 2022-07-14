@@ -9,8 +9,6 @@ return [
     'methodology'   => 'Question posée',
     'criteria'      => 'Notation',
 
-    'synthetic_indicator' => 'indicateur synthese',
-
     'steps' => [
         'general_info'          => 'Informations générales sur l\'aire protégée',
         'areas'                 => 'Superficies, limites et indice de forme, niveau de contrôle',
@@ -20,6 +18,7 @@ return [
         'climate'               => 'Changements climatiques et conservation',
         'ecosystem_services'    => 'Services écosystémiques et dépendance des collectivités',
         'objectives'            => 'Objectifs et Gestion',
+        'cross_analysis'  => 'Cross Analysis',
     ],
 
     'steps_eval' => [

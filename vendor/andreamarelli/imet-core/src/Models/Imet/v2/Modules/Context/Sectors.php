@@ -29,11 +29,4 @@ class Sectors extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-//    public static function convert_v1_to_v2($record)
-//    {
-//        $record = static::dropField($record, 'Objectives');
-//        $record = static::dropField($record, 'Restrictions');
-//        return $record;
-//    }
-
 }

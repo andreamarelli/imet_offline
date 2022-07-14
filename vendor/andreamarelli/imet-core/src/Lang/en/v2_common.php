@@ -9,8 +9,6 @@ return [
     'methodology'   => 'Evaluation question',
     'criteria'      => 'Rating',
 
-    'synthetic_indicator' => 'synthetic indicator',
-
     'steps' => [
         'general_info'          => 'General Information about the protected area',
         'areas'                 => 'Areas, boundaries and shape index, level of control',
@@ -32,6 +30,7 @@ return [
         'outcomes'                  => 'Outcomes',
         'objectives'                => 'Objectives',
         'management_effectiveness'  => 'Management Effectiveness',
+        'cross_analysis'  => 'Cross Analysis',
     ],
 
     'indexes' => [

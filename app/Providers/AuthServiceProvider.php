@@ -12,9 +12,7 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $policies = [
-        \AndreaMarelli\ImetCore\Models\Imet\Imet::class =>  \AndreaMarelli\ImetCore\Policies\ImetPolicy::class
-    ];
+    protected $policies = [];
 
     /**
      * Register any authentication / authorization services.
@@ -25,6 +23,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // Grant all to OFFLINE USER
+        Gate::before(function ($user) {
+            return true;
+        });
     }
 }
