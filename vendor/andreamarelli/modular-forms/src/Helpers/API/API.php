@@ -3,12 +3,26 @@
 namespace AndreaMarelli\ModularForms\Helpers\API;
 
 use AndreaMarelli\ModularForms\Models\Cache;
-use Exception;
+use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 
 class API
 {
     private const CACHE_TTL = 60 * 60 * 24 * 15;    // 15 days
+
+    /**
+     * Execute the HTTP request
+     * @param $url
+     * @param $params
+     * @return \Illuminate\Http\Client\Response
+     */
+    public static function execute_request($url, $params = null): Response
+    {
+        return App::environment('imetoffline')
+            ? Http::withOptions(['verify' => false])->get($url, $params)
+            : Http::get($url, $params);
+    }
 
     /**
      * Execute a request to the given API endpoint
@@ -26,7 +40,7 @@ class API
         }
 
         // Execute request to API
-        $response = Http::get($url, $params);
+        $response = API::execute_request($url, $params);
         if($response->successful()){
             $response_json = $response->json();
             // store in cache
