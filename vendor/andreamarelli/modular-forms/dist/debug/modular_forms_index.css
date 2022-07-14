@@ -54,7 +54,7 @@
       fill: none;
       stroke: #262626;
       stroke-width: 4.8;
-      animation: progress-data-v-1fb8ede0 1s ease-out forwards;
+      animation: progress-1fb8ede0 1s ease-out forwards;
 }
 .gauge > svg .percentage[data-v-1fb8ede0] {
       fill: #262626;
@@ -90,7 +90,7 @@
 .gauge > svg.red .percentage[data-v-1fb8ede0] {
       fill: #DC2626;
 }
-@keyframes progress-data-v-1fb8ede0 {
+@keyframes progress-1fb8ede0 {
 0% {
     stroke-dasharray: 0 100;
 }
@@ -3437,7 +3437,7 @@ main {
     main.two-col > nav.sidebar {
       width: 35%;
       padding: 8% 45px 5% 0; }
-      main.two-col > nav.sidebar .sidebar_menu_anchor_mobile {
+      main.two-col > nav.sidebar #sidebar_menu_anchor_mobile {
         display: none; }
       main.two-col > nav.sidebar .sidebar_menu h2 {
         font-size: 1.9em;

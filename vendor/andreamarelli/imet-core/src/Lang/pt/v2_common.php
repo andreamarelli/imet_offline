@@ -210,11 +210,15 @@ return [
         ],
         'op2' => [
             'O/P2',
-            'Produtos anuais - metas - alcances'
+            'Produtos anuais - metas - alcances'
         ],
         'op3' => [
             'O/P3',
             'Dominação da área'
+        ],
+        'op4' => [
+            'O/P4',
+            'Aplicação da lei em MPA'
         ],
         'oc1' => [
             'O/C1',

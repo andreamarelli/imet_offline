@@ -7,8 +7,8 @@ $group_key = $group_key ?? null;
 
 if($definitions['module_type']==='GROUP_TABLE'){
     $table_id = 'group_table_'.$definitions['module_key'].'_'.$group_key;
-    $records = array_filter($records, function($item) use ($group_key){
-        return $item['group_key'] === $group_key;
+    $records = array_filter($records, function($item) use ($group_key, $definitions){
+        return $item[$definitions['group_key_field']] === $group_key;
     });
 } else {
     $table_id = 'table_'.$definitions['module_key'];

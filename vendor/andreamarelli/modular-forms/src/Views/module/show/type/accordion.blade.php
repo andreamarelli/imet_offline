@@ -7,8 +7,8 @@ $group_key = $group_key ?? null;
 
 if($definitions['module_type']==='GROUP_ACCORDION'){
     $accordion_id = 'group_accordion_'.$definitions['module_key'].'_'.$group_key;
-    $records = array_filter($records, function($item) use ($group_key){
-        return $item['group_key'] === $group_key;
+    $records = array_filter($records, function($item) use ($group_key, $definitions){
+        return $item[$definitions['group_key_field']] === $group_key;
     });
 } else {
     $accordion_id = 'accordion_'.$definitions['module_key'];

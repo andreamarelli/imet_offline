@@ -501,7 +501,7 @@ return [
             ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Existe-t-il un plan de travail annuel ?</li> <li><b>Vérifier l\'existence et la pertinance du plan de travail</b></li> </ul>',
-        'module_info_Rating' => 'Renseignez l\'existence et la pertinence du plan de travail sur la base des quatre +quatre niveaux ci-dessous :'
+        'module_info_Rating' => 'Renseignez l\'existence et la pertinence du plan de travail sur la base des quatre +quatre niveaux ci-dessous:'
     ],
 
     'Objectives' => [
@@ -1186,7 +1186,7 @@ return [
                 '3' => 'activités de suivi et de recherche alignées sur les besoins et l\'amélioration de la gestion de l\'aire protégée',
             ]
         ],
-        'module_info_EvaluationQuestion' => '<ul> <li>o	Y a-t-il un programme et des activités de biomonitoring et de recherche ?</li> <li><b>Analyser et évaluer les activités de recherche et suivi écologique (biomonitoring) de la gestion des aspects naturels et culturels</b></li> </ul>',
+        'module_info_EvaluationQuestion' => '<ul> <li>o	Y a-t-il un programme et des activités de biomonitoring et de recherche ?</li> <li><b>Analyser et évaluer les activités de recherche et suivi écologique (biomonitoring) de la gestion des aspects naturels et culturels</b></li> </ul>',
         'module_info_Rating' => 'Établissez et évaluez lesquelles des activités de recherche ou plus listées sont mise en œuvre dans le programme de gestion de l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, points 4; 5; 6; 7)'
     ],
 

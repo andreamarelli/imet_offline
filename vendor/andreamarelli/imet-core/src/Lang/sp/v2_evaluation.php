@@ -1551,8 +1551,8 @@ return [
         'title' => 'Aplicación de la ley en la AMP',
         'fields' => [
             'Activity' => 'Rango de actividades sujetas a análisis',
-            'Patrol' => 'Area covered by patrols',
-            'RapidIntervention' => 'Rapid intervention capacity',
+            'Patrol' => 'Zona/áreas cubiertas por patrullajes',
+            'RapidIntervention' => 'Capacidad de intervención rápida',
             'DetectionRemoteSensing' => 'Detección mediante herramientas de teledetección (es decir, sistemas de seguimiento de buques VMS)',
             'SpecialMeansRapidIntervention' => 'Medios especiales de apoyo a la intervención rápida',
         ],

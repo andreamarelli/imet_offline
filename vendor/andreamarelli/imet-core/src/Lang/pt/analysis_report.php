@@ -21,7 +21,6 @@ return [
     'source' => 'Fonte',
     'download_files' => 'ficheiros',
     'print' => 'imprimir',
-    'protected_area' => 'área protegida',
     'custom_names' => 'Nomes de áreas protegidas',
     'apply' => 'Aplicar',
     'no_value' => 'Sem valor',
@@ -199,13 +198,13 @@ return [
         'occurrences_ecosystem_services' => '10 ecossistemas mais importantes que ocorrem em 2 ou mais Áreas Protegidas ',
         'occurrences_threats' => '5 ameaças mais importantes que ocorrem em 2 ou mais Áreas Protegidas',
         'plants_species' => 'Espécies de plantas (bandeirantes, ameaçadas, endémicas, ...)',
-        'terrestrial_marine_habitats' => 'Terrestre e marinho habitats -_ land-cobertura, mudança de terra e ocupação da terra',
+        'terrestrial_marine_habitats' => 'Terrestre e marinho habitats -_ land-cobertura, mudança de terra e ocupação da terra',
         'climate_change' => 'Valores-chave sensíveis às alterações climáticas',
         'ecosystem_services' => 'Serviços de ecossistema',
         'comments_threats' => 'Comentários sobre Ameaças',
         'comments_ecosystem' => 'Comentários sobre os serviços do Ecossistema',
         'comments_climate' => 'Comentários sobre a Mudança Climática',
-        'comments_terrestrial' => 'Comentários sobre Terrestre e Marinho habitats - land-cobertura, mudança de terra e ocupação da terra',
+        'comments_terrestrial' => 'Comentários sobre Terrestre e Marinho habitats - land-cobertura, mudança de terra e ocupação da terra',
         'comments_plants_species' => 'Comentários sobre espécies-chave de plantas',
         'comments_animal_species' => 'Espécie Comentários sobre espécies-chave',
         'label_threats' => 'Ameaças',
@@ -364,8 +363,9 @@ return [
         'pr17' => 'Gestão dos efeitos das alterações climáticas',
         'pr18' => 'Serviços de ecossistema',
         'op1' => 'Implementação do plano de trabalho/acção',
-        'op2' => 'Anual outputs - targets - achievement',
+        'op2' => 'Anual outputs - targets - achievement',
         'op3' => 'Domínio da área',
+        'op4' => 'Aplicação da lei em MPA',
         'oc1' => 'Realização dos objectivos de conservação a longo prazo da gestão',
         'oc2' => 'Condições e tendências dos elementos-chave de conservação da área protegida',
         'oc3' => 'Efeitos e resultados para as partes interessadas na qualidade de vida',
@@ -510,7 +510,7 @@ return [
                                     <li>Ecoregiões Terrestres do Mundo, TEOW (2001). Ecorregiões terrestres do mundo (Olson et al., 2001). <a href="https://www.worldwildlife.org/publications/terrestrial-ecoregions-of-the-world" target="_blank">https://www.worldwildlife.org/publications/terrestrial-ecoregions-of-the-world</a></li>
                                     <li>Fronteiras dos países: Camadas da Unidade Administrativa Global (GAUL), revisão 2015 (2017-02-02). <a href="http://www.fao.org/geonetwork/srv/en/metadata.show?id=12691" target="_blank">http://www.fao.org/geonetwork/srv/en/metadata.show?id=12691</a></li></ul>'],
             'land_degradation' => [
-                'intro' => 'Esta subsecção mostra as mudanças que ocorreram nos últimos anos na saúde e capacidade produtiva da terra dentro da área protegida (o tempo pode mudar; actualmente as mudanças de degradação da terra são avaliadas ao longo de um período de 15 anos period - 1999-2013). ',
+                'intro' => 'Esta subsecção mostra as mudanças que ocorreram nos últimos anos na saúde e capacidade produtiva da terra dentro da área protegida (o tempo pode mudar; actualmente as mudanças de degradação da terra são avaliadas ao longo de um período de 15 anos period - 1999-2013). ',
                 'info' => '<b>Orientação adicional</b>: A degradação da terra limita severamente a sustentabilidade dos serviços ecossistémicos. Pode também indicar a degradação da produção agrícola em torno de uma área protegida. A evolução da degradação do solo é apresentada como um anel gráfico com seis categorias, todas medidas em Km² (1) Sem biomassa, (2) Diminuição severa e persistente da produtividade, (3) Diminuição moderada e persistente da produtividade, (4) Variações de produtividade estáveis, mas stressadas; fortes e persistentes variações interanuais de produtividade, (5) Produtividade estável, (6) Aumento persistente da produtividade.<br/><br/><br/> <b>Fonte(s)</b>: https://wad.jrc.ec.europa.eu/landproductivity']],
         'additional_options' => [
             'main' => [
@@ -521,7 +521,7 @@ return [
                 'info' => '<b>Orientação adicional</b>: A avaliação PAME baseia-se na ideia de que a gestão de áreas protegidas segue um processo agrupado em seis fases distintas (representando elementos de eficácia de gestão): (1) começa por rever o contexto e estabelecer uma visão para a gestão de sítios (dentro do contexto do estatuto e pressões existentes), (2) progride através do planeamento, (3) afectação de recursos (entradas), (4) acções de gestão (processo), que levam a (5) produção de bens e serviços (saídas), e (6) geram impactos ou resultados. '],
             'specific_actions_mention' => [
                 'intro' => 'Todas as análises disponíveis nas secções anteriores podem ser utilizadas para gerar um resumo ou um comentário sobre os seguintes tópicos: 1) governação e gestão, 2) elementos-chave de conservação, 3) alterações climáticas e serviços ecossistémicos, 4) ameaças.',
-                'info' => '<b>Orientação adicional</b>: Em relação a todos os elementos da área protegida identificados durante a avaliação (cf. 8.2 Análise da eficácia da gestão), por favor provide - if relevant - additional considerações (sinergias, parcerias, iniciativas, etc.).']
+                'info' => '<b>Orientação adicional</b>: Em relação a todos os elementos da área protegida identificados durante a avaliação (cf. 8.2 Análise da eficácia da gestão), por favor provide - if relevant - additional considerações (sinergias, parcerias, iniciativas, etc.).']
         ]
     ]
 ];

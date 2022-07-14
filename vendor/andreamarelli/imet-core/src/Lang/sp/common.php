@@ -23,6 +23,7 @@ return [
     ],
 
     'dopa_not_available' => 'Servicios DOPA no disponibles',
+
     'languages' => [
         'fr'        => 'francés',
         'en'        => 'inglés',
@@ -68,7 +69,7 @@ return [
     'upgrade_failed'    => 'Error al actualizar a IMET v2',
 
     'synthetic_indicator' => 'Indicador sintético',
-    'cross_analysis_info' => 'Cross-analysis function aims to spot possible inconsistencies in IMET scores. It investigates whether scores within a pair (or a triplet) of IMET items were significantly different. The threshold for significant differences is set at the level of 20 percentage points for questions measured on the scale (min:0 – max:100). Below are provided those indicators, for which the difference exceeding the predefined threshold was established in your assessment. Since cross-analysis is for advisory purposes only, no suggestions are provided regarding the direction of discrepancy or possible changes that could be implemented. The responses can remain unchanged but should be double checked by the management team. Additional comments can be added in the selected questions to explain the significant score difference.',
+    'cross_analysis_info' => 'La función de análisis cruzado tiene como objetivo identificar posibles incoherencias en las puntuaciones del análisis IMET. Busca si las puntuaciones de un par (o triplete) de preguntas IMET son significativamente diferentes. El umbral para una diferencia significativa se establece en 20 puntos porcentuales para las preguntas medidas en la escala (mínimo: 0 - máximo: 100). A continuación, encontrará los indicadores para los que se ha identificado una diferencia que supera el umbral predefinido en su evaluación. Como el análisis de tabulación cruzada es sólo consultivo, no se ofrecen sugerencias sobre el motivo de la diferencia de valores ni sobre los posibles cambios que podrían adoptarse en el análisis. Las respuestas proporcionadas pueden permanecer sin cambios, pero los valores asignados deben ser comprobados junto con el equipo del área protegida. También se deben añadir comentarios adicionales en los indicadores seleccionados para explicar la diferencia de puntuación significativa o para las disposiciones de gestión que se adopten',
     'nothing_found' => 'No se han encontrado resultados',
 
 ];

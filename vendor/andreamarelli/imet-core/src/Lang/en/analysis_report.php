@@ -21,7 +21,6 @@ return [
     'source'=> 'Source',
     'download_files' => 'Download',
     'print' => 'print',
-    'protected_area' => 'protected area',
     'custom_names' => 'Names of protected areas',
     'apply' => 'Apply',
     'no_value' => 'No value',
@@ -365,8 +364,9 @@ return [
         'pr17' => 'Management of the effects of climate change',
         'pr18' => 'Ecosystem services',
         'op1' => 'IImplementation of the work/action plan',
-        'op2' => 'Annual outputs – targets – achievement',
+        'op2' => 'Annual outputs – targets – achievement',
         'op3' => 'Area domination',
+        'op4' => 'Enforcement in MPA',
         'oc1' => 'Achievement of long-term conservation objectives of the management',
         'oc2' => 'Conditions and trends of the key conservation elements of the protected area',
         'oc3' => 'Effects and outcomes for stakeholders on quality of life',
@@ -522,7 +522,7 @@ return [
                 'info' => '<b>Additional guidance</b>: The PAME assessment is based on the idea that protected area management follows a process grouped in six distinct stages (representing management effectiveness elements): (1) it begins with reviewing context and establishing a vision for site management (within the context of existing status and pressures), (2) progresses through planning, (3) allocation of resources (inputs), (4) management actions (process), which lead to (5) production of goods and services (outputs), and (6) generate impacts or outcomes. '],
             'specific_actions_mention' => [
                 'intro' => 'All the analyses available in earlier sections, can be used to generate a summary or a comment on the following topics: 1) governance and management, 2) key conservation elements, 3) climate change and ecosystem services, 4) threats.',
-                'info' => '<b>Additional guidance</b>: With regards to all of the protected area elements identified during the assessment (cf. 8.2 ‘Management effectiveness analysis’), please provide – if relevant – additional considerations (synergies, partnerships, initiatives, etc.)']
+                'info' => '<b>Additional guidance</b>: With regards to all of the protected area elements identified during the assessment (cf. 8.2 ‘Management effectiveness analysis’), please provide – if relevant – additional considerations (synergies, partnerships, initiatives, etc.)']
         ]
     ]
 ];

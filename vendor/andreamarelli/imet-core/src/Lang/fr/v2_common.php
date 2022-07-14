@@ -36,7 +36,6 @@ return [
         'management_effectiveness'  => 'Efficacité de gestion',
     ],
 
-
     'indexes' => [
         'imet'        => 'IMET index',
         'context'     => 'Contexte index',
@@ -216,6 +215,10 @@ return [
         'op3' => [
             'O/P3',
             'Domination de l’aire protégée',
+        ],
+        'op4' => [
+            'O/P4',
+            'Application de la loi dans l’AMP',
         ],
         'oc1' => [
             'O/C1',

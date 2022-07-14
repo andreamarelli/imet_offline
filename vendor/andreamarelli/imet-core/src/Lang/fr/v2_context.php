@@ -492,7 +492,7 @@ return [
                 '2' => 'Adéquat (61-90 % des besoins)',
                 '3' => 'Tout à fait adéquat (91-100 % des besoins)',
             ]
-        ],
+        ]
     ],
 
     'AnimalSpecies' => [

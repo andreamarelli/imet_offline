@@ -10,7 +10,7 @@
     "require": {
         "php": ">=7.2",
         "andreamarelli/imet-core": "dev-beta",
-        "andreamarelli/modular-forms": "dev-beta",
+        "andreamarelli/modular-forms": "dev-master",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",

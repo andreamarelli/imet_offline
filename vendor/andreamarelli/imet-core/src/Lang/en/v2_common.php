@@ -210,11 +210,15 @@ return [
         ],
         'op2' => [
             'O/P2',
-            'Annual outputs – targets – achievement'
+            'Annual outputs – targets – achievement'
         ],
         'op3' => [
             'O/P3',
             'Area domination'
+        ],
+        'op4' => [
+            'O/P4',
+            'Enforcement in MPA'
         ],
         'oc1' => [
             'O/C1',

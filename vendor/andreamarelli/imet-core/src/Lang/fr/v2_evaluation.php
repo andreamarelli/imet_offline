@@ -67,9 +67,9 @@ return [
             'L’aire protégée a-t-elle clairement identifié et intégré les espèces clés dans sa gestion ?'
         ],
         'module_info_Rating' => [
-            'Évaluer le niveau d’intégration d’un minimum de 3 à un maximum de 10 espèces clés dans la gestion de l’aire protégée (sur la base de l’analyse du contexte d’intervention, points CTX 4.1 et 4.2, automatiquement reportée ci-dessous). La représentativité ou la très représentativité d’une espèce clé correspond au degré auquel elle : [i] représente un importante caractéristique naturelle d’un habitat, d’un écosystème ou d’un biome ; (ii) influence un processus ou une communauté écologique ou [iii] affecte une politique de gestion axée sur les espèces)'
+            'Évaluer le niveau d’intégration d’un minimum de 3 à un maximum de 10 espèces clés dans la gestion de l’aire protégée (sur la base de l’analyse du contexte d’intervention, points CTX 4.1 et 4.2, automatiquement reportée ci-dessous). La représentativité ou la très représentativité d’une espèce clé correspond au degré auquel elle: [i] représente un importante caractéristique naturelle d’un habitat, d’un écosystème ou d’un biome ; (ii) influence un processus ou une communauté écologique ou [iii] affecte une politique de gestion axée sur les espèces)'
         ],
-        'validation_3to10' => 'Évaluer le niveau d’intégration d’un minimum de 3 à un maximum de 10 espèces clés dans la gestion de l’aire protégée (sur la base de l’analyse du contexte d’intervention, points CTX 4.1 et 4.2, automatiquement reportée ci-dessous). La représentativité d’une espèce clé correspond au degré auquel elle : [i] représente un importante caractéristique naturelle d’un habitat, d’un écosystème ou d’un biome ; (ii) influence un processus ou une communauté écologique ou [iii] affecte une politique de gestion axée sur les espèces)',
+        'validation_3to10' => 'Évaluer le niveau d’intégration d’un minimum de 3 à un maximum de 10 espèces clés dans la gestion de l’aire protégée (sur la base de l’analyse du contexte d’intervention, points CTX 4.1 et 4.2, automatiquement reportée ci-dessous). La représentativité d’une espèce clé correspond au degré auquel elle: [i] représente un importante caractéristique naturelle d’un habitat, d’un écosystème ou d’un biome ; (ii) influence un processus ou une communauté écologique ou [iii] affecte une politique de gestion axée sur les espèces)',
         'warning_on_save' =>
             'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
@@ -414,7 +414,7 @@ return [
             'La démarcation ou délimitation physique d’une aire protégée est souvent une obligation légale. La démarcation doit indiquer la limite de l’aire protégée établie par la loi. La délimitation physique des aires protégées sert l’objectif juridique, car elle permet de définir où le cadre juridique [par exemple les sanctions] relatif à l’aire protégée s’applique et doit être appliqué. Il convient toutefois de noter que, si elle est utile, la démarcation à elle seule ne constitue pas une mesure suffisante pour assurer la protection. La connaissance et l’acceptation des limites de l’aire protégée par les parties prenantes sont cependant une nécessité pour une conservation efficace.'
         ],
         'module_info_Rating' => [
-            'Évaluer : A) la mesure dans laquelle les limites de l’aire protégée sont marquées et B) l’adéquation de la démarcation des limites pour la gestion de l’aire protégée'
+            'Évaluer: A) la mesure dans laquelle les limites de l’aire protégée sont marquées et B) l’adéquation de la démarcation des limites pour la gestion de l’aire protégée'
         ]
     ],
 
@@ -448,7 +448,7 @@ return [
             'Le plan de gestion est un document qui définit l’approche et les objectifs de gestion, ainsi qu’un cadre décisionnel, qui s’appliquent à une aire protégée spécifique sur une période donnée. La réussite du plan dépend essentiellement de la consultation la plus large possible des parties prenantes et de l’élaboration d’objectifs pouvant être acceptés et respectés par tous ceux qui ont un intérêt dans l’utilisation et la survie de l’aire protégée (Extrait des Lignes directrices de l’UICN pour la planification de la gestion des aires protégées, 2008)'
         ],
         'module_info_Rating' => [
-            'Évaluer : A) l’état du plan de gestion, B) l’adéquation de la vision, de la mission et des objectifs énoncés dans le plan par rapport aux besoins de la conservation et C) l’adéquation concernant la clarté et l’applicabilité de la vision, de la mission et des objectifs'
+            'Évaluer: A) l’état du plan de gestion, B) l’adéquation de la vision, de la mission et des objectifs énoncés dans le plan par rapport aux besoins de la conservation et C) l’adéquation concernant la clarté et l’applicabilité de la vision, de la mission et des objectifs'
         ]
     ],
 
@@ -592,7 +592,7 @@ return [
             'Un personnel qualifié, compétent, engagé et adéquat (en nombre) est essentiel au succès des aires protégées. Les besoins en personnel sont clairement liés à la taille et à la typologie de l’aire protégée, à la densité de la végétation et aux pressions et menaces (p. ex. la densité humaine) d’une aire protégée. Par exemple pour leur protection, les aires protégées plus petites et plus boisées ont tendance à nécessiter relativement plus de personnel  par rapport aux aires protégées de savane plus grandes et plus ouvertes, ce qui implique des coûts de personnel plus élevés. L’évaluation se fonde sur les informations contenues dans le plan de gestion ou dans l’organigramme officiel du personnel',
         ],
         'module_info_Rating' => [
-            'Évaluer : A) l’adéquation du nombre d’employés (résultats calculés automatiquement sur la base de l’analyse du contexte d’intervention, point CTX 3.1.1),  B) l’adéquation des capacités du personnel'
+            'Évaluer: A) l’adéquation du nombre d’employés (résultats calculés automatiquement sur la base de l’analyse du contexte d’intervention, point CTX 3.1.1),  B) l’adéquation des capacités du personnel'
         ]
     ],
 
@@ -651,7 +651,7 @@ return [
             'Un budget sûr et fiable est essentiel pour la planification et la gestion des aires protégées, en particulier pour les activités à grande échelle et à long terme. Une évaluation réaliste des besoins devrait être faite pour s’assurer que tous les coûts associés au plan de travail ou de gestion peuvent être entièrement couverts, en gardant à l’esprit que certains objectifs exigeront plusieurs années pour être atteints. Lorsque les ressources ne sont pas disponibles, le gestionnaire doit décider comment prioriser les activités en termes de calendrier et d’investissement'
         ],
         'module_info_Rating' => [
-            'Evaluer : A) la sécurité du financement et B) la période de sécurité du financement pour les années à venir par rapport aux exigences de conservation dans l’aire protégée'
+            'Evaluer: A) la sécurité du financement et B) la période de sécurité du financement pour les années à venir par rapport aux exigences de conservation dans l’aire protégée'
         ]
     ],
 
@@ -682,7 +682,7 @@ return [
             'Les infrastructures, les équipements et les installations sont importants pour assurer et améliorer l’efficacité et l’efficience opérationnelles de l’aire protégée. L’analyse de l’infrastructure, de l’équipement et des installations d’une aire protégée peut servir de base à la recherche de financement supplémentaire. Les donateurs devraient être encouragés à contribuer à la réalisation et au maintien de niveaux appropriés d’infrastructures, d’équipements et d’installations pour la gestion des aires protégées'
         ],
         'module_info_Rating' => [
-            'Évaluer : A) l’adéquation des infrastructures, équipements et installations (résultats calculés automatiquement sur la base de l’analyse du contexte d’intervention, point CTX 3.3),  B) la priorité de la disponibilité à présent des particuliers infrastructures, équipements et installations pour assurer la gestion de l’aire protégée'
+            'Évaluer: A) l’adéquation des infrastructures, équipements et installations (résultats calculés automatiquement sur la base de l’analyse du contexte d’intervention, point CTX 3.3),  B) la priorité de la disponibilité à présent des particuliers infrastructures, équipements et installations pour assurer la gestion de l’aire protégée'
         ]
     ],
 
@@ -717,7 +717,7 @@ return [
             'Un personnel qualifié, compétent et engagé est essentiel au succès des aires protégées. La formation du personnel est de plus en plus reconnue comme une composante essentielle d’une gestion efficace des aires protégées. L’objectif principal de la formation du personnel est d’accroître la capacité du personnel des aires protégées à s’adapter aux nouveaux défis, en utilisant des approches novatrices, si nécessaire. L’analyse présentée ici tient compte de l’adéquation (A) de la conception du programme de formation (y compris l’analyse, la conception et les ressources) et (B) des activités de renforcement des capacités (y compris la prestation de la formation) par rapport aux capacités et aux besoins du personnel en matière de gestion de l’aire protégée'
         ],
         'module_info_Rating' => [
-            'Evaluer l’adéquation de : (A) la conception de programmes de formation et (B) les activités de renforcement des capacités du personnel pour les différentes catégories de personnel/fonctions (par exemple, les gestionnaires, les gardes forestiers, etc.)'
+            'Evaluer l’adéquation de: (A) la conception de programmes de formation et (B) les activités de renforcement des capacités du personnel pour les différentes catégories de personnel/fonctions (par exemple, les gestionnaires, les gardes forestiers, etc.)'
         ]
     ],
 
@@ -823,7 +823,7 @@ return [
             'La gestion de l’aire protégée donne-t-elle une orientation et des directives adéquates pour entreprendre les tâches liées à la conservation et les exécuter ?',
             'La gestion de l’aire protégée devrait donner une orientation et des directives adéquates pour toutes les activités liées aux opérations de bureau et sur le terrain, à l’utilisation des ressources, à l’administration, à l’application de la loi, à la surveillance, etc. L’évaluation des directives de gestion devrait permettre de déterminer si elles sont toujours pertinentes, efficaces et actuelles ou si des changements sont nécessaires. Parfois, des ajustements peuvent s’avérer nécessaires pour s’assurer que la direction de l’aire protégée fournit une orientation adéquate pour la mise en œuvre des résultats et des effets/ impacts souhaités'
         ],
-        'module_info_Rating' => 'Evaluer l’adéquation de : (A) la communication de la direction sur la mission et les valeurs de l’aire protégée et (B) l’approche axée sur les résultats de la direction'
+        'module_info_Rating' => 'Evaluer l’adéquation de: (A) la communication de la direction sur la mission et les valeurs de l’aire protégée et (B) l’approche axée sur les résultats de la direction'
     ],
 
     'AdministrativeManagement' => [
@@ -834,12 +834,12 @@ return [
             'Comments' => 'Commentaires/Explication',
         ],
         'predefined_values' => [
-            'Cohérence : vos politiques de gestion et les systèmes financiers restent cohérents',
-            'Responsabilité : vous êtes en mesure d’expliquer et de démontrer à tous les fonctionnaires/intervenants comment vous avez utilisé vos ressources et ce que vous avez accompli',
-            'Transparence : votre organisation est transparente en ce qui concerne son travail et ses finances, en mettant les informations à la disposition de tous les fonctionnaires/intervenants',
-            'Intégrité : les membres de votre organisation font preuve d’honnêteté et de bienséance.',
-            'Gérance financière : votre organisation prend soin des ressources financières qui lui sont allouées et s’assure qu’elles sont utilisées aux fins prévues',
-            'Normes comptables : le système de tenue des registres et de la documentation financière de votre organisation respecte les normes comptables externes reconnues'
+            'Cohérence: vos politiques de gestion et les systèmes financiers restent cohérents',
+            'Responsabilité: vous êtes en mesure d’expliquer et de démontrer à tous les fonctionnaires/intervenants comment vous avez utilisé vos ressources et ce que vous avez accompli',
+            'Transparence: votre organisation est transparente en ce qui concerne son travail et ses finances, en mettant les informations à la disposition de tous les fonctionnaires/intervenants',
+            'Intégrité: les membres de votre organisation font preuve d’honnêteté et de bienséance.',
+            'Gérance financière: votre organisation prend soin des ressources financières qui lui sont allouées et s’assure qu’elles sont utilisées aux fins prévues',
+            'Normes comptables: le système de tenue des registres et de la documentation financière de votre organisation respecte les normes comptables externes reconnues'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -971,7 +971,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Dans quelle mesure la gestion et la mise en œuvre de l’application de la loi par les patrouilles de surveillants sont-elles adéquates et axées sur la protection à long terme de la biodiversité ?',
-            'La gestion des patrouilles de surveillants est une activité d’application de la loi essentielle pour faire respecter les règles juridiques existantes qui devraient assurer la protection à long terme de la biodiversité et des autres valeurs de l’aire protégée. Une gestion efficace des aires protégées nécessite l’application de la loi à tous les niveaux : patrouilles de surveillants, renseignements et systèmes de justice pénale efficaces. Cette étape de l’analyse porte sur le processus de gestion des patrouilles de surveillants (un module spécifique à une analyse approfondie de l’application de la loi est disponible)',
+            'La gestion des patrouilles de surveillants est une activité d’application de la loi essentielle pour faire respecter les règles juridiques existantes qui devraient assurer la protection à long terme de la biodiversité et des autres valeurs de l’aire protégée. Une gestion efficace des aires protégées nécessite l’application de la loi à tous les niveaux: patrouilles de surveillants, renseignements et systèmes de justice pénale efficaces. Cette étape de l’analyse porte sur le processus de gestion des patrouilles de surveillants (un module spécifique à une analyse approfondie de l’application de la loi est disponible)',
         ],
         'module_info_Rating' => [
             'Évaluer l’adéquation des éléments de la gestion des patrouilles de surveillants visant à assurer la protection à long terme de la biodiversité et d’autres valeurs'
@@ -982,7 +982,7 @@ return [
         'title' => 'Renseignement, enquêtes, développement de cas et actions en justice (application de la loi)',
         'fields' => [
             'Element' => 'Critère — Concept mesuré — Variable',
-            'Adequacy' => 'Adéquation : A) de la gestion des éléments des renseignements et enquêtes; B) du traitement des éléments de preuve, développement de cas et actions en justice',
+            'Adequacy' => 'Adéquation: A) de la gestion des éléments des renseignements et enquêtes; B) du traitement des éléments de preuve, développement de cas et actions en justice',
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
@@ -1040,10 +1040,10 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Dans quelle mesure la gestion des renseignements, des enquêtes, de l’élaboration des cas et des actions en justice est-elle adéquate pour assurer la protection à long terme de la biodiversité ?',
-            'La gestion des renseignements et des enquêtes ainsi que l’élaboration de dossiers et les actions en justice sont des activités essentielles pour faire respecter les lois existantes qui devraient assurer la protection à long terme de la biodiversité et d’autres valeurs dans la zone protégée. Une gestion efficace des aires protégées nécessite l’application de la loi à tous les niveaux : surveillance, renseignements et systèmes de justice pénale efficaces. Cette étape de l’analyse est axée sur : (1) la gestion des renseignements et des enquêtes et (2) le traitement des preuves, l’élaboration des dossiers et l’engagement d’actions en justice. Un processus d’application de la loi bien organisé est fondamental, mais nous devons nous rappeler que rien ne peut remplacer des gardes bien équipés, bien formés et très motivés.'
+            'La gestion des renseignements et des enquêtes ainsi que l’élaboration de dossiers et les actions en justice sont des activités essentielles pour faire respecter les lois existantes qui devraient assurer la protection à long terme de la biodiversité et d’autres valeurs dans la zone protégée. Une gestion efficace des aires protégées nécessite l’application de la loi à tous les niveaux: surveillance, renseignements et systèmes de justice pénale efficaces. Cette étape de l’analyse est axée sur: (1) la gestion des renseignements et des enquêtes et (2) le traitement des preuves, l’élaboration des dossiers et l’engagement d’actions en justice. Un processus d’application de la loi bien organisé est fondamental, mais nous devons nous rappeler que rien ne peut remplacer des gardes bien équipés, bien formés et très motivés.'
         ],
         'module_info_Rating' => [
-            'Évaluer l’adéquation : A) de la gestion des renseignements et des enquêtes et B) du traitement des éléments de preuve, développement de cas et actions en justice visant à assurer la protection à long terme de la biodiversité et d’autres valeurs'
+            'Évaluer l’adéquation: A) de la gestion des renseignements et des enquêtes et B) du traitement des éléments de preuve, développement de cas et actions en justice visant à assurer la protection à long terme de la biodiversité et d’autres valeurs'
         ]
     ],
 
@@ -1110,7 +1110,6 @@ return [
         'module_info_EvaluationQuestion' => [
             'Les parties prenantes contribuent-elles à la gestion de l’aire protégée afin de mieux comprendre et appuyer la réalisation des objectifs de l’aire protégée?',
             'Dans de nombreuses aires protégées, une partie ou la totalité des parties prenantes concernées coopèrent de manière substantielle à la prise de décision de la gestion concernant les activités et leur mise en œuvre à l’intérieur ou à l’extérieur de l’aire protégée. Cette coopération peut prendre la forme d’accords formels ou informels. Le niveau de coopération entre les parties prenantes dans une aire protégée dépend d’une variété de facteurs, mais en particulier de la spécificité des acteurs, des pressions et d’autres influences qui découlent de ces dernières, ainsi que de la biodiversité et des services écosystémiques fournis par l’aire protégée. Cette étape de l’analyse permet d’évaluer comment une partie ou la totalité des parties prenantes concernées sont impliquées dans la gestion de l’aire protégée, relativement aux quatre aspects suivants : (P) planification; (PG) planification et gestion, (B/A) bénéfices/assistance aux communautés locales, (IEC) information, éducation environnementale et communication au profit de la sensibilisation et l’engagement des communautés. Le niveau optimal de coopération des parties prenantes devrait être déterminé pour chaque aire protégée individuellement, car chaque aire protégée est unique'
-
         ],
         'module_info_Rating' => [
             'Choisir (A) les domaines de coopération dans la gestion de l’aire protégée des parties prenantes et évaluer (B) le niveau de coopération<ul><li><b>P</b>: planification</li><li><b>PG</b>: planification et gestion</li><li><b>B/A</b>: bénéfices/assistance aux communautés locales</li><li><b>IEC</b>: information, éducation et communication au profit de la sensibilisation et l’engagement des communautés</li></ul>',
@@ -1446,7 +1445,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'L’aire protégée parvient-elle à promouvoir la conservation/amélioration des services écosystémiques qu’elle fournit ?',
-            'Les services écosystémiques sont les avantages nombreux et variés que les humains tirent librement de l’environnement naturel et du bon fonctionnement des écosystèmes. Les services écosystémiques sont regroupés en quatre grandes catégories : (1) les services d’approvisionnement, comme la production de nourriture et d’eau ; (2) les services de régulation, comme le contrôle du climat et des maladies ; (3) les services culturels, comme les avantages spirituels et récréatifs ; et (4) les services de support / soutien, comme les cycles nutritifs, la pollinisation des cultures ou les habitats qui fournissent tout ce dont une plante ou un animal a besoin pour survivre : nourriture, eau et abri [évaluation des écosystèmes pour le Millénaire (EM)]'
+            'Les services écosystémiques sont les avantages nombreux et variés que les humains tirent librement de l’environnement naturel et du bon fonctionnement des écosystèmes. Les services écosystémiques sont regroupés en quatre grandes catégories: (1) les services d’approvisionnement, comme la production de nourriture et d’eau ; (2) les services de régulation, comme le contrôle du climat et des maladies ; (3) les services culturels, comme les avantages spirituels et récréatifs ; et (4) les services de support / soutien, comme les cycles nutritifs, la pollinisation des cultures ou les habitats qui fournissent tout ce dont une plante ou un animal a besoin pour survivre: nourriture, eau et abri [évaluation des écosystèmes pour le Millénaire (EM)]'
         ],
         'module_info_Rating' => [
             'Évaluer l’adéquation des mesures de gestion favorisant la conservation/amélioration des services écosystémiques fournis par l’aire protégée'
@@ -1482,7 +1481,7 @@ return [
             'Évaluer le niveau de mise en œuvre des principales activités du plan de travail/plan d’action pour l’année précédente (dans les commentaires, indiquer l’année de référence si vous appliquez un plan de travail/d’action pluriannuel)',
             '<b>Catégorie d’activités</b>: p. ex. application de la loi, appui aux activités de développement dans la zone tampon, éducation environnementale, gestion du tourisme, etc.',
             '<b>Activité</b>: action appartenant à l’une des principales catégories d’activités qui est exécutée dans un but particulier',
-            'En l’absence d’un plan de travail ou d’action, vous pouvez vous référer aux catégories et aux activités retenues dans l’élément « Processus », notamment pour ce qui est des indicateurs suivants : Gestion et protection des éléments clés de conservation ; Interactions avec les parties prenantes ; Tourisme ; Suivi  et recherche ; Changement climatique et services écosystémiques',
+            'En l’absence d’un plan de travail ou d’action, vous pouvez vous référer aux catégories et aux activités retenues dans l’élément « Processus », notamment pour ce qui est des indicateurs suivants: Gestion et protection des éléments clés de conservation ; Interactions avec les parties prenantes ; Tourisme ; Suivi  et recherche ; Changement climatique et services écosystémiques',
         ]
     ],
 
@@ -1511,7 +1510,7 @@ return [
             'Évaluer le niveau d’atteinte des principaux résultats/extrants du plan de travail/ d’action (dans les commentaires, indiquer l’année de référence si vous appliquez un plan de travail/d’action pluriannuel)',
             '<b>Catégorie d’activités</b>: p. ex. application de la loi, appui aux activités de développement dans la zone tampon, éducation environnementale, gestion du tourisme, etc.',
             '<b>Activité</b>: action appartenant à l’une des principales catégories d’activités qui est exécutée dans un but particulier',
-            'En l’absence d’un plan de travail ou d’action, vous pouvez vous référer aux catégories et aux activités retenues dans l’élément « Processus », notamment pour ce qui est des indicateurs suivants : Gestion et protection des valeurs ; Relations avec les parties prenantes ; Tourisme ; Surveillance et recherche ; Changement climatique et services écosystémiques'
+            'En l’absence d’un plan de travail ou d’action, vous pouvez vous référer aux catégories et aux activités retenues dans l’élément « Processus », notamment pour ce qui est des indicateurs suivants: Gestion et protection des valeurs ; Relations avec les parties prenantes ; Tourisme ; Surveillance et recherche ; Changement climatique et services écosystémiques'
         ]
     ],
 
@@ -1551,8 +1550,8 @@ return [
         'title' => 'Application de la loi dans l’AMP',
         'fields' => [
             'Activity' => 'Gamme d’activités soumises à l’analyse',
-            'Patrol' => 'Area covered by patrols',
-            'RapidIntervention' => 'Rapid intervention capacity',
+            'Patrol' => 'Zone contrôlée par des activités de patrouille',
+            'RapidIntervention' => 'Intervention rapide sans moyens aériens',
             'DetectionRemoteSensing' => 'Détection au moyen d’outils de télédétection (par exemple, systèmes de surveillance des navires VMS)',
             'SpecialMeansRapidIntervention' => 'Moyens spéciaux permettant une intervention rapide',
         ],
@@ -1622,7 +1621,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Dans quelle proportion l’aire protégée a-t-elle atteint les principaux objectifs à long terme du plan de gestion ?',
-            '(A partir de l’élément Contexte de l’intervention, point CTX1.5 Vision — Mission — Objectifs ou élément Planification, point P6 — Objectifs de l’aire protégée)<ul><li>Les objectifs doivent être bien définis et clairement compris de manière à faciliter le suivi de leur atteinte si l’on veut que la gestion soit efficace</li><li>Dans cet outil, nous faisons une distinction importante entre les résultats/extrants et les effets/impacts :</li><li>Les effets/impacts se rapportent aux changements liés aux OBJECTIFS/ÉTATS SOUHAITES ou à la vision exprimés dans le plan de gestion et caractérisant une situation visée ou souhaitée, à la fin de la période considérée. Ces objectifs sont généralement des énoncés spécifiques concernant les valeurs clés de l’aire protégée (p. ex. les espèces ou les services écosystémiques importants) ou les principaux domaines d’activités de gestion (p. ex. tourisme, éducation).</li><li>Les résultats/extrants se rapportent à la la réalisation d’ACTIVITES à court terme (ou à relativement court terme) généralement mesurés de manière quantitative, et qui contribuent avec d’autres réalisations, à atteindre les objectifs/états souhaités à long terme. Il est considéré que l’utilisation de nombreux objectifs de conservation de faible niveau est un obstacle à l’atteinte d’une performance élevée en matière de conservation</li></ul>'
+            '(A partir de l’élément Contexte de l’intervention, point CTX1.5 Vision — Mission — Objectifs ou élément Planification, point P6 — Objectifs de l’aire protégée)<ul><li>Les objectifs doivent être bien définis et clairement compris de manière à faciliter le suivi de leur atteinte si l’on veut que la gestion soit efficace</li><li>Dans cet outil, nous faisons une distinction importante entre les résultats/extrants et les effets/impacts:</li><li>Les effets/impacts se rapportent aux changements liés aux OBJECTIFS/ÉTATS SOUHAITES ou à la vision exprimés dans le plan de gestion et caractérisant une situation visée ou souhaitée, à la fin de la période considérée. Ces objectifs sont généralement des énoncés spécifiques concernant les valeurs clés de l’aire protégée (p. ex. les espèces ou les services écosystémiques importants) ou les principaux domaines d’activités de gestion (p. ex. tourisme, éducation).</li><li>Les résultats/extrants se rapportent à la la réalisation d’ACTIVITES à court terme (ou à relativement court terme) généralement mesurés de manière quantitative, et qui contribuent avec d’autres réalisations, à atteindre les objectifs/états souhaités à long terme. Il est considéré que l’utilisation de nombreux objectifs de conservation de faible niveau est un obstacle à l’atteinte d’une performance élevée en matière de conservation</li></ul>'
         ],
         'module_info_Rating' => [
             'Évaluer le niveau d’atteinte des principaux objectifs à long terme liés aux valeurs clés de l’aire protégée ou des principaux aspects du plan de gestion'
@@ -1678,7 +1677,7 @@ return [
             'Les principaux objectifs de gestion de l’aire protégée sont la conservation/restauration des valeurs naturelles et les avantages que les humains tirent de l’environnement naturel et du maintien du fonctionnement des écosystèmes (services écosystémiques). Les gestionnaires devraient assurer la conservation/restauration des valeurs clés (espèces animales et végétales, habitats, etc.) et le maintien des services écosystémiques d’approvisionnement, de régulation, de culture et de soutien, en garantissant les valeurs et avantages des aires protégées pour tous'
         ],
         'module_info_Rating' => [
-            'Évaluer : A) les conditions et B) les tendances des éléments clés de conservation de l’aire protégée (sur la base des éléments du Contexte : C 1, divers éléments clés et C3, menaces, Processus : PR7 — Gestion des valeurs et des éléments clés de l’aire protégée, PR 17 Adaptation au changement climatique et PR18 — Gestion des services écosystémiques',
+            'Évaluer: A) les conditions et B) les tendances des éléments clés de conservation de l’aire protégée (sur la base des éléments du Contexte: C 1, divers éléments clés et C3, menaces, Processus: PR7 — Gestion des valeurs et des éléments clés de l’aire protégée, PR 17 Adaptation au changement climatique et PR18 — Gestion des services écosystémiques',
         ]
     ],
 

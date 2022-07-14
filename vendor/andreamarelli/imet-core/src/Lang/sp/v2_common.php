@@ -216,6 +216,10 @@ return [
             'O/P3',
             'Dominio del área'
         ],
+        'op4' => [
+            'O/P4',
+            'Aplicación de la ley en la AMP'
+        ],
         'oc1' => [
             'O/C1',
             'Logro de los objetivos de conservación a largo plazo de la gestión'

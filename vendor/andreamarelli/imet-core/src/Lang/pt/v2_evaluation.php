@@ -1551,8 +1551,8 @@ return [
         'title' => 'Aplicação da lei em MPA',
         'fields' => [
             'Activity' => 'Gama de actividades sujeitas a análise',
-            'Patrol' => 'Area covered by patrols',
-            'RapidIntervention' => 'Rapid intervention capacity',
+            'Patrol' => 'Área coberta pelas patrulhas',
+            'RapidIntervention' => 'Capacidade de intervenção rápida',
             'DetectionRemoteSensing' => 'Detecção através de ferramentas de detecção remota (ou seja, sistemas de monitorização de navios VMS)',
             'SpecialMeansRapidIntervention' => 'Significado especial de apoio à intervenção rápida',
         ],
