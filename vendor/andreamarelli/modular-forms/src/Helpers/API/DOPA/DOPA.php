@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ModularForms\Helpers\API\DOPA;
 
 use AndreaMarelli\ModularForms\Helpers\API\API;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 
 class DOPA
@@ -66,7 +67,12 @@ class DOPA
      */
     public static function apiAvailable(): bool
     {
-        return Http::get(static::URL_PREFIX)->successful();
+        try{
+            return Http::get(static::URL_PREFIX)
+                ->successful();
+        } catch (ConnectionException $e){
+            return false;
+        }
     }
 
 }

@@ -207,7 +207,7 @@ return [
         ],
         'op2' => [
             'O/P2',
-            'Produtos anuais - metas - alcances'
+            'Produtos anuais - metas - alcances'
         ],
         'op3' => [
             'O/P3',
