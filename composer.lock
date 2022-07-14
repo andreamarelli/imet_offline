@@ -63,12 +63,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/andreamarelli/modular-forms.git",
-                "reference": "baf20bc319fc7181f82b422e16a3064991d9cf8f"
+                "reference": "2e5161fc1159004ddc75c55a7e3672220a5d1724"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/modular-forms/zipball/baf20bc319fc7181f82b422e16a3064991d9cf8f",
-                "reference": "baf20bc319fc7181f82b422e16a3064991d9cf8f",
+                "url": "https://api.github.com/repos/andreamarelli/modular-forms/zipball/2e5161fc1159004ddc75c55a7e3672220a5d1724",
+                "reference": "2e5161fc1159004ddc75c55a7e3672220a5d1724",
                 "shasum": ""
             },
             "require": {
@@ -116,7 +116,7 @@
                 "source": "https://github.com/andreamarelli/modular-forms/tree/master",
                 "issues": "https://github.com/andreamarelli/modular-forms/issues"
             },
-            "time": "2022-07-11T10:50:16+00:00"
+            "time": "2022-07-14T12:52:32+00:00"
         },
         {
             "name": "asm89/stack-cors",
