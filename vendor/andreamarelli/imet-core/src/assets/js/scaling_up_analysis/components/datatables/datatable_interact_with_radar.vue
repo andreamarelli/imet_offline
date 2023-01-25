@@ -53,7 +53,7 @@ export default {
             const values = Object.entries({...this.values});
             const data = [];
             values.forEach((value, idx) => {
-                if ((selected !== null && selected[value[0]]) || (selected === null && value[1]['legend_selected'])) {
+                if ((selected !== null && selected[value[0]]) || (selected === null && value[1]?.legend_selected)) {
                     const item = {};
                     this.columns.forEach((column, idx) => {
                         if (!["color", "name"].includes(column['field'])) {

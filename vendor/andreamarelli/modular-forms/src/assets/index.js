@@ -7,16 +7,18 @@ window.ModularForms.Mixins = {
     'Animation': require('./js/mixins/animation.js').default,
     'Cookies': require('./js/mixins/cookie.js').default,
     'Input': require('./js/mixins/input.js').default,
-    'Locale': require('./js/mixins/locale.js').default
+    'Locale': require('./js/mixins/locale.js').default,
+    'Payload': require('./js/mixins/payload.js').default
 };
 window.ModularForms.MixinsVue = {
+    'ajax': require('./js/mixins-vue/ajax.mixin').default,
     'checkboxes': require('./js/mixins-vue/checkboxes.mixin.js').default,
     'dropdown': require('./js/mixins-vue/dropdown.mixin').default,
     'filter': require('./js/mixins-vue/filter.mixin').default,
     'paginate': require('./js/mixins-vue/paginate.mixin').default,
     'sorter': require('./js/mixins-vue/sorter.mixin').default,
     'tooltip': require('./js/mixins-vue/tooltip.mixin').default,
-    'values': require('./js/mixins-vue/values.mixin').default
+    'values': require('./js/mixins-vue/values.mixin').default,
 };
 window.ModularForms.FiltersVue = {
     'pretty_number': require('./js/mixins-vue/filters/pretty_number.js').default,
@@ -56,8 +58,7 @@ window.Vue.component('user', require('./js/templates/user.vue').default);
 // Load INPUT "abstract" component
 window.ModularForms.Input = {
     'modalSelector': require('./js/inputs/components/modal-selector.vue').default,
-    'modalApiSearch': require('./js/inputs/components/modal-api-search.vue').default,
-    'modalApiSearchWithAdd': require('./js/inputs/components/modal-api-search-AddElement.vue').default
+    'modalApiSearch': require('./js/inputs/components/modal-api-search.vue').default
 };
 
 // Load INPUT components

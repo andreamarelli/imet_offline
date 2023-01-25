@@ -7,7 +7,7 @@ return [
         'fields' => [
             'Element' => 'Elément/Indicateur',
             'Status' => 'Base de référence',
-            'Objective' => 'Objectif - Condition souhaitée',
+            'Objective' => 'Objectif - Condition optimal ou favorable',
             'comments' => 'Commentaires'
         ]
     ],
@@ -69,9 +69,8 @@ return [
         'module_info_Rating' => [
             'Évaluer le niveau d’intégration d’un minimum de 3 à un maximum de 10 espèces clés dans la gestion de l’aire protégée (sur la base de l’analyse du contexte d’intervention, points CTX 4.1 et 4.2, automatiquement reportée ci-dessous). La représentativité ou la très représentativité d’une espèce clé correspond au degré auquel elle: [i] représente un importante caractéristique naturelle d’un habitat, d’un écosystème ou d’un biome ; (ii) influence un processus ou une communauté écologique ou [iii] affecte une politique de gestion axée sur les espèces)'
         ],
-        'validation_3to10' => 'Évaluer le niveau d’intégration d’un minimum de 3 à un maximum de 10 espèces clés dans la gestion de l’aire protégée (sur la base de l’analyse du contexte d’intervention, points CTX 4.1 et 4.2, automatiquement reportée ci-dessous). La représentativité d’une espèce clé correspond au degré auquel elle: [i] représente un importante caractéristique naturelle d’un habitat, d’un écosystème ou d’un biome ; (ii) influence un processus ou une communauté écologique ou [iii] affecte une politique de gestion axée sur les espèces)',
         'warning_on_save' =>
-            'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
+            'ATTENTION!!<br />Toute modification provoquera une perte complète des données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -108,9 +107,8 @@ return [
         'module_info_Rating' => [
             'Évaluer le niveau d’intégration dans la gestion de l’aire protégée d’un minimum de 3 à un maximum de 10 des habitats et éléments connexes les plus représentatifs et les plus importants des types de couverture terrestre, d’utilisation et d’occupation du sol (sur la base de l’analyse du contexte d’intervention, points CTX 4.3, automatiquement reportés ci-dessous). La valeur/importance régionale et mondiale des habitats est une mesure dans laquelle elle : i) représente, au niveau local, national ou mondial, l’environnement naturel de plantes ou d’animaux clés ; (ii) influence un processus ou une communauté écologique et [iii] affecte une politique de gestion axée sur l’habitat'
         ],
-        'validation_3to10' => 'Veuillez inclure dans la gestion au moins 3 et au plus 10 habitats.',
         'warning_on_save' =>
-            'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
+            'ATTENTION!!<br />Toute modification provoquera une perte complète des données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -143,7 +141,7 @@ return [
             'Évaluer le niveau d’intégration dans la gestion de l’aire protégée des éléments clés les plus importants (espèces, habitats, etc.) les plus vulnérables au changement climatique (sur la base de l’analyse du contexte d’intervention, points CTX6.1, automatiquement reporté ci-dessous)'
         ],
         'warning_on_save' =>
-            'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
+            'ATTENTION!!<br />Toute modification provoquera une perte complète des données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /><i>I1</i>, <i>PR7</i>, <i>PR17</i> and <i>O/C2</i>'
     ],
 
@@ -176,7 +174,7 @@ return [
             'Evaluer le niveau d’intégration des services écosystémiques les plus importants dans la gestion de l’aire protégée (sur la base de l’analyse du contexte d’intervention, point CTX 7.1, reporté automatiquement ci-dessous)'
         ],
         'warning_on_save' =>
-            'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
+            'ATTENTION!!<br />Toute modification provoquera une perte complète des données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /><i>I1</i>, <i>PR7</i>, <i>PR18</i> and <i>O/C2</i>'
     ],
 
@@ -276,7 +274,7 @@ return [
             'Évaluer le niveau d’intégration des menaces les plus importantes dans la gestion de l’aire protégée sur la base de l’analyse du contexte d’intervention, calculateur de menaces, point  CTX 5.1 et automatiquement reporté ci-dessous'
         ],
         'warning_on_save' =>
-            'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
+            'ATTENTION!!<br />Toute modification provoquera une perte complète des données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -707,7 +705,7 @@ return [
             ],
             'PercentageLevel' => [
                 '0' => 'Activités de renforcement des capacités du personnel inadéquates',
-                '1' => 'Activités de renforcement des capacités du personnel plutôt adéquates',
+                '1' => 'Activités de renforcement des capacités du personnel plutôt inadéquates',
                 '2' => 'Activités de renforcement des capacités du personnel adéquates, mais des améliorations s’imposent',
                 '3' => 'Activités de renforcement des capacités du personnel totalement adéquat (suffisantes et mise à jour)'
             ]
@@ -927,7 +925,7 @@ return [
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
-            'group0' => 'Gestion des patrouilles de rangers',
+            'group0' => 'Gestion des patrouilles de rangers terrestre',
             'group1' => 'Gestion des patrouilles de gardes maritimes',
         ],
         'predefined_values' => [

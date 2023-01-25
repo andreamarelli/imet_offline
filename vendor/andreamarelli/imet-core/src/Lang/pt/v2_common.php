@@ -46,7 +46,7 @@ return [
         'outcomes'    => 'Resultados index',
     ],
 
-    'avaliação' => [
+    'assessment' => [
 
         'ctx101' => [
             'CTX 1.0.1',

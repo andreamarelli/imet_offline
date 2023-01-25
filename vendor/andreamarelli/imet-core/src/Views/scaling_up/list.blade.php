@@ -7,16 +7,17 @@
 
 /** @var boolean $filter_selected */
 
+use \AndreaMarelli\ImetCore\Models\Imet\Imet;
 use Illuminate\Support\Facades\URL;
 
-$url = URL::route('scaling_up');
+$url = URL::route('imet-core::scaling_up_index');
 ?>
 
 @extends('layouts.admin')
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
+        route('imet-core::index') => trans('imet-core::common.imet_short')
     ]])
 @endsection
 
@@ -40,17 +41,23 @@ $url = URL::route('scaling_up');
 
     <br/>
     <div id="sortable_list">
-
         <div id="cloud">
-            <label-cloud :cookie-name="'analysis'" :url="'{{url('admin/imet')}}/scaling_up/{items}'"
-                         :source-of-data="'cookie'"></label-cloud>
+            <label-cloud
+                :cookie-name="'analysis'"
+                url="{{ route('imet-core::scaling_up_report', ['items' => "__items__"]) }}"
+                :label-scaling-up="'Scaling up analysis'"
+                :label-remove-all="'@lang('imet-core::analysis_report.remove_all')'"
+                :source-of-data="'cookie'"></label-cloud>
         </div>
+
         <action-button-cookie
             :class-name="'btn btn-success'"
             :cookie-name="'analysis'"
             :event="'update_cloud_tags'"
-            :label="'Save choices'">
+            :label="'@lang('imet-core::analysis_report.add_choices')'">
         </action-button-cookie>
+
+        <button class="btn btn-success" @click="add_all()">@lang('imet-core::analysis_report.add_all')</button>
         <br/>
         <br/>
 
@@ -73,7 +80,6 @@ $url = URL::route('scaling_up');
                 <th class="width200px">{{-- actions --}}</th>
             </tr>
             </thead>
-
             <tbody>
             <tr v-for="item of items">
                 <td class="align-baseline text-center">
@@ -110,8 +116,8 @@ $url = URL::route('scaling_up');
                         {{-- version --}}
                         <div>
                             {{ ucfirst(trans('imet-core::common.version')) }}:
-                            <span v-if="item.version==='v2'" class="badge badge-success">v2</span>
-                            <span v-else-if="item.version==='v1'" class="badge badge-secondary">v1</span>
+                            <span v-if="item.version==='{{ Imet::IMET_V2 }}'" class="badge badge-success">v2</span>
+                            <span v-else-if="item.version==='{{ Imet::IMET_V1 }}'" class="badge badge-secondary">v1</span>
                         </div>
                     </div>
                 </td>
@@ -121,23 +127,31 @@ $url = URL::route('scaling_up');
                     ></imet_encoders_responsibles>
                 </td>
                 <td>
-                    <imet_radar :width=150 :height=150 :values=item.assessment_radar></imet_radar>
+                    <imet_radar
+                        style="margin: 0 auto;"
+                        :width=150 :height=150
+                        :values=item.assessment_radar
+                        v-if="!Object.values(item.assessment_radar).every(elem => elem === null)"
+                    ></imet_radar>
                 </td>
                 <td class="align-baseline text-center" style="white-space: nowrap;">
 
                     {{-- Show --}}
-                    <span v-if="item.version==='v2'">
-                        @include('imet-core::components.button_show', ['version' => 'v2'])
+                    <span v-if="item.version==='{{ Imet::IMET_V1 }}'">
+                        @include('imet-core::components.button_show', ['version' => Imet::IMET_V1])
+                    </span>
+                    <span v-else-if="item.version==='{{ Imet::IMET_V2 }}'">
+                        @include('imet-core::components.button_show', ['version' => Imet::IMET_V2])
                     </span>
 
-                    @can('encode-imets')
+                    @can('edit', \AndreaMarelli\ImetCore\Models\Imet\Imet::class)
 
                         {{-- Edit --}}
-                        <span v-if="item.version==='v1'">
-                            @include('imet-core::components.button_edit', ['version' => 'v1'])
+                        <span v-if="item.version==='{{ Imet::IMET_V1 }}'">
+                            @include('imet-core::components.button_edit', ['version' => Imet::IMET_V1])
                         </span>
-                        <span v-else-if="item.version==='v2'">
-                            @include('imet-core::components.button_edit', ['version' => 'v2'])
+                        <span v-else-if="item.version==='{{ Imet::IMET_V2 }}'">
+                            @include('imet-core::components.button_edit', ['version' => Imet::IMET_V2])
                         </span>
 
                     @endif
@@ -163,6 +177,16 @@ $url = URL::route('scaling_up');
 
                 mounted: function () {
                     this.sort('{{ \AndreaMarelli\ImetCore\Models\Imet\Imet::$sortBy }}', '{{ \AndreaMarelli\ImetCore\Models\Imet\Imet::$sortDirection }}');
+                },
+                methods: {
+                    add_all() {
+                        this.list.forEach(function (item) {
+                            this.selectValueByIdAndValue(item.FormID, item.name);
+                        }, this);
+
+                        this.$root.$emit('store_cookie_and_value', 'analysis', JSON.stringify(this.checkboxes));
+                        this.$root.$emit('add_cloud_tags');
+                    }
                 }
 
             });

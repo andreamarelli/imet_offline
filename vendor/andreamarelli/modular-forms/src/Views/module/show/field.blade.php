@@ -10,6 +10,8 @@
 
 $only_label = $only_label ?? false;
 
+?>
+
 
 @include('modular-forms::module.show.field-types', [
    'type' => $type,

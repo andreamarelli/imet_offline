@@ -42,6 +42,9 @@ class ServiceProvider extends BaseServiceProvider
         Blade::directive('lang_u', function ($key) {
             return "<?php echo ucfirst(trans($key)); ?>";
         });
+        Blade::directive('uclang', function ($key) {
+            return "<?php echo ucfirst(trans($key)); ?>";
+        });
     }
 
 }

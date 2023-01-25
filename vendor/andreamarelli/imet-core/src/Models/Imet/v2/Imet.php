@@ -2,15 +2,14 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v2;
 
-use AndreaMarelli\ImetCore\Helpers\Template;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialAvailableResources;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesBudgetLines;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesPartners;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Habitats;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewers;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 
 class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
@@ -77,45 +76,33 @@ class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
         ]
     ];
 
-
-    public function responsible_interviees()
+    /**
+     * Relation to ResponsablesInterviewees
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function responsible_interviewees(): HasMany
     {
         return $this->hasMany(ResponsablesInterviewees::class, $this->primaryKey, 'FormID')
             ->select(['FormID','Name']);
     }
 
-    public function responsible_interviers()
+    /**
+     * Relation to ResponsablesInterviewers
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function responsible_interviewers(): HasMany
     {
         return $this->hasMany(ResponsablesInterviewers::class, $this->primaryKey, 'FormID')
             ->select(['FormID','Name']);
     }
 
-    public function assessment()
-    {
-        return $this->hasOne(Assessment::class, 'formid', 'FormID');
-    }
-
-//    /**
-//     * Override parent scopeFilterList()
-//     *
-//     * @param \Illuminate\Database\Eloquent\Builder $query
-//     * @param Request $request
-//     * @return \Illuminate\Database\Eloquent\Builder
-//     */
-//    public function scopeFilterList(Builder $query, Request $request): Builder
-//    {
-//        $query
-//            ->where('version', static::version)
-//            ->orderBy('Year', 'desc')
-//            ->orderBy('wdpa_id', 'desc');
-//        return $query;
-//    }
-
-
     /**
      * Get IMET available years for the given PA
+     *
      * @param $wdpa_id
-     * @return mixed
+     * @return \AndreaMarelli\ImetCore\Models\Imet\v2\Imet[]|\Illuminate\Database\Eloquent\Collection
      */
     public static function getYears($wdpa_id)
     {

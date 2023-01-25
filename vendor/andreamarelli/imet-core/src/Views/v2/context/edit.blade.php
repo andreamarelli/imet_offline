@@ -1,8 +1,10 @@
 <?php
 /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Imet $item */
 
+use \AndreaMarelli\ImetCore\Models\User\Role;
+
 // Force Language
-if($item->language != \Illuminate\Support\Facades\App::getLocale()){
+if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
     \Illuminate\Support\Facades\App::setLocale($item->language);
 }
 
@@ -12,7 +14,7 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['show' => false, 'links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
+        route('imet-core::index') => trans('imet-core::common.imet_short')
     ]])
 @endsection
 
@@ -23,7 +25,7 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
 
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [
-        'url' => action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, 'edit'], ['item'=>$item->getKey()]),
+        'url' => route('imet-core::v2_context_edit', ['item'=>$item->getKey()]),
         'current_step' => $step,
         'label_prefix' =>  'imet-core::v2_common.steps.',
         'steps' => array_keys($item::modules())
@@ -32,10 +34,14 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
     {{--  Modules (by step) --}}
     <div class="imet_modules">
         @foreach($item::modules()[$step] as $module)
-            @include('modular-forms::module.edit.container', [
-                'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class,
-                'module_class' => $module,
-                'form_id' => $item->getKey()])
+            @if(Role::hasRequiredAccessLevel($module))
+                @include('modular-forms::module.edit.container', [
+                    'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class,
+                    'module_class' => $module,
+                    'form_id' => $item->getKey()])
+            @else
+                @include('imet-core::components.module.not_allowed_container', ['module_class' => $module])
+            @endif
         @endforeach
     </div>
 

@@ -129,6 +129,10 @@
                 default: function () {
                     return null;
                 }
+            },
+            maxFileSize: {
+                type: Number,
+                default: 10000000   // 10Mb
             }
         },
 
@@ -193,7 +197,7 @@
                     let extension = this.selectedFileName.split('.').pop();
 
                     // Prevent upload if too big
-                    if(this.selectedFile.size > 50000000){
+                    if(this.selectedFile.size > this.maxFileSize){
                         errorMessage = Locale.getLabel('modular-forms::common.upload.too_big');
                         this.isFileSelected = false;
                     }

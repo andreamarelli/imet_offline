@@ -2,7 +2,7 @@
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
+        route('imet-core::index') => trans('imet-core::common.imet_short')
     ]])
 @endsection
 
@@ -50,7 +50,7 @@
         new Vue({
             el: '#imet_report',
             data: {
-                url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController::class, 'get_ajax_responses']) }}'
+                url: '{{ route('imet-core::scaling_up_analysis') }}'
             },
             methods: {
                 goTo: function (event) {

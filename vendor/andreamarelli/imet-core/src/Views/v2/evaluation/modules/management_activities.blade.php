@@ -22,7 +22,8 @@
 
         {{-- inputs --}}
         <tbody class="{{ $group_key }}">
-        <tr class="module-table-item" v-for="(item, index) in {{ 'records[\''.$group_key.'\']' }}">
+        @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => 4, 'attributes' => 'v-if="records[\'' . $group_key . '\'][0].' . $definitions['fields'][0]['name'] . '===null"'])
+        <tr v-else class="module-table-item" v-for="(item, index) in {{ 'records[\''.$group_key.'\']' }}">
             {{--  fields  --}}
             @foreach($definitions['fields'] as $i => $field)
                 <td>

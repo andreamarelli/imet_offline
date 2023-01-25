@@ -2,7 +2,15 @@
 
 namespace AndreaMarelli\ModularForms\Models\Utils;
 
+use AndreaMarelli\ModularForms\Helpers\Locale;
 use AndreaMarelli\ModularForms\Models\BaseModel;
+
+if(!defined('UPPER_LOCALE')) {
+    define('UPPER_LOCALE', Locale::upper());
+}
+if(!defined('LOWER_LOCALE')) {
+    define('LOWER_LOCALE', Locale::lower());
+}
 
 
 abstract class Currency extends BaseModel

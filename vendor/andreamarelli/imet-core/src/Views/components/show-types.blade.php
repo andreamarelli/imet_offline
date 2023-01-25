@@ -12,7 +12,7 @@ $only_label = $only_label ?? false;
     <?php
         if($value!==null){
             $values = array_map(function($value) use($type){
-                return \AndreaMarelli\ModularForms\Helpers\Input\SelectionList::getLabel('ProtectedArea', str_replace('OFAC_', '', $value));
+                return \AndreaMarelli\ModularForms\Helpers\Input\SelectionList::getLabel('Imet_ProtectedArea', str_replace('OFAC_', '', $value));
             }, explode(',', $value));
             $value = implode(',', $values);
         }

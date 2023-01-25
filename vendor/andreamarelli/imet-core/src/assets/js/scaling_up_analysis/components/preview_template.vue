@@ -23,7 +23,6 @@ export default {
   data() {
     return {
       items: [],
-      url: window.Laravel.baseUrl + '/',
       classDiv: '',
       pixelsPage: 0,
       images: []

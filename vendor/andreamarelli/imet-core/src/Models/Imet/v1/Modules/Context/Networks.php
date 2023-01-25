@@ -4,12 +4,15 @@ namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context;
 
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
+use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\Type\JSON;
 use Illuminate\Support\Str;
 
 class Networks extends Modules\Component\ImetModule
 {
     protected $table = 'imet.context_networks';
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
     public function __construct(array $attributes = []) {
 

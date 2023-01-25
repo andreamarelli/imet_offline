@@ -6,7 +6,7 @@
 
 use \Wa72\HtmlPageDom\HtmlPageCrawler;
 
-$page = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.table', compact(['definitions', 'records']))->render();
+$page = \Illuminate\Support\Facades\View::make('imet-core::components.module.show.table_with_nothing_to_evaluate', compact(['definitions', 'records']))->render();
 $dom = HtmlPageCrawler::create(
     \Wa72\HtmlPageDom\Helpers::trimNewlines($page)
 );

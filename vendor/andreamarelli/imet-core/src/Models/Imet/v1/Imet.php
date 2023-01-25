@@ -5,6 +5,8 @@ namespace AndreaMarelli\ImetCore\Models\Imet\v1;
 
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewers;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
 {
@@ -76,22 +78,26 @@ class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
         ]
     ];
 
-    public function responsible_interviees()
+    /**
+     * Relation to ResponsablesInterviewees
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function responsible_interviewees(): HasMany
     {
         return $this->hasMany(ResponsablesInterviewees::class, $this->primaryKey, 'FormID')
             ->select(['FormID','Name']);
     }
 
-    public function responsible_interviers()
+    /**
+     * Relation to ResponsablesInterviewers
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function responsible_interviewers(): HasMany
     {
         return $this->hasMany(ResponsablesInterviewers::class, $this->primaryKey, 'FormID')
             ->select(['FormID','Name']);
-    }
-
-
-    public function assessment()
-    {
-        return $this->hasOne(Assessment::class, 'formid', 'FormID');
     }
 
 }

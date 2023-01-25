@@ -29,9 +29,16 @@
                 <drop_drag_area :drop_id="i.id" :key="i.id" :color="i.color">
                     <template>
                         <div class="bg-white text-center mb-1">
-                            <span class="text-center "> {{ i.name }}</span>
+                            <span class="text-center " v-if="i.input_visible"> <input type="text" :id="'item-'+i.id" :value="i.name" maxlength="25" size="15"/></span>
+                            <span class="text-center " v-if="!i.input_visible"> {{ i.name }}</span>
+                            <i class="fa fa-pen" v-if="!i.input_visible"
+                               aria-hidden="true" @click='edit_component_name(i.id)'></i>
+
+                            <i class="fa fa-save" v-if="i.input_visible"
+                               aria-hidden="true" @click='save_component_name(i.id)'></i>
                             <i class="fa fa-trash"
                                aria-hidden="true" @click='remove_component_from_list(i.id)'></i>
+
                         </div>
                         <div v-for='item in list_items(i.id)'>
                             <draggable_item :item="item"></draggable_item>
@@ -161,7 +168,7 @@ export default {
         this.list = Object.entries(this.values).map(i => {
             this.countriesList.push(i[1].Country_name.name);
 
-            return {id: i[1].FormID, name: i[1].name, 'list': null, country: i[1].Country_name.name}
+            return {id: i[1].FormID, name: i[1].name, 'list': null, country: i[1].Country_name.name, input_visible: false}
         });
         this.list.sort((a, b) => a.name.localeCompare(b.name));
         this.countriesList = [...new Set(this.countriesList)];
@@ -191,10 +198,7 @@ export default {
                 this.$root.$emit('incoming-data', {
 
                     parameters: this.list.filter(item => item.list !== null).map(item => {
-                        let group_name = `${this.stores.BaseStore.localization('imet-core::analysis_report.grouping.group')} ${item.list}`;
-                        if (item.by_country) {
-                            group_name = item.country;
-                        }
+                        let group_name = this.list_of_components.find(comp => comp.id === item.list).name;
                         return {id: item.id, group: item.list, name: group_name}
                     }), func: params ? params.func : this.func_to_call
 
@@ -206,12 +210,26 @@ export default {
             this.list_of_components = Array.from({length: this.number_of_drop_zones}, (_, id) => ({
                 id: id + 1,
                 color: this.colors[id],
-                name: 'Group ' + (id + 1)
+                name: 'Group ' + (id + 1),
+                input_visible: false
             }))
         },
         remove_component_from_list: function (id) {
             this.list_of_components = this.list_of_components.filter((comp, index) => comp.id !== id);
             this.reset_list_items(id);
+        },
+        edit_component_name:function (id) {
+            this.list_of_components.find(comp => comp.id === id).input_visible = true;
+        },
+        save_component_name: function (id) {
+            const name = document.getElementById('item-' + id).value;
+            this.list_of_components = this.list_of_components.map(comp => {
+                if (comp.id === id) {
+                    comp.name = name;
+                }
+                comp.input_visible = false;
+                return comp;
+            })
         },
         list_items(id = null) {
             return this.list.filter(item => item.list === id)
@@ -244,7 +262,7 @@ export default {
             const components_length = this.list_of_components.length;
             const group_name = name ?? `${this.stores.BaseStore.localization('imet-core::analysis_report.grouping.group')} ${(components_length + 1)}`;
             const length = !components_length ? 1 : Math.max(...this.list_of_components.map(i => i.id)) + 1;
-            this.list_of_components.push({id: length, color: this.colors[length - 1], name: group_name})
+            this.list_of_components.push({id: length, color: this.colors[length - 1], name: group_name, input_visible: false})
             this.list_of_components.sort((a, b) => {
                 return a.name.localeCompare(b.name)
             });

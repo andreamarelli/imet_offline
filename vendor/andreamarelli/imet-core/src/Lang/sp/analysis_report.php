@@ -2,6 +2,7 @@
 
 
 return [
+    'variability' => 'Variabilidade',
     'scaling_up' => 'Aumento de la escala',
     'conclusions' => 'Conclusiones',
     'title' => 'Informe de análisis de la ampliación para ',
@@ -18,7 +19,7 @@ return [
     'average_explained' => '* Media calculada en base al conjunto de áreas protegidas que participan en el ejercicio de ampliación',
     'ranking_rescaled_indicators' => 'Clasificación de los indicadores reescalada a 0-100',
     'ranking_info_indicators' => '* Las puntuaciones en la ventana emergente son la contribución al indicador sintético',
-    'source'=> 'Fuente',
+    'source' => 'Fuente',
     'download_files' => 'descarga de archivos',
     'print' => 'imprimir',
     'custom_names' => 'Nombres de zonas protegidas',
@@ -34,6 +35,10 @@ return [
     'name' => 'Nombre',
     'category' => 'Categoría',
     'short_name' => 'Código de colores y nombre corto',
+    'add_choices' => 'Añadir opciones',
+    'add_all' => 'Añadir todo',
+    'close' => 'Cerrar',
+    'remove_all' => 'Eliminar todo',
     'sections' => [
         'first' => 'Ubicación de las áreas protegidas seleccionadas',
         'second' => 'Información General de las áreas protegidas',
@@ -191,6 +196,12 @@ return [
     ],
     'management_context' => [
         'key_species' => 'Especies clave',
+        'animal_species_chart' => 'Especies animales',
+        'plant_species_chart' => 'Especies vegetales',
+        'habitats_chart' => 'Hábitats',
+        'threats_charts' => 'Amenazas',
+        'values_sensitive_chart' => 'Valores clave sensibles al cambio climático',
+        'ecosystem_services_chart' => 'Ecosistemas más importantes',
         'animal_species' => 'Especies animales (emblemáticas, en peligro de extinción, endémicas, ...)',
         'occurrences_species' => 'Especies animales clave presentes en 2 o más áreas protegidas ',
         'occurrences_plants' => 'especies vegetales clave presentes en 2 o más zonas protegidas ',

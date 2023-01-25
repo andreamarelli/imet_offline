@@ -17,12 +17,13 @@ trait API {
      *
      * @param $data
      * @param Request|null $request
+     * @param int $code
      * @return \Illuminate\Http\JsonResponse
      */
-    public static function sendAPIResponse($data, Request $request = null): JsonResponse
+    public static function sendAPIResponse($data, Request $request = null, int $code = 200): JsonResponse
     {
         $body = [
-            'status' => 200,
+            'status' => $code,
             'request_params' => $request ? $request->all() : null,
             'records' => $data
         ];

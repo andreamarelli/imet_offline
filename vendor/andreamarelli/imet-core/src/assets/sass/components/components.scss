@@ -15,6 +15,14 @@
     }
 }
 
+.nothing_to_evaluate{
+    font-weight: 600;
+    line-height: 1.2em;
+    color: $gray-400;
+    font-size: 1.3em;
+    text-align: center;
+}
+
 .imet_name {
     display: flex;
     flex-direction: column;

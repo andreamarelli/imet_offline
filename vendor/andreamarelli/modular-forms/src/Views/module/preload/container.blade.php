@@ -7,11 +7,11 @@
 
     {{-- Preload modal anchor --}}
     <div style="display: inline-block;"
-         data-toggle="tooltip" data-placement="top" data-original-title="@lang_u('modular-forms::common.form.previous_years')">
+         data-toggle="tooltip" data-placement="top" data-original-title="@uclang('modular-forms::common.form.previous_years')">
         <button type="button"
                 class="btn-nav small"
                 data-toggle="modal" data-target="#preload_modal__{!! $definitions['module_key'] !!}">
-            @lang_u('modular-forms::common.form.previous_years')
+            @uclang('modular-forms::common.form.previous_years')
         </button>
     </div>
 
@@ -21,7 +21,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="modal-title">
-                        @lang_u('modular-forms::common.form.preload')
+                        @uclang('modular-forms::common.form.preload')
                         <br />
                         <b>{{ $definitions['module_code'] }} - {{ $definitions['module_title'] }}</b>
                     </div>

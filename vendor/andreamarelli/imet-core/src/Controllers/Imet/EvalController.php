@@ -4,7 +4,7 @@ namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
 
 use AndreaMarelli\ImetCore\Controllers\__Controller;
-use AndreaMarelli\ImetCore\Controllers\Imet\Assessment;
+use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment;
 
 use AndreaMarelli\ImetCore\Models\Imet\CrossAnalysis\CrossAnalysis;
 use function view;
@@ -13,15 +13,14 @@ class EvalController extends __Controller
 {
     use Assessment;
 
-    public const AUTHORIZE_BY_POLICY = true;
-
     /**
      * return if any discrepancies are found for cross analysis
      * and also the classes to be used for indication in the menu
+     *
      * @param $form
-     * @return void
+     * @return array
      */
-    protected function get_cross_analysis($form)
+    protected function get_cross_analysis($form): array
     {
         $classes = [];
         $warnings = CrossAnalysis::getIndicators($form);
@@ -34,10 +33,12 @@ class EvalController extends __Controller
 
     /**
      * add extra step for cross analysis before the last one
+     *
      * @param $form
-     * @return int[]|string[]
+     * @return array
      */
-    protected function steps($form){
+    protected function steps($form): array
+    {
         $steps = array_keys($form->modules());
         $last_step = array_splice($steps, -1);
         return array_merge($steps, ['cross_analysis'], $last_step);
@@ -53,7 +54,7 @@ class EvalController extends __Controller
      */
     public function edit($item, $step = null)
     {
-        $this->authorize('update', (static::$form_class)::find($item));
+        $this->authorize('edit', (static::$form_class)::find($item));
 
         $form = new static::$form_class();
         $form = $form->find($item);
@@ -65,8 +66,8 @@ class EvalController extends __Controller
 
         return view(static::$form_view_prefix . '.edit', [
             'item' => $form,
-            'step' => $step,
             'steps' => $steps,
+            'step' => $step,
             'warnings' => $warnings,
             'classes' => $classes
         ]);

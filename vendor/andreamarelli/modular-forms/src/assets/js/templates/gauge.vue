@@ -3,9 +3,11 @@
     <div class="gauge">
         <svg viewBox="0 0 36 36" :class=color>
             <path class="circle-bg" d="M18 2.0845a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
-            <path class="circle" :stroke-dasharray="parseInt(value_percentage).toString() + ', 100'"
-                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
-            <text x="50%" y="58%" class="percentage">{{ parseInt(value_percentage).toString() }}%</text>
+            <path class="circle"    d="M18 2.0845a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  :stroke-dasharray="parseInt(value_percentage).toString() + ', 100'"
+            ></path>
+            <text x="50%" y="60%" class="percentage">{{ parseInt(value_percentage).toString() }}</text>
+            <text x="50%" y="80%" class="percent_symbol">%</text>
         </svg>
     </div>
 
@@ -41,7 +43,13 @@
 
             .percentage {
                 fill: $gray-800;
-                font-size: 0.6em;
+                font-size: 0.9em;
+                letter-spacing: -0.2px;
+                text-anchor: middle;
+                font-weight: bold;
+            }
+            .percent_symbol{
+                font-size: 0.35em;
                 letter-spacing: -0.2px;
                 text-anchor: middle;
                 font-weight: bold;
@@ -54,9 +62,6 @@
                 .circle {
                     stroke: $green-600;
                 }
-                .percentage{
-                    fill: $green-600;
-                }
             }
 
             &.yellow{
@@ -66,9 +71,6 @@
                 .circle {
                     stroke: $contextual-warning;
                 }
-                .percentage{
-                    fill: $contextual-warning;;
-                }
             }
 
             &.red{
@@ -77,9 +79,6 @@
                 }
                 .circle {
                     stroke: $red-600;
-                }
-                .percentage{
-                    fill: $red-600;
                 }
             }
 

@@ -4,6 +4,7 @@ namespace AndreaMarelli\ModularForms\Models;
 
 use AndreaMarelli\ModularForms\Helpers\ModuleKey;
 use AndreaMarelli\ModularForms\Helpers\PhpClass;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use AndreaMarelli\ModularForms\Models\Traits\PredefinedValues;
 use AndreaMarelli\ModularForms\Models\Traits\Upload;
 use Illuminate\Support\Facades\DB;
@@ -400,7 +401,7 @@ class Module extends BaseModel
         $model = new static();
 
         // ### get request ###
-        $records = json_decode($request->input('records_json'), true);
+        $records = Payload::decode($request->input('records_json'));
         $form_id = $request->input('form_id');
 
         try {

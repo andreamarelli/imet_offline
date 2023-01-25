@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\App;
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+    // Override ImetCore Aliases in order to extend classes
+        $loader = AliasLoader::getInstance();
+        $loader->alias(\ImetUser::class, \App\Models\User::class);
     }
 
     /**

@@ -76,7 +76,7 @@ return [
             'Biome' => 'Biome',
             'Ecoregions' => 'Reference ecoregion(s) [Ecoregions G200, Olson, WWF; Spalding M. et alt. 2007]',
             'Ecotype' => 'Ecotypes (up to 3 elements gradually as the predominance)',
-            'ReferenceText' => 'Citation for existing founding legislation',
+            'ReferenceText' => 'Citation for existing funding legislation',
             'ReferenceTextDocument' => '',
             'ReferenceTextValues' => 'What are the main values for which the area has been designated? (Provide a brief description)',
         ]
@@ -312,7 +312,7 @@ return [
         'fields' => [
             'Line' => 'Budget lines',
             'Amount' => 'Amount (currency/an)',
-            'BudgetSource' => 'Source of foundingt',
+            'BudgetSource' => 'Source of funding',
             'Currency' => 'Currency',
         ]
     ],

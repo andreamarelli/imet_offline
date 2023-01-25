@@ -6,7 +6,7 @@ return [
         'title' => 'Créer un nouveau IMET (WDPA)',
         'fields' => [
             'version' => 'version',
-            'Year' => 'année',
+            'Year' => 'Année sujette à évaluation',
             'wdpa_id' => 'aire protégée',
             'language' => 'langue',
             'prefill_prev_year' => 'préremplir avec l\'année précédente',
@@ -17,7 +17,7 @@ return [
         'title' => 'Créer un nouveau IMET (non-WDPA)',
         'fields' => [
             'version' => 'version IMET',
-            'Year' => 'année',
+            'Year' => 'Année sujette à évaluation',
             'wdpa_id' => 'aire protégée',
             'language' => 'langue',
             'prefill_prev_year' => 'préremplir avec l\'année précédente',
@@ -25,12 +25,13 @@ return [
             'name' => 'nom fourni par l’exploitant',
             'origin_name' => 'nom dans la langue d’origine',
             'designation' => 'nom de la désignation (ex. réserve, sanctuaire, etc.)',
-            'designation_eng' => 'désignation obligatoire en anglais',
+            'designation_eng' => 'désignation obligatoire en Anglais',
             'designation_type' => 'type de désignation',
             'marine' => 'typologie',
             'rep_m_area' => 'surface de l’aire protégée conservée marine [km<sup>2</sup>]',
             'rep_area' => 'surface de l’aire protégée conservée [km<sup>2</sup>]',
             'status' => 'statut',
+            'ownership_type' => 'Type de propriété',
             'status_year' => 'année de promulgation du statut',
             'country' => 'pays',
         ],
@@ -45,31 +46,31 @@ return [
         'fields' => [
             'Element' => 'Elément/Indicateur',
             'Status' => 'Ligne de base',
-            'Objective' => 'Objectif - Conditions souhaitées',
+            'Objective' => 'Objectif – Condition optimal ou favorable',
             'Comments' => 'Commentaires'
         ]
     ],
 
     'Objectives1' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation relatifs à la <b>gouvernance, les partenariats et la désignation </b> de l\'aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs relatifs à la <b>gouvernance, les partenariats et la désignation </b> de l\'aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives2' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation relatifs aux <b>limites, l’indice de configuration, l’extension des patrouilles et l’application de la loi et le contexte territorial de l’aire protégée</b><br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs relatifs aux <b>limites, l’indice de configuration, l’extension des patrouilles et l’application de la loi et le contexte territorial de l’aire protégée</b><br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives3' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation relatifs aux <b>pour les ressources humaines, financières et matérielles pour la gestion </b> de l\'aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs relatifs aux <b>pour les ressources humaines, financières et matérielles pour la gestion </b> de l\'aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives4' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation relatifs aux <b> i) espèces animales; ii) espèces de plante; iii) habitats iv) couverture, utilisation et occupation des terres </b>de l\'aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs relatifs aux <b> i) espèces animales; ii) espèces de plante; iii) habitats iv) couverture, utilisation et occupation des terres </b>de l\'aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives5' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation relatifs aux <b>pressions et menaces</b> qui pèsent sur l’aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs relatifs aux <b>pressions et menaces</b> qui pèsent sur l’aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives6' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation relatifs au <b>changement climatique </b> qui pèsent sur l’aire protégée.<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs relatifs au <b>changement climatique </b> qui pèsent sur l’aire protégée.<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives7' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation relatifs aux <b> services écosystémiques et à la dépendance des collectivités</b> de l’aire protégée envers ces services<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs relatifs aux <b> services écosystémiques et à la dépendance des collectivités</b> de l’aire protégée envers ces services<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
 
     'ResponsablesInterviewers' => [
@@ -102,7 +103,7 @@ return [
             'CompleteName' => 'Nom complet de l\'aire protégée',
             'CompleteNameWDPA' => 'Nom de l\'aire protégée dans le site WDPA',
             'UsedName' => 'Nom utilisé',
-            'WDPA' => 'Code WDPA du site',
+            'WDPA' => 'WDPA ID (www.protectedplanet.net)',
             'Type' => 'Typologie',
             'NationalCategory' => 'Catégorie Nationale',
             'IUCNCategory1' => 'Catégorie UICN principale',
@@ -528,7 +529,7 @@ return [
             </ul>',
         'validation_min3' => 'Veuillez encoder au moins 3 des espèces clés.',
         'warning_on_save' =>
-            'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
+            'ATTENTION!!<br />Toute modification provoquera une perte complète des données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -550,7 +551,7 @@ return [
         ],
         'module_info' =>'État de conservation favorable: Selon Natura 2000, L’état de conservation des espèces est considéré comme « favorable » lorsque:<ul><li>les données sur la dynamique des populations de l’espèce concernée indiquent qu’elle se maintient à long terme en tant que composante viable de ses habitats naturels, et</li><li>l’aire de répartition naturelle de l’espèce n’est ni réduite ni susceptible de l’être dans un avenir prévisible, et il existe, et il existera probablement encore à long terme un habitat suffisamment vaste pour maintenir ses populations</li></ul>Evaluation: Évaluer, à partir de la liste des plantes supposées exister (voir les listes mises à disposition et les informations du parc), un nombre limité d’espèces végétales clés de l’aire protégée.<br /> <b>Types d\'espèces</b> <ul> <li><b>PHA</b>: Espèce phare</li> <li><b>MEN</b>: Espèce menacée</li> <li><b>END</b>: Espèce endémique</li> <li><b>EXP</b>: Espèce exploitée</li> <li><b>INV</b>: Espèce invasive</li> <li><b>INS</b>: Espèce avec faible niveau de connaissance</li> </ul>',
         'warning_on_save' =>
-            'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
+            'ATTENTION!!<br />Toute modification provoquera une perte complète des données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -568,7 +569,7 @@ return [
         ],
         'module_info' =>'État de conservation favorable: Selon Natura 2000, l’état de conservation d’un habitat naturel est considéré comme « favorable » lorsque:<ul><li>son aire de répartition naturelle et les zones qu’il couvre à l’intérieur de cette aire sont stables ou en augmentation, et</li><li>la structure et les fonctions spécifiques qui sont nécessaires à son maintien à long terme existent et sont susceptibles de continuer à exister dans un avenir prévisible</li></ul>Sur la base de plusieurs paramètres relatifs aux habitats (externe = irremplaçabilité et internes = spécificités de l\'aire protégée), le gestionnaire détermine les spécificités des habitats terrestres et marine de l\'aire protégée qui devront faire l\'objet d\'un suivi dans le temps.<br /> <b>Note</b>: l\'évaluation des écosystemes et habitats est une discipline très complexe. La classification prévoit la division de territoire suivante: Biome, Ecorégion, Ecosystème, Habitat. Les caractéristiques de l\'habitat / valeurs peuvent être évaluées comme: <ul> <li>i) sous la menace d\'extinction (au sein de leur aire de répartition naturelle),</li> <li>ii) ayant une aire de répartition naturelle réduite,</li> <li>iii) en déclin,</li> <li>iv) un exemple exceptionnel de caractéristiques spécifiques, etc.</li> </ul> Les Caractéristiques / Valeurs des écosystèmes et habitats peuvent être estimées comme spécifique pour: <ul> <li>i) la reproduction,</li> <li>ii) la nutrition,</li> <li>iii) la protection des espèces, etc.</li> </ul>',
         'warning_on_save' =>
-            'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
+            'ATTENTION!!<br />Toute modification provoquera une perte complète des données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -821,7 +822,7 @@ return [
         ],
         'module_info' => 'Le calculateur de menaces permet de calculer les scores d’impact des menaces sur une zone protégée spécifique. En utilisant votre meilleur jugement professionnel, évaluez l’impact de la menace en exploitant cinq catégories de score: (1) Impact/ Sévérité ; (2) Ampleur/ Etendue ; (3) Durée/ Irréversibilité ; (4) Tendance ; (5) Probabilité de la menace dans le futur',
         'warning_on_save' =>
-            'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
+            'ATTENTION!!<br />Toute modification provoquera une perte complète des données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -851,7 +852,7 @@ return [
             ]
         ],
         'warning_on_save' =>
-            'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
+            'ATTENTION!!<br />Toute modification provoquera une perte complète des données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.4</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -881,12 +882,12 @@ return [
             'group1' => ['Bois à haute valeur économique - illégal', 'Bois à haute valeur économique - légal','Bois pour la construction locale - illégal', 'Bois pour la construction locale - légal', 'Fibres de tiges (palmiers, kénaf, jute, etc.) - illégal', 'Fibres de tiges (palmiers, kénaf, jute, etc.) - légal', 'Autres fibres (kapok, coco,  etc.) - illégal', 'Autres fibres (kapok, coco,  etc.) - légal', 'Ornementale (graines, coquilles, etc.) - illégal', 'Ornementale (graines, coquilles, etc.) - légal', 'Sable (bâtiment) - illégal', 'Sable (bâtiment) - légal', 'Algues/coquillages - illégal', 'Algues/coquillages - légal', 'Terres cultivées (agriculture, élevage, forêts) - illégal', 'Terres cultivées (agriculture, élevage, forêts) - légal'],
             'group2' => ['Bois de feu et biocarburants - illégal', 'Bois de feu et biocarburants - légal', 'Eau pour énergie - illégal', 'Eau pour énergie - légal', 'Engrais (production – transformation) - illégal', 'Engrais (production – transformation) - légal'],
             'group3' => ['Régulation du gaz (séquestration du C)', 'Enterrement/décomposition/neutralisation des déchets', 'Régulation des déchets (absorption d’éléments nutritifs)', 'Contrôle de l’érosion éolienne'],
-            'group4' => ['Contrôle des inondations', 'Lutte contre la sécheresse', 'Protection contre les tempêtes', 'Contrôle de l’érosion par l’eau', 'Contrôle de l’érosion éolienne'],
-            'group5' => ['Esthétique (intégrité de l’écosystème)', 'Ecotourisme et observation de la nature', 'Marche, randonnée pédestre et loisirs généraux', 'Navigation de plaisance, natation et plongée', 'Chasse ou pêche si autorisée'],
+            'group4' => ['Contrôle des inondations', 'Lutte contre la sécheresse', 'Protection contre les tempêtes', 'Contrôle de l’érosion par l’eau', 'Contrôle de l’érosion éolienne', 'Prévention de l\'érosion côtière'],
+            'group5' => ['Esthétique (intégrité de l’écosystème)', 'Ecotourisme et observation de la nature', 'Marche, randonnée pédestre et loisirs généraux', 'Navigation de plaisance, natation et plongée', 'Plongée en apnée, navigation de plaisance et plongée', 'Chasse ou pêche si autorisée', 'Pêche traditionnelle spécifiée'],
             'group6' => ['Science — Recherche', 'Education', 'Patrimoine culturel/héritage'],
             'group7' => ['Symboliqu ou Historique', 'Sacré ou Religieuse'],
             'group8' => ['Conservation ex-situ'],
-            'group9' => ['Production primaire nette (végétation)', 'Cycle des nutriments (décomposition et minéralisation de la litière)', 'Formation de l’habitat des espèces', 'Formation du paysage marin', 'Pollinisation (plantes)', 'Cycle de l’eau'],
+            'group9' => ['Production primaire nette (végétation)', 'Cycle des nutriments (décomposition et minéralisation de la litière)', 'Formation de l’habitat des espèces', 'Formation du paysage marin', 'Anciennes espèces d\'habitat (ex. coraux)', 'Pollinisation (plantes)', 'Cycle de l’eau', 'Paysage marin : hétérogénéité/complexité de l\'habitat (diversité favorable)'],
         ],
         'categories' => [
             'title1' => 'Approvisionnement',
@@ -915,7 +916,7 @@ return [
             ],
         ],
         'warning_on_save' =>
-            'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
+            'ATTENTION!!<br />Toute modification provoquera une perte complète des données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.5</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 

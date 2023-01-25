@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Jobs;
 
+use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ModularForms\Helpers\Module;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -40,33 +41,33 @@ class PopulateMetadata implements ShouldQueue
         Module::iterateOverModules(
             [\AndreaMarelli\ImetCore\Models\Imet\v1\Imet::$modules,],
             __NAMESPACE__ . '\PopulateMetadata::insert_metadata',
-            ['v1', 'context']
+            [Imet::IMET_V1, 'context']
         );
         Module::iterateOverModules(
             [\AndreaMarelli\ImetCore\Models\Imet\v1\Imet_Eval::$modules,],
             __NAMESPACE__ . '\PopulateMetadata::insert_metadata',
-            ['v1', 'evaluation']
+            [Imet::IMET_V1, 'evaluation']
         );
         Module::iterateOverModules(
             [\AndreaMarelli\ImetCore\Models\Imet\v2\Imet::$modules,],
             __NAMESPACE__ . '\PopulateMetadata::insert_metadata',
-            ['v2', 'context']
+            [Imet::IMET_V2, 'context']
         );
         Module::iterateOverModules(
             [\AndreaMarelli\ImetCore\Models\Imet\v2\Imet_Eval::$modules,],
             __NAMESPACE__ . '\PopulateMetadata::insert_metadata',
-            ['v2', 'evaluation']
+            [Imet::IMET_V2, 'evaluation']
         );
 
         // metadata statistics
         DB::select('DELETE FROM imet.imet_metadata_statistics;');
         $items = trans('imet-core::v2_common.assessment');
         foreach ($items as $code => $item) {
-            static::insert_metadata_statistics('v2', $code, $item);
+            static::insert_metadata_statistics(Imet::IMET_V2, $code, $item);
         }
         $items = trans('imet-core::v1_common.assessment');
         foreach ($items as $code => $item) {
-            static::insert_metadata_statistics('v1', $code, $item);
+            static::insert_metadata_statistics(Imet::IMET_V1, $code, $item);
         }
     }
 
@@ -89,9 +90,9 @@ class PopulateMetadata implements ShouldQueue
 
     public static function getModuleTitle($version, $phase, $className, $lang)
     {
-        if ($version === 'v1' && preg_match("/^Objectives\d$/", $className)) {
+        if ($version === Imet::IMET_V1 && preg_match("/^Objectives\d$/", $className)) {
             $className = 'Objectives';
-        } elseif ($version === 'v2' && Str::startsWith($className, 'Objectives')) {
+        } elseif ($version === Imet::IMET_V2 && Str::startsWith($className, 'Objectives')) {
             $className = 'Objectives';
         }
         return str_replace(

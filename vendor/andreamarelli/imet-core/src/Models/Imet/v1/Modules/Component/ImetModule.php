@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Component;
 
 use AndreaMarelli\ImetCore\Models\Imet\Components\Upgrade;
+use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Models\Module;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
 use Illuminate\Support\Facades\App;
@@ -19,6 +20,8 @@ class ImetModule extends Module
 
     protected $primaryKey = 'id';
     public static $foreign_key = 'FormID';
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public $ratingLegend = null;
     public $module_subTitle = null;

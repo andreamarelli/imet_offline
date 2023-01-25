@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use \AndreaMarelli\ModularForms\Models\User\User as baseUser;
+use AndreaMarelli\ImetCore\Models\User\User as ImetUser;
 
 /**
  * @property string first_name
@@ -10,42 +10,7 @@ use \AndreaMarelli\ModularForms\Models\User\User as baseUser;
  * @property string organisation
  * @property string function
  */
-class User extends baseUser
+class User extends ImetUser
 {
-    protected $fillable = [
-        'email',
-        'password',
-        'first_name',
-        'last_name',
-        'organisation',
-        'function',
-        'country'
-    ];
-
-    /**
-     * Retrieve the name of the user
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->first_name . ' ' . $this->last_name;
-    }
-
-
-    /**
-     * Retrieve user's personal info
-     *
-     * @return array
-     */
-    public function getInfo(): array
-    {
-        return [
-            "first_name" => $this->first_name,
-            "last_name" => $this->last_name,
-            "organisation" => $this->organisation,
-            "function" => $this->function
-        ];
-    }
 
 }

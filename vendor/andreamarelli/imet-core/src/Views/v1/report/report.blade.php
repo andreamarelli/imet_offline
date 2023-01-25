@@ -1,5 +1,6 @@
 <?php
 /** @var string $action */
+
 /** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Imet $item */
 /** @var array $assessment */
 /** @var array $key_elements */
@@ -28,14 +29,14 @@ if ($item->language != App::getLocale()) {
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
+        route('imet-core::index') => trans('imet-core::common.imet_short')
     ]])
 @endsection
 
 @if(!is_imet_environment())
-@section('admin_page_title')
-    @lang('imet-core::common.imet')
-@endsection
+    @section('admin_page_title')
+        @lang('imet-core::common.imet')
+    @endsection
 @endif
 
 
@@ -47,7 +48,9 @@ if ($item->language != App::getLocale()) {
 
         @if($show_api)
             <div class="module-container">
-                <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.general_elements')</div></div>
+                <div class="module-header">
+                    <div class="module-title">@lang('imet-core::v2_report.general_elements')</div>
+                </div>
                 <div class="module-body">
                     <div id="map" v-if=connection></div>
                     <div v-else class="dopa_not_available">@lang('imet-core::common.dopa_not_available')</div>
@@ -59,17 +62,39 @@ if ($item->language != App::getLocale()) {
                             </div>
                         @endif
                         <div>
-                            <div><div class="strong">@lang('imet-core::v2_report.country'):</div>{{ $general_info['Country'] ?? '-' }}</div>
-                            <div><div class="strong">@lang('imet-core::v2_report.name'):</div>{{ $general_info['CompleteName'] ?? '-' }}</div>
-                            <div><div class="strong">@lang('imet-core::v2_report.category'):</div>{{ $general_info['NationalCategory'] ?? '-' }}</div>
-                            <div><div class="strong">@lang('imet-core::v2_report.gazetting'):</div>{{ $general_info['CreationYear'] ?? '-' }}</div>
-                            <div><div class="strong">@lang('imet-core::v2_report.surface'):</div>{{ $area }} [km2]</div>
-                            <div><div class="strong">@lang('imet-core::v2_report.agency'):</div>{{ $general_info['Institution'] ?? '-' }}</div>
-                            <div><div class="strong">@lang('imet-core::v2_report.biome'):</div>{{ $general_info['Biome']  }}</div>
-                            <div><div class="strong">@lang('imet-core::v2_report.main_values_protected'):</div>{{ $general_info['ReferenceTextValues'] ?? '-' }}</div>
-                            <div><div class="strong">@lang('imet-core::v2_report.vision'):</div>{{ $vision['LocalVision'] ?? '-' }}</div>
-                            <div><div class="strong">@lang('imet-core::v2_report.mission'):</div>{{ $vision['LocalMission'] ?? '-' }}</div>
-                            <div><div class="strong">@lang('imet-core::v2_report.objectives'):</div>{{ $vision['LocalObjective'] ?? '-' }}</div>
+                            <div>
+                                <div class="strong">@lang('imet-core::v2_report.country'):
+                                </div>{{ $general_info['Country'] ?? '-' }}</div>
+                            <div>
+                                <div class="strong">@lang('imet-core::v2_report.name'):
+                                </div>{{ $general_info['CompleteName'] ?? '-' }}</div>
+                            <div>
+                                <div class="strong">@lang('imet-core::v2_report.category'):
+                                </div>{{ $general_info['NationalCategory'] ?? '-' }}</div>
+                            <div>
+                                <div class="strong">@lang('imet-core::v2_report.gazetting'):
+                                </div>{{ $general_info['CreationYear'] ?? '-' }}</div>
+                            <div>
+                                <div class="strong">@lang('imet-core::v2_report.surface'):</div>{{ $area }} [km2]
+                            </div>
+                            <div>
+                                <div class="strong">@lang('imet-core::v2_report.agency'):
+                                </div>{{ $general_info['Institution'] ?? '-' }}</div>
+                            <div>
+                                <div class="strong">@lang('imet-core::v2_report.biome'):
+                                </div>{{ $general_info['Biome']  }}</div>
+                            <div>
+                                <div class="strong">@lang('imet-core::v2_report.main_values_protected'):
+                                </div>{{ $general_info['ReferenceTextValues'] ?? '-' }}</div>
+                            <div>
+                                <div class="strong">@lang('imet-core::v2_report.vision'):
+                                </div>{{ $vision['LocalVision'] ?? '-' }}</div>
+                            <div>
+                                <div class="strong">@lang('imet-core::v2_report.mission'):
+                                </div>{{ $vision['LocalMission'] ?? '-' }}</div>
+                            <div>
+                                <div class="strong">@lang('imet-core::v2_report.objectives'):
+                                </div>{{ $vision['LocalObjective'] ?? '-' }}</div>
                         </div>
                     </div>
                 </div>
@@ -82,9 +107,13 @@ if ($item->language != App::getLocale()) {
         ])
 
         <div class="module-container">
-            <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.evaluation_elements')</div></div>
+            <div class="module-header">
+                <div class="module-title">@lang('imet-core::v2_report.evaluation_elements')</div>
+            </div>
             <div class="module-body">
-                <imet_charts form_id={{ $item->getKey() }} :labels='@json(\AndreaMarelli\ImetCore\Controllers\Imet\Assessment::assessment_steps_labels())' :show_histogram="true"></imet_charts>
+                <imet_charts
+                        form_id={{ $item->getKey() }} :labels='@json(\AndreaMarelli\ImetCore\Services\Statistics\StatisticsService::steps_labels())'
+                        :show_histogram="true"></imet_charts>
                 <table id="global_scores">
                     <tr>
                         <th>@lang('imet-core::v1_common.steps_eval.context')</th>
@@ -96,20 +125,22 @@ if ($item->language != App::getLocale()) {
                         <th>@lang('imet-core::v1_common.indexes.imet')</th>
                     </tr>
                     <tr>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['context']) !!} >{{ $assessment['global']['context'] }}</td>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['planning']) !!} >{{ $assessment['global']['planning'] }}</td>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['inputs']) !!} >{{ $assessment['global']['inputs'] }}</td>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['process']) !!} >{{ $assessment['global']['process'] }}</td>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['outputs']) !!} >{{ $assessment['global']['outputs'] }}</td>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['outcomes']) !!} >{{ $assessment['global']['outcomes'] }}</td>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['imet_index']) !!} >{{ $assessment['global']['imet_index'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['context']) !!} >{{ $assessment['global']['context'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['planning']) !!} >{{ $assessment['global']['planning'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['inputs']) !!} >{{ $assessment['global']['inputs'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['process']) !!} >{{ $assessment['global']['process'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['outputs']) !!} >{{ $assessment['global']['outputs'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['outcomes']) !!} >{{ $assessment['global']['outcomes'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['imet_index']) !!} >{{ $assessment['global']['imet_index'] }}</td>
                     </tr>
                 </table>
             </div>
         </div>
 
         <div class="module-container">
-            <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.management_context')</div></div>
+            <div class="module-header">
+                <div class="module-title">@lang('imet-core::v2_report.management_context')</div>
+            </div>
             <div class="module-body">
                 <h5>@lang('imet-core::v2_report.key_species')</h5>
                 <ul>
@@ -151,7 +182,9 @@ if ($item->language != App::getLocale()) {
         </div>
 
         <div class="module-container">
-            <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.management_effectiveness')</div></div>
+            <div class="module-header">
+                <div class="module-title">@lang('imet-core::v2_report.management_effectiveness')</div>
+            </div>
             <div class="module-body">
                 @include('imet-core::v1.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'analysis'])
                 <h5>@lang('imet-core::v2_report.characteristics_elements')</h5>
@@ -177,14 +210,18 @@ if ($item->language != App::getLocale()) {
         </div>
 
         <div class="module-container">
-            <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.operation_recommendations')</div></div>
+            <div class="module-header">
+                <div class="module-title">@lang('imet-core::v2_report.operation_recommendations')</div>
+            </div>
             <div class="module-body">
                 @include('imet-core::v1.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'recommendations'])
             </div>
         </div>
 
         <div class="module-container">
-            <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.key_questions')</div></div>
+            <div class="module-header">
+                <div class="module-title">@lang('imet-core::v2_report.key_questions')</div>
+            </div>
             <div class="module-body">
                 <h5>@lang('imet-core::v2_report.management_priorities')</h5>
                 @include('imet-core::v1.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'priorities'])
@@ -196,38 +233,40 @@ if ($item->language != App::getLocale()) {
         </div>
 
         <div class="module-container">
-            <div class="module-header"><div class="module-title">Annexes (&copy;Dopa Services)</div></div>
+            <div class="module-header">
+                <div class="module-title">Annexes (&copy;Dopa Services)</div>
+            </div>
             <div class="module-body">
                 <div>
                     <div v-if=connection>
 
                         <b>@lang('imet-core::v2_report.forest_cover')</b>
                         <dopa_indicators_table
-                            :title=dopa_indicators.forest_cover.title_table
-                            :indicators=dopa_indicators.forest_cover.indicators
-                            :api_data="api_data"
+                                :title=dopa_indicators.forest_cover.title_table
+                                :indicators=dopa_indicators.forest_cover.indicators
+                                :api_data="api_data"
                         ></dopa_indicators_table>
                         <dopa_chart_bar
-                            :title=dopa_indicators.forest_cover.title_chart
-                            :indicators=dopa_indicators.forest_cover.bar_indicators
-                            :api_data=api_data
+                                :title=dopa_indicators.forest_cover.title_chart
+                                :indicators=dopa_indicators.forest_cover.bar_indicators
+                                :api_data=api_data
                         ></dopa_chart_bar>
 
-                        <hr />
+                        <hr/>
 
                         <b>@lang('imet-core::v2_report.total_carbon')</b>
                         <dopa_indicators_table
-                            :title=dopa_indicators.total_carbon.title_table
-                            :indicators=dopa_indicators.total_carbon.indicators
-                            :api_data=api_data
+                                :title=dopa_indicators.total_carbon.title_table
+                                :indicators=dopa_indicators.total_carbon.indicators
+                                :api_data=api_data
                         ></dopa_indicators_table>
 
 
                         <b>@lang('imet-core::v2_report.agricultural_pressure')</b>
                         <dopa_indicators_table
-                            :title=dopa_indicators.agricultural_pressure.title_table
-                            :indicators=dopa_indicators.agricultural_pressure.indicators
-                            :api_data=api_data
+                                :title=dopa_indicators.agricultural_pressure.title_table
+                                :indicators=dopa_indicators.agricultural_pressure.indicators
+                                :api_data=api_data
                         ></dopa_indicators_table>
 
                     </div>
@@ -240,21 +279,28 @@ if ($item->language != App::getLocale()) {
             <div class="scrollButtons" v-cloak>
                 {{-- Save --}}
                 <div class="standalone" v-show=status==='changed'>
-                    <form id="imet_report_form" method="post" action="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1::class, 'report_update'], [$item->getKey()]) }}" style="display: inline-block;">
+                    <form id="imet_report_form" method="post"
+                          action="{{ route('imet-core::v1_report_update', [$item->getKey()]) }}"
+                          style="display: inline-block;">
                         @method('PATCH')
                         @csrf
                         <span @click="saveReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('save') !!} {{ ucfirst(trans('modular-forms::common.save')) }}</span>
                     </form>
                 </div>
-                <div class="standalone" v-show=status==='loading' >
+                <div class="standalone" v-show=status==='loading'>
                     <i class="fa fa-spinner fa-spin green_dark"></i>
                     {{ ucfirst(trans('modular-forms::common.saving')) }}
                 </div>
-                <div v-show=status==='saved' class="standalone highlight">{{ ucfirst(trans('modular-forms::common.saved_successfully')) }}!</div>
-                <div v-show=status==='error' class="standalone error">{{ ucfirst(trans('modular-forms::common.saved_error')) }}!</div>
+                <div v-show=status==='saved'
+                     class="standalone highlight">{{ ucfirst(trans('modular-forms::common.saved_successfully')) }}!
+                </div>
+                <div v-show=status==='error'
+                     class="standalone error">{{ ucfirst(trans('modular-forms::common.saved_error')) }}!
+                </div>
 
                 {{-- Print --}}
-                <div class="standalone" @click="printReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('print') !!} {{ ucfirst(trans('modular-forms::common.print')) }}</div>
+                <div class="standalone"
+                     @click="printReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('print') !!} {{ ucfirst(trans('modular-forms::common.print')) }}</div>
             </div>
         @endif
 
@@ -321,7 +367,7 @@ if ($item->language != App::getLocale()) {
                         ]
                     },
                     total_carbon: {
-                        title_table : 'Total carbon',
+                        title_table: 'Total carbon',
                         indicators: [
                             {
                                 field: 'carbon_min_c_mg',
@@ -346,7 +392,7 @@ if ($item->language != App::getLocale()) {
                         ]
                     },
                     agricultural_pressure: {
-                        title_table : 'Agricultural pressure',
+                        title_table: 'Agricultural pressure',
                         indicators: [
                             {
                                 field: 'agri_ind_pa',
@@ -361,17 +407,17 @@ if ($item->language != App::getLocale()) {
                 }
             },
 
-            mounted(){
-                if(this.connection){
+            mounted() {
+                if (this.connection) {
                     this.loadMap();
                 }
             },
 
             watch: {
-                status(value){
+                status(value) {
                     let _this = this;
-                    if(value==='saved'){
-                        setTimeout(function(){
+                    if (value === 'saved') {
+                        setTimeout(function () {
                             _this.status = 'idle';
                         }, 4000);
                     }
@@ -384,15 +430,15 @@ if ($item->language != App::getLocale()) {
                 }
             },
 
-            methods:{
-                saveReport(){
+            methods: {
+                saveReport() {
                     let _this = this;
                     this.status = 'loading';
                     this.loading = true;
                     this.error = false;
                     window.axios({
                         method: 'post',
-                        url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1::class, 'report_update'], ['item' => $item->getKey()]) }}',
+                        url: '{{ route('imet-core::v1_report_update', ['item' => $item->getKey()]) }}',
                         data: {
                             _token: window.Laravel.csrfToken,
                             _method: 'PATCH',
@@ -400,7 +446,7 @@ if ($item->language != App::getLocale()) {
                         }
                     })
                         .then(function (response) {
-                            if(!(response.data.hasOwnProperty('status') && response.data.status==='success')){
+                            if (!(response.data.hasOwnProperty('status') && response.data.status === 'success')) {
                                 _this.status = 'error';
                             }
                             _this.status = 'saved';
@@ -410,11 +456,11 @@ if ($item->language != App::getLocale()) {
                         })
                 },
 
-                printReport(){
+                printReport() {
                     window.print();
                 },
 
-                loadMap(){
+                loadMap() {
                     let _this = this;
                     let biopamaBaseLayer = 'mapbox://styles/jamesdavy/cjw25laqe0y311dqulwkvnfoc';
                     let mapPolyHostURL = "https://tiles.biopama.org/BIOPAMA_poly";
@@ -429,10 +475,10 @@ if ($item->language != App::getLocale()) {
                         maxZoom: 18
                     });
 
-                    this.report_map.on('load', function(){
+                    this.report_map.on('load', function () {
                         _this.report_map.addSource("BIOPAMA_Poly", {
                             "type": 'vector',
-                            "tiles": [mapPolyHostURL+"/{z}/{x}/{y}.pbf"],
+                            "tiles": [mapPolyHostURL + "/{z}/{x}/{y}.pbf"],
                             "minZoom": 0,
                             "maxZoom": 12,
                         });
@@ -469,7 +515,7 @@ if ($item->language != App::getLocale()) {
                                 "delay": 0
                             }
                         });
-                        _this.report_map.setFilter("wdpaSelected", ['in','WDPAID', {{ $item->wdpa_id }}]);
+                        _this.report_map.setFilter("wdpaSelected", ['in', 'WDPAID', {{ $item->wdpa_id }}]);
                         _this.report_map.setLayoutProperty("wdpaSelected", 'visibility', 'visible');
                     });
                 }

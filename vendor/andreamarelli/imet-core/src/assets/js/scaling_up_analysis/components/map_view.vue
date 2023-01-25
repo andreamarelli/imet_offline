@@ -27,7 +27,6 @@ export default {
     },
     data: function () {
         return {
-            url_map: `${window.Laravel.baseUrl}admin/imet/scaling_up/analysis/coordinates/{param}`,
             no_internet_connection: false,
             error_message: ''
         }

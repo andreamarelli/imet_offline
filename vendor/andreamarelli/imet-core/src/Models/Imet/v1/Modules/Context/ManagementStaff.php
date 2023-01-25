@@ -3,10 +3,13 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context;
 
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
+use AndreaMarelli\ImetCore\Models\User\Role;
 
 class ManagementStaff extends Modules\Component\ImetModule
 {
     protected $table = 'imet.context_management_staff';
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public function __construct(array $attributes = []) {
 
@@ -44,5 +47,21 @@ class ManagementStaff extends Modules\Component\ImetModule
                 'Function',  'ExpectedPermanent', 'ActualPermanent', 'Observations', 'Source'
             ]
         ];
+    }
+
+    /**
+     * @param $records
+     * @return array
+     */
+    public static function diffs($records): array
+    {
+        $diffs = [];
+        foreach ($records as $index => $item) {
+            $diffs[$index] = null;
+            if ($item['ExpectedPermanent'] !== null && $item['ActualPermanent']) {
+                $diffs[$index] += (int)($item['ActualPermanent']) - (int)($item['ExpectedPermanent']);
+            }
+        }
+        return $diffs;
     }
 }

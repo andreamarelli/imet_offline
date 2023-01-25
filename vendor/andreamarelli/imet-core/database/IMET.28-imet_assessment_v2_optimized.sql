@@ -5,7 +5,7 @@ CREATE SCHEMA imet_assessment_v2;
 
 --- TABLES
 
-SET default_with_oids = true;
+
 
 CREATE TABLE imet_assessment_v2.imet_rank_pval (
                                                    id integer NOT NULL PRIMARY KEY,

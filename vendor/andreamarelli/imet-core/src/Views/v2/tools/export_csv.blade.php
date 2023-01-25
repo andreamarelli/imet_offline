@@ -17,7 +17,7 @@
 @section('content')
     <div class="module-container" id="table_list">
         <div class="module-body">
-            <form  method="{{ $method }}" action="{{ \Illuminate\Support\Facades\URL::route('csv_list') }}">
+            <form  method="{{ $method }}" action="{{ \Illuminate\Support\Facades\URL::route('imet-core::csv_list') }}">
                 {{ csrf_field() }}
                 <div >
                     <table class="table module-table">
@@ -36,7 +36,7 @@
                             </td>
                             <td  class="align-baseline text-center">
                                 <br/>
-                                <button type="submit" class="btn-nav rounded mt-2">@lang_u('modular-forms::common.apply_filters')</button>
+                                <button type="submit" class="btn-nav rounded mt-2">@uclang('modular-forms::common.apply_filters')</button>
                             </td>
                         </tr>
                     </table>

@@ -3,8 +3,8 @@
 return [
 
     'languages' => [
-        'fr'        => 'français',
-        'en'        => 'anglais'
+        'fr'        => 'Français',
+        'en'        => 'Anglais'
     ],
 
     'PaType' => [

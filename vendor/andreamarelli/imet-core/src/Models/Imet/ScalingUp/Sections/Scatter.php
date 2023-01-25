@@ -6,7 +6,14 @@ use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
 
 class Scatter
 {
-    public static function get_scatter_grouping_analysis(array $parameters, array $assessments = [], bool $not_grouped = false, $scaling_id): array
+    /**
+     * @param array $parameters
+     * @param array $assessments
+     * @param bool $not_grouped
+     * @param int $scaling_id
+     * @return array
+     */
+    public static function get_scatter_grouping_analysis(array $parameters, array $assessments = [], bool $not_grouped = false, int $scaling_id = 0): array
     {
         $groups = [];
         $form_ids = [];
@@ -18,26 +25,15 @@ class Scatter
             'inputs' => [],
             'process' => [],
             'outputs' => [],
-
         ];
 
         foreach ($parameters as $form) {
             $form_ids[] = $form['id'];
-            $groups[$form['group']] = [$form['group'], $form['name'], $form['color'] ?? null];
+            $groups[$form['group']] = [$form['group'], $form['name'], $form['color'] ?? null, $form['id'], $form['wdpa_id']?? null];
         }
 
-        $assessments = count($assessments) ? $assessments : Common::get_assessments($form_ids, $scaling_id);
+        $indicator = Group::calculate_indicators_by_group($indicator, $parameters, $form_ids, $assessments, $scaling_id);
 
-        foreach ($indicator as $indi => $value) {
-            foreach ($assessments['data']['assessments'] as $assessment) {
-                foreach ($parameters as $form) {
-                    if ($form['id'] === $assessment['formid']) {
-                        $indicator[$indi][$form['group']][] = $assessment[$indi];
-
-                    }
-                }
-            }
-        }
         krsort($groups);
         $average = [];
 
@@ -53,7 +49,8 @@ class Scatter
                     $group_color = $group[0] - 1;
                     $average[$group[1]]['color'] = $colors[$group_color] ?? $colors[9];
                 }
-
+                $average[$group[1]]['form_id'] = $group[3];
+                $average[$group[1]]['wdpa_id'] = $group[4];
                 $average[$group[1]]['legend_selected'] = true;
                 $i++;
             }
@@ -65,6 +62,8 @@ class Scatter
             $final_average[$i]['value'][] = Common::round_number(($value['context'] + $value['planning'] + $value['inputs']) / 3);
             $final_average[$i]['value'][] = Common::round_number(($value['outcomes'] + $value['outputs']) / 2);
             $final_average[$i]['name'] = $key;
+            $final_average[$i]['id'] = $value['form_id'];
+            $final_average[$i]['wdpa_id'] = $value['wdpa_id'];
             $final_average[$i]['itemStyle']['borderColor'] = $value['color'];
             $final_average[$i]['itemStyle']['color'] = 'transparent';
             $final_average[$i]['itemStyle']['borderWidth'] = '4';

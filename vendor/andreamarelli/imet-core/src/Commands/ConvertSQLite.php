@@ -2,7 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Commands;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1;
+use AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\Type\Chars;
@@ -126,7 +126,7 @@ class ConvertSQLite extends Command
      */
     private function convert($imet)
     {
-        $json = ControllerV1::convert($imet, $this->db_connection);
+        $json = Controller::convert($imet, $this->db_connection);
 
         if(!empty($json)){
 

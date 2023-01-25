@@ -2,9 +2,13 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context;
 
+use AndreaMarelli\ImetCore\Models\User\Role;
+
 class Objectives1 extends _Objectives
 {
     protected $table = 'imet.context_objectives1';
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
     public function __construct(array $attributes = []) {
 

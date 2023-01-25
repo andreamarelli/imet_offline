@@ -6,12 +6,15 @@ use AndreaMarelli\ImetCore\Helpers\Template;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
+use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 
 class GeneralInfo extends Modules\Component\ImetModule
 {
     protected $table = 'imet.context_general_info';
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
     public static $rules = [
         'Type' => 'required',
@@ -35,7 +38,7 @@ class GeneralInfo extends Modules\Component\ImetModule
             ['name' => 'IUCNCategory3',  'type' => 'dropdown-ImetV2_IUCNDesignation',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.IUCNCategory3')],
             ['name' => 'MarineDesignation',  'type' => 'suggestion_multiple-ImetV2_MarineDesignation',
                 'label' => Template::module_scope(static::MARINE).trans('imet-core::v2_context.GeneralInfo.fields.MarineDesignation')],
-            ['name' => 'Country',  'type' => 'dropdown-Country',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.Country')],
+            ['name' => 'Country',  'type' => 'dropdown-ImetV2_Country',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.Country')],
             ['name' => 'CreationYear',  'type' => 'year',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.CreationYear')],
             ['name' => 'Institution',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.Institution')],
             ['name' => 'Biome',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.Biome')],

@@ -25,10 +25,10 @@ return [
     'dopa_not_available' => 'DOPA serviços não disponíveis',
 
     'languages' => [
-        'fr'        => 'francês',
-        'en'        => 'inglês',
-        'sp'        => 'espanhol',
-        'pt'        => 'português'
+        'fr'        => 'Francês',
+        'en'        => 'Inglês',
+        'sp'        => 'Espanhol',
+        'pt'        => 'Português'
     ],
     'switch_language' => 'Mudar a língua actual para',
 
@@ -67,6 +67,9 @@ return [
     'upgrade_confirm'   => 'Confirmar a actualização para IMET v2?<ul><li> Será criada uma cópia do formulário original.</li><li>alguns dados não puderam ser convertidos para v2</li>',
     'upgrade_success'   => 'Actualização para IMET v2 concluída com sucesso',
     'upgrade_failed'    => 'Erro na actualização para IMET v2',
+    'not_authorized_module' => 'Sem autorização para visualizar esta informação',
+    'double_check_wdpa' => 'Certifique-se de selecionar a WDPA correta',
+    'nothing_to_evaluate' => 'Nada a avaliar',
 
     'synthetic_indicator' => 'Indicador sintético',
     'cross_analysis_info' => 'A função de análise cruzada visa identificar possíveis inconsistências nos resultados da análise IMET. Procura-se ver se as pontuações de um par (ou triplot) de perguntas IMET são significativamente diferentes. O limiar para uma diferença significativa é fixado em 20 pontos percentuais para as perguntas medidas na escala (min: 0 - max: 100). Abaixo encontram-se os indicadores para os quais foi identificada na sua avaliação uma diferença que excede o limiar pré-definido. Como a análise de tabulação cruzada é apenas consultiva, não são dadas sugestões quanto ao motivo da diferença de valores ou possíveis alterações que poderiam ser adoptadas na análise. As respostas fornecidas podem permanecer inalteradas, mas os valores atribuídos devem ser verificados em conjunto com a equipa da área protegida. Comentários adicionais devem também ser acrescentados aos indicadores seleccionados para explicar a diferença significativa de pontuação ou para que as disposições de gestão sejam adoptadas.',

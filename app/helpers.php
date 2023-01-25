@@ -54,27 +54,14 @@ function get_custom_model_view_by_key($module_key, $view_type = null): ?string
  */
 function get_custom_list(string $type): array
 {
-    $list  = [];
+    $list = imet_selection_lists($type);
 
-    if ($type == "Country") {
-        $list = \AndreaMarelli\ImetCore\Models\Country::selectionList();
-    } elseif ($type == "ProtectedArea") {
-        $list = \AndreaMarelli\ImetCore\Models\ProtectedArea::selectionList();
-    }
+    if(empty($list)){
 
-    // ######################################
-    // ##############   IMET   ##############
-    // ######################################
-
-    elseif (Str::startsWith($type, 'ImetV1') || Str::startsWith($type, 'ImetV2')) {
-        preg_match("/Imet(V\d)\_([\w]+)/", $type, $matches);
-        if ($matches[2] == "ProtectedArea") {
-            $list = \AndreaMarelli\ImetCore\Models\ProtectedArea::selectionList();
-        } elseif ($matches[2] == "Currency") {
-            $list = \AndreaMarelli\ImetCore\Models\Currency::imetV1List();
-        } else {
-            $list = trans('imet-core::'.strtolower($matches[1]).'_lists.' . $matches[2]);
+        if ($type == "Country") {
+            $list = \App\Models\Country::selectionList();
         }
+
     }
 
     return $list;

@@ -4,11 +4,15 @@ namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
 
 class AnimalSpecies extends Modules\Component\ImetModule
 {
     protected $table = 'imet.context_species_animal_presence';
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected $validation_min3 = '';
 
@@ -18,7 +22,7 @@ class AnimalSpecies extends Modules\Component\ImetModule
         $this->module_code = 'CTX 4.1';
         $this->module_title = trans('imet-core::v2_context.AnimalSpecies.title');
         $this->module_fields = [
-            ['name' => 'species',                   'type' => 'selector-species_animal_withFreeText',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.SpeciesID')],
+            ['name' => 'species',                   'type' => 'imet-core::selector-species_animal_withFreeText',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.SpeciesID')],
             ['name' => 'FlagshipSpecies',           'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.FlagshipSpecies')],
             ['name' => 'EndangeredSpecies',         'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.EndangeredSpecies')],
             ['name' => 'EndemicSpecies',            'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.EndemicSpecies')],
@@ -49,7 +53,7 @@ class AnimalSpecies extends Modules\Component\ImetModule
     {
         static::forceLanguage($request->input('form_id'));
 
-        $records = json_decode($request->input('records_json'), true);
+        $records = Payload::decode($request->input('records_json'));
         $form_id = $request->input('form_id');
 
         static::dropFromDependencies($form_id, $records, [

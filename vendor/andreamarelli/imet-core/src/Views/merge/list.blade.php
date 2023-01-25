@@ -7,13 +7,13 @@ use \AndreaMarelli\ImetCore\Models\Imet\v2;
 /** @var array $duplicated_forms */
 
 
-if($primary_form->version==='v1'){
+if($primary_form->version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1){
     $all_modules = \AndreaMarelli\ModularForms\Helpers\Module::getModulesList([
         v1\Imet::$modules,
         v1\Imet_Eval::$modules,
     ]);
     $imet_class = v1\Imet::class;
-} elseif($primary_form->version==='v2'){
+} elseif($primary_form->version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2){
     $all_modules = \AndreaMarelli\ModularForms\Helpers\Module::getModulesList([
         v2\Imet::$modules,
         v2\Imet_Eval::$modules,
@@ -27,7 +27,7 @@ if($primary_form->version==='v1'){
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['show' => false, 'links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
+        route('imet-core::index') => trans('imet-core::common.imet_short')
     ]])
 @endsection
 
@@ -69,10 +69,10 @@ if($primary_form->version==='v1'){
                         <div style="margin-top: 10px"
                              data-toggle="tooltip"
                              data-placement="top"
-                             data-original-title="@lang_u('imet-core::common.set_as_destination_form')">
-                            <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'merge_view'], [$duplicated_form_id]) }}"
+                             data-original-title="@uclang('imet-core::common.set_as_destination_form')">
+                            <a href="{{ route('imet-core::merge_view', [$duplicated_form_id]) }}"
                                class="btn-nav small yellow"
-                            >{!! AndreaMarelli\ModularForms\Helpers\Template::icon('thumbtack', 'white') !!} @lang_u('imet-core::common.destination_form')
+                            >{!! AndreaMarelli\ModularForms\Helpers\Template::icon('thumbtack', 'white') !!} @uclang('imet-core::common.destination_form')
                             </a>
                         </div>
 

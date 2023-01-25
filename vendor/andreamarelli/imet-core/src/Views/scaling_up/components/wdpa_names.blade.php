@@ -3,7 +3,7 @@ $accordion_title = $accordion_title ?? trans('imet-core::analysis_report.custom_
 $submit_button_label = $submit_button_label ?? @trans('imet-core::analysis_report.apply');
 ?>
 <div id="form-grid">
-    @component('modular-forms::page.filters-accordion', ['accordion_title' => trans('imet-core::analysis_report.custom_names'), 'submit_button_label' => $submit_button_label, 'url'=>route('report_scaling_up', ['items' => $pa_ids]), 'request'=>$request, 'method'=>'POST', 'expanded'=>false])
+    @component('modular-forms::page.filters-accordion', ['accordion_title' => trans('imet-core::analysis_report.custom_names'), 'submit_button_label' => $submit_button_label, 'url'=>route('imet-core::scaling_up_report', ['items' => $pa_ids]), 'request'=>$request, 'method'=>'POST', 'expanded'=>false])
         @slot('filter_content')
             <div style="grid-column: span 3;">
                 <guidance :text="'imet-core::analysis_report.guidance.custom_names'"/>

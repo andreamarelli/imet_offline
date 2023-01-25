@@ -2,7 +2,7 @@
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['show' => false, 'links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
+        route('imet-core::index') => trans('imet-core::common.imet_short')
     ]])
 @endsection
 
@@ -16,7 +16,10 @@
         </div>
         <div class="module-body">
             <br/>
-            <multiple-files-upload></multiple-files-upload>
+            <multiple-files-upload
+                upload-url="{{ route('imet-core::upload_json') }}"
+                back-url="{{ route('imet-core::index') }}"
+            ></multiple-files-upload>
         </div>
     </div>
     <script>

@@ -3,11 +3,14 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use AndreaMarelli\ImetCore\Models\User\Role;
 
 class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'imet.eval_climate_change_monitoring';
     protected $fixed_rows = true;
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public function __construct(array $attributes = []) {
 

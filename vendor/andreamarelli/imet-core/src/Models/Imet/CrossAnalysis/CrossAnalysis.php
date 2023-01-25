@@ -2,14 +2,17 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\CrossAnalysis;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2 as EvalControllerV2Alias;
+use AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController;
+use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 use Illuminate\Database\Eloquent\Model;
 
 class CrossAnalysis extends Model
 {
-    private static $threshold = 20.0;
+    private static $threshold = 34.0;
 
-    private static $indicators = [
+    private static array $indicators = [
         'context' => ['c12', 'c2', 'c14', 'c15'],
         'process' => ['pr2', 'pr4', 'pr5', 'pr6', 'pr7', 'pr8', 'pr11', 'pr17', 'pr18'],
         'inputs' => ['i2', 'i5'],
@@ -18,7 +21,7 @@ class CrossAnalysis extends Model
         'outputs' => ['op3']
     ];
 
-    private static $compares = [
+    private static array $compares = [
         ['c12', 'pr7'],
         ['c2', 'p1'],
         ['i2', 'pr2'],
@@ -40,7 +43,11 @@ class CrossAnalysis extends Model
         $filteredArray = [];
         $compareElements = [];
         foreach (static::$indicators as $key => $indicators) {
-            $results = json_decode(EvalControllerV2Alias::assessment($item->FormID, $key, true)->getContent());
+
+            $results = $item->version==Imet::IMET_V1
+                ? V1ToV2StatisticsService::get_assessment($item->FormID, $key)
+                : V2StatisticsService::get_assessment($item->FormID, $key);
+
             $filteredArray = array_merge($filteredArray, array_intersect_key((array)$results, array_flip(static::$indicators[$key])));
 
             foreach ($item::modules()[$key] as $module) {

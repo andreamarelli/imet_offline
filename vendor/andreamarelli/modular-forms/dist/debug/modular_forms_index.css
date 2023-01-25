@@ -58,7 +58,13 @@
 }
 .gauge > svg .percentage[data-v-1fb8ede0] {
       fill: #262626;
-      font-size: 0.6em;
+      font-size: 0.9em;
+      letter-spacing: -0.2px;
+      text-anchor: middle;
+      font-weight: bold;
+}
+.gauge > svg .percent_symbol[data-v-1fb8ede0] {
+      font-size: 0.35em;
       letter-spacing: -0.2px;
       text-anchor: middle;
       font-weight: bold;
@@ -69,26 +75,17 @@
 .gauge > svg.green .circle[data-v-1fb8ede0] {
       stroke: #16A34A;
 }
-.gauge > svg.green .percentage[data-v-1fb8ede0] {
-      fill: #16A34A;
-}
 .gauge > svg.yellow .circle-bg[data-v-1fb8ede0] {
       stroke: #fcf8e3;
 }
 .gauge > svg.yellow .circle[data-v-1fb8ede0] {
       stroke: #f0ad4e;
 }
-.gauge > svg.yellow .percentage[data-v-1fb8ede0] {
-      fill: #f0ad4e;
-}
 .gauge > svg.red .circle-bg[data-v-1fb8ede0] {
       stroke: #FEE2E2;
 }
 .gauge > svg.red .circle[data-v-1fb8ede0] {
       stroke: #DC2626;
-}
-.gauge > svg.red .percentage[data-v-1fb8ede0] {
-      fill: #DC2626;
 }
 @keyframes progress-1fb8ede0 {
 0% {
@@ -190,50 +187,15 @@ a img[data-v-439d1d73] {
   margin-top: 5px;
   margin-bottom: 0;
 }
+.modal_selector table.modal_search_results .radio label[data-v-4ec017e1]::before {
+    left: 20px;
+    top: -30px;
+}
+.modal_selector table.modal_search_results .radio label[data-v-4ec017e1]::after {
+    left: 23px;
+    top: -27px;
+}
 .modal_selector table.modal_search_results label[data-v-4ec017e1] {
-  margin: 0;
-  padding: 0;
-}
-
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/inputs/components/modal-api-search-AddElement.vue?vue&type=style&index=0&id=429640d7&lang=scss&scoped=true& ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-[v-cloak][data-v-429640d7] {
-  display: none;
-}
-.modal_selector .modal_search[data-v-429640d7], .modal_selector .selector-AddKeywords[data-v-429640d7],
-.modal_selector .modal_search_results_filters[data-v-429640d7] {
-  font-size: 0.9em;
-  text-align: center;
-}
-.modal_selector .field-edit[data-v-429640d7] {
-  width: 250px;
-  height: 28px;
-  padding: 4px 12px;
-}
-.modal_selector .modal_search_loading[data-v-429640d7] {
-  text-align: center;
-}
-.modal_selector .modal_search_count[data-v-429640d7] {
-  padding: 8px 0;
-  color: #166534;
-}
-.modal_selector table.modal_search_results td[data-v-429640d7], .modal_selector table.modal_search_results tr[data-v-429640d7] {
-  font-size: 0.9em;
-  text-align: center;
-}
-.modal_selector table.modal_search_results td[data-v-429640d7] {
-  padding: 4px 12px;
-}
-.modal_selector table.modal_search_results td .result_left[data-v-429640d7] {
-    display: block;
-    text-align: left;
-}
-.modal_selector table.modal_search_results .radio[data-v-429640d7] {
-  margin-top: 5px;
-  margin-bottom: 0;
-}
-.modal_selector table.modal_search_results label[data-v-429640d7] {
   margin: 0;
   padding: 0;
 }
@@ -2735,14 +2697,7 @@ nav.steps {
   bottom: 20px;
   right: 20px;
   z-index: 99;
-  /*&.show{
-      right: 20px;
-      transform: none;
-    }
-    &.hide{
-      right: 0;
-      transform: translateX(50%);
-    }*/ }
+  /* ### Collapsible ### */ }
   .scrollButtons div {
     text-align: center;
     background-color: #14532D;
@@ -2774,6 +2729,43 @@ nav.steps {
     .scrollButtons div:hover {
       background-color: #22C55E;
       color: Black; }
+  .scrollButtons.collapsible {
+    /* Hidden*/
+    right: 0;
+    /* Visible */ }
+    .scrollButtons.collapsible div {
+      font-size: 0.7rem;
+      line-height: 1.4em;
+      letter-spacing: .4px; }
+      @media all and (max-width: 1280px) {
+        .scrollButtons.collapsible div {
+          font-size: 0.7rem;
+          line-height: 1.5em; } }
+      .scrollButtons.collapsible div.scrollToTop, .scrollButtons.collapsible div.scrollToBottom {
+        text-align: left;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0; }
+      .scrollButtons.collapsible div.scrollSpacer {
+        height: 40px; }
+      .scrollButtons.collapsible div.scrollToAnchor {
+        color: #14532D;
+        height: 5px;
+        display: none; }
+    .scrollButtons.collapsible:hover div {
+      font-size: 1rem;
+      line-height: 1.4em; }
+      @media all and (max-width: 1280px) {
+        .scrollButtons.collapsible:hover div {
+          font-size: 0.85rem;
+          line-height: 1.3em; } }
+      .scrollButtons.collapsible:hover div.scrollToTop, .scrollButtons.collapsible:hover div.scrollToBottom {
+        text-align: center; }
+      .scrollButtons.collapsible:hover div.scrollSpacer {
+        display: none; }
+      .scrollButtons.collapsible:hover div.scrollToAnchor {
+        color: #fff;
+        height: auto;
+        display: block; }
 
 .module-container {
   margin-bottom: 40px;

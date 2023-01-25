@@ -3,10 +3,10 @@
 return [
 
     'languages' => [
-        'fr'        => 'français',
-        'en'        => 'anglais',
-        'sp'        => 'espagnol',
-        'pt'        => 'portugais'
+        'fr'        => 'Français',
+        'en'        => 'Anglais',
+        'sp'        => 'Espagnol',
+        'pt'        => 'Portugais'
     ],
 
     'NonWdpaPaDef' => [
@@ -33,6 +33,18 @@ return [
         'Adopté',
         'Désigné',
         'Établi'
+    ],
+
+    'OwnershipType' => [
+        'state' => 'State',
+        'communal' => 'Communal',
+        'individual_landowners' => 'Individual landowners',
+        'for_profit_organizations' => 'For-profit organisations',
+        'nonprofit_organizations' => 'Non-profit organisations',
+        'joint_ownership' => 'Joint ownership',
+        'multiple_ownership' => 'Multiple ownership',
+        'contested' => 'Contested',
+        'not_reported' => 'Not Reported',
     ],
 
     'PaType' => [

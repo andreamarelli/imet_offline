@@ -11,5 +11,5 @@ use AndreaMarelli\ModularForms\Controllers\FormController as BaseFormController;
  */
 class __Controller extends BaseFormController
 {
-
+    public const AUTHORIZE_BY_POLICY = true;
 }

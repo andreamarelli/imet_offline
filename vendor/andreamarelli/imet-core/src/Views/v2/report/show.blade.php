@@ -30,4 +30,5 @@
     'show_api' => $show_api,
     'show_non_wdpa' => $show_non_wdpa,
     'non_wdpa' => $non_wdpa,
+    'type' => 'show'
 ])

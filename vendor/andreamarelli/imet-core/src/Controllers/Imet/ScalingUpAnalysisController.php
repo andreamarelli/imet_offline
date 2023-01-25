@@ -2,20 +2,36 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
+use AndreaMarelli\ImetCore\Controllers\__Controller;
 use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Basket;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
+use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use AndreaMarelli\ImetCore\Models\ProtectedArea;
+use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\File\Zip;
+use AndreaMarelli\ModularForms\Helpers\HTTP;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
-class ScalingUpAnalysisController
+
+class ScalingUpAnalysisController extends __Controller
 {
+    protected static $form_class = Imet::class;
+    protected static $form_view_prefix = 'imet-core::';
+
+    protected const PAGINATE = false;
+
+    public const sanitization_rules = [
+        'search' => 'custom_text|nullable',
+        'year' => 'digits:4|integer|nullable',
+        'country' => 'min:3|max:3|alpha|nullable',
+    ];
 
     private $indicators = [
         'context' => [
@@ -97,17 +113,56 @@ class ScalingUpAnalysisController
     ];
 
     /**
+     * Index route for scaling up
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function index(Request $request)
+    {
+
+        HTTP::sanitize($request, self::sanitization_rules);
+
+        // set filter status
+        $filter_selected = !empty(array_filter($request->except('_token')));
+
+        // retrieve IMET list
+        $filtered_list = Imet::get_list($request);
+        $full_list = Imet::get_list(new Request());
+        $years = array_values($full_list->pluck('Year')->sort()->unique()->toArray());
+        $countries = ProtectedArea::getCountries()->pluck('name', 'iso3')->sort()->unique()->toArray();
+
+        return view(static::$form_view_prefix . 'scaling_up.list', [
+            'controller' => static::class,
+            'list' => $filtered_list,
+            'request' => $request,
+            'filter_selected' => $filter_selected,
+            'countries' => $countries,
+            'years' => $years
+        ]);
+    }
+
+
+    /**
      * @param Request $request
      * @return array
      */
-    public function get_ajax_responses(Request $request)
+    public function analysis(Request $request): array
     {
         $locale = App::getLocale();
-        //dd($locale);
+
         $action = $request->input('func');
         $parameters = $request->input('parameter');
-        $type = $request->input('type', '');
         ModelScalingUpAnalysis::$scaling_id = $request->input(('scaling_id'));
+
+        foreach ($parameters as $value) {
+            if(is_array($value)){
+                $this->authorize('api_scaling_up', (static::$form_class)::find($value['id']));
+            } else if ((int)$value > 0) {
+                $this->authorize('api_scaling_up', (static::$form_class)::find($value));
+            }
+        }
         $response = ModelScalingUpAnalysis::$action($parameters);
         App::setLocale($locale);
         return $response;
@@ -150,7 +205,7 @@ class ScalingUpAnalysisController
         $ids = explode(',', $items);
         foreach ($ids as $id) {
             if ($request->input($id)) {
-                ScalingUpWdpa::update_item($scaling_up_id, $id, $request->input($id), $request->input('color-'.$id ));
+                ScalingUpWdpa::update_item($scaling_up_id, $id, $request->input($id), $request->input('color-' . $id));
             }
         }
     }
@@ -160,8 +215,9 @@ class ScalingUpAnalysisController
      * @param null $items
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \ReflectionException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function report_scaling_up(Request $request, $items = null)
+    public function report(Request $request, $items = null)
     {
         $scaling_up_id = null;
         $locale = App::getLocale();
@@ -171,6 +227,8 @@ class ScalingUpAnalysisController
         $items_array = explode(',', $items);
         sort($items_array);
 
+        //check authorizations
+        $this->auth_saved($items_array);
 
         //check if the parameters are an array of numbers and pa exist in the db
         $filtered_array = array_filter($items_array, function ($value) {
@@ -222,7 +280,7 @@ class ScalingUpAnalysisController
         $custom_names = array_map(function ($v) {
             return $v->name;
         }, $custom_items);
-       // dd($custom_items);
+        // dd($custom_items);
         $custom_colors = array_map(function ($v) {
             return $v->color;
         }, $custom_items);
@@ -247,7 +305,6 @@ class ScalingUpAnalysisController
         ];
 
 
-
         return view('imet-core::scaling_up.report', [
             'templates' => $templates_names,
             'pa_ids' => $pa_ids,
@@ -270,18 +327,24 @@ class ScalingUpAnalysisController
     public function download_zip_file(int $scaling_id)
     {
         $files = [];
-        $scaling_up = Basket::where('scaling_up_id', $scaling_id)->get();
-        foreach ($scaling_up as $record) {
-            $files[] = Storage::disk(Basket::BASKET_DISK)->path('') . $record->item;
-        }
+        $scaling_ups = Basket::where('scaling_up_id', $scaling_id)->get();
+        if (count($scaling_ups) > 0) {
+            $item = ModelScalingUpAnalysis::where('id', $scaling_id)->first();
 
-        if (count($files) > 1) {
-            $path = Zip::compress($files,
-                "Scaling_up_" . count($files) . "_" . date('m-d-Y_hisu') . ".zip",
-                false);
-            return File::download($path);
-        } else {
-            return trans("imet-core::analysis_report.more_than_one_file");
+            $this->auth_saved(explode(',', $item->wdpas));
+
+            foreach ($scaling_ups as $record) {
+                $files[] = Storage::disk(Basket::BASKET_DISK)->path('') . $record->item;
+            }
+
+            if (count($files) > 1) {
+                $path = Zip::compress($files,
+                    "Scaling_up_" . count($files) . "_" . date('m-d-Y_hisu') . ".zip",
+                    false);
+                return File::download($path);
+            } else {
+                return trans("imet-core::analysis_report.more_than_one_file");
+            }
         }
     }
 
@@ -292,10 +355,12 @@ class ScalingUpAnalysisController
     public function preview_template(int $id)
     {
         $areas_names_concat = "";
-        $records = ModelScalingUpAnalysis::where('id', $id)->get();
-        ModelScalingUpAnalysis::$scaling_id = $id;
-        if (count($records) > 0) {
-            $protected_areas = ModelScalingUpAnalysis::get_array_of_custom_names(explode(',', $records[0]->wdpas));
+        $records = ModelScalingUpAnalysis::where('id', $id)->first();
+        if ($records) {
+            $this->auth_saved(explode(',', $records->wdpas));
+            ModelScalingUpAnalysis::$scaling_id = $id;
+
+            $protected_areas = ModelScalingUpAnalysis::get_array_of_custom_names(explode(',', $records->wdpas));
             foreach ($protected_areas as $k => $protected_area) {
                 $areas_names[$k] = $protected_area->name;
             }
@@ -309,6 +374,13 @@ class ScalingUpAnalysisController
             "scaling_up_id" => $id,
             'protected_areas' => $areas_names_concat
         ]);
+    }
+
+    private function auth_saved($forms)
+    {
+        foreach ($forms as $form) {
+            $this->authorize('api_scaling_up', (static::$form_class)::find($form));
+        }
     }
 
 }

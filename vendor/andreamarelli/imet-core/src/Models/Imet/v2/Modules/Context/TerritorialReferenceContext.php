@@ -3,10 +3,13 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use AndreaMarelli\ImetCore\Models\User\Role;
 
 class TerritorialReferenceContext extends Modules\Component\ImetModule
 {
     protected $table = 'imet.context_territorial_reference_context';
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
     public function __construct(array $attributes = []) {
 

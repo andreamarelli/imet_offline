@@ -3,10 +3,13 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context;
 
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
+use AndreaMarelli\ImetCore\Models\User\Role;
 
 class EcosystemServicesTendance extends Modules\Component\ImetModule
 {
     protected $table = 'imet.context_ecosystem_services_tendance';
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public function __construct(array $attributes = []) {
 

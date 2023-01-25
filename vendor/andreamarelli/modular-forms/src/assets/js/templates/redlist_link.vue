@@ -1,7 +1,7 @@
 <template>
     <div>
         <a target="_blank" :href="'http://www.iucnredlist.org/details/' + redlist_id + '/0'">
-            <img src="/images/iucn_red_list.png"/>
+            <img src="/assets/images/iucn_red_list.png"/>
         </a>
     </div>
 </template>

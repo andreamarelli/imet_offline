@@ -28,6 +28,10 @@
                     <!--        <small_menu v-if="show_menu" :items="data.values.diagrams"></small_menu>-->
                     <slot :props="data"></slot>
                 </div>
+                <div class="text-right mt-3">
+                    <div class="btn btn-circle btn-outline-danger" @click="toggle_view()" v-html="stores.BaseStore.localization('imet-core::analysis_report.close')">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -99,6 +103,7 @@ export default {
             })
         },
         success: function (response) {
+            this.error_returned = false;
             if (response.status === false) {
                 this.timeout = true;
                 return;

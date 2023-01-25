@@ -7,7 +7,7 @@ class DBStorage {
     async ajax_request(url, params, method = 'POST'){
         return await window.axios({
             method,
-            url: window.Laravel.baseUrl+url,
+            url: url,
             data: {
                 _token: window.Laravel.csrfToken,
                 ...params
@@ -23,15 +23,15 @@ class DBStorage {
     }
 
     async save( value) {
-        return await this.ajax_request('admin/imet/scaling_up/basket/add',{value})
+        return await this.ajax_request(window.imet_routes.scaling_up_basket_add, {value})
     }
 
     async retrieve(id){
-        return await this.ajax_request('admin/imet/scaling_up/basket/retrieve',{id}, );
+        return await this.ajax_request(window.imet_routes.scaling_up_basket_get, {id});
     }
 
     async all(id) {
-        return await this.ajax_request('admin/imet/scaling_up/basket/all', {id})
+        return await this.ajax_request(window.imet_routes.scaling_up_basket_all, {id})
     }
 
     delete_item_child(key, id){
@@ -42,11 +42,11 @@ class DBStorage {
     }
 
     async delete(id){
-        return await this.ajax_request(`admin/imet/scaling_up/basket/delete/${id}`, null,'DELETE');
+        return await this.ajax_request(window.imet_routes.scaling_up_basket_delete.replace('__id__', id), null,'DELETE');
     }
 
     async clear(id){
-        return await this.ajax_request('admin/imet/scaling_up/basket/clear', {id});
+        return await this.ajax_request(window.imet_routes.scaling_up_basket_clear, {id});
     }
 
 }

@@ -30,10 +30,13 @@
                                                                    :exclude_elements="'{{$exclude_elements}}'">
                                                     <template slot-scope="data_elements">
                                                         <bar_category_stack
+                                                            :title="'4.1 @lang('imet-core::analysis_report.overall.imet_indicator_ranking')'"
                                                             :axis_dimensions_y="{max:100}"
                                                             :x_axis_data="data_elements.props.xAxis"
                                                             :legends="data_elements.props.legends"
                                                             :colors="container.props.config.color_correct_order"
+                                                            :percent_values="data_elements.props.percent_values"
+                                                            :raw_values="data_elements.props.raw_values"
                                                             :values='data_elements.props.values'></bar_category_stack>
                                                     </template>
                                                 </container_actions>
@@ -56,10 +59,12 @@
                                                                    :exclude_elements="'{{$exclude_elements}}'">
                                                     <template slot-scope="data_elements">
                                                         <imet_bar_error
+                                                            :title="'4.2 @lang('imet-core::analysis_report.overall.average_contribution')'"
                                                             :axis_dimensions_x="{max:100}"
                                                             :event_id="'save_image_s'"
                                                             :show_legends="true"
                                                             :values="data_elements.props"
+                                                            :legends="data_elements.props.legends"
                                                             :indicators='container.props.config.relative_performance_effectiveness_bar_average.indicators'></imet_bar_error>
                                                     </template>
                                                 </container_actions>
@@ -80,7 +85,8 @@
                                                                    :event_image="'save_entire_block_as_image'"
                                                                    :exclude_elements="'{{$exclude_elements}}'">
                                                     <template slot-scope="data_elements">
-                                                        <scaling_radar class="sm" :height=700
+                                                        <scaling_radar class="sm" :height=850
+                                                                       :title="'4.3 @lang('imet-core::analysis_report.overall.radar_visualization')'"
                                                                        :single="false"
                                                                        :event_key="'overall'"
                                                                        :unselect_legends_on_load="true"
@@ -125,6 +131,7 @@
                                                                    :exclude_elements="'{{$exclude_elements}}'">
                                                     <template slot-scope="data_elements">
                                                         <scatter
+                                                            :title="'4.4 @lang('imet-core::analysis_report.overall.scatter_visualization')'"
                                                             :label_axis_y="'@lang('imet-core::v2_common.steps_eval.context') , @lang('imet-core::v2_common.steps_eval.planning'), @lang('imet-core::v2_common.steps_eval.inputs')'"
                                                             :label_axis_x="'@lang('imet-core::v2_common.steps_eval.process')'"
                                                             :label_axis_y2="'@lang('imet-core::v2_common.steps_eval.outcomes'), @lang('imet-core::v2_common.steps_eval.outputs')'"

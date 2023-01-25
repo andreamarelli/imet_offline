@@ -2238,7 +2238,7 @@ END;
 $$;
 
 
-SET default_with_oids = true;
+
 
 CREATE TABLE imet_assessment.imet_rank_pval (
                                                 id integer NOT NULL,

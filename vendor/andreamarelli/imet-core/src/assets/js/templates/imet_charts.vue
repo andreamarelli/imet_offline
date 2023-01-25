@@ -188,7 +188,7 @@
                 let _this = this;
                 if(_this.form_id!==null){
                     window.axios({
-                        url: window.Laravel.baseUrl + 'api/imet/assessment/'+_this.form_id,
+                        url: window.imet_routes.assessment.replace('__id__', _this.form_id),
                         type: "get",
                     })
                         .then(function (response) {

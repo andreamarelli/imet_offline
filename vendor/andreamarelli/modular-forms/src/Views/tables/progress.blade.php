@@ -17,10 +17,10 @@ if(strtolower($mode)==='vue'){
 <div style="display: flex; justify-content: center;">
     <div style="display: flex; flex-direction: column; align-items: center;">
         <gauge {!! $encode_progress !!} :integer=true :gradient=true style="width: 50px;"></gauge>
-        <i class="text-2xs">@lang_u('modular-forms::common.form.encoding')</i>
+        <i class="text-2xs">@uclang('modular-forms::common.form.encoding')</i>
     </div>
     <div style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
         <gauge {!! $validation_progress !!} :integer=true :gradient=true style="width: 50px;"></gauge>
-        <i class="text-2xs">@lang_u('modular-forms::common.form.validation')</i>
+        <i class="text-2xs">@uclang('modular-forms::common.form.validation')</i>
     </div>
 </div>

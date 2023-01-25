@@ -28,10 +28,10 @@ $tr_record = $definitions['module_type']==='GROUP_TABLE'
             @endif
         @endforeach
         <th class="text-center">
-            @lang_u('imet-core::v2_context.FinancialAvailableResources.fields.total')
+            @uclang('imet-core::v2_context.FinancialAvailableResources.fields.total')
         </th>
         <th class="text-center">
-            @lang_u('imet-core::v2_context.FinancialAvailableResources.fields.percentage')
+            @uclang('imet-core::v2_context.FinancialAvailableResources.fields.percentage')
         </th>
     </tr>
     </thead>

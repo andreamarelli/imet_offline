@@ -5,7 +5,12 @@
 
 ?>
 
-@include('modular-forms::module.edit.body', compact(['collection', 'vue_data', 'definitions']))
+@include('imet-core::components.module.edit.group_with_nothing_to_evaluate', [
+    'collection' => $collection,
+    'definitions' => $definitions,
+    'vue_data' => $vue_data,
+])
+
 
 @push('scripts')
 <script>
@@ -15,22 +20,6 @@
         data: @json($vue_data),
 
         computed: {
-            /*averagesCondition(){
-                let _this = this;
-                let averages = [];
-                Object.keys(_this.records).forEach(function(group){
-                    averages[group] = _this.calculateAverage('Condition', group);
-                });
-                return averages;
-            },
-            averagesTrend(){
-                let _this = this;
-                let averages = [];
-                Object.keys(_this.records).forEach(function(group){
-                    averages[group] = _this.calculateAverage('Trend', group);
-                });
-                return averages;
-            },*/
         },
 
         methods: {

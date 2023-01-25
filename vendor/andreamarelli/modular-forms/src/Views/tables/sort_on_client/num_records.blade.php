@@ -5,7 +5,7 @@
     </div>
     <div class="col-lg-5 text-right">
 
-        <i>@lang_u('modular-forms::common.page') @{{ pageNumber }}/ @{{ pageCount }}</i>
+        <i>@uclang('modular-forms::common.page') @{{ pageNumber }}/ @{{ pageCount }}</i>
         <span v-if="pageCount>1">
             &nbsp;
             <button type="button" class="btn-nav small" v-on:click=prevPage :disabled="pageNumber===1"><i class="fa fa-step-backward"></i></button>

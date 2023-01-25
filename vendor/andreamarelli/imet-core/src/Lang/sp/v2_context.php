@@ -6,7 +6,7 @@ return [
         'title' => 'Crear un nuevo IMET (WDPA)',
         'fields' => [
             'version' => 'versión',
-            'Year' => 'año',
+            'Year' => 'Año sujeto a evaluación',
             'wdpa_id' => 'área protegida',
             'language' => 'idioma',
             'prefill_prev_year' => 'Pre-rellenado con el año anterior',
@@ -17,7 +17,7 @@ return [
         'title' => 'Crear un nuevo IMET (no WDPA)',
         'fields' => [
             'version' => 'versión',
-            'Year' => 'año',
+            'Year' => 'Año sujeto a evaluación',
             'wdpa_id' => 'área protegida',
             'language' => 'idioma',
             'prefill_prev_year' => 'Pre-rellenado con el año anterior',
@@ -25,12 +25,13 @@ return [
             'name' => 'nombre proporcionado por el operador',
             'origin_name' => 'nombre en idioma original',
             'designation' => 'nombre de la designación (por ejemplo, reserva, santuario, etc.)',
-            'designation_eng' => 'designación obligatoria en inglés',
+            'designation_eng' => 'designación obligatoria en Inglés',
             'designation_type' => 'Tipo de designación',
             'marine' => 'tipología',
             'rep_m_area' => 'superficie del área protegida marina conservada [km<sup>2</sup>]',
             'rep_area' => 'superficie del área protegida conservada [km<sup>2</sup>]',
             'status' => 'estado',
+            'ownership_type' => 'Tipo de propiedad',
             'status_year' => 'año de promulgación del estatuto',
             'country' => 'país',
         ],
@@ -45,31 +46,31 @@ return [
         'fields' => [
             'Element' =>        'Elemento / indicador',
             'Status' =>         'Linea base',
-            'Objective' =>      'Objetivo: Metas / Metas a largo plazo',
+            'Objective' =>      'Objetivo – Estado óptimo o favorable',
             'Comments' =>       'Comentarios'
         ]
     ],
 
     'Objectives1' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para la gobernanza, las asociaciones y la designación del área protegida.<br /> Los objetivos ingresados a continuación se utilizarán para mejorar la gestión, y más específicamente para la planificación, la movilización de recursos (insumos), las fases del proceso y para el seguimiento de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos para la gobernanza, las asociaciones y la designación del área protegida.<br /> Los objetivos ingresados a continuación se utilizarán para mejorar la gestión, y más específicamente para la planificación, la movilización de recursos (insumos), las fases del proceso y para el seguimiento de las actividades de gestión del área protegida.'
     ],
     'Objectives2' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación relacionados con <b>los límites, el índice de configuración, la extensión de las patrullas y la aplicación de la ley y el contexto territorial del área protegida</b><br /> Los objetivos ingresados a continuación se utilizarán para mejorar la gestión, y más específicamente para la planificación, la movilización de recursos (insumos), las fases del proceso y para el seguimiento de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos relacionados con <b>los límites, el índice de configuración, la extensión de las patrullas y la aplicación de la ley y el contexto territorial del área protegida</b><br /> Los objetivos ingresados a continuación se utilizarán para mejorar la gestión, y más específicamente para la planificación, la movilización de recursos (insumos), las fases del proceso y para el seguimiento de las actividades de gestión del área protegida.'
     ],
     'Objectives3' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para <b>recursos humanos y financieros/apoyo de las asociaciones en la gestión</b> del área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida'
+        'module_info' => 'Establecer y describir los objetivos para <b>recursos humanos y financieros/apoyo de las asociaciones en la gestión</b> del área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida'
     ],
     'Objectives4' => [
-        'module_info' => 'Establezca y describa los objetivos de conservación de los factores clave: <b> i) especies de animales; ii) especies de plantas; iii) hábitats y; iv) cambio de cobertura de uso del suelo </b> del área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el monitoreo de las actividades de gestión del área protegida'
+        'module_info' => 'Establecer y describir los objetivos de los factores clave: <b> i) especies de animales; ii) especies de plantas; iii) hábitats y; iv) cambio de cobertura de uso del suelo </b> del área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el monitoreo de las actividades de gestión del área protegida'
     ],
     'Objectives5' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para <b>amenazas</b> frente al área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión, y más concretamente para la planificación, la movilización de recursos (insumos), las fases del proceso y para el monitoreo de las actividades de gestión del área protegida'
+        'module_info' => 'Establecer y describir los objetivos para <b>amenazas</b> frente al área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión, y más concretamente para la planificación, la movilización de recursos (insumos), las fases del proceso y para el monitoreo de las actividades de gestión del área protegida'
     ],
     'Objectives6' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para <b>los efectos del cambio climático</b> frente al área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión del área protegida'
+        'module_info' => 'Establecer y describir los objetivos para <b>los efectos del cambio climático</b> frente al área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión del área protegida'
     ],
     'Objectives7' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para <b> los servicios y funciones ecosistémicas y la dependencia de estos servicios de las comunidades/sociedades</b> en el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar el manejo, y más específicamente para la planificación, la movilización de recursos (insumos), las fases del proceso y para el monitoreo de las actividades de manejo del área protegida'
+        'module_info' => 'Establecer y describir los objetivos para <b> los servicios y funciones ecosistémicas y la dependencia de estos servicios de las comunidades/sociedades</b> en el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar el manejo, y más específicamente para la planificación, la movilización de recursos (insumos), las fases del proceso y para el monitoreo de las actividades de manejo del área protegida'
     ],
 
     'ResponsablesInterviewers' => [
@@ -101,7 +102,7 @@ return [
         'fields' => [
             'CompleteName' => 'Nombre completo del área protegida',
             'CompleteNameWDPA' => 'Nombre con el cual se hace referencia al área protegida',
-            'WDPA' => 'Nombre del área protegida en el sitio de la WDPA Código del sitio WDPA (de los códigos en <a href="http://www.unep-wcmc.org/wdpa/">www.unep-wcmc.org/wdpa/</a>)',
+            'WDPA' => 'WDPA ID (www.protectedplanet.net)',
             'UsedName' => 'Nombre por el que se hace referencia al área protegida',
             'Type' => 'Tipología',
             'NationalCategory' => 'Categoría nacional',
@@ -474,12 +475,12 @@ return [
         ],
         'predefined_values' => [
             'group0' =>  ['Oficinas','Puestos de control o campamentos de guardaparques','Puntos de barrera o casetas de control','Infraestructura científicas','Garaje y taller de mantenimiento','Espacio para las botellas y otros equipos de buceo', 'Cobertizos para barcos', 'Aparcamiento de coches-barcos','Miscelánea (revista, radio, etc.)','Centro de atención médica'],
-            'group1' =>  ['Para oficiales y suboficiales', 'Para el personal de los guardaparques', 'Para el personal de apoyo'],
+            'group1' =>  ['Para oficiales y suboficiales', 'Para el personal de los guardaparques', 'Para el personal de apoyo', 'Para el personal científico'],
             'group2' =>  ['Hoteles (capacidad de hospedaje)', 'Eco-albergues (capacidad de hospedaje)', 'Campamentos (capacidad de hospedaje)', 'Instalaciones de recepción para los turistas', 'Punto observación de fauna y paisaje', 'Rutas turísticas disponibles (km)'],
             'group3' =>  ['Vehículos/autos y caminonetas', 'Motos/cuadratracks', 'Bicicletas', 'Barcos y/o lanchas', 'Motores fuera de borda', 'Piragua y/o bote a remo', 'Avión, ultraligero', 'Transporte pesado'],
-            'group4' =>  ['Armas', 'Cartuchos', 'Uniformes', 'Raciones (viáticos)', 'GPS, brújulas', 'Equipo de campamento y de monte'],
+            'group4' =>  ['Radares de control', 'Armas', 'Cartuchos', 'Uniformes', 'Raciones (viáticos)', 'GPS, brújulas', 'Equipo de campamento y de monte'],
             'group5' =>  ['Radios VHF/HF', 'V-SAT', 'Teléfonos fijos', 'Teléfonos celular (GSM)', 'Teléfonos satelitales', 'Conexión a Internet'],
-            'group6' =>  ['Computadoras de escritorio', 'Impresoras', 'Fotocopiadoras', 'Computadoras portátiles'],
+            'group6' =>  ['Computadoras de escritorio', 'Impresoras', 'Fotocopiadoras', 'Computadoras portátiles', 'Inversor'],
             'group7' =>  ['Generadores de energía', 'Instalación eléctrica solar', 'Instalación hidroeléctrica', 'Instalación eléctrica eólica', 'Suministro de agua'],
             'group8' =>  ['Vehículos/barcos', 'Radios', 'Edificios', 'Red eléctrica', 'Red hidráulica', 'Transporte pesado'],
             'group9' =>  ['Caminos/senderos dentro del área protegida', 'Los caminos dentro del área protegida', 'El camino a lo largo del límite del área protegida'],
@@ -516,7 +517,7 @@ return [
         'module_info' => 'Estado de conservación favorable: Según Natura 2000, el estado de conservación de las especies se considerará "favorable" cuando:<ul>los datos sobre la dinámica de la población de la especie en cuestión indican que se mantiene a largo plazo como un componente viable de sus hábitats naturales, y</li><li>el área de distribución natural de la especie no se está reduciendo ni es probable que se reduzca en un futuro previsible, y existe, y probablemente seguirá existiendo, un hábitat suficientemente grande para mantener sus poblaciones a largo plazo</li></ul>Clasificación: Evaluar a partir de la lista de especies que se supone que existen (véanse las listas de la UICN de A - mamíferos, B - aves y C - anfibios), un número limitado de especies clave de la zona protegida.<br /> <b>Indicadores de especies</b> <ul> <li><b>BAN</b>: Especies emblemáticas o bandera</li> <li><b>EN</b>: Especies en peligro (amenazadas)</li> <li><b>EDM</b>: Especies endémicas</li> <li><b>EXP</b>: Especies explotadas</li> <li><b>INV</b>: Especies invasoras</li> <li><b>EBNC</b>: Especie con bajo nivel de conocimiento</li> </ul> <b>Población estimada:</b> Programa de monitoreo y vigilancia ecológica y generación de un gráfico de tendencias multianual.',
         'validation_min3' => 'Por favor, codifique al menos 3 especies clave',
         'warning_on_save' =>
-            'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
+            'ADVERTENCIA!! <br /> Cualquier modificación provocará la pérdida completa de datos en
             los módulos de evaluación (si ya se ha codificado): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -538,7 +539,7 @@ return [
         ],
         'module_info' => 'Estado de conservación favorable:<br />Según Natura 2000, el estado de conservación de las especies se considerará "favorable" cuando:<ul><li>los datos sobre la dinámica de la población de la especie en cuestión, indican que se mantiene a largo plazo como un componente viable de sus hábitats naturales, y</li><li>el área de distribución natural de la especie no se está reduciendo ni es probable que se reduzca en un futuro previsible, y existe, y probablemente seguirá existiendo, un hábitat suficientemente grande para mantener sus poblaciones a largo plazo</li></ul>Clasificación: Evaluar a partir de la lista de plantas que se supone que existen (ver las listas disponibles y la información del parque), un número limitado de plantas clave del área protegida<br /> <b>Indicadores de especies</b> <ul> <li><b>BAN</b>: Especies emblemáticas o bandera</li> <li><b>EN</b>: Especies en peligro de extinción (amenazadas)</li> <li><b>EDM</b>: Especies endémicas</li> <li><b>EXP</b>: Especies explotadas</li> <li><b>INV</b>: Especies invasoras</li> <li><b>EBNC</b>: Especies con bajo nivel de conocimiento</li> </ul> <b>Población estimada:</b> Programa de monitoreo y vigilancia ecológica y generación de un gráfico de tendencias multianual.<br /> <b>Fiabilidad de la información</b> <ul> <li>1: Bajo<li>2: Medio<li>3: Alto</li> </ul>',
         'warning_on_save' =>
-            'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
+            'ADVERTENCIA!! <br /> Cualquier modificación provocará la pérdida completa de datos en
             los módulos de evaluación (si ya se ha codificado): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -556,7 +557,7 @@ return [
         ],
         'module_info' => 'Nota: Estado de conservación favorable:<br /> Según Natura 2000, el estado de conservación de un hábitat natural se considerará "favorable" cuando:<ul><li><li>su rango natural y las áreas que cubre dentro de ese rango son estables o están en aumento, y</li><li>la estructura y las funciones específicas necesarias para su mantenimiento a largo plazo existen y es probable que sigan existiendo en el futuro previsible</li></ul>Clasificación: Seleccionar y evaluar los parámetros más importantes relacionados con el ecosistema y el hábitat de los ecosistemas y hábitats terrestres y marinos del área protegida.<br /> <b>Nota</b>: La evaluación de hábitats sigue emergiendo como una disciplina, ya que es altamente compleja. La clasificación prevé la siguiente división del territorio: Bioma, Ecorregión, Ecosistema, Hábitat. Las características/valores de los hábitats pueden evaluarse como: <ul> <li>i) bajo amenaza de extinción (dentro de su área de distribución natural),</li> <li>ii) tener un alcance natural reducido,</li> <li>iii) en declive,</li> <li>iv) un ejemplo destacado de características específicas, etc.</li> </ul> La evaluación de los hábitats también puede realizarse desde la perspectiva de: <ul> <li>i) reproducción,</li> <li>ii) nutrición,</li> <li>iii) protección de las especies, etc.</li> </ul> <br /> <b>Fiabilidad de la información</b> <ul> <li>1: Bajo<li>2: Medio<li>3: Alto</li> </ul>',
         'warning_on_save' =>
-            'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
+            'ADVERTENCIA!! <br /> Cualquier modificación provocará la pérdida completa de datos en
             los módulos de evaluación (si ya se ha codificado): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -808,7 +809,7 @@ return [
         ],
         'module_info' => 'La calculadora de amenazas sirve para calcular el impacto de las puntuaciones de las amenazas en un área protegida específica. Usando su mejor juicio profesional, evalúe el impacto de la amenaza explotando cinco categorías de puntuación: (1) Impacto/Severidad; (2) Escala/Extensión; (3) Duración/Irreversibilidad; (4) Tendencia; (5) Probabilidad de la amenaza en el futuro',
         'warning_on_save' =>
-            'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
+            'ADVERTENCIA!! <br /> Cualquier modificación provocará la pérdida completa de datos en
             los módulos de evaluación (si ya se ha codificado): <br /> <i>C3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -838,7 +839,7 @@ return [
             ]
         ],
         'warning_on_save' =>
-            'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
+            'ADVERTENCIA!! <br /> Cualquier modificación provocará la pérdida completa de datos en
             los módulos de evaluación (si ya se ha codificado): <br /> <i>C1.4</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -902,7 +903,7 @@ return [
             ]
         ],
         'warning_on_save' =>
-            'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
+            'ADVERTENCIA!! <br /> Cualquier modificación provocará la pérdida completa de datos en
             los módulos de evaluación (si ya se ha codificado): <br /> <i>C1.5</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 

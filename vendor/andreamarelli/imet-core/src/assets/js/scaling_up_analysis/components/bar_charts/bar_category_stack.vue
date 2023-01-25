@@ -10,6 +10,10 @@ export default {
         window.ImetCore.ScalingUp.Mixins.resize
     ],
     props: {
+        title: {
+            type: String,
+            default: ''
+        },
         label_position: {
             type: String,
             default: 'top'
@@ -24,9 +28,19 @@ export default {
         },
         height: {
             type: String,
-            default: '700px'
+            default: '800px'
         },
         values: {
+            type: [Array, Object],
+            default: () => {
+            }
+        },
+        raw_values: {
+            type: [Array, Object],
+            default: () => {
+            }
+        },
+        percent_values: {
             type: [Array, Object],
             default: () => {
             }
@@ -77,13 +91,23 @@ export default {
     computed: {
 
         bar_options() {
+
             this.grid.grid.containLabel = function () {
                 return this.show_option_label;
             };
+            const {raw_values, percent_values} = this;
             return {
+                title: {
+                    text: this.title,
+                    left: 'center',
+                    textStyle: {
+                        fontWeight: 'normal'
+                    }
+                },
                 legend: {
-                    data: Object.values(this.legends),
-                    selectedMode: false
+                    data: Object.values(Array.isArray(this.legends) ? this.legends[0] : this.legends),
+                    selectedMode: false,
+                    padding: [30, 0, 0, 0]
                 },
                 ...this.grid,
                 tooltip: {
@@ -93,14 +117,35 @@ export default {
                     },
                     formatter: function (params) {
                         let tooltip_text = `${params[0].axisValueLabel} <br/>`;
-                        params.forEach(function (item) {
+                        if (raw_values) {
+                            params.forEach(function (item) {
+                                const value = item.value;
+                                if (value == -99999999) {
+                                    tooltip_text += `${item.marker} ${item.seriesName} : -</div> <br/>`;
+                                } else {
+                                    let percent = percent_values[item.seriesName][item.dataIndex];
+                                    let raw_value = raw_values[item.dataIndex][item.componentIndex];
+                                    if (percent == -99999999) {
+                                        percent = '-';
+                                        raw_value = '-';
+                                    }
+                                    else{
+                                        percent = percent + '%';
+                                    }
+                                    tooltip_text += `${item.marker} ${item.seriesName} : ${raw_value} (${percent})</div> <br/>`;
+                                }
+                            });
+                        } else {
+                            params.forEach(function (item) {
+                                const value = item.value;
+                                if (value == -99999999) {
+                                    tooltip_text += `${item.marker} ${item.seriesName} : - </div> <br/>`;
+                                } else {
+                                    tooltip_text += `${item.marker} ${item.seriesName} : ${value}</div> <br/>`;
+                                }
+                            });
+                        }
 
-                            if(item.value === -0){
-                                tooltip_text += `${item.marker} ${item.seriesName} : -</div> <br/>`;
-                            }else {
-                                tooltip_text += `${item.marker} ${item.seriesName} : ${item.value}</div> <br/>`;
-                            }
-                        });
                         return tooltip_text;
                     }
                 },
@@ -108,13 +153,18 @@ export default {
                 xAxis: {
                     type: 'category',
                     data: this.x_axis_data,
+                    ...this.axis_dimensions_x,
                     axisLabel: {
                         interval: 0,
-                        rotate: 45
+                        rotate: 0,
+                        formatter: function (value, index) {
+                            return value.replace(/ /g, "\n")
+                        }
                     }
                 },
                 yAxis: {
                     type: 'value',
+                    ...this.axis_dimensions_y,
                     show: this.show_y_axis,
                     realtimeSort: true,
                     minInterval: 1
@@ -134,7 +184,9 @@ export default {
     data() {
         return {
             height_value: 700,
-            data: []
+            data: [],
+            new_values: [],
+            calculated_values: [],
         }
     },
     mounted() {
@@ -147,9 +199,9 @@ export default {
         this.draw_chart();
     },
     methods: {
-
         series: function () {
             const bars = [];
+
             Object.entries(this.values).forEach((value, idx) => {
                 bars.push({
                     color: this.colors[idx],
@@ -164,10 +216,11 @@ export default {
                         focus: 'series'
                     },
                     data: value[1].map((item, idx) => {
-                        if(item == '-'){
-                            return -0
+                        if (item == -99999999) {
+                            return 0
                         }
-                        return item
+
+                        return item;
                     })
                 })
             });
@@ -189,18 +242,17 @@ export default {
                         formatter: (param) => {
                             let sum = 0;
                             has_value = true;
-                            if(index === bars.length - 1 && param.dataIndex === bars[index].data.length - 1) {
-                            }
                             bars.forEach(item => {
-                                if(item.data[param.dataIndex] !== '-') {
+                                if (item.data[param.dataIndex] !== '-') {
                                     sum += parseFloat(item.data[param.dataIndex]);
                                 }
                             });
-
+                            if(sum === 0){
+                                return sum;
+                            }
                             return sum.toFixed(1);
                         }
                     }
-
                 }
 
                 return bar;

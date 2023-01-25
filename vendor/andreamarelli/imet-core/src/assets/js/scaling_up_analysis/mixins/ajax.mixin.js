@@ -106,6 +106,7 @@ export default {
         retrieve_data: async function () {
             try {
                 this.show_loader = true;
+                this.error_wrong = false;
                 const response = await window.axios({
                     method: this.method,
                     url: this.url_parameter,

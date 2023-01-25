@@ -7,7 +7,7 @@ return [
         'fields' => [
             'Element' => 'Element/Indicator',
             'Status' => 'Baseline',
-            'Objective' => 'Objective - Favourable conservation status',
+            'Objective' => 'Optimal or favourable status',
             'comments' => 'Comments'
         ],
     ],
@@ -38,7 +38,7 @@ return [
     ],
 
     'ObjectivesClassification' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>the current national, regional or international designation(s) </b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for <b>the current national, regional or international designation(s) </b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
     ],
 
     'ImportanceSpecies' => [
@@ -69,14 +69,13 @@ return [
         'module_info_Rating' => [
             'Evaluate the level of integration of 3 to 10 key species in the management of the protected area (based on an analysis of the Context of Intervention, points 4.1 and 4.2, automatically reported below). (The representativeness or highly representative of a key specie corresponds to the degree to which it: (i) represents a strong natural characteristic of one habitat, ecosystem, biome; (ii) influences an ecological process or community or (iii) affects a species-directed management policy)'
         ],
-        'validation_3to10' => 'Please include in statistics not less than 3 and not more than 10 of the key species',
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following
+            'WARNING!! <br /> Any modification will cause complete data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
     'ObjectivesSpecies' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>species (flagship, endangered, endemic, exploited, invasive and for which there is insufficient data) </b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for <b>species (flagship, endangered, endemic, exploited, invasive and for which there is insufficient data) </b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2.'
     ],
 
     'ImportanceHabitats' => [
@@ -108,14 +107,13 @@ return [
         'module_info_Rating' => [
             'Evaluate the level of integration in the management of the protected area of 3 to 10 of the most representative and important habitats and related dimensions of land-cover, land-change and land-take types (based on the analysis of the Context of Intervention, points 4.3, automatically reported below). (The regional and global value/importance of habitats is a degree to which it: (i) represents at the regional or global level the natural environment of key plants or animals; (ii) influences an ecological process or community and (iii) affects a habitat directed management policy)'
         ],
-        'validation_3to10' => 'Please include in statistics not less than 3 and not more than 10 of the key species',
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following
+            'WARNING!! <br /> Any modification will cause complete data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
     'ObjectivesHabitats' => [
-        'module_info' => 'Establish and describe conservation objectives for maintaining of <b>maintaining terrestrial and marine habitats and related dimensions of land-cover, land-change and land-take elements</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for maintaining of <b>maintaining terrestrial and marine habitats and related dimensions of land-cover, land-change and land-take elements</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2.'
     ],
 
     'ImportanceClimateChange' => [
@@ -143,12 +141,12 @@ return [
             'Evaluate the level of integration in the management of the protected area of the climate change most vulnerable key elements (based on the analysis of the Context of Intervention, points CTX6.1, automatically reported below)'
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following
+            'WARNING!! <br /> Any modification will cause complete data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i>, <i>PR17</i> and <i>O/C2</i>'
     ],
 
     'ObjectivesClimateChange' => [
-        'module_info' => 'Establish and describe conservation objectives to the <b> most significant effects of climate change</b> on the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives to the <b> most significant effects of climate change</b> on the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2 considering the effects of climate change as a condition to improve to prevent loss of the value.'
     ],
 
     'ImportanceEcosystemServices' => [
@@ -176,12 +174,12 @@ return [
             'Evaluate the level of integration of the most important ecosystem services in the management of the protected area (based on the analysis of the Context of Intervention point CTX7.1, automatically reported below)'
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following
+            'WARNING!! <br /> Any modification will cause complete data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i>, <i>PR18</i> and <i>O/C2</i>'
     ],
 
     'ObjectivesEcosystemServices' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>preserving ecosystem services</b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for <b>preserving ecosystem services</b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.2 - Generic indicator 4.2.1 for the ecosystem services for provisioning, regulation and supporting values and Criterion 4.3 - Generic indicator 4.3.1 for the ecosystem services related to cultural values.'
     ],
 
     'SupportsAndConstraints' => [
@@ -259,7 +257,7 @@ return [
     ],
 
     'ObjectivesSupportsAndConstraints' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>constraints/conflicts or supporting/complying factors</b> for the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for <b>constraints/conflicts or supporting/complying factors</b> for the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2.'
     ],
 
     'Menaces' => [
@@ -276,12 +274,12 @@ return [
             'Evaluate the level of integration of most important threats in the management of the protected area based on the analysis of the threats calculator at Context of intervention point CTX 5.1 and automatically reported below.'
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following
+            'WARNING!! <br /> Any modification will cause complete data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
     'ObjectivesMenaces' => [
-        'module_info' => 'Setting target conservation objectives and indicators for <b>the most important threats facing</b> the protected area<br /> The objectives entered below will be used for improving the management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Setting target conservation objectives and indicators for <b>the most important threats facing</b> the protected area<br /> The objectives entered below will be used for improving the management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2 considering the threats as condition to improve to prevent loss of the value.'
     ],
 
     'RegulationsAdequacy' => [
@@ -527,7 +525,7 @@ return [
     ],
 
     'ObjectivesPlanification' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>planning</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for <b>planning</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component ## - Criterion ## - Generic indicator ##.'
     ],
 
     'InformationAvailability' => [
@@ -687,7 +685,7 @@ return [
     ],
 
     'ObjectivesIntrants' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>inputs</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for <b>inputs</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component ## - Criterion ## - Generic indicator ##.'
     ],
 
     'StaffCompetence' => [
@@ -707,7 +705,7 @@ return [
             ],
             'PercentageLevel' => [
                 '0' => 'Completely inadequate staff capacity-building activities',
-                '1' => 'Somewhat adequate staff capacity building activities',
+                '1' => 'Somewhat inadequate staff capacity building activities',
                 '2' => 'Adequate staff capacity-building activities, but improvements are needed',
                 '3' => 'Fully adequate staff capacity building activities (sufficient and updated)'
             ]
@@ -926,7 +924,7 @@ return [
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
-            'group0' => 'Ranger patrol management',
+            'group0' => 'Terrestrial ranger patrol management',
             'group1' => 'Sea ranger patrol management',
         ],
         'predefined_values' => [
@@ -1452,7 +1450,7 @@ return [
     ],
 
     'ObjectivesProcessus' => [
-        'module_info' => 'Establish and describe conservation objectives related <b>to implementation process of the planning</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives related <b>to implementation process of the planning</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component ## - Criterion ## - Generic indicator ##.'
     ],
 
     'WorkProgramImplementation' => [

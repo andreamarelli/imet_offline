@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ModularForms\Models;
 
 use AndreaMarelli\ModularForms\Helpers\ModuleKey;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use AndreaMarelli\ModularForms\Models\Traits\Sortable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -114,7 +115,7 @@ class Form extends BaseModel
     {
         /** @var \AndreaMarelli\ModularForms\Models\Module $module_class */
 
-        $records = json_decode($request->input('records_json'), true);
+        $records = Payload::decode($request->input('records_json'));
         $module_key = $request->input('module_key');
         $module_class = ModuleKey::KeyToClassName($module_key);
 
@@ -133,7 +134,7 @@ class Form extends BaseModel
 
         // Inject form_id into request
         $records[0][$this->getKeyName()] = $this->getKey();
-        $request->replace(['records_json' => json_encode($records)]);
+        $request->replace(['records_json' => Payload::encode($records)]);
 
         // Update module
         $result = $module_class::updateModule($request);

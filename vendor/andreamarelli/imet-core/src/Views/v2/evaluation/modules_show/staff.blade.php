@@ -22,6 +22,9 @@ $table_id = 'table_'.$definitions['module_key'];
 
     {{-- inputs --}}
     <tbody class="{{ $group_key }}">
+    @if(count($records)===0)
+        @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => 4])
+    @endif
     @foreach($records as $record)
         <tr class="module-table-item">
             @foreach($definitions['fields'] as $f_index=>$field)

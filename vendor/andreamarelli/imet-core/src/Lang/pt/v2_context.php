@@ -6,7 +6,7 @@ return [
         'title' => 'Criar um novo IMET (WDPA)',
         'fields' => [
             'version' => 'versão',
-            'Year' => 'ano',
+            'Year' => 'Ano sujeito a avaliação',
             'wdpa_id' => 'zona protegida',
             'language' => 'língua',
             'prefill_prev_year' => 'pré-preencher com o ano anterior'
@@ -17,7 +17,7 @@ return [
         'title' => 'Criar um novo IMET (não WDPA)',
         'fields' => [
             'version' => 'versão',
-            'Year' => 'ano',
+            'Year' => 'Ano sujeito a avaliação',
             'wdpa_id' => 'zona protegida',
             'language' => 'língua',
             'prefill_prev_year' => 'pré-preencher com o ano anterior',
@@ -25,12 +25,13 @@ return [
             'name' => 'nome fornecido pelo operador',
             'origin_name' => 'nome na língua original',
             'designation' => 'nome da designação (por exemplo, reserva, santuário, etc.) ',
-            'designation_eng' => 'designação obrigatória em inglês',
+            'designation_eng' => 'designação obrigatória em Inglês',
             'designation_type' => 'Tipo de designação',
             'marine' => 'tipologia',
             'rep_m_area' => 'superfície da área protegida marinha conservada [km<sup>2</sup>]',
             'rep_area' => 'superfície da área protegida conservada [km<sup>2</sup>]',
             'status' => 'estado',
+            'ownership_type' => 'Tipo de propriedade',
             'status_year' => 'ano da promulgação do estatuto',
             'country' => 'país',
         ],
@@ -45,7 +46,7 @@ return [
         'fields' => [
             'Element' => 'Elemento/Indicador',
             'Status' => 'Dados de referencia',
-            'Objective' => 'Objectivo - Metas de Longo termo/Objectivos',
+            'Objective' => 'Objetivo - Status ótimo ou favorável',
             'Comments' => 'Comments'
         ]
     ],
@@ -101,7 +102,7 @@ return [
         'fields' => [
             'CompleteName' => 'Nome completo da área protegida',
             'CompleteNameWDPA' => 'Nome pelo qual a área protegida é referida',
-            'WDPA' => 'Nome da área protegida no sítio da WDPA',
+            'WDPA' => 'WDPA ID (www.protectedplanet.net)',
             'UsedName' => 'Código do sítio WDPA (a partir dos códigos em <a href="http://www.unep-wcmc.org/wdpa/">www.unep-wcmc.org/wdpa/</a>)',
             'Type' => 'tipologia',
             'NationalCategory' => 'Categoria Nacional',
@@ -113,7 +114,7 @@ return [
             'CreationYear' => 'Ano de Criacao',
             'Institution' => 'Instituição(ões) supervisora(s)',
             'Biome' => 'Bioma',
-            'Ecoregions' => 'ecorregião(ões) de referência [Ecoregiões G200, Olson, WWF; Spalding M. et alt. 2007]',
+            'Ecoregions' => 'Ecorregião(ões) de referência [Ecoregiões G200, Olson, WWF; Spalding M. et alt. 2007]',
             'Ecotype' => 'Ecotipos (até três elementos que descem pela predominância)',
             'ReferenceText' => 'Referência à designação do texto de declaração',
             'ReferenceTextDocument' => '',
@@ -470,12 +471,12 @@ return [
         ],
         'predefined_values' => [
             'group0' => ['Escritórios', 'Postos de Patrulha', 'Pontos de barreira', 'Edifícios científicos', 'Garagem e oficina', 'Espaço para garrafas de mergulho e outros equipamentos de mergulho', 'Galpões de barcos', 'Estacionamento de carros-barcos', 'Diversos (revista, rádio, etc.)', 'Centro de cuidados de saúde'],
-            'group1' => ['Para os oficiais e seus adjuntos', 'Para o pessoal de fiscalização', 'Para o pessoal de apoio'],
+            'group1' => ['Para os oficiais e seus adjuntos', 'Para o pessoal de fiscalização', 'Para o pessoal de apoio', 'Para equipe científica'],
             'group2' => ['Hotéis (capacidade para hospedes)', 'Eco-lodges (capacidade para hóspedes)', 'Acampamentos (capacidade para hóspedes)', 'Instalações de acolhimento para turistas', 'Pontos de visualizacao ou pontos de observação', 'Rotas turísticas disponíveis (km)'],
             'group3' => ['Carros', 'Motociclos/Quadros', 'Bicicletas', 'Barcos', 'Motores de popa', 'Pirogues', 'Aeroplano, microlight', 'Motores pesados'],
-            'group4' => ['armas', 'Cartuchos', 'Uniformes', 'Racoes (per diem)', 'GPS, bússulas', 'Equipamento de  campismo'],
+            'group4' => ['Radar de controle', 'armas', 'Cartuchos', 'Uniformes', 'Racoes (per diem)', 'GPS, bússulas', 'Equipamento de  campismo'],
             'group5' => ['Radios VHF/HF', 'V-SAT', 'Telefones fixos', 'Telefones GSM', 'Telefones Satelite', 'Conexão de Internet'],
-            'group6' => ['Computadores de Secretária', 'Impressoras', 'Fotocopiadoras', 'Computadores portáteis'],
+            'group6' => ['Computadores de Secretária', 'Impressoras', 'Fotocopiadoras', 'Computadores portáteis', 'Inversor'],
             'group7' => ['Geradores de energia', 'Instalação eléctrica solar', 'Instalação eléctrica hidroeléctrica', 'Instalação eléctrica eólica', 'Abastecimento de água'],
             'group8' => ['Veiculos/barcos', 'Radios', 'Edificios', 'Rede eléctrica', 'Rede hidraulica', 'motores pesados'],
             'group9' => ['Estradas/carreiros dentro da área protegida', 'Atalhos dentro da área protegida', 'Estrada ao longo da fronteira'],
@@ -512,7 +513,7 @@ return [
         'module_info' => 'Estado de conservação favorável: A partir de Natura 2000, o estado de conservação das espécies será considerado "favorável" quando:<ul> os dados sobre a dinâmica populacional das espécies em causa indicam que se mantém a longo prazo como uma componente viável dos seus habitats naturais, e<li> a área variedade natural de distribuição da espécie não está a ser reduzida nem será provavelmente reduzida num futuro previsível, e existe, e provavelmente continuará a existir, um habitat suficientemente grande para manter as suas populações a longo prazo</li></ul> Classificação: Avaliar a partir da lista de espécies que se supõe existirem (ver as listas da IUCN de A - mamiferos, B -_ aves e C - anfibios), um número limitado de espécies chave da área protegida. <br /> <b>Espécies indicadoras</b> <ul> <li><b>EE</b>: Espécies emblemáticas</li> <li><b>EP</b>: especies em perigo (Ameaçadas)</li> <li><b>EED</b>: Espécies Endémicas </li> <li><b>EXP</b>: Espécies exploradas</li> <li><b>INV</b>: Espécies invasoras</li> <li><b>EBC</b>: Espécie com baixo nível de conhecimento</li></ul> <b>Estimativa da população</b>: Programa de monitorização ecológica e geração de gráfico de tendências plurianuais.',
         'validation_min3' => 'Please encode not less than 3 key species',
         'warning_on_save' =>
-            'Qualquer <br/> modificação pode causar perda de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
             módulos de avaliação (se já codificados): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -534,7 +535,7 @@ return [
         ],
         'module_info' => 'Estado de conservação favorável:<br /> A partir de Natura 2000, o estado de conservação das espécies será considerado "favorável" quando:<ul><li> os dados sobre a dinâmica populacional das espécies em causa indicam que se mantém a longo prazo como uma componente viável dos seus habitats naturais, e </li><li>a área variedade natural de distribuição das espécies não está a ser reduzida nem será provavelmente reduzida num futuro previsível, e existe, e provavelmente continuará a existir, um habitat suficientemente grande para manter as suas populações a longo prazo</li></ul> Classificação: Avaliar, a partir da lista de plantas que se supõe existirem (ver as listas disponíveis e informações do parque), um número limitado de plantas-chave da área protegida<br /> <b>Indicadores das espécies</b> <ul> <li><b>EE</b>: Espécies emblemáticas  </li> <li><b>EP</b>:Espécies em perigo (ameaçadas) </li> <li><b>EED</b>: Espécies Endémicas</li> <li><b> EXP</b>: Espécies exploradas</li> <li><b> INV</b>: Espécies Invasoras</li> <li><b> INS</b>: Espécie com baixo nível de conhecimento</li> </ul> <br/><b> EB Estimativa da população</b>: Programa de monitorização ecológica e geração de gráfico de tendências plurianuais.<br /> <b>Fiabilidade da informacao</b>: <ul><li>1 Baixa</li> <li>2: Media</li><li> 3: alta</li></ul>',
         'warning_on_save' =>
-            'Qualquer <br/> modificação pode causar perda de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
             módulos de avaliação (se já codificados): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -552,7 +553,7 @@ return [
         ],
         'module_info' => 'Nota: Estado de conservação favorável:<br />A partir de Natura 2000, o estado de conservação de um habitat natural será considerado "favorável" quando:<ul><li>a sua área de distribuição alcance natural e as áreas que cobre dentro dessa área alcance são estáveis ou estão a aumentar e</li><li>a estrutura e funções específicas que são necessárias para a sua manutenção a longo prazo existem e são susceptíveis de continuar a existir num futuro previsível</li></ul>Classificação: Seleccionar e avaliar os parâmetros mais importantes dos ecossistemas e habitats terrestres e marinhos da área protegida.<br /> <b>Note</b>:A avaliação do habitat ainda está a emergir como disciplina, uma vez que é altamente complexa. A classificação prevê a seguinte divisão de território: Bioma, Ecorregião, Ecossistema, Habitat. As características/valores do habitat podem ser avaliados como:<ul> <li>i) sob ameaça de extinção (dentro da sua área de distribuição,</li> <li>ii) ter área distribuição um alcance natural reduzida,</li> <li>iii) em declíneo,</li> <li>iv) um exemplo notável de características específicas, etc.</li> </ul> A avaliação de habitats também pode ser realizada na perspectiva de:<ul> <li>i) reproduccao,</li> <li>ii) nutricao,</li> <li>iii) protecção de espécies, etc.</li> </ul> <br /> <b>Fiabilidade da informacao</b> <ul> <li>1: Baixa<li>2: Media<li>3: Alta</li> </ul>',
         'warning_on_save' =>
-            'Qualquer <br/> modificação pode causar perda de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
             módulos de avaliação (se já codificados): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -804,7 +805,7 @@ return [
         ],
         'module_info' => 'A calculadora de ameaças é utilizada para calcular o impacto das ameaças numa área protegida específica. Usando o seu melhor julgamento profissional, avalia o impacto da ameaça explorando cinco categorias de pontuação: (1) Impacto/ Gravidade; (2) Escala/ Extensão; (3) Quanto tempo/ Irreversibilidade; (4) Tendência; (5) Probabilidade para a ameaça no futuro',
         'warning_on_save' =>
-            'Qualquer <br/> modificação pode causar perda de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
             módulos de avaliação (se já codificados): <br /> <i>C3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -834,7 +835,7 @@ return [
             ]
         ],
         'warning_on_save' =>
-            'Qualquer <br/> modificação pode causar perda de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
             módulos de avaliação (se já codificados): <br /> <i>C1.4</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -898,7 +899,7 @@ return [
             ]
         ],
         'warning_on_save' =>
-            'Qualquer <br/> modificação pode causar perda de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
             módulos de avaliação (se já codificados): <br /> <i>C1.5</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ]
 

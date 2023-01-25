@@ -61,6 +61,11 @@ export default {
                         "label": `C3: ${window.Locale.getLabel('imet-core::analysis_report.assessment.c3')}`,
                         "field": "c3",
                         "extra_label": ` ${window.Locale.getLabel('imet-core::analysis_report.scale.zero_negative')}`
+                    },
+                    {
+                        "label": `${window.Locale.getLabel('imet-core::v2_common.steps_eval.context')}`,
+                        "field": "context",
+                        "extra_label": ``
                     }
                 ]
             },
@@ -99,6 +104,10 @@ export default {
                     {
                         "label": `C1.5: ${window.Locale.getLabel('imet-core::analysis_report.assessment.c15')}`,
                         "field": "c15"
+                    },
+                    {
+                        "label": `${window.Locale.getLabel('imet-core::v2_common.steps_eval.context')}`,
+                        "field": "context"
                     }
                 ]
             },
@@ -154,6 +163,11 @@ export default {
                     {
                         "label": `P6: ${window.Locale.getLabel('imet-core::analysis_report.assessment.p6')}`,
                         "field": "p6"
+                    },
+                    {
+                        "label": `${window.Locale.getLabel('imet-core::v2_common.steps_eval.planning')}`,
+                        "field": "planning",
+                        "extra_label": ``
                     }
                 ]
 
@@ -194,6 +208,11 @@ export default {
                     {
                         "label": `I5: ${window.Locale.getLabel('imet-core::analysis_report.assessment.i5')}`,
                         "field": "i5"
+                    },
+                    {
+                        "label": `${window.Locale.getLabel('imet-core::v2_common.steps_eval.inputs')}`,
+                        "field": "inputs",
+                        "extra_label": ``
                     }
                 ]
 
@@ -239,6 +258,10 @@ export default {
                     {
                         "label": `PR F: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr17_18')}`,
                         "field": "pr17_18"
+                    },
+                    {
+                        "label": `${window.Locale.getLabel('imet-core::v2_common.steps_eval.process')}`,
+                        "field": "process"
                     }
                 ]
             }],
@@ -279,6 +302,10 @@ export default {
                 {
                     "label": `PR6: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr6')}`,
                     "field": "pr6"
+                },
+                {
+                    "label": `${window.Locale.getLabel('imet-core::v2_common.steps_eval.process')}`,
+                    "field": "process"
                 }
             ]
 
@@ -308,6 +335,10 @@ export default {
                 {
                     "label": `PR9: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr9')}`,
                     "field": "pr9"
+                },
+                {
+                    "label": `${window.Locale.getLabel('imet-core::v2_common.steps_eval.process')}`,
+                    "field": "process"
                 }
             ]
 
@@ -337,6 +368,10 @@ export default {
                 {
                     "label": `PR12: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr12')}`,
                     "field": "pr12"
+                },
+                {
+                    "label": `${window.Locale.getLabel('imet-core::v2_common.steps_eval.process')}`,
+                    "field": "process"
                 }
             ]
         }],
@@ -361,6 +396,10 @@ export default {
                 {
                     "label": `PR14: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr14')}`,
                     "field": "pr14"
+                },
+                {
+                    "label": `${window.Locale.getLabel('imet-core::v2_common.steps_eval.process')}`,
+                    "field": "process"
                 }
             ]
         }],
@@ -385,6 +424,10 @@ export default {
                 {
                     "label": `PR16: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr16')}`,
                     "field": "pr16"
+                },
+                {
+                    "label": `${window.Locale.getLabel('imet-core::v2_common.steps_eval.process')}`,
+                    "field": "process"
                 }
             ]
         }],
@@ -411,6 +454,10 @@ export default {
                 {
                     "label": `PR18: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr18')}`,
                     "field": "pr18"
+                },
+                {
+                    "label": `${window.Locale.getLabel('imet-core::v2_common.steps_eval.process')}`,
+                    "field": "process"
                 }
             ]
         }
@@ -436,12 +483,17 @@ export default {
                         "field": "op1"
                     },
                     {
-                        "label": `O/P2: ${window.Locale.getLabel('imet-core::analysis_report.assessment.op3')}`,
+                        "label": `O/P2: ${window.Locale.getLabel('imet-core::analysis_report.assessment.op2')}`,
                         "field": "op2",
                     },
                     {
                         "label": `O/P3: ${window.Locale.getLabel('imet-core::analysis_report.assessment.op3')}`,
                         "field": "op3"
+                    },
+                    {
+                        "label": `${window.Locale.getLabel('imet-core::v2_common.steps_eval.outputs')}`,
+                        "field": "outputs",
+                        "extra_label": ``
                     }
                 ]
 
@@ -477,6 +529,11 @@ export default {
                         "label": `O/C3: ${window.Locale.getLabel('imet-core::analysis_report.assessment.oc3')}`,
                         "field": "oc3",
                         "extra_label": ` ${window.Locale.getLabel('imet-core::analysis_report.scale.negative_positive')}`
+                    },
+                    {
+                        "label": `${window.Locale.getLabel('imet-core::v2_common.steps_eval.outcomes')}`,
+                        "field": "outcomes",
+                        "extra_label": ``
                     }
                 ]
 

@@ -13,7 +13,7 @@
 
                 <modal_api_search
                     :parent-id=id
-                    search-url='ajax/search/species'
+                    :search-url=searchUrl
                 >
                     <template v-slot:modal_search_results_filters>
                         <i>{{ Locale.getLabel('modular-forms::common.filter_results') }}: </i>&nbsp;&nbsp;
@@ -37,7 +37,7 @@
                     <template v-slot:resultItem="{ item }">
                         <td><span class="result_left" v-html="getSpeciesDescription(item)"></span></td>
                         <td><redlist_category :category=item.iucn_redlist_category></redlist_category></td>
-                        <td><a target="_blank" :href="'http://www.iucnredlist.org/details/'+item.iucn_redlist_id+'/0'"><img src="/images/iucn_red_list.png"/></a></td>
+                        <td><a target="_blank" :href="'http://www.iucnredlist.org/details/'+item.iucn_redlist_id+'/0'"><img src="/assets/images/iucn_red_list.png"/></a></td>
                     </template>
 
                 </modal_api_search>
@@ -135,6 +135,10 @@
         ],
 
         props: {
+            searchUrl: {
+                type: String,
+                default: null
+            },
             enableFreeText: {
                 type: Boolean,
                 default: false,
@@ -185,13 +189,13 @@
                 let description = item.class+' '+item.order+' '+item.family+' <b>'+item.genus+' '+item.species+'</b>';
                 if(this.hasCommonNames(item)){
                     description += '<div class="common_names"><b><i>'+Locale.getLabel('modular-forms::entities.biodiversity.common_names')+':</i></b><br />';
-                    if(item.common_name_en!==null){
+                    if(item.common_name_en!==null && item.common_name_en.toLowerCase()!=='null'){
                         description += '<div><span class="flag-icon flag-icon-gb"></span>'+item.common_name_en.replace(/\,/g, ', ')+'</div>'
                     }
-                    if(item.common_name_fr!==null){
+                    if(item.common_name_fr!==null && item.common_name_fr.toLowerCase()!=='null'){
                         description += '<div><span class="flag-icon flag-icon-fr"></span>'+item.common_name_fr.replace(/\,/g, ', ')+'</div>'
                     }
-                    if(item.common_name_sp!==null){
+                    if(item.common_name_sp!==null && item.common_name_sp.toLowerCase()!=='null'){
                         description += '<div><span class="flag-icon flag-icon-es"></span>'+item.common_name_sp.replace(/\,/g, ', ')+'</div>'
                     }
                     description += '</div>';
@@ -209,8 +213,8 @@
             },
 
             afterSearch(response){
-                this.orders = response['orders'];
-                this.classes = response['classes'];
+                this.orders = response['data']['orders'];
+                this.classes = response['data']['classes'];
             },
 
             resultTableHeader(){

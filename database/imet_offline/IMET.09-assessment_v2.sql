@@ -5,7 +5,7 @@ CREATE SCHEMA imet_assessment_v2;
 
 --- TABLES
 
-SET default_with_oids = true;
+
 
 CREATE TABLE imet_assessment_v2.imet_rank_pval (
   id integer NOT NULL PRIMARY KEY,
@@ -1219,11 +1219,11 @@ CREATE OR REPLACE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_cm_pr18(
 	field_value text,
 	field_group_element text,
 	field_group_element2 text)
-    RETURNS TABLE(formid integer, section text, value_p double precision) 
+    RETURNS TABLE(formid integer, section text, value_p double precision)
     LANGUAGE 'plpgsql'
 
     COST 100
-    VOLATILE 
+    VOLATILE
     ROWS 1000
 AS $BODY$
 

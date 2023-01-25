@@ -55,7 +55,11 @@
                     <tr v-for="(item, index) in showList">
                         <td>
                             <span class="radio">
-                                <input type="radio" :name="parentId + '_radio'" :id="parentId + '_radio' + index" v-on:click="selectResultItem(item)"/>
+                                <input type="radio"
+                                       :name="parentId + '_radio'" :id="parentId + '_radio' + index"
+                                       v-on:click="selectResultItem(item, $event)"
+                                       data-toggle="tooltip" data-placement="top" :title=radioTooltip
+                                />
                                 <label :for="parentId + '_radio' + index" ></label>
                             </span>
                         </td>
@@ -125,6 +129,16 @@
             .radio{
                 margin-top: 5px;
                 margin-bottom: 0;
+                label{
+                  &::before{
+                    left: 20px;
+                    top: -30px;
+                  }
+                  &::after{
+                    left: 23px;
+                    top: -27px;
+                  }
+                }
             }
             label{
                 margin: 0;
@@ -163,6 +177,10 @@
                 type: Boolean,
                 default: false
             },
+            radioTooltip:  {
+              type: String,
+              default: null
+            }
         },
 
         data (){
@@ -174,7 +192,7 @@
                 isSearching: false,
                 searchResults: [],
                 showList: [],
-                selectedValue: null,
+                selectedValue: null
             }
         },
 
@@ -230,7 +248,7 @@
 
                     window.axios({
                         method: 'POST',
-                        url: window.Laravel.baseUrl + _this.searchUrl,
+                        url: _this.searchUrl,
                         data: _this.searchParams(),
                     })
                         .then(function (response) {
@@ -270,7 +288,11 @@
                 _this.showList = filteredList;
             },
 
-            selectResultItem(item){
+            selectResultItem(item, event){
+                if(this.radioTooltip!==null){
+                  let radio = event.srcElement;
+                  window.$(radio).tooltip('show');
+                }
                 this.selectedValue = item;
                 this.selectorComponent.selectedValue = this.selectedValue;
             },

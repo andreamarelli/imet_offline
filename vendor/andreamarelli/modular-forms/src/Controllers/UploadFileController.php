@@ -49,11 +49,6 @@ class UploadFileController extends Controller
         $disk = Storage::disk(File::TEMP_STORAGE);
         $disk->put($hash, $file_content);
         $file_path = $disk->path($hash);
-        Log::debug('UploadFileController@dowload', [
-            'hash' => $hash,
-            'hash params' => File::decodeHash($hash),
-            'referrer' => request()->headers->get('referer')
-        ]);
         return response()
             ->download($file_path, $file_name)
             ->deleteFileAfterSend();

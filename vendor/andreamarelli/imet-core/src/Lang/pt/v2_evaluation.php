@@ -7,7 +7,7 @@ return [
         'fields' => [
             'Element' => 'Elemento/Indicador',
             'Status' => 'dado de referencia',
-            'Objective' => 'Objectivo - Favorável ao estado de ocnservacao',
+            'Objective' => 'Objetivo - Status ótimo ou favorável',
             'comments' => 'Commentários'
         ],
     ],
@@ -69,9 +69,8 @@ return [
         'module_info_Rating' => [
             'Avaliar o nível de integração de 3 a 10 espécies-chave na gestão da área protegida (com base numa análise do Contexto de Intervenção, pontos 4.1 e 4.2, automaticamente comunicados abaixo). A representatividade de uma espécie chave corresponde ao grau de representatividade da mesma: (i) representa uma característica natural forte de um habitat, ecossistema, bioma; (ii) influencia um processo ecológico ou uma comunidade ou (iii) afecta uma política de gestão dirigida à espécie)'
         ],
-        'validation_3to10' => 'Por favor incluir nas estatiticas não menos que 3 e não mais de 10 das espécies chave',
         'warning_on_save' =>
-            'Qualquer <br/> modificação pode causar perda de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
             módulos de avaliação (se já codificados):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -108,9 +107,8 @@ return [
         'module_info_Rating' => [
             'Avaliar o nível de integração na gestão da área protegida de 3 a 10 dos habitats e dimensões relacionadas mais representativas e importantes dos tipos de cobertura, mudança e ocupação do solo (com base na análise do Contexto de Intervenção, pontos 4.3, automaticamente comunicados abaixo). (O valor/importância regional e global dos habitats é um grau em que se encontra: - i - representas os  a níveis regional ou global o ambiente natural das principais plantas ou animais; (ii) influencia um processo ecológico ou a comunidade ecológica and - iii - affecta a política em relação gestão dirigida ao habitat)'
         ],
-        'validation_3to10' => 'Por favor inclua nas estatisticas não menos que 3 e não mais que 10 das espécies chave',
         'warning_on_save' =>
-            'Qualquer <br/> modificação pode causar perda de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
             módulos de avaliação (se já codificados):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -143,7 +141,7 @@ return [
             'Avaliar o nível de integração na gestão da área protegida dos elementos-chave mais importantes (espécies, habitats, etc.) mais vulneráveis às alterações climáticas (com base na análise do Contexto de Intervenção, pontos CTX6.1, automaticamente comunicados abaixo)'
         ],
         'warning_on_save' =>
-            'Qualquer <br/> modificação pode causar perda de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
             módulos de avaliação (se já codificados):<br /><i>I1</i>, <i>PR7</i>, <i>PR17</i> and <i>O/C2</i>'
     ],
 
@@ -176,7 +174,7 @@ return [
             'Avaliar o nível de integração na gestão da área protegida dos serviços ecossistémicos mais importantes (com base na análise do Contexto do Ponto de Intervenção CTX7.1, automaticamente reportado abaixo).'
         ],
         'warning_on_save' =>
-            'Qualquer <br/> modificação pode causar perda de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
             módulos de avaliação (se já codificados):<br /><i>I1</i>, <i>PR7</i>, <i>PR18</i> and <i>O/C2</i>'
     ],
 
@@ -276,7 +274,7 @@ return [
             'Avaliar o nível de integração na gestão da área protegida das ameaças mais importantes com base na análise da calculadora de ameaças no contexto do ponto de intervenção CTX 5.1 e reportado automaticamente abaixo.'
         ],
         'warning_on_save' =>
-            'Qualquer <br/> modificação pode causar perda de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
             módulos de avaliação (se já codificados):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -707,7 +705,7 @@ return [
             ],
             'PercentageLevel' => [
                 '0' => 'Actividades de capacitação de pessoal totalmente inadequadas',
-                '1' => 'Actividades de capacitação de pessoal um pouco adequadas',
+                '1' => 'Actividades de capacitação de pessoal um pouco inadequadas',
                 '2' => 'Actividades de capacitação de pessoal adequadas, mas são necessárias melhorias',
                 '3' => 'Actividades de capacitação de pessoal totalmente adequadas (suficientes e actualizadas)'
             ]
@@ -927,7 +925,7 @@ return [
             'Comments' => 'Comentários/Explicação',
         ],
         'groups' => [
-            'group0' => 'Gestão de patrulhas de Ranger',
+            'group0' => 'Gestão de patrulhas de Ranger terrestre',
             'group1' => 'Gestão de patrulhas de guarda-marinha',
         ],
         'predefined_values' => [

@@ -10,6 +10,10 @@ export default {
     ],
     inject: ['stores'],
     props: {
+        title: {
+            type: String,
+            default: ''
+        },
         width: {
             type: String,
             default: '100%'
@@ -24,6 +28,15 @@ export default {
             }
         },
         indicators: {
+            type: Array,
+            default: () => {
+            }
+        },
+        indicators_color: {
+            type: String,
+            default: ''
+        },
+        legends: {
             type: Array,
             default: () => {
             }
@@ -53,7 +66,7 @@ export default {
         },
         error_color: {
             type: String,
-            default: ''
+            default: '#C23531'
         },
         inverse_y: {
             type: Boolean,
@@ -64,23 +77,35 @@ export default {
             default: false
         },
     },
-
+    data: function () {
+        const Locale = window.Locale;
+        return {
+            Locale: Locale,
+            gather_colors: []
+        }
+    },
     computed: {
         bar_options() {
             const {values, error_data, legends, indicators} = this.getValues();
 
             return {
                 title: {
-                    text: ''
+                    text: this.title,
+                    left: 'center',
+                    textStyle: {
+                        fontWeight: 'normal'
+                    }
                 },
                 legend: {
-                    data: legends
+                    show: this.show_legends,
+                    data: this.legends,
+                    padding: [30, 0, 0, 0]
                 },
                 ...this.grid(),
-                xAxis: {...this.axis_dimensions_x, inverse:this.inverse_x},
+                xAxis: {...this.axis_dimensions_x, inverse: this.inverse_x},
                 yAxis: {
                     data: indicators,
-                    inverse:this.inverse_y,
+                    inverse: this.inverse_y,
                     axisLabel: {
                         fontSize: this.font_size,
                         interval: 0,
@@ -176,7 +201,7 @@ export default {
             if (!this.indicators?.length) {
                 return [];
             }
-            if(this.values.Average){
+            if (this.values.Average) {
                 return this.values.Average.map((value, key) => {
                     return value['indicator'];
                 });
@@ -186,28 +211,7 @@ export default {
             });
         },
         colors: function (colors) {
-
             return colors;
-        },
-        legends: function (legends = null) {
-            if (!legends) {
-                return null;
-            }
-            return {
-                legend: {
-                    data: legends
-                }
-            }
-
-        },
-        setLegends: function () {
-            const legends = [];
-            Object.entries(this.values)
-                .reverse()
-                .forEach(([key, value]) => {
-                    legends.push({name: key});
-                });
-            return this.legends(legends);
         },
         getValues: function (data = this.values) {
             let values = []
@@ -216,9 +220,6 @@ export default {
             let error_data = [];
 
             indicators = this.setIndicators();
-            if (this.show_legends) {
-                legends = this.setLegends(data);
-            }
 
             Object.entries(data)
                 .reverse()
@@ -231,6 +232,7 @@ export default {
 
                     if (key === 'Average') {
                         values = value.map((i, k) => {
+                            this.gather_colors[i['itemStyle']['color']] = i['itemStyle']['color'];
                             return {'value': i['value'], 'itemStyle': {'color': i['itemStyle']['color']}}
                         });
                         error_data = value.map((i, k) => [k, ...i['upper limit']]);
@@ -249,15 +251,16 @@ export default {
             }
         },
         bar_item: function (bar_data, error_data) {
+            const color = bar_data[0].itemStyle.color;
             return [
                 {
                     type: 'bar',
-                    name: 'bar',
+                    name: this.legends[0],
                     data: bar_data.map(data => {
                         return {value: data.value, itemStyle: {color: data.itemStyle.color}, label: {color: "#000000"}}
                     }),
                     itemStyle: {
-                        color: '#77bef7'
+                        color
                     },
                     label: {
                         show: true,
@@ -266,7 +269,7 @@ export default {
                     }
                 }, {
                     type: 'custom',
-                    name: 'error',
+                    name: this.legends[1],
                     itemStyle: {
                         normal: {
                             borderWidth: 1.5,
@@ -289,7 +292,6 @@ export default {
         draw_chart() {
             if (Object.keys(this.values).length > 0) {
                 this.chart = echarts.init(this.$el);
-
                 this.chart.setOption(this.bar_options);
             }
         }
@@ -297,7 +299,3 @@ export default {
 
 }
 </script>
-
-<style scoped>
-
-</style>

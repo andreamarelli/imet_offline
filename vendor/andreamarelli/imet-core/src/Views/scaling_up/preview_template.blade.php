@@ -26,7 +26,9 @@
                 {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('print') !!} {{ ucfirst(trans('imet-core::analysis_report.print')) }}</div>
         </div>
     </div>
+
     <style>
+
         .fill {
             min-height: 100%;
             height: 100%;
@@ -41,23 +43,28 @@
                 margin-top: 5px;
             }
         }
+
     </style>
+
     <script>
-        {!! 'window.Laravel = '.json_encode([
-                'csrfToken' => csrf_token(),
-                'baseUrl' => url('/').'/'
-            ]).';' !!}
-            new Vue({
+
+        window.Laravel = @json([
+            'csrfToken' => csrf_token(),
+            'baseUrl' => url('/').'/'
+        ]);
+
+        new Vue({
             el: '#preview-elements',
             methods: {
                 printReport() {
                     window.print();
                 },
                 downloadFiles(){
-                    window.location.href = '{{route('download_scaling_up_files', ['scaling_id' => $scaling_up_id])}}';
+                    window.location.href = '{{route('imet-core::scaling_up_download', ['scaling_id' => $scaling_up_id])}}';
                 }
             }
         });
+
     </script>
 @endsection
 

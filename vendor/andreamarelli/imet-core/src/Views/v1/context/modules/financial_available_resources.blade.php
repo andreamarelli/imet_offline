@@ -28,10 +28,10 @@ $tr_record = $definitions['module_type']==='GROUP_TABLE'
             @endif
         @endforeach
         <th class="text-center">
-            @lang_u('imet-core::v1_context.FinancialAvailableResources.fields.total')
+            @uclang('imet-core::v1_context.FinancialAvailableResources.fields.total')
         </th>
         <th class="text-center">
-            @lang_u('imet-core::v1_context.FinancialAvailableResources.fields.percentage')
+            @uclang('imet-core::v1_context.FinancialAvailableResources.fields.percentage')
         </th>
     </tr>
     </thead>
@@ -117,8 +117,10 @@ $tr_record = $definitions['module_type']==='GROUP_TABLE'
                     let totalPlannedBudget = parseFloat(module_imet__v1__context__financial_resources.records[0]['TotalBudget']);
                     this.records.forEach(function (item, index) {
                         let total =  parseFloat(_this.totals[index]);
-                        if(total>0){
+                        if(total>0 && totalPlannedBudget > 0){
                             result[index] = (total/totalPlannedBudget*100).toFixed(1) + ' %';
+                        }else{
+                            result[index] = "";
                         }
                     });
                     return result;

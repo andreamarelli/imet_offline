@@ -55,7 +55,7 @@ class Module
     public static function checkIfFieldHasValue($moduleClass, $field, $value)
     {
         $db_table = (new $moduleClass())->getTable();
-        $res      = DB::table($db_table)
+        $res = DB::table($db_table)
             ->select(DB::raw('count(*)'))
             ->where($field, $value)
             ->first();
@@ -72,15 +72,21 @@ class Module
      * @param string $vModelName
      * @return mixed
      */
-    public static function injectAverageInGroup($view, $group, $num_columns, $average_column, $vModelName = 'averages')
+    public static function injectAverageInGroup($view, $group, $num_columns, $average_column, $vModelName = 'averages', $average_value = null)
     {
         $searchFor = '<tbody class="' . $group . '">';
 
         $textToAdd = '';
         for ($c = 1; $c <= $num_columns; $c++) {
             if ($c == $average_column) {
+                $v_model = ' v-model="' . $vModelName . '.' . $group . '"';
+                $value = "";
+                if ($average_value !== null) {
+                    $v_model = "";
+                    $value = ' value="'.$average_value.'"';
+                }
                 $textToAdd .= '<td class="text-center">
-                                  <input type="text" disabled="disabled" v-model="' . $vModelName . '.' . $group . '" class="field-disabled input-number field-edit text-center"/>
+                                  <input type="text" disabled="disabled" '.$value.' ' . $v_model . ' class="field-disabled input-number field-edit text-center"/>
                                </td>';
             } else {
                 $textToAdd .= '<td></td>';
@@ -105,6 +111,44 @@ class Module
         $searchFor = '<h5 class="highlight group_title_' . $module_key . '_' . $beforeGroup . '">';
         $textToAdd = '<h3>' . $title . '</h3>';
         return str_replace($searchFor, $textToAdd . $searchFor, $view);
+    }
+
+    /**
+     * @param string $field
+     * @param string $group
+     * @param array $records
+     * @return float|int
+     */
+    public static function calculateAverage(string $field,?string $group, array $records){
+        $sum = 0;
+        $count = 0;
+
+        $values = $group === null ? $records : $records[$group] ?? [];
+        foreach ($values as $item) {
+            if ($item[$field] !== null && $item[$field] !== -99 && $item[$field] !== '-99') {
+                $sum += (int)$item[$field];
+                $count++;
+            }
+        }
+
+        return $count > 0 ? round($sum / $count , 2) : 0;
+    }
+
+    /**
+     * @param array $records
+     * @return array
+     */
+    public static function createRecordsArrayByGroup(array $records){
+        $new_records = [];
+        foreach ($records as $i => $record) {
+            $group_key = $record['group_key'];
+
+            if (!isset($new_records[$group_key])) {
+                $new_records[$group_key] = [];
+            }
+            $new_records[$group_key][] = $record;
+        }
+        return $new_records;
     }
 
 }

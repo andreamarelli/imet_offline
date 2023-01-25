@@ -24,62 +24,62 @@ $tr_record = 'records';
 
     {{-- inputs --}}
     <tbody class="{{ $group_key }}">
-    <tr class="module-table-item" v-for="(item, index) in {{ $tr_record }}">
-        {{--  fields  --}}
+        @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => 4, 'attributes' => 'v-if="'.$tr_record.'.length===0 || records[0].' . $definitions['fields'][0]['name'] . '===null"'])
+        <tr v-else class="module-table-item" v-for="(item, index) in {{ $tr_record }}">
+
+            {{--  fields  --}}
+
+            <td>
+                @include('modular-forms::module.edit.field.vue', [
+                   'type' => 'disabled',
+                   'v_value' => 'records[index].Theme',
+                   'id' => "'".$definitions['module_key']."_'+index+'_Theme'"
+               ])
+            </td>
+
+            <td>
+                @include('modular-forms::module.edit.field.vue', [
+                    'type' => 'disabled',
+                    'v_value' => 'records[index].StaffNumberAdequacy',
+                    'id' => "'".$definitions['module_key']."_'+index+'_StaffNumberAdequacy'"
+                ])
+            </td>
+
+            <td>
+                @include('modular-forms::module.edit.field.module-to-vue', [
+                    'definitions' => $definitions,
+                    'field' => $definitions['fields'][2],
+                    'vue_record_index' => 'index',
+                    'group_key' => $group_key,
+                    'vue_directives' => 'v-if="records[index].StaffNumberAdequacy!==null"'
+                ])
+            </td>
+
+            <td>
+                @include('modular-forms::module.edit.field.module-to-vue', [
+                    'definitions' => $definitions,
+                    'field' => $definitions['fields'][3],
+                    'vue_record_index' => 'index',
+                    'group_key' => $group_key
+                ])
+            </td>
 
 
-        <td>
-            @include('modular-forms::module.edit.field.module-to-vue', [
-                'definitions' => $definitions,
-                'field' => $definitions['fields'][0],
-                'vue_record_index' => 'index',
-                'group_key' => $group_key
-            ])
-        </td>
-
-        <td>
-            @include('modular-forms::module.edit.field.vue', [
-                'type' => 'disabled',
-                'v_value' => 'records[index].StaffNumberAdequacy',
-                'id' => "'".$definitions['module_key']."_'+index+'_StaffNumberAdequacy'"
-            ])
-        </td>
-
-        <td>
-            @include('modular-forms::module.edit.field.module-to-vue', [
-                'definitions' => $definitions,
-                'field' => $definitions['fields'][2],
-                'vue_record_index' => 'index',
-                'group_key' => $group_key,
-                'vue_directives' => 'v-if="records[index].StaffNumberAdequacy!==null"'
-            ])
-        </td>
-
-        <td>
-            @include('modular-forms::module.edit.field.module-to-vue', [
-                'definitions' => $definitions,
-                'field' => $definitions['fields'][3],
-                'vue_record_index' => 'index',
-                'group_key' => $group_key
-            ])
-        </td>
-
-
-        <td>
-            {{-- group_key_field (for GROUP_TABLE)  --}}
-            @if($definitions['module_type']==='GROUP_TABLE')
+            <td>
+                {{-- group_key_field (for GROUP_TABLE)  --}}
+                @if($definitions['module_type']==='GROUP_TABLE')
+                    @include('modular-forms::module.edit.field.vue', [
+                        'type' => 'hidden',
+                        'v_value' => 'item.'.$definitions['group_key_field']
+                    ])
+                @endif
+                {{-- record id  --}}
                 @include('modular-forms::module.edit.field.vue', [
                     'type' => 'hidden',
-                    'v_value' => 'item.'.$definitions['group_key_field']
+                    'v_value' => 'item.'.$definitions['primary_key']
                 ])
-            @endif
-            {{-- record id  --}}
-            @include('modular-forms::module.edit.field.vue', [
-                'type' => 'hidden',
-                'v_value' => 'item.'.$definitions['primary_key']
-            ])
-        </td>
-    <tr>
+            </td>
+        <tr>
     </tbody>
 
 

@@ -33,7 +33,7 @@ if($definitions['module_type']==='TABLE' || $definitions['module_type']==='ACCOR
             <input type="checkbox"
                :checked=not_applicable
                v-on:change="toggleNotApplicable()"
-               data-toggle="tooltip"  data-original-title="@lang_u('modular-forms::common.form.applicable_tooltip')"/>
+               data-toggle="tooltip"  data-original-title="@uclang('modular-forms::common.form.applicable_tooltip')"/>
         </div>
 
         {{-- #### Not avalibale #### --}}
@@ -44,7 +44,7 @@ if($definitions['module_type']==='TABLE' || $definitions['module_type']==='ACCOR
             <input type="checkbox"
                :checked=not_available
                v-on:change="toggleNotAvailable()"
-               data-toggle="tooltip"  data-original-title="@lang_u('modular-forms::common.form.available_tooltip')"/>
+               data-toggle="tooltip"  data-original-title="@uclang('modular-forms::common.form.available_tooltip')"/>
         </div>
 
     @endif

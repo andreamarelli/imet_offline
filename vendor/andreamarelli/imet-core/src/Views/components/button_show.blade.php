@@ -1,14 +1,14 @@
 <?php
 /** @var String $version */
 
-if($version==='v1'){
-    $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class;
-    $controller_eval = \AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1::class;
-    $controller_report = \AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1::class;
+if ($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1) {
+    $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::class;
+    $controller_eval    = \AndreaMarelli\ImetCore\Controllers\Imet\v1\EvalController::class;
+    $controller_report  = \AndreaMarelli\ImetCore\Controllers\Imet\v1\ReportController::class;
 } else {
-    $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class;
-    $controller_eval = \AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::class;
-    $controller_report = \AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2::class;
+    $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class;
+    $controller_eval    = \AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController::class;
+    $controller_report  = \AndreaMarelli\ImetCore\Controllers\Imet\v2\ReportController::class;
 }
 ?>
 
@@ -16,13 +16,14 @@ if($version==='v1'){
 
     <button class="btn-nav small"
             role="button"
-            data-toggle="popover" data-trigger="focus" data-placement="top" :data-popover-content="'popover_show_'+item.FormID" >
+            data-toggle="popover" data-trigger="focus" data-placement="top"
+            :data-popover-content="'popover_show_'+item.FormID">
         {!! AndreaMarelli\ModularForms\Helpers\Template::icon('eye', 'white') !!}
     </button>
 
     <div :id="'popover_show_'+item.FormID" style="display: none">
         <div class="popover-heading">
-            @lang_u('imet-core::common.show')
+            @uclang('imet-core::common.show')
         </div>
         <div class="popover-body">
 
@@ -49,7 +50,7 @@ if($version==='v1'){
             ])
 
             {{-- Analysis Report --}}
-            @if($version==='v2')
+            @if($version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2)
                 @include('modular-forms::buttons._generic', [
                     'controller' => $controller_report,
                     'action' =>'report_show',
@@ -67,46 +68,5 @@ if($version==='v1'){
 </span>
 
 @push('scripts')
-    <style>
-        .popover-header{
-            font-size: 0.9em;
-            font-style: italic;
-            font-weight: bold;
-            text-align: center;
-        }
-        .popover-body{
-            display: flex;
-            flex-direction: column;
-        }
-        .popover-body a{
-            margin: 3px;
-        }
-    </style>
-
-    @push('scripts')
-        @once
-
-            <script>
-
-                // ###########################  Bootstrap popover  ###########################
-                window.onload = function(){
-
-                    $('[data-toggle="popover"]').popover({
-                        html : true,
-                        content: function() {
-                            return document
-                                .getElementById(this.getAttribute('data-popover-content'))
-                                .querySelector(".popover-body").innerHTML;
-                        },
-                        title: function() {
-                            return document
-                                .getElementById(this.getAttribute('data-popover-content'))
-                                .querySelector(".popover-heading").innerHTML;
-                        }
-                    });
-                }
-
-            </script>
-        @endonce
-    @endpush
+    @include('imet-core::components.popover')
 @endpush

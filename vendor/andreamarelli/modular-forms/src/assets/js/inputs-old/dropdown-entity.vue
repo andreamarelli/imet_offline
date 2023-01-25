@@ -183,7 +183,7 @@
                     data: {
                         '_token': window.Laravel.csrfToken,
                         'module_key': _this.moduleKey,
-                        'records_json': JSON.stringify([entity])
+                        'records_json': window.ModularForms.Mixins.Payload.encode([entity])
                     },
                     cache: false
                 })

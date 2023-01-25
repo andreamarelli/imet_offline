@@ -1,8 +1,9 @@
 <?php
 /** @var String $step */
+
 /** @var int $item_id */
 
-$assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::assessment($item_id, $step, true)->getContent());
+$assessment_step = \AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService::get_assessment($item_id, $step);
 
 ?>
 
@@ -86,31 +87,31 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
             chart: null
         },
 
-        beforeMount(){
+        beforeMount() {
             this.api_labels = this.api_data.labels;
         },
 
-        mounted(){
+        mounted() {
             let _this = this;
             _this.init_properties();
 
-            if(_this.current_step==='process'){
+            if (_this.current_step === 'process') {
                 _this.chart = echarts.init(document.getElementById('imet_process_radar'));
-                if(_this.chart !== null) {
+                if (_this.chart !== null) {
                     _this.chart.setOption(_this.get_radar_options());
                 }
             }
 
-            window.vueBus.$on('refresh_assessment', function(){
+            window.vueBus.$on('refresh_assessment', function () {
                 _this.refresh_values();
             });
         },
 
         computed: {
-            labels(){
+            labels() {
                 let _this = this;
                 let labels = {};
-                if(this.api_labels!==null){
+                if (this.api_labels !== null) {
                     Object.entries(_this.api_labels).forEach(function (item) {
                         labels[item[0]] = {
                             code: item[1]['code_label'],
@@ -118,14 +119,14 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
                             min: 0,
                             max: 100
                         };
-                        if(labels[item[0]].code==='C2' || labels[item[0]].code==='C3'){
+                        if (labels[item[0]].code === 'C2' || labels[item[0]].code === 'C3') {
                             labels[item[0]].min = -100;
                         }
                     });
                 }
                 return labels;
             },
-            values(){
+            values() {
                 let _this = this;
                 let values = {};
                 _this.step_indexes.forEach(function (index) {
@@ -133,26 +134,26 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
                 });
                 return values;
             },
-            intermediate_values(){
+            intermediate_values() {
                 let _this = this;
                 let values = {};
-                if(_this.step_indexes_intermediate.length>0){
+                if (_this.step_indexes_intermediate.length > 0) {
                     _this.step_indexes_intermediate.forEach(function (index) {
                         values[index] = _this.get_key_from_api(index);
                     });
                 }
                 return values;
             },
-            synthetic_indicator(){
+            synthetic_indicator() {
                 return this.get_key_from_api('avg_indicator');
             }
         },
 
         methods: {
 
-            init_properties: function(){
+            init_properties: function () {
                 let _this = this;
-                switch(_this.current_step) {
+                switch (_this.current_step) {
                     case 'context':
                         _this.step_indexes = ['c1', 'c2', 'c3'];
                         _this.step_indexes_intermediate = ['c11', 'c12', 'c13', 'c14', 'c15', 'c16'];
@@ -185,22 +186,24 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
                 }
             },
 
-            get_key_from_api(key){
-                return this.api_data.hasOwnProperty(key) && this.api_data[key]!==null
+            get_key_from_api(key) {
+                return this.api_data.hasOwnProperty(key) && this.api_data[key] !== null
                     ? this.api_data[key].toFixed(1)
                     : null;
             },
 
-            refresh_values: function(){
+            refresh_values: function () {
                 let _this = this;
 
                 window.axios({
-                    url: window.Laravel.baseUrl + 'api/imet/assessment/'+_this.form_id+'/'+_this.current_step,
+                    url: '{{ route('imet_core::api::assessment', ['item' => '__id__', 'step' => '__step__']) }}'
+                        .replace('__id__', _this.form_id)
+                        .replace('__step__', _this.current_step),
                     method: "get",
                 })
                     .then(function (response) {
                         _this.api_data = response.data;
-                        if(_this.chart !== null) {
+                        if (_this.chart !== null) {
                             _this.chart.setOption(_this.get_radar_options());
                         }
                     });
@@ -213,7 +216,7 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
                 let values = Object.values(this.intermediate_values).reverse();
 
                 let indicator = [];
-                Object.keys(this.intermediate_values).reverse().forEach(function(code){
+                Object.keys(this.intermediate_values).reverse().forEach(function (code) {
                     indicator.push({text: _this.labels[code].title, max: 100});
                 });
 
@@ -228,7 +231,7 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
                         indicator: indicator,
                         radius: 80,
                         startAngle: 150,
-                        center: ['50%','55%'],
+                        center: ['50%', '55%'],
                         name: {
                             textStyle: {
                                 color: '#111'
@@ -245,7 +248,7 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
                                     itemStyle: {
                                         color: '#7CB5EC'
                                     },
-                                    areaStyle:{
+                                    areaStyle: {
                                         color: '#7CB5EC',
                                         opacity: 0.4,
                                     },
@@ -256,7 +259,7 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
                                             fontWeight: 'bold',
                                             color: '#222',
                                             show: true,
-                                            formatter: function(params) {
+                                            formatter: function (params) {
                                                 return params.value;
                                             }
                                         }

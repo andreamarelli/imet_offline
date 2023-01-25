@@ -1,6 +1,11 @@
 <?php
 /** @var \App\Models\User $item */
 
+if($item->imet_role == null){
+    $item->imet_role = \AndreaMarelli\ImetCore\Models\User\Role::ROLE_ADMINISTRATOR;
+    $item->save();
+}
+
 ?>
 @extends('layouts.admin')
 

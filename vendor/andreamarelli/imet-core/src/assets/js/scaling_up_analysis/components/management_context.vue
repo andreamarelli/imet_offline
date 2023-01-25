@@ -19,9 +19,10 @@
 
                             <template>
                                 <div v-if="show_species && show_group0" class="mb-3">
-                                    <bar :fields="Object.keys(species_statistics_group0)"
+                                    <bar :fields="remove_parenthesis_words(Object.keys(species_statistics_group0))"
+                                         :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.animal_species_chart')"
                                          :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_species')"
-                                         :rotate="45" :zoom="true"
+                                         :rotate="0            " :zoom="true"
                                          :values='Object.values(species_statistics_group0)'></bar>
                                 </div>
                             </template>
@@ -31,9 +32,10 @@
                                   :show_element="show_species">
                             <template>
                                 <div v-if="show_species && show_group1" class="mb-3">
-                                    <bar :fields="Object.keys(species_statistics_group1)"
+                                    <bar :fields="remove_parenthesis_words(Object.keys(species_statistics_group1))"
+                                         :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.plant_species_chart')"
                                          :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_plants')"
-                                         :rotate="45" :zoom="true"
+                                         :rotate="0" :zoom="true"
                                          :values='Object.values(species_statistics_group1)'></bar>
                                 </div>
                             </template>
@@ -61,9 +63,10 @@
                                   :show_element="show_habitats">
                             <template>
                                 <div v-if="show_habitats" class="mb-3">
-                                    <bar :fields="Object.keys(habitats_statistics)"
+                                    <bar :fields="remove_parenthesis_words(Object.keys(habitats_statistics))"
+                                         :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.habitats_chart')"
                                          :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_habitats')"
-                                         :rotate="45" :zoom="true"
+                                         :rotate="0" :zoom="true"
                                          :values='Object.values(habitats_statistics)'></bar>
                                 </div>
                             </template>
@@ -88,9 +91,10 @@
                                   :show_element="show_climate">
                             <template>
                                 <div v-if="show_climate" class="mb-3">
-                                    <bar :fields="Object.keys(climate_change_statistics)"
+                                    <bar :fields="remove_parenthesis_words(Object.keys(climate_change_statistics))"
+                                         :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.values_sensitive_chart')"
                                          :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_climate')"
-                                         :rotate="60" :zoom="true"
+                                         :rotate="0" :zoom="true"
                                          :values='Object.values(climate_change_statistics)'></bar>
                                 </div>
                             </template>
@@ -114,9 +118,10 @@
                                   :show_element="show_ecosystem">
                             <template>
                                 <div v-if="show_ecosystem" class="mb-3">
-                                    <bar :fields="Object.keys(ecosystem_services_statistics)"
+                                    <bar :fields="remove_parenthesis_words(Object.keys(ecosystem_services_statistics))"
+                                         :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.ecosystem_services_chart')"
                                          :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_ecosystem_services')"
-                                         :rotate="45" :zoom="true"
+                                         :rotate="0" :zoom="true"
                                          :values='Object.values(ecosystem_services_statistics)'></bar>
                                 </div>
                             </template>
@@ -141,9 +146,10 @@
                                   :show_element="show_threats">
                             <template>
                                 <div v-if="show_threats" class="mb-3">
-                                    <bar :fields="Object.keys(threats_statistics)"
+                                    <bar :fields="remove_parenthesis_words(Object.keys(threats_statistics))"
                                          :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_threats')"
-                                         :rotate="30" :zoom="true"
+                                         :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.threats_charts')"
+                                         :rotate="0" :zoom="true"
                                          :values='Object.values(threats_statistics)'></bar>
                                 </div>
                             </template>
@@ -255,7 +261,21 @@ export default {
                 });
             });
         },
+        remove_parenthesis_words: function (string) {
+            // array of strings remove words in parenthesis
+            let words = [];
+            string.forEach(function (item) {
+                words.push(item.replace(/ *\([^)]*\) */g, ""));
+            });
+            // //break sentence by space when is longer than 10 characters
+            words.forEach(function (item, index) {
+                if (item.length > 10) {
+                    words[index] = item.replace(/ /g, "\n")+" ";
+                }
+            });
 
+            return words;
+        },
         show_specific_species(key) {
             return this.species[key].length;
         },

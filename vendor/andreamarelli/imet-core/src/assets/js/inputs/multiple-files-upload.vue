@@ -14,16 +14,27 @@
                 <h3 class="dropzone-custom-title">{{ Locale.getLabel('modular-forms::common.upload.multiple_files_description') }}</h3>
             </div>
         </vue-dropzone>
-        <button class="btn btn-danger mb-2" v-show="files_added>0" v-on:click="clearDropzone">{{ Locale.getLabel('modular-forms::common.upload.remove_all') }}</button>
+        <a class="btn-nav" v-show="files_added>0 && files_added===files_uploaded" :href=backUrl>
+          {{ Locale.getLabel('modular-forms::common.go_back') }}
+        </a>
     </div>
 </template>
 
 <script>
-
 export default {
     name: "multipleUpload.vue",
     components: {
         vueDropzone: window.VueDropzone
+    },
+    props:{
+        uploadUrl: {
+            type: String,
+            default: null
+        },
+        backUrl:{
+          type: String,
+          default: null
+        },
     },
     data() {
         const Locale = window.Locale;
@@ -31,7 +42,7 @@ export default {
             Locale: Locale,
             modalIsOpen: false,
             options: {
-                url: window.Laravel.baseUrl + 'admin/imet/ajax/upload',
+                url: this.uploadUrl,
                 previewTemplate: this.template(),
                 params: {
                     _token: window.Laravel.csrfToken
@@ -55,8 +66,12 @@ export default {
                 dictMaxFilesExceeded: Locale.getLabel('modular-forms::common.upload.dictMaxFilesExceeded'),
             },
             formatTypes: ["application/json", "application/zip"],
-            files_added: 0
+            files_added: 0,
+            files_uploaded: 0
         };
+    },
+    beforeCreate: function (){
+      this.options.url = this.uploadUrl;
     },
     mounted: function () {
         window.confirm = function () {
@@ -81,13 +96,7 @@ export default {
             </div>
         `;
         },
-        hideShowRemoveLink(file, value) {
-            file.previewTemplate.querySelector("a.dz-remove").style.display = value;
-        },
-        clearDropzone() {
-            this.files_added = 0;
-            this.$refs.myVueDropzone.removeAllFiles();
-        },
+
         progressBarConfiguration(file, label, color = 'blue', width = '100%') {
             const selector = file.previewTemplate.querySelector("#total-progress.progress-bar");
             selector.innerHTML = label;
@@ -95,11 +104,9 @@ export default {
             selector.style.color = "white";
             selector.style.width = width;
         },
+
         fileAdded(file) {
-
             this.files_added++
-            this.hideShowRemoveLink(file, 'none');
-
             //remove the last file and added to the top of the list
             const nodesArray = [...this.$refs.myVueDropzone.$el.children];
             const fileAdded = nodesArray.pop();
@@ -107,7 +114,9 @@ export default {
             const dropzoneArea = document.querySelector("#dropzone");
             dropzoneArea.append(...nodesArray);
         },
+
         uploadError(file, message) {
+            this.files_uploaded++;
             let errorMessage = Locale.getLabel('modular-forms::common.upload.upload_error');
             if (message['message']) {
                 errorMessage += message['message'];
@@ -116,14 +125,15 @@ export default {
             } else {
                 errorMessage += message;
             }
-            this.hideShowRemoveLink(file, 'block');
             this.progressBarConfiguration(file, errorMessage, 'red', '100%');
         },
+
         processing(file) {
             this.progressBarConfiguration(file, Locale.getLabel('modular-forms::common.upload.uploading'));
         },
-        uploadedSuccessfully(file, response) {
 
+        uploadedSuccessfully(file, response) {
+            this.files_uploaded++;
             let message = Locale.getLabel('modular-forms::common.upload.uploaded');
             if (response.length > 1) {
                 let filesDidNotUploaded = 0;
@@ -133,10 +143,8 @@ export default {
                     }
                 }))
                 const totalFiles = response.length;
-
                 message += Locale.getLabel('modular-forms::common.upload.not_all_imported').replace("{{filesDidNotUploaded}}", filesDidNotUploaded).replace("{{totalFiles}}", totalFiles);
             }
-            this.hideShowRemoveLink(file, 'block');
             this.progressBarConfiguration(file, message, "green");
         }
     }
@@ -166,6 +174,9 @@ export default {
         }
     }
 
+  a.dz-remove{
+    display: none;
+  }
 
 }
 </style>

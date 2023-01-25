@@ -33,7 +33,10 @@
         "laravel": {
             "providers": [
                 "AndreaMarelli\\ImetCore\\ServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "ImetUser": "AndreaMarelli\\ImetCore\\Models\\User"
+            }
         }
     }
 }

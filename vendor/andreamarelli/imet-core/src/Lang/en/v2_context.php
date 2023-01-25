@@ -6,7 +6,7 @@ return [
         'title' => 'Create a new IMET (WDPA)',
         'fields' => [
             'version' => 'IMET version',
-            'Year' => 'year',
+            'Year' => 'Year subject to evaluation',
             'wdpa_id' => 'protected area',
             'language' => 'language',
             'prefill_prev_year' => 'prefill with previous year',
@@ -17,7 +17,7 @@ return [
         'title' => 'Create a new IMET (non-WDPA)',
         'fields' => [
             'version' => 'version',
-            'Year' => 'year',
+            'Year' => 'Year subject to evaluation',
             'wdpa_id' => 'protected area',
             'language' => 'language',
             'prefill_prev_year' => 'prefill with previous year',
@@ -25,12 +25,13 @@ return [
             'name' => 'name as provided by the operator',
             'origin_name' => 'name in original language',
             'designation' => 'name of designation (ex. reserve, sanctuary park, etc.)',
-            'designation_eng' => 'designation in english',
+            'designation_eng' => 'designation in English',
             'designation_type' => 'designation type',
             'marine' => 'typology',
             'rep_m_area' => 'surface of the protected conserved marine area [km<sup>2</sup>]',
             'rep_area' => 'surface of the protected conserved area [km<sup>2</sup>]',
             'status' => 'status',
+            'ownership_type' => 'Ownership type',
             'status_year' => 'year of the enactment',
             'country' => 'country',
         ],
@@ -45,38 +46,38 @@ return [
         'fields' => [
             'Element' =>        'Element/Indicator',
             'Status' =>         'Baseline',
-            'Objective' =>      'Objective - Long term Targets/Goals',
+            'Objective' =>      'Objective - Optimal or favourable status',
             'Comments' =>       'Comments'
         ]
     ],
 
     'Objectives1' => [
-        'module_info' => 'Establish and describe conservation objectives for the governance, partnerships and the designation of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe objectives for the governance, partnerships and the designation of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
     ],
     'Objectives2' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>boundaries, configuration index, extension of patrols and law enforcement and territorial context</b> of the protected area</b><br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe objectives for <b>boundaries, configuration index, extension of patrols and law enforcement and territorial context</b> of the protected area</b><br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
     ],
     'Objectives3' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>human and financial resources/support from partnerships in managing</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe objectives for <b>human and financial resources/support from partnerships in managing</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
     ],
     'Objectives4' => [
-        'module_info' => ' Establish and describe conservation objectives for key factors: <b> i) animal species ii) plant species; iii) habitats and iv) land-cover change </b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => ' Establish and describe objectives or GL performance thresholds for key factors: <b> i) animal species ii) plant species; iii) habitats and iv) land-cover change </b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2'
     ],
     'Objectives5' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>threats</b> facing the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe objectives for <b>threats</b> facing the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2 considering the threats as condition to improve to prevent loss of the value'
     ],
     'Objectives6' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>climate change effects</b> facing the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe objectives for <b>climate change effects</b> facing the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2 considering the effects of climate change as a condition to improve to prevent loss of the value'
     ],
     'Objectives7' => [
-        'module_info' => 'Establish and describe conservation objectives for <b> the ecosystem services and the dependence on these services of communities/societies</b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe objectives for <b> the ecosystem services and the dependence on these services of communities/societies</b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.2 - Generic indicator 4.2.1 for the ecosystem services for provisioning, regulation and supporting values and Criterion 4.3 - Generic indicator 4.3.1 for the ecosystem services related to cultural values'
     ],
 
     'ResponsablesInterviewers' => [
         'title' => 'Responsibility for filling the form: Management team and partners',
         'fields' => [
             'Name'          => 'name',
-            'Institution'   => 'organization',
+            'Institution'   => 'organisation',
             'Function'      => 'job role',
             'Contacts'      => 'contact details',
             'EncodingDate'  => 'Date of compilation',
@@ -88,7 +89,7 @@ return [
         'title' => 'Responsibility for filling the form: External support for analysis and management evaluation',
         'fields' => [
             'Name' => 'Name',
-            'Institution'   => 'organization',
+            'Institution'   => 'organisation',
             'Function'      => 'job role',
             'Contacts' => 'contact details',
             'EncodingDate' => 'Date of compilation',
@@ -101,7 +102,7 @@ return [
         'fields' => [
             'CompleteName' => 'Full name of the protected area',
             'CompleteNameWDPA' => 'Name of the protected area in the WDPA site',
-            'WDPA' => 'WPDA site code (from the codes at www.unep-wcmc.org/wdpa/)',
+            'WDPA' => 'WDPA ID (www.protectedplanet.net)',
             'UsedName' => 'Name by which protected area is referred to',
             'Type' => 'typology',
             'NationalCategory' => 'National category',
@@ -419,8 +420,8 @@ return [
         'fields' => [
             'Line' => 'Budget items',
             'Amount' => 'Amount ($ or €/year)',
-            'BudgetSource' => 'Source of founding',
-            'function_costs' => 'Operation costs ($ or € /Km²/an)',
+            'BudgetSource' => 'Source of funding',
+            'function_costs' => 'Operation costs ($ or € /Km²/year)',
             'percentage' => '% of available budget',
         ],
         'module_info' => 'Amounts in the same currency specified in <b>CTX 3.2.1</b>',
@@ -465,12 +466,12 @@ return [
         ],
         'predefined_values' => [
             'group0' =>  ['Offices','Patrol posts','Barrier points','Scientific buildings','Garage and workshop','Room for dive bottles and other dive gear', 'Boat sheds', 'Car-Boat parking', 'Miscellaneous services (magazine, radio, etc.)','Health care centre'],
-            'group1' =>  ['For officers and deputy officers', 'For ranger staff', 'For support staff'],
+            'group1' =>  ['For officers and deputy officers', 'For ranger staff', 'For support staff', 'For scientific staff'],
             'group2' =>  ['Hotels (guest capacity)', 'Eco-lodges (guest capacity)', 'Encampments (guest capacity)', 'Reception facilities for tourists', 'Viewpoints or Observation points', 'Available tourist routes (km)'],
             'group3' =>  ['Cars', 'Motorbike/Quads', 'Bicycles', 'Boats', 'Outboard motors', 'Pirogues', 'Aeroplane, microlight', 'Heavy engines'],
-            'group4' =>  ['Weapons', 'Cartridges', 'Uniforms', 'Rations (per diem)', 'GPS, compasses', 'Camping and bush equipment'],
+            'group4' =>  ['Control radar', 'Weapons', 'Cartridges', 'Uniforms', 'Rations (per diem)', 'GPS, compasses', 'Camping and bush equipment'],
             'group5' =>  ['VHF/HF radios', 'V-SAT', 'Landline telephones', 'GSM telephones', 'Satellite telephones', 'Internet connection'],
-            'group6' =>  ['Desktop computers', 'Printers', 'Photocopiers', 'Laptop computers'],
+            'group6' =>  ['Desktop computers', 'Printers', 'Photocopiers', 'Laptop computers', 'Inverter'],
             'group7' =>  ['Power generators', 'Solar electric facility', 'Hydropower electric facility', 'Wind electric facility', 'Water supply'],
             'group8' =>  ['Vehicles/boats', 'Radios', 'Buildings', 'Electrical network', 'Hydraulic network', 'Heavy engines'],
             'group9' =>  ['Roads/tracks inside the protected area', 'Paths inside the protected area', 'Road along the border'],
@@ -507,7 +508,7 @@ return [
         'module_info' => 'Favourable conservation status: From Natura 2000, the conservation status of species is considered ‘favourable’ when:<ul>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of species that are assumed to exist (see the IUCN’s lists of A - mammals, B - birds and C - amphibians), a limited number of key species of the protected area.<br /> <b>Species types</b> <ul> <li><b>FLA</b>: Flagship species</li> <li><b>EDG</b>: Endangered (threatened) species</li> <li><b>EDM</b>: Endemic species</li> <li><b>EXP</b>: Exploited species</li> <li><b>INV</b>: Invasive species</li> <li><b>LLK</b>: Species with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring programme and generation of trend graph.',
         'validation_min3' => 'Please encode not less than 3 key species',
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following
+            'WARNING!! <br /> Any modification will cause complete data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -529,7 +530,7 @@ return [
         ],
         'module_info' => 'Favourable conservation status:<br />From Natura 2000, the conservation status of species is considered ‘favourable’ when:<ul><li>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of the plants that are assumed to exist (see the lists available and park information), a limited number of key plants of the protected area<br /> <b>Species types</b> <ul> <li><b>PHA</b>: Flagship species</li> <li><b>MEN</b>: Endangered (threatened) species</li> <li><b>END</b>: Endemic species</li> <li><b>EXP</b>: Exploited species</li> <li><b>INV</b>: Invasive species</li> <li><b>INS</b>: Species with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring programme and generation of multiannual trend graph.<br />',
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following
+            'WARNING!! <br /> Any modification will cause complete data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -547,7 +548,7 @@ return [
         ],
         'module_info' => 'Note: Favourable conservation status:<br />From Natura 2000, the conservation status of a natural habitat is considered ‘favourable’ when:<ul><li><li>its natural range and areas it covers within that range are stable or increasing, and</li><li>the specific structure and functions which are necessary for its long-term maintenance exist and are likely to continue to exist for the foreseeable future</li></ul>Rating: Select and evaluate the most important ecosystem and habitat-related parameters of terrestrial and marine habitats of the protected area.<br /> <b>Note</b>: Habitat evaluation is still emerging as a discipline, since it is highly complex. The classification provides for the following division of territory: Biome, Ecoregion, Ecosystem, Habitat. Habitat characteristics/values can be assessed as: <ul> <li>i) under threat of extinction (within their natural range),</li> <li>ii) having a reduced natural range,</li> <li>iii) in decline,</li> <li>iv) an outstanding example of specific characteristics, etc.</li> </ul> Assessment of habitats can also be performed from the perspective of: <ul> <li>i) reproduction,</li> <li>ii) nutrition,</li> <li>iii) species protection, etc.</li> </ul>',
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following
+            'WARNING!! <br /> Any modification will cause complete data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -799,7 +800,7 @@ return [
         ],
         'module_info' => 'The threats calculator measures the impact of threats on a specific protected area. Using your best professional judgement, you evaluate the threat impact exploiting five categories of score: (1) Impact/ Severity; (2) Scale/ Extent; (3) Duration/ Irreversibility; (4) Trend; (5) Probability for the threat in the future',
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following
+            'WARNING!! <br /> Any modification will cause complete data loss in the following
             evaluation modules (if already encoded): <br /> <i>C3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -829,7 +830,7 @@ return [
             ]
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following
+            'WARNING!! <br /> Any modification will cause complete data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.4</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -893,7 +894,7 @@ return [
             ]
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following
+            'WARNING!! <br /> Any modification will cause complete data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.5</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 

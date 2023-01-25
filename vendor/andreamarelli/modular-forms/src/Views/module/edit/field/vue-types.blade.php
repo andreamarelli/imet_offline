@@ -96,9 +96,16 @@ $other_attributes = $other ?? '';
                  end-date="{{ date("Y")-1 }}-01-01" {!! $vue_attributes !!} {!! $rules_attribute !!} {!! $other_attributes !!}></simple-date>
 
 @elseif($type==='selector-species_animal')
-    <selector-species_animal {!! $vue_attributes !!} ></selector-species_animal>
+    <selector-species_animal
+            {!! $vue_attributes !!}
+            search-url="ajax/search/species"
+    ></selector-species_animal>
 @elseif($type==='selector-species_animal_withFreeText')
-    <selector-species_animal {!! $vue_attributes !!} :enable-free-text=true></selector-species_animal>
+    <selector-species_animal
+            {!! $vue_attributes !!}
+            search-url="ajax/search/species"
+            :enable-free-text=true
+    ></selector-species_animal>
 
     {{--  #######  LISTS #######  --}}
 @elseif(substr_count($type, "dropdown")>0
@@ -194,6 +201,7 @@ $other_attributes = $other ?? '';
     {{--  ###### file upload ######  --}}
 @elseif($type=="upload")
     <upload
+        :max-file-size=50000000
         {!! $vue_attributes !!} data-{!! $class_attribute !!} {!! $rules_attribute !!} {!! $other_attributes !!}
     ></upload>
 

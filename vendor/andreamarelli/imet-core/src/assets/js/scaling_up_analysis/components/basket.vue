@@ -69,8 +69,7 @@ export default {
       ordering_elements: {
         element_selected: null,
         element_replaced: null
-      },
-      url: window.Laravel.baseUrl + '/'
+      }
     }
   },
   async mounted() {
@@ -115,7 +114,9 @@ export default {
       }
     },
     printElement: async function (elem, append = false, delimiter) {
-      window.open(window.Laravel.baseUrl + 'admin/imet/scaling_up/preview/' + this.stores.BasketStore.get_scaling_up_id(), '', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no');
+      window.open(
+          window.imet_routes.scaling_up_preview.replace('__id__', this.stores.BasketStore.get_scaling_up_id()),
+          '', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no');
     },
     preview_template_window: function (img_url) {
       return `<div class='container'><div class="row mb-5"><div class="col-sm"><img class="img-fluid" src="${img_url}"/></div></div></div>`;

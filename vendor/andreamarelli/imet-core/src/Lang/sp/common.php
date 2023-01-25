@@ -25,10 +25,10 @@ return [
     'dopa_not_available' => 'Servicios DOPA no disponibles',
 
     'languages' => [
-        'fr'        => 'francés',
-        'en'        => 'inglés',
-        'sp'        => 'español',
-        'pt'        => 'portugués'
+        'fr'        => 'Francés',
+        'en'        => 'Inglés',
+        'sp'        => 'Español',
+        'pt'        => 'Portugués'
     ],
     'switch_language' => 'Cambiar el idioma actual a',
 
@@ -67,6 +67,9 @@ return [
     'upgrade_confirm'   => 'Confirmar la actualización a IMET v2?<ul><li>Se creará una copia del formulario original.</li><li>Algunos datos no han podido ser convertidos a v2</li>',
     'upgrade_success'   => 'Actualización a IMET v2 completada con éxito',
     'upgrade_failed'    => 'Error al actualizar a IMET v2',
+    'not_authorized_module' => 'Sin autorización para visualizar esta información',
+    'double_check_wdpa' => 'Asegúrese de seleccionar la WDPA correcta',
+    'nothing_to_evaluate' => 'Nada que evaluar',
 
     'synthetic_indicator' => 'Indicador sintético',
     'cross_analysis_info' => 'La función de análisis cruzado tiene como objetivo identificar posibles incoherencias en las puntuaciones del análisis IMET. Busca si las puntuaciones de un par (o triplete) de preguntas IMET son significativamente diferentes. El umbral para una diferencia significativa se establece en 20 puntos porcentuales para las preguntas medidas en la escala (mínimo: 0 - máximo: 100). A continuación, encontrará los indicadores para los que se ha identificado una diferencia que supera el umbral predefinido en su evaluación. Como el análisis de tabulación cruzada es sólo consultivo, no se ofrecen sugerencias sobre el motivo de la diferencia de valores ni sobre los posibles cambios que podrían adoptarse en el análisis. Las respuestas proporcionadas pueden permanecer sin cambios, pero los valores asignados deben ser comprobados junto con el equipo del área protegida. También se deben añadir comentarios adicionales en los indicadores seleccionados para explicar la diferencia de puntuación significativa o para las disposiciones de gestión que se adopten',
