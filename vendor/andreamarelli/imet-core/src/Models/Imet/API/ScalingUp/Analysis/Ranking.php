@@ -202,16 +202,19 @@ trait Ranking
     {
         $api = [];
         foreach ($data['xAxis'] as $key => $xAxi) {
-            $api[] = ['name' => $xAxi, 'wdpa_id' => $data['wdpa_ids'][$key], 'values' => []];
+            $api[] = ['name' => $xAxi, 'wdpa_id' => $data['wdpa_ids'][$key], 'values' => [], 'percent_values' => [], 'raw_values' => []];
         }
 
-        foreach ($data['values'] as $key => $value) {
-            foreach ($value as $k => $v) {
-                $indicator = array_keys($data['legends'], $key)[0];
-                $api[$k]['values'][$indicator] = $v;
+        $new_names = ['values', 'percent_values', 'raw_values'];
+
+        foreach(['values', 'percent_value', 'actual_value'] as $n => $type) {
+            foreach ($data[$type] as $key => $value) {
+                foreach ($value as $k => $v) {
+                    $indicator = array_keys($data['legends'], $key)[0];
+                    $api[$k][$new_names[$n]][$indicator] = $v;
+                }
             }
         }
-
         return $api;
     }
 }

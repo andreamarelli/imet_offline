@@ -198,8 +198,9 @@ export default {
                 this.$root.$emit('incoming-data', {
 
                     parameters: this.list.filter(item => item.list !== null).map(item => {
-                        let group_name = this.list_of_components.find(comp => comp.id === item.list).name;
-                        return {id: item.id, group: item.list, name: group_name}
+                        let group = this.list_of_components.find(comp => comp.id === item.list);
+
+                        return {id: item.id, group: item.list, name:group.name, color:group.color}
                     }), func: params ? params.func : this.func_to_call
 
                 });

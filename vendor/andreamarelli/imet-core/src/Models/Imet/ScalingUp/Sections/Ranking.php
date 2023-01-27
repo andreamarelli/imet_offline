@@ -113,10 +113,9 @@ class Ranking
         }
 
         $average_values = array_map(function ($value, $i) use ($items_to_calculate, $separated_values_by_pa) {
-            return Common::round_number($value / $items_to_calculate[$i]);
+            return $items_to_calculate[$i] > 0  ? Common::round_number($value / $items_to_calculate[$i]) : 0;
         }, $sum_values, array_keys($sum_values));
 
-//        print_r($percent_values);
         foreach ($percent_values as $k => $values) {
             foreach ($values as $kk => $value) {
                 $ranking['values'][$k][$kk] = $value !== ScalingUpAnalysis::UNDEFINED_VALUE ? Common::round_number(($value / 100) * $average_values[$kk]) : $value;

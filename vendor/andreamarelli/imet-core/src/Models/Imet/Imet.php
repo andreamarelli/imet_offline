@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Relations\hasOne;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Str;
 use function session;
 
 /**
@@ -116,7 +117,15 @@ class Imet extends Form
                     $query->whereIn('wdpa_id', $allowed_wdpas);
                 }
             })
-            ->get();
+            ->get()
+            // Replacement for PostgreSQL unaccent() function
+            ->filter(function($item) use ($request){
+                if ($request->filled('search')){
+                    return Chars::case_and_accent_insensitive_contains($item['name'], $request->input('search'))
+                        || Str::contains($item['wdpa_id'], $request->input('search'));
+                }
+               return true;
+            });
 
         $list_v2 = v2\Imet
             ::filterList($request)
@@ -126,7 +135,15 @@ class Imet extends Form
                     $query->whereIn('wdpa_id', $allowed_wdpas);
                 }
             })
-            ->get();
+            ->get()
+            // Replacement for PostgreSQL unaccent() function
+            ->filter(function($item) use ($request){
+                if ($request->filled('search')){
+                    return Chars::case_and_accent_insensitive_contains($item['name'], $request->input('search'))
+                        || Str::contains($item['wdpa_id'], $request->input('search'));
+                }
+                return true;
+            });
 
         return $list_v1->merge($list_v2);
     }
@@ -231,10 +248,6 @@ class Imet extends Form
     {
         // filters
         $this->commonFilters($query, $request);
-        if ($request->filled('search')) {
-            $query->whereRaw('unaccent(name) ILIKE unaccent(?)', '%' . $request->input('search') . '%')
-                ->orWhere('wdpa_id', 'LIKE', '%' . $request->input('search') . '%');
-        }
         $query->where('version', static::version);
 
         // sort

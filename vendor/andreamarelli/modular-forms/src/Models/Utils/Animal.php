@@ -2,9 +2,11 @@
 
 namespace AndreaMarelli\ModularForms\Models\Utils;
 
+use AndreaMarelli\ModularForms\Helpers\Type\Chars;
 use AndreaMarelli\ModularForms\Models\BaseModel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Str;
 
 
 /**
@@ -61,42 +63,45 @@ abstract class Animal extends BaseModel
     }
 
     /**
-     * Scope a query to search by string
+     * Filter a collection to search by string: Replacement for PostgreSQL unaccent() function
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param Collection $collection
      * @param string $search_key
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Collection
      */
-    public function scopeSearchName(Builder $query, string $search_key): Builder
+    public static function filterBySearchString(Collection $collection, string $search_key): Collection
     {
-        return $query
-            ->whereRaw('unaccent(species) ILIKE unaccent(?)', ['%'.$search_key.'%'])
-            ->orWhereRaw('unaccent(genus) ILIKE unaccent(?)', ['%'.$search_key.'%'])
-            ->orWhereRaw('unaccent(family) ILIKE unaccent(?)', ['%'.$search_key.'%'])
-            ->orWhereRaw('unaccent(\'order\') ILIKE unaccent(?)', ['%'.$search_key.'%'])
-            ->orWhereRaw('unaccent(class) ILIKE unaccent(?)', ['%'.$search_key.'%'])
-            ->orWhereRaw('unaccent(phylum) ILIKE unaccent(?)', ['%'.$search_key.'%'])
-            ->orWhereRaw('unaccent(common_name_en) ILIKE unaccent(?)', ['%'.$search_key.'%'])
-            ->orWhereRaw('unaccent(common_name_fr) ILIKE unaccent(?)', ['%'.$search_key.'%'])
-            ->orWhereRaw('unaccent(common_name_sp) ILIKE unaccent(?)', ['%'.$search_key.'%']);
+        $collection = $collection
+            ->filter(function($item) use ($search_key){
+                return Chars::case_and_accent_insensitive_contains($item['phylum'], $search_key)
+                    || Chars::case_and_accent_insensitive_contains($item['class'], $search_key)
+                    || Chars::case_and_accent_insensitive_contains($item['order'], $search_key)
+                    || Chars::case_and_accent_insensitive_contains($item['family'], $search_key)
+                    || Chars::case_and_accent_insensitive_contains($item['genus'], $search_key)
+                    || Chars::case_and_accent_insensitive_contains($item['species'], $search_key)
+                    || Chars::case_and_accent_insensitive_contains($item['common_name_en'], $search_key)
+                    || Chars::case_and_accent_insensitive_contains($item['common_name_fr'], $search_key)
+                    || Chars::case_and_accent_insensitive_contains($item['common_name_sp'], $search_key);
+            });
+        return $collection;
     }
 
     /**
      * Search Species by given string
      *
      * @param string $search_key
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return Collection
      */
     public static function searchSpecies(string $search_key): Collection
     {
-        return static::searchName($search_key)
-            ->orderBy('phylum')
+        $result = static::orderBy('phylum')
             ->orderBy('class')
             ->orderBy('order')
             ->orderBy('family')
             ->orderBy('genus')
             ->orderBy('species')
             ->get();
+        return static::filterBySearchString($result, $search_key);
     }
 
     /**

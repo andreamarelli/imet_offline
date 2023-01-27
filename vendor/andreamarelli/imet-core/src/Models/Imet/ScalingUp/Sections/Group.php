@@ -28,7 +28,7 @@ class Group
 
         foreach ($parameters as $form) {
             $form_ids[] = $form['id'];
-            $groups[$form['group']] = [$form['group'], $form['name']];
+            $groups[$form['group']] = [$form['group'], $form['name'], $form['color']];
         }
         $indicator = static::calculate_indicators_by_group($indicator, $parameters, $form_ids, $assessments, $scaling_id);
 
@@ -37,6 +37,7 @@ class Group
         foreach ($indicator as $indi => $value) {
             foreach ($groups as $key => $group) {
                 $average[$group[1]][$indi] = Common::round_number(array_sum($value[$key]) / count($value[$key]));
+                $average[$group[1]]['color'] = $group[2];
             }
         }
 

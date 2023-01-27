@@ -2,6 +2,8 @@
 
 namespace AndreaMarelli\ModularForms\Helpers\Type;
 
+use Illuminate\Support\Str;
+
 class Chars
 {
 
@@ -111,7 +113,7 @@ class Chars
 
 
     /**
-     * Concert char code to utf8
+     * Convert char code to utf8
      *
      * @param $char
      * @return string
@@ -122,7 +124,7 @@ class Chars
     }
 
     /**
-     * Concert char code string to utf8
+     * Convert char code string to utf8
      *
      * @param $string
      * @return string
@@ -135,6 +137,20 @@ class Chars
             $decoded .= static::fromCharCode($char);
         }
         return $decoded;
+    }
+
+    /**
+     * Check whenever $haystack contains $needle (CASE and ACCENT insensitive)
+     *
+     * @param $haystack
+     * @param $needle
+     * @return boolean
+     */
+    public static function case_and_accent_insensitive_contains($haystack, $needle): bool {
+        return Str::contains(
+            Str::lower(Chars::replaceAccents($haystack)),
+            Str::lower(Chars::replaceAccents($needle))
+        );
     }
 
 }

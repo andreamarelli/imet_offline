@@ -15,9 +15,12 @@ use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Scatter;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
+use AndreaMarelli\ModularForms\Helpers\Locale;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
+
 
 class ScalingUpAnalysis extends Model
 {
@@ -106,8 +109,11 @@ class ScalingUpAnalysis extends Model
 
             if ($general_info_data['records'][0]) {
                 $general_info = $general_info_data['records'][0];
-                $country_name = Country::getByISO($general_info['Country'])->name;
+                $lang = Locale::lower();
+                $name = "name_".(trim($lang) === ""  ?  "en" : $lang);
+                $country_name = Country::getByISO($general_info['Country'])->$name;
 
+                //echo $general_info['Country']."-".$country_name."\n";
                 if (!in_array($country_name, $generalElements['countries'])) {
                     $generalElements['countries'][] = $country_name;
                 }
@@ -645,15 +651,10 @@ class ScalingUpAnalysis extends Model
      */
     public static function get_grouping_analysis(array $parameters, array $assessments = []): array
     {
-        $colors = ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc', '#f8f9fa'];
-
         $average = Group::get_calculation_grouping_analysis($parameters, $assessments, static::$scaling_id);
 
-        $i = 0;
         foreach ($average as $key => $value) {
-            $average[$key]['color'] = $colors[$i];
             $average[$key]['legend_selected'] = true;
-            $i++;
         }
 
         return ['status' => 'success', 'data' => ['radar' => $average]];

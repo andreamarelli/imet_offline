@@ -2,8 +2,11 @@
 
 namespace AndreaMarelli\ImetCore\Commands;
 
+use ErrorException;
 use AndreaMarelli\ImetCore\Jobs;
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -46,16 +49,24 @@ class InitDB extends Command
      */
     public function handle(): int
     {
-        $sql_files = $this->storage->files();
-        sort($sql_files);
-        foreach ($sql_files as $sql_file){
-            if(Str::endsWith($sql_file, '.sql')){
-                $this->dispatch(Jobs\ApplySQL::class, $this->storage->path($sql_file));
+        try{
+            
+            $sql_files = $this->storage->files();
+            sort($sql_files);
+            foreach ($sql_files as $sql_file){
+                if(Str::endsWith($sql_file, '.sql')){
+                    $this->dispatch(Jobs\ApplySQL::class, $this->storage->path($sql_file));
+                }
             }
-        }
 
-        $this->dispatch(Jobs\PopulateMetadata::class);
-        $this->dispatch(Jobs\PopulateSpecies::class);
-        return 0;
+            $this->dispatch(Jobs\PopulateMetadata::class);
+            $this->dispatch(Jobs\PopulateSpecies::class);
+
+            return self::SUCCESS;
+
+        } catch (FileNotFoundException|QueryException|ErrorException $e) {
+            $this->error('Error initializing DB.');
+            return self::FAILURE;
+        }
     }
 }

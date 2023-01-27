@@ -2,9 +2,11 @@
 
 namespace AndreaMarelli\ImetCore\Commands;
 
+use ErrorException;
 use AndreaMarelli\ImetCore\Jobs;
-use AndreaMarelli\ModularForms\Helpers\File\File;
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Storage;
 
 class ApplySQL extends Command
@@ -48,22 +50,25 @@ class ApplySQL extends Command
         $sql_file = $this->argument('filename');
         $basename = basename($sql_file);
 
-        // File path as passed
-        if(Storage::exists($sql_file)){
-            $this->dispatch(Jobs\ApplySQL::class, $sql_file);
-            return 0;
-        }
+        try{
 
-        // File from vendor folder
-        else if($this->storage->exists($basename)){
-            $this->dispatch(Jobs\ApplySQL::class, $this->storage->path($basename));
-            return 0;
-        }
+            // Try with exact path provided by argument
+            if(Storage::exists($sql_file)){
+                $this->dispatch(Jobs\ApplySQL::class, $sql_file);
+            }
+            // try with vendor folder (imet-core/database)
+            else {
+                $this->dispatch(Jobs\ApplySQL::class, $this->storage->path($basename));
+            }
 
-        // File not found
-        else {
+            return self::SUCCESS;
+
+        } catch (FileNotFoundException $e) {
             $this->error('File not found at ' . $this->storage->path($basename). '. Cannot apply SQL!!');
-            return 1;
+            return self::FAILURE;
+        } catch (QueryException|ErrorException $e) {
+            $this->error('Error applying file ' . $this->storage->path($basename). '!!');
+            return self::FAILURE;
         }
 
 
