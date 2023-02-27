@@ -89,7 +89,7 @@ return [
         'select_file'       => 'seleccione un archivo',
         'no_file_selected'  => 'no se ha seleccionado ningún archivo',
         'error'             => 'error en la carga de datos',
-        'too_big'           => 'Archivo demasiado grande. El tamaño máximo de archivo permitido es de 50Mb.',
+        'too_big'           => 'Archivo demasiado grande. El tamaño máximo de archivo permitido es de __maxFileSize__Mb.',
         'not_valid_filename'=> 'El nombre del archivo no es válido. Sólo se permiten letras, dígitos, espacios y los siguientes caracteres especiales: -_. & ()',
         'not_valid_format'  => 'El formato del archivo no es válido.',
         'multiple_files_description' => 'Arrastrar y soltar para subir archivos json/zip (máximo 10)',

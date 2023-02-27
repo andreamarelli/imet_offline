@@ -18,7 +18,7 @@ trait Group
         $api = SectionGroup::get_calculation_grouping_analysis($parameters, []);
         foreach ($api as $k => $indicators) {
             foreach ($indicators as $indi => $value) {
-                $labels[$indi] = trans('imet-core::v2_common.steps_eval.' . $indi);
+                $labels[$indi] = trans('imet-core::common.steps_eval.' . $indi);
             }
         }
 
@@ -32,9 +32,9 @@ trait Group
     public static function get_grouping_analysis_by_indicators(array $parameters):array
     {
         $labels = [
-            'process' => trans('imet-core::v2_common.steps_eval.process'),
-            'context_planning_inputs' => trans('imet-core::v2_common.steps_eval.context') . ", " . trans('imet-core::v2_common.steps_eval.planning') . ", " . trans('imet-core::v2_common.steps_eval.inputs'),
-            'outcomes_outputs' => trans('imet-core::v2_common.steps_eval.outcomes') . ", " . trans('imet-core::v2_common.steps_eval.outputs')
+            'process' => trans('imet-core::common.steps_eval.process'),
+            'context_planning_inputs' => trans('imet-core::common.steps_eval.context') . ", " . trans('imet-core::common.steps_eval.planning') . ", " . trans('imet-core::common.steps_eval.inputs'),
+            'outcomes_outputs' => trans('imet-core::common.steps_eval.outcomes') . ", " . trans('imet-core::common.steps_eval.outputs')
         ];
 
         $api = [];

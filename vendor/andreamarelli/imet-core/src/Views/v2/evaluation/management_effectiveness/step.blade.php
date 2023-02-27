@@ -9,7 +9,7 @@ $assessment_step = \AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsServi
 
 
 <div id="assessment_step_{{ $step }}" class="assessment_step">
-    <h5>@lang('imet-core::v2_common.steps_eval.'.$step)</h5>
+    <h5>@lang('imet-core::common.steps_eval.'.$step)</h5>
 
 
     @if($step=='context')

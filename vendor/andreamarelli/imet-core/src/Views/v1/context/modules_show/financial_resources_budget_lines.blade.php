@@ -8,15 +8,15 @@ $record = $records[0];
 $group_key = $group_key ?? '';
 
 $table_id = $definitions['module_type'] === 'GROUP_TABLE'
-    ? 'group_table_' . $definitions['module_key'] . '_' . $group_key
-    : 'table_' . $definitions['module_key'];
+    ? 'group_table_'.$definitions['module_key'].'_'.$group_key
+    : 'table_'.$definitions['module_key'];
 
 $tr_record = $definitions['module_type'] === 'GROUP_TABLE'
     ? $records[$group_key]
     : $records;
 
 $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($record['FormID']);
-$totals = \AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::get_financial_available_resources_totals();
+$totals = \AndreaMarelli\ImetCore\Controllers\Imet\v1\ContextController::get_financial_available_resources_totals();
 $totalBudget = array_reduce($totals, function ($carry, $item) {
     $carry += $item;
     return $carry;
@@ -28,15 +28,15 @@ $percentage = [];
 foreach ($records as $index => $record) {
 
     $cost[$index] = 0;
-    if ($area !== null) {
+    if($area !== null){
         $cost[$index] = $record['Amount'] / $area * 100;
     }
     $cost[$index] = $cost[$index] === 0 ? null : round($cost[$index], 2);
 
     $val = floatval($cost[$index]);
-    if ($val > 0 && $totalBudget > 0) {
-        $percentage[$index] = round($val / $totalBudget * 100, 1) . ' %';
-    }else{
+    if($val > 0 && $totalBudget > 0){
+        $percentage[$index] = round($val / $totalBudget * 100, 1).' %';
+    } else {
         $percentage[$index] = "";
     }
 }

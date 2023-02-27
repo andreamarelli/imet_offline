@@ -1,36 +1,52 @@
 <?php
 
+use \AndreaMarelli\ImetCore\Controllers;
+use \AndreaMarelli\ImetCore\Models\Imet;
 use \AndreaMarelli\ImetCore\Models\Imet\v1;
 use \AndreaMarelli\ImetCore\Models\Imet\v2;
+use \AndreaMarelli\ImetCore\Models\Imet\oecm;
+use \AndreaMarelli\ModularForms\Helpers\Module;
 
-/** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Imet|\AndreaMarelli\ImetCore\Models\Imet\v2\Imet $primary_form */
-/** @var array $duplicated_forms */
+/** @var Controllers\Imet\v1\Controller|Controllers\Imet\v2\Controller|Controllers\Imet\oecm\Controller $controller */
+/** @var v1\Imet|v2\Imet|oecm\Imet $primary_form */
+/** @var int[] $duplicated_forms */
 
 
-if($primary_form->version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1){
-    $all_modules = \AndreaMarelli\ModularForms\Helpers\Module::getModulesList([
+if($primary_form->version===Imet\Imet::IMET_V1){
+    $all_modules = Module::getModulesList([
         v1\Imet::$modules,
         v1\Imet_Eval::$modules,
     ]);
     $imet_class = v1\Imet::class;
-} elseif($primary_form->version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2){
-    $all_modules = \AndreaMarelli\ModularForms\Helpers\Module::getModulesList([
+} elseif($primary_form->version===Imet\Imet::IMET_V2){
+    $all_modules = Module::getModulesList([
         v2\Imet::$modules,
         v2\Imet_Eval::$modules,
     ]);
     $imet_class = v2\Imet::class;
+} elseif($primary_form->version===Imet\Imet::IMET_OECM){
+    $all_modules = Module::getModulesList([
+        oecm\Imet::$modules,
+        oecm\Imet_Eval::$modules,
+    ]);
+    $imet_class = oecm\Imet::class;
 }
+
+function get_quoted_responsible($form_id, $version){
+    if($version === Imet\Imet::IMET_V1 || $version === Imet\Imet::IMET_V2){
+        $responsible = Imet\Imet::getResponsibles($form_id, $version);
+    } else if($version == Imet\Imet::IMET_OECM){
+        oecm\Imet::getResponsibles($form_id, $version);
+    }
+    return str_replace('\'', '\\\'', json_encode($responsible));
+}
+
 
 ?>
 
 @extends('layouts.admin')
 
-@section('admin_breadcrumbs')
-    @include('modular-forms::page.breadcrumbs', ['show' => false, 'links' => [
-        route('imet-core::index') => trans('imet-core::common.imet_short')
-    ]])
-@endsection
-
+@include('imet-core::components.breadcrumbs_and_page_title')
 
 @section('content')
 
@@ -48,7 +64,7 @@ if($primary_form->version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1){
                     IMET #{{ $primary_form->getKey() }}
                     <div style="font-weight: normal; font-style: italic; font-size: 0.8em;">
                         <imet_encoders_responsibles
-                            :items='@json(\AndreaMarelli\ImetCore\Models\Imet\Imet::getResponsibles($primary_form->getKey(), $primary_form->version))'
+                            :items='{{ get_quoted_responsible($primary_form->getKey(), $primary_form->version) }}'
                         ></imet_encoders_responsibles>
                     </div>
                 </th>
@@ -61,7 +77,7 @@ if($primary_form->version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1){
 
                         <div style="font-weight: normal; font-style: italic; font-size: 0.8em;">
                             <imet_encoders_responsibles
-                                    :items='@json(\AndreaMarelli\ImetCore\Models\Imet\Imet::getResponsibles($duplicated_form_id, $primary_form->version))'
+                                    :items='{{ get_quoted_responsible($duplicated_form_id, $primary_form->version) }}'
                             ></imet_encoders_responsibles>
                         </div>
 
@@ -79,10 +95,10 @@ if($primary_form->version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1){
                         {{-- Delete --}}
                         <div style="margin-top: 5px">
                             @include('modular-forms::buttons.delete', [
-                                'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
-                                'item' => $duplicated_form_id,
-                                'label' => ucfirst(trans('modular-forms::common.delete'))
-                            ])
+                               'controller' => $controller,
+                               'item' => $duplicated_form_id,
+                               'label' => ucfirst(trans('modular-forms::common.delete'))
+                           ])
                         </div>
 
                     </th>

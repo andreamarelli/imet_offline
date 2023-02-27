@@ -77,30 +77,11 @@ trait Planning {
                 ($record['VisionAdequacy'] ?? 0) +
                 ($record['PlanAdequacyScore'] ?? 0);
 
-            $denominator_part_1 = ($record['VisionAdequacy']===0 ? null : $record['VisionAdequacy']);
-            $denominator_part_1 = $denominator_part_1!==null
-                ? (1 - $record['VisionAdequacy'] / $denominator_part_1)
-                : 3;
-            $denominator_part_1 = $denominator_part_1 ?? 3;
-
-            $denominator_part_2 = ($record['PlanAdequacyScore']===0 ? null : $record['PlanAdequacyScore']);
-            $denominator_part_2 = $denominator_part_2!==null
-                ? (1 - $record['PlanAdequacyScore'] / $denominator_part_2)
-                : 3;
-            $denominator_part_2 = $denominator_part_2 ?? 3;
-
-            $denominator = $denominator_part_1 + $denominator_part_2 !== 0
-                ? 10 - $denominator_part_1 - $denominator_part_2
-                : null;
-
-            $score = $denominator > 0
-                ? 100 * $numerator / $denominator
-                : null;
+            $score = 100 * $numerator / 10;
 
             return $score!== null ?
                 round($score, 2)
                 : null;
-
         }
         return null;
     }

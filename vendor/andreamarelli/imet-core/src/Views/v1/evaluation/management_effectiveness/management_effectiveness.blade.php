@@ -11,7 +11,7 @@
         <div class="module-container">
             <div class="module-header">
                 <div class="module-title">
-                    @lang('imet-core::v1_common.steps_eval.management_effectiveness')
+                    @lang('imet-core::common.steps_eval.management_effectiveness')
                 </div>
             </div>
             <div class="module-body" >
@@ -33,7 +33,7 @@
         <div class="module-container">
             <div class="module-header">
                 <div class="module-title">
-                    @lang('imet-core::v1_common.steps_eval.management_effectiveness')
+                    @lang('imet-core::common.steps_eval.management_effectiveness')
                 </div>
             </div>
             <div class="module-body" >
@@ -48,7 +48,7 @@
             <div class="module-container">
                 <div class="module-header">
                     <div class="module-title">
-                        @lang('imet-core::v1_common.steps_eval.'.$s)
+                        @lang('imet-core::common.steps_eval.'.$s)
                     </div>
                 </div>
                 <div class="module-body" >

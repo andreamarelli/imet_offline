@@ -4,6 +4,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections;
 
 use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use Illuminate\Support\Facades\App;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis;
 
 class Ranking
@@ -108,12 +109,12 @@ class Ranking
                 }
 
                 $set_value = ($value != ScalingUpAnalysis::UNDEFINED_VALUE) ? Common::round_number(($value / $val) * 100) : $value;
-                $percent_values[$keys[$kk]][$k] = $set_value ;
+                $percent_values[$keys[$kk]][$k] = $set_value;
             }
         }
 
         $average_values = array_map(function ($value, $i) use ($items_to_calculate, $separated_values_by_pa) {
-            return $items_to_calculate[$i] > 0  ? Common::round_number($value / $items_to_calculate[$i]) : 0;
+            return $items_to_calculate[$i] > 0 ? Common::round_number($value / $items_to_calculate[$i]) : 0;
         }, $sum_values, array_keys($sum_values));
 
         foreach ($percent_values as $k => $values) {
@@ -123,7 +124,6 @@ class Ranking
         }
 
         arsort($average_values);
-
         foreach ($ranking['values'] as $ind => $items) {
             $i = 0;
             foreach ($average_values as $k => $vals) {
@@ -133,12 +133,12 @@ class Ranking
                 if (!isset($new_ranking['actual_value'][$ind])) {
                     $new_ranking['actual_value'][$ind] = [];
                 }
-                $new_ranking['values'][$ind][$i] = $ranking['values'][$ind][$k];
-                $new_ranking['actual_value'][$ind][$i] = $ranking['actual_value'][$ind][$k];
+                $new_ranking['values'][$ind][$i] = $ranking['values'][$ind][$k] ?? "-99999999";
+                $new_ranking['actual_value'][$ind][$i] = $ranking['actual_value'][$ind][$k] ?? "-99999999";
                 $new_ranking['xAxis'][$i] = $ranking['xAxis'][$k];
                 $new_ranking['wdpa_ids'][$i] = $ranking['wdpa_ids'][$k];
                 $reorder_separated_values_by_pa[$i] = $separated_values_by_pa[$k];
-                $reorder_percent_values[$ind][$i] = $percent_values[$ind][$k];
+                $reorder_percent_values[$ind][$i] = $percent_values[$ind][$k] ?? "-99999999";
                 $i++;
             }
         }
@@ -193,6 +193,7 @@ class Ranking
      */
     public static function ranking_threats_indicators(array $form_ids, int $scaling_id = 0): array
     {
+        $locale = App::getLocale();
         $ranking = ['values' => [], 'legends' => [], 'xAxis' => [], 'xAxisx' => [], 'wdpa_ids' => []];
         $items_to_calculate = $ranking_raw_values = $separated_values_by_pa = $sum_values = $percent_values = $protected_areas = [];
         foreach ($form_ids as $j => $form_id) {
@@ -207,25 +208,25 @@ class Ranking
                 if (!isset($items_to_calculate[$j])) {
                     $items_to_calculate[$j] = 0;
                 }
+                App::setLocale($locale);
                 $name = trans('imet-core::v2_context.MenacesPressions.categories.title' . ($k + 1), []);
+
                 if ($protected_area === "") {
                     $value = ScalingUpAnalysis::UNDEFINED_VALUE;
-                    $separated_values_by_pa[$j][] = $value;
                 } else {
                     $items_to_calculate[$j] += 1;
                     $value = Common::round_number((-1 * (double)$protected_area));
                     $sum_values[$j] += (float)($value);
-                    $separated_values_by_pa[$j][] = $value;
                 }
+                $separated_values_by_pa[$j][] = $value;
                 $ranking_raw_values[$name][] = $ranking['actual_value'][$name][] = $value;
                 $ranking['legends'][$name] = $name;
-
-
             }
+
             $ranking['xAxis'][$j] = $pa->name;
             $ranking['wdpa_ids'][$j] = $wdpa_id;
         }
-        //dd($ranking);
+
         return static::get_values_ranking($ranking, $sum_values, $separated_values_by_pa, $percent_values, $items_to_calculate);
     }
 
@@ -272,7 +273,7 @@ class Ranking
             $percent['xAxis'][] = $name;
             $collect_values_for_sorting = [];
             foreach ($indicators as $ind => $indicator) {
-                $label = trans('imet-core::v2_common.steps_eval.' . $ind);
+                $label = trans('imet-core::common.steps_eval.' . $ind);
                 $percent['legends'][$ind] = $label;
                 $percent_value = Common::round_number(($indicator / $total_values[$name]) * 100);
                 $percent['percent_values'][$label][] = $percent_value;

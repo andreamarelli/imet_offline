@@ -7,11 +7,10 @@ use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV2;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
+use AndreaMarelli\ModularForms\Controllers\Controller;
 use AndreaMarelli\ModularForms\Helpers\ModuleKey;
-use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\Report;
 use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment;
 use AndreaMarelli\ImetCore\Controllers\Imet\Traits\StatisticsApi;
 use AndreaMarelli\ImetCore\Controllers\Imet\Traits\ScalingUpApi;
@@ -21,7 +20,7 @@ use Illuminate\Support\Facades\App;
 use Intervention\Image\Exception\NotFoundException;
 
 
-class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
+class ApiController extends Controller
 {
     public const AUTHORIZE_BY_POLICY = true;
     use ScalingUpApi;
@@ -161,7 +160,7 @@ class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
     {
 
         $api = [];
-        $list = Imet::get_list_of_protected_areas($request, ['country']);
+        $list = Imet::get_assessments_list($request, ['country']);
         $hasType = $request->has("type");
         $type = $request->input("type");
 

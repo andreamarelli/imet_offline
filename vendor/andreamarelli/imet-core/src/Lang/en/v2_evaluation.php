@@ -70,7 +70,7 @@ return [
             'Evaluate the level of integration of 3 to 10 key species in the management of the protected area (based on an analysis of the Context of Intervention, points 4.1 and 4.2, automatically reported below). (The representativeness or highly representative of a key specie corresponds to the degree to which it: (i) represents a strong natural characteristic of one habitat, ecosystem, biome; (ii) influences an ecological process or community or (iii) affects a species-directed management policy)'
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification will cause complete data loss in the following
+            'WARNING!! <br /> Any modification might cause data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -108,7 +108,7 @@ return [
             'Evaluate the level of integration in the management of the protected area of 3 to 10 of the most representative and important habitats and related dimensions of land-cover, land-change and land-take types (based on the analysis of the Context of Intervention, points 4.3, automatically reported below). (The regional and global value/importance of habitats is a degree to which it: (i) represents at the regional or global level the natural environment of key plants or animals; (ii) influences an ecological process or community and (iii) affects a habitat directed management policy)'
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification will cause complete data loss in the following
+            'WARNING!! <br /> Any modification might cause data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -141,7 +141,7 @@ return [
             'Evaluate the level of integration in the management of the protected area of the climate change most vulnerable key elements (based on the analysis of the Context of Intervention, points CTX6.1, automatically reported below)'
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification will cause complete data loss in the following
+            'WARNING!! <br /> Any modification might cause data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i>, <i>PR17</i> and <i>O/C2</i>'
     ],
 
@@ -174,7 +174,7 @@ return [
             'Evaluate the level of integration of the most important ecosystem services in the management of the protected area (based on the analysis of the Context of Intervention point CTX7.1, automatically reported below)'
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification will cause complete data loss in the following
+            'WARNING!! <br /> Any modification might cause data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i>, <i>PR18</i> and <i>O/C2</i>'
     ],
 
@@ -274,7 +274,7 @@ return [
             'Evaluate the level of integration of most important threats in the management of the protected area based on the analysis of the threats calculator at Context of intervention point CTX 5.1 and automatically reported below.'
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification will cause complete data loss in the following
+            'WARNING!! <br /> Any modification might cause data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -598,7 +598,6 @@ return [
         'title' => 'Current budget',
         'fields' => [
             'EvaluationScore' => 'Adequacy of current budget',
-            'Percentage' => 'Percentage indicating the extent to which the budget is adequate relative to the requirements',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [

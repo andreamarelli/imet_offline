@@ -9,8 +9,7 @@ class Animal extends BaseAnimal
     protected $table = 'species';
     protected $primaryKey = 'id';
 
-    private static function getScientificName($taxonomy)
-    {
+    public static function getScientificName($taxonomy): ?string {
         $sciName = null;
         if ($taxonomy !== null) {
             $taxonomy_array = explode('|', $taxonomy);
@@ -19,8 +18,7 @@ class Animal extends BaseAnimal
         return $sciName;
     }
 
-    public static function getPlainNameByTaxonomy($taxonomy)
-    {
+    public static function getPlainNameByTaxonomy($taxonomy): ?string {
         return $taxonomy != null && static::isTaxonomy($taxonomy)
             ? static::getScientificName($taxonomy)
             : $taxonomy;

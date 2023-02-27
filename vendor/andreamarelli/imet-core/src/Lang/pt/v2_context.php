@@ -2,45 +2,6 @@
 
 return [
 
-    'Create' => [
-        'title' => 'Criar um novo IMET (WDPA)',
-        'fields' => [
-            'version' => 'versão',
-            'Year' => 'Ano sujeito a avaliação',
-            'wdpa_id' => 'zona protegida',
-            'language' => 'língua',
-            'prefill_prev_year' => 'pré-preencher com o ano anterior'
-        ]
-    ],
-
-    'CreateNonWdpa' => [
-        'title' => 'Criar um novo IMET (não WDPA)',
-        'fields' => [
-            'version' => 'versão',
-            'Year' => 'Ano sujeito a avaliação',
-            'wdpa_id' => 'zona protegida',
-            'language' => 'língua',
-            'prefill_prev_year' => 'pré-preencher com o ano anterior',
-            'pa_def' => 'definição',
-            'name' => 'nome fornecido pelo operador',
-            'origin_name' => 'nome na língua original',
-            'designation' => 'nome da designação (por exemplo, reserva, santuário, etc.) ',
-            'designation_eng' => 'designação obrigatória em Inglês',
-            'designation_type' => 'Tipo de designação',
-            'marine' => 'tipologia',
-            'rep_m_area' => 'superfície da área protegida marinha conservada [km<sup>2</sup>]',
-            'rep_area' => 'superfície da área protegida conservada [km<sup>2</sup>]',
-            'status' => 'estado',
-            'ownership_type' => 'Tipo de propriedade',
-            'status_year' => 'ano da promulgação do estatuto',
-            'country' => 'país',
-        ],
-
-        'allowed_international' => 'Allowed values for international-level designations',
-        'allowed_regional' => 'Allowed values for regional-level designations',
-        'allowed_national' => 'No fixed values for protected areas designated at a national level',
-    ],
-
     'Objectives' => [
         'title' => 'Definição de objectivos',
         'fields' => [
@@ -73,30 +34,6 @@ return [
         'module_info' => 'Estabelecer e descrever objectivos de conservação para <b>os serviços ecossistémicos e a dependência destes serviços das comunidades/sociedades</b> na área protegida <br/> Os objectivos inseridos abaixo serão utilizados para melhorar a gestão, e mais especificamente para o planeamento, mobilização de recursos (insumos), fases do processo, e para o controlo das actividades de gestão da área protegida.'
     ],
 
-    'ResponsablesInterviewers' => [
-        'title' => 'Responsibilide pelo preenchimento do formulário: Equipa de Gestão e Parceiros',
-        'fields' => [
-            'Name' => 'Nome',
-            'Institution' => 'Organizaçao',
-            'Function' => 'Função',
-            'Contacts' => 'Detalhes de contacto',
-            'EncodingDate' => 'Data de compilação',
-            'EncodingDuration' => 'Tempo levado para a avaliação (horas)'
-        ]
-    ],
-
-    'ResponsablesInterviewees' => [
-        'title' => 'Responsibilidade pelo Preenchimento do formulário: Apoio externo para a analise e avaliacao da gestao',
-        'fields' => [
-            'Name' => 'Nome',
-            'Institution' => 'organização',
-            'Function' => 'Função',
-            'Contacts' => 'Detalhes de contacto',
-            'EncodingDate' => 'Data de compilação',
-            'EncodingDuration' => 'Tempo levado para a Avaliação (horas)',
-        ]
-    ],
-
     'GeneralInfo' => [
         'title' => 'Dados Básicos',
         'fields' => [
@@ -120,31 +57,31 @@ return [
             'ReferenceTextDocument' => '',
             'ReferenceTextValues' => 'Qual é a importância da área protegida e dos seus principais valores para os quais foi designada? (Fornecer uma lista e depois uma breve descrição).',
         ],
-        'module_info' => '<b>Introdução à tipologia</b>: O IMET identifica três categorias de áreas protegidas: (1) Terrestre 
-            (2) Marinha e Costeira (3) OECM - Outras Medidas de Conservação Eficazes por Área. Na secção Governança (CTX 1.2) 
-            pode refinar a tipologia de gestão e governança destas três tipologias de áreas protegidas. Se estiver a analisar 
-            uma Área Protegida e Conservada (ZPC), pode especificar o contexto territorial no CTX 2.4.Área Protegida (definição geral): 
-            Uma área protegida é um espaço geográfico claramente definido, reconhecido, dedicado e gerido, através de meios legais ou 
-            outros meios eficazes, para alcançar a conservação a longo prazo da natureza com serviços ecossistémicos e valores 
+        'module_info' => '<b>Introdução à tipologia</b>: O IMET identifica três categorias de áreas protegidas: (1) Terrestre
+            (2) Marinha e Costeira (3) OECM - Outras Medidas de Conservação Eficazes por Área. Na secção Governança (CTX 1.2)
+            pode refinar a tipologia de gestão e governança destas três tipologias de áreas protegidas. Se estiver a analisar
+            uma Área Protegida e Conservada (ZPC), pode especificar o contexto territorial no CTX 2.4.Área Protegida (definição geral):
+            Uma área protegida é um espaço geográfico claramente definido, reconhecido, dedicado e gerido, através de meios legais ou
+            outros meios eficazes, para alcançar a conservação a longo prazo da natureza com serviços ecossistémicos e valores
             culturais associados. (Definição da UICN 2008)',
         'type_info' => [
-            'terrestrial' => 'Uma área protegida terrestre (TPA) é uma porção de terra protegida por restrições e leis especiais 
-                para a conservação do ambiente natural. Incluem grandes extensões de terra destinadas à protecção da vida 
-                selvagem e do seu habitat; áreas de grande beleza natural ou de interesse único; áreas contendo formas 
-                raras de vida vegetal e animal; áreas representando formação geológica invulgar; lugares de interesse 
-                histórico e pré-histórico; áreas contendo ecossistemas de especial importância para a investigação científica 
+            'terrestrial' => 'Uma área protegida terrestre (TPA) é uma porção de terra protegida por restrições e leis especiais
+                para a conservação do ambiente natural. Incluem grandes extensões de terra destinadas à protecção da vida
+                selvagem e do seu habitat; áreas de grande beleza natural ou de interesse único; áreas contendo formas
+                raras de vida vegetal e animal; áreas representando formação geológica invulgar; lugares de interesse
+                histórico e pré-histórico; áreas contendo ecossistemas de especial importância para a investigação científica
                 e estudo; e áreas que preservam as necessidades da biosfera. (GEMET- DODERO / WPR) (procuramos uma descrição da CDB)',
-            'marine_and_coastal' => 'Uma área marinha e costeira protegida (MPA ou MCPA) é "uma área dentro ou adjacente ao 
-                meio marinho, juntamente com as suas águas sobrejacentes e características de flora, fauna e históricas e 
-                culturais associadas, que foi reservada pela legislação ou outros meios eficazes, incluindo os costumes, 
-                com o efeito de que a sua biodiversidade marinha e/ou costeira goza de um nível de protecção mais elevado 
+            'marine_and_coastal' => 'Uma área marinha e costeira protegida (MPA ou MCPA) é "uma área dentro ou adjacente ao
+                meio marinho, juntamente com as suas águas sobrejacentes e características de flora, fauna e históricas e
+                culturais associadas, que foi reservada pela legislação ou outros meios eficazes, incluindo os costumes,
+                com o efeito de que a sua biodiversidade marinha e/ou costeira goza de um nível de protecção mais elevado
                 do que a sua envolvente" (Convenção sobre a Diversidade Biológica - CDB)',
-            'oecm' => 'Uma área geograficamente definida que não seja uma Área Protegida, que é governada e gerida de forma 
-                a alcançar resultados positivos e sustentáveis a longo prazo para a conservação in situ da biodiversidade, 
-                com funções e serviços ecossistémicos associados e, quando aplicável, culturais, espirituais, socioeconómicos 
+            'oecm' => 'Uma área geograficamente definida que não seja uma Área Protegida, que é governada e gerida de forma
+                a alcançar resultados positivos e sustentáveis a longo prazo para a conservação in situ da biodiversidade,
+                com funções e serviços ecossistémicos associados e, quando aplicável, culturais, espirituais, socioeconómicos
                 e outros valores localmente relevantes" (CDB, 2018)',
-            'icca' => 'Um ecossistema natural e/ou modificado, contendo valores de biodiversidade significativos, benefícios 
-                ecológicos e valores culturais, voluntariamente conservados pelos povos indígenas e comunidades locais, 
+            'icca' => 'Um ecossistema natural e/ou modificado, contendo valores de biodiversidade significativos, benefícios
+                ecológicos e valores culturais, voluntariamente conservados pelos povos indígenas e comunidades locais,
                 através de leis consuetudinárias ou outros meios eficazes (CBD -Recognising and Supporting ICCAs)'
         ]
     ],
@@ -300,9 +237,9 @@ return [
         ],
         'info' => [
             'spillover_eval' =>
-                'O movimento das redes de indivíduos das reservas marinhas (também conhecidas como áreas protegidas marinhas 
-                sem capturas) para os restantes pesqueiros é conhecido como derrame. Os derrames podem contribuir para a 
-                redução da pobreza, embora o seu efeito seja modulado pelo número de pescadores e pela intensidade da pesca. 
+                'O movimento das redes de indivíduos das reservas marinhas (também conhecidas como áreas protegidas marinhas
+                sem capturas) para os restantes pesqueiros é conhecido como derrame. Os derrames podem contribuir para a
+                redução da pobreza, embora o seu efeito seja modulado pelo número de pescadores e pela intensidade da pesca.
                 Em geral:
                 <ul>
                     <li>Forte efeito transbordamento (spill-over) positivo quando a pesca é mal gerida</li>
@@ -333,18 +270,18 @@ return [
             'BenefitsOfEcosystemServicesArea' => 'Area que beneficia dos servicos ecossistémicos da área protegida',
             'SpillOverArea' => 'Area dos efeitos de derrame',
         ],
-        'module_info' => '<b>Paisagem</b>: A governação e gestão ligadas de uma área protegida e dos seus territórios circundantes 
-            podem contribuir para a conservação da biodiversidade e resiliência climática, manutenção dos recursos naturais 
+        'module_info' => '<b>Paisagem</b>: A governação e gestão ligadas de uma área protegida e dos seus territórios circundantes
+            podem contribuir para a conservação da biodiversidade e resiliência climática, manutenção dos recursos naturais
             e serviços ecossistémicos que asseguram o desenvolvimento sustentável das comunidades locais.<br />
-            <b>Áreas Protegidas e Conservadas (ZCAs)</b>: São uma das ferramentas mais eficazes para prevenir a perda de 
-            ecossistemas naturais e espécies, bem como para alcançar um desenvolvimento sustentável a longo prazo, incluindo 
-            os objectivos 11 e 12 de Aichi e vários Objectivos de Desenvolvimento Sustentável (ODS). Em algumas regiões, as 
-            APC são o centro do desenvolvimento económico, através do turismo, da utilização sustentável dos recursos e como 
-            fontes de água doce. Os APC também contribuem para a segurança alimentar através da manutenção dos serviços 
-            ecossistémicos que apoiam a agricultura, protegendo os recursos essenciais para os programas de cultivo, e 
-            fornecendo espaço para os sistemas tradicionais de agricultura e pastagem amigos da biodiversidade. Os APC 
-            também têm um papel importante a desempenhar na resiliência climática, tanto através do armazenamento e 
-            sequestro de carbono, como assegurando que os ecossistemas continuem a fornecer bense serviços às sociedades 
+            <b>Áreas Protegidas e Conservadas (ZCAs)</b>: São uma das ferramentas mais eficazes para prevenir a perda de
+            ecossistemas naturais e espécies, bem como para alcançar um desenvolvimento sustentável a longo prazo, incluindo
+            os objectivos 11 e 12 de Aichi e vários Objectivos de Desenvolvimento Sustentável (ODS). Em algumas regiões, as
+            APC são o centro do desenvolvimento económico, através do turismo, da utilização sustentável dos recursos e como
+            fontes de água doce. Os APC também contribuem para a segurança alimentar através da manutenção dos serviços
+            ecossistémicos que apoiam a agricultura, protegendo os recursos essenciais para os programas de cultivo, e
+            fornecendo espaço para os sistemas tradicionais de agricultura e pastagem amigos da biodiversidade. Os APC
+            também têm um papel importante a desempenhar na resiliência climática, tanto através do armazenamento e
+            sequestro de carbono, como assegurando que os ecossistemas continuem a fornecer bense serviços às sociedades
             humanas (WWF).'
     ],
 
@@ -513,7 +450,7 @@ return [
         'module_info' => 'Estado de conservação favorável: A partir de Natura 2000, o estado de conservação das espécies será considerado "favorável" quando:<ul> os dados sobre a dinâmica populacional das espécies em causa indicam que se mantém a longo prazo como uma componente viável dos seus habitats naturais, e<li> a área variedade natural de distribuição da espécie não está a ser reduzida nem será provavelmente reduzida num futuro previsível, e existe, e provavelmente continuará a existir, um habitat suficientemente grande para manter as suas populações a longo prazo</li></ul> Classificação: Avaliar a partir da lista de espécies que se supõe existirem (ver as listas da IUCN de A - mamiferos, B -_ aves e C - anfibios), um número limitado de espécies chave da área protegida. <br /> <b>Espécies indicadoras</b> <ul> <li><b>EE</b>: Espécies emblemáticas</li> <li><b>EP</b>: especies em perigo (Ameaçadas)</li> <li><b>EED</b>: Espécies Endémicas </li> <li><b>EXP</b>: Espécies exploradas</li> <li><b>INV</b>: Espécies invasoras</li> <li><b>EBC</b>: Espécie com baixo nível de conhecimento</li></ul> <b>Estimativa da população</b>: Programa de monitorização ecológica e geração de gráfico de tendências plurianuais.',
         'validation_min3' => 'Please encode not less than 3 key species',
         'warning_on_save' =>
-            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação pode causar perda de dados no seguinte
             módulos de avaliação (se já codificados): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -535,7 +472,7 @@ return [
         ],
         'module_info' => 'Estado de conservação favorável:<br /> A partir de Natura 2000, o estado de conservação das espécies será considerado "favorável" quando:<ul><li> os dados sobre a dinâmica populacional das espécies em causa indicam que se mantém a longo prazo como uma componente viável dos seus habitats naturais, e </li><li>a área variedade natural de distribuição das espécies não está a ser reduzida nem será provavelmente reduzida num futuro previsível, e existe, e provavelmente continuará a existir, um habitat suficientemente grande para manter as suas populações a longo prazo</li></ul> Classificação: Avaliar, a partir da lista de plantas que se supõe existirem (ver as listas disponíveis e informações do parque), um número limitado de plantas-chave da área protegida<br /> <b>Indicadores das espécies</b> <ul> <li><b>EE</b>: Espécies emblemáticas  </li> <li><b>EP</b>:Espécies em perigo (ameaçadas) </li> <li><b>EED</b>: Espécies Endémicas</li> <li><b> EXP</b>: Espécies exploradas</li> <li><b> INV</b>: Espécies Invasoras</li> <li><b> INS</b>: Espécie com baixo nível de conhecimento</li> </ul> <br/><b> EB Estimativa da população</b>: Programa de monitorização ecológica e geração de gráfico de tendências plurianuais.<br /> <b>Fiabilidade da informacao</b>: <ul><li>1 Baixa</li> <li>2: Media</li><li> 3: alta</li></ul>',
         'warning_on_save' =>
-            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação pode causar perda de dados no seguinte
             módulos de avaliação (se já codificados): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -553,7 +490,7 @@ return [
         ],
         'module_info' => 'Nota: Estado de conservação favorável:<br />A partir de Natura 2000, o estado de conservação de um habitat natural será considerado "favorável" quando:<ul><li>a sua área de distribuição alcance natural e as áreas que cobre dentro dessa área alcance são estáveis ou estão a aumentar e</li><li>a estrutura e funções específicas que são necessárias para a sua manutenção a longo prazo existem e são susceptíveis de continuar a existir num futuro previsível</li></ul>Classificação: Seleccionar e avaliar os parâmetros mais importantes dos ecossistemas e habitats terrestres e marinhos da área protegida.<br /> <b>Note</b>:A avaliação do habitat ainda está a emergir como disciplina, uma vez que é altamente complexa. A classificação prevê a seguinte divisão de território: Bioma, Ecorregião, Ecossistema, Habitat. As características/valores do habitat podem ser avaliados como:<ul> <li>i) sob ameaça de extinção (dentro da sua área de distribuição,</li> <li>ii) ter área distribuição um alcance natural reduzida,</li> <li>iii) em declíneo,</li> <li>iv) um exemplo notável de características específicas, etc.</li> </ul> A avaliação de habitats também pode ser realizada na perspectiva de:<ul> <li>i) reproduccao,</li> <li>ii) nutricao,</li> <li>iii) protecção de espécies, etc.</li> </ul> <br /> <b>Fiabilidade da informacao</b> <ul> <li>1: Baixa<li>2: Media<li>3: Alta</li> </ul>',
         'warning_on_save' =>
-            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação pode causar perda de dados no seguinte
             módulos de avaliação (se já codificados): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -805,7 +742,7 @@ return [
         ],
         'module_info' => 'A calculadora de ameaças é utilizada para calcular o impacto das ameaças numa área protegida específica. Usando o seu melhor julgamento profissional, avalia o impacto da ameaça explorando cinco categorias de pontuação: (1) Impacto/ Gravidade; (2) Escala/ Extensão; (3) Quanto tempo/ Irreversibilidade; (4) Tendência; (5) Probabilidade para a ameaça no futuro',
         'warning_on_save' =>
-            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação pode causar perda de dados no seguinte
             módulos de avaliação (se já codificados): <br /> <i>C3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -835,7 +772,7 @@ return [
             ]
         ],
         'warning_on_save' =>
-            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação pode causar perda de dados no seguinte
             módulos de avaliação (se já codificados): <br /> <i>C1.4</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -899,7 +836,7 @@ return [
             ]
         ],
         'warning_on_save' =>
-            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação pode causar perda de dados no seguinte
             módulos de avaliação (se já codificados): <br /> <i>C1.5</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ]
 

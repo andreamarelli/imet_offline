@@ -110,9 +110,9 @@ class GlobalStatistics
             ->get()->map(function ($item) {
                 $values = [];
                 if ($item['Type'] === "terrestrial") {
-                    $values['Type'] = ucfirst(trans('imet-core::v2_common.terrestrial'));
+                    $values['Type'] = ucfirst(trans('imet-core::common.terrestrial'));
                 } else {
-                    $values['Type'] = ucfirst(trans('imet-core::v2_common.marine'));
+                    $values['Type'] = ucfirst(trans('imet-core::common.marine'));
                 }
 
                 $values['total'] = $item['total'];

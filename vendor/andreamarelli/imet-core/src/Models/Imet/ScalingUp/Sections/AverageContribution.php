@@ -68,6 +68,7 @@ class AverageContribution
      * @param string $colors
      * @param array $options
      * @param string $label
+     * @param string $origType
      * @return array|array[]
      */
     public static function average_contribution_calculations(array $form_ids, array $table_indicators, string $type = "", string $colors = "", array $options = [], string $label = "", string $origType = ''): array
@@ -113,7 +114,7 @@ class AverageContribution
             $legend_name = trans('imet-core::analysis_report.assessment.' . $legends_match[$name[1] . "_" . $name[2]]);
 
         } else {
-            $legend_name = trans('imet-core::v2_common.steps_eval.' . $origType);
+            $legend_name = trans('imet-core::common.steps_eval.' . $origType);
         }
 
         $average_contribution['legends'] = [$legend_name, trans('imet-core::analysis_report.variability')];

@@ -16,7 +16,7 @@ class Report extends Model
 
     protected $guarded = [];
 
-    private static $report_fields = [
+    protected static $report_fields = [
         'key_species_comment',
         'habitats_comment',
         'climate_change_comment',

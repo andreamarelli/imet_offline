@@ -2,11 +2,16 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
+use AndreaMarelli\ImetCore\Models\Imet;
 use AndreaMarelli\ModularForms\Models\Traits\Payload;
+use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
+use Illuminate\View\View;
 use function redirect;
 
 
@@ -16,15 +21,16 @@ trait Merge
      * Open the merge tool view
      *
      * @param $item
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return Factory|View
+     * @throws AuthorizationException
      */
     public function merge_view($item)
     {
-        $form = Imet::find($item);
+        $form = (static::$form_class)::find($item);
         $this->authorize('edit', $form);
 
-        return view(static::$form_view_prefix . 'merge.list', [
+        return view(Controller::$form_view_prefix . '.merge.list', [
+            'controller' => static::class,
             'primary_form' => $form,
             'duplicated_forms' => $form->getDuplicates()
         ]);
@@ -33,13 +39,12 @@ trait Merge
     /**
      * Execute the merge of the given module
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws Exception
      */
     public function merge(Request $request): RedirectResponse
     {
-        /** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Component\ImetModule|\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule $module_class */
         $module_class = $request->input('module');
         $source_form_id = $request->input('source_form');
         $destination_form_id = $request->input('destination_form');

@@ -73,9 +73,9 @@
                                                          :name="'grouping'">
                                                         <div class="col-sm">
                                                             <scatter
-                                                                :label_axis_y="'@lang('imet-core::v2_common.steps_eval.context') , @lang('imet-core::v2_common.steps_eval.planning'), @lang('imet-core::v2_common.steps_eval.inputs')'"
-                                                                :label_axis_x="'@lang('imet-core::v2_common.steps_eval.process')'"
-                                                                :label_axis_y2="'@lang('imet-core::v2_common.steps_eval.outcomes'), @lang('imet-core::v2_common.steps_eval.outputs')'"
+                                                                :label_axis_y="'@lang('imet-core::common.steps_eval.context') , @lang('imet-core::common.steps_eval.planning'), @lang('imet-core::common.steps_eval.inputs')'"
+                                                                :label_axis_x="'@lang('imet-core::common.steps_eval.process')'"
+                                                                :label_axis_y2="'@lang('imet-core::common.steps_eval.outcomes'), @lang('imet-core::common.steps_eval.outputs')'"
                                                                 :label_axis_y2_show="false"
                                                                 :values='data_elements.props.values.scatter'
                                                             ></scatter>

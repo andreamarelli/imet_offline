@@ -14,6 +14,8 @@ class ImetModule extends Module
     use Upgrade;
     use ConvertSQLite;
 
+    protected static $form_class = Imet::class;
+
     public const CREATED_AT = 'UpdateDate';
     public const UPDATED_AT = 'UpdateDate';
     public const UPDATED_BY = 'UpdateBy';

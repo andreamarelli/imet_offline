@@ -88,7 +88,7 @@ return [
         'select_file'       => 'seleccionar ficheiro',
         'no_file_selected'  => 'nenhum ficheiro seleccionado',
         'error'             => 'erro de carregamento : ',
-        'too_big'           => 'Ficheiro demasiado grande. O tamanho máximo de ficheiro permitido é de 50Mb.',
+        'too_big'           => 'Ficheiro demasiado grande. O tamanho máximo de ficheiro permitido é de __maxFileSize__Mb.',
         'not_valid_filename'=> 'O nome do ficheiro não é válido. Apenas letras, dígitos, espaço e os seguintes caracteres especiais são permitidos: -_. & ()',
         'not_valid_format'  => 'O formato do ficheiro é inválido.',
         'multiple_files_description' => 'Arrastar e largar para carregar ficheiros json/zip (máximo 10)',

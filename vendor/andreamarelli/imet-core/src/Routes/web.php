@@ -1,7 +1,9 @@
 <?php
 
+use AndreaMarelli\ImetCore\Controllers\DevStatisticsController;
 use AndreaMarelli\ImetCore\Controllers\DevUsersController;
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
+use AndreaMarelli\ImetCore\Controllers\Imet;
+use AndreaMarelli\ImetCore\Controllers\Imet\oecm;
 use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController;
 use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpBasketController;
 use AndreaMarelli\ImetCore\Controllers\Imet\v1;
@@ -10,75 +12,96 @@ use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
 use AndreaMarelli\ImetCore\Controllers\SpeciesController;
 use AndreaMarelli\ImetCore\Controllers\UsersController;
 use Illuminate\Support\Facades\App;
-
-
 use Illuminate\Support\Facades\Route;
+
+const IMET_PREFIX = Imet\Controller::ROUTE_PREFIX;
+const V1_ROUTE_PREFIX = v1\Controller::ROUTE_PREFIX;
+const V2_ROUTE_PREFIX = v2\Controller::ROUTE_PREFIX;
+const OECM_ROUTE_PREFIX = oecm\Controller::ROUTE_PREFIX;
 
 
 Route::group(['middleware' => ['setLocale', 'web']], function () {
 
-    Route::group(['prefix' => 'admin/imet', 'middleware' => 'auth'], function () {
+    /*
+    |--------------------------------------------------------------------------
+    | IMET Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::group(['prefix' => 'admin/imet', 'middleware' => 'auth'], function (){
+
+         // ####  common routes (v1 & v2 & oecm) ####
+        Route::get('import',        [Imet\Controller::class, 'import_view'])->name(IMET_PREFIX.'import_view');
+        Route::post('import',      [Imet\Controller::class, 'import'])->name(IMET_PREFIX.'import');
+        Route::post('ajax/upload', [Imet\Controller::class, 'upload'])->name(IMET_PREFIX.'upload_json');
 
         // ####  common routes (v1 & v2) ####
-        Route::match(['get', 'post'],'/',      [Controller::class, 'index'])->name('imet-core::index');
-        Route::match(['get', 'post'],'v1',      [Controller::class, 'index']);     // temporary alias
-        Route::match(['get', 'post'],'v2',      [Controller::class, 'index']);     // temporary alias
-        Route::delete('{item}', [Controller::class, 'destroy']);
-        Route::get('{item}/export', [Controller::class, 'export']);
-
-        Route::post('ajax/upload', [Controller::class, 'upload'])->name('imet-core::upload_json');
-        Route::match(['get','post'],'export_view',        [Controller::class, 'export_view'])->name('imet-core::export_view');
-        Route::get('import',        [Controller::class, 'import_view'])->name('imet-core::import_view');
-        Route::post('import',      [Controller::class, 'import'])->name('imet-core::import');
-        Route::get('{item}/merge',  [Controller::class, 'merge_view'])->name('imet-core::merge_view');
-        Route::post('merge',      [Controller::class, 'merge'])->name('merge');
+        Route::match(['get', 'post'],'/',      [Imet\Controller::class, 'index'])->name(IMET_PREFIX.'index');
 
         // #### IMET Version 1 ####
         Route::group(['prefix' => 'v1'], function () {
 
-            Route::get('{item}/print',       [v1\Controller::class, 'print']);
+            Route::match(['get', 'post'],'/',      [Imet\Controller::class, 'index'])->name(V1_ROUTE_PREFIX.'index');     // alias
+            Route::match(['get','post'],'export_view',        [v1\Controller::class, 'export_view'])->name(V1_ROUTE_PREFIX.'export_view');
+
+            Route::get('{item}/print',  [v1\Controller::class, 'print']);
+            Route::get('{item}/export', [v1\Controller::class, 'export']);
+            Route::post('export_batch',        [v1\Controller::class, 'export_batch'])->name(V1_ROUTE_PREFIX.'export_batch');
+
+            Route::get('{item}/merge',  [v1\Controller::class, 'merge_view'])->name(V1_ROUTE_PREFIX.'merge_view');
+            Route::post('merge',      [v1\Controller::class, 'merge'])->name(V1_ROUTE_PREFIX.'merge');
+
+            Route::delete('{item}',     [v1\Controller::class, 'destroy']);
 
             Route::group(['prefix' => 'context'], function () {
-                Route::get('{item}/show/{step?}', [v1\Controller::class, 'show'])->name('imet-core::v1_context_show');
-                Route::get('{item}/edit/{step?}', [v1\Controller::class, 'edit'])->name('imet-core::v1_context_edit');
-                Route::patch('{item}',           [v1\Controller::class, 'update']);
+                Route::get('{item}/show/{step?}',   [v1\ContextController::class, 'show'])->name(V1_ROUTE_PREFIX.'context_show');
+                Route::get('{item}/edit/{step?}',   [v1\ContextController::class, 'edit'])->name(V1_ROUTE_PREFIX.'context_edit');
+                Route::patch('{item}',              [v1\ContextController::class, 'update']);
             });
             Route::group(['prefix' => 'evaluation'], function () {
-                Route::get('{item}/show/{step?}', [v1\EvalController::class, 'show'])->name('imet-core::v1_eval_show');
-                Route::get('{item}/edit/{step?}', [v1\EvalController::class, 'edit'])->name('imet-core::v1_eval_edit');
-                Route::patch('{item}',           [v1\EvalController::class, 'update']);
+                Route::get('{item}/show/{step?}',   [v1\EvalController::class, 'show'])->name(V1_ROUTE_PREFIX.'eval_show');
+                Route::get('{item}/edit/{step?}',   [v1\EvalController::class, 'edit'])->name(V1_ROUTE_PREFIX.'eval_edit');
+                Route::patch('{item}',              [v1\EvalController::class, 'update']);
             });
             Route::group(['prefix' => 'report'], function () {
-                Route::get('{item}/edit', [v1\ReportController::class, 'report'])->name('imet-core::v1_report_edit');
-                Route::get('{item}/show', [v1\ReportController::class, 'report_show'])->name('imet-core::v1_report_show');
-                Route::patch('{item}', [v1\ReportController::class, 'report_update'])->name('imet-core::v1_report_update');
+                Route::get('{item}/edit',   [v1\ReportController::class, 'report'])->name(V1_ROUTE_PREFIX.'report_edit');
+                Route::get('{item}/show',   [v1\ReportController::class, 'report_show'])->name(V1_ROUTE_PREFIX.'report_show');
+                Route::patch('{item}',      [v1\ReportController::class, 'report_update'])->name(V1_ROUTE_PREFIX.'report_update');
             });
         });
 
         // #### IMET Version 2 ####
         Route::group(['prefix' => 'v2'], function () {
 
+            Route::match(['get', 'post'],'/',[Imet\Controller::class, 'index'])->name(V2_ROUTE_PREFIX.'index');    // alias
+            Route::match(['get','post'],'export_view',        [v2\Controller::class, 'export_view'])->name(V2_ROUTE_PREFIX.'export_view');
+
             Route::get('{item}/print',       [v2\Controller::class, 'print']);
+            Route::get('{item}/export', [v2\Controller::class, 'export']);
+            Route::post('export_batch',        [v2\Controller::class, 'export_batch'])->name(V2_ROUTE_PREFIX.'export_batch');
+            Route::delete('{item}',     [v2\Controller::class, 'destroy']);
+            Route::get('{item}/merge',  [v2\Controller::class, 'merge_view'])->name(V2_ROUTE_PREFIX.'merge_view');
+            Route::post('merge',      [v2\Controller::class, 'merge'])->name(V2_ROUTE_PREFIX.'merge');
+
+            Route::get('create',        [v2\Controller::class, 'create'])->name(V2_ROUTE_PREFIX.'create');
+            Route::get('create_non_wdpa',[v2\Controller::class, 'create_non_wdpa'])->name(V2_ROUTE_PREFIX.'create_non_wdpa');
+            Route::post('store',        [v2\ContextController::class, 'store']);
+            Route::post('prev_years',   [v2\Controller::class, 'retrieve_prev_years'])->name(V2_ROUTE_PREFIX.'retrieve_prev_years');
 
             Route::group(['prefix' => 'context'], function () {
-                Route::get('{item}/edit/{step?}',[v2\Controller::class, 'edit'])->name('imet-core::v2_context_edit');
-                Route::get('{item}/show/{step?}',[v2\Controller::class, 'show'])->name('imet-core::v2_context_show');
-                Route::patch('{item}',           [v2\Controller::class, 'update']);
-                Route::get('create',            [v2\Controller::class, 'create']);
-                Route::get('create_non_wdpa', [v2\Controller::class, 'create_non_wdpa'])->name('imet-core::create_non_wdpa');
-                Route::post('store',            [v2\Controller::class, 'store']);
-                Route::post('prev_years',            [v2\Controller::class, 'retrieve_prev_years'])->name('imet-core::retrieve_prev_years');
+                Route::get('{item}/edit/{step?}',[v2\ContextController::class, 'edit'])->name(V2_ROUTE_PREFIX.'context_edit');
+                Route::get('{item}/show/{step?}',[v2\ContextController::class, 'show'])->name(V2_ROUTE_PREFIX.'context_show');
+                Route::patch('{item}',           [v2\ContextController::class, 'update']);
             });
             Route::group(['prefix' => 'evaluation'], function () {
-                Route::get('{item}/edit/{step?}',   [v2\EvalController::class, 'edit'])->name('imet-core::v2_eval_edit');
-                Route::get('{item}/show/{step?}',   [v2\EvalController::class, 'show'])->name('imet-core::v2_eval_show');
-                Route::get('{item}/print',          [v2\EvalController::class, 'print']);
+                Route::get('{item}/edit/{step?}',[v2\EvalController::class, 'edit'])->name(V2_ROUTE_PREFIX.'eval_edit');
+                Route::get('{item}/show/{step?}',[v2\EvalController::class, 'show'])->name(V2_ROUTE_PREFIX.'eval_show');
+                Route::get('{item}/print',       [v2\EvalController::class, 'print']);
                 Route::patch('{item}',           [v2\EvalController::class, 'update']);
             });
             Route::group(['prefix' => 'report'], function () {
-                Route::get('{item}/edit', [v2\ReportController::class, 'report'])->name('imet-core::v2_report_edit');
-                Route::get('{item}/show', [v2\ReportController::class, 'report_show'])->name('imet-core::v2_report_show');
-                Route::patch('{item}', [v2\ReportController::class, 'report_update'])->name('imet-core::v2_report_update');
+                Route::get('{item}/edit',   [v2\ReportController::class, 'report'])->name(V2_ROUTE_PREFIX.'report_edit');
+                Route::get('{item}/show',   [v2\ReportController::class, 'report_show'])->name(V2_ROUTE_PREFIX.'report_show');
+                Route::patch('{item}',      [v2\ReportController::class, 'report_update'])->name(V2_ROUTE_PREFIX.'report_update');
             });
 
         });
@@ -103,11 +126,9 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
         });
 
-
         Route::group(['prefix' => 'tools'], function () {
-            Route::get('export_csv', [Controller::class, 'exportListCSV'])->name('imet-core::csv_list');
-            Route::get('export_csv/{ids}/{module_key}', [Controller::class, 'exportModuleToCsv'])->name('imet-core::csv');
-            Route::post('export_batch',        [Controller::class, 'export_batch'])->name('imet-core::export_json_batch');
+            Route::get('export_csv', [Imet\Controller::class, 'exportListCSV'])->name('imet-core::csv_list');
+            Route::get('export_csv/{ids}/{module_key}', [Imet\Controller::class, 'exportModuleToCsv'])->name('imet-core::csv');
         });
 
         /*
@@ -122,6 +143,48 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::post('protected_areas_labels', [ProtectedAreaController::class, 'get_pairs'])->name('imet-core::labels_pas');
             Route::post('users', [UsersController::class, 'search'])->name('imet-core::search_users');
 
+        });
+
+    });
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | IMET OECM Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::group(['prefix' => 'admin/oecm', 'middleware' => 'auth'], function () {
+
+        Route::match(['get', 'post'],'/',[oecm\Controller::class, 'index'])->name(OECM_ROUTE_PREFIX.'index');
+        
+        Route::delete('{item}',         [oecm\Controller::class, 'destroy']);
+        Route::get('{item}/print',      [oecm\Controller::class, 'print']);
+        Route::get('{item}/export',     [oecm\Controller::class, 'export']);
+        Route::match(['get','post'],'export_view',        [oecm\Controller::class, 'export_view'])->name(OECM_ROUTE_PREFIX.'export_view');
+        Route::post('export_batch',        [oecm\Controller::class, 'export_batch'])->name(OECM_ROUTE_PREFIX.'export_batch');
+        Route::get('{item}/merge',  [oecm\Controller::class, 'merge_view'])->name(OECM_ROUTE_PREFIX.'merge_view');
+        Route::post('merge',      [oecm\Controller::class, 'merge'])->name(OECM_ROUTE_PREFIX.'merge');
+
+        Route::get('create',            [oecm\Controller::class, 'create'])->name(OECM_ROUTE_PREFIX.'create');
+        Route::get('create_non_wdpa',   [oecm\Controller::class, 'create_non_wdpa'])->name(OECM_ROUTE_PREFIX.'create_non_wdpa');
+        Route::post('store',            [oecm\ContextController::class, 'store']);
+        Route::post('prev_years',       [oecm\Controller::class, 'retrieve_prev_years'])->name(OECM_ROUTE_PREFIX.'retrieve_prev_years');
+
+        Route::group(['prefix' => 'context'], function () {
+            Route::get('{item}/edit/{step?}',[oecm\ContextController::class, 'edit'])->name(OECM_ROUTE_PREFIX.'context_edit');
+            Route::get('{item}/show/{step?}',[oecm\ContextController::class, 'show'])->name(OECM_ROUTE_PREFIX.'context_show');
+            Route::patch('{item}',           [oecm\ContextController::class, 'update']);
+        });
+        Route::group(['prefix' => 'evaluation'], function () {
+            Route::get('{item}/edit/{step?}',   [oecm\EvalController::class, 'edit'])->name(OECM_ROUTE_PREFIX.'eval_edit');
+            Route::get('{item}/show/{step?}',   [oecm\EvalController::class, 'show'])->name(OECM_ROUTE_PREFIX.'eval_show');
+            Route::get('{item}/print',          [oecm\EvalController::class, 'print']);
+            Route::patch('{item}',              [oecm\EvalController::class, 'update']);
+        });
+        Route::group(['prefix' => 'report'], function () {
+            Route::get('{item}/edit',   [oecm\ReportController::class, 'report'])->name(OECM_ROUTE_PREFIX.'report_edit');
+            Route::get('{item}/show',   [oecm\ReportController::class, 'report_show'])->name(OECM_ROUTE_PREFIX.'report_show');
+            Route::patch('{item}',      [oecm\ReportController::class, 'report_update'])->name(OECM_ROUTE_PREFIX.'report_update');
         });
 
     });
@@ -147,7 +210,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
     }
 
-    Route::get('stats_in_php', [\AndreaMarelli\ImetCore\Controllers\DevStatisticsController::class, 'index']);
+    Route::get('stats_in_php', [DevStatisticsController::class, 'index']);
 
 });
 

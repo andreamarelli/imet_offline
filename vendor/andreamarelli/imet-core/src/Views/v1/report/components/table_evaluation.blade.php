@@ -7,7 +7,7 @@
 
     <!-- context -->
     <tr>
-        <th rowspan="2">@lang('imet-core::v1_common.steps_eval.context')</th>
+        <th rowspan="2">@lang('imet-core::common.steps_eval.context')</th>
         @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c1'], 'assessment_label' => trans('imet-core::v1_common.assessment.c1')[1]])
         @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c2'], 'assessment_label' => trans('imet-core::v1_common.assessment.c2')[1]])
         @include('imet-core::v1.report.components.row_evaluation', [
@@ -17,7 +17,7 @@
         ])
         @include('imet-core::v1.report.components.row_evaluation', [
             'assessment_value' => $assessment['context']['avg_indicator'],
-            'assessment_label' => trans('imet-core::v1_common.indexes.context')[1],
+            'assessment_label' => trans('imet-core::common.indexes.context')[1],
             'additional_classes' => 'avg_index'
         ])
         <td colspan="4"></td>
@@ -40,7 +40,7 @@
 
     <!-- planning -->
     <tr>
-        <th>@lang('imet-core::v1_common.steps_eval.planning')</th>
+        <th>@lang('imet-core::common.steps_eval.planning')</th>
         @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['planning']['p1'], 'assessment_label' => trans('imet-core::v1_common.assessment.p1')[1]])
         @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['planning']['p2'], 'assessment_label' => trans('imet-core::v1_common.assessment.p2')[1]])
         @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['planning']['p3'], 'assessment_label' => trans('imet-core::v1_common.assessment.p3')[1]])
@@ -49,7 +49,7 @@
         @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['planning']['p6'], 'assessment_label' => trans('imet-core::v1_common.assessment.p6')[1]])
         @include('imet-core::v1.report.components.row_evaluation', [
             'assessment_value' => $assessment['planning']['avg_indicator'],
-            'assessment_label' => trans('imet-core::v1_common.indexes.planning')[1],
+            'assessment_label' => trans('imet-core::common.indexes.planning')[1],
             'additional_classes' => 'avg_index'
         ])
         <td></td>
@@ -57,7 +57,7 @@
 
     <!-- inputs -->
     <tr>
-        <th>@lang('imet-core::v1_common.steps_eval.inputs')</th>
+        <th>@lang('imet-core::common.steps_eval.inputs')</th>
         @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['inputs']['i1'], 'assessment_label' => trans('imet-core::v1_common.assessment.i1')[1]])
         @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['inputs']['i2'], 'assessment_label' => trans('imet-core::v1_common.assessment.i2')[1]])
         @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['inputs']['i3'], 'assessment_label' => trans('imet-core::v1_common.assessment.i3')[1]])
@@ -65,7 +65,7 @@
         @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['inputs']['i5'], 'assessment_label' => trans('imet-core::v1_common.assessment.i5')[1]])
         @include('imet-core::v1.report.components.row_evaluation', [
             'assessment_value' => $assessment['inputs']['avg_indicator'],
-            'assessment_label' => trans('imet-core::v1_common.indexes.inputs')[1],
+            'assessment_label' => trans('imet-core::common.indexes.inputs')[1],
             'additional_classes' => 'avg_index'
         ])
         <td colspan="2"></td>
@@ -73,7 +73,7 @@
 
        <!-- process -->
        <tr>
-           <th rowspan="7">@lang('imet-core::v1_common.steps_eval.process')</th>
+           <th rowspan="7">@lang('imet-core::common.steps_eval.process')</th>
            @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr1_6'], 'assessment_label' => trans('imet-core::v1_common.assessment.pr1_6')[1]])
            @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr7_10'], 'assessment_label' => trans('imet-core::v1_common.assessment.pr7_10')[1]])
            @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr11_13'], 'assessment_label' => trans('imet-core::v1_common.assessment.pr11_13')[1]])
@@ -82,7 +82,7 @@
            @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr18_19'], 'assessment_label' => trans('imet-core::v1_common.assessment.pr18_19')[1]])
            @include('imet-core::v1.report.components.row_evaluation', [
                'assessment_value' => $assessment['process']['avg_indicator'],
-               'assessment_label' => trans('imet-core::v1_common.indexes.process')[1],
+               'assessment_label' => trans('imet-core::common.indexes.process')[1],
                'additional_classes' => 'avg_index'
            ])
            <td></td>
@@ -162,13 +162,13 @@
 
        <!-- outputs -->
        <tr>
-           <th>@lang('imet-core::v1_common.steps_eval.outputs')</th>
+           <th>@lang('imet-core::common.steps_eval.outputs')</th>
            @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['outputs']['op1'], 'assessment_label' => trans('imet-core::v2_common.assessment.op1')[1]])
            @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['outputs']['op2'], 'assessment_label' => trans('imet-core::v2_common.assessment.op2')[1]])
            @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['outputs']['op3'], 'assessment_label' => trans('imet-core::v2_common.assessment.op3')[1]])
            @include('imet-core::v1.report.components.row_evaluation', [
                'assessment_value' => $assessment['outputs']['avg_indicator'],
-               'assessment_label' => trans('imet-core::v1_common.indexes.outputs'),
+               'assessment_label' => trans('imet-core::common.indexes.outputs'),
                'additional_classes' => 'avg_index'
            ])
            <td colspan="4"></td>
@@ -176,13 +176,13 @@
 
        <!-- outcomes -->
        <tr>
-           <th>@lang('imet-core::v1_common.steps_eval.outcomes')</th>
+           <th>@lang('imet-core::common.steps_eval.outcomes')</th>
            @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['outcomes']['oc1'], 'assessment_label' => trans('imet-core::v2_common.assessment.oc1')[1]])
            @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['outcomes']['oc2'], 'assessment_label' => trans('imet-core::v2_common.assessment.oc2')[1]])
            @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['outcomes']['oc3'], 'assessment_label' => trans('imet-core::v2_common.assessment.oc3')[1]])
            @include('imet-core::v1.report.components.row_evaluation', [
                'assessment_value' => $assessment['outcomes']['avg_indicator'],
-               'assessment_label' => trans('imet-core::v1_common.indexes.outcomes'),
+               'assessment_label' => trans('imet-core::common.indexes.outcomes'),
                'additional_classes' => 'avg_index'
            ])
            <td colspan="4"></td>

@@ -15,17 +15,7 @@ $url = URL::route('imet-core::scaling_up_index');
 
 @extends('layouts.admin')
 
-@section('admin_breadcrumbs')
-    @include('modular-forms::page.breadcrumbs', ['links' => [
-        route('imet-core::index') => trans('imet-core::common.imet_short')
-    ]])
-@endsection
-
-@if(!is_imet_environment())
-@section('admin_page_title')
-    @lang('imet-core::common.imet')
-@endsection
-@endif
+@include('imet-core::components.breadcrumbs_and_page_title')
 
 @section('content')
 
@@ -138,20 +128,20 @@ $url = URL::route('imet-core::scaling_up_index');
 
                     {{-- Show --}}
                     <span v-if="item.version==='{{ Imet::IMET_V1 }}'">
-                        @include('imet-core::components.button_show', ['version' => Imet::IMET_V1])
+                        @include('imet-core::components.buttons.show', ['version' => Imet::IMET_V1])
                     </span>
                     <span v-else-if="item.version==='{{ Imet::IMET_V2 }}'">
-                        @include('imet-core::components.button_show', ['version' => Imet::IMET_V2])
+                        @include('imet-core::components.buttons.show', ['version' => Imet::IMET_V2])
                     </span>
 
                     @can('edit', \AndreaMarelli\ImetCore\Models\Imet\Imet::class)
 
                         {{-- Edit --}}
                         <span v-if="item.version==='{{ Imet::IMET_V1 }}'">
-                            @include('imet-core::components.button_edit', ['version' => Imet::IMET_V1])
+                            @include('imet-core::components.buttons.edit', ['version' => Imet::IMET_V1])
                         </span>
                         <span v-else-if="item.version==='{{ Imet::IMET_V2 }}'">
-                            @include('imet-core::components.button_edit', ['version' => Imet::IMET_V2])
+                            @include('imet-core::components.buttons.edit', ['version' => Imet::IMET_V2])
                         </span>
 
                     @endif

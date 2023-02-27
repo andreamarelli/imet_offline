@@ -67,9 +67,9 @@ trait Overall
     {
         $api = [];
         $labels = [
-            'process' => trans('imet-core::v2_common.steps_eval.process'),
-            'context_planning_inputs' => trans('imet-core::v2_common.steps_eval.context') . ", " . trans('imet-core::v2_common.steps_eval.planning') . ", " . trans('imet-core::v2_common.steps_eval.inputs'),
-            'outcomes_outputs' => trans('imet-core::v2_common.steps_eval.outcomes') . ", " . trans('imet-core::v2_common.steps_eval.outputs')
+            'process' => trans('imet-core::common.steps_eval.process'),
+            'context_planning_inputs' => trans('imet-core::common.steps_eval.context') . ", " . trans('imet-core::common.steps_eval.planning') . ", " . trans('imet-core::common.steps_eval.inputs'),
+            'outcomes_outputs' => trans('imet-core::common.steps_eval.outcomes') . ", " . trans('imet-core::common.steps_eval.outputs')
         ];
 
         $assessments = Common::get_assessments($items);
@@ -97,13 +97,13 @@ trait Overall
     {
         $api = [];
         $labels = [
-            'context' => trans('imet-core::v2_common.steps_eval.context'),
-            'outcomes' => trans('imet-core::v2_common.steps_eval.outcomes'),
-            'outputs' => trans('imet-core::v2_common.steps_eval.outputs'),
-            'process' => trans('imet-core::v2_common.steps_eval.process'),
-            'inputs' => trans('imet-core::v2_common.steps_eval.inputs'),
-            'planning' => trans('imet-core::v2_common.steps_eval.planning'),
-            'imet_index' => trans('imet-core::v2_common.indexes.imet')
+            'context' => trans('imet-core::common.steps_eval.context'),
+            'outcomes' => trans('imet-core::common.steps_eval.outcomes'),
+            'outputs' => trans('imet-core::common.steps_eval.outputs'),
+            'process' => trans('imet-core::common.steps_eval.process'),
+            'inputs' => trans('imet-core::common.steps_eval.inputs'),
+            'planning' => trans('imet-core::common.steps_eval.planning'),
+            'imet_index' => trans('imet-core::common.indexes.imet')
         ];
 
         $assessments = Common::get_assessments($items);

@@ -100,7 +100,7 @@ class Assessment_db
     // #### REPLACED ################
     public static function radar_assessment($item, $abbreviations = true)
     {
-        $stats = static::assessment($item, 'global', true);
+        $stats = static::assessment($item, 'global');
         $values = [
             $stats->original["context"],
             $stats->original["planning"],
@@ -121,23 +121,23 @@ class Assessment_db
             Imet::IMET_V1 => [
                 'abbreviations' => ['C', 'P', 'I', 'PR', 'R', 'EI'],
                 'full' => [
-                    trans('imet-core::v1_common.steps_eval.context'),
-                    trans('imet-core::v1_common.steps_eval.planning'),
-                    trans('imet-core::v1_common.steps_eval.inputs'),
-                    trans('imet-core::v1_common.steps_eval.process'),
-                    trans('imet-core::v1_common.steps_eval.outputs'),
-                    trans('imet-core::v1_common.steps_eval.outcomes'),
+                    trans('imet-core::common.steps_eval.context'),
+                    trans('imet-core::common.steps_eval.planning'),
+                    trans('imet-core::common.steps_eval.inputs'),
+                    trans('imet-core::common.steps_eval.process'),
+                    trans('imet-core::common.steps_eval.outputs'),
+                    trans('imet-core::common.steps_eval.outcomes'),
                 ]
             ],
             Imet::IMET_V2 => [
                 'abbreviations' => ['C', 'P', 'I', 'PR', 'OP', 'OC'],
                 'full' => [
-                    trans('imet-core::v2_common.steps_eval.context'),
-                    trans('imet-core::v2_common.steps_eval.planning'),
-                    trans('imet-core::v2_common.steps_eval.inputs'),
-                    trans('imet-core::v2_common.steps_eval.process'),
-                    trans('imet-core::v2_common.steps_eval.outputs'),
-                    trans('imet-core::v2_common.steps_eval.outcomes'),
+                    trans('imet-core::common.steps_eval.context'),
+                    trans('imet-core::common.steps_eval.planning'),
+                    trans('imet-core::common.steps_eval.inputs'),
+                    trans('imet-core::common.steps_eval.process'),
+                    trans('imet-core::common.steps_eval.outputs'),
+                    trans('imet-core::common.steps_eval.outcomes'),
                 ]
             ],
         ];

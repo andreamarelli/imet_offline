@@ -5,13 +5,6 @@ return [
     'management'        => 'Gestão do IMET (v2 - Consolidado)',
     'v2' => 'v2 - Consolidado',
 
-    'indicator'     => 'Indicador',
-    'methodology'   => 'Questão de Avaliação',
-    'criteria'      => 'Classificação',
-
-    'terrestrial' => 'terrestre',
-    'marine' => 'marítima e costeira',
-
     'steps' => [
         'general_info'          => 'Informações gerais sobre a área protegida',
         'areas'                 => 'Áreas, limites e índice de forma, nível de controlo',
@@ -22,28 +15,6 @@ return [
         'ecosystem_services'    => 'Serviços de Ecossistema e dependência da comunidade',
         'objectives'            => 'Objectivos e Gestão',
         'cross_analysis'  => 'Cross Analysis',
-    ],
-
-    'steps_eval' => [
-        'general_info'              => 'Informacao Geral',
-        'context'                   => 'Contexto de Gestão',
-        'planning'                  => 'Planeamento',
-        'inputs'                    => 'Recursos',
-        'process'                   => 'Procesos',
-        'outputs'                   => 'Produtos',
-        'outcomes'                  => 'Resultados',
-        'objectives'                => 'Objectivos',
-        'management_effectiveness'  => 'Efectividade de Gestão',
-    ],
-
-    'indexes' => [
-        'imet'        => 'IMET index',
-        'context'     => 'Contexto index',
-        'planning'    => 'Plaeamento index',
-        'inputs'      => 'Recursos index',
-        'process'     => 'Processo index',
-        'outputs'     => 'Produtos index',
-        'outcomes'    => 'Resultados index',
     ],
 
     'assessment' => [

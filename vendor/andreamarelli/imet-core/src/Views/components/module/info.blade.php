@@ -7,9 +7,10 @@
 @if(\Illuminate\Support\Str::startsWith($definitions['module_key'], 'imet__v1'))
     @include('imet-core::v1.info', compact('definitions'))
 
-{{-- Custom view for IMET v2 --}}
-@elseif(\Illuminate\Support\Str::startsWith($definitions['module_key'], 'imet__v2'))
-    @include('imet-core::v2.info', compact('definitions'))
+{{-- Custom view for IMET v2 or OECM --}}
+@elseif(\Illuminate\Support\Str::startsWith($definitions['module_key'], 'imet__v2')
+    || \Illuminate\Support\Str::startsWith($definitions['module_key'], 'imet__oecm'))
+    @include('imet-core::components.info', compact('definitions'))
 
 @elseif($definitions['module_info']!==null)
 

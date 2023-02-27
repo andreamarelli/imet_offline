@@ -3,20 +3,28 @@
 namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\DB;
+
 use function response;
 
 trait Assessment
 {
 
-    public static function assessment($item, string $step = 'global', bool $labels= false): JsonResponse
+    public static function assessment($item, string $step = 'global'): JsonResponse
     {
         $stats = Imet::getVersion($item)===Imet::IMET_V1
             ? V1ToV2StatisticsService::get_assessment($item, $step)
             : V2StatisticsService::get_assessment($item, $step);
+
+        return response()->json($stats);
+    }
+
+    public static function assessment_oecm($item, string $step = 'global'): JsonResponse
+    {
+        $stats = OEMCStatisticsService::get_assessment($item, $step);
 
         return response()->json($stats);
     }

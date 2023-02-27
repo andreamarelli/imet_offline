@@ -7,6 +7,10 @@ if($item instanceof \Illuminate\Database\Eloquent\Model){
     $modal_id = 'id="delete_modal_'. $item->getKey().'"';
     $modal_target = 'data-target="#delete_modal_'. $item->getKey().'"';
     $action = 'action="'.action([$controller, 'destroy'], [$item->getKey()]).'"';
+} else if(is_int($item)){
+    $modal_id = 'id="delete_modal_'. $item.'"';
+    $modal_target = 'data-target="#delete_modal_'. $item.'"';
+    $action = 'action="'.action([$controller, 'destroy'], [$item]).'"';
 } else {
     $vue_item = $item ?? 'item.id';
     $modal_id = ':id="\'delete_modal_\' + ' . $vue_item . '"';

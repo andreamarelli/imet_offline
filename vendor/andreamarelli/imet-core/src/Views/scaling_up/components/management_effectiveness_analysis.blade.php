@@ -8,37 +8,37 @@
                 <div class="align-items-center">
                     <div class="row mb-3">
                         <div class="col-sm">
-                            <h5>@lang('imet-core::v2_common.steps_eval.context')</h5>
+                            <h5>@lang('imet-core::common.steps_eval.context')</h5>
                             <editor></editor>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm">
-                            <h5>@lang('imet-core::v2_common.steps_eval.planning')</h5>
+                            <h5>@lang('imet-core::common.steps_eval.planning')</h5>
                             <editor></editor>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm">
-                            <h5>@lang('imet-core::v2_common.steps_eval.inputs')</h5>
+                            <h5>@lang('imet-core::common.steps_eval.inputs')</h5>
                             <editor></editor>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm">
-                            <h5>@lang('imet-core::v2_common.steps_eval.process')</h5>
+                            <h5>@lang('imet-core::common.steps_eval.process')</h5>
                             <editor></editor>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm">
-                            <h5>@lang('imet-core::v2_common.steps_eval.outputs')</h5>
+                            <h5>@lang('imet-core::common.steps_eval.outputs')</h5>
                             <editor></editor>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm">
-                            <h5>@lang('imet-core::v2_common.steps_eval.outcomes')</h5>
+                            <h5>@lang('imet-core::common.steps_eval.outcomes')</h5>
                             <editor></editor>
                         </div>
                     </div>

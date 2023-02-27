@@ -10,10 +10,9 @@ use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
-use AndreaMarelli\ModularForms\Controllers\FormController as BaseFormController;
 use Illuminate\Http\Request;
 
-class DevStatisticsController extends BaseFormController
+class DevStatisticsController extends __Controller
 {
 
     public function index(Request $request)

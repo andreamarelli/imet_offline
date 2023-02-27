@@ -8,7 +8,7 @@
     <!-- context -->
     <tr>
         <th rowspan="2">
-            @lang('imet-core::v2_common.steps_eval.context')
+            @lang('imet-core::common.steps_eval.context')
             <h4>
                 <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['context']['avg_indicator'], 'badge') !!}>{{ $assessment['context']['avg_indicator'] }}</div>
             </h4>
@@ -40,7 +40,7 @@
     <!-- planning -->
     <tr>
         <th>
-            @lang('imet-core::v2_common.steps_eval.planning')
+            @lang('imet-core::common.steps_eval.planning')
             <h4>
                 <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['planning']['avg_indicator'], 'badge') !!}>{{ $assessment['planning']['avg_indicator'] }}</div>
             </h4>
@@ -57,7 +57,7 @@
     <!-- inputs -->
     <tr>
         <th>
-            @lang('imet-core::v2_common.steps_eval.inputs')
+            @lang('imet-core::common.steps_eval.inputs')
             <h4>
                 <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['inputs']['avg_indicator'], 'badge') !!}>{{ $assessment['inputs']['avg_indicator'] }}</div>
             </h4>
@@ -74,7 +74,7 @@
     <!-- process -->
     <tr>
         <th rowspan="7">
-            @lang('imet-core::v2_common.steps_eval.process')
+            @lang('imet-core::common.steps_eval.process')
             <h4>
                 <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['process']['avg_indicator'], 'badge') !!}>{{ $assessment['process']['avg_indicator'] }}</div>
             </h4>
@@ -163,7 +163,7 @@
     <!-- outputs -->
     <tr>
         <th>
-            @lang('imet-core::v2_common.steps_eval.outputs')
+            @lang('imet-core::common.steps_eval.outputs')
             <h4>
                 <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['outputs']['avg_indicator'], 'badge') !!}>{{ $assessment['outputs']['avg_indicator'] }}</div>
             </h4>
@@ -178,7 +178,7 @@
     <!-- outcomes -->
     <tr>
         <th>
-            @lang('imet-core::v2_common.steps_eval.outcomes')
+            @lang('imet-core::common.steps_eval.outcomes')
             <h4>
                 <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['outcomes']['avg_indicator'], 'badge') !!}>{{ $assessment['outcomes']['avg_indicator'] }}</div>
             </h4>

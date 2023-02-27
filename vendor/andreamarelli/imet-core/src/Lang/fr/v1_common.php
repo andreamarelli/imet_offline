@@ -22,27 +22,6 @@ return [
         'objectives'            => 'Objectifs et Gestion',
     ],
 
-    'steps_eval' => [
-        'general_info'              => 'Informations générales',
-        'context'                   => 'Contexte de gestion',
-        'planning'                  => 'Planification',
-        'inputs'                    => 'Intrants',
-        'process'                   => 'Processus',
-        'outputs'                   => 'Resultats',
-        'outcomes'                  => 'Effects et Impacts',
-        'management_effectiveness'  => 'Efficacité de gestion',
-    ],
-
-    'indexes' => [
-        'imet'        => 'IMET index',
-        'context'     => 'Contexte index',
-        'planning'    => 'Planification index',
-        'inputs'      => 'Intrants index',
-        'process'     => 'Processus index',
-        'outputs'     => 'Resultats index',
-        'outcomes'    => 'Effects et Impacts index',
-    ],
-
     'assessment' => [
         'ctx101' => [
             'CTX 1.0.1',

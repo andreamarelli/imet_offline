@@ -121,17 +121,16 @@ class ScalingUpAnalysisController extends __Controller
      */
     public function index(Request $request)
     {
-
         HTTP::sanitize($request, self::sanitization_rules);
 
         // set filter status
         $filter_selected = !empty(array_filter($request->except('_token')));
 
         // retrieve IMET list
-        $filtered_list = Imet::get_list($request);
-        $full_list = Imet::get_list(new Request());
-        $years = array_values($full_list->pluck('Year')->sort()->unique()->toArray());
-        $countries = ProtectedArea::getCountries()->pluck('name', 'iso3')->sort()->unique()->toArray();
+        $filtered_list = Imet::get_assessments_list_with_extras($request);
+        $full_list = Imet::get_assessments_list(new Request(), ['country']);
+        $years = $full_list->pluck('Year')->sort()->unique()->values()->toArray();
+        $countries = $full_list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
 
         return view(static::$form_view_prefix . 'scaling_up.list', [
             'controller' => static::class,
@@ -280,7 +279,6 @@ class ScalingUpAnalysisController extends __Controller
         $custom_names = array_map(function ($v) {
             return $v->name;
         }, $custom_items);
-        // dd($custom_items);
         $custom_colors = array_map(function ($v) {
             return $v->color;
         }, $custom_items);

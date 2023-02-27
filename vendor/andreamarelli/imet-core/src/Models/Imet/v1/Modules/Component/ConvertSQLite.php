@@ -38,7 +38,7 @@ trait ConvertSQLite{
      */
     public static function identifySqlitePa($imet, $sqlite_connection): array
     {
-        // Try to retrieve WPDA
+        // Try to retrieve WDPA
         $knowledge_base = $sqlite_connection->table('knowledgebase_protectedareas')
             ->select()
             ->where('id', $imet->ProtectedAreaID)

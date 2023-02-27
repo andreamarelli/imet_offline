@@ -89,7 +89,7 @@ return [
         'select_file'       => 'sélectionner un fichier',
         'no_file_selected'  => 'aucun fichier sélectionné',
         'error'             => 'erreur de téléchargement',
-        'too_big'           => 'Fichier trop large. La taille maximale du fichier est de 50 Mo.',
+        'too_big'           => 'Fichier trop large. La taille maximale du fichier est de __maxFileSize__MiB.',
         'not_valid_filename'=> 'Le nom de fichier n\'est pas valide; seules les lettres, les chiffres, les espaces et les caractères spéciaux suivants sont autorisés: -_. & ()',
         'not_valid_format'  => 'Le format du fichier est invalide',
         'multiple_files_description' => 'Glisser-déposer pour télécharger des fichiers json/zip (maximum 10)',

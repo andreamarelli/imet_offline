@@ -27,18 +27,7 @@ if ($item->language != App::getLocale()) {
 
 @extends('layouts.admin')
 
-@section('admin_breadcrumbs')
-    @include('modular-forms::page.breadcrumbs', ['links' => [
-        route('imet-core::index') => trans('imet-core::common.imet_short')
-    ]])
-@endsection
-
-@if(!is_imet_environment())
-    @section('admin_page_title')
-        @lang('imet-core::common.imet')
-    @endsection
-@endif
-
+@include('imet-core::components.breadcrumbs_and_page_title')
 
 @section('content')
 
@@ -116,13 +105,13 @@ if ($item->language != App::getLocale()) {
                         :show_histogram="true"></imet_charts>
                 <table id="global_scores">
                     <tr>
-                        <th>@lang('imet-core::v2_common.steps_eval.context')</th>
-                        <th>@lang('imet-core::v2_common.steps_eval.planning')</th>
-                        <th>@lang('imet-core::v2_common.steps_eval.inputs')</th>
-                        <th>@lang('imet-core::v2_common.steps_eval.process')</th>
-                        <th>@lang('imet-core::v2_common.steps_eval.outputs')</th>
-                        <th>@lang('imet-core::v2_common.steps_eval.outcomes')</th>
-                        <th>@lang('imet-core::v2_common.indexes.imet')</th>
+                        <th>@lang('imet-core::common.steps_eval.context')</th>
+                        <th>@lang('imet-core::common.steps_eval.planning')</th>
+                        <th>@lang('imet-core::common.steps_eval.inputs')</th>
+                        <th>@lang('imet-core::common.steps_eval.process')</th>
+                        <th>@lang('imet-core::common.steps_eval.outputs')</th>
+                        <th>@lang('imet-core::common.steps_eval.outcomes')</th>
+                        <th>@lang('imet-core::common.indexes.imet')</th>
                     </tr>
                     <tr>
                         <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['context']) !!} >{{ $assessment['global']['context'] }}</td>
@@ -282,7 +271,7 @@ if ($item->language != App::getLocale()) {
                 {{-- Save --}}
                 <div class="standalone" v-show=status==='changed'>
                     <form id="imet_report_form" method="post"
-                          action="{{ route('imet-core::v2_report_update', [$item->getKey()]) }}"
+                          action="{{ route(\AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::ROUTE_PREFIX . 'report_update', [$item->getKey()]) }}"
                           style="display: inline-block;">
                         @method('PATCH')
                         @csrf
@@ -440,7 +429,7 @@ if ($item->language != App::getLocale()) {
                     this.error = false;
                     window.axios({
                         method: 'post',
-                        url: '{{ route('imet-core::v2_report_update', ['item' => $item->getKey()]) }}',
+                        url: '{{ route(\AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::ROUTE_PREFIX . 'report_update', ['item' => $item->getKey()]) }}',
                         data: {
                             _token: window.Laravel.csrfToken,
                             _method: 'PATCH',

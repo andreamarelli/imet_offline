@@ -90,6 +90,10 @@
                 type: [Number, String],
                 default: null
             },
+            version: {
+                type: String,
+                default: null
+            },
             input_data:{
                 type: [Object],
                 default: () => null
@@ -141,10 +145,6 @@
 
         computed: {
 
-            version(){
-                return this.api_data!==null ? this.api_data.version : null;
-            },
-
             values(){
                 let _this = this;
                 let values = [];
@@ -187,8 +187,13 @@
             retrieve_api: function () {
                 let _this = this;
                 if(_this.form_id!==null){
+
+                    let url = _this.version === 'oecm'
+                      ? window.imet_routes.assessment_oecm
+                      : window.imet_routes.assessment;
+
                     window.axios({
-                        url: window.imet_routes.assessment.replace('__id__', _this.form_id),
+                        url: url.replace('__id__', _this.form_id),
                         type: "get",
                     })
                         .then(function (response) {

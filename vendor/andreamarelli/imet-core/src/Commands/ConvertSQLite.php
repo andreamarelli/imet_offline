@@ -2,7 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Commands;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller;
+use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\Type\Chars;

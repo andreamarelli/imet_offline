@@ -35,37 +35,13 @@ return [
         'module_info' => 'Setting objectives associated with <b>he maintenance of ecosystem services and the dependence on these services of communities</b> in the protected area<br /> The objectives and benchmarks to be entered in the table below are to be used for managing and monitoring activities in the protected area and, more specifically, for the planning, resource (input) mobilisation and process phases, and in identifying outputs and outcome objectives'
     ],
 
-    'ResponsablesInterviewers' => [
-        'title' => 'Responsibility for filling the form: Management team and partners',
-        'fields' => [
-            'Name'          => 'name',
-            'Institution'   => 'institution',
-            'Function'      => 'function',
-            'Contacts'      => 'contacts',
-            'EncodingDate'  => 'Date of compilation',
-            'EncodingDuration' => 'Time taken for evaluation (hrs)'
-        ]
-    ],
-
-    'ResponsablesInterviewees' => [
-        'title' => 'Responsibility for completing the form: External support for analysis and management evaluation',
-        'fields' => [
-            'Name' => 'Name',
-            'Institution' => 'Institution',
-            'Function' => 'Function',
-            'Contacts' => 'Contacts',
-            'EncodingDate' => 'Date of compilation',
-            'EncodingDuration' => 'Time taken for evaluation (hrs)',
-        ]
-    ],
-
     'GeneralInfo' => [
         'title' => 'Basic data',
         'fields' => [
             'CompleteName' => 'Full name of the protected area',
-            'CompleteNameWDPA' => 'WPDA site name (from https://www.protectedplanet.net/)',
+            'CompleteNameWDPA' => 'WDPA site name (from https://www.protectedplanet.net/)',
             'UsedName' => 'Name by which referred to',
-            'WDPA' => 'WPDA site code  WDPA',
+            'WDPA' => 'WDPA site code  WDPA',
             'NationalCategory' => 'National category',
             'IUCNCategory1' => 'IUCN category(ies) (protected areas with more classifications for internal zoning) (1st category)',
             'IUCNCategory2' => '2nd UICN category',
@@ -179,7 +155,7 @@ return [
         'title' => 'Land areas of the protected area and the conservation context',
         'fields' => [
             'AdministrativeArea' => 'Administrative land area',
-            'WDPAArea' => 'WPDA area',
+            'WDPAArea' => 'WDPA area',
             'GISArea' => 'Actual land area (GIS for the park or the authority responsible for protected areas) corresponding to the uploaded file',
             'TerrestrialArea' => 'Mixed protected areas = terrestrial and marine area (the coastal zone must be included in the terrestrial protected area)',
             'MarineArea' => 'Mixed protected areas: Marine area',

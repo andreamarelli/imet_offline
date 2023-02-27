@@ -2,45 +2,6 @@
 
 return [
 
-    'Create' => [
-        'title' => 'Créer un nouveau IMET (WDPA)',
-        'fields' => [
-            'version' => 'version',
-            'Year' => 'Année sujette à évaluation',
-            'wdpa_id' => 'aire protégée',
-            'language' => 'langue',
-            'prefill_prev_year' => 'préremplir avec l\'année précédente',
-        ]
-    ],
-
-    'CreateNonWdpa' => [
-        'title' => 'Créer un nouveau IMET (non-WDPA)',
-        'fields' => [
-            'version' => 'version IMET',
-            'Year' => 'Année sujette à évaluation',
-            'wdpa_id' => 'aire protégée',
-            'language' => 'langue',
-            'prefill_prev_year' => 'préremplir avec l\'année précédente',
-            'pa_def' => 'définition',
-            'name' => 'nom fourni par l’exploitant',
-            'origin_name' => 'nom dans la langue d’origine',
-            'designation' => 'nom de la désignation (ex. réserve, sanctuaire, etc.)',
-            'designation_eng' => 'désignation obligatoire en Anglais',
-            'designation_type' => 'type de désignation',
-            'marine' => 'typologie',
-            'rep_m_area' => 'surface de l’aire protégée conservée marine [km<sup>2</sup>]',
-            'rep_area' => 'surface de l’aire protégée conservée [km<sup>2</sup>]',
-            'status' => 'statut',
-            'ownership_type' => 'Type de propriété',
-            'status_year' => 'année de promulgation du statut',
-            'country' => 'pays',
-        ],
-
-        'allowed_international' => 'Valeurs autorisées pour les désignations de niveau international',
-        'allowed_regional' => 'Valeurs autorisées pour les désignations de niveau régional',
-        'allowed_national' => 'Pas de valeurs fixes pour les protégées - conservées désignées au niveau national',
-    ],
-
     'Objectives' => [
         'title' => 'Détermination des objectifs',
         'fields' => [
@@ -73,30 +34,6 @@ return [
         'module_info' => 'Établir et décrire les objectifs relatifs aux <b> services écosystémiques et à la dépendance des collectivités</b> de l’aire protégée envers ces services<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
 
-    'ResponsablesInterviewers' => [
-        'title' => 'Responsables de la compilation du fichier: Équipe de gestion et partenaires',
-        'fields' => [
-            'Name'          => 'Nom',
-            'Institution'   => 'Organisation',
-            'Function'      => 'Fonction',
-            'Contacts'      => 'Coordonnées de contact',
-            'EncodingDate'  => 'Date de compilation',
-            'EncodingDuration' => 'Durée de l\'évaluation (h)'
-        ]
-    ],
-
-    'ResponsablesInterviewees' => [
-        'title' => 'Responsables de la compilation du formulaire: Support extérieur à l\'analyse et à l\'évaluation',
-        'fields' => [
-            'Name' => 'Nom',
-            'Institution' => 'Organisation',
-            'Function' => 'Fonction',
-            'Contacts' => 'Coordonnées de contact',
-            'EncodingDate' => 'Date de compilation',
-            'EncodingDuration' => 'Durée de l\'évaluation (h)',
-        ]
-    ],
-
     'GeneralInfo' => [
         'title' => 'Données de base',
         'fields' => [
@@ -120,35 +57,35 @@ return [
             'ReferenceTextDocument' => '',
             'ReferenceTextValues' => 'Quelle est l’importance de l’aire protégée et les principales valeurs pour lesquelles elle a été désignée? (Fournir une liste, puis une brève description)',
         ],
-        'module_info' => '<b>Introduction à la typologie</b>: Introduction à la typologie: IMET identifie trois catégories 
-            d’aires protégées: (1) Terrestres (2) Marines et côtières (3) OECM — Autres Mesures de Conservation Efficaces 
-            ou AMCE. Dans la section Gouvernance (CTX 1.2), vous pouvez affiner la typologie de gestion et de gouvernance 
-            de ces trois typologies d’aires protégées. Si vous analysez une aire protégée et conservée (APC), vous pouvez 
-            préciser le contexte territorial dans le CTX 2.4. Aire protégée (définition générale): Une aire protégée est 
-            un espace géographique clairement défini, reconnu, dédié et géré, par des moyens légaux ou d’autres moyens efficaces, 
-            pour réaliser la conservation à long terme de la nature avec les services écosystémiques et les valeurs culturelles 
+        'module_info' => '<b>Introduction à la typologie</b>: Introduction à la typologie: IMET identifie trois catégories
+            d’aires protégées: (1) Terrestres (2) Marines et côtières (3) OECM — Autres Mesures de Conservation Efficaces
+            ou AMCE. Dans la section Gouvernance (CTX 1.2), vous pouvez affiner la typologie de gestion et de gouvernance
+            de ces trois typologies d’aires protégées. Si vous analysez une aire protégée et conservée (APC), vous pouvez
+            préciser le contexte territorial dans le CTX 2.4. Aire protégée (définition générale): Une aire protégée est
+            un espace géographique clairement défini, reconnu, dédié et géré, par des moyens légaux ou d’autres moyens efficaces,
+            pour réaliser la conservation à long terme de la nature avec les services écosystémiques et les valeurs culturelles
             associées. (Définition de l’UICN 2008)',
         'type_info' => [
-            'terrestrial' => 'Une aire protégée terrestre (APT) est une portion de terre protégée par des restrictions et 
-                des lois spéciales pour la conservation de l’environnement naturel. Il peut s’agir de grandes étendues 
-                de terre réservées à la protection de la faune et de son habitat; de zones d’une grande beauté naturelle 
-                ou d’un intérêt unique; d’aires contenant des formes rares de vie végétale et animale; de zones représentant 
-                une formation géologique inhabituelle; de lieux d’intérêt historique et préhistorique; d’aires contenant des 
-                écosystèmes d’une importance particulière pour les recherches et les études scientifiques; et de zones qui 
+            'terrestrial' => 'Une aire protégée terrestre (APT) est une portion de terre protégée par des restrictions et
+                des lois spéciales pour la conservation de l’environnement naturel. Il peut s’agir de grandes étendues
+                de terre réservées à la protection de la faune et de son habitat; de zones d’une grande beauté naturelle
+                ou d’un intérêt unique; d’aires contenant des formes rares de vie végétale et animale; de zones représentant
+                une formation géologique inhabituelle; de lieux d’intérêt historique et préhistorique; d’aires contenant des
+                écosystèmes d’une importance particulière pour les recherches et les études scientifiques; et de zones qui
                 préservent les besoins de la biosphère. (GEMET- DODERO/WPR) (nous vérifions pour une description de la CBD)',
-            'marine_and_coastal' => 'Une aire marine et côtière protégée (AMP ou AMPC) est «une aire située à l’intérieur 
-                ou à proximité du milieu marin, ainsi que ses eaux surjacentes et la flore, la faune et les caractéristiques 
-                historiques et culturelles associées, qui a été réservée par la législation ou par d’autres moyens efficaces, 
-                y compris les aspects culturels-traditionnels, de sorte que sa biodiversité marine et/ou côtière bénéficie d’un 
+            'marine_and_coastal' => 'Une aire marine et côtière protégée (AMP ou AMPC) est «une aire située à l’intérieur
+                ou à proximité du milieu marin, ainsi que ses eaux surjacentes et la flore, la faune et les caractéristiques
+                historiques et culturelles associées, qui a été réservée par la législation ou par d’autres moyens efficaces,
+                y compris les aspects culturels-traditionnels, de sorte que sa biodiversité marine et/ou côtière bénéficie d’un
                 niveau de protection plus élevé que son environnement» (Convention sur la diversité biologique — CDB)',
-            'oecm' => '(OECM ou AMCE Autres Mesures de Conservation Efficaces ou AMCE) Une zone géographiquement définie autre 
-                qu’une aire protégée, qui est régie et gérée de manière à obtenir des résultats positifs et durables à long 
-                terme pour la conservation in situ de la biodiversité, avec les fonctions et services écosystémiques associés 
-                et, le cas échéant, les valeurs culturelles, spirituelles, socio-économiques et autres valeurs pertinentes au 
+            'oecm' => '(OECM ou AMCE Autres Mesures de Conservation Efficaces ou AMCE) Une zone géographiquement définie autre
+                qu’une aire protégée, qui est régie et gérée de manière à obtenir des résultats positifs et durables à long
+                terme pour la conservation in situ de la biodiversité, avec les fonctions et services écosystémiques associés
+                et, le cas échéant, les valeurs culturelles, spirituelles, socio-économiques et autres valeurs pertinentes au
                 niveau local «(CBD, 2018)',
-            'icca' => 'Territoires et aires conservés par les peuples autochtones et les communautés locales (ICCA) Un écosystème 
-                naturel et/ou modifié, contenant des valeurs importantes de biodiversité, des avantages écologiques et des valeurs 
-                culturelles, conservé volontairement par les peuples autochtones et les communautés locales, par le biais du 
+            'icca' => 'Territoires et aires conservés par les peuples autochtones et les communautés locales (ICCA) Un écosystème
+                naturel et/ou modifié, contenant des valeurs importantes de biodiversité, des avantages écologiques et des valeurs
+                culturelles, conservé volontairement par les peuples autochtones et les communautés locales, par le biais du
                 droit coutumier ou d’autres moyens efficaces (CBD — Reconnaissance et soutien des ICCA)'
         ]
     ],
@@ -304,9 +241,9 @@ return [
         ],
         'info' => [
             'spillover_eval' =>
-                'Le mouvement net des individus des réserves marines (également connues sous le nom d’aires marines protégées 
-                sans prélèvement) vers les zones de pêche restantes est connu sous le nom de spill-over. Le débordement 
-                peut contribuer à la réduction de la pauvreté des populations, bien que son effet soit modulé par le nombre 
+                'Le mouvement net des individus des réserves marines (également connues sous le nom d’aires marines protégées
+                sans prélèvement) vers les zones de pêche restantes est connu sous le nom de spill-over. Le débordement
+                peut contribuer à la réduction de la pauvreté des populations, bien que son effet soit modulé par le nombre
                 de pêcheurs et l’intensité de la pêche. En général:
                 <ul>
                     <li>Fort effet positif de débordement (spill-over) lorsque la pêche est mal gérée</li>
@@ -337,16 +274,16 @@ return [
             'BenefitsOfEcosystemServicesArea' => 'Zone qui bénéficie des services écosystémiques fournis par l’aire protégée',
             'SpillOverArea' => 'Zone de débordement (spill-over)',
         ],
-        'module_info' => '<b>Landscape</b>: Linked governance and management of a protected area and its surrounding territories 
-          can contribute to biodiversity conservation and climate resilience, maintenance of natural resources and ecosystem 
+        'module_info' => '<b>Landscape</b>: Linked governance and management of a protected area and its surrounding territories
+          can contribute to biodiversity conservation and climate resilience, maintenance of natural resources and ecosystem
           services that ensure sustainable development of local communities. <br />
-          <b>Protected and Conserved Areas (PCAs)</b>: They are one of the most effective tools for preventing loss of 
-          natural ecosystems and species, as well as to achieve long-term sustainable development, including Aichi targets 
-          11 and 12 and several Sustainable Development Goals (SDGs). In some regions, PCAs are the center of economic 
-          development, through tourism, sustainable use of resources and as sources of freshwater. PCAs also contribute 
-          to food security through maintenance of the ecosystem services that support agriculture, by protecting resources 
-          essential for crop breeding programmes, and by providing space for traditional biodiversity-friendly farming and 
-          grazing systems. PCAs also have a major role to play in climate resilience, both by storing and sequestering carbon, 
+          <b>Protected and Conserved Areas (PCAs)</b>: They are one of the most effective tools for preventing loss of
+          natural ecosystems and species, as well as to achieve long-term sustainable development, including Aichi targets
+          11 and 12 and several Sustainable Development Goals (SDGs). In some regions, PCAs are the center of economic
+          development, through tourism, sustainable use of resources and as sources of freshwater. PCAs also contribute
+          to food security through maintenance of the ecosystem services that support agriculture, by protecting resources
+          essential for crop breeding programmes, and by providing space for traditional biodiversity-friendly farming and
+          grazing systems. PCAs also have a major role to play in climate resilience, both by storing and sequestering carbon,
           and by ensuring that ecosystems continue to provide goods and services to human societies (WWF).',
     ],
 
@@ -512,13 +449,13 @@ return [
             'Reliability' => 'Fiabilité',
             'Comments' => 'Commentaires / Source',
         ],
-        'module_info' => 'État de conservation favorable: Selon Natura 2000, l’état de conservation des espèces est considéré 
+        'module_info' => 'État de conservation favorable: Selon Natura 2000, l’état de conservation des espèces est considéré
             comme « favorable » lorsque:
             <ul>
                 <li>les données sur la dynamique des populations de l’espèce concernée indiquent qu’elle se maintient à long terme en tant que composante viable de ses habitats naturels, et</li>
                 <li>l’aire de répartition naturelle de l’espèce n’est ni réduite ni susceptible de l’être dans un avenir prévisible, et il existe, et il existera probablement encore à long terme un habitat suffisamment vaste pour maintenir ses populations</li>
             </ul>
-            Evaluation: Évaluer, à partir de la liste des espèces supposées exister (voir les listes A de l’UICN - mammifères, 
+            Evaluation: Évaluer, à partir de la liste des espèces supposées exister (voir les listes A de l’UICN - mammifères,
             B - oiseaux et C - amphibiens), un nombre limité d’espèces clés de l’aire protégée.<br />
             <b>Types d\'espèces</b>
             <ul>
@@ -529,7 +466,7 @@ return [
             </ul>',
         'validation_min3' => 'Veuillez encoder au moins 3 des espèces clés.',
         'warning_on_save' =>
-            'ATTENTION!!<br />Toute modification provoquera une perte complète des données dans les modules
+            'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -551,7 +488,7 @@ return [
         ],
         'module_info' =>'État de conservation favorable: Selon Natura 2000, L’état de conservation des espèces est considéré comme « favorable » lorsque:<ul><li>les données sur la dynamique des populations de l’espèce concernée indiquent qu’elle se maintient à long terme en tant que composante viable de ses habitats naturels, et</li><li>l’aire de répartition naturelle de l’espèce n’est ni réduite ni susceptible de l’être dans un avenir prévisible, et il existe, et il existera probablement encore à long terme un habitat suffisamment vaste pour maintenir ses populations</li></ul>Evaluation: Évaluer, à partir de la liste des plantes supposées exister (voir les listes mises à disposition et les informations du parc), un nombre limité d’espèces végétales clés de l’aire protégée.<br /> <b>Types d\'espèces</b> <ul> <li><b>PHA</b>: Espèce phare</li> <li><b>MEN</b>: Espèce menacée</li> <li><b>END</b>: Espèce endémique</li> <li><b>EXP</b>: Espèce exploitée</li> <li><b>INV</b>: Espèce invasive</li> <li><b>INS</b>: Espèce avec faible niveau de connaissance</li> </ul>',
         'warning_on_save' =>
-            'ATTENTION!!<br />Toute modification provoquera une perte complète des données dans les modules
+            'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -569,7 +506,7 @@ return [
         ],
         'module_info' =>'État de conservation favorable: Selon Natura 2000, l’état de conservation d’un habitat naturel est considéré comme « favorable » lorsque:<ul><li>son aire de répartition naturelle et les zones qu’il couvre à l’intérieur de cette aire sont stables ou en augmentation, et</li><li>la structure et les fonctions spécifiques qui sont nécessaires à son maintien à long terme existent et sont susceptibles de continuer à exister dans un avenir prévisible</li></ul>Sur la base de plusieurs paramètres relatifs aux habitats (externe = irremplaçabilité et internes = spécificités de l\'aire protégée), le gestionnaire détermine les spécificités des habitats terrestres et marine de l\'aire protégée qui devront faire l\'objet d\'un suivi dans le temps.<br /> <b>Note</b>: l\'évaluation des écosystemes et habitats est une discipline très complexe. La classification prévoit la division de territoire suivante: Biome, Ecorégion, Ecosystème, Habitat. Les caractéristiques de l\'habitat / valeurs peuvent être évaluées comme: <ul> <li>i) sous la menace d\'extinction (au sein de leur aire de répartition naturelle),</li> <li>ii) ayant une aire de répartition naturelle réduite,</li> <li>iii) en déclin,</li> <li>iv) un exemple exceptionnel de caractéristiques spécifiques, etc.</li> </ul> Les Caractéristiques / Valeurs des écosystèmes et habitats peuvent être estimées comme spécifique pour: <ul> <li>i) la reproduction,</li> <li>ii) la nutrition,</li> <li>iii) la protection des espèces, etc.</li> </ul>',
         'warning_on_save' =>
-            'ATTENTION!!<br />Toute modification provoquera une perte complète des données dans les modules
+            'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -822,7 +759,7 @@ return [
         ],
         'module_info' => 'Le calculateur de menaces permet de calculer les scores d’impact des menaces sur une zone protégée spécifique. En utilisant votre meilleur jugement professionnel, évaluez l’impact de la menace en exploitant cinq catégories de score: (1) Impact/ Sévérité ; (2) Ampleur/ Etendue ; (3) Durée/ Irréversibilité ; (4) Tendance ; (5) Probabilité de la menace dans le futur',
         'warning_on_save' =>
-            'ATTENTION!!<br />Toute modification provoquera une perte complète des données dans les modules
+            'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -852,7 +789,7 @@ return [
             ]
         ],
         'warning_on_save' =>
-            'ATTENTION!!<br />Toute modification provoquera une perte complète des données dans les modules
+            'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.4</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -916,7 +853,7 @@ return [
             ],
         ],
         'warning_on_save' =>
-            'ATTENTION!!<br />Toute modification provoquera une perte complète des données dans les modules
+            'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.5</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 

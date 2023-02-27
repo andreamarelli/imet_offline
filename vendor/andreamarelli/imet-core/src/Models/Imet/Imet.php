@@ -4,18 +4,18 @@ namespace AndreaMarelli\ImetCore\Models\Imet;
 
 use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
 use AndreaMarelli\ImetCore\Models\Country;
-use AndreaMarelli\ImetCore\Models\Encoder;
+use AndreaMarelli\ImetCore\Models\Imet\Encoder;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ImetCore\Models\Imet\v1;
 use AndreaMarelli\ImetCore\Models\Imet\v2;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ImetCore\Services\Statistics\V1StatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 use AndreaMarelli\ModularForms\Helpers\Type\Chars;
 use AndreaMarelli\ModularForms\Models\Form;
 use Carbon\Carbon;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Relations\hasOne;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\HigherOrderCollectionProxy;
 use Illuminate\Support\Str;
 use function session;
 
@@ -42,6 +43,7 @@ class Imet extends Form
 {
     const IMET_V1 = 'v1';
     const IMET_V2 = 'v2';
+    const IMET_OECM = 'oecm';
 
 
     protected $table = 'imet.imet_form';
@@ -57,23 +59,13 @@ class Imet extends Form
 
     /**
      * Relation to Country
-     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     * @return hasOne
      */
     public function country(): hasOne
     {
         return $this->hasOne(Country::class, 'iso3', 'Country');
     }
 
-    /**
-     * Relation to Encoder (only name)
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function encoder(): HasMany
-    {
-        return $this->hasMany(Encoder::class, $this->primaryKey, 'FormID')
-            ->select(['FormID', 'first_name', 'last_name']);
-    }
 
     /**
      * Mutator: ensure to retrieve in lowercase
@@ -86,29 +78,19 @@ class Imet extends Form
     }
 
     /**
-     * Retrieve IMET assessments' list
+     * Retrieve the IMET assessments list (clean, without statistics):  V1 & v2 merged
      *
-     * @param \Illuminate\Http\Request $request
-     * @param array $relations
-     * @return mixed
-     */
-    protected static function retrieve_list(Request $request, array $relations = [])
-    {
-        $allowed_wdpas = Role::allowedWdpas();
-
-        return static::get_list_of_protected_areas($request, $relations, $allowed_wdpas);
-    }
-
-    /**
-     *
-     * Retrieve IMET assessment's list without permission
      * @param Request $request
      * @param array $relations
-     * @param array $allowed_wdpas
+     * @param bool $only_allowed_wdpas
      * @return mixed
      */
-    protected static function get_list_of_protected_areas(Request $request, array $relations = [], array $allowed_wdpas = null)
+    public static function get_assessments_list(Request $request, array $relations = [], bool $only_allowed_wdpas = false)
     {
+        $allowed_wdpas = $only_allowed_wdpas
+            ? Role::allowedWdpas()
+            : null;
+
         $list_v1 = v1\Imet
             ::filterList($request)
             ->with($relations)
@@ -149,15 +131,16 @@ class Imet extends Form
     }
 
     /**
-     * Get IMET list for index controller
+     * Retrieve the IMET assessments list with extra information (ex. responsible, statistics, and duplicates) for INDEX controller
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return mixed
      */
-    public static function get_list(Request $request)
+    public static function get_assessments_list_with_extras(Request $request)
     {
-        $list = static::retrieve_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers']);
-        $list->map(function ($item) {
+        $hasDuplicates = static::foundDuplicates();
+        $list = static::get_assessments_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers'], true)
+            ->map(function ($item)  use ($hasDuplicates) {
 
             // Add encoders
             $item->encoders_responsibles = [
@@ -167,47 +150,34 @@ class Imet extends Form
             ];
 
             // Add radar
-            $item['assessment_radar'] = $item->version===Imet::IMET_V1
+            $item['assessment_radar'] = $item->version===static::IMET_V1
                 ? V1ToV2StatisticsService::get_radar_scores($item)
                 : V2StatisticsService::get_radar_scores($item);
+
             // Non WDPA
             if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
                 $item->wdpa_id = null;
             }
+
+            // Last IMET update
             $item['last_update'] = $item->getLastUpdate();
-            return $item;
-        });
-        $list->makeHidden(['encoder', 'responsible_interviewees', 'responsible_interviewers']);
 
-        $hasDuplicates = Imet::foundDuplicates();
-        $list->map(function ($item) use ($hasDuplicates) {
+            // has duplicates
             $item['has_duplicates'] = in_array($item->getKey(), $hasDuplicates);
+
             return $item;
-        });
+        })
+            ->makeHidden(['encoder', 'responsible_interviewees', 'responsible_interviewers']);
 
         return $list;
     }
-
-    public static function get_list_reduced(Request $request)
-    {
-        $list = static::retrieve_list($request, ['country']);
-        $list->map(
-            function (Imet $item) {
-                $item->iso2 = $item->country->iso2;
-                $item->country_name = $item->country->name;
-                return $item;
-            }
-        );
-        return $list;
-    }
-
 
     /**
      * Common search filters with wdpa
      *
      * @param Builder $query
      * @param Request $request
-     * @return Builder[]|\Illuminate\Database\Eloquent\Collection
+     * @return Builder[]|Collection
      */
     public function scopeCommonSearchWithWdpa(Builder $query, Request $request): Collection
     {
@@ -240,9 +210,9 @@ class Imet extends Form
     /**
      * Override scopeFilterList()
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param Builder $query
      * @param Request $request
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function scopeFilterList(Builder $query, Request $request): Builder
     {
@@ -265,7 +235,7 @@ class Imet extends Form
      */
     public static function checkMissingPaData()
     {
-        Imet::where('Country', null)
+        static::where('Country', null)
             ->orWhere('wdpa_id', null)
             ->orWhere('name', null)
             ->get()
@@ -306,10 +276,10 @@ class Imet extends Form
      */
     public static function getResponsibles($form_id, $version): array
     {
-        $internal = $version === Imet::IMET_V1
+        $internal = $version === static::IMET_V1
             ? v1\Modules\Context\ResponsablesInterviewers::getNames($form_id)
             : v2\Modules\Context\ResponsablesInterviewers::getNames($form_id);
-        $external = $version === Imet::IMET_V1
+        $external = $version === static::IMET_V1
             ? v1\Modules\Context\ResponsablesInterviewees::getNames($form_id)
             : v2\Modules\Context\ResponsablesInterviewees::getNames($form_id);
 
@@ -324,7 +294,7 @@ class Imet extends Form
      * Retrieve the IMET version
      *
      * @param $form_id
-     * @return \Illuminate\Support\HigherOrderCollectionProxy|mixed|string|null
+     * @return HigherOrderCollectionProxy|mixed|string|null
      */
     public static function getVersion($form_id)
     {
@@ -402,7 +372,7 @@ class Imet extends Form
      * Retrieve protected area data
      *
      * @param $wdpa_id
-     * @return \AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa|\AndreaMarelli\ImetCore\Models\ProtectedArea
+     * @return ProtectedAreaNonWdpa|ProtectedArea
      */
     public static function getProtectedArea($wdpa_id)
     {
@@ -450,57 +420,19 @@ class Imet extends Form
     }
 
     /**
-     * Extent parent method: save user as encoder
-     *
-     * @param $item
-     * @param \Illuminate\Http\Request $request
-     * @return mixed
-     * @throws \Exception
-     */
-    public static function updateModuleAndForm($item, Request $request): array
-    {
-        $return = parent::updateModuleAndForm($item, $request);
-        if ($return['status'] == 'success') {
-            (new Controller)->backup($item);
-        }
-
-        $user_info = Auth::user()->getInfo();
-        unset($user_info['country']);
-
-        // Insert encoder (if not present in the day)
-        $encoder = Encoder::where('first_name', $user_info['first_name'])
-                ->where('last_name', $user_info['last_name'])
-                ->where('FormID', $item)
-                ->whereDate(static::UPDATED_AT, Carbon::today())
-                ->first();
-        if($encoder){
-            $encoder->touch();
-        } else {
-            Encoder::create(array_merge(
-                $user_info,
-                [
-                    'FormID' => $item
-                ]
-            ));
-        }
-
-        return $return;
-    }
-
-    /**
      * Import all modules from records array
      *
      * @param $records
      * @param $formID
      * @param null $imet_version
      * @return array
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws FileNotFoundException
      */
     public static function importModules($records, $formID, $imet_version = null): array
     {
         $records = static::upgradeModules($records, $imet_version);
         $modules_imported = [];
-        /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule|\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule_Eval $module_class */
+        /** @var v2\Modules\Component\ImetModule|v2\Modules\Component\ImetModule_Eval $module_class */
         foreach (static::allModules() as $module_class) {
             if (array_key_exists($module_class::getShortClassName(), $records)) {
                 $modules_imported[] = $module_class::getShortClassName();
@@ -522,7 +454,7 @@ class Imet extends Form
     public static function upgradeModules($data, $imet_version = null): array
     {
         $upgraded_data = [];
-        /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule|\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule_Eval $module_class */
+        /** @var v2\Modules\Component\ImetModule|v2\Modules\Component\ImetModule_Eval $module_class */
         foreach (static::allModules() as $module_class) {
             if (array_key_exists($module_class::getShortClassName(), $data)) {
                 $upgraded_data[$module_class::getShortClassName()]
@@ -597,6 +529,29 @@ class Imet extends Form
     public static function getModulesKeys(): array
     {
         return array_keys(static::$modules);
+    }
+
+    /**
+     * @deprecated Replace with get_assessments_list()
+     *
+     * @param Request $request
+     * @param array $relations
+     * @return mixed
+     */
+    protected static function retrieve_list(Request $request, array $relations = [])
+    {
+        return static::get_assessments_list($request, $relations);
+    }
+
+    /**
+     * @deprecated Replace with get_assessments_list_with_extras()
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    protected static function get_list(Request $request)
+    {
+        return static::get_assessments_list_with_extras($request);
     }
 
 }

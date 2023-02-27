@@ -2,6 +2,9 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v2;
 
+use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
+use AndreaMarelli\ImetCore\Models\Imet\Encoder;
+use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialAvailableResources;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesBudgetLines;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesPartners;
@@ -9,10 +12,11 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Habitats;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewers;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
-class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
+class Imet extends BaseImetForm
 {
     public const version = 'v2';
 
@@ -77,6 +81,17 @@ class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
     ];
 
     /**
+     * Relation to Encoder (only name)
+     *
+     * @return HasMany
+     */
+    public function encoder(): HasMany
+    {
+        return $this->hasMany(Encoder::class, $this->primaryKey, 'FormID')
+            ->select(['FormID', 'first_name', 'last_name']);
+    }
+
+    /**
      * Relation to ResponsablesInterviewees
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -110,6 +125,29 @@ class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
             ->where('wdpa_id', $wdpa_id)
             ->orderBy('Year','DESC')
             ->get();
+    }
+
+    /**
+     * Extent parent method: save user as encoder
+     *
+     * @param $item
+     * @param Request $request
+     * @return mixed
+     * @throws \Exception
+     */
+    public static function updateModuleAndForm($item, Request $request): array
+    {
+        $return = parent::updateModuleAndForm($item, $request);
+        if ($return['status'] == 'success') {
+            (new Controller)->backup($item);
+        }
+
+        $user_info = Auth::user()->getInfo();
+        unset($user_info['country']);
+
+        Encoder::touchOnFormUpdate($item, $user_info);
+
+        return $return;
     }
 
     /**

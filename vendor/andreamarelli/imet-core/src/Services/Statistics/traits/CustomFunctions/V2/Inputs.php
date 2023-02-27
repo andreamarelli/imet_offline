@@ -14,31 +14,16 @@ trait Inputs
 
     protected static function score_i2($imet_id): ?float
     {
-        $functions = Staff::getModule($imet_id)
-            ->pluck('StaffCapacityAdequacy', 'Theme')
-            ->toArray();
-
-        $values = ManagementStaff::getModule($imet_id)
-            ->filter(function ($item) use($functions){
-                return in_array($item['Function'], array_keys($functions));
+        $values = Staff::getModule($imet_id)
+            ->map(function($item) {
+                return $item['StaffCapacityAdequacy'] * $item['StaffNumberAdequacy'] / 12 * 100;
             })
-            ->sortBy('Function')
-            ->groupBy('Function')
-            ->map(function($group, $key) use ($functions){
-                $sum_actual =  $group->sum('ActualPermanent');
-                $sum_actual = $sum_actual===0 ? null : $sum_actual;
-                $sum_expected =  $group->sum('ExpectedPermanent');
-                $sum_expected = $sum_expected===0 ? null : $sum_expected;
-                $ratio = $sum_actual!==null & $sum_expected!==null
-                    ? $sum_actual / $sum_expected
-                    : null;
-                return $ratio===null || $functions[$key]===null
-                    ? 0
-                    : ceil($ratio * 5 - 1) * $functions[$key];
-            });
+        ->toArray();
 
-        return $values->count()>0
-            ? round($values->sum() / (12 * $values->count()) * 100 , 2)
+        $score = static::average($values, 2);
+
+        return $score!== null ?
+            $score
             : null;
     }
 
@@ -106,8 +91,7 @@ trait Inputs
             ->map(function($record){
                 $record['Importance'] = $record['Importance']!==null
                     ? floatval($record['Importance'])
-                    : 1;
-
+                    : 0;
                 return $record;
             })
             ->pluck('Importance', 'Equipment');

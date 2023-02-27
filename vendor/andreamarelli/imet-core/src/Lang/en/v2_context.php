@@ -2,45 +2,6 @@
 
 return [
 
-    'Create' => [
-        'title' => 'Create a new IMET (WDPA)',
-        'fields' => [
-            'version' => 'IMET version',
-            'Year' => 'Year subject to evaluation',
-            'wdpa_id' => 'protected area',
-            'language' => 'language',
-            'prefill_prev_year' => 'prefill with previous year',
-        ]
-    ],
-
-    'CreateNonWdpa' => [
-        'title' => 'Create a new IMET (non-WDPA)',
-        'fields' => [
-            'version' => 'version',
-            'Year' => 'Year subject to evaluation',
-            'wdpa_id' => 'protected area',
-            'language' => 'language',
-            'prefill_prev_year' => 'prefill with previous year',
-            'pa_def' => 'definition',
-            'name' => 'name as provided by the operator',
-            'origin_name' => 'name in original language',
-            'designation' => 'name of designation (ex. reserve, sanctuary park, etc.)',
-            'designation_eng' => 'designation in English',
-            'designation_type' => 'designation type',
-            'marine' => 'typology',
-            'rep_m_area' => 'surface of the protected conserved marine area [km<sup>2</sup>]',
-            'rep_area' => 'surface of the protected conserved area [km<sup>2</sup>]',
-            'status' => 'status',
-            'ownership_type' => 'Ownership type',
-            'status_year' => 'year of the enactment',
-            'country' => 'country',
-        ],
-
-        'allowed_international' => 'Allowed values for international-level designations',
-        'allowed_regional' => 'Allowed values for regional-level designations',
-        'allowed_national' => 'No fixed values for protected areas designated at a national level',
-    ],
-
     'Objectives' => [
         'title' => 'Setting objectives',
         'fields' => [
@@ -73,29 +34,6 @@ return [
         'module_info' => 'Establish and describe objectives for <b> the ecosystem services and the dependence on these services of communities/societies</b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.2 - Generic indicator 4.2.1 for the ecosystem services for provisioning, regulation and supporting values and Criterion 4.3 - Generic indicator 4.3.1 for the ecosystem services related to cultural values'
     ],
 
-    'ResponsablesInterviewers' => [
-        'title' => 'Responsibility for filling the form: Management team and partners',
-        'fields' => [
-            'Name'          => 'name',
-            'Institution'   => 'organisation',
-            'Function'      => 'job role',
-            'Contacts'      => 'contact details',
-            'EncodingDate'  => 'Date of compilation',
-            'EncodingDuration' => 'Time taken for evaluation (hrs)'
-        ]
-    ],
-
-    'ResponsablesInterviewees' => [
-        'title' => 'Responsibility for filling the form: External support for analysis and management evaluation',
-        'fields' => [
-            'Name' => 'Name',
-            'Institution'   => 'organisation',
-            'Function'      => 'job role',
-            'Contacts' => 'contact details',
-            'EncodingDate' => 'Date of compilation',
-            'EncodingDuration' => 'Time taken for evaluation (hrs)',
-        ]
-    ],
 
     'GeneralInfo' => [
         'title' => 'Basic data',
@@ -127,24 +65,24 @@ return [
             A protected area is a clearly defined geographical space, recognised, dedicated and managed, through legal or other effective means,
             to achieve the long term conservation of nature with associated ecosystem services and cultural values. (IUCN Definition 2008)',
         'type_info' => [
-            'terrestrial' => 'A terrestrial protected area (TPA) is a portion of land protected by special restrictions 
-            and laws for the conservation of the natural environment. They include large tracts of land 
-            set aside for the protection of wildlife and its habitat; areas of great natural beauty or unique interest; 
-            areas containing rare forms of plant and animal life; areas representing unusual geologic formation; places 
-            of historic and prehistoric interest; areas containing ecosystems of special importance for scientific 
-            investigation and study; and areas which safeguard the needs of the biosphere. (GEMET- DODERO / WPR) 
+            'terrestrial' => 'A terrestrial protected area (TPA) is a portion of land protected by special restrictions
+            and laws for the conservation of the natural environment. They include large tracts of land
+            set aside for the protection of wildlife and its habitat; areas of great natural beauty or unique interest;
+            areas containing rare forms of plant and animal life; areas representing unusual geologic formation; places
+            of historic and prehistoric interest; areas containing ecosystems of special importance for scientific
+            investigation and study; and areas which safeguard the needs of the biosphere. (GEMET- DODERO / WPR)
             (we check for a CBD description)',
-            'marine_and_coastal' => 'A marine and coastal protected area (MPA or MCPA) is "an area within or adjacent 
-            to the marine environment, together with its overlying waters and associated flora, fauna, and historical and 
-            cultural features, which has been reserved by legislation or other effective means, including custom, with the 
-            effect that its marine and/or coastal biodiversity enjoys a higher level of protection than its surroundings" 
+            'marine_and_coastal' => 'A marine and coastal protected area (MPA or MCPA) is "an area within or adjacent
+            to the marine environment, together with its overlying waters and associated flora, fauna, and historical and
+            cultural features, which has been reserved by legislation or other effective means, including custom, with the
+            effect that its marine and/or coastal biodiversity enjoys a higher level of protection than its surroundings"
             (Convention on Biological Diversity – CBD)',
-            'oecm' => 'A geographically defined area other than a Protected Area, which is governed and managed in ways 
-            that achieve positive and sustained long-term outcomes for the insitu conservation of biodiversity, with 
-            associated ecosystem functions and services and where applicable, cultural, spiritual, socio–economic, and 
+            'oecm' => 'A geographically defined area other than a Protected Area, which is governed and managed in ways
+            that achieve positive and sustained long-term outcomes for the insitu conservation of biodiversity, with
+            associated ecosystem functions and services and where applicable, cultural, spiritual, socio–economic, and
             other locally relevant values” (CBD, 2018)',
-            'icca' => 'A natural and/or modified ecosystems, containing significant biodiversity values, ecological benefits 
-            and cultural values, voluntarily conserved by indigenous peoples and local communities, through customary laws 
+            'icca' => 'A natural and/or modified ecosystems, containing significant biodiversity values, ecological benefits
+            and cultural values, voluntarily conserved by indigenous peoples and local communities, through customary laws
             or other effective means (CBD -Recognising and Supporting ICCAs)'
         ]
     ],
@@ -300,8 +238,8 @@ return [
         ],
         'info' => [
             'spillover_eval' =>
-                'The net movement of individuals from marine reserves (also known as no-take marine protected areas) to 
-                the remaining fishing grounds is known as spill-over. Spill-over can contribute to poverty alleviation, 
+                'The net movement of individuals from marine reserves (also known as no-take marine protected areas) to
+                the remaining fishing grounds is known as spill-over. Spill-over can contribute to poverty alleviation,
                 although its effect is modulated by the number of fishermen and fishing intensity. Generally:<ul>
                 <li>Strong spill-over positive effect when the fishery is mismanaged</li>
                 <li>Light spill-over positive effect when the fishery is well managed but positive effect for species with greater movement and slower growth.</li>
@@ -330,16 +268,16 @@ return [
             'BenefitsOfEcosystemServicesArea' => 'Area that benefits of the ecosystem services of the protected area',
             'SpillOverArea' => 'Area of SPILL-OVER effects',
         ],
-        'module_info' => '<b>Landscape</b>: Linked governance and management of a protected area and its surrounding territories 
-          can contribute to biodiversity conservation and climate resilience, maintenance of natural resources and ecosystem 
+        'module_info' => '<b>Landscape</b>: Linked governance and management of a protected area and its surrounding territories
+          can contribute to biodiversity conservation and climate resilience, maintenance of natural resources and ecosystem
           services that ensure sustainable development of local communities. <br />
-          <b>Protected and Conserved Areas (PCAs)</b>: They are one of the most effective tools for preventing loss of 
-          natural ecosystems and species, as well as to achieve long-term sustainable development, including Aichi targets 
-          11 and 12 and several Sustainable Development Goals (SDGs). In some regions, PCAs are the center of economic 
-          development, through tourism, sustainable use of resources and as sources of freshwater. PCAs also contribute 
-          to food security through maintenance of the ecosystem services that support agriculture, by protecting resources 
-          essential for crop breeding programmes, and by providing space for traditional biodiversity-friendly farming and 
-          grazing systems. PCAs also have a major role to play in climate resilience, both by storing and sequestering carbon, 
+          <b>Protected and Conserved Areas (PCAs)</b>: They are one of the most effective tools for preventing loss of
+          natural ecosystems and species, as well as to achieve long-term sustainable development, including Aichi targets
+          11 and 12 and several Sustainable Development Goals (SDGs). In some regions, PCAs are the center of economic
+          development, through tourism, sustainable use of resources and as sources of freshwater. PCAs also contribute
+          to food security through maintenance of the ecosystem services that support agriculture, by protecting resources
+          essential for crop breeding programmes, and by providing space for traditional biodiversity-friendly farming and
+          grazing systems. PCAs also have a major role to play in climate resilience, both by storing and sequestering carbon,
           and by ensuring that ecosystems continue to provide goods and services to human societies (WWF).',
     ],
 
@@ -508,7 +446,7 @@ return [
         'module_info' => 'Favourable conservation status: From Natura 2000, the conservation status of species is considered ‘favourable’ when:<ul>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of species that are assumed to exist (see the IUCN’s lists of A - mammals, B - birds and C - amphibians), a limited number of key species of the protected area.<br /> <b>Species types</b> <ul> <li><b>FLA</b>: Flagship species</li> <li><b>EDG</b>: Endangered (threatened) species</li> <li><b>EDM</b>: Endemic species</li> <li><b>EXP</b>: Exploited species</li> <li><b>INV</b>: Invasive species</li> <li><b>LLK</b>: Species with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring programme and generation of trend graph.',
         'validation_min3' => 'Please encode not less than 3 key species',
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification will cause complete data loss in the following
+            'WARNING!! <br /> Any modification might cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -530,7 +468,7 @@ return [
         ],
         'module_info' => 'Favourable conservation status:<br />From Natura 2000, the conservation status of species is considered ‘favourable’ when:<ul><li>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of the plants that are assumed to exist (see the lists available and park information), a limited number of key plants of the protected area<br /> <b>Species types</b> <ul> <li><b>PHA</b>: Flagship species</li> <li><b>MEN</b>: Endangered (threatened) species</li> <li><b>END</b>: Endemic species</li> <li><b>EXP</b>: Exploited species</li> <li><b>INV</b>: Invasive species</li> <li><b>INS</b>: Species with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring programme and generation of multiannual trend graph.<br />',
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification will cause complete data loss in the following
+            'WARNING!! <br /> Any modification might cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -548,7 +486,7 @@ return [
         ],
         'module_info' => 'Note: Favourable conservation status:<br />From Natura 2000, the conservation status of a natural habitat is considered ‘favourable’ when:<ul><li><li>its natural range and areas it covers within that range are stable or increasing, and</li><li>the specific structure and functions which are necessary for its long-term maintenance exist and are likely to continue to exist for the foreseeable future</li></ul>Rating: Select and evaluate the most important ecosystem and habitat-related parameters of terrestrial and marine habitats of the protected area.<br /> <b>Note</b>: Habitat evaluation is still emerging as a discipline, since it is highly complex. The classification provides for the following division of territory: Biome, Ecoregion, Ecosystem, Habitat. Habitat characteristics/values can be assessed as: <ul> <li>i) under threat of extinction (within their natural range),</li> <li>ii) having a reduced natural range,</li> <li>iii) in decline,</li> <li>iv) an outstanding example of specific characteristics, etc.</li> </ul> Assessment of habitats can also be performed from the perspective of: <ul> <li>i) reproduction,</li> <li>ii) nutrition,</li> <li>iii) species protection, etc.</li> </ul>',
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification will cause complete data loss in the following
+            'WARNING!! <br /> Any modification might cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -800,7 +738,7 @@ return [
         ],
         'module_info' => 'The threats calculator measures the impact of threats on a specific protected area. Using your best professional judgement, you evaluate the threat impact exploiting five categories of score: (1) Impact/ Severity; (2) Scale/ Extent; (3) Duration/ Irreversibility; (4) Trend; (5) Probability for the threat in the future',
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification will cause complete data loss in the following
+            'WARNING!! <br /> Any modification might cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -830,7 +768,7 @@ return [
             ]
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification will cause complete data loss in the following
+            'WARNING!! <br /> Any modification might cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.4</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -894,7 +832,7 @@ return [
             ]
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification will cause complete data loss in the following
+            'WARNING!! <br /> Any modification might cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.5</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 

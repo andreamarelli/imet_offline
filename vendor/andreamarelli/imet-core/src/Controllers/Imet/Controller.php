@@ -9,14 +9,18 @@ use AndreaMarelli\ImetCore\Controllers\Imet\Traits\ImportExportJSON;
 use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Merge;
 use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Pame;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ImetCore\Models\ProtectedArea;
+use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\HTTP;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\URL;
+use Spatie\Browsershot\Exceptions\CouldNotTakeBrowsershot;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use function view;
 
 
@@ -27,6 +31,8 @@ class Controller extends __Controller
     use ImportExportJSON;
     use Merge;
     use Pame;
+
+    public const ROUTE_PREFIX = 'imet-core::';
 
     protected static $form_class = Imet::class;
     protected static $form_view_prefix = 'imet-core::';
@@ -51,26 +57,64 @@ class Controller extends __Controller
         $this->authorize('viewAny', static::$form_class);
         HTTP::sanitize($request, self::sanitization_rules);
 
-        // Check and add missing Pa data to form DB record
-        Imet::checkMissingPaData();
-
         // set filter status
         $filter_selected = !empty(array_filter($request->except('_token')));
 
-        // retrieve IMET list
-        $filtered_list = Imet::get_list($request);
-        $full_list = Imet::get_list(new Request());
-        $years = array_values($full_list->pluck('Year')->sort()->unique()->toArray());
-        $countries = ProtectedArea::getCountries()->pluck('name', 'iso3')->sort()->unique()->toArray();
+        /** @var Imet $form_class */
+        $form_class = static::$form_class;
 
-        return view(static::$form_view_prefix . 'list', [
+        // retrieve IMET list
+        $filtered_list = $form_class::get_assessments_list_with_extras($request);
+        $full_list = $form_class::get_assessments_list(new Request(), ['country']);
+        $years = $full_list->pluck('Year')->sort()->unique()->values()->toArray();
+        $countries = $full_list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
+
+        return view(Controller::$form_view_prefix . 'list', [
             'controller' => static::class,
             'list' => $filtered_list,
             'request' => $request,
             'filter_selected' => $filter_selected,
             'countries' => $countries,
-            'years' => $years
+            'years' => $years,
+            'index_url' => URL::route(static::ROUTE_PREFIX . 'index')
         ]);
+    }
+
+    /**
+     * Manage "destroy" route
+     *
+     * @param $item
+     * @return RedirectResponse
+     * @throws AuthorizationException
+     */
+    public function destroy($item): RedirectResponse
+    {
+        if(static::AUTHORIZE_BY_POLICY) {
+            $this->authorize('destroy', (static::$form_class)::find($item));
+        }
+        $form = new static::$form_class();
+        $form = $form->find($item);
+        $form->delete();
+        return redirect()->route(static::ROUTE_PREFIX.'index');
+    }
+
+    /**
+     * Manage "pdf" route
+     *
+     * @param $item
+     * @return \Illuminate\View\View|BinaryFileResponse
+     * @throws AuthorizationException
+     * @throws CouldNotTakeBrowsershot
+     */
+    public function pdf($item): BinaryFileResponse
+    {
+        $imet = (static::$form_class)::find($item);
+        $this->authorize('view', $imet);
+
+        $view = view(static::$form_view_prefix . 'print', [
+            'item' => $imet
+        ]);
+        return File::exportToPDF($imet->filename('pdf'), $view);
     }
 
 }

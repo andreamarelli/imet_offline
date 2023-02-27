@@ -180,7 +180,6 @@ class Radar
                     $analysis_diagrams_protected_areas[$name]['width'] = 4;
                 }
             }
-            // dd($totalProtectedAreas);
             if ($totalProtectedAreas > 0) {
                 if ($overall) {
                     $average[$indi] = Common::round_number(array_sum($indicator[$indi]) / $totalProtectedAreas);

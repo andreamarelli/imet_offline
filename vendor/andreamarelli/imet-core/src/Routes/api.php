@@ -17,7 +17,8 @@ Route::group(['prefix' => 'api'], function () {
     Route::group(['prefix' => 'imet', 'middleware' => 'throttle:100,1'], function () {
 
         Route::match(['get', 'post'], '/', [Controller::class, 'pame']);
-        Route::get('assessment/{item}/{step?}', [EvalController::class, 'assessment'])->name('imet_core::api::assessment');
+        Route::get('assessment/{item}/{step?}', [ApiController::class, 'assessment'])->name('imet_core::api::assessment');
+        Route::get('assessment_oecm/{item}/{step?}', [ApiController::class, 'assessment_oecm'])->name('imet_core::api::assessment_oecm');
 
         Route::get('{lang}/protected-areas-list', [ApiController::class, 'get_protected_areas_list'])->middleware('auth')->name('imet_core::api::get_protected_areas_list');
 

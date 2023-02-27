@@ -208,7 +208,8 @@ class V1ToV2StatisticsService extends StatisticsService
         $scores = [
             'op1' => $scores_v1['r1']!==null ? round($scores_v1['r1'] * 0.76, 2) : null,
             'op2' => $scores_v1['r2']!==null ? round($scores_v1['r2'] * 0.76, 2) : null,
-            'op3' => V1StatisticsService::score_pr9($imet)
+            'op3' => V1StatisticsService::score_pr9($imet),
+            'op4' => null
         ];
 
         // aggregate step score

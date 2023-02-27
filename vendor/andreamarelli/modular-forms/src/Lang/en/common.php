@@ -89,7 +89,7 @@ return [
         'select_file'       => 'select file',
         'no_file_selected'  => 'no file selected',
         'error'             => 'upload error : ',
-        'too_big'           => 'File too big. Maximum allowed file size is 50Mb.',
+        'too_big'           => 'File too big. Maximum allowed file size is __maxFileSize__Mb.',
         'not_valid_filename'=> 'The name of the file is not valid. Only letters, digits, space and the following special characters are allowed: -_. & ()',
         'not_valid_format'  => 'The format of the file is invalid.',
         'multiple_files_description' => 'Drag and drop to upload json/zip files (maximum 10)',

@@ -1,14 +1,13 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $item */
 /** @var Array $records */
 
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
 use Illuminate\Support\Facades\View;
 
 $view_groupTable = View::make('modular-forms::module.show.type.group_table', compact(['collection', 'records', 'definitions']))->render();
-$stats = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions::getStats($item['FormID']);
+$stats = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions::getStats($records[0]['FormID']);
 
 
 // Inject titles (with category stats)

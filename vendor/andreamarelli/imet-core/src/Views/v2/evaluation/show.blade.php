@@ -4,7 +4,7 @@
 use AndreaMarelli\ImetCore\Models\User\Role;
 
 // Force Language
-if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
+if($item->language != \Illuminate\Support\Facades\App::getLocale()){
     \Illuminate\Support\Facades\App::setLocale($item->language);
 }
 
@@ -12,15 +12,7 @@ if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
 
 @extends('layouts.admin')
 
-@section('admin_breadcrumbs')
-    @include('modular-forms::page.breadcrumbs', ['show' => false, 'links' => [
-        route('imet-core::index') => trans('imet-core::common.imet_short')
-    ]])
-@endsection
-
-@section('admin_page_title')
-    @lang('imet-core::common.imet')
-@endsection
+@include('imet-core::components.breadcrumbs_and_page_title')
 
 @section('content')
 
@@ -28,15 +20,14 @@ if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
 
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [
-        'url' => route('imet-core::v2_eval_show', ['item' => $item->getKey()]),
+        'url' => route(\AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::ROUTE_PREFIX . 'eval_show', ['item' => $item->getKey()]),
         'current_step' => $step,
-        'label_prefix' =>  'imet-core::v2_common.steps_eval.',
+        'label_prefix' =>  'imet-core::common.steps_eval.',
         'classes' => $classes,
-        'steps' => $steps
+        'steps' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController::steps($item)
     ])
 
-
-    @if($step=='cross_analysis')
+    @if($step==='cross_analysis')
         @include('imet-core::v2.cross_analysis.index', [
             'item_id' => $item->getKey(),
             'warnings' => $warnings
@@ -53,7 +44,7 @@ if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
             @foreach($item::modules()[$step] as $module)
                 @if(Role::hasRequiredAccessLevel($module))
                     @include('modular-forms::module.show.container', [
-                        'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class,
+                        'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController::class,
                         'module_class' => $module,
                         'form_id' => $item->getKey()])
                 @else

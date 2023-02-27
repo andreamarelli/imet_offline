@@ -35,7 +35,7 @@ trait Backup{
 
             // no previous backups exist
             if($num_backups === 0){
-                $this->execute_backup($form, $fileName);
+                $this->execute_backup($item, $fileName);
             }
             // previous backups exist
             else {
@@ -50,7 +50,7 @@ trait Backup{
                     if($num_backups >= $this->MAX_NUM_BACKUPS){
                         Storage::delete( $oldest_backup);
                     }
-                    $this->execute_backup($form, $fileName);
+                    $this->execute_backup($item, $fileName);
                 }
             }
 

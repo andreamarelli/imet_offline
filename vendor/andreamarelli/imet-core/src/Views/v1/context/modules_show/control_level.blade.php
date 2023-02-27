@@ -1,13 +1,12 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $item */
 /** @var Mixed $records */
 
 $vue_record_index = '0';
 $record = $records[0];
 
-$area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($item['FormID']);
+$area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($record['FormID']);
 $area_percentage = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ControlLevel::areaPercentage($record, $area);
 $average_time = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ControlLevel::averageTime($record, $area);
 $area_percentage_conversion = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ControlLevel::areaPercentageConversion($record, $area);

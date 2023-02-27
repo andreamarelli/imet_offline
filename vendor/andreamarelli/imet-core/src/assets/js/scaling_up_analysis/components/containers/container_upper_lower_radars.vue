@@ -88,27 +88,27 @@ export default {
                     "field": "name"
                 },
                 {
-                    "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.context'),
+                    "label": window.Locale.getLabel('imet-core::common.steps_eval.context'),
                     "field": "context"
                 },
                 {
-                    "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.planning'),
+                    "label": window.Locale.getLabel('imet-core::common.steps_eval.planning'),
                     "field": "planning",
                 },
                 {
-                    "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.inputs'),
+                    "label": window.Locale.getLabel('imet-core::common.steps_eval.inputs'),
                     "field": "inputs"
                 },
                 {
-                    "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.process'),
+                    "label": window.Locale.getLabel('imet-core::common.steps_eval.process'),
                     "field": "process"
                 },
                 {
-                    "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.outputs'),
+                    "label": window.Locale.getLabel('imet-core::common.steps_eval.outputs'),
                     "field": "outputs"
                 },
                 {
-                    "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.outcomes'),
+                    "label": window.Locale.getLabel('imet-core::common.steps_eval.outcomes'),
                     "field": "outcomes"
                 }
             ]
