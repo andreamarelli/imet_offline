@@ -29,6 +29,7 @@ use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
 class OEMCStatisticsService extends StatisticsService
 {
     use CommonFunctions;
+    use CustomFunctions\oecm\_Common;
     use CustomFunctions\oecm\Context;
     use CustomFunctions\oecm\Planning;
     use CustomFunctions\oecm\Inputs;
@@ -67,6 +68,7 @@ class OEMCStatisticsService extends StatisticsService
         ];
         $scores['c1'] = self::average($scores);
         $scores['c2'] =  static::score_c2($imet_id);
+        $scores['c3'] =  static::score_c3($imet_id);
 
         // aggregate step score
         $scores['avg_indicator'] = static::average($scores, 2);
@@ -137,7 +139,7 @@ class OEMCStatisticsService extends StatisticsService
         $imet_id = $imet->getKey();
 
         $scores = [
-            'pr1' => static::score_table($imet_id, StaffCompetence::class, 'EvaluationScore'),
+            'pr1' => static::score_pr1($imet_id),
             'pr2' => static::score_table($imet_id, HRmanagementPolitics::class, 'EvaluationScore'),
             'pr3' => static::score_group($imet_id, EmpowermentGovernance::class, 'EvaluationScore', 'group_key'),
             'pr4' => static::score_table($imet_id, AdministrativeManagement::class, 'EvaluationScore', 4),

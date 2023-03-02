@@ -3,10 +3,18 @@
 namespace AndreaMarelli\ImetCore\Services\Statistics\traits\CustomFunctions\oecm;
 
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\EquipmentMaintenance;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\StaffCompetence;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\StakeholderCooperation;
 
 trait Process
 {
+    protected static function score_pr1($imet_id): ?float
+    {
+        $records = StaffCompetence::getModuleRecords($imet_id)['records'];
+//        dd($records);
+        return _Common::score_staff($imet_id, $records);
+    }
+
     protected static function score_pr5($imet_id): ?float
     {
         $records = EquipmentMaintenance::getModule($imet_id);

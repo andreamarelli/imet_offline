@@ -12,58 +12,10 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementEquipme
 
 trait Inputs
 {
-
     protected static function score_i2($imet_id): ?float
     {
         $records = CapacityAdequacy::getModuleRecords($imet_id)['records'];
-
-        $values = collect($records)
-            ->filter(function ($record){
-                return $record['Weight'] !== null
-                    && $record['Adequacy'] !== null;
-            });
-
-        $numerator_staff = $values
-            ->where('group_key', 'group0')
-            ->sum(function ($item){
-                return $item['Adequacy'] * $item['Weight'];
-            });
-        $denominator_staff = $values->where('group_key', 'group0')->sum('Weight');
-
-        $score_staff = $denominator_staff>0
-            ? $numerator_staff/$denominator_staff * 100 / 3
-            : null;
-
-        $numerator_stakeholders = $values
-            ->where('group_key', 'group1')
-            ->sum(function ($item){
-                return $item['Adequacy'] * $item['Weight'];
-            });
-        $denominator_stakeholders = $values->where('group_key', 'group1')->sum('Weight');
-
-        $score_stakeholders = $denominator_stakeholders>0
-            ? $numerator_stakeholders/$denominator_stakeholders * 100 / 3
-            : null;
-
-        $relative_importance = ManagementRelativeImportance::getModuleRecords($imet_id);
-        $relative_importance = (int) $relative_importance['records'][0]['RelativeImportance'] ?? 0;
-
-        if($score_staff!==null && $score_stakeholders!==null){
-            $score = (
-                    ($score_staff * (50 - $relative_importance * 16.67)) +
-                    ($score_stakeholders * (50 + $relative_importance * 16.67))
-                ) / 100;
-        } elseif($score_staff===null){
-            $score = $score_stakeholders;
-        } elseif($score_stakeholders===null){
-            $score = $score_staff;
-        } else {
-            $score = null;
-        }
-
-        return $score!== null ?
-            round($score, 2)
-            : null;
+        return _Common::score_staff($imet_id, $records);
     }
 
     protected static function score_i3($imet_id)

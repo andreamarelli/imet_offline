@@ -34,4 +34,20 @@ class Objectives extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
+    protected static function getPredefined($form_id = null)
+    {
+        $predefined = (new static())->predefined_values;
+
+        $c12_values = collect(KeyElements::getModuleRecords($form_id)['records'])
+            ->filter(function($item){
+                return $item['IncludeInStatistics'];
+            })
+            ->pluck('Aspect')
+            ->toArray();
+
+        $predefined['values'] = array_merge($c12_values,$predefined['values']);
+
+        return $predefined;
+    }
+
 }

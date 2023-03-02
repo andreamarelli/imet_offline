@@ -29,9 +29,11 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesKeyElem
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesPlanification;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesProcessus;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesSupportsAndConstraints;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesThreats;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\RegulationsAdequacy;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\SupportsAndConstraints;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\StakeholderCooperation;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Threats;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\VisitorsManagement;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkPlan;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\StaffCompetence;
@@ -47,7 +49,9 @@ class Imet_Eval extends Imet
             KeyElements::class,
             ObjectivesKeyElements::class,
             SupportsAndConstraints::class,
-            ObjectivesSupportsAndConstraints::class
+            ObjectivesSupportsAndConstraints::class,
+            Threats::class,
+            ObjectivesThreats::class
         ],
         'planning' => [
             RegulationsAdequacy::class,

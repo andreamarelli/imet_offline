@@ -17,7 +17,7 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
         $this->module_type = 'GROUP_TABLE';
-        $this->module_code = 'CTX 3.1.2';
+        $this->module_code = 'CTX 3.1.1';
         $this->module_title = trans('imet-core::oecm_context.StakeholdersNaturalResources.title');
         $this->module_fields = [
             ['name' => 'Element',                'type' => 'text-area', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Element'), 'other' => 'rows="3"'],
@@ -25,10 +25,12 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
             ['name' => 'Engagement',             'type' => 'dropdown_multiple-ImetOECM_Engagement', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Engagement')],
             ['name' => 'Impact',                 'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Impact')],
             ['name' => 'Role',                   'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Role')],
-            ['name' => 'MPInvolvement',     'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.MPInvolvement')],
-            ['name' => 'MPIImplementation', 'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.MPIImplementation')],
-            ['name' => 'BAInvolvement',     'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.BAInvolvement')],
-            ['name' => 'EEInvolvement',     'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.EEInvolvement')],
+
+            ['name' => 'InvolvementM',     'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.InvolvementM')],
+            ['name' => 'InvolvementME', 'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.InvolvementME')],
+            ['name' => 'InvolvementE',     'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.InvolvementE')],
+            ['name' => 'InvolvementCAE',     'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.InvolvementCAE')],
+
             ['name' => 'Comments',               'type' => 'text-area', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Comments')],
         ];
 
@@ -69,14 +71,17 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
 
         $records = collect($records)->map(function($item){
 
+            $Engagement = !empty($item['Engagement']) ? json_decode($item['Engagement']) : null;
+            $Engagement = is_array($Engagement) ? count($Engagement) : null;
+
             $sum = $item['Impact']!==null ? $item['Impact'] : 0;
             $sum += $item['Role']!==null ? $item['Role'] : 0;
-            $sum += $item['Engagement']!==null && $item['Engagement']!=="" ? count(json_decode($item['Engagement'])) : 0;
+            $sum += $Engagement ?? 0;
             $sum += $item['GeographicalProximity'] ? 4 : 0;
-            $sum += $item['MPInvolvement'] ? 1 : 0;
-            $sum += $item['MPIImplementation'] ? 1 : 0;
-            $sum += $item['BAInvolvement'] ? 1 : 0;
-            $sum += $item['EEInvolvement'] ? 1 : 0;
+            $sum += $item['InvolvementM'] ? 1 : 0;
+            $sum += $item['InvolvementME'] ? 1 : 0;
+            $sum += $item['InvolvementE'] ? 1 : 0;
+            $sum += $item['InvolvementCAE'] ? 1 : 0;
 
             $item['__weight'] = round($sum * 100 / 20, 0);
 

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitf57a2ab5ef27d7b55b0783124809bf19
+class ComposerStaticInit5477603ec16d2a8bdc754a179e2450b6
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -842,10 +842,12 @@ class ComposerStaticInitf57a2ab5ef27d7b55b0783124809bf19
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\ObjectivesPlanification' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/ObjectivesPlanification.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\ObjectivesProcessus' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/ObjectivesProcessus.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\ObjectivesSupportsAndConstraints' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/ObjectivesSupportsAndConstraints.php',
+        'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\ObjectivesThreats' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/ObjectivesThreats.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\RegulationsAdequacy' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/RegulationsAdequacy.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\StaffCompetence' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/StaffCompetence.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\StakeholderCooperation' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/StakeholderCooperation.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\SupportsAndConstraints' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/SupportsAndConstraints.php',
+        'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\Threats' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/Threats.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\VisitorsManagement' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/VisitorsManagement.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\WorkPlan' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/WorkPlan.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\WorkProgramImplementation' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/WorkProgramImplementation.php',
@@ -1081,6 +1083,7 @@ class ComposerStaticInitf57a2ab5ef27d7b55b0783124809bf19
         'AndreaMarelli\\ImetCore\\Services\\Statistics\\traits\\CustomFunctions\\oecm\\Outputs' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Services/Statistics/traits/CustomFunctions/oecm/Outputs.php',
         'AndreaMarelli\\ImetCore\\Services\\Statistics\\traits\\CustomFunctions\\oecm\\Planning' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Services/Statistics/traits/CustomFunctions/oecm/Planning.php',
         'AndreaMarelli\\ImetCore\\Services\\Statistics\\traits\\CustomFunctions\\oecm\\Process' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Services/Statistics/traits/CustomFunctions/oecm/Process.php',
+        'AndreaMarelli\\ImetCore\\Services\\Statistics\\traits\\CustomFunctions\\oecm\\_Common' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Services/Statistics/traits/CustomFunctions/oecm/_Common.php',
         'AndreaMarelli\\ImetCore\\Services\\Statistics\\traits\\DB\\DBFunctions' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Services/Statistics/traits/DB/DBFunctions.php',
         'AndreaMarelli\\ImetCore\\Services\\Statistics\\traits\\DB\\V1ToV2_DBFunctions' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Services/Statistics/traits/DB/V1ToV2_DBFunctions.php',
         'AndreaMarelli\\ImetCore\\Services\\Statistics\\traits\\DB\\V1_DBFunctions' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Services/Statistics/traits/DB/V1_DBFunctions.php',
@@ -7488,10 +7491,10 @@ class ComposerStaticInitf57a2ab5ef27d7b55b0783124809bf19
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitf57a2ab5ef27d7b55b0783124809bf19::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitf57a2ab5ef27d7b55b0783124809bf19::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitf57a2ab5ef27d7b55b0783124809bf19::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitf57a2ab5ef27d7b55b0783124809bf19::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit5477603ec16d2a8bdc754a179e2450b6::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit5477603ec16d2a8bdc754a179e2450b6::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit5477603ec16d2a8bdc754a179e2450b6::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit5477603ec16d2a8bdc754a179e2450b6::$classMap;
 
         }, null, ClassLoader::class);
     }

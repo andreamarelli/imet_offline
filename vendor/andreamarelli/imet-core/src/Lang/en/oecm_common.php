@@ -2,7 +2,7 @@
 return [
 
     'steps' => [
-        'general_info'          => 'General Information about the protected area',
+        'general_info'          => 'General Information about the OECM',
         'areas'                 => 'Areas',
         'resources'             => 'Human, financial and material resources',
         'key_elements'          => 'Key animals and plants species',
@@ -35,6 +35,10 @@ return [
         'c2' => [
             'C2',
             'Constraints or supports from stakeholders'
+        ],
+        'c3' => [
+            'C3',
+            'Threats'
         ],
         'p1' => [
             'P1',

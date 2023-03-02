@@ -156,7 +156,7 @@ return [
             'SourceSHP' => 'Source of GIS file',
             'Coordinates' => 'Geographic coordinates (baseline for or key point in the park)',
             'SourceCoords' => 'Source',
-            'AdministrativeLocation' => 'Administrative location of the protected area (province, region, etc.)',
+            'AdministrativeLocation' => 'Administrative location of the OECM (province, region, etc.)',
         ]
     ],
 
@@ -167,7 +167,7 @@ return [
             'WDPAArea' => 'Surface according to WDPA',
             'GISArea' => 'Actual surface (GIS for the park or the authority responsible for OECMs) corresponding to the uploaded file',
             'TerrestrialArea' => 'Terrestrial OECM, Community Forest, ICCAs, Other',
-            'MarineArea' => 'Marine and coastal OECM, ICCAs, Other'
+            'MarineArea' => 'Marine and coastal OECM, ICCAs, LMMA, Other'
         ]
     ],
 
@@ -274,7 +274,11 @@ return [
             'DescribeEstimation' => 'Describe the optimum status',
             'Comments' => 'Source / Note',
         ],
-        'module_info' => '<b>Species types</b> <ul> <li><b>EXP</b>: Exploited species</li> <li><b>PRT</b>: : Protected species</li> <li><b>DSG</b>: Disappearing species</li> <li><b>INV</b>: Invasive species</li></ul>',
+        'module_info' => '<b>Species types</b> <ul>
+            <li><b>EXP</b>: Exploited species</li>
+            <li><b>PRT</b>: Protected species</li>
+            <li><b>DSG</b>: Disappearing species</li>
+            <li><b>INV</b>: Invasive species</li></ul>',
         'validation_min3' => 'Please encode not less than 3 key species'
     ],
 
@@ -290,13 +294,17 @@ return [
             'DescribeEstimation' => 'Describe the optimum status',
             'Comments' => 'Source / Note',
         ],
-        'module_info' => '<b>Species types</b> <ul> <li><b>EXP</b>: Exploited species</li> <li><b>PRT</b>: : Protected species</li> <li><b>DSG</b>: Disappearing species</li> <li><b>INV</b>: Invasive species</li></ul>'
+        'module_info' => '<b>Species types</b> <ul>
+            <li><b>EXP</b>: Exploited species</li>
+            <li><b>PRT</b>: Protected species</li>
+            <li><b>DSG</b>: Disappearing species</li>
+            <li><b>INV</b>: Invasive species</li></ul>'
     ],
 
     'Habitats' => [
-        'title' => 'Habitats selected as indicators for the protected area and that will need to be monitored over time',
+        'title' => 'Habitats selected as indicators for the OECM and that will need to be monitored over time',
         'fields' => [
-            'EcosystemType' => 'Type of habitat',
+            'EcosystemType' => 'Habitats types',
             'ExploitedSpecies' => 'EXP',
             'ProtectedSpecies' => 'PRT',
             'DisappearingSpecies' => 'DSG',
@@ -304,7 +312,10 @@ return [
             'DescribeEstimation' => 'Describe the optimum status',
             'Comments' => 'Source / Note',
         ],
-        'module_info' => '<b>Species types</b> <ul> <li><b>EXP</b>: Exploited species</li> <li><b>PRT</b>: : Protected species</li> <li><b>DSG</b>: Disappearing species</li></ul>'
+        'module_info' => '<b>Species types</b><ul>
+                <li><b>EXP</b>: Exploited</li>
+                <li><b>PRT</b>: Protected</li>
+                <li><b>DSG</b>: Disappearing</li></ul>'
     ],
 
     'StakeholdersNaturalResources' => [
@@ -315,10 +326,10 @@ return [
             'Engagement' => 'Engagement with OECM\'s NR',
             'Impact' => 'Impact on NR in the OECM',
             'Role' => 'Role in NR management in the OECM',
-            'MPInvolvement' => 'P',
-            'MPIImplementation' => 'PM',
-            'BAInvolvement' => 'B/A',
-            'EEInvolvement' => 'IEC',
+            'InvolvementM' => 'M',
+            'InvolvementME' => 'ME',
+            'InvolvementE' => 'E',
+            'InvolvementCAE' => 'CAE',
             'Comments' => 'Note',
         ],
         'titles' => [
@@ -356,7 +367,12 @@ return [
                 '3' => 'High role (advise +analysis + planning + implementation + monitoring)',
             ]
         ],
-        'module_info' => 'Select (A) the areas in which the stakeholders are involved in managing the OECM and evaluate:<ul><li><b>P</b>: management planning</li><li><b>PM</b>: management plan implementation</li><li><b>B/A</b>:benefits/assistance</li><li><b>IEC</b>:environmental education, community awareness and engagement</li></ul>',
+        'module_info' =>
+            'Select (A) the areas in which the stakeholders are involved in managing the OECM and evaluate:<ul>
+                <li><b>M</b>: management</li>
+                <li><b>ME</b>: management and exploitation</li>
+                <li><b>E</b>: exploitation</li>
+                <li><b>CAE</b>: community awareness and engagement</li></ul>',
 
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules(if already encoded): <i>C2</i>'
     ],

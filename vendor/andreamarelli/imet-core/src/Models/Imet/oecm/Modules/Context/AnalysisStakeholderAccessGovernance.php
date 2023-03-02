@@ -6,6 +6,7 @@ use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
+use Illuminate\Support\Str;
 
 /**
  * @property $titles
@@ -73,7 +74,9 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
             'values' => [
                 'group0' => Modules\Context\AnimalSpecies::getModule($form_id)->pluck('species')
                     ->map(function($item){
-                        return Animal::getScientificName($item);
+                        return Str::contains($item, '|')
+                            ? Animal::getScientificName($item)
+                            : $item;
                     })
                     ->toArray(),
                 'group1' => Modules\Context\VegetalSpecies::getModule($form_id)->pluck('species')->toArray(),

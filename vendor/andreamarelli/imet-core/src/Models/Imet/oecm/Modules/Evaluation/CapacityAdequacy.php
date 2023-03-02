@@ -12,8 +12,8 @@ class CapacityAdequacy extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
-
+    public function __construct(array $attributes = [])
+    {
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'I2';
         $this->module_title = trans('imet-core::oecm_evaluation.CapacityAdequacy.title');
@@ -23,7 +23,6 @@ class CapacityAdequacy extends Modules\Component\ImetModule_Eval
             ['name' => 'Adequacy',      'type' => 'imet-core::rating-0to3',     'label' => trans('imet-core::oecm_evaluation.CapacityAdequacy.fields.Adequacy')],
             ['name' => 'Comments',      'type' => 'text-area',                  'label' => trans('imet-core::oecm_evaluation.CapacityAdequacy.fields.Comments')],
         ];
-
 
         $this->module_groups = trans('imet-core::oecm_evaluation.CapacityAdequacy.groups');
 
@@ -42,7 +41,6 @@ class CapacityAdequacy extends Modules\Component\ImetModule_Eval
      */
     public static function getModuleRecords($form_id, $collection = null): array
     {
-
         $module_records = parent::getModuleRecords($form_id, $collection);
         $empty_record = static::getEmptyRecord($form_id);
 

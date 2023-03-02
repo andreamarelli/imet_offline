@@ -64,7 +64,7 @@ return [
 
 
     'ObjectivesKeyElements' => [
-        'module_info' => 'Establish and describe conservation objectives for the designation and the key elements of the OECM. The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe conservation objectives for the designation and the key elements of the OECM. The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
     ],
 
     'SupportsAndConstraints' => [
@@ -96,6 +96,75 @@ return [
 
     'ObjectivesSupportsAndConstraints' => [
         'module_info' => 'Establish and describe conservation objectives for mitigation constraints/conflicts or enhancing supporting/complying factors for the OECM. The objectives entered below will be used for improving management, and more specifically for planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
+    ],
+
+    'Threats' => [
+        'title' => 'OECM threat calculator',
+        'fields' => [
+            'Value' => 'Values',
+            'Impact' => 'Impact/ Severity',
+            'Extension' => 'Scale/ Extent',
+            'Duration' => 'Duration/ Irreversibility',
+            'Trend' => 'Trend',
+            'Probability' => 'Probability for the threat in future',
+        ],
+        'predefined_values' => [
+            'Commercial and residential',
+            'Agriculture and aquaculture (Annual or multi-annual crops (non-woody); Wood and pulpwood plantations; Small- and large-scale livestock farming; Marine and freshwater aquaculture; Other typology of production)',
+            'Energy and mining',
+            'Transport and infrastructure',
+            'Use of biological resources (Hunting and harvesting of land animals; Gathering and harvesting of land plants; Forestry and timber harvesting; Fishing and harvesting aquatic resources)',
+            'Human disturbance / intrusion',
+            'Changes in the natural system (Bush fires (fires); Dams and water management or use; Other changes in the ecosystem)',
+            'Invasive / problematic species (Invasive / challenging species)',
+            'Pollution (Domestic and urban waste water; Industrial and military effluent; Agricultural and forestry effluents; Rubbish and solid waste)',
+            'Geological phenomena',
+            'Climate change effects',
+            'Other pressures and threats'
+        ],
+        'ratingLegend' => [
+            'Impact' => [
+                '0' => 'Mild',
+                '1' => 'Moderate',
+                '2' => 'High',
+                '3' => 'Severe',
+            ],
+            'Extension' => [
+                '0' => 'Localised <5%',
+                '1' => 'Sparse 5-15%',
+                '2' => 'Widely dispersed 15-50%',
+                '3' => 'Everywhere >50%',
+            ],
+            'Duration' => [
+                '0' => 'Short term < 5 years',
+                '1' => 'Medium term 5-20 years',
+                '2' => 'Very long term 20-100 years',
+                '3' => 'Permanent >100 years',
+            ],
+            'Trend' => [
+                '-2' => 'Decreasing',
+                '-1' => 'Slightly decreasing',
+                '0' => 'No change',
+                '1' => 'Slightly increasing',
+                '2' => 'Increasing',
+            ],
+            'Probability' => [
+                '0' => 'Very low',
+                '1' => 'Low',
+                '2' => 'Average',
+                '3' => 'High',
+            ],
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Has the OECM clearly identified and integrated the threats that could affect the area’s biodiversity, cultural heritage, or ecosystem services in its management?'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the level of integration of most important threats in the management of the OECM based on the analysis of the threats calculator at Context of intervention point CTX 5.1 and automatically reported below . Threats evaluation (automatically reported from CTX 5.1) To prioritise in management Comments/Explanation'
+        ]
+    ],
+
+    'ObjectivesThreats' => [
+        'module_info' => 'Setting target conservation objectives and indicators for the most important threats facing the OECM. The objectives entered below will be used for improving the management, and more specifically for the planning, resource (input) mobilization, process phases, and for monitoring management activities of the OECM.'
     ],
 
     'RegulationsAdequacy' => [
@@ -274,8 +343,6 @@ return [
             'Comments' => 'Comments/Explanation',
         ],
         'predefined_values' => [
-            'Governance from C1.2',
-            'Key elements of the OECM automatically reported from C1.2',
             'Support to the local economy',
             'Support social aspects of the stakeholders',
             'Tourism',
@@ -456,12 +523,17 @@ return [
     'StaffCompetence' => [
         'title' => 'Training and capacity-building programme for the OECM Management and Governance specific entity or combination of entities',
         'fields' => [
-            'Theme' => 'Criteria – Concept measured – Variable',
-            'EvaluationScore' => 'A) Adequacy of capacity building activities for the OECM management entity',
+            'Member' => 'Criteria – Concept measured – Variable',
+            'Weight' => 'Importance',
+            'Adequacy' => 'Adequacy of capacity building activities for the OECM management entity',
             'Comments' => 'Comments/Explanation',
         ],
+        'groups' => [
+            'group0' => 'Composition and staff or members of the OECM',
+            'group1' => 'Stakeholders involved or impacting in the use of natural resources'
+        ],
         'ratingLegend' => [
-            'EvaluationScore' => [
+            'Adequacy' => [
                 '0' => 'Completely inadequate capacity building activities',
                 '1' => 'Somewhat adequate capacity building activities',
                 '2' => 'Adequate capacity-building activities, but improvements are needed',
@@ -497,7 +569,7 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-                'N/A' => 'this element is not related to the management of the protected area',
+                'N/A' => 'this element is not related to the management of the OECM',
                 '0' => 'Completely inadequate (0-30% of the needs)',
                 '1' => 'Somewhat inadequate (31-60% of the needs)',
                 '2' => 'Adequate (61-90% of the needs)',
@@ -683,7 +755,7 @@ return [
         ],
         'ratingLegend' => [
             'Cooperation' => [
-                'N/A' => 'this element is not related to the management of the protected area',
+                'N/A' => 'this element is not related to the management of the OECM',
                 '0' => 'No cooperation',
                 '1' => 'Very little cooperation',
                 '2' => 'Moderate cooperation',
@@ -1017,7 +1089,7 @@ return [
 
         'ratingLegend' => [
             'EvaluationScore' => [
-                'N/A' => 'this element is not related to the management of the protected area',
+                'N/A' => 'this element is not related to the management of the OECM',
                 '0' => 'Completely inadequate (0-30% of the needs)',
                 '1' => 'Somewhat inadequate (31-60% of the needs)',
                 '2' => 'Adequate (61-90% of the needs)',
@@ -1025,11 +1097,11 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Does the management of the protected area use adequate measures / approaches / tools for ensuring staff motivation?',
-            'For a protected area, motivated staff is essential to achieve success in conservation. Working conditions and staff motivation strongly influence the ability of staff to carry out their work. Managers and leaders must understand that they need to provide a work environment that creates and maintains motivation in the staff to achieve results on conservation',
+            'Does the management of the OECM use adequate measures / approaches / tools for ensuring staff motivation?',
+            'For a OECM, motivated staff is essential to achieve success in conservation. Working conditions and staff motivation strongly influence the ability of staff to carry out their work. Managers and leaders must understand that they need to provide a work environment that creates and maintains motivation in the staff to achieve results on conservation',
         ],
         'module_info_Rating' => [
-            'Evaluate the adequacy of staff motivation measures / approaches / tools in the protected area',
+            'Evaluate the adequacy of staff motivation measures / approaches / tools in the OECM',
         ]
     ],
 ];

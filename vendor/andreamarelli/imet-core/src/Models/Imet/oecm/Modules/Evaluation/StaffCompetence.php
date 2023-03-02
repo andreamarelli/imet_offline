@@ -12,32 +12,29 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
-
-        $this->module_type = 'TABLE';
+    public function __construct(array $attributes = [])
+    {
+        $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'PR1';
         $this->module_title = trans('imet-core::oecm_evaluation.StaffCompetence.title');
         $this->module_fields = [
-            ['name' => 'Theme',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.StaffCompetence.fields.Theme')],
-            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_evaluation.StaffCompetence.fields.EvaluationScore')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.StaffCompetence.fields.Comments')],
+            ['name' => 'Member',    'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.StaffCompetence.fields.Member')],
+            ['name' => 'Weight',    'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.StaffCompetence.fields.Weight')],
+            ['name' => 'Adequacy',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_evaluation.StaffCompetence.fields.Adequacy')],
+            ['name' => 'Comments',  'type' => 'text-area',  'label' => trans('imet-core::oecm_evaluation.StaffCompetence.fields.Comments')],
         ];
 
-        $this->predefined_values = [
-            'field' => 'Theme',
-            'values' => null
-        ];
+        $this->module_groups = trans('imet-core::oecm_evaluation.StaffCompetence.groups');
 
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.StaffCompetence.module_info_EvaluationQuestion');
         $this->module_info_Rating = trans('imet-core::oecm_evaluation.StaffCompetence.module_info_Rating');
         $this->ratingLegend = trans('imet-core::oecm_evaluation.StaffCompetence.ratingLegend');
 
         parent::__construct($attributes);
-
     }
 
     /**
-     * Inject num of current staff from CTX (ManagementStaff)
+     * Preload data from CTX
      * @param $form_id
      * @param null $collection
      * @return array
@@ -45,32 +42,31 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
     public static function getModuleRecords($form_id, $collection = null): array
     {
         $module_records = parent::getModuleRecords($form_id, $collection);
-        $staff_records = Modules\Context\ManagementStaff::getModule($form_id);
+        $empty_record = static::getEmptyRecord($form_id);
 
-        $module_records['records'] = collect($module_records['records'])
-            ->map(function ($item) use ($staff_records){
-                $st = $staff_records
-                    ->filter(function ($item_staff) use($item){
-                        return $item_staff['Function']===$item['Theme'];
-                    })
-                    ->first();
-                $item['__num_staff'] = $st!==null ? intval($st->ActualPermanent) : null;
-                return $item;
-            });
+        $records = $module_records['records'];
+        $preLoaded = [
+            'field' => 'Member',
+            'values' => [
+                'group0' => Modules\Context\ManagementStaff::getModule($form_id)->pluck('Function')->toArray(),
+                'group1' => Modules\Context\StakeholdersNaturalResources::getModule($form_id)->pluck('Element')->toArray(),
+            ]
+        ];
 
-        return $module_records;
-    }
+        $module_records['records'] =  static::arrange_records($preLoaded, $records, $empty_record);
 
-    protected static function getPredefined($form_id = null)
-    {
-        $predefined_values = (new static())->predefined_values;
+        $weighted_staff = Modules\Context\ManagementStaff::calculateWeights($form_id);
+        $weighted_stakeholder = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
 
-        if($form_id!==null){
-            $collection = Modules\Context\ManagementStaff::getModule($form_id);
-            $predefined_values['values'] = $collection->pluck('Function')->toArray();
+        foreach($module_records['records'] as $idx => $module_record){
+            if($module_record['group_key']==='group0'){
+                $module_records['records'][$idx]['Weight'] = $weighted_staff[$module_record['Member']] ?? null;
+            } elseif($module_record['group_key']==='group1'){
+                $module_records['records'][$idx]['Weight'] = $weighted_stakeholder[$module_record['Member']] ?? null;
+            }
         }
 
-        return $predefined_values;
+        return $module_records;
     }
 
 }
