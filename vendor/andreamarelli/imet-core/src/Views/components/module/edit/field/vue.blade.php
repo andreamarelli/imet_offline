@@ -7,16 +7,10 @@
 /** @var String $other [optional] */
 /** @var String $module_key */
 
-
 $id = $id ?? '';
 $class = $class ?? '';
 $rules = $rules ?? '';
 $other = $other ?? '';
-
-$vue_attributes = \AndreaMarelli\ModularForms\Helpers\DOM::vueAttributes($id, $v_value);
-$class_attribute = \AndreaMarelli\ModularForms\Helpers\DOM::addClass($class, 'field-edit');
-$rules_attribute = \AndreaMarelli\ModularForms\Helpers\DOM::rulesAttribute($rules);
-$other_attributes = $other ?? '';
 
 ?>
 

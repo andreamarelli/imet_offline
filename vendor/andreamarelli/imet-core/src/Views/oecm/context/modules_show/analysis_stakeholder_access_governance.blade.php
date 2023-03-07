@@ -1,22 +1,135 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
+
 /** @var Mixed $records */
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderAccessGovernance;
-use \Illuminate\Support\Facades\View;
-use \Wa72\HtmlPageDom\HtmlPageCrawler;
 
-$original_view = View::make('modular-forms::module.show.body', compact(['collection', 'records', 'definitions']))->render();
+use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderAccessGovernance;
+use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersNaturalResources;
 
-// Inject titles
-$dom = HtmlPageCrawler::create('<div>'.$original_view.'</div>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group0')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderAccessGovernance())->titles['title0'].'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group3')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderAccessGovernance())->titles['title1'].'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group7')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderAccessGovernance())->titles['title2'].'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group10')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderAccessGovernance())->titles['title3'].'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group12')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderAccessGovernance())->titles['title4'].'</h3>');
+$form_id = $collection[0]['FormID'];
+$stakeholders = StakeholdersNaturalResources::getStakeholders($form_id);
+$stakeholders_averages = AnalysisStakeholderAccessGovernance::calculateStakeholdersAverages($records, $form_id);
+
+$num_cols = count($definitions['fields']);
+
+$grouped_records = collect($records)->groupBy('group_key')->toArray();
+$stakeholders_records = collect($records)
+    ->groupBy('Stakeholder')
+    ->map(function ($group) {
+        return $group->groupBy('group_key');
+    })
+    ->toArray();
 
 ?>
 
-{!! $dom->saveHTML() !!}
+
+{{-- Stakeholder's summary--}}
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">
+            @lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.summary')
+        </h4>
+    </div>
+    <div>
+        <div class="card-body">
+            <table class="table module-table">
+                <thead>
+                <tr>
+                    <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Element')</th>
+                    <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.importance')</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($stakeholders_averages as $element=>$importance)
+                    <tr class="module-table-item">
+                        <td style="text-align: left;">{{ $element }}</td>
+                        <td style="text-align: left;">{{ $importance }}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+@foreach($stakeholders as $index => $stakeholder)
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">
+                {{ $index + 1 }} -
+                {{ $stakeholder }}
+            </h4>
+        </div>
+        <div>
+            <div class="card-body">
+
+                {{-- groups --}}
+                @foreach($definitions['groups'] as $group_key => $group_label)
+
+                    {{-- titles --}}
+                    @if($group_key === 'group0')
+                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title0'] }}</h3>
+                    @elseif($group_key === 'group3')
+                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title1'] }}</h3>
+                    @elseif($group_key === 'group7')
+                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title2'] }}</h3>
+                    @elseif($group_key === 'group10')
+                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title3'] }}</h3>
+                    @elseif($group_key === 'group12')
+                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title4'] }}</h3>
+                    @endif
+
+
+                    <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+
+                    <table class="table module-table">
+
+                        {{-- labels  --}}
+                        <thead>
+                        <tr>
+                            @foreach($definitions['fields'] as $field)
+                                <th class="text-center">
+                                    @if($field['type']!=='hidden')
+                                        {{ ucfirst($field['label'] ?? '') }}
+                                    @endif
+                                </th>
+                            @endforeach
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody class="{{ $group_key }}">
+
+                        {{-- nothing to evaluate --}}
+                        @if(!array_key_exists($group_key, $grouped_records))
+                            @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols])
+
+                        @else
+                            @foreach($stakeholders_records[$stakeholder][$group_key] as $record)
+                                <tr class="module-table-item">
+                                    @foreach($definitions['fields'] as $f_index=>$field)
+                                        <td>
+                                            @include('modular-forms::module.show.field', [
+                                                   'type' => $field['type'],
+                                                   'value' => $record[$field['name']]
+                                              ])
+                                        </td>
+                                    @endforeach
+                                </tr>
+                            @endforeach
+                        @endif
+                        </tbody>
+
+                    </table>
+
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+@endforeach
+

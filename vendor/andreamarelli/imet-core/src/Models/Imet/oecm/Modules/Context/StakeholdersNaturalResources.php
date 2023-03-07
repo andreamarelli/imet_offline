@@ -65,29 +65,58 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
         return parent::updateModule($request);
     }
 
+    /**
+     * Retrieve stakeholders' list (grouped or not)
+     *
+     * @param $form_id
+     * @param bool $grouped
+     * @return array
+     */
+    public static function getStakeholders($form_id, bool $grouped = false): array
+    {
+        if($grouped){
+            return static::getModule($form_id)
+                ->groupBy('group_key')
+                ->map(function($group){
+                    return $group->pluck('Element');
+                })
+                ->toArray();
+        } else {
+            return static::getModule($form_id)
+                ->pluck('Element')
+                ->toArray();
+        }
+    }
 
-    public static function calculateWeights($form_id){
+    /**
+     * Retrieve stakeholders' wights
+     *
+     * @param $form_id
+     * @return array
+     */
+    public static function calculateWeights($form_id): array
+    {
         $records = static::getModuleRecords($form_id)['records'];
 
-        $records = collect($records)->map(function($item){
+        return collect($records)
+            ->map(function($item){
+                $Engagement = !empty($item['Engagement']) ? json_decode($item['Engagement']) : null;
+                $Engagement = is_array($Engagement) ? count($Engagement) : null;
 
-            $Engagement = !empty($item['Engagement']) ? json_decode($item['Engagement']) : null;
-            $Engagement = is_array($Engagement) ? count($Engagement) : null;
+                $sum = $item['Impact']!==null ? $item['Impact'] : 0;
+                $sum += $item['Role']!==null ? $item['Role'] : 0;
+                $sum += $Engagement ?? 0;
+                $sum += $item['GeographicalProximity'] ? 4 : 0;
+                $sum += $item['InvolvementM'] ? 1 : 0;
+                $sum += $item['InvolvementME'] ? 1 : 0;
+                $sum += $item['InvolvementE'] ? 1 : 0;
+                $sum += $item['InvolvementCAE'] ? 1 : 0;
 
-            $sum = $item['Impact']!==null ? $item['Impact'] : 0;
-            $sum += $item['Role']!==null ? $item['Role'] : 0;
-            $sum += $Engagement ?? 0;
-            $sum += $item['GeographicalProximity'] ? 4 : 0;
-            $sum += $item['InvolvementM'] ? 1 : 0;
-            $sum += $item['InvolvementME'] ? 1 : 0;
-            $sum += $item['InvolvementE'] ? 1 : 0;
-            $sum += $item['InvolvementCAE'] ? 1 : 0;
+                $item['__weight'] = round($sum * 100 / 20, 0);
 
-            $item['__weight'] = round($sum * 100 / 20, 0);
-
-            return $item;
-        })->pluck('__weight', 'Element')->toArray();
-
-        return $records;
+                return $item;
+            })
+            ->pluck('__weight', 'Element')
+            ->toArray();
     }
 }

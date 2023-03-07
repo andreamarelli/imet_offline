@@ -49,7 +49,7 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
             'field' => 'Member',
             'values' => [
                 'group0' => Modules\Context\ManagementStaff::getModule($form_id)->pluck('Function')->toArray(),
-                'group1' => Modules\Context\StakeholdersNaturalResources::getModule($form_id)->pluck('Element')->toArray(),
+                'group1' => Modules\Context\StakeholdersNaturalResources::getStakeholders($form_id),
             ]
         ];
 

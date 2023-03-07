@@ -42,6 +42,4 @@ return [
     'activity' => 'Activity',
     'other' => 'Other',
     'year' => 'Year',
-
-
 ];

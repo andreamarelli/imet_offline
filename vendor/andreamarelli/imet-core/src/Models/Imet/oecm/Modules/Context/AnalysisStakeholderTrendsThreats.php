@@ -30,6 +30,7 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
             ['name' => 'MainThreat',    'type' => 'dropdown-ImetOECM_MainThreat', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.MainThreat')],
             ['name' => 'ClimateChangeEffect',    'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.ClimateChangeEffect')],
             ['name' => 'Comments',      'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Comments')],
+            ['name' => 'Stakeholder',    'type' => 'disabled', 'label' =>''],
         ];
 
         $this->module_groups = trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.groups');     // Re-use groups from CTX 5.1
@@ -41,44 +42,59 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    /**
-     * Preload data from CTX 5.1
-     *
-     * @param $form_id
-     * @param null $collection
-     * @return array
-     */
-    public static function getModuleRecords($form_id, $collection = null): array
+    public function isEmptyRecord($record, $foreign_key=null): bool
     {
+        $isEmpty = true;
 
-        $module_records = parent::getModuleRecords($form_id, $collection);
-        $empty_record = static::getEmptyRecord($form_id);
+        if($record['Status']!==null
+            || $record['Trend']!==null
+            || $record['MainThreat']!==null
+            || $record['ClimateChangeEffect']!==null
+            || $record['Comments']!==null
+        ){
+            $isEmpty = false;
+        }
 
-        $records = $module_records['records'];
+        return $isEmpty;
+    }
 
-        $ctx5 = Modules\Context\AnalysisStakeholderAccessGovernance::getModule($form_id);
-        $preLoaded = [
-            'field' => 'Element',
-            'values' => [
-                'group0' => $ctx5->where('group_key', 'group0')->pluck('Element')->toArray(),
-                'group1' => $ctx5->where('group_key', 'group1')->pluck('Element')->toArray(),
-                'group2' => $ctx5->where('group_key', 'group2')->pluck('Element')->toArray(),
-                'group3' => $ctx5->where('group_key', 'group3')->pluck('Element')->toArray(),
-                'group4' => $ctx5->where('group_key', 'group4')->pluck('Element')->toArray(),
-                'group5' => $ctx5->where('group_key', 'group5')->pluck('Element')->toArray(),
-                'group6' => $ctx5->where('group_key', 'group6')->pluck('Element')->toArray(),
-                'group7' => $ctx5->where('group_key', 'group7')->pluck('Element')->toArray(),
-                'group8' => $ctx5->where('group_key', 'group8')->pluck('Element')->toArray(),
-                'group9' => $ctx5->where('group_key', 'group9')->pluck('Element')->toArray(),
-                'group10' => $ctx5->where('group_key', 'group10')->pluck('Element')->toArray(),
-                'group11' => $ctx5->where('group_key', 'group11')->pluck('Element')->toArray(),
-                'group12' => $ctx5->where('group_key', 'group12')->pluck('Element')->toArray(),
-                'group13' => $ctx5->where('group_key', 'group13')->pluck('Element')->toArray(),
-            ]
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    {
+        $form_id = $empty_record['FormID'];
+
+        // inject predefined values and replicate for each stakeholder
+        $ctx5_records = Modules\Context\AnalysisStakeholderAccessGovernance::getModule($form_id);
+
+        $new_records = [];
+        foreach ($ctx5_records as $ctx5_record){
+            $new_record = $empty_record;
+            foreach ($records as $r => $record) {
+                // record already there
+                if($record['Element'] === $ctx5_record['Element']
+                    && $record['group_key'] == $ctx5_record['group_key']
+                    && $record['Stakeholder'] == $ctx5_record['Stakeholder']){
+                    $new_record = $record;
+                    unset($records[$r]);
+                    break;
+                }
+            }
+            $new_record['Element'] = $ctx5_record['Element'];
+            $new_record['group_key'] = $ctx5_record['group_key'];
+            $new_record['Stakeholder'] = $ctx5_record['Stakeholder'];
+            $new_record['__predefined'] = true;
+            $new_records[] = $new_record;
+        }
+
+        return $new_records;
+    }
+
+    public static function calculateStakeholdersAverages($records, $form_id): array
+    {
+        $values = [
+
         ];
 
-        $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);
-        return $module_records;
+        return $values;
     }
 
 }

@@ -48,25 +48,9 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
 
         $records = $module_records['records'];
 
-        $ctx5 = Modules\Context\StakeholdersNaturalResources::getModule($form_id);
         $preLoaded = [
             'field' => 'Element',
-            'values' => [
-                'group0' => $ctx5->where('group_key', 'group0')->pluck('Element')->toArray(),
-                'group1' => $ctx5->where('group_key', 'group1')->pluck('Element')->toArray(),
-                'group2' => $ctx5->where('group_key', 'group2')->pluck('Element')->toArray(),
-                'group3' => $ctx5->where('group_key', 'group3')->pluck('Element')->toArray(),
-                'group4' => $ctx5->where('group_key', 'group4')->pluck('Element')->toArray(),
-                'group5' => $ctx5->where('group_key', 'group5')->pluck('Element')->toArray(),
-                'group6' => $ctx5->where('group_key', 'group6')->pluck('Element')->toArray(),
-                'group7' => $ctx5->where('group_key', 'group7')->pluck('Element')->toArray(),
-                'group8' => $ctx5->where('group_key', 'group8')->pluck('Element')->toArray(),
-                'group9' => $ctx5->where('group_key', 'group9')->pluck('Element')->toArray(),
-                'group10' => $ctx5->where('group_key', 'group10')->pluck('Element')->toArray(),
-                'group11' => $ctx5->where('group_key', 'group11')->pluck('Element')->toArray(),
-                'group12' => $ctx5->where('group_key', 'group12')->pluck('Element')->toArray(),
-                'group13' => $ctx5->where('group_key', 'group13')->pluck('Element')->toArray(),
-            ]
+            'values' => Modules\Context\StakeholdersNaturalResources::getStakeholders($form_id, true)
         ];
 
         $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);

@@ -442,7 +442,9 @@ return [
             ],
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification might cause data loss in the following modules(if already encoded): <i>CTX 6.1</i>, <i>C1.2</i> and <i>I1</i>'
+            'WARNING!! <br /> Any modification might cause data loss in the following modules(if already encoded): <i>CTX 6.1</i>, <i>C1.2</i> and <i>I1</i>',
+        'summary' => 'Importance of elements',
+        'importance' => 'Importance (0-100)'
     ],
 
     'AnalysisStakeholderTrendsThreats' => [
@@ -482,6 +484,7 @@ return [
                 '2' => 'Very beneficial',
             ],
         ],
+        'summary' => 'Aggregated',
     ],
 
 ];

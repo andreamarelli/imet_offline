@@ -3,33 +3,203 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vue_data */
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderAccessGovernance;
-use \Illuminate\Support\Facades\View;
-use \Wa72\HtmlPageDom\HtmlPageCrawler;
+use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderAccessGovernance;
+use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersNaturalResources;
 
-$original_definitions = $definitions;
+$stakeholders = StakeholdersNaturalResources::getStakeholders($vue_data['form_id']);
+$stakeholders_averages = AnalysisStakeholderAccessGovernance::calculateStakeholdersAverages($vue_data['records'], $vue_data['form_id']);
 
-// First 3 groups: force "fixed_rows" and "Element" type as disabled
-$definitions['groups'] = array_slice($definitions['groups'], 0, 3);
-$definitions['fixed_rows'] = true;
-$definitions['fields'][0]['type'] = 'disabled';
-$first_groups = View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vue_data', 'definitions']))->render();
-
-// Other groups: normal
-$definitions = $original_definitions;
-$definitions['groups'] = array_slice($definitions['groups'], 3);
-$other_groups = View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vue_data', 'definitions']))->render();
-
-// Inject titles
-$dom = HtmlPageCrawler::create('<div>'.$first_groups.$other_groups.'</div>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group0')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderAccessGovernance())->titles['title0'].'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group3')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderAccessGovernance())->titles['title1'].'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group7')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderAccessGovernance())->titles['title2'].'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group10')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderAccessGovernance())->titles['title3'].'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group12')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderAccessGovernance())->titles['title4'].'</h3>');
+$vue_data['current_stakeholder'] = 'summary';
+$vue_data['stakeholders_averages'] = $stakeholders_averages;
+$num_cols = count($definitions['fields']);
 
 ?>
 
-{!! $dom->saveHTML() !!}
+{{-- Stakeholder's summary--}}
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title" role="button" @click="switchStakeholder('summary')">
+            @lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.summary')
+        </h4>
+    </div>
+    <div>
+        <div class="card-body" v-if="isCurrentStakeholder('summary') ">
 
-@include('modular-forms::module.edit.script', compact(['collection', 'vue_data', 'definitions']))
+            <table class="table module-table">
+                <thead>
+                <tr>
+                    <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Element')</th>
+                    <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.importance')</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="module-table-item" v-for="(importance, element) in stakeholders_averages">
+                    <td style="text-align: left;">@{{ element }}</td>
+                    <td style="text-align: left;">@{{ importance }}</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+@foreach($stakeholders as $index => $stakeholder)
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title" role="button" @click="switchStakeholder('{{ $stakeholder }}')">
+                {{ $index + 1 }} -
+                {{ $stakeholder }}
+            </h4>
+        </div>
+        <div v-if="isCurrentStakeholder('{{ $stakeholder }}')">
+            <div class="card-body">
+
+                {{-- groups --}}
+                @foreach($definitions['groups'] as $group_key => $group_label)
+
+                    @php
+                        if(in_array($group_key, ['group0', 'group1', 'group2'])){
+                            $definitions['fixed_rows'] = true;
+                        } else {
+                            $definitions['fixed_rows'] = false;
+                        }
+
+                        $table_id = 'group_table_'.$definitions['module_key'].'_'.$group_key;
+                        $tr_record = 'records[\''.$group_key.'\']';
+                    @endphp
+
+                    {{-- titles --}}
+                    @if($group_key === 'group0')
+                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title0'] }}</h3>
+                    @elseif($group_key === 'group3')
+                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title1'] }}</h3>
+                    @elseif($group_key === 'group7')
+                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title2'] }}</h3>
+                    @elseif($group_key === 'group10')
+                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title3'] }}</h3>
+                    @elseif($group_key === 'group12')
+                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title4'] }}</h3>
+                    @endif
+
+                    <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+
+                    <table id="{{ $table_id }}" class="table module-table">
+
+                        {{-- labels  --}}
+                        <thead>
+                        <tr>
+                            @foreach($definitions['fields'] as $field)
+                                <th class="text-center">
+                                    @if($field['type']!=='hidden')
+                                        {{ ucfirst($field['label'] ?? '') }}
+                                    @endif
+                                </th>
+                            @endforeach
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        {{-- nothing to evaluate --}}
+                        <tbody class="{{ $group_key }}"
+                               v-if="records['{{ $group_key }}'][0].Element===null">
+                        @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols])
+                        </tbody>
+
+                        {{-- records --}}
+                        <tbody class="{{ $group_key }}" v-else>
+
+                        <tr class="module-table-item" v-for="(item, index) in {{ $tr_record }}"
+                            v-if="isCurrentStakeholder(item['Stakeholder'])">
+                            {{--  fields  --}}
+                            @foreach($definitions['fields'] as $index => $field)
+                                <td>
+                                    @include('modular-forms::module.edit.field.module-to-vue', [
+                                       'definitions' => $definitions,
+                                       'field' => $field,
+                                       'vue_record_index' => 'index',
+                                       'group_key' => $group_key
+                                   ])
+                                </td>
+                            @endforeach
+                            <td>
+                                {{-- record id  --}}
+                                @include('modular-forms::module.edit.field.vue', [
+                                    'type' => 'hidden',
+                                    'v_value' => 'item.'.$definitions['primary_key']
+                                ])
+                                @if(!$definitions['fixed_rows'])
+                                    <span v-if="typeof item.__predefined === 'undefined'">
+                                            @include('modular-forms::buttons.delete_item')
+                                        </span>
+                                @endif
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+                        {{-- add button --}}
+                        @if(!$definitions['fixed_rows'])
+                            <tfoot>
+                            <tr>
+                                <td colspan="{{ count($definitions['fields']) + 1 }}">
+                                    @include('modular-forms::buttons.add_item', [
+                                        'onClick' => "addItem('". $group_key . "', '". $stakeholder . "')"
+                                    ])
+                                </td>
+                            </tr>
+                            </tfoot>
+                        @endif
+
+                    </table>
+
+                    <br/>
+                    <br/>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+@endforeach
+
+
+
+@push('scripts')
+    <script>
+        // ## Initialize Module controller ##
+        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
+            el: '#module_{{ $definitions['module_key'] }}',
+            data: @json($vue_data),
+
+            methods: {
+
+                isCurrentStakeholder(value) {
+                    return this.current_stakeholder === value;
+                },
+
+                switchStakeholder(value) {
+                    if (!this.isCurrentStakeholder(value)) {
+                        this.current_stakeholder = value;
+                    } else {
+                        this.current_stakeholder = null;
+                    }
+                    this.resetModule();
+                },
+
+                addItem: function (group_key, stakeholder) {
+                    this.records[group_key].push(this.__no_reactive_copy(this.empty_record));
+                    this.records[group_key][this.records[group_key].length - 1][this.group_key_field] = group_key;
+                    this.records[group_key][this.records[group_key].length - 1]['Stakeholder'] = stakeholder;
+                },
+
+                saveModuleDoneCallback(data) {
+                    this.stakeholders_averages = data.stakeholders_averages;
+                    this.current_stakeholder = '{{ $vue_data['current_stakeholder'] }}';
+                },
+
+            }
+
+        });
+    </script>
+@endpush
