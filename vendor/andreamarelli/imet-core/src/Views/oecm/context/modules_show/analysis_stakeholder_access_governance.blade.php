@@ -10,7 +10,7 @@ use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersNatural
 
 $form_id = $collection[0]['FormID'];
 $stakeholders = StakeholdersNaturalResources::getStakeholders($form_id);
-$stakeholders_averages = AnalysisStakeholderAccessGovernance::calculateStakeholdersAverages($records, $form_id);
+$key_elements_importance = AnalysisStakeholderAccessGovernance::calculateKeyElementsImportances($form_id, $records);
 
 $num_cols = count($definitions['fields']);
 
@@ -42,10 +42,10 @@ $stakeholders_records = collect($records)
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($stakeholders_averages as $element=>$importance)
+                @foreach($key_elements_importance as $element)
                     <tr class="module-table-item">
-                        <td style="text-align: left;">{{ $element }}</td>
-                        <td style="text-align: left;">{{ $importance }}</td>
+                        <td style="text-align: left;">{{ $element['element'] }}</td>
+                        <td style="text-align: left;">{{ $element['importance'] }}</td>
                     </tr>
                 @endforeach
                 </tbody>

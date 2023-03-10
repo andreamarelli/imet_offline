@@ -6,6 +6,7 @@ namespace AndreaMarelli\ImetCore\Services\Statistics\traits\CustomFunctions\oecm
 
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BoundaryLevel;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementPlan;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Objectives;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkPlan;
 
 trait Planning
@@ -40,6 +41,37 @@ trait Planning
         $records = WorkPlan::getModule($imet_id)
             ->toArray();
         return static::score_p4_p5($imet_id, $records);
+    }
+
+    public static function score_p6($imet_id): ?float
+    {
+        $records = Objectives::getModule($imet_id)
+            ->toArray();
+
+        $denominator = collect($records)
+            ->filter(function($item){
+                return $item['EvaluationScore']!==null;
+            })
+            ->map(function ($item){
+                return $item['group_key']==='group0'
+                    ? 3
+                    : 1;
+            })
+            ->sum();
+
+        $score = collect($records)
+            ->map(function ($item){
+                return $item['group_key']==='group0'
+                    ? $item['EvaluationScore'] * 3
+                    : $item['EvaluationScore'];
+            })
+            ->sum();
+
+        $score =  $score / $denominator * 100 / 3;
+
+        return $score!== null ?
+            round($score, 2)
+            : null;
     }
 
     private static function score_p4_p5($imet_id, $records): ?float

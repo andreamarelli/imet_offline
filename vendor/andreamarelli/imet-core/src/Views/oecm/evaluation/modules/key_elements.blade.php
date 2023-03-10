@@ -3,22 +3,28 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vue_data */
 
-use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\KeyElements;
-use \Illuminate\Support\Facades\View;
-use \Wa72\HtmlPageDom\HtmlPageCrawler;
-
-$view_groups = View::make('imet-core::components.module.edit.group_with_nothing_to_evaluate', compact(['collection', 'vue_data', 'definitions']))->render();
-
-// Inject titles
-$dom = HtmlPageCrawler::create('<div>'.$view_groups.'</div>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group0')->before('<h3 style="margin-bottom: 20px;">'.(new KeyElements())->titles['title0'].'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group3')->before('<h3 style="margin-bottom: 20px;">'.(new KeyElements())->titles['title1'].'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group7')->before('<h3 style="margin-bottom: 20px;">'.(new KeyElements())->titles['title2'].'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group10')->before('<h3 style="margin-bottom: 20px;">'.(new KeyElements())->titles['title3'].'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group12')->before('<h3 style="margin-bottom: 20px;">'.(new KeyElements())->titles['title4'].'</h3>');
+//$vue_data['locale'] = 'window.Locale';
 
 ?>
 
-{!! $dom->saveHTML() !!}
+@include('modular-forms::module.edit.body', compact(['collection', 'vue_data', 'definitions']))
 
-@include('modular-forms::module.edit.script', compact(['collection', 'vue_data', 'definitions']))
+@push('scripts')
+    <script>
+        // ## Initialize Module controller ##
+        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
+            el: '#module_{{ $definitions['module_key'] }}',
+            data: @json($vue_data),
+
+            methods:{
+                percentage_stakeholder_label(element_id){
+                    let index = element_id.replace(this.module_key, '').replace('Aspect', '').replaceAll('_', '');
+                    let percentage = this.records[index]['__percentage_stakeholders'];
+                    percentage = parseFloat(percentage).toFixed(2);
+                    return Locale.getLabel('imet-core::oecm_evaluation.KeyElements.percentage_stakeholders', {'percentage': percentage})
+                }
+            }
+
+        });
+    </script>
+@endpush

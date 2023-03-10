@@ -67,7 +67,7 @@ return [
             'conventions' => 'Designations (inclusions) in the international conventions list (World Heritage, RAMSAR, etc.)',
             'networks' => 'Membership of an officially recognized international network (MAB, RAPAC etc.)',
             'conservation' => 'Designation for the status of conservation importance by international bodies (IBA, AZE, etc.)',
-            'marine_pa' => 'Designation of marine OECMs',
+            'marine_pa' => 'Other designations',
         ]
     ],
 
@@ -117,9 +117,8 @@ return [
     'Objectives' => [
         'title' => 'Setting objectives',
         'fields' => [
-            'Element' => 'Element/Indicator',
-            'Status' => 'Baseline',
-            'Objective' => 'Objective - Long term Targets/Goals',
+            'Element' => 'Objective',
+            'ShortOrLongTerm' => 'Short/Long term',
             'Comments' => 'Comments'
         ]
     ],
@@ -137,7 +136,7 @@ return [
     ],
 
     'Objectives4' => [
-        'module_info' => 'Establish and describe conservation objectives for key factors: <b> i) animal species ii) plant species; iii) habitats and iv) land-cover change </b> of the OECM<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
+        'module_info' => 'Establish and describe conservation objectives for key factors: <b> i) animal species ii) plant species and iii) habitats </b> of the OECM<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
     ],
 
     'Objectives5' => [
@@ -195,9 +194,9 @@ return [
     ],
 
     'ManagementRelativeImportance' => [
-        'title' => 'Relative importance of staff and stakeholders in management',
+        'title' => 'Relative involvement of staff and stakeholders in management',
         'fields' => [
-            'RelativeImportance' => 'Relative importance of staff and stakeholders'
+            'RelativeImportance' => 'Relative involvement of staff and stakeholders'
         ],
         'ratingLegend' => [
             'RelativeImportance' => [
@@ -241,10 +240,10 @@ return [
             'group9' => 'Links and connections of the OECM with the outer world'
         ],
         'predefined_values' => [
-            'group0' => ['Offices', 'Information centre', 'Miscellaneous services (magazine, etc.)', 'Health care centre'],
+            'group0' => ['Offices', 'Information centre', 'Service buildings (magazine, etc.)', 'Health care centre'],
             'group1' => ['Hotels (guests capacity)', 'Eco-lodges (total capacity - guests)', 'Encampments (total capacity - guests)', 'Available tourist routes (km)', 'Trails'],
             'group2' => ['Cars', 'Motorbike/Quads', 'Bicycles', 'Boats', 'Outboard motors', 'Pirogues'],
-            'group3' => ['Working unit', 'GPS, compasses', 'Camping equipment'],
+            'group3' => ['Equipment for community field work', 'GPS, compasses', 'Camping equipment'],
             'group4' => ['VHF/HF radios', 'V-SAT', 'GSM telephones', 'Internet connection'],
             'group5' => ['Desktop computers', 'Laptop computers', 'Printers', 'Photocopiers'],
             'group6' => ['Power generators', 'Solar electric facility', 'Hydropower electric facility', 'Wind electric facility'],
@@ -319,17 +318,13 @@ return [
     ],
 
     'StakeholdersNaturalResources' => [
-        'title' => 'Stakeholders involved or impacting in the use of natural resources of the OECM',
+        'title' => 'Stakeholders involved in management or impacting in the use of natural resources of the OECM',
         'fields' => [
             'Element' => 'Stakeholder',
-            'GeographicalProximity' => 'Geographical proximity to the OECM',
-            'Engagement' => 'Engagement with OECM\'s NR',
-            'Impact' => 'Impact on NR in the OECM',
-            'Role' => 'Role in NR management in the OECM',
-            'InvolvementM' => 'M',
-            'InvolvementME' => 'ME',
-            'InvolvementE' => 'E',
-            'InvolvementCAE' => 'CAE',
+            'GeographicalProximity' => 'Geographical proximity (achievable in less than 1 day)',
+            'Engagement' => 'Typology of management / use of OECM\'s NR',
+            'Impact' => 'Level of engagement on NR',
+            'Role' => 'Role in NR management',
             'Comments' => 'Note',
         ],
         'titles' => [
@@ -355,10 +350,10 @@ return [
         ],
         'ratingLegend' => [
             'Impact' => [
-                '0' => 'No impact',
-                '1' => 'Low impact',
-                '2' => 'Medium impact',
-                '3' => 'High impact',
+                '0' => 'No engagement',
+                '1' => 'Low engagement',
+                '2' => 'Medium engagement',
+                '3' => 'High engagement',
             ],
             'Role' => [
                 '0' => 'No role',
@@ -367,12 +362,6 @@ return [
                 '3' => 'High role (advise +analysis + planning + implementation + monitoring)',
             ]
         ],
-        'module_info' =>
-            'Select (A) the areas in which the stakeholders are involved in managing the OECM and evaluate:<ul>
-                <li><b>M</b>: management</li>
-                <li><b>ME</b>: management and exploitation</li>
-                <li><b>E</b>: exploitation</li>
-                <li><b>CAE</b>: community awareness and engagement</li></ul>',
 
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules(if already encoded): <i>C2</i>'
     ],
@@ -452,7 +441,7 @@ return [
         'fields' => [
             'Element' => 'Criteria',
             'Status' => 'Status',
-            'Trend' => 'Dependence',
+            'Trend' => 'Trend',
             'MainThreat' => 'Main threats',
             'ClimateChangeEffect' => 'Effects of climate change',
             'Comments' => 'Note/Description',
@@ -475,16 +464,10 @@ return [
                 '0' => 'No change',
                 '1' => 'Increasing',
                 '2' => 'Strongly Increasing',
-            ],
-            'ClimateChangeEffect' => [
-                '-2' => 'Very harmful',
-                '-1' => 'Harmful',
-                '0' => 'No change',
-                '1' => 'Beneficial',
-                '2' => 'Very beneficial',
-            ],
+            ]
         ],
         'summary' => 'Aggregated',
+        'average' => 'Average'
     ],
 
 ];

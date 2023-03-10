@@ -168,15 +168,37 @@ CREATE TABLE imet_oecm.context_objectives1
     "UpdateBy"   integer,
     "UpdateDate" character varying(30),
     "Status"     text,
-    "Benchmark1" text,
-    "Benchmark2" text,
-    "Objective"  text,
-    "Benchmark3" text,
+    "ShortOrLongTerm" varchar(50),
     "Comments"   text,
     "Element"    text,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+CREATE TABLE imet_oecm.context_objectives2
+(
+    id           serial PRIMARY KEY,
+    "FormID"     integer,
+    "UpdateBy"   integer,
+    "UpdateDate" character varying(30),
+    "Status"     text,
+    "ShortOrLongTerm" varchar(50),
+    "Comments"   text,
+    "Element"    text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.context_objectives3
+(
+    id           serial PRIMARY KEY,
+    "FormID"     integer,
+    "UpdateBy"   integer,
+    "UpdateDate" character varying(30),
+    "Status"     text,
+    "ShortOrLongTerm" varchar(50),
+    "Comments"   text,
+    "Element"    text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
 
 CREATE TABLE imet_oecm.context_objectives4
 (
@@ -185,10 +207,7 @@ CREATE TABLE imet_oecm.context_objectives4
     "UpdateBy"   integer,
     "UpdateDate" character varying(30),
     "Status"     text,
-    "Benchmark1" text,
-    "Benchmark2" text,
-    "Objective"  text,
-    "Benchmark3" text,
+    "ShortOrLongTerm" varchar(50),
     "Comments"   text,
     "Element"    text,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
@@ -201,10 +220,7 @@ CREATE TABLE imet_oecm.context_objectives5
     "UpdateBy"   integer,
     "UpdateDate" character varying(30),
     "Status"     text,
-    "Benchmark1" text,
-    "Benchmark2" text,
-    "Objective"  text,
-    "Benchmark3" text,
+    "ShortOrLongTerm" varchar(50),
     "Comments"   text,
     "Element"    text,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
@@ -217,10 +233,7 @@ CREATE TABLE imet_oecm.context_objectives6
     "UpdateBy"   integer,
     "UpdateDate" character varying(30),
     "Status"     text,
-    "Benchmark1" text,
-    "Benchmark2" text,
-    "Objective"  text,
-    "Benchmark3" text,
+    "ShortOrLongTerm" varchar(50),
     "Comments"   text,
     "Element"    text,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
@@ -254,38 +267,6 @@ CREATE TABLE imet_oecm.context_areas
     "GISArea"            numeric,
     "TerrestrialArea"    numeric,
     "MarineArea"         numeric,
-    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-CREATE TABLE imet_oecm.context_objectives2
-(
-    id           serial PRIMARY KEY,
-    "FormID"     integer,
-    "UpdateBy"   integer,
-    "UpdateDate" character varying(30),
-    "Status"     text,
-    "Benchmark1" text,
-    "Benchmark2" text,
-    "Objective"  text,
-    "Benchmark3" text,
-    "Comments"   text,
-    "Element"    text,
-    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-CREATE TABLE imet_oecm.context_objectives3
-(
-    id           serial PRIMARY KEY,
-    "FormID"     integer,
-    "UpdateBy"   integer,
-    "UpdateDate" character varying(30),
-    "Status"     text,
-    "Benchmark1" text,
-    "Benchmark2" text,
-    "Objective"  text,
-    "Benchmark3" text,
-    "Comments"   text,
-    "Element"    text,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -416,10 +397,6 @@ CREATE TABLE imet_oecm.context_stakeholders_natural_resources
     "Engagement"            text,
     "Impact"                numeric,
     "Role"                  numeric,
-    "InvolvementM"         numeric,
-    "InvolvementME"     numeric,
-    "InvolvementE"         numeric,
-    "InvolvementCAE"         numeric,
     "Comments"              text,
     group_key               character varying(50),
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
@@ -454,7 +431,7 @@ CREATE TABLE imet_oecm.context_analysis_stakeholders_trends_threats
     "Element"             text,
     "Status"              numeric,
     "Trend"               numeric,
-    "MainThreat"          character varying(50),
+    "MainThreat"          text,
     "ClimateChangeEffect" numeric,
     "Comments"            text,
     group_key             character varying(50),
@@ -486,6 +463,7 @@ CREATE TABLE imet_oecm.eval_key_elements
     "UpdateBy"            integer,
     "UpdateDate"          character varying(30),
     "Aspect"              text,
+    "Importance"          numeric,
     "EvaluationScore"     numeric,
     "IncludeInStatistics" boolean,
     "Comments"            text,
@@ -636,9 +614,11 @@ CREATE TABLE imet_oecm.eval_objectives
     "FormID"          integer,
     "UpdateBy"        integer,
     "UpdateDate"      character varying(30),
+    "Objective"       text,
+    "Existence"       boolean,
     "EvaluationScore" numeric,
     "Comments"        text,
-    "Objective"       text,
+    "group_key"      character varying(50),
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -649,7 +629,7 @@ CREATE TABLE imet_oecm.eval_objectives_planification
     "UpdateBy"   integer,
     "UpdateDate" character varying(30),
     "Element"    text,
-    "Status"     text,
+    "ShortOrLongTerm" varchar(50),
     "Objective"  text,
     "Comments"   text,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
@@ -726,7 +706,7 @@ CREATE TABLE imet_oecm.eval_objectives_intrants
     "UpdateBy"   integer,
     "UpdateDate" character varying(30),
     "Element"    text,
-    "Status"     text,
+    "ShortOrLongTerm" varchar(50),
     "Objective"  text,
     "Comments"   text,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
@@ -739,7 +719,7 @@ CREATE TABLE imet_oecm.eval_objectives_processus
     "UpdateBy"   integer,
     "UpdateDate" character varying(30),
     "Element"    text,
-    "Status"     text,
+    "ShortOrLongTerm" varchar(50),
     "Objective"  text,
     "Comments"   text,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE

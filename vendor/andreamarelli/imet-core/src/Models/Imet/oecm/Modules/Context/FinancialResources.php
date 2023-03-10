@@ -14,7 +14,7 @@ class FinancialResources extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
         $this->module_type   = 'SIMPLE';
-        $this->module_code   = 'CTX 3.2.1';
+        $this->module_code   = 'CTX 3.2';
         $this->module_title  = trans('imet-core::oecm_context.FinancialResources.title');
         $this->module_fields = [
             [

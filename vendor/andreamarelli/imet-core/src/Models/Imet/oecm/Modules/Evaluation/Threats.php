@@ -15,7 +15,7 @@ class Threats extends Modules\Component\ImetModule_Eval {
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';
-        $this->module_code = 'C3';
+        $this->module_code = 'C4';
         $this->module_title = trans('imet-core::oecm_evaluation.Threats.title');
         $this->module_fields = [
             ['name' => 'Value',         'type' => 'text-area',                      'label' => trans('imet-core::oecm_evaluation.Threats.fields.Value')],

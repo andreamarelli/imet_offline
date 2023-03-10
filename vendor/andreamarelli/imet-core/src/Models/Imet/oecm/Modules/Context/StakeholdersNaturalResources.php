@@ -23,19 +23,12 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
             ['name' => 'Element',                'type' => 'text-area', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Element'), 'other' => 'rows="3"'],
             ['name' => 'GeographicalProximity',  'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.GeographicalProximity')],
             ['name' => 'Engagement',             'type' => 'dropdown_multiple-ImetOECM_Engagement', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Engagement')],
-            ['name' => 'Impact',                 'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Impact')],
             ['name' => 'Role',                   'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Role')],
-
-            ['name' => 'InvolvementM',     'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.InvolvementM')],
-            ['name' => 'InvolvementME', 'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.InvolvementME')],
-            ['name' => 'InvolvementE',     'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.InvolvementE')],
-            ['name' => 'InvolvementCAE',     'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.InvolvementCAE')],
-
+            ['name' => 'Impact',                 'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Impact')],
             ['name' => 'Comments',               'type' => 'text-area', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Comments')],
         ];
 
         $this->module_groups = trans('imet-core::oecm_context.StakeholdersNaturalResources.groups');
-        $this->module_info = trans('imet-core::oecm_context.StakeholdersNaturalResources.module_info');
         $this->ratingLegend = trans('imet-core::oecm_context.StakeholdersNaturalResources.ratingLegend');
 
         parent::__construct($attributes);
@@ -107,12 +100,8 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
                 $sum += $item['Role']!==null ? $item['Role'] : 0;
                 $sum += $Engagement ?? 0;
                 $sum += $item['GeographicalProximity'] ? 4 : 0;
-                $sum += $item['InvolvementM'] ? 1 : 0;
-                $sum += $item['InvolvementME'] ? 1 : 0;
-                $sum += $item['InvolvementE'] ? 1 : 0;
-                $sum += $item['InvolvementCAE'] ? 1 : 0;
 
-                $item['__weight'] = round($sum * 100 / 20, 0);
+                $item['__weight'] = round($sum * 100 / 16, 0);
 
                 return $item;
             })

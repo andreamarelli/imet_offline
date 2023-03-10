@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
 
+use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\_Objectives;
 use AndreaMarelli\ImetCore\Models\User\Role;
 
 class ObjectivesProcessus extends _Objectives

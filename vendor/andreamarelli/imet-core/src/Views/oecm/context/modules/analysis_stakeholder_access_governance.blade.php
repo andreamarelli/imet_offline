@@ -1,16 +1,16 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
+
 /** @var Mixed $vue_data */
 
 use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderAccessGovernance;
 use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersNaturalResources;
 
 $stakeholders = StakeholdersNaturalResources::getStakeholders($vue_data['form_id']);
-$stakeholders_averages = AnalysisStakeholderAccessGovernance::calculateStakeholdersAverages($vue_data['records'], $vue_data['form_id']);
 
 $vue_data['current_stakeholder'] = 'summary';
-$vue_data['stakeholders_averages'] = $stakeholders_averages;
+$vue_data['key_elements_importance'] = AnalysisStakeholderAccessGovernance::calculateKeyElementsImportances($vue_data['form_id'], $vue_data['records']);
 $num_cols = count($definitions['fields']);
 
 ?>
@@ -33,9 +33,9 @@ $num_cols = count($definitions['fields']);
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="module-table-item" v-for="(importance, element) in stakeholders_averages">
-                    <td style="text-align: left;">@{{ element }}</td>
-                    <td style="text-align: left;">@{{ importance }}</td>
+                <tr class="module-table-item" v-for="element in key_elements_importance">
+                    <td style="text-align: left;">@{{ element.element }}</td>
+                    <td style="text-align: left;">@{{ element.importance }}</td>
                 </tr>
                 </tbody>
             </table>
@@ -61,9 +61,9 @@ $num_cols = count($definitions['fields']);
 
                     @php
                         if(in_array($group_key, ['group0', 'group1', 'group2'])){
-                            $definitions['fixed_rows'] = true;
-                        } else {
                             $definitions['fixed_rows'] = false;
+                        } else {
+                            $definitions['fixed_rows'] = true;
                         }
 
                         $table_id = 'group_table_'.$definitions['module_key'].'_'.$group_key;
@@ -193,8 +193,27 @@ $num_cols = count($definitions['fields']);
                     this.records[group_key][this.records[group_key].length - 1]['Stakeholder'] = stakeholder;
                 },
 
+                deleteItem: function (event) {
+                    let _this = this;
+
+                    let table_row_index = event.currentTarget.closest('tr').rowIndex - 1; // force to start at 0
+                    let group_key = event.currentTarget.closest('table').id.replace('group_table_' + this.module_key + '_', '');
+
+                    let same_stakeholder_count = 0;
+                    this.records[group_key].forEach(function (item, index) {
+
+                        if (item['Stakeholder'] === _this.current_stakeholder && group_key === item['group_key']) {
+                            if (same_stakeholder_count === table_row_index) {
+                                _this.records[group_key].splice(index, 1);
+                            }
+                            same_stakeholder_count++;
+                        }
+                    });
+
+                },
+
                 saveModuleDoneCallback(data) {
-                    this.stakeholders_averages = data.stakeholders_averages;
+                    this.key_elements_importance = data.key_elements_importance;
                     this.current_stakeholder = '{{ $vue_data['current_stakeholder'] }}';
                 },
 

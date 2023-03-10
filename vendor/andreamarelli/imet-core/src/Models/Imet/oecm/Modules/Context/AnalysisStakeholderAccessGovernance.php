@@ -22,7 +22,7 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
         $this->module_type = 'GROUP_TABLE';
-        $this->module_code = 'CTX 5.1';
+        $this->module_code = 'CTX 5';
         $this->module_title = trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.title');
         $this->module_fields = [
             ['name' => 'Element',       'type' => 'blade-imet-core::oecm.context.fields.ctx51_element', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Element'), 'other' => 'rows="3"'],
@@ -59,7 +59,7 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
     public static function updateModule(Request $request): array
     {
         $return = parent::updateModule($request);
-        $return['stakeholders_averages'] = static::calculateStakeholdersAverages($return['records'], $return['id']);
+        $return['key_elements_importance'] = static::calculateKeyElementsImportances($return['id'], $return['records']);
         return $return;
     }
 
@@ -171,42 +171,70 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
         return $new_records;
     }
 
-    public static function calculateStakeholdersAverages($records, $form_id): array
+    public static function calculateKeyElementsImportances($form_id, $records = null): array
     {
+        $records = $records ?? static::getModuleRecords($form_id)['records'];
+
         $weights = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
+        $num_stakeholders = count($weights);
+        $weights_sum = collect($weights)->sum();
+        $weights_div = $weights_sum>0 ?
+            collect($weights)->map(function($item) use($weights_sum){
+                return $item / $weights_sum;
+            })->toArray()
+            : null;
+
         foreach($records as $idx => $record){
-            $records[$idx]['__stakeholder_weight'] = $weights[$record['Stakeholder']] / 100;
+            $records[$idx]['__stakeholder_weight'] = $weights_div[$record['Stakeholder']];
         }
 
-        $values = collect($records)
+        return collect($records)
             ->map(function($item){
-                if($item['Dependence']!==null || $item['Access']!==null || $item['Rivalry']!==null){
+                if($item['Dependence']!==null
+                    || $item['Access']!==null
+                    || $item['Rivalry']!==null
+                    || $item['Involvement']!==null
+                    || $item['Accountability']!==null
+                    || $item['Orientation']!==null){
+
                     $item['__importance'] = (
-                            ($item['Dependence'] ?? 0)
-                            + ($item['Access']==='open' ? 3 : ($item['Access']==='exclusion' ? 2 : 0))
+                            3
+                            + ($item['Dependence'] ?? 0)
                             + ($item['Rivalry'] ? 1 : 0)*2
-                        ) * 100 / 8 * $item['__stakeholder_weight'];
+                            - ($item['Involvement'] ? 1 : 0)
+                            - ($item['Accountability'] ? 1 : 0)
+                            - ($item['Orientation'] ? 1 : 0)
+                        ) * 100 / 8;
+                    $item['__weighted_importance'] = $item['__importance'] * $item['__stakeholder_weight'];
+
                 } else {
-                    $item['__importance'] = null;
+                    $item['__weighted_importance'] = null;
                 }
                 return $item;
             })
             ->filter(function ($item){
-                return $item['__importance'] != null;
+                return $item['__weighted_importance'] != null;
             })
             ->groupBy('Element')
-            ->map(function($group_values){
-                return round($group_values
+            ->map(function($group_values) use ($num_stakeholders){
+
+                $importance = $group_values
                     ->map(function($item){
-                        return $item['__importance'];
+                        return $item['__weighted_importance'];
                     })
-                    ->average(), 2);
+                    ->sum();
+
+                $stakeholder_count = $group_values->count() * (100 / $num_stakeholders);
+
+                return [
+                    'element' => $group_values[0]['Element'],
+                    'importance' => round($importance, 1),
+                    'stakeholder_percentage' => $stakeholder_count
+                ];
             })
+            ->sortByDesc('importance')
+            ->values()
             ->toArray();
-
-        arsort($values);
-
-        return $values;
     }
 
 }

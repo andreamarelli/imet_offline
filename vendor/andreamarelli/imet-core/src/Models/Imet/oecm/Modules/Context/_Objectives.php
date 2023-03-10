@@ -13,8 +13,7 @@ class _Objectives extends Modules\Component\ImetModule
         $this->module_title = trans('imet-core::oecm_context.Objectives.title');
         $this->module_fields = [
             ['name' => 'Element',  'type' => 'text-area',   'label' => trans('imet-core::oecm_context.Objectives.fields.Element')],
-            ['name' => 'Status',  'type' => 'text-area',   'label' => trans('imet-core::oecm_context.Objectives.fields.Status')],
-            ['name' => 'Objective',  'type' => 'text-area',   'label' => trans('imet-core::oecm_context.Objectives.fields.Objective')],
+            ['name' => 'ShortOrLongTerm',  'type' => 'toggle-ImetOECM_ShortOrLongTerm',   'label' => trans('imet-core::oecm_context.Objectives.fields.ShortOrLongTerm')],
         ];
 
         $this->module_common_fields = [

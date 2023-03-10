@@ -15,7 +15,7 @@ class Designation extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';
-        $this->module_code = 'C1.1';
+        $this->module_code = 'C1';
         $this->module_title = trans('imet-core::oecm_evaluation.Designation.title');
         $this->module_fields = [
             ['name' => 'Aspect',  'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.Designation.fields.Aspect')],

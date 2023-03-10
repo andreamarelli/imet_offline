@@ -14,7 +14,7 @@ class ObjectivesKeyElements extends _Objectives
 
     public function __construct(array $attributes = [])
     {
-        $this->module_code = 'CX1';
+        $this->module_code = 'CX2';
         $this->module_info = trans('imet-core::oecm_evaluation.ObjectivesKeyElements.module_info');
 
         parent::__construct($attributes);

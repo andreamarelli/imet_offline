@@ -3,7 +3,7 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\_Objectives;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\_Objectives;
 use AndreaMarelli\ImetCore\Models\User\Role;
 
 class ObjectivesPlanification extends _Objectives

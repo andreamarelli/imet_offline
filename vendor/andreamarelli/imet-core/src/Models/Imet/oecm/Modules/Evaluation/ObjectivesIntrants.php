@@ -2,7 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
-
+use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\_Objectives;
 use AndreaMarelli\ImetCore\Models\User\Role;
 
 class ObjectivesIntrants extends _Objectives

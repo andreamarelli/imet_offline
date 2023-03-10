@@ -16,7 +16,7 @@ return [
         'fields' => [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Integration',
-            'SignificativeClassification' => 'Highly significant international designation',
+            'SignificativeClassification' => 'Highly significant designation',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
@@ -36,7 +36,8 @@ return [
     'KeyElements' => [
         'title' => 'Key elements of the OECM',
         'fields' => [
-            'Aspect' => 'Criteria – Concept measured – Variable',
+            'Aspect' => 'Key element / service',
+            'Importance' => 'Importance',
             'EvaluationScore' => 'Integration',
             'IncludeInStatistics' => 'To prioritise in management',
             'Comments' => 'Comments/Explanation',
@@ -59,7 +60,8 @@ return [
         ],
         'module_info_Rating' => [
             'Evaluate the level of integration of 3 to 10 key elements for the management of the OECM (automatically reported from the Context of Intervention because (i) is an important key element of the OECM; (ii) provide an important service to stakeholders; (iii) is rare or in danger of extinction)'
-        ]
+        ],
+        'percentage_stakeholders' => 'Evaluated by :percentage% of stakeholders'
     ],
 
 
@@ -71,7 +73,7 @@ return [
         'title' => 'Constraints or supports from stakeholders',
         'fields' => [
             'Stakeholder'       => 'Criteria – Concept measured – Variable',
-            'Weight'            => 'Importance of the stakeholder (0-100)',
+            'Weight'            => 'Involvement of the stakeholder (0-100)',
             'ConstraintLevel'   => 'Level of the constraint/conflict or support/compliance',
             'Comments'          => 'Comments/Explanation',
         ],
@@ -159,7 +161,7 @@ return [
             'Has the OECM clearly identified and integrated the threats that could affect the area’s biodiversity, cultural heritage, or ecosystem services in its management?'
         ],
         'module_info_Rating' => [
-            'Evaluate the level of integration of most important threats in the management of the OECM based on the analysis of the threats calculator at Context of intervention point CTX 5.1 and automatically reported below . Threats evaluation (automatically reported from CTX 5.1) To prioritise in management Comments/Explanation'
+            'Evaluate the level of integration of most important threats in the management of the OECM based on the analysis of the threats calculator at Context of intervention point CTX 5 and automatically reported below . Threats evaluation (automatically reported from CTX 5) To prioritise in management Comments/Explanation'
         ]
     ],
 
@@ -339,15 +341,13 @@ return [
         'title' => 'Objectives of the OECM',
         'fields' => [
             'Objective' => 'Objective',
+            'Existence' => 'Existence',
             'EvaluationScore' => 'Adequacy',
             'Comments' => 'Comments/Explanation',
         ],
-        'predefined_values' => [
-            'Support to the local economy',
-            'Support social aspects of the stakeholders',
-            'Tourism',
-            'Management systems – human resources, finances, purchasing',
-            'Infrastructure and equipment',
+        'groups' => [
+            'group0' => 'Existing objectives from management plan',
+            'group1' => 'Proposed objectives from C2',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -368,7 +368,7 @@ return [
     ],
 
     'ObjectivesPlanification' => [
-        'module_info' => 'Establish and describe conservation objectives for planning of the OECM<br />The objectives listed below will be used for improving management, and more spe cifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
+        'module_info' => 'Establish and describe conservation objectives for planning of the OECM<br />The objectives listed below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
     ],
 
     'InformationAvailability' => [
@@ -391,7 +391,7 @@ return [
             'Effective OECM management requires sufficient knowledge and information to inform decision- making. Without information good management is highly unlikely.'
         ],
         'module_info_Rating' => [
-            'Analyse the availability of information to support the management of the key elements of the OECM, based on the analysis of the context of intervention, points CTX 4; 5; 6; 7'
+            'Analyse the availability of information to support the management of the key elements of the OECM, based on the analysis of the context of intervention, points CTX 4; 5; 6'
         ]
     ],
 
@@ -399,13 +399,13 @@ return [
         'title' => 'Capacities of the management and governance specific entity or combination of entities',
         'fields' => [
             'Member' => 'Member',
-            'Weight' => 'Importance',
+            'Weight' => 'Involvement',
             'Adequacy' => 'Adequacy',
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
             'group0' => 'Composition and staff or members of the OECM',
-            'group1' => 'Stakeholders involved or impacting in the use of natural resources'
+            'group1' => 'Stakeholders involved or impacting the use of natural resources'
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -524,13 +524,13 @@ return [
         'title' => 'Training and capacity-building programme for the OECM Management and Governance specific entity or combination of entities',
         'fields' => [
             'Member' => 'Criteria – Concept measured – Variable',
-            'Weight' => 'Importance',
+            'Weight' => 'Involvement',
             'Adequacy' => 'Adequacy of capacity building activities for the OECM management entity',
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
             'group0' => 'Composition and staff or members of the OECM',
-            'group1' => 'Stakeholders involved or impacting in the use of natural resources'
+            'group1' => 'Stakeholders involved or impacting the use of natural resources'
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -545,7 +545,7 @@ return [
             'Qualified, competent and committed workforce central to the success of OECMs.'
         ],
         'module_info_Rating' => [
-            'Evaluate the adequacy of capacity-building activities for the OECM Management and Governance specific entity or combination of entities members (identified in CTX 3.1.1 and CTX 3.1.2)'
+            'Evaluate the adequacy of capacity-building activities for the OECM Management and Governance specific entity or combination of entities members (identified in CTX 3.1.1 and CTX 3.1.3)'
         ]
 
     ],
@@ -669,7 +669,7 @@ return [
             'To ensure a sustainability management of the key elements of the OECM, stakeholder(s)/management association(s) should evaluate the practices and actions can include conservation/restoration of animal (e.g., bees) and plant species (e.g., pharmacopoeia), managing fire, revegetation work, controlling invasive species, management of cultural resources, threat containment, etc.'
         ],
         'module_info_Rating' => [
-            'Based on the list of the key elements identified in the Intervention context CTX 5 and prioritise in Management analysis C1.2, evaluate adequacy of related management practices and actions.'
+            'Based on the list of the key elements identified in the Intervention context CTX 5 and prioritise in Management analysis C2, evaluate adequacy of related management practices and actions.'
         ]
     ],
 
@@ -729,7 +729,7 @@ return [
         'title' => 'Cooperation between the stakeholders (deep analysis of the Governance of the key elements of the OECM)',
         'fields' => [
             'Element' => 'Criteria – Concept measured – Variable',
-            'Weight' => 'Importance of the stakeholder (0-100)',
+            'Weight' => 'Involvement of the stakeholder (0-100)',
             'Cooperation' => 'Degree of cooperation',
             'Comments' => 'Comments/Explanation',
         ],

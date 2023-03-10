@@ -47,11 +47,11 @@ class Imet_Eval extends Imet
         'context' => [
             Designation::class,
             KeyElements::class,
-            ObjectivesKeyElements::class,
+//            ObjectivesKeyElements::class,
             SupportsAndConstraints::class,
-            ObjectivesSupportsAndConstraints::class,
+//            ObjectivesSupportsAndConstraints::class,
             Threats::class,
-            ObjectivesThreats::class
+//            ObjectivesThreats::class
         ],
         'planning' => [
             RegulationsAdequacy::class,

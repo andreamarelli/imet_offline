@@ -1,6 +1,11 @@
 <?php
 return [
 
+    'ShortOrLongTerm' => [
+        'short'     => 'Short term',
+        'long'      => 'Long term'
+    ],
+
     'GovernanceModel' => [
         'government'    => 'Governance by government',
         'shared'        => 'Shared governance',
@@ -60,45 +65,35 @@ return [
     ],
 
     'Habitats' => [
-        # Forest
-        'forest_temperate'  => 'Forest temperate',
-        'forest_boreal'     => 'Forest boreal',
-        'moist_lowland'     => 'Subtropical/tropical moist lowland',
-        'moist_montane'     => 'Subtropical/tropical moist montane',
-        'dry'               => 'Subtropical/tropical dry',
-        'swamp'              => 'Subtropical/tropical swamp',
-        # Savanna
-        'savanna_moist'     => 'Savanna-moist',
-        'savanna_dry'       => 'Savanna-dry',
-        # Shrubland
-        'shrubland_dry'             => 'Shrubland-Subtropical/tropical dry',
-        'shrubland_moist'           => 'Shrubland-Subtropical/tropical moist',
-        'shrubland_high_altitude'   => 'Shrubland-Subtropical/tropical high altitude',
-        'shrubland_temperate'       => 'Shrubland temperate',
-        'shrubland_boreal'          => 'Shrubland boreal',
-        # Grassland
-        'grassland_yemperate'       => 'Grassland Temperate',
-        'grassland_high_altitude'   => 'Grassland subtropical/tropical high altitude',
-        'grassland_dry'             => 'Grassland subtropical/tropical dry',
-        # Wetlands
-        'wetlands_perman_freshwater'    => 'Wetlands (inland)-Permanent freshwater lakes',
-        'wetlands'                      => 'Wetlands (inland)',
-        'wetlands_tundra'               => 'Wetlands (inland)-Tundra wetlands',
-        # Rocky Areas, Desert
-        'desert_temperate'  => 'Desert – Temperate',
-        'desert_cold'       => 'Desert – Cold',
-        'desert_hot'        => 'Desert - Hot',
-        # Artificial
-        'plantations'       => 'Plantations'
+        'agriculture'   => 'Agricultural land (farmland and crop fields)',
+        'caves'         => 'Caves',
+        'coasts'        =>   'Coastal regions (beaches, cliffs, and dunes)',
+        'coral_reefs'   =>   'Coral Reefs',
+        'desert'        =>   'Deserts (hot and cold)',
+        'estuaries'     =>   'Estuaries',
+        'forests'       =>   'Forests (tropical, temperate, and boreal, natural and plantation)',
+        'freshwater'    =>   'Freshwater (sources, rivers, lakes, and ponds)',
+        'grasslands'    =>   'Grasslands (savannah, prairie, and steppe)',
+        'intertidal'    =>   'Intertidal zones (littoral zone)',
+        'mangroves'     =>   'Mangroves forests',
+        'marine'        =>   'Marine (oceans and seas)',
+        'mountains'     =>   'Mountains (highlands, alpine and subalpine)',
+        'scrublands'    =>   'Scrublands',
+        'seagrass'      =>   'Seagrass beds',
+        'tundra'        =>   'Tundra',
+        'villages'      =>   'Villages -Urban areas',
+        'wetlands'      =>   'Wetlands (marshes, swamps, and bogs)',
+        'woodlands'     =>   'Woodlands (miombo)',
+        'other'         =>   'Other habitat',
     ],
 
     'Engagement' => [
-        'provisioning'  => 'Provisioning (food, energy, material, pharmacopeia)',
-        'spiritual'     => 'Spiritual',
-        'cultural'      => 'Cultural (tourism, education, etc.)',
-        'regulation'    => 'Regulation / Defence (fight against degradation/ climate change, erosion, desertification, etc)',
-        'enforcement'   => 'Enforcement (pr eserving biodiversity and managing the use of natural resources, cultural and other values.)',
-        'market_economy' => 'Market economy'
+        'provisioning'  => 'a. Provisioning and subsistence economy (food, energy, material, pharmacopeia)',
+        'regulation'    => 'b. Protection and restoration (fight against degradation, tree planting, erosion control, etc)',
+        'cultural'      => 'c. Cultural and spiritual',
+        'educartion'    => 'd. Education and Tourism',
+        'enforcement'   => 'e. Enforcement and Regulation (patrolling and managing the use of natural resources, cultural and other values)',
+        'market_economy' => 'f. Market economy'
     ],
 
     'PopulationStatus' => [
@@ -115,11 +110,17 @@ return [
     ],
 
     'MainThreat' => [
-        'over_exploitation'     => 'Illegal or overexploitation',
-        'habitat_loss'          => 'Habitat loss or degradation - Infrastructures',
-        'pollution'             => 'Pollution',
-        'invasive_species'      => 'Invasive species',
-        'gas_oil_mining'        => 'gas/oil exploitation, mining',
-        'other'                 => 'Others',
+        'commercial_residential'    => 'Commercial and residential',
+        'agriculture_aquaculture'   => 'Agriculture and aquaculture',
+        'enrgy_mining'              => 'Energy and mining',
+        'transport_infrastructure'  => 'Transport and infrastructure',
+        'extraction'                => 'Extraction of biological resources',
+        'human_disturbance'         => 'Human disturbance / intrusion',
+        'changes_natural_system'    => 'Changes in the natural system',
+        'invasive_species'          => 'Invasive / challenging species',
+        'pollution'                 => 'Pollution',
+        'geological'                => 'Geological phenomena',
+        'climate_change'            => 'Climate change and effects',
+        'other'                     => 'Other pressures and threats',
     ]
 ];

@@ -20,24 +20,20 @@ return [
             'CTX 1.0.2',
             'Responsibility for completing the form: Management team and partners and external support for analysis and management evaluation'
         ],
-        'c11' => [
-            'C1.1',
-            'Designations'
-        ],
-        'c12' => [
-            'C1.2',
-            'Key elements'
-        ],
         'c1' => [
             'C1',
-            'Key elements'
+            'Designations'
         ],
         'c2' => [
             'C2',
-            'Constraints or supports from stakeholders'
+            'Key elements'
         ],
         'c3' => [
             'C3',
+            'Constraints or supports from stakeholders'
+        ],
+        'c4' => [
+            'C4',
             'Threats'
         ],
         'p1' => [
