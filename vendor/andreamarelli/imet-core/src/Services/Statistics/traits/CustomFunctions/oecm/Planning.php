@@ -67,7 +67,9 @@ trait Planning
             })
             ->sum();
 
-        $score =  $score / $denominator * 100 / 3;
+        $score = $denominator>0
+            ? $score / $denominator * 100 / 3
+            : null;
 
         return $score!== null ?
             round($score, 2)
