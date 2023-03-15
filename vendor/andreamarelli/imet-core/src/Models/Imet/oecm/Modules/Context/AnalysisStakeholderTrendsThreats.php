@@ -132,14 +132,15 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
                     })->sum() / $sum_weights
                     : null;
 
-                $stakeholder_count = $group->count() * (100 / $num_stakeholders);
+                $stakeholder_count = $group->count();
 
                 return [
                     'element' => $stakeholder,
                     'status' => $status!==null ? round($status, 1) : null,
                     'trend' => $trend!==null ? round($trend, 1) : null,
                     'importance' => $status!==null && $trend!==null ? round(($status + $trend) / 2, 2) : null,
-                    'stakeholder_count' => $stakeholder_count
+                    'stakeholder_count' => $stakeholder_count,
+                    'group' => trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.groups.'.$group[0]['group_key'])
                 ];
             })
             ->filter(function($item){
@@ -147,6 +148,28 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
             })
             ->values()
             ->toArray();
+    }
+
+    public static function getNumStakeholdersElementsByThreat($form_id): array
+    {
+        $records = $records ?? static::getModuleRecords($form_id)['records'];
+
+        $threats = [];
+        foreach($records as $record){
+            if($record['MainThreat']!==null){
+                foreach (json_decode($record['MainThreat']) as $threat){
+                    if(!array_key_exists($threat, $threats)){
+                        $threats[$threat] = [];
+                    }
+                    if(!array_key_exists($record['Element'], $threats[$threat])){
+                        $threats[$threat][$record['Element']] = 1;
+                    } else {
+                        $threats[$threat][$record['Element']]++;
+                    }
+                }
+            }
+        }
+        return $threats;
     }
 
 }

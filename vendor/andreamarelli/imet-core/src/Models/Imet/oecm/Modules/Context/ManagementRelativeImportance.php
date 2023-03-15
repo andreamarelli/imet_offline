@@ -20,8 +20,6 @@ class ManagementRelativeImportance extends Modules\Component\ImetModule
             ['name' => 'RelativeImportance',       'type' => 'rating-Minus3to3',   'label' => trans('imet-core::oecm_context.ManagementRelativeImportance.fields.RelativeImportance')],
         ];
 
-        $this->ratingLegend = trans('imet-core::oecm_context.ManagementRelativeImportance.ratingLegend');
-
         parent::__construct($attributes);
     }
 }

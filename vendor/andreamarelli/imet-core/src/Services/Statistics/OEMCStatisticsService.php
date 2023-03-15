@@ -78,9 +78,10 @@ class OEMCStatisticsService extends StatisticsService
         $scores['avg_indicator'] = $denominator>0
             ? (
                 $scores['c1']
-                + 3 * $scores['c2']
-                + 3 * ($scores['c3']/2+50)
-                + 3 * ($scores['c4']+100)) / $denominator
+                + ($scores['c2']!==null ? 3 * $scores['c2'] : 0)
+                + ($scores['c3']!==null ? 3 * ($scores['c3']/2+50) : 0)
+                + ($scores['c4']!==null ? 3 * ($scores['c4']+100) : 0)
+            ) / $denominator
             : null;
 
         return $scores;

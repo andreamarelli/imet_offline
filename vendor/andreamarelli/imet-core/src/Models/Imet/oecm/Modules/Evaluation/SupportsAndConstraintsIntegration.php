@@ -8,9 +8,9 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 /**
  * @property $titles
  */
-class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
+class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_supports_and_constaints';
+    protected $table = 'imet_oecm.eval_supports_and_constraints_integration';
     protected $fixed_rows = true;
     public $titles = [];
 
@@ -19,18 +19,17 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';
-        $this->module_code = 'C3.1';
-        $this->module_title = trans('imet-core::oecm_evaluation.SupportsAndConstraints.title');
+        $this->module_code = 'C3.2';
+        $this->module_title = trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.title');
         $this->module_fields = [
-            ['name' => 'Stakeholder',       'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraints.fields.Stakeholder')],
-            ['name' => 'Weight',            'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraints.fields.Weight')],
-            ['name' => 'ConstraintLevel',   'type' => 'imet-core::rating-Minus3to3',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraints.fields.ConstraintLevel')],
-            ['name' => 'Comments',           'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraints.fields.Comments')],
+            ['name' => 'Stakeholder',       'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.fields.Stakeholder')],
+            ['name' => 'Weight',            'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.fields.Weight')],
+            ['name' => 'Integration',       'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.fields.Integration')],
+            ['name' => 'IncludeInStatistics',   'type' => 'checkbox-boolean',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.fields.IncludeInStatistics')],
+            ['name' => 'Comments',              'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.fields.Comments')],
         ];
 
-        $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.SupportsAndConstraints.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::oecm_evaluation.SupportsAndConstraints.module_info_Rating');
-        $this->ratingLegend = trans('imet-core::oecm_evaluation.SupportsAndConstraints.ratingLegend');
+        $this->ratingLegend = trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.ratingLegend');
 
         parent::__construct($attributes);
     }

@@ -15,7 +15,7 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
 
     public function __construct(array $attributes = []) {
 
-        $this->module_type = 'GROUP_TABLE';
+        $this->module_type = 'TABLE';
         $this->module_code = 'PR8';
         $this->module_title = trans('imet-core::oecm_evaluation.StakeholderCooperation.title');
         $this->module_fields = [
@@ -24,9 +24,6 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
             ['name' => 'Cooperation',       'type' => 'imet-core::rating-0to3WithNA',  'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.Cooperation')],
             ['name' => 'Comments',          'type' => 'text-area',          'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.Comments')],
         ];
-
-        $this->module_groups = trans('imet-core::oecm_context.StakeholdersNaturalResources.groups');        // Re-use groups from CTX 3.1.2
-        $this->titles = trans('imet-core::oecm_context.StakeholdersNaturalResources.titles');               // Re-use titles from CTX 3.1.2
 
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.StakeholderCooperation.module_info_EvaluationQuestion');
         $this->ratingLegend = trans('imet-core::oecm_evaluation.StakeholderCooperation.ratingLegend');
@@ -50,7 +47,7 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
 
         $preLoaded = [
             'field' => 'Element',
-            'values' => Modules\Context\StakeholdersNaturalResources::getStakeholders($form_id, true)
+            'values' => Modules\Context\StakeholdersNaturalResources::getStakeholders($form_id)
         ];
 
         $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);

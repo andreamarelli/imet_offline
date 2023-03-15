@@ -29,12 +29,18 @@ class AchievedObjectives extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-
-    protected static function getPredefined($form_id = null)
+    /**
+     * Prefill from P6
+     *
+     * @param $form_id
+     * @return array
+     */
+    protected static function getPredefined($form_id = null): array
     {
         $p6_values = collect(Objectives::getModuleRecords($form_id)['records'])
             ->filter(function($item){
-                return $item['Existence'];
+                return $item['group_key']==='group0' // All objectives of group0 (derived from C2)
+                    || $item['Existence'];           // Only objectives with "Existence" from group1
             })
             ->pluck('Objective')
             ->toArray();

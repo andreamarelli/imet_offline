@@ -7,7 +7,8 @@
 use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderAccessGovernance;
 use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersNaturalResources;
 
-$stakeholders = StakeholdersNaturalResources::getStakeholders($vue_data['form_id']);
+$stakeholders = StakeholdersNaturalResources::calculateWeights($vue_data['form_id']);
+arsort($stakeholders);
 
 $vue_data['current_stakeholder'] = 'summary';
 $vue_data['key_elements_importance'] = AnalysisStakeholderAccessGovernance::calculateKeyElementsImportances($vue_data['form_id'], $vue_data['records']);
@@ -25,6 +26,7 @@ $num_cols = count($definitions['fields']);
     <div>
         <div class="card-body" v-if="isCurrentStakeholder('summary') ">
 
+            <h4>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.elements_importance')</h4>
             <table class="table module-table">
                 <thead>
                 <tr>
@@ -40,12 +42,31 @@ $num_cols = count($definitions['fields']);
                 </tbody>
             </table>
 
+            <h4>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.involvement_ranking')</h4>
+            <table class="table module-table">
+                <thead>
+                    <tr>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Stakeholder')</th>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.involvement')</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($stakeholders as $stakeholder => $ranking)
+                    <tr class="module-table-item">
+                        <td style="text-align: left;">{{ $stakeholder }}</td>
+                        <td style="text-align: left;">{{ $ranking }}</td>
+                    </tr>
+                @endforeach
+
+                </tbody>
+            </table>
+
         </div>
     </div>
 </div>
 
 
-@foreach($stakeholders as $index => $stakeholder)
+@foreach(array_keys($stakeholders) as $index => $stakeholder)
     <div class="card">
         <div class="card-header">
             <h4 class="card-title" role="button" @click="switchStakeholder('{{ $stakeholder }}')">
@@ -72,18 +93,21 @@ $num_cols = count($definitions['fields']);
 
                     {{-- titles --}}
                     @if($group_key === 'group0')
-                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title0'] }}</h3>
+                        <h2 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.biodiversity')</h2>
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title0')</h4>
                     @elseif($group_key === 'group3')
-                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title1'] }}</h3>
+                        <h2 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.ecosystem_services')</h2>
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title1')</h4>
                     @elseif($group_key === 'group7')
-                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title2'] }}</h3>
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title2')</h4>
                     @elseif($group_key === 'group10')
-                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title3'] }}</h3>
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title3')</h4>
                     @elseif($group_key === 'group12')
-                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title4'] }}</h3>
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title4')</h4>
                     @endif
 
                     <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+                    @lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.groups_descriptions.' . $group_key)
 
                     <table id="{{ $table_id }}" class="table module-table">
 

@@ -61,7 +61,8 @@ class KeyElements extends Modules\Component\ImetModule_Eval
         foreach ($module_records['records'] as $index => $record){
             if(array_key_exists($record['Aspect'], $key_elements->toArray())){
                 $module_records['records'][$index]['Importance'] = $key_elements[$record['Aspect']]['importance'];
-                $module_records['records'][$index]['__percentage_stakeholders'] = $key_elements[$record['Aspect']]['stakeholder_count'];
+                $module_records['records'][$index]['__num_stakeholders'] = $key_elements[$record['Aspect']]['stakeholder_count'];
+                $module_records['records'][$index]['__group_stakeholders'] = $key_elements[$record['Aspect']]['group'];;
             }
         }
 
@@ -87,6 +88,7 @@ class KeyElements extends Modules\Component\ImetModule_Eval
                 'element' => $key,
                 'importance' => $importance ? round($importance, 2): null,
                 'stakeholder_count' => $stakeholder_count ?? null,
+                'group' => $ctx5_key_element['group'] ?? null,
             ]);
         }
 

@@ -34,6 +34,7 @@ $stakeholders_records = collect($records)
     </div>
     <div>
         <div class="card-body">
+            <h3>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.elements_importance')</h3>
             <table class="table module-table">
                 <thead>
                 <tr>
@@ -71,20 +72,23 @@ $stakeholders_records = collect($records)
                 @foreach($definitions['groups'] as $group_key => $group_label)
 
                     {{-- titles --}}
+                    {{-- titles --}}
                     @if($group_key === 'group0')
-                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title0'] }}</h3>
+                        <h2 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.biodiversity')</h2>
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title0')</h4>
                     @elseif($group_key === 'group3')
-                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title1'] }}</h3>
+                        <h2 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.ecosystem_services')</h2>
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title1')</h4>
                     @elseif($group_key === 'group7')
-                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title2'] }}</h3>
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title2')</h4>
                     @elseif($group_key === 'group10')
-                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title3'] }}</h3>
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title3')</h4>
                     @elseif($group_key === 'group12')
-                        <h3 style="margin-bottom: 20px;">{{ (new AnalysisStakeholderAccessGovernance())->titles['title4'] }}</h3>
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title4')</h4>
                     @endif
 
-
                     <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+                    @lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.groups_descriptions.' . $group_key)
 
                     <table class="table module-table">
 

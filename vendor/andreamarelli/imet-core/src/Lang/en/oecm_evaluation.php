@@ -61,7 +61,8 @@ return [
         'module_info_Rating' => [
             'Evaluate the level of integration of 3 to 10 key elements for the management of the OECM (automatically reported from the Context of Intervention because (i) is an important key element of the OECM; (ii) provide an important service to stakeholders; (iii) is rare or in danger of extinction)'
         ],
-        'percentage_stakeholders' => 'Evaluated by :percentage% of stakeholders'
+        'from_group' => 'From category: ',
+        'num_stakeholders' => 'Evaluated by :num stakeholder(s)'
     ],
 
 
@@ -72,7 +73,7 @@ return [
     'SupportsAndConstraints' => [
         'title' => 'Constraints or supports from stakeholders',
         'fields' => [
-            'Stakeholder'       => 'Criteria – Concept measured – Variable',
+            'Stakeholder'       => 'Stakeholder',
             'Weight'            => 'Involvement of the stakeholder (0-100)',
             'ConstraintLevel'   => 'Level of the constraint/conflict or support/compliance',
             'Comments'          => 'Comments/Explanation',
@@ -89,10 +90,29 @@ return [
             ],
         ],
         'module_info_EvaluationQuestion' => [
-            'The constraints/conflicts or supports/compliances by the political, institutional and civil environment can be measured by their intensity, and by the influence/power of the stakeholders in constraining/conflicting or supporting/complying the OECM.'
+            'The constraints/conflicts or supports/compliances by the stakeholders can be measured by their intensity in constraining/conflicting or supporting/complying the OECM'
         ],
         'module_info_Rating' => [
             'Evaluate the most important constraints/conflicts or supporting/complying factors from the political, institutional and social environment in the management of the OECM'
+        ]
+    ],
+
+    'SupportsAndConstraintsIntegration' => [
+        'title' => 'Constraints or supports integration from stakeholders',
+        'fields' => [
+            'Stakeholder'       => 'Stakeholder',
+            'Weight'            => 'Involvement of the stakeholder (0-100)',
+            'Integration'       => 'Integration',
+            'IncludeInStatistics' => 'To prioritise in management',
+            'Comments'          => 'Comments/Explanation',
+        ],
+        'ratingLegend' => [
+            'Integration' => [
+                '0' => 'no integration',
+                '1' => 'low integration',
+                '2' => 'moderate integration',
+                '3' => 'high integration',
+            ]
         ]
     ],
 
@@ -109,20 +129,6 @@ return [
             'Duration' => 'Duration/ Irreversibility',
             'Trend' => 'Trend',
             'Probability' => 'Probability for the threat in future',
-        ],
-        'predefined_values' => [
-            'Commercial and residential',
-            'Agriculture and aquaculture (Annual or multi-annual crops (non-woody); Wood and pulpwood plantations; Small- and large-scale livestock farming; Marine and freshwater aquaculture; Other typology of production)',
-            'Energy and mining',
-            'Transport and infrastructure',
-            'Use of biological resources (Hunting and harvesting of land animals; Gathering and harvesting of land plants; Forestry and timber harvesting; Fishing and harvesting aquatic resources)',
-            'Human disturbance / intrusion',
-            'Changes in the natural system (Bush fires (fires); Dams and water management or use; Other changes in the ecosystem)',
-            'Invasive / problematic species (Invasive / challenging species)',
-            'Pollution (Domestic and urban waste water; Industrial and military effluent; Agricultural and forestry effluents; Rubbish and solid waste)',
-            'Geological phenomena',
-            'Climate change effects',
-            'Other pressures and threats'
         ],
         'ratingLegend' => [
             'Impact' => [
@@ -162,6 +168,25 @@ return [
         ],
         'module_info_Rating' => [
             'Evaluate the level of integration of most important threats in the management of the OECM based on the analysis of the threats calculator at Context of intervention point CTX 5 and automatically reported below . Threats evaluation (automatically reported from CTX 5) To prioritise in management Comments/Explanation'
+        ],
+        'stakeholders' => 'evaluated by :num stakeholder(s)'
+    ],
+
+    'ThreatsIntegration' => [
+        'title' => 'Threats integration',
+        'fields' => [
+            'Threat'       => 'Threat',
+            'Integration'       => 'Integration',
+            'IncludeInStatistics' => 'To prioritise in management',
+            'Comments'          => 'Comments/Explanation',
+        ],
+        'ratingLegend' => [
+            'Integration' => [
+                '0' => 'no integration',
+                '1' => 'low integration',
+                '2' => 'moderate integration',
+                '3' => 'high integration',
+            ]
         ]
     ],
 
@@ -341,13 +366,14 @@ return [
         'title' => 'Objectives of the OECM',
         'fields' => [
             'Objective' => 'Objective',
-            'Existence' => 'Existence',
+            'Existence' => 'Existing in management plan',
             'EvaluationScore' => 'Adequacy',
+            'IncludeInPlanning' => 'To add in planning',
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
             'group0' => 'Existing objectives from management plan',
-            'group1' => 'Proposed objectives from C2',
+            'group1' => 'Prospective objectives from C2',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -396,7 +422,7 @@ return [
     ],
 
     'CapacityAdequacy' => [
-        'title' => 'Capacities of the management and governance specific entity or combination of entities',
+        'title' => 'Capacities of specific or combination of entities/stakeholders in the management and governance',
         'fields' => [
             'Member' => 'Member',
             'Weight' => 'Involvement',
@@ -409,10 +435,10 @@ return [
         ],
         'ratingLegend' => [
             'Adequacy' => [
-                '0' => 'Extremely weak capacities (0-30% of the needs)',
-                '1' => 'Insufficient capacities (31-60% of the needs)',
-                '2' => 'Adequate capacities adequate but further improvements required (61-90% of the needs)',
-                '3' => 'Completely sufficient capacities (91-100% of the needs)',
+                '0' => 'Capacities building to strong improve (0-30% of the needs)',
+                '1' => 'Capacities building to improve (31-60% of the needs)',
+                '2' => 'Capacities building adequate but further improvements required (61-90% of the needs)',
+                '3' => 'Capacities building completely sufficient (91-100% of the needs)',
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -427,7 +453,6 @@ return [
         'title' => 'Current budget',
         'fields' => [
             'EvaluationScore' => 'Adequacy of current budget',
-            'Percentage' => 'Percentage indicating the extent to which the budget is adequate relative to the requirements',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
@@ -521,7 +546,7 @@ return [
         'module_info' => 'Establish and describe conservation objectives related to implementation process of the OECM The objectives entered below will be used for improving management, and mo re specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
     ],
     'StaffCompetence' => [
-        'title' => 'Training and capacity-building programme for the OECM Management and Governance specific entity or combination of entities',
+        'title' => 'Training and capacity-building programme for the OECM management and governance“ or “Training and capacity building programme',
         'fields' => [
             'Member' => 'Criteria – Concept measured – Variable',
             'Weight' => 'Involvement',
@@ -530,7 +555,7 @@ return [
         ],
         'groups' => [
             'group0' => 'Composition and staff or members of the OECM',
-            'group1' => 'Stakeholders involved or impacting the use of natural resources'
+            'group1' => 'Stakeholders involved in management and impacting on the use of natural resources of the OECM'
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -674,7 +699,7 @@ return [
     ],
 
     'LawEnforcementImplementation' => [
-        'title' => 'Actions against illegal activities or to solve contentious issues on the OECM key elements management',
+        'title' => 'Actions in response to illegal activities or resolution of contentious issues',
         'fields' => [
             'Element' => 'Criteria – Concept measured – Variable',
             'Adequacy' => 'Adequacy',
@@ -682,7 +707,7 @@ return [
         ],
         'groups' => [
             'group0' => 'Terrestrial and Sea control activities',
-            'group1' => 'Actions against illegal activities or to solve contentious issue',
+            'group1' => 'Actions in response to illegal activities or resolution of contentious issues',
         ],
         'predefined_values' => [
             'group0' => [
@@ -726,7 +751,7 @@ return [
 
 
     'StakeholderCooperation' => [
-        'title' => 'Cooperation between the stakeholders (deep analysis of the Governance of the key elements of the OECM)',
+        'title' => 'Cooperation between stakeholders',
         'fields' => [
             'Element' => 'Criteria – Concept measured – Variable',
             'Weight' => 'Involvement of the stakeholder (0-100)',
@@ -959,9 +984,9 @@ return [
     ],
 
     'ManagementGovernance' => [
-        'title' => 'Control of management and governance of the key elements of the OECM',
+        'title' => 'Area Control',
         'fields' => [
-            'Patrol' => 'A) Area covered by control and collection and information',
+            'Patrol' => 'A) Area covered by control',
             'Comments' => 'Comments/Explanation'
         ],
         'ratingLegend' => [
@@ -982,7 +1007,7 @@ return [
     ],
 
     'AchievedObjectives' => [
-        'title' => 'Achievement of long-term conservation objectives of the management',
+        'title' => 'Achievement of long-term objectives of the OECM management and governance',
         'fields' => [
             'Objective' => 'Main long-term goals-objective',
             'EvaluationScore' => 'Level of achievement of the objectives',

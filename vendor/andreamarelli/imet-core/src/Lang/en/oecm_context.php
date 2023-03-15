@@ -1,6 +1,45 @@
 <?php
 return [
 
+    'Create' => [
+        'title' => 'Create a new IMET OECM (WDPA)',
+        'fields' => [
+            'version' => 'IMET version',
+            'Year' => 'Year subject to evaluation',
+            'wdpa_id' => 'OECM',
+            'language' => 'language',
+            'prefill_prev_year' => 'prefill with previous year',
+        ]
+    ],
+
+    'CreateNonWdpa' => [
+        'title' => 'Create a new IMET OECM (non-WDPA)',
+        'fields' => [
+            'version' => 'version',
+            'Year' => 'Year subject to evaluation',
+            'wdpa_id' => 'protected area',
+            'language' => 'language',
+            'prefill_prev_year' => 'prefill with previous year',
+            'pa_def' => 'definition',
+            'name' => 'name as provided by the operator',
+            'origin_name' => 'name in original language',
+            'designation' => 'name of designation (ex. reserve, sanctuary park, etc.)',
+            'designation_eng' => 'designation in English',
+            'designation_type' => 'designation type',
+            'marine' => 'typology',
+            'rep_m_area' => 'surface of the protected conserved marine area [km<sup>2</sup>]',
+            'rep_area' => 'surface of the protected conserved area [km<sup>2</sup>]',
+            'status' => 'status',
+            'ownership_type' => 'Ownership type',
+            'status_year' => 'year of the enactment',
+            'country' => 'country',
+        ],
+
+        'allowed_international' => 'Allowed values for international-level designations',
+        'allowed_regional' => 'Allowed values for regional-level designations',
+        'allowed_national' => 'No fixed values for protected areas designated at a national level',
+    ],
+
     'GeneralInfo' => [
         'title' => 'Basic data',
         'fields' => [
@@ -198,17 +237,12 @@ return [
         'fields' => [
             'RelativeImportance' => 'Relative involvement of staff and stakeholders'
         ],
-        'ratingLegend' => [
-            'RelativeImportance' => [
-                '-3' => 'All decisions are made by staff',
-                '-2' => 'Most decisions are made by staff',
-                '-1' => 'Majority of decisions are made by staff',
-                '0' => 'There is equal contribution of staff and stakeholders to decision-making',
-                '1' => 'Majority of decisions are made by stakeholders',
-                '2' => 'Most decisions are made by stakeholders',
-                '3' => 'All decisions are made by stakeholders',
-            ]
-        ]
+        'staff' => 'staff',
+        'stakeholders' => 'stakeholders',
+        'equal' =>  'majority by',
+        'majority_by' =>  'equal',
+        'most_by' =>  'most by',
+        'all_by' =>  'all by',
     ],
 
     'FinancialResources' => [
@@ -321,9 +355,9 @@ return [
         'title' => 'Stakeholders involved in management or impacting in the use of natural resources of the OECM',
         'fields' => [
             'Element' => 'Stakeholder',
-            'GeographicalProximity' => 'Geographical proximity (achievable in less than 1 day)',
+            'GeographicalProximity' => 'Living inside or in proximity to the OECM (less than a day\'s walk)',
             'Engagement' => 'Typology of management / use of OECM\'s NR',
-            'Impact' => 'Level of engagement on NR',
+            'Impact' => 'Level of management or impact on NR',
             'Role' => 'Role in NR management',
             'Comments' => 'Note',
         ],
@@ -370,13 +404,15 @@ return [
         'title' => 'Analysis per stakeholder',
         'fields' => [
             'Element' => 'Criteria',
+            'Description' => 'Specific element assessed',
             'Dependence' => 'Dependence',
             'Access' => 'Access',
             'Rivalry' => 'Rivalry',
             'Involvement' => 'Involvement',
             'Accountability' => 'Accountability',
             'Orientation' => 'Orientation',
-            'Comments' => 'Note/Description',
+            'Stakeholder' => 'Stakeholder',
+            'Comments' => 'Note',
         ],
         'titles' => [
             'title0' => 'Key animals and plants species in the OECM',
@@ -385,6 +421,8 @@ return [
             'title3' => 'Key Regulating services',
             'title4' => 'Key supporting services (services which enable other services)',
         ],
+        'biodiversity' => 'Biodiversity',
+        'ecosystem_services' => 'Ecosystem Services',
         'groups' => [
             'group0' => 'Animals',
             'group1' => 'Plants',
@@ -401,27 +439,153 @@ return [
             'group12' => 'Provisioning lands (agriculture, livestock, forests)',
             'group13' => 'Habitats for animals and plants',
         ],
+        'groups_descriptions' => [
+            'group0' => '',
+            'group1' => '',
+            'group2' => '',
+            'group3' =>
+                '<p>The provision of ecosystem services - nutrition refers to the provision of food that is essential for human health and well-being. 
+                    It is important to understand and manage the provision of food by maintaining the health of ecosystems through the conservation of soil and water, 
+                    forests, biodiversity, etc. Example of ecosystem services provisioning – nutrition</p>
+                    <ul>
+                        <li>Human food vegetal as grains, tubers, fruits, honey, mushrooms, seaweed, etc</li>
+                        <li>Human food animal as wild/farmed meat, eggs, insects, fish/livestock feed (wild, farmed, bait), etc.</li>
+                        <li>Medicines (quinine against malaria, herbal supplements, aromatic oils, anti-venoms, etc.) and blue biotechnology (fish oil)</li>
+                    </ul>',
+            'group4' =>
+                '<p>The provision of ecosystem services - water includes the provision of clean water for drinking, human use and irrigation. Managing water supply involves 
+                    protecting watersheds, wetlands and other aquatic ecosystems, promoting sustainable water use practices and reducing water pollution and degradation. 
+                    Example of ecosystem services provisioning - water</p>
+                    <ul>
+                        <li>Water supply and quality for human use: consumption, sanitation, and hygiene.</li>
+                        <li>Water for irrigation for crops or other agricultural activities and for fish/livestock consumption</li>
+                        <li>Water storage which can be accessed during periods of drought or low water availability</li>
+                     </ul>',
+            'group5' =>
+                '<p>The provision of ecosystem services - materials includes the provision of wood, fibres, and other materials that 
+                    are used for construction, and manufacturing. Managing ecosystem involves promoting sustainable harvesting practices 
+                    and exploring alternative materials and technologies. Example of ecosystem services provisioning – materials</p>
+                    <ul>
+                        <li>Timber as high value timber; timber for local construction, stakes, stems, etc.</li>
+                        <li>Fibres from plants, such as cotton, flax, palms, kenaf, etc.</li>
+                        <li>Ornamental in general and aquarian resources (seeds, shells and fish collection), </li>
+                        <li>Minerals as gold, silver, copper, sand (building), etc.</li>
+                     </ul>',
+            'group6' =>
+                '<p>The provision of ecosystem services-energy includes the use of biomass, such as firewood or crop residues, and solar or 
+                    wind energy and other energy needs as fertiliser helps to provide essential services such as cooking, heating, lighting 
+                    and for agriculture productivity in rural communities that may lack access to modern energy sources. The sustainable management 
+                    of natural systems, such as forests and agricultural land, is critical to ensure the availability of these services. 
+                    Example of ecosystem services</p>
+                    <ul>
+                        <li>Biomass from plant materials such as wood, crop residues, and grasses that can be burned or converted into biofuels to produce energy.</li>
+                        <li>Biomass to convert in fertiliser</li>
+                        <li>Other green electricity sources: Flowing water, wind, solar or geothermal that can be harnessed to generate electricity.</li>
+                     </ul>',
+            'group7' =>
+                '<p>The provision of ecosystem services – cultural services refers to the benefits that natural systems provide for the enjoyment and well-being of people. 
+                    These benefits can include opportunities for outdoor recreation, such as hiking, camping and wildlife viewing, as well as the aesthetic beauty of 
+                    natural landscapes, such as mountains, forests and beaches. Ecosystem services for aesthetic appreciation, recreation, and tourism can contribute 
+                    to local economies through the development of ecotourism and other nature-based industries. It is important to ensure the availability of these 
+                    ecosystem services for future generations. Example of ecosystem services</p>
+                    <ul>
+                        <li>Ecotourism and nature watching: beautiful landscapes or seascapes, natural landscapes, biodiversity and wildlife that can be enjoyed for 
+                        general recreation, camping, walking, hiking, boating, swimming, wildlife watching and other recreational activities.</li>
+                        <li>Cultural tourism which involves visiting historical sites, landmarks, and cultural attractions that are located within natural areas.</li>
+                        <li>Traditional hunting or fishing, conserved areas for specified traditional hunting or fishing practices</li>
+                     </ul>',
+            'group8' =>
+                '<p>The provision of ecosystem services – cultural services refer to the benefits that natural systems provide for education, research, and 
+                    artistic expression. These benefits can include opportunities for scientific research, environmental education, and cultural activities 
+                    that are inspired by or conducted in natural settings. These services can contribute to the development of human knowledge, cultural 
+                    heritage, and creative expression, which are important for personal and societal well-being. Sustainable management of natural systems
+                     is essential to ensure the availability of these ecosystem services for future generations. Example of ecosystem services</p>
+                    <ul>
+                        <li>Educational opportunities and scientific research in many disciplines, including ecology, botany, and zoology to understand scientific concepts and ecological processes.</li>
+                        <li>Traditional practices and ecological knowledge that are important part of the community\'s identity and heritage related to nature and the environment such as traditional pharmacopeia, medicines</li>
+                        <li>Inspiration and creativity for artists, writers, photographers and other creatives to develop new ideas and works.</li>
+                     </ul>',
+            'group9' =>
+                '<p>The provision of ecosystem services – cultural services for spiritual and emblematic are those that provide cultural and symbolic 
+                    value to human societies. Spiritual ecosystem services may include the aesthetic and emotional experiences that people derive from 
+                    nature. Emblematic ecosystem services are those that are associated with a particular cultural identity or icon. These services 
+                    are important for human well-being and cultural identity. Example of ecosystem services</p>
+                    <ul>
+                        <li>Sacred, historical or religious sites and pilgrimage destinations such as mountains, rivers, or forests, etc.</li>
+                        <li>Cultural icons and symbols as animal or plant species as Lion (in Kenya which is a symbol of courage and strength), Elephants, Crested Crane (in Uganda a bird which represents the country\'s natural beauty and grace) or Baobab tree, etc.</li>
+                        <li>Landscapes that have spiritual or cultural significance for communal identity.</li>
+                     </ul>',
+            'group10' =>
+                '<p>The provision of ecosystem services - remediation of air and water pollutants involves the protection of ecosystems to reduce 
+                    pollution and degradation, and the purification of water and air through natural processes. Examples of how habitats provide 
+                    those ecosystem services</p>
+                    <ul>
+                        <li>Wetlands are highly effective at removing pollutants from water, such as excess nutrients, heavy metals, and organic compounds.</li>
+                        <li>Forests can help to reduce air pollution by absorbing and filtering airborne pollutants and producing oxygen helping to mitigate climate change.</li>
+                        <li>Vegetation zones can help to filter and contribute to water purification, waste removal/neutralisation, waste regulation, etc.</li>
+                     </ul>',
+            'group11' =>
+                '<p>The provision of ecosystem services – erosion prevention and maintenance of soil fertility refers to the protection of soil by 
+                    the vegetation from the physical forces of wind and water, which can lead to the loss of topsoil and nutrients. Maintenance 
+                    of soil fertility refers to the processes that maintain the nutrient content and structure of soil. These services are important 
+                    for the sustainability of agriculture, forestry, and other land-based industries, and help to maintain the health and productivity 
+                    of ecosystems. Example of ecosystem services </p>
+                    <ul>
+                        <li>Flood control: wetlands act as natural sponges, rivers and streams provide channels for excess water, vegetation 
+                        and forests help absorb rainfall and slow down water flow, floodplains absorb excess water during floods and storm protection</li>
+                        <li>Erosion control: vegetation help hold soil in place, their roots stabilize the soil, soil structure resist to the erosion, 
+                        wetlands reduce erosion by controlling runoff and windbreaks or vegetation barriers adjacent to streams and rivers prevent erosion (coastal erosion, water erosion, wind erosion)</li>
+                        <li>Drought control: Soil health and vegetation cover play a crucial in drought control by regulating the water cycle, reducing water loss and maintaining water</li>
+                        <li>Storm control: Trees and help to reduce the impact of storms, natural barriers as mountains or islands can act as barriers to 
+                        storms or absorbing some of the energy from waves, bodies of water help to moderate temperatures, which can reduce the severity of storms.</li>
+                     </ul>',
+            'group12' =>
+                '<p>Ecosystem services of provisioning productivity for agriculture, livestock, and forests refer to the benefits that natural ecosystems 
+                    provide to support the production and productivity of these systems. These services include the maintenance of soil fertility, 
+                    nutrient cycling, water availability and regulation, and pest and disease control. These provisioning services are essential 
+                    for sustaining the productivity of agricultural, livestock, and forestry systems while minimizing the use of synthetic inputs 
+                    and preserving natural resources. Example of ecosystem services</p>
+                    <ul>
+                        <li>Soil formation, structure and fertility for growing crops, producing timber, raising livestock, etc.</li>
+                        <li>Water availability and regulation</li>
+                        <li>Pest and disease control</li>
+                     </ul>',
+            'group13' =>
+                '<p>Ecosystem services of habitats for animals and plants refer to the benefits that natural ecosystems provide to support the 
+                    survival and reproduction of wildlife species and plant communities. These services include the provision of suitable habitat 
+                    for various species, such as food, shelter, and breeding sites. Protecting and conserving natural habitats is therefore essential 
+                    for ensuring the long-term viability of wildlife species and plant communities, as well as for maintaining the many benefits 
+                    that ecosystems provide to human societies. Example of ecosystem services </p>
+                    <ul>
+                        <li>Nursery and nesting habitats: Ecosystems provide habitats for a wide variety of plant and animal species, including 
+                        foraging areas and shelter from predators, such as bird nesting sites, spawning grounds in the sea, rivers and lakes, 
+                        nursery habitats (e.g. corals, bees, etc.), etc.</li>
+                        <li>Habitats for pollination: Woodland and vegetation areas provide support for pollinators such as bees, butterflies and 
+                        hummingbirds which provide an important ecosystem service for agriculture as they help plants to produce fruit, seeds and 
+                        other reproductive structures. </li>
+                     </ul>',
+        ],
         'predefined_values' => [
-            'group3' => ['Nutrition: human food vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.)', 'Human food animal (wild/farmed meat, insects, etc.)', 'Medicines and blue biotechnology (fish oil)', 'Fish/livestock feed (wild, farmed, bait)'],
-            'group4' => ['Nutrition: drinking water', 'water for hygiene, water for agriculture, water for fish/livestock water for energy'],
-            'group5' => ['High value timber', 'Timber for local construction', 'Stems - fibres (palms, kenaf, etc.)', 'Other fibres (leaves, kapok, coco, etc.)', 'Ornamental and aquarian resources (seeds, shells and fish collection)', 'Sand (building)'],
-            'group6' => ['Fuelwood and biofuels', 'Wind for energy', 'Fertiliser'],
-            'group7' => ['Aesthetic benefits', 'Ecotourism and nature watching', 'Walking, hiking and general recreation', 'Boating, swimming and diving', 'Hunting or fishing if permitted', 'Specified traditional fishing'],
-            'group8' => ['Science – Research', 'Educational', 'Cultural heritage'],
-            'group9' => ['Symbolic or historic', 'Sacred or religious'],
-            'group10' => ['Air quality', 'Water purification', 'Waste removal/neutralisation', 'Waste regulation'],
-            'group11' => ['Flood control', 'Prevention of coastal erosion', 'Drought control', 'Storm protection', 'Water erosion control', 'Wind erosion control', 'Prevention of coastal erosion'],
-            'group12' => ['Soil formation, structure and fertility', 'Grazing lands, Woodland habitats'],
-            'group13' => ['Bird nesting sites – sea/river/lake spawning grounds - Nursery habitats (e.g. corals, bees, etc.)', 'Plants for pollination, etc.)']
+            'group3' => ['Human food vegetal', 'Human food animal', 'Medicines'],
+            'group4' => ['Water supply and quality for human use', 'Water for irrigation', 'Water storage'],
+            'group5' => ['Timber', 'Fibres', 'Ornamental and aquarian resources', 'Minerals'],
+            'group6' => ['Biomass for energy', 'Biomass for fertilization', 'Other green electricity sources'],
+            'group7' => ['Ecotourism and nature watching', 'Cultural tourism', 'Traditional hunting or fishing'],
+            'group8' => ['Educational opportunities and scientific research', 'Traditional practices and ecological knowledge', 'Inspiration and creativity'],
+            'group9' => ['Sacred, historical or religious sites', 'Cultural icons and symbols', 'Landscapes with spiritual value'],
+            'group10' => ['Water and air purification', 'Waste regulation and removal'],
+            'group11' => ['Flood control', 'Erosion control', 'Drought control', 'Storm control'],
+            'group12' => ['Provisioning fertility', 'Provisioning water', 'Provisioning disease control'],
+            'group13' => ['Nursery and nesting habitats', 'Habitats for pollination']
         ],
         'module_info' =>
-            '<b>Dependence</b>: Dependence of the stakeholder’s human well-being on the OECM’ key element</br >' .
-            '<b>Access</b>: Access rules to be applied by stakeholders in the management (or operation?) of OECM’ key elements</br >' .
-            '<b>Rivalry</b>: Conflict in the use of the OECM’ key element due to a lack of access regulations, insufficient resources, etc.</br >' .
-            '<b>Involvement</b>: Stakeholder’ involvement in the governance of the OECM’ key element. Is your community / group involved in management of the OECM with regards to the key elements?</br >' .
-            '<b>Accountability</b>: Stakeholder’ accountability in the governance and management of the OECM’ key element. Is your community or group committed to following the rules and taking accountability for the results of your operations to all stakeholders to ensure good management and governance of the key elements of the OECM?</br >' .
-            '<b>Orientation</b>: Stakeholders contribution to long-term objectives orientation of the OECM’ key element. Is your community or group dedicated to achieving the common long-term management and governance goals based on the equity and sustainable use of the OECM\'s key elements by all stakeholders?</br >',
-            '<b>Note/Description</b>: Record important information on access and governance</br >',
+            '<p>Identify key elements for your group, and assess its importance and its management/governance from your own perspective</p>' .
+            '<b>Dependence</b>: A stakeholder\'s dependence on ecosystem services refers to the extent to which subsistence, income, and cultural identity depend on natural resources and ecological processes. Therefore, understanding and managing the dependence of stakeholders on ecosystem services is essential for achieving sustainable development and conservation goals.</br >' .
+            '<b>Access</b>: A stakeholder\'s access to ecosystem services refers to their ability to benefit from the natural resources and services provided by ecosystems. If a stakeholder does not have access to these services, their livelihoods and well-being are at risk and they may face poverty, food insecurity and health problems.</br >' .
+            '<b>Rivalry</b>: The stakeholders\’ rivalry in the ecosystem services refers to the competition or conflict between individuals or stakeholders over access or interests and priorities in the management and use of these services. Rivalry can lead to overuse or depletion of resources, exacerbating environmental degradation and undermining the long-term availability of these services for the community or communities.</br >' .
+            '<b>Involvement</b>: The stakeholders\’ involvement in the management of ecosystem services refers to the participation and engagement of each stakeholder in the planning, decision-making, and implementation to ensure that they have a voice in decisions that affect their livelihoods, as well as to promote the long-term sustainability of the ecosystem services on which they depend.</br >' .
+            '<b>Accountability</b>: The stakeholders\’ accountability refers to the responsibility of individuals or stakeholders for their actions and decisions to ensure that they manage ecosystem services in a sustainable and equitable manner and without negative impacts on other stakeholders and to the environment.</br >' .
+            '<b>Orientation</b>: The stakeholders\’ orientation in the management of ecosystem services refers to the process of providing guidance, education, and training to other stakeholders on how to manage and sustainably use ecosystem services as well as the identification of potential threats to these services and how to mitigate them in their local environment. The aim of this orientation is to build the capacity of rural communities to manage their natural resources in a way that promotes their long-term viability and enhances their quality of life.</br >',
         'ratingLegend' => [
             'Dependence' => [
                 '0' => 'Very low',
@@ -432,8 +596,11 @@ return [
         ],
         'warning_on_save' =>
             'WARNING!! <br /> Any modification might cause data loss in the following modules(if already encoded): <i>CTX 6.1</i>, <i>C1.2</i> and <i>I1</i>',
-        'summary' => 'Importance of elements',
-        'importance' => 'Importance (0-100)'
+        'summary' => 'Importance of elements & Involvement of stakeholders',
+        'elements_importance' => 'Importance of elements',
+        'involvement_ranking' => 'Involvement of stakeholders',
+        'importance' => 'Importance (0-100)',
+        'involvement' => 'Involvement of the stakeholder (0-100)'
     ],
 
     'AnalysisStakeholderTrendsThreats' => [

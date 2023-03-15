@@ -16,6 +16,7 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
 {
     protected $table = 'imet_oecm.context_analysis_stakeholders_access_governance';
     public $titles = [];
+    protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
@@ -26,6 +27,7 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
         $this->module_title = trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.title');
         $this->module_fields = [
             ['name' => 'Element',       'type' => 'blade-imet-core::oecm.context.fields.ctx51_element', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Element'), 'other' => 'rows="3"'],
+            ['name' => 'Description',    'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Description')],
             ['name' => 'Dependence',    'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Dependence')],
             ['name' => 'Access',        'type' => 'suggestion-ImetOECM_Access', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Access')],
             ['name' => 'Rivalry',       'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Rivalry')],
@@ -37,7 +39,6 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
         ];
 
         $this->module_groups = trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.groups');
-        $this->titles = trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles');
         $this->predefined_values = [
             'field' => 'Element',
             'values' => trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.predefined_values')
@@ -116,6 +117,8 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
                     return SelectionList::getList('ImetOECM_Habitats')[$item];
                 })
                 ->toArray();
+
+
 
         if(!empty($records)) {
             // ensure first record has id field (set to null if doesn't)
@@ -224,12 +227,13 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
                     })
                     ->sum();
 
-                $stakeholder_count = $group_values->count() * (100 / $num_stakeholders);
+                $stakeholder_count = $group_values->count();
 
                 return [
                     'element' => $group_values[0]['Element'],
                     'importance' => round($importance, 1),
-                    'stakeholder_percentage' => $stakeholder_count
+                    'stakeholder_percentage' => $stakeholder_count,
+                    'group' => trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.groups.'.$group_values[0]['group_key'])
                 ];
             })
             ->sortByDesc('importance')

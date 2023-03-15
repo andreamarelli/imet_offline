@@ -7,6 +7,10 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 class _Objectives extends Modules\Component\ImetModule
 {
 
+    public static $rules = [
+        'ShortOrLongTerm'       => 'required'
+    ];
+
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';

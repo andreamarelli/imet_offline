@@ -22,12 +22,12 @@ class Create extends Modules\Component\ImetModule
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'SIMPLE';
-        $this->module_title = trans('imet-core::common.Create.title');
+        $this->module_title = trans('imet-core::oecm_context.Create.title');
         $this->module_fields = [
             ['name' => 'version',   'type' => 'blade-imet-core::oecm.context.fields.version',   'label' => trans('imet-core::common.version')],
             ['name' => 'language',  'type' => 'toggle-ImetV2_languages',                        'label' => trans('imet-core::common.language')],
-            ['name' => 'Year',      'type' => 'yearMaxCurrent',                                 'label' => trans('imet-core::common.Create.fields.Year')],
-            ['name' => 'wdpa_id',   'type' => 'imet-core::selector-wdpa',                       'label' => trans_choice('imet-core::common.protected_area.protected_area', 1)],
+            ['name' => 'Year',      'type' => 'yearMaxCurrent',                                 'label' => trans('imet-core::oecm_context.Create.fields.Year')],
+            ['name' => 'wdpa_id',   'type' => 'imet-core::selector-wdpa',                       'label' => trans('imet-core::oecm_context.Create.fields.wdpa_id')],
         ];
 
         parent::__construct($attributes);

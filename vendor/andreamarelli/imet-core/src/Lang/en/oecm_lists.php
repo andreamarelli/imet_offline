@@ -105,14 +105,14 @@ return [
 
     'Access' => [
         'no_access' => 'No access',
-        'exclusion' => 'Exclusion (criteria for access, use, withdrawal, management)',
+        'limited' => 'Limitation of the use and management',
         'open'      => 'Open (generally use or enjoy of NR including lands)'
     ],
 
     'MainThreat' => [
         'commercial_residential'    => 'Commercial and residential',
         'agriculture_aquaculture'   => 'Agriculture and aquaculture',
-        'enrgy_mining'              => 'Energy and mining',
+        'energy_mining'              => 'Energy and mining',
         'transport_infrastructure'  => 'Transport and infrastructure',
         'extraction'                => 'Extraction of biological resources',
         'human_disturbance'         => 'Human disturbance / intrusion',

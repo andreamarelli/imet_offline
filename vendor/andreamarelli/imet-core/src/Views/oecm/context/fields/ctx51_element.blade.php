@@ -16,7 +16,7 @@ $group = $matches[1][0];
 ?>
 
 <simple-textarea
-    :disabled="'{{ $group }}' in predefined_values && predefined_values.values['{{ $group }}'].includes({{ $v_value }})"
+    :disabled="records['{{ $group }}'][index]['__predefined']"
     {!! DOM::vueAttributes($id, $v_value) !!}
     {!! DOM::rulesAttribute($rules) !!}
 ></simple-textarea>

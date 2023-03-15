@@ -77,6 +77,7 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
         } else {
             return static::getModule($form_id)
                 ->pluck('Element')
+                ->unique()
                 ->toArray();
         }
     }
