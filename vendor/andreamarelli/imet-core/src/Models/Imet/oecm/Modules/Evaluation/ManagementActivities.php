@@ -49,7 +49,7 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
 
 
     /**
-     * Preload data from C2
+     * Preload data from C1, C2, C3 & C4
      *
      * @param $form_id
      * @param null $collection
@@ -62,7 +62,28 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
 
         $records = $module_records['records'];
 
-        $c2_values = collect(KeyElements::getModuleRecords($form_id)['records'])
+        $c1_values = collect(Designation::getModuleRecords($form_id)['records'])
+            ->filter(function($item){
+                return $item['IncludeInStatistics'];
+            })
+            ->pluck('Aspect')
+            ->toArray();
+
+        $c2_values = collect(SupportsAndConstraintsIntegration::getModuleRecords($form_id)['records'])
+            ->filter(function($item){
+                return $item['IncludeInStatistics'];
+            })
+            ->pluck('Stakeholder')
+            ->toArray();
+
+        $c3_values = collect(ThreatsIntegration::getModuleRecords($form_id)['records'])
+            ->filter(function($item){
+                return $item['IncludeInStatistics'];
+            })
+            ->pluck('Threat')
+            ->toArray();
+
+        $c4_values = collect(KeyElements::getModuleRecords($form_id)['records'])
             ->filter(function($item){
                 return $item['IncludeInStatistics'];
             })
@@ -71,7 +92,7 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
 
         $preLoaded = [
             'field' => 'Activity',
-            'values' => $c2_values
+            'values' => array_merge($c1_values, $c2_values, $c3_values, $c4_values)
         ];
 
         $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);

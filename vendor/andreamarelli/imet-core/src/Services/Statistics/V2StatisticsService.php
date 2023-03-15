@@ -4,8 +4,6 @@ namespace AndreaMarelli\ImetCore\Services\Statistics;
 
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
-use AndreaMarelli\ImetCore\Services\Statistics\traits\DB\DBFunctions;
-use AndreaMarelli\ImetCore\Services\Statistics\traits\DB\V2_DBFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\CommonFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\CustomFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
@@ -13,7 +11,6 @@ use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
 
 class V2StatisticsService extends StatisticsService
 {
-    use DBFunctions;
     use CommonFunctions;
     use CustomFunctions\V2\Context;
     use CustomFunctions\V2\Planning;
@@ -21,10 +18,7 @@ class V2StatisticsService extends StatisticsService
     use CustomFunctions\V2\Process;
     use CustomFunctions\V2\Outputs;
     use CustomFunctions\V2\Outcomes;
-    use V2_DBFunctions;
     use Math;
-
-    const SCHEMA = 'imet_assessment_v2'; // todo: to be removed after conversion to PHP
 
     /**
      * Return CONTEXT step scores

@@ -46,8 +46,14 @@ class ReportController extends BaseReportController
         $scores = OEMCStatisticsService::get_scores($form_id, 'ALL');
 
         $main_threats = [];
-        $climate_change = [];
         $status = [];
+        $planning_objectives_list = ['long' => [], 'short' => []];
+
+        $planning_objectives = Modules\Evaluation\ObjectivesPlanification::getModule($form_id)->toArray();
+
+        foreach ($planning_objectives as $record){
+            $planning_objectives_list[$record['ShortOrLongTerm']][] = $record['Element'];
+        }
 
         $trend_and_threats = Modules\Context\AnalysisStakeholderTrendsThreats::getModule($form_id)->toArray();
         foreach ($trend_and_threats as $record) {
@@ -55,18 +61,15 @@ class ReportController extends BaseReportController
                 $status[$record['Status']] = trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.ratingLegend.Status')[$record['Status']];
             }
             if ($record['MainThreat']) {
-                $main_threats[$record['MainThreat']] = trans('imet-core::oecm_lists.MainThreat')[$record['MainThreat']];
+                $label =  str_replace('"]','', str_replace('["','', $record['MainThreat']));
+                $main_threats[$record['MainThreat']] = trans('imet-core::oecm_lists.MainThreat')[$label];
             }
-            if ($record['ClimateChangeEffect']) {
-                $climate_change[$record['ClimateChangeEffect']] = trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.ratingLegend.ClimateChangeEffect')[$record['ClimateChangeEffect']];
-            }
-
         }
 
         return [
             'item' => $item,
+            'planning_objectives' => $planning_objectives_list,
             'main_threats' => $main_threats,
-            'climate_change' => $climate_change,
             'status' => $status,
             'key_elements' => Modules\Evaluation\KeyElements::getModule($form_id)->filter(function ($item) {
                 return $item['IncludeInStatistics'];
@@ -78,6 +81,7 @@ class ReportController extends BaseReportController
                 ]
             ),
             'report' => Report::getByForm($form_id),
+            'report_schema' => Report::getSchema(),
             'connection' => $api_available,
             'show_api' => $show_api,
             'dopa_radar' => $dopa_radar,

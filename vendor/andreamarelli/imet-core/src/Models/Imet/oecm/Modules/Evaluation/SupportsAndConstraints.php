@@ -19,7 +19,7 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';
-        $this->module_code = 'C3.1';
+        $this->module_code = 'C2.1';
         $this->module_title = trans('imet-core::oecm_evaluation.SupportsAndConstraints.title');
         $this->module_fields = [
             ['name' => 'Stakeholder',       'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraints.fields.Stakeholder')],

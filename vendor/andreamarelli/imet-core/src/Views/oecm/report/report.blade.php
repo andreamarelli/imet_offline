@@ -4,7 +4,9 @@
 /** @var \AndreaMarelli\ImetCore\Models\Imet\oecm\Imet $item */
 /** @var array $assessment */
 /** @var array $key_elements */
+/** @var array $planning_objectives */
 /** @var array $report */
+/** @var array $report_schema */
 /** @var array $dopa_radar */
 /** @var array $general_info */
 /** @var array $vision */
@@ -186,158 +188,54 @@ if ($item->language != App::getLocale()) {
         </div>
         <div class="module-container">
             <div class="module-header">
-                <div class="module-title">@lang('imet-core::oecm_report.table_of_planning')</div>
+                <div class="module-title">@lang('imet-core::oecm_report.general_planning')</div>
             </div>
             <div class="module-body">
-                <h5>@lang('imet-core::oecm_report.previous_state')</h5>
-                @include('imet-core::oecm.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'previous_state'])
                 <h5>@lang('imet-core::oecm_report.driving_forces')</h5>
                 <ul>
                     @foreach($main_threats as $elem)
                         <li>{{ $elem }}</li>
                     @endforeach
-                    @foreach($climate_change as $elem)
-                        <li>{{ $elem }}</li>
-                    @endforeach
                 </ul>
-                <h5>@lang('imet-core::oecm_report.impacts')</h5>
-                @include('imet-core::oecm.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'impacts'])
                 <h5>@lang('imet-core::oecm_report.current_state')</h5>
                 <ul>
                     @foreach($status as $elem)
                         <li>{{ $elem }}</li>
                     @endforeach
                 </ul>
-                @include('imet-core::oecm.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'current_state'])
-                <h5>@lang('imet-core::oecm_report.responses')</h5>
-                @include('imet-core::oecm.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'responses'])
                 <h5>@lang('imet-core::oecm_report.expected_conditions')</h5>
                 <ul>
                     @foreach($status as $elem)
                         <li>{{ $elem }}</li>
                     @endforeach
                 </ul>
-                @include('imet-core::oecm.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'expected_conditions'])
+                <h5>@lang('imet-core::oecm_report.proposed_short_objectives')</h5>
+                <ul>
+                    @foreach($planning_objectives['short'] as $elem)
+                        <li>{{ $elem }}</li>
+                    @endforeach
+                </ul>
+                <h5>@lang('imet-core::oecm_report.proposed_long_objectives')</h5>
+                <ul>
+                    @foreach($planning_objectives['long'] as $elem)
+                        <li>{{ $elem }}</li>
+                    @endforeach
+                </ul>
             </div>
         </div>
-
-        <div class="module-container">
-            <div class="module-header">
-                <div class="module-title">@lang('imet-core::oecm_report.possible_roadmap')</div>
-            </div>
-            <div class="module-body">
-                <div class="row">
-                    <div class="col-6">
-                        <h3>@lang('imet-core::oecm_report.long_term_objectives')</h3>
-                    </div>
-                    <div class="col"><h5>@lang('imet-core::oecm_report.year') 1</h5></div>
-                    <div class="col"><h5>@lang('imet-core::oecm_report.year') 2</h5></div>
-                    <div class="col"><h5>@lang('imet-core::oecm_report.year') 3</h5></div>
-                    <div class="col"><h5>@lang('imet-core::oecm_report.year') 4</h5></div>
-                    <div class="col"><h5>@lang('imet-core::oecm_report.year') 5</h5></div>
+        <div class="item">
+            @include('imet-core::oecm.report.components.planning_roadmap', ['report' => $report, 'action' => $action])
+            <div class="row">
+                <div class="col">
+                    <span v-if="reportLength < 10">
+                        @include('modular-forms::buttons.add_item')
+                    </span>
+                    <span v-if="reportLength > 1">
+                        @include('modular-forms::buttons.delete_item')
+                    </span>
                 </div>
-                <div class="row">
-                    <div class="col-6">
-                        @include('imet-core::oecm.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'long_term'])
-                    </div>
-                    @foreach([1,2,3,4,5] as $year)
-                        <div class="col">
-                            <checkbox-boolean v-model="report.long_term_year{{$year}}"
-                                              :id="'long_term_year{{$year}}'"></checkbox-boolean>
-                        </div>
-                    @endforeach
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h5>@lang('imet-core::oecm_report.outcome')</h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        @include('imet-core::oecm.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'outcome'])
-                    </div>
-                    @foreach([1,2,3,4,5] as $year)
-                        <div class="col">
-                            <checkbox-boolean v-model="report.outcome_year{{$year}}"
-                                              :id="'outcome_year{{$year}}'"></checkbox-boolean>
-                        </div>
-                    @endforeach
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h3>@lang('imet-core::oecm_report.annual_multi_annual_targets')</h3>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        @include('imet-core::oecm.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'annual_targets'])
-                    </div>
-                    @foreach([1,2,3,4,5] as $year)
-                        <div class="col">
-                            <checkbox-boolean v-model="report.annual_targets_year{{$year}}"
-                                              :id="'annual_targets_year{{$year}}'"></checkbox-boolean>
-                        </div>
-                    @endforeach
-                </div>
-                @foreach([1,2] as $intervention)
-                    <div class="row">
-                        <div class="col">
-                            <h4>@lang('imet-core::oecm_report.intervention') {{$intervention}}</h4>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            @include('imet-core::oecm.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'intervention'.$intervention])
-                        </div>
-                        @foreach([1,2,3,4,5] as $year)
-                            <div class="col">
-                                <checkbox-boolean v-model="report.intervention{{$intervention}}_year{{$year}}"
-                                                  :id="'intervention{{$intervention}}_year{{$year}}'"></checkbox-boolean>
-                            </div>
-                        @endforeach
-                    </div>
-                    @foreach([1,2] as $activity)
-                        <div class="row">
-                            <div class="col-5">
-                                <h5>@lang('imet-core::oecm_report.activity') {{$activity}}</h5>
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                @include('imet-core::oecm.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'intervention'.$intervention.'_activity'.$activity])
-                            </div>
-                            @foreach([1,2,3,4,5] as $year)
-                                <div class="col">
-                                    <checkbox-boolean
-                                        v-model="report.intervention{{$intervention}}_activity{{$activity}}_year{{$year}}"
-                                        :id="'intervention{{$intervention}}_activity{{$activity}}_year{{$year}}'"></checkbox-boolean>
-                                </div>
-                            @endforeach
-                        </div>
-                    @endforeach
-                    <div class="row">
-                        <div class="col">
-                            <h5>@lang('imet-core::oecm_report.other') </h5>
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            @include('imet-core::oecm.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'intervention'.$intervention.'_other'])
-                        </div>
-
-                        @foreach([1,2,3,4,5] as $year)
-                            <div class="col">
-                                <checkbox-boolean class="field-edit" v-model="report.intervention{{$intervention}}_other_year{{$year}}"
-                                                  v-bind:id="'intervention{{$intervention}}_other_year{{$year}}'"></checkbox-boolean>
-                            </div>
-                        @endforeach
-                    </div>
-                @endforeach
             </div>
         </div>
-
         @if($action==='edit')
             <div class="scrollButtons" v-cloak>
                 {{-- Save --}}
@@ -367,30 +265,29 @@ if ($item->language != App::getLocale()) {
                      @click="printReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('print') !!} {{ ucfirst(trans('modular-forms::common.print')) }}</div>
             </div>
         @endif
-
     </div>
-
-
-
     <script>
         new Vue({
             el: '#imet_report',
             data: {
                 report: @json($report),
+                default_schema: @json($report_schema),
                 loading: false,
                 error: false,
                 status: 'idle',
                 connection: {{ $connection ? 'true' : 'false' }},
                 report_map: null,
-
+                table_input_elems: [0]
             },
-
             mounted() {
+                if (this.report.length > 0) {
+                    this.table_input_elems = this.report.map((elem, index) => index);
+                }
                 if (this.connection) {
                     this.loadMap();
                 }
-            },
 
+            },
             watch: {
                 status(value) {
                     let _this = this;
@@ -401,19 +298,19 @@ if ($item->language != App::getLocale()) {
                     }
                 },
                 'report': {
-                    handler: function () {
+                    handler: function (val, oldVal) {
                         this.status = 'changed';
                     },
                     deep: true
                 }
             },
-
             methods: {
                 saveReport() {
                     let _this = this;
                     this.status = 'loading';
                     this.loading = true;
                     this.error = false;
+
                     window.axios({
                         method: 'post',
                         url: '{{ route(\AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller::ROUTE_PREFIX . 'report_update', ['item' => $item->getKey()]) }}',
@@ -437,7 +334,17 @@ if ($item->language != App::getLocale()) {
                 printReport() {
                     window.print();
                 },
-
+                addItem() {
+                    if (this.table_input_elems.length < 10) {
+                        const id = this.table_input_elems.length;
+                        this.table_input_elems.push(id);
+                        this.report.push(JSON.parse(JSON.stringify(this.default_schema)));
+                    }
+                },
+                deleteItem(index) {
+                    const key = this.table_input_elems.pop();
+                    this.report.splice(key, 1);
+                },
                 loadMap() {
                     let _this = this;
                     let biopamaBaseLayer = 'mapbox://styles/jamesdavy/cjw25laqe0y311dqulwkvnfoc';
@@ -452,7 +359,6 @@ if ($item->language != App::getLocale()) {
                         minZoom: 0,
                         maxZoom: 18
                     });
-
                     this.report_map.on('load', function () {
                         _this.report_map.addSource("BIOPAMA_Poly", {
                             "type": 'vector',
@@ -460,7 +366,6 @@ if ($item->language != App::getLocale()) {
                             "minZoom": 0,
                             "maxZoom": 12,
                         });
-
                         _this.report_map.addLayer({
                             "id": "wdpaBase",
                             "type": "fill",
@@ -477,7 +382,6 @@ if ($item->language != App::getLocale()) {
                                 ],
                             }
                         });
-
                         _this.report_map.addLayer({
                             "id": "wdpaSelected",
                             "type": "line",
@@ -499,7 +403,6 @@ if ($item->language != App::getLocale()) {
                 }
             }
         });
-
     </script>
 
 @endsection

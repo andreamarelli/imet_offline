@@ -19,7 +19,7 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';
-        $this->module_code = 'C3.2';
+        $this->module_code = 'C2.2';
         $this->module_title = trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.title');
         $this->module_fields = [
             ['name' => 'Stakeholder',       'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.fields.Stakeholder')],

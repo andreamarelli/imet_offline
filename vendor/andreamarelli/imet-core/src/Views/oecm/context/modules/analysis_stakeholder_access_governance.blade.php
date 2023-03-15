@@ -24,42 +24,46 @@ $num_cols = count($definitions['fields']);
         </h4>
     </div>
     <div>
-        <div class="card-body" v-if="isCurrentStakeholder('summary') ">
+        <div class="card-body" v-if="isCurrentStakeholder('summary')" style="display: flex; column-gap: 40px;">
 
-            <h4>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.elements_importance')</h4>
-            <table class="table module-table">
-                <thead>
-                <tr>
-                    <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Element')</th>
-                    <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.importance')</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="module-table-item" v-for="element in key_elements_importance">
-                    <td style="text-align: left;">@{{ element.element }}</td>
-                    <td style="text-align: left;">@{{ element.importance }}</td>
-                </tr>
-                </tbody>
-            </table>
-
-            <h4>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.involvement_ranking')</h4>
-            <table class="table module-table">
-                <thead>
+            <div>
+                <h4>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.elements_importance')</h4>
+                <table class="table module-table">
+                    <thead>
                     <tr>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Stakeholder')</th>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.involvement')</th>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Element')</th>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.importance')</th>
                     </tr>
-                </thead>
-                <tbody>
-                @foreach($stakeholders as $stakeholder => $ranking)
-                    <tr class="module-table-item">
-                        <td style="text-align: left;">{{ $stakeholder }}</td>
-                        <td style="text-align: left;">{{ $ranking }}</td>
+                    </thead>
+                    <tbody>
+                    <tr class="module-table-item" v-for="element in key_elements_importance">
+                        <td style="text-align: left;">@{{ element.element }}</td>
+                        <td style="text-align: left;">@{{ element.importance }}</td>
                     </tr>
-                @endforeach
+                    </tbody>
+                </table>
+            </div>
 
-                </tbody>
-            </table>
+            <div>
+                <h4>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.involvement_ranking')</h4>
+                <table class="table module-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.involvement')</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($stakeholders as $stakeholder => $ranking)
+                        <tr class="module-table-item">
+                            <td style="text-align: left;">{{ $stakeholder }}</td>
+                            <td style="text-align: left;">{{ $ranking }}</td>
+                        </tr>
+                    @endforeach
+
+                    </tbody>
+                </table>
+            </div>
 
         </div>
     </div>

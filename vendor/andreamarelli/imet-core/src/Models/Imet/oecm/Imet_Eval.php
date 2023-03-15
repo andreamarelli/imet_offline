@@ -25,11 +25,8 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementPlan;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\NaturalResourcesMonitoring;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Objectives;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesIntrants;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesKeyElements;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesPlanification;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesProcessus;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesSupportsAndConstraints;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesThreats;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\RegulationsAdequacy;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\SupportsAndConstraints;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\StakeholderCooperation;
@@ -48,14 +45,11 @@ class Imet_Eval extends Imet
     public static $modules = [
         'context' => [
             Designation::class,
-            KeyElements::class,
-//            ObjectivesKeyElements::class,
             SupportsAndConstraints::class,
             SupportsAndConstraintsIntegration::class,
-//            ObjectivesSupportsAndConstraints::class,
             Threats::class,
             ThreatsIntegration::class,
-//            ObjectivesThreats::class
+            KeyElements::class,
         ],
         'planning' => [
             RegulationsAdequacy::class,

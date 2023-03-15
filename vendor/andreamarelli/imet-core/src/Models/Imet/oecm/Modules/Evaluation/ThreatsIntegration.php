@@ -19,7 +19,7 @@ class ThreatsIntegration extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';
-        $this->module_code = 'C4.2';
+        $this->module_code = 'C3.2';
         $this->module_title = trans('imet-core::oecm_evaluation.ThreatsIntegration.title');
         $this->module_fields = [
             ['name' => 'Threat',           'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.ThreatsIntegration.fields.Threat')],

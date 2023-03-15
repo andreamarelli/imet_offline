@@ -34,7 +34,7 @@ class Objectives extends Modules\Component\ImetModule_Eval
     }
 
     /**
-     * Preload data from C2
+     * Preload data from C4
      *
      * @param $form_id
      * @param null $collection
@@ -47,18 +47,20 @@ class Objectives extends Modules\Component\ImetModule_Eval
 
         $records = $module_records['records'];
 
-        $c2_values = collect(KeyElements::getModuleRecords($form_id)['records'])
+        $c4_values = collect(KeyElements::getModuleRecords($form_id)['records'])
             ->filter(function($item){
                 return $item['IncludeInStatistics'];
             })
             ->pluck('Aspect')
             ->toArray();
 
+        $c_values = array_merge($c4_values);
+
         $preLoaded = [
             'field' => 'Objective',
             'values' => [
                 'group0' => [],
-                'group1' => $c2_values
+                'group1' => $c4_values
             ]
         ];
 

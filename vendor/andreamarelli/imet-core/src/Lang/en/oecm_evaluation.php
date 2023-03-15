@@ -17,6 +17,7 @@ return [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Integration',
             'SignificativeClassification' => 'Highly significant designation',
+            'IncludeInStatistics' => 'To prioritise in management',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
@@ -65,11 +66,6 @@ return [
         'num_stakeholders' => 'Evaluated by :num stakeholder(s)'
     ],
 
-
-    'ObjectivesKeyElements' => [
-        'module_info' => 'Establish and describe conservation objectives for the designation and the key elements of the OECM. The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
-    ],
-
     'SupportsAndConstraints' => [
         'title' => 'Constraints or supports from stakeholders',
         'fields' => [
@@ -114,10 +110,6 @@ return [
                 '3' => 'high integration',
             ]
         ]
-    ],
-
-    'ObjectivesSupportsAndConstraints' => [
-        'module_info' => 'Establish and describe conservation objectives for mitigation constraints/conflicts or enhancing supporting/complying factors for the OECM. The objectives entered below will be used for improving management, and more specifically for planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
     ],
 
     'Threats' => [
@@ -188,10 +180,6 @@ return [
                 '3' => 'high integration',
             ]
         ]
-    ],
-
-    'ObjectivesThreats' => [
-        'module_info' => 'Setting target conservation objectives and indicators for the most important threats facing the OECM. The objectives entered below will be used for improving the management, and more specifically for the planning, resource (input) mobilization, process phases, and for monitoring management activities of the OECM.'
     ],
 
     'RegulationsAdequacy' => [
@@ -373,7 +361,7 @@ return [
         ],
         'groups' => [
             'group0' => 'Existing objectives from management plan',
-            'group1' => 'Prospective objectives from C2',
+            'group1' => 'Prospective objectives from C4',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -541,10 +529,10 @@ return [
         'module_info' => 'Establish and describe conservation objectives for inputs of the OECM<br />The objectives listed below will be used for improving management, and more specifically for planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
     ],
 
-
     'ObjectivesProcessus' => [
         'module_info' => 'Establish and describe conservation objectives related to implementation process of the OECM The objectives entered below will be used for improving management, and mo re specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
     ],
+
     'StaffCompetence' => [
         'title' => 'Training and capacity-building programme for the OECM management and governance“ or “Training and capacity building programme',
         'fields' => [
@@ -669,6 +657,7 @@ return [
             'Evaluate the level of maintenance of infrastructure, equipment and facilities in relation to management requirements for the OECM (based on the analysis of the context of intervention, point CTX 3.3)'
         ]
     ],
+
     'ManagementActivities' => [
         'title' => 'Managing the key elements of the OECM with specific actions',
         'fields' => [
@@ -748,7 +737,6 @@ return [
             'Evaluate the acting against illegal activities or to solve contentious issues in the sustainability of the management of the key elements of the OECM'
         ]
     ],
-
 
     'StakeholderCooperation' => [
         'title' => 'Cooperation between stakeholders',

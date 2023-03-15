@@ -63,10 +63,10 @@ class OEMCStatisticsService extends StatisticsService
         $imet_id = $imet->getKey();
 
         $scores = [
-            'c1' => static::score_c11($imet_id),
-            'c2' => static::score_c12($imet_id),
-            'c3' => static::score_c2($imet_id),
-            'c4' => static::score_c3($imet_id),
+            'c1' => static::score_designations($imet_id),
+            'c2' => static::score_key_elements($imet_id),
+            'c3' => static::score_support_contraints($imet_id),
+            'c4' => static::score_threats($imet_id),
         ];
 
         // aggregate step score
@@ -84,6 +84,10 @@ class OEMCStatisticsService extends StatisticsService
             ) / $denominator
             : null;
 
+        $scores['avg_indicator'] =  $scores['avg_indicator']!== null
+            ? round($scores['avg_indicator'], 2)
+            : null;
+        
         return $scores;
     }
 

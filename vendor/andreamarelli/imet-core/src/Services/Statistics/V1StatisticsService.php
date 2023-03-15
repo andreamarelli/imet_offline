@@ -6,23 +6,17 @@ use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\CommonFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\CustomFunctions;
-use AndreaMarelli\ImetCore\Services\Statistics\traits\DB\DBFunctions;
-use AndreaMarelli\ImetCore\Services\Statistics\traits\DB\V1_DBFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
 
 
 class V1StatisticsService extends StatisticsService
 {
-    use DBFunctions;
-    use V1_DBFunctions;
     use CommonFunctions;
     use CustomFunctions\V1\Context;
     use CustomFunctions\V1\Planning;
     use CustomFunctions\V1\Inputs;
     use CustomFunctions\V1\Process;
     use Math;
-
-    const SCHEMA = 'imet_assessment'; // todo: to be removed after conversion to PHP
 
     /**
      * Return CONTEXT step scores

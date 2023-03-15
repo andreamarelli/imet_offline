@@ -1,6 +1,8 @@
 <?php
 return [
 
+    'oecm_short' => 'OECM',
+
     'steps' => [
         'general_info'          => 'General Information about the OECM',
         'areas'                 => 'Areas',

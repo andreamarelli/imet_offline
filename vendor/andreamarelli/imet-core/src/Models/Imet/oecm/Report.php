@@ -21,19 +21,22 @@ class Report extends BaseReportModel
         'minimum_budget',
         'additional_funding',
         'previous_state',
+        'driving_forces',
         'impacts',
         'responses',
         'long_term',
         'outcome',
         'annual_targets',
         'intervention1',
-        'intervention1_activity1',
-        'intervention1_activity2',
+        'intervention1_activity',
         'intervention1_other',
         'intervention2',
-        'intervention2_activity1',
-        'intervention2_activity2',
-        'intervention2_other'
+        'intervention2_activity',
+        'intervention2_other',
+        'intervention3',
+        'intervention3_activity',
+        'intervention3_other',
+        'group_key'
     ];
 
     protected static $boolean_fields = [
@@ -57,16 +60,11 @@ class Report extends BaseReportModel
         'intervention1_year3',
         'intervention1_year4',
         'intervention1_year5',
-        'intervention1_activity1_year1',
-        'intervention1_activity1_year2',
-        'intervention1_activity1_year3',
-        'intervention1_activity1_year4',
-        'intervention1_activity1_year5',
-        'intervention1_activity2_year1',
-        'intervention1_activity2_year2',
-        'intervention1_activity2_year3',
-        'intervention1_activity2_year4',
-        'intervention1_activity2_year5',
+        'intervention1_activity_year1',
+        'intervention1_activity_year2',
+        'intervention1_activity_year3',
+        'intervention1_activity_year4',
+        'intervention1_activity_year5',
         'intervention1_other_year1',
         'intervention1_other_year2',
         'intervention1_other_year3',
@@ -77,21 +75,31 @@ class Report extends BaseReportModel
         'intervention2_year3',
         'intervention2_year4',
         'intervention2_year5',
-        'intervention2_activity1_year1',
-        'intervention2_activity1_year2',
-        'intervention2_activity1_year3',
-        'intervention2_activity1_year4',
-        'intervention2_activity1_year5',
-        'intervention2_activity2_year1',
-        'intervention2_activity2_year2',
-        'intervention2_activity2_year3',
-        'intervention2_activity2_year4',
-        'intervention2_activity2_year5',
+        'intervention2_activity_year1',
+        'intervention2_activity_year2',
+        'intervention2_activity_year3',
+        'intervention2_activity_year4',
+        'intervention2_activity_year5',
         'intervention2_other_year1',
         'intervention2_other_year2',
         'intervention2_other_year3',
         'intervention2_other_year4',
         'intervention2_other_year5',
+        'intervention3_year1',
+        'intervention3_year2',
+        'intervention3_year3',
+        'intervention3_year4',
+        'intervention3_year5',
+        'intervention3_activity_year1',
+        'intervention3_activity_year2',
+        'intervention3_activity_year3',
+        'intervention3_activity_year4',
+        'intervention3_activity_year5',
+        'intervention3_other_year1',
+        'intervention3_other_year2',
+        'intervention3_other_year3',
+        'intervention3_other_year4',
+        'intervention3_other_year5'
         ];
 
     /**
@@ -102,10 +110,15 @@ class Report extends BaseReportModel
      */
     public static function getByForm($form_id): array
     {
-        $report = Report::where('FormID', $form_id)->first();
-        return $report === null
-            ? array_fill_keys(static::$report_fields, null) + array_fill_keys(static::$boolean_fields, false)
+        $report = Report::where('FormID', $form_id)->get();
+
+        return $report->isEmpty()
+            ? [static::getSchema()]
             : $report->toArray();
+    }
+
+    public static function getSchema(){
+        return array_fill_keys(static::$report_fields, null) + array_fill_keys(static::$boolean_fields, false);
     }
 
     /**
@@ -117,14 +130,15 @@ class Report extends BaseReportModel
      */
     public static function updateByForm($form_id, $data)
     {
-        $report = Report::where('FormID', $form_id)->first();
-        if ($report == null) {
+
+        Report::where('FormID', $form_id)->delete();
+        foreach ($data as $key => $value) {
             $report = new Report();
-        }
-        $data['FormID'] = $form_id;
-        $report->fill($data);
-        if ($report->isDirty()) {
-            $report->save();
+            $data[$key]['FormID'] = $form_id;
+            $report->fill($data[$key]);
+            if ($report->isDirty()) {
+                $report->save();
+            }
         }
     }
 }

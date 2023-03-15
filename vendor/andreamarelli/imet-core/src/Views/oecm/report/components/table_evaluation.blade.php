@@ -15,16 +15,13 @@
         </th>
 
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c1'], 'assessment_label' => trans('imet-core::oecm_common.assessment.c1')[1]])
+        @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c3'], 'assessment_label' => trans('imet-core::oecm_common.assessment.c3')[1]])
+        @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c4'], 'assessment_label' => trans('imet-core::oecm_common.assessment.c4')[1]])
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c2'], 'assessment_label' => trans('imet-core::oecm_common.assessment.c2')[1]])
-
         <td colspan="8"></td>
     </tr>
     <tr>
-        <td class="bordered">{{  trans('imet-core::oecm_common.assessment.c1')[1] }}</td>
-        @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c11'], 'assessment_label' => trans('imet-core::oecm_common.assessment.c11')[1]])
-        @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c12'], 'assessment_label' => trans('imet-core::oecm_common.assessment.c12')[1]])
 
-        <td colspan="7"></td>
     </tr>
 
     <!-- planning -->
@@ -41,7 +38,7 @@
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['planning']['p4'], 'assessment_label' => trans('imet-core::oecm_common.assessment.p4')[1]])
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['planning']['p5'], 'assessment_label' => trans('imet-core::oecm_common.assessment.p5')[1]])
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['planning']['p6'], 'assessment_label' => trans('imet-core::oecm_common.assessment.p6')[1]])
-        <td colspan="4"></td>
+        <td colspan="6"></td>
     </tr>
 
     <!-- inputs -->
@@ -57,7 +54,7 @@
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['inputs']['i3'], 'assessment_label' => trans('imet-core::oecm_common.assessment.i3')[1]])
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['inputs']['i4'], 'assessment_label' => trans('imet-core::oecm_common.assessment.i4')[1]])
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['inputs']['i5'], 'assessment_label' => trans('imet-core::oecm_common.assessment.i5')[1]])
-        <td colspan="5"></td>
+        <td colspan="7"></td>
     </tr>
 
 
@@ -72,7 +69,7 @@
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr1_6'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr1_6')[1]])
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr7_9'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr7_9')[1]])
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr10_12'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr10_12')[1]])
-        <td colspan="7"></td>
+        <td colspan="9"></td>
     </tr>
     <tr>
         <td class="bordered">{{  trans('imet-core::v2_common.assessment.pr1_6')[1] }}</td>
@@ -87,7 +84,7 @@
               'assessment_label' => trans('imet-core::v2_common.assessment.pr1_6')[1],
               'additional_classes' => 'avg_sub_index'
           ])
-        <td colspan="2"></td>
+        <td colspan="4"></td>
     </tr>
     <tr>
         <td class="bordered">{{  trans('imet-core::v2_common.assessment.pr7_9')[1] }}</td>
@@ -99,7 +96,7 @@
             'assessment_label' => trans('imet-core::v2_common.assessment.pr7_9')[1],
             'additional_classes' => 'avg_sub_index'
         ])
-        <td colspan="5"></td>
+        <td colspan="7"></td>
     </tr>
     <tr>
         <td class="bordered">{{  trans('imet-core::v2_common.assessment.pr10_12')[1] }}</td>
@@ -111,7 +108,7 @@
             'assessment_label' => trans('imet-core::v2_common.assessment.pr10_12')[1],
             'additional_classes' => 'avg_sub_index'
         ])
-        <td colspan="5"></td>
+        <td colspan="7"></td>
     </tr>
 
     <!-- outputs -->
@@ -124,7 +121,7 @@
         </th>
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['outputs']['op1'], 'assessment_label' => trans('imet-core::oecm_common.assessment.op1')[1]])
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['outputs']['op1'], 'assessment_label' => trans('imet-core::v2_common.assessment.op2')[1]])
-        <td colspan="8"></td>
+        <td colspan="10"></td>
     </tr>
 
 
@@ -138,7 +135,7 @@
         </th>
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['outcomes']['oc1'], 'assessment_label' => trans('imet-core::oecm_common.assessment.oc1')[1]])
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['outcomes']['oc2'], 'assessment_label' => trans('imet-core::v2_common.assessment.oc2')[1]])
-        <td colspan="8"></td>
+        <td colspan="10"></td>
     </tr>
 
 </table>

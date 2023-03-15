@@ -174,18 +174,6 @@ return [
         'module_info' => 'Establish and describe conservation objectives for<b> human and financial resources/support from partnerships in managing </b>of the OECM<br/> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM'
     ],
 
-    'Objectives4' => [
-        'module_info' => 'Establish and describe conservation objectives for key factors: <b> i) animal species ii) plant species and iii) habitats </b> of the OECM<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
-    ],
-
-    'Objectives5' => [
-        'module_info' => 'Establish and describe management objectives to <b>improve access and governance of key elements</b> of the OECM.<br/>The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM'
-    ],
-
-    'Objectives6' => [
-        'module_info' => 'Establish and describe objectives for <b>climate change effects</b> of the OECM<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM'
-    ],
-
     'GeographicalLocation' => [
         'title' => 'Localisation',
         'fields' => [
@@ -411,7 +399,6 @@ return [
             'Involvement' => 'Involvement',
             'Accountability' => 'Accountability',
             'Orientation' => 'Orientation',
-            'Stakeholder' => 'Stakeholder',
             'Comments' => 'Note',
         ],
         'titles' => [
@@ -634,7 +621,10 @@ return [
             ]
         ],
         'summary' => 'Aggregated',
-        'average' => 'Average'
+        'average' => 'Average',
+        'elements_importance' => 'Importance of elements',
+        'involvement_ranking' => 'Involvement of stakeholders',
+        'involvement' => 'Involvement of the stakeholder (0-100)'
     ],
 
 ];

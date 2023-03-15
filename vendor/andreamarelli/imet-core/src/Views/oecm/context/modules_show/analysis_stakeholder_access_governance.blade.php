@@ -9,7 +9,8 @@ use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholder
 use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersNaturalResources;
 
 $form_id = $collection[0]['FormID'];
-$stakeholders = StakeholdersNaturalResources::getStakeholders($form_id);
+$stakeholders = StakeholdersNaturalResources::calculateWeights($form_id);
+arsort($stakeholders);
 $key_elements_importance = AnalysisStakeholderAccessGovernance::calculateKeyElementsImportances($form_id, $records);
 
 $num_cols = count($definitions['fields']);
@@ -33,31 +34,56 @@ $stakeholders_records = collect($records)
         </h4>
     </div>
     <div>
-        <div class="card-body">
-            <h3>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.elements_importance')</h3>
-            <table class="table module-table">
-                <thead>
-                <tr>
-                    <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Element')</th>
-                    <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.importance')</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($key_elements_importance as $element)
-                    <tr class="module-table-item">
-                        <td style="text-align: left;">{{ $element['element'] }}</td>
-                        <td style="text-align: left;">{{ $element['importance'] }}</td>
+        <div class="card-body"style="display: flex; column-gap: 40px;">
+
+            <div>
+                <h4>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.elements_importance')</h4>
+                <table class="table module-table">
+                    <thead>
+                    <tr>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Element')</th>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.importance')</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($key_elements_importance as $element)
+                        <tr class="module-table-item">
+                            <td style="text-align: left;">{{ $element['element'] }}</td>
+                            <td style="text-align: left;">{{ $element['importance'] }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <h4>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.involvement_ranking')</h4>
+                <table class="table module-table">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.involvement')</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($stakeholders as $stakeholder => $ranking)
+                        <tr class="module-table-item">
+                            <td style="text-align: left;">{{ $stakeholder }}</td>
+                            <td style="text-align: left;">{{ $ranking }}</td>
+                        </tr>
+                    @endforeach
+
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </div>
 
 
 
-@foreach($stakeholders as $index => $stakeholder)
+@foreach(array_keys($stakeholders) as $index => $stakeholder)
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">

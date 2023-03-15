@@ -1,5 +1,5 @@
 <?php
-/** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Imet $item */
+/** @var \AndreaMarelli\ImetCore\Models\Imet\oecm\Imet $item */
 /** @var array $assessment */
 /** @var array $key_elements */
 /** @var array $report */

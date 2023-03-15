@@ -10,7 +10,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Threats;
 
 trait Context {
 
-    protected static function score_c11($imet_id): ?float
+    protected static function score_designations($imet_id): ?float
     {
         $records = Designation::getModuleRecords($imet_id)['records'];
         $values = collect($records);
@@ -31,7 +31,7 @@ trait Context {
             : null;
     }
 
-    protected static function score_c12($imet_id): ?float
+    protected static function score_key_elements($imet_id): ?float
     {
         $module_class = KeyElements::class;
 
@@ -64,7 +64,7 @@ trait Context {
             : null;
     }
 
-    protected static function score_c2($imet_id): ?float
+    protected static function score_support_contraints($imet_id): ?float
     {
         $records = SupportsAndConstraints::getModuleRecords($imet_id)['records'];
 
@@ -88,7 +88,7 @@ trait Context {
             : null;
     }
 
-    protected static function score_c3($imet_id): ?float
+    protected static function score_threats($imet_id): ?float
     {
         $records = Threats::getModuleRecords($imet_id)['records'];
 

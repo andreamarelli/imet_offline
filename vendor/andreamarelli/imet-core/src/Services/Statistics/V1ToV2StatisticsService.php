@@ -3,18 +3,12 @@
 namespace AndreaMarelli\ImetCore\Services\Statistics;
 
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ImetCore\Services\Statistics\traits\DB\DBFunctions;
-use AndreaMarelli\ImetCore\Services\Statistics\traits\DB\V1ToV2_DBFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
 
 
 class V1ToV2StatisticsService extends StatisticsService
 {
-    use DBFunctions;
-    use V1ToV2_DBFunctions;
     use Math;
-
-    const SCHEMA = 'imet_assessment_v1_to_v2'; // todo: to be removed after conversion to PHP
 
     /**
      * Return CONTEXT step scores

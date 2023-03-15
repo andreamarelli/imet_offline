@@ -16,7 +16,7 @@ class KeyElements extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';
-        $this->module_code = 'C2';
+        $this->module_code = 'C4';
         $this->module_title = trans('imet-core::oecm_evaluation.KeyElements.title');
         $this->module_fields = [
             ['name' => 'Aspect',                'type' => 'blade-imet-core::oecm.evaluation.fields.key_elements_element',      'label' => trans('imet-core::oecm_evaluation.KeyElements.fields.Aspect')],
@@ -86,7 +86,7 @@ class KeyElements extends Modules\Component\ImetModule_Eval
             }
             $key_elements->push([
                 'element' => $key,
-                'importance' => $importance ? round($importance, 2): null,
+                'importance' => isset($importance) ? round($importance, 2): null,
                 'stakeholder_count' => $stakeholder_count ?? null,
                 'group' => $ctx5_key_element['group'] ?? null,
             ]);

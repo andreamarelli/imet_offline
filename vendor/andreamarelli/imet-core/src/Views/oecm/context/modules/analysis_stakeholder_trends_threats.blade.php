@@ -4,11 +4,12 @@
 
 /** @var Mixed $vue_data */
 
-
 use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderTrendsThreats;
 use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersNaturalResources;
 
-$stakeholders = StakeholdersNaturalResources::getStakeholders($vue_data['form_id']);
+$stakeholders = StakeholdersNaturalResources::calculateWeights($vue_data['form_id']);
+arsort($stakeholders);
+
 
 $vue_data['current_stakeholder'] = 'summary';
 $vue_data['key_elements_importance'] = AnalysisStakeholderTrendsThreats::calculateKeyElementsImportances2($vue_data['form_id'], $vue_data['records']);
@@ -24,33 +25,57 @@ $num_cols = count($definitions['fields']);
         </h4>
     </div>
     <div>
-        <div class="card-body" v-if="isCurrentStakeholder('summary') ">
+        <div class="card-body" v-if="isCurrentStakeholder('summary')" style="display: flex; column-gap: 40px;">
 
-            <table class="table module-table">
-                <thead>
-                <tr>
-                    <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Element')</th>
-                    <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Status')</th>
-                    <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Trend')</th>
-                    <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.average')</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="module-table-item" v-for="element in key_elements_importance">
-                    <td style="text-align: left;">@{{ element.element }}</td>
-                    <td style="text-align: left;">@{{ element.status }}</td>
-                    <td style="text-align: left;">@{{ element.trend }}</td>
-                    <td style="text-align: left;">@{{ element.importance }}</td>
-                </tr>
-                </tbody>
-            </table>
+            <div>
+                <h4>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.elements_importance')</h4>
+                <table class="table module-table">
+                    <thead>
+                    <tr>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Element')</th>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Status')</th>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Trend')</th>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.average')</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="module-table-item" v-for="element in key_elements_importance">
+                        <td style="text-align: left;">@{{ element.element }}</td>
+                        <td style="text-align: left;">@{{ element.status }}</td>
+                        <td style="text-align: left;">@{{ element.trend }}</td>
+                        <td style="text-align: left;">@{{ element.importance }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <h4>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.involvement_ranking')</h4>
+                <table class="table module-table">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.involvement')</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($stakeholders as $stakeholder => $ranking)
+                        <tr class="module-table-item">
+                            <td style="text-align: left;">{{ $stakeholder }}</td>
+                            <td style="text-align: left;">{{ $ranking }}</td>
+                        </tr>
+                    @endforeach
+
+                    </tbody>
+                </table>
+            </div>
 
         </div>
     </div>
 </div>
 
 
-@foreach($stakeholders as $index => $stakeholder)
+@foreach(array_keys($stakeholders)  as $index => $stakeholder)
     <div class="card">
         <div class="card-header">
             <h4 class="card-title" role="button" @click="switchStakeholder('{{ $stakeholder }}')">

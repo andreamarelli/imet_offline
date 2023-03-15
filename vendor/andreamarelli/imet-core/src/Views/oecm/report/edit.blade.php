@@ -1,5 +1,5 @@
 <?php
-/** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Imet $item */
+/** @var \AndreaMarelli\ImetCore\Models\Imet\oecm\Imet $item */
 /** @var array $assessment */
 /** @var array $key_elements */
 /** @var array $report */
@@ -20,6 +20,7 @@
     'assessment' => $assessment,
     'key_elements' => $key_elements,
     'report' => $report,
+    'report_schema' => $report_schema,
     'dopa_radar' => $dopa_radar,
     'general_info' => $general_info,
     'vision' => $vision,

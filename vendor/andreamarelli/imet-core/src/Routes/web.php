@@ -1,6 +1,5 @@
 <?php
 
-use AndreaMarelli\ImetCore\Controllers\DevStatisticsController;
 use AndreaMarelli\ImetCore\Controllers\DevUsersController;
 use AndreaMarelli\ImetCore\Controllers\Imet;
 use AndreaMarelli\ImetCore\Controllers\Imet\oecm;
@@ -209,8 +208,6 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         Route::post('change_user', [DevUsersController::class, 'change_user'])->name('imet-core::change_user');
 
     }
-
-    Route::get('stats_in_php', [DevStatisticsController::class, 'index']);
 
 });
 
