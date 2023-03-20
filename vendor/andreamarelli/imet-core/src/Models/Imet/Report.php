@@ -41,7 +41,7 @@ class Report extends Model
      */
     public static function getByForm($form_id): array
     {
-        $report = Report::where('FormID', $form_id)->first();
+        $report = static::where('FormID', $form_id)->first();
 
         return $report===null
             ? array_fill_keys(static::$report_fields, null)
@@ -57,7 +57,7 @@ class Report extends Model
      */
     public static function updateByForm($form_id, $data)
     {
-        $report = Report::where('FormID', $form_id)->first();
+        $report = static::where('FormID', $form_id)->first();
         if($report==null){
             $report = new Report();
         }
@@ -76,7 +76,7 @@ class Report extends Model
      */
     public static function export($form_id)
     {
-        return Report::where('FormID', $form_id)
+        return static::where('FormID', $form_id)
             ->get()
             ->makeHidden(['id', 'FormID'])
             ->toArray()[0]
@@ -92,7 +92,7 @@ class Report extends Model
      */
     public static function import($form_id, $data)
     {
-        $report = new Report();
+        $report = new static();
         $data['FormID'] = $form_id;
         $report->fill($data);
         $report->save();

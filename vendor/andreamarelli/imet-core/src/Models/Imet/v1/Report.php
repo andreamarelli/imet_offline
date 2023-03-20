@@ -2,9 +2,9 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v1;
 
-use Illuminate\Database\Eloquent\Model;
+use \AndreaMarelli\ImetCore\Models\Imet\Report as BaseReportModel;
 
-class Report extends \AndreaMarelli\ImetCore\Models\Imet\Report
+class Report extends BaseReportModel
 {
 
 }
