@@ -57,4 +57,40 @@ class Threats extends Modules\Component\ImetModule_Eval {
         return $module_records;
     }
 
+    /**
+     * Calculate threat's ranking
+     *
+     * @param $form_id
+     * @param $records
+     * @return array
+     */
+    public static function calculateRanking($form_id, $records = null): array
+    {
+        $records = $records ?? static::getModuleRecords($form_id)['records'];
+
+        return collect($records)
+            ->map(function($item){
+
+                $prod = 1
+                    * ($item['Impact']!=null ? 4-$item['Impact'] : 1)
+                    * ($item['Extension']!=null ? 4-$item['Extension'] : 1)
+                    * ($item['Duration']!=null ? 4-$item['Duration'] : 1)
+                    * ($item['Trend']!=null ? (5/2 - $item['Trend']*3/4) : 1)
+                    * ($item['Probability']!=null ? 4-$item['Probability'] : 1);
+
+                $count = ($item['Impact']!=null ? 1 : 0)
+                    + ($item['Extension']!=null ? 1 : 0)
+                    + ($item['Duration']!=null ? 1 : 0)
+                    + ($item['Trend']!=null ? 1 : 0)
+                    + ($item['Probability']!=null ? 1 : 0);
+
+                $item['__score'] = $count>0
+                    ? (4 - round(pow($prod, 1/($count)),2))
+                    : null;
+
+                return $item;
+            })
+            ->toArray();
+    }
+
 }

@@ -118,12 +118,14 @@ $num_cols = count($definitions['fields']);
                         {{-- labels  --}}
                         <thead>
                         <tr>
-                            @foreach($definitions['fields'] as $field)
-                                <th class="text-center">
-                                    @if($field['type']!=='hidden')
-                                        {{ ucfirst($field['label'] ?? '') }}
-                                    @endif
-                                </th>
+                            @foreach($definitions['fields'] as $index => $field)
+                                @if(!($index==1 && in_array($group_key, ['group0', 'group1', 'group2'])))
+                                    <th class="text-center">
+                                        @if($field['type']!=='hidden')
+                                            {{ ucfirst($field['label'] ?? '') }}
+                                        @endif
+                                    </th>
+                                @endif
                             @endforeach
                             <th></th>
                         </tr>
@@ -142,14 +144,16 @@ $num_cols = count($definitions['fields']);
                             v-if="isCurrentStakeholder(item['Stakeholder'])">
                             {{--  fields  --}}
                             @foreach($definitions['fields'] as $index => $field)
-                                <td>
-                                    @include('modular-forms::module.edit.field.module-to-vue', [
-                                       'definitions' => $definitions,
-                                       'field' => $field,
-                                       'vue_record_index' => 'index',
-                                       'group_key' => $group_key
-                                   ])
-                                </td>
+                                @if(!($index==1 && in_array($group_key, ['group0', 'group1', 'group2'])))
+                                    <td>
+                                        @include('modular-forms::module.edit.field.module-to-vue', [
+                                           'definitions' => $definitions,
+                                           'field' => $field,
+                                           'vue_record_index' => 'index',
+                                           'group_key' => $group_key
+                                       ])
+                                    </td>
+                                @endif
                             @endforeach
                             <td>
                                 {{-- record id  --}}

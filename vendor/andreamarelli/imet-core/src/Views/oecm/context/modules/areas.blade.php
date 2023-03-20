@@ -30,7 +30,7 @@ $vue_data['GISArea_km2'] = $vue_data['GISArea_km2_full'] = formatNum($vue_data['
         ])
 
 
-        @if($field_index<=2)
+        @if($field_index>2)
 
             @include('modular-forms::module.edit.field.vue', [
                 'type' => 'hidden',

@@ -2,10 +2,10 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
 
+use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
-use AndreaMarelli\ModularForms\Models\Traits\Payload;
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AnimalSpecies extends Modules\Component\ImetModule
 {
@@ -13,7 +13,9 @@ class AnimalSpecies extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    protected $validation_min3 = '';
+    protected static $DEPENDENCIES = [
+        [AnalysisStakeholderAccessGovernance::class, 'species', 'Element']
+    ];
 
     public function __construct(array $attributes = [])
     {
@@ -34,10 +36,28 @@ class AnimalSpecies extends Modules\Component\ImetModule
 
         $this->module_info = trans('imet-core::oecm_context.AnimalSpecies.module_info');
 
-        $this->validation_min3 = trans('imet-core::oecm_context.AnimalSpecies.validation_min3');
-
         parent::__construct($attributes);
+    }
 
+    /**
+     * Override: replace values with labels
+     * @param $records
+     * @param $form_id
+     * @param $dependency_on
+     * @return array
+     */
+    protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
+    {
+        $to_be_dropped = parent::getRecordsToBeDropped($records, $form_id, $dependency_on);
+
+        // ### replace values with labels ###
+        foreach ($to_be_dropped as $index => $item){
+            if(Str::contains('|', $item)){
+                $to_be_dropped[$index] = Animal::getScientificName($item);
+            }
+        }
+
+        return array_values($to_be_dropped);
     }
 
 }

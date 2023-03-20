@@ -11,7 +11,6 @@ trait Process
     protected static function score_pr1($imet_id): ?float
     {
         $records = StaffCompetence::getModuleRecords($imet_id)['records'];
-//        dd($records);
         return _Common::score_staff($imet_id, $records);
     }
 

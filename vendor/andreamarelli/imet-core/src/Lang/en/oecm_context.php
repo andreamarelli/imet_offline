@@ -192,8 +192,8 @@ return [
             'AdministrativeArea' => 'Administrative surface',
             'WDPAArea' => 'Surface according to WDPA',
             'GISArea' => 'Actual surface (GIS for the park or the authority responsible for OECMs) corresponding to the uploaded file',
-            'TerrestrialArea' => 'Terrestrial OECM, Community Forest, ICCAs, Other',
-            'MarineArea' => 'Marine and coastal OECM, ICCAs, LMMA, Other'
+            'TerrestrialArea' => 'Surface of Terrestrial OECM, Community Forest, ICCAs, Other',
+            'MarineArea' => 'Surface of Marine and coastal OECM, ICCAs, LMMA, Other'
         ]
     ],
 
@@ -207,13 +207,15 @@ return [
             'Descriptions' => 'Descriptions',
             'AdequateNumber' => 'Adequate number',
         ],
-        'module_info' => 'Number and categories of members of the OECM Management Entity'
+        'module_info' => 'Number and categories of members of the OECM Management Entity',
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I2, PR1</i>'
     ],
 
     'ManagementStaffPartners' => [
         'title' => 'Size and composition of staff: Staff from partner organisations',
         'fields' => [
             'Partner' => 'Partners',
+            'Function' => 'Function',
             'Coordinators' => 'Coordinators (number)',
             'Technicians' => 'Technical and administrative staff (number)',
             'Auxiliaries' => 'Auxiliary staff (number)',
@@ -227,10 +229,10 @@ return [
         ],
         'staff' => 'staff',
         'stakeholders' => 'stakeholders',
-        'equal' =>  'majority by',
-        'majority_by' =>  'equal',
-        'most_by' =>  'most by',
-        'all_by' =>  'all by',
+        'equal' =>  'Equal involvement between Staff and stakeholders',
+        'majority_by' =>  'Involvement majority by',
+        'most_by' =>  'Involvement most by',
+        'all_by' =>  'Involvement all by',
     ],
 
     'FinancialResources' => [
@@ -280,7 +282,8 @@ return [
                 '2' => 'Adequate (61-90% of the needs)',
                 '3' => 'Fully adequate (91-100% of the needs)',
             ]
-        ]
+        ],
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I5, PR5</i>'
     ],
 
     'AnimalSpecies' => [
@@ -300,7 +303,7 @@ return [
             <li><b>PRT</b>: Protected species</li>
             <li><b>DSG</b>: Disappearing species</li>
             <li><b>INV</b>: Invasive species</li></ul>',
-        'validation_min3' => 'Please encode not less than 3 key species'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>CTX 5</i>'
     ],
 
     'VegetalSpecies' => [
@@ -319,7 +322,8 @@ return [
             <li><b>EXP</b>: Exploited species</li>
             <li><b>PRT</b>: Protected species</li>
             <li><b>DSG</b>: Disappearing species</li>
-            <li><b>INV</b>: Invasive species</li></ul>'
+            <li><b>INV</b>: Invasive species</li></ul>',
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>CTX 5</i>'
     ],
 
     'Habitats' => [
@@ -336,7 +340,8 @@ return [
         'module_info' => '<b>Species types</b><ul>
                 <li><b>EXP</b>: Exploited</li>
                 <li><b>PRT</b>: Protected</li>
-                <li><b>DSG</b>: Disappearing</li></ul>'
+                <li><b>DSG</b>: Disappearing</li></ul>',
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>CTX 5</i>'
     ],
 
     'StakeholdersNaturalResources' => [
@@ -345,8 +350,8 @@ return [
             'Element' => 'Stakeholder',
             'GeographicalProximity' => 'Living inside or in proximity to the OECM (less than a day\'s walk)',
             'Engagement' => 'Typology of management / use of OECM\'s NR',
-            'Impact' => 'Level of management or impact on NR',
-            'Role' => 'Role in NR management',
+            'Role' => 'Level of engagement in NR management',
+            'Impact' => 'Level of impact on NR',
             'Comments' => 'Note',
         ],
         'titles' => [
@@ -384,8 +389,7 @@ return [
                 '3' => 'High role (advise +analysis + planning + implementation + monitoring)',
             ]
         ],
-
-        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules(if already encoded): <i>C2</i>'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>CTX 5, CTX6, C1.2, C2.2, I2, PR1, PR8</i>'
     ],
 
     'AnalysisStakeholderAccessGovernance' => [
@@ -581,10 +585,9 @@ return [
                 '3' => 'High',
             ],
         ],
-        'warning_on_save' =>
-            'WARNING!! <br /> Any modification might cause data loss in the following modules(if already encoded): <i>CTX 6.1</i>, <i>C1.2</i> and <i>I1</i>',
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>CTX 6, C4</i>',
         'summary' => 'Importance of elements & Involvement of stakeholders',
-        'elements_importance' => 'Importance of elements',
+        'elements_importance' => 'Importance of elements by the stakeholders',
         'involvement_ranking' => 'Involvement of stakeholders',
         'importance' => 'Importance (0-100)',
         'involvement' => 'Involvement of the stakeholder (0-100)'
@@ -620,9 +623,10 @@ return [
                 '2' => 'Strongly Increasing',
             ]
         ],
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>C4</i>',
         'summary' => 'Aggregated',
         'average' => 'Average',
-        'elements_importance' => 'Importance of elements',
+        'elements_importance' => 'Conditions of elements',
         'involvement_ranking' => 'Involvement of stakeholders',
         'involvement' => 'Involvement of the stakeholder (0-100)'
     ],

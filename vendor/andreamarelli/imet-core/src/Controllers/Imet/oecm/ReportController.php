@@ -62,7 +62,7 @@ class ReportController extends BaseReportController
             }
             if ($record['MainThreat']) {
                 $label =  str_replace('"]','', str_replace('["','', $record['MainThreat']));
-                $main_threats[$record['MainThreat']] = trans('imet-core::oecm_lists.MainThreat')[$label];
+                $main_threats[$record['MainThreat']] = trans('imet-core::oecm_lists.MainThreat')[$label] ?? null;
             }
         }
 

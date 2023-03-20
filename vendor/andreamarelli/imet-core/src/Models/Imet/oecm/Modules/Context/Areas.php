@@ -9,7 +9,7 @@ use AndreaMarelli\ImetCore\Helpers\Template;
 class Areas extends Modules\Component\ImetModule
 {
     protected $table = 'imet_oecm.context_areas';
-    public $label_width = 5;
+    public $label_width = 6;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
@@ -20,22 +20,22 @@ class Areas extends Modules\Component\ImetModule
         $this->module_title  = trans('imet-core::oecm_context.Areas.title');
         $this->module_fields = [
             [
+                'name' => 'TerrestrialArea',
+                'type' => 'numeric',
+                'label' => Template::module_scope(static::TERRESTRIAL).' '.trans('imet-core::oecm_context.Areas.fields.TerrestrialArea')
+            ],
+            [
+                'name' => 'MarineArea',
+                'type' => 'numeric',
+                'label' => Template::module_scope(static::MARINE).' '.trans('imet-core::oecm_context.Areas.fields.MarineArea')
+            ],
+            [
                 'name' => 'AdministrativeArea',
                 'type' => 'numeric',
                 'label' => trans('imet-core::oecm_context.Areas.fields.AdministrativeArea')
             ],
             ['name' => 'WDPAArea', 'type' => 'numeric', 'label' => trans('imet-core::oecm_context.Areas.fields.WDPAArea')],
-            ['name' => 'GISArea', 'type' => 'numeric', 'label' => trans('imet-core::oecm_context.Areas.fields.GISArea')],
-            [
-                'name' => 'TerrestrialArea',
-                'type' => 'numeric',
-                'label' => Template::module_scope(static::TERRESTRIAL).trans('imet-core::oecm_context.Areas.fields.TerrestrialArea')
-            ],
-            [
-                'name' => 'MarineArea',
-                'type' => 'numeric',
-                'label' => Template::module_scope(static::MARINE).trans('imet-core::oecm_context.Areas.fields.MarineArea')
-            ]
+            ['name' => 'GISArea', 'type' => 'numeric', 'label' => trans('imet-core::oecm_context.Areas.fields.GISArea')]
         ];
 
         parent::__construct($attributes);

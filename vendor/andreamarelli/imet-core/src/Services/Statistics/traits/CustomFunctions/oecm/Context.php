@@ -22,7 +22,7 @@ trait Context {
                 return $item['SignificativeClassification'] ? 3 : 1;
             });
 
-        $score = $denominator>0
+        $score = $numerator>0 && $denominator>0
             ? $numerator/$denominator * 100 / 3
             : null;
 
@@ -66,16 +66,12 @@ trait Context {
 
     protected static function score_support_contraints($imet_id): ?float
     {
-        $records = SupportsAndConstraints::getModuleRecords($imet_id)['records'];
+        $values = collect(SupportsAndConstraints::calculateRanking($imet_id));
 
-        $values = collect($records)
-            ->filter(function ($record){
-                return $record['Weight'] !== null
-                    && $record['ConstraintLevel'] !== null;
-            });
+//        dd($values);
 
         $numerator = $values->sum(function ($item){
-            return $item['ConstraintLevel'] * $item['Weight'];
+            return $item['__score'];
         });
         $denominator = $values->sum('Weight');
 
@@ -90,31 +86,10 @@ trait Context {
 
     protected static function score_threats($imet_id): ?float
     {
-        $records = Threats::getModuleRecords($imet_id)['records'];
+        $values = Threats::calculateRanking($imet_id);
 
-        $values = collect($records)
-            ->map(function($item){
-
-                $prod = 1
-                    * ($item['Impact']!=null ? 4-$item['Impact'] : 1)
-                    * ($item['Extension']!=null ? 4-$item['Extension'] : 1)
-                    * ($item['Duration']!=null ? 4-$item['Duration'] : 1)
-                    * ($item['Trend']!=null ? (5/2 - $item['Trend']*3/4) : 1)
-                    * ($item['Probability']!=null ? 4-$item['Probability'] : 1);
-
-                $count = ($item['Impact']!=null ? 1 : 0)
-                    + ($item['Extension']!=null ? 1 : 0)
-                    + ($item['Duration']!=null ? 1 : 0)
-                    + ($item['Trend']!=null ? 1 : 0)
-                    + ($item['Probability']!=null ? 1 : 0);
-
-                $item['score'] = $count>0
-                    ? (4 - round(pow($prod, 1/($count)),2))
-                    : null;
-
-               return $item;
-            })
-            ->pluck('score')
+        $values = collect($values)
+            ->pluck('__score')
             ->toArray();
 
         $score = static::average($values, null);

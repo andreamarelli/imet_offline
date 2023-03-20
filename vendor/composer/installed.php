@@ -13,7 +13,7 @@
         'andreamarelli/imet-core' => array(
             'pretty_version' => 'dev-beta',
             'version' => 'dev-beta',
-            'reference' => '64cace39231e02e7fe49c95baafadb6ba566f34d',
+            'reference' => '7e4fab2cdd82e14f81f9b761a27a5ebaa6013aba',
             'type' => 'library',
             'install_path' => __DIR__ . '/../andreamarelli/imet-core',
             'aliases' => array(),
@@ -22,7 +22,7 @@
         'andreamarelli/modular-forms' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '7235050ba194453a0d57d0548cc94b57aa73da6a',
+            'reference' => '2be4913d42bafa996fbfbb66e6f70983130e38a4',
             'type' => 'library',
             'install_path' => __DIR__ . '/../andreamarelli/modular-forms',
             'aliases' => array(

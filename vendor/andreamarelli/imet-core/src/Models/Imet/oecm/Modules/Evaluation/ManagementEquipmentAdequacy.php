@@ -12,6 +12,8 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
+    protected static $DEPENDENCY_ON = 'Equipment';
+
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';
@@ -47,7 +49,7 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
 
         $adequacy = static::calculateEquipmentAdequacy($form_id);
         foreach($predefined_values['values'] as $i => $predefined_value){
-            if($adequacy[$i]!=null){
+            if($adequacy[$i] !== null){
                 $records[$i]['__adequacy'] = $adequacy[$i];
                 $new_records[] = $records[$i];
             }

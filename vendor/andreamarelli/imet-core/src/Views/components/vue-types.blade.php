@@ -36,6 +36,14 @@ $other_attributes = $other ?? '';
         {!! $vue_attributes !!}
     ></selector-wdpa_multiple>
 
+@elseif($type === 'imet-core::selector-wdpa_multiple_withFreeText')
+    <selector-wdpa_multiple
+        search-url="{{ route('imet-core::search_pas') }}"
+        labels-url="{{ route('imet-core::labels_pas') }}"
+        :enable-free-text=true
+        {!! $vue_attributes !!}
+    ></selector-wdpa_multiple>
+
 @elseif($type==='imet-core::selector-species_animal')
     <selector-species_animal
             {!! $vue_attributes !!}

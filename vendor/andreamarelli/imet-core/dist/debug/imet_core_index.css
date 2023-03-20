@@ -117,6 +117,19 @@
 .module-container .selector-wdpa_multiple .field-preview i.removeItem[data-v-0400f0a6]:hover {
       color: #262626;
 }
+.module-container .selector-wdpa_multiple .modal-body.insert[data-v-0400f0a6] {
+  font-size: 0.8em;
+  text-align: center;
+}
+.module-container .selector-wdpa_multiple .modal-body.insert div[data-v-0400f0a6] {
+    margin-bottom: 4px;
+}
+.module-container .selector-wdpa_multiple .modal-body.insert input[data-v-0400f0a6] {
+    width: 380px;
+}
+.module-container .selector-wdpa_multiple .modal-footer[data-v-0400f0a6] {
+  justify-content: space-between;
+}
 
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/inputs/selector-user.vue?vue&type=style&index=0&id=6d802d66&lang=scss&scoped=true& ***!

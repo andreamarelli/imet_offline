@@ -12,6 +12,8 @@ class AchievedObjectives extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
+    protected static $DEPENDENCY_ON = 'Objective';
+
     public function __construct(array $attributes = []) {
         $this->module_type = 'TABLE';
         $this->module_code = 'O/C1';

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit79c8003a43d660b9d1e28d87f5420064
+class ComposerStaticInit62d9dea0db56905a5f24eee539f86793
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -731,6 +731,7 @@ class ComposerStaticInit79c8003a43d660b9d1e28d87f5420064
         'AndreaMarelli\\ImetCore\\Controllers\\SpeciesController' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/SpeciesController.php',
         'AndreaMarelli\\ImetCore\\Controllers\\UsersController' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/UsersController.php',
         'AndreaMarelli\\ImetCore\\Controllers\\__Controller' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Controllers/__Controller.php',
+        'AndreaMarelli\\ImetCore\\Exceptions\\MissingDependencyConfigurationException' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Exceptions/MissingDependencyConfigurationException.php',
         'AndreaMarelli\\ImetCore\\Helpers\\API\\Common\\Common' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Helpers/API/Common/Common.php',
         'AndreaMarelli\\ImetCore\\Helpers\\API\\DOPA\\DOPA' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Helpers/API/DOPA/DOPA.php',
         'AndreaMarelli\\ImetCore\\Helpers\\API\\DOPA\\Wdpa' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Helpers/API/DOPA/Wdpa.php',
@@ -779,6 +780,7 @@ class ComposerStaticInit79c8003a43d660b9d1e28d87f5420064
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Encoder' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Encoder.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Imet' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Imet.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Imet_Eval' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Imet_Eval.php',
+        'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Component\\Dependencies' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Component/Dependencies.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Component\\ImetModule' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Component/ImetModule.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Component\\ImetModule_Eval' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Component/ImetModule_Eval.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Context\\AnalysisStakeholderAccessGovernance' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Context/AnalysisStakeholderAccessGovernance.php',
@@ -7480,10 +7482,10 @@ class ComposerStaticInit79c8003a43d660b9d1e28d87f5420064
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit79c8003a43d660b9d1e28d87f5420064::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit79c8003a43d660b9d1e28d87f5420064::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit79c8003a43d660b9d1e28d87f5420064::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit79c8003a43d660b9d1e28d87f5420064::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit62d9dea0db56905a5f24eee539f86793::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit62d9dea0db56905a5f24eee539f86793::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit62d9dea0db56905a5f24eee539f86793::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit62d9dea0db56905a5f24eee539f86793::$classMap;
 
         }, null, ClassLoader::class);
     }

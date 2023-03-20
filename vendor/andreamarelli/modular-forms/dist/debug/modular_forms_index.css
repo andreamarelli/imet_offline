@@ -187,14 +187,6 @@ a img[data-v-439d1d73] {
   margin-top: 5px;
   margin-bottom: 0;
 }
-.modal_selector table.modal_search_results .radio label[data-v-4ec017e1]::before {
-    left: 20px;
-    top: -30px;
-}
-.modal_selector table.modal_search_results .radio label[data-v-4ec017e1]::after {
-    left: 23px;
-    top: -27px;
-}
 .modal_selector table.modal_search_results label[data-v-4ec017e1] {
   margin: 0;
   padding: 0;

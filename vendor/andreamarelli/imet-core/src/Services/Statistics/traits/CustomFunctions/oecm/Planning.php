@@ -16,12 +16,12 @@ trait Planning
     {
         $records = BoundaryLevel::getModuleRecords($imet_id)['records'];
 
-        $score = $records[0]['Boundaries'] + $records[0]['Adequacy'] * 2;
-
-        if($score!==null){
-            $score = $records[0]['Boundaries'] === null || $records[0]['Adequacy'] === null
-                ? $score * 100 / 6
-                : $score * 100 / 12;
+        if($records[0]['Boundaries'] === null && $records[0]['Adequacy'] === null){
+            $score = null;
+        } else if($records[0]['Boundaries'] === null || $records[0]['Adequacy'] === null){
+            $score = ($records[0]['Boundaries'] + $records[0]['Adequacy'] * 2) * 100 / 6;
+        } else {
+            $score = ($records[0]['Boundaries'] + $records[0]['Adequacy'] * 2) * 100 / 12;
         }
 
         return $score!== null ?

@@ -129,16 +129,16 @@
             .radio{
                 margin-top: 5px;
                 margin-bottom: 0;
-                label{
-                  &::before{
-                    left: 20px;
-                    top: -30px;
-                  }
-                  &::after{
-                    left: 23px;
-                    top: -27px;
-                  }
-                }
+                //label{
+                //  &::before{
+                //    left: 20px;
+                //    top: -30px;
+                //  }
+                //  &::after{
+                //    left: 23px;
+                //    top: -27px;
+                //  }
+                //}
             }
             label{
                 margin: 0;

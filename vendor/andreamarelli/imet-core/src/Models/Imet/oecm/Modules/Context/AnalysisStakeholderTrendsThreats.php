@@ -6,6 +6,7 @@ use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
 
 /**
@@ -18,6 +19,11 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
     public $titles = [];
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCY_ON = 'Stakeholder';
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\KeyElements::class, 'Element']
+    ];
 
     public function __construct(array $attributes = [])
     {
@@ -108,7 +114,7 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
             : null;
 
         foreach($records as $idx => $record){
-            $records[$idx]['__stakeholder_weight'] = $weights_div[$record['Stakeholder']];
+            $records[$idx]['__stakeholder_weight'] = $weights_div[$record['Stakeholder']] ?? null;
         }
 
         return collect($records)
@@ -146,6 +152,7 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
             ->filter(function($item){
                 return $item['importance']!==null;
             })
+            ->sortByDesc('importance')
             ->values()
             ->toArray();
     }

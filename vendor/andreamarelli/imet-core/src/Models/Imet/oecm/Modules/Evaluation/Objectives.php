@@ -4,12 +4,20 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
+use Exception;
+use Illuminate\Http\Request;
 
 class Objectives extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'imet_oecm.eval_objectives';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
+
+    protected static $DEPENDENCY_ON = 'Objective';
+    protected static $DEPENDENCIES = [
+        [AchievedObjectives::class, 'Aspect']
+    ];
 
     public function __construct(array $attributes = []) {
 

@@ -9,8 +9,6 @@ class ManagementGovernance extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'imet_oecm.eval_management_governance';
 
-    public const MODULE_SCOPE = self::TERRESTRIAL_AND_MARINE;
-
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public function __construct(array $attributes = []) {

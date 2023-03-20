@@ -4,12 +4,20 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
 
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
+use Exception;
+use Illuminate\Http\Request;
 
 class ManagementStaff extends Modules\Component\ImetModule
 {
     protected $table = 'imet_oecm.context_management_staff';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\StaffCompetence::class, 'Function'],
+        [Modules\Evaluation\CapacityAdequacy::class, 'Function']
+    ];
 
     public function __construct(array $attributes = []) {
 
@@ -31,13 +39,21 @@ class ManagementStaff extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function calculateWeights($form_id){
+    /**
+     * Calculate weights
+     *
+     * @param $form_id
+     * @return array
+     */
+    public static function calculateWeights($form_id): array
+    {
         $records = static::getModuleRecords($form_id)['records'];
-        $records = collect($records)->map(function($item){
-            $item['__weight'] = round(sqrt($item['Number']), 2);
-            return $item;
-        })->pluck('__weight', 'Function')->toArray();
-
-        return $records;
+        return collect($records)
+            ->map(function($item){
+                $item['__weight'] = round(sqrt($item['Number']), 2);
+                return $item;
+            })
+            ->pluck('__weight', 'Function')
+            ->toArray();
     }
 }

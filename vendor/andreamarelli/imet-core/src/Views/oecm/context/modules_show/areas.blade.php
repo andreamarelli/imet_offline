@@ -16,7 +16,7 @@ $record  = $records[0];
         ])
 
 
-        @if($f_index<=2)
+        @if($f_index>2)
 
             <div style="display: flex; justify-content: space-between;">
                 @include('modular-forms::module.show.field', [

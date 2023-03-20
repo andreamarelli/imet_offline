@@ -13,6 +13,8 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
+    protected static $DEPENDENCY_ON = 'Element';
+
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';

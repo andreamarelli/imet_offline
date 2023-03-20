@@ -7,6 +7,7 @@ use AndreaMarelli\ModularForms\Helpers\PhpClass;
 use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use AndreaMarelli\ModularForms\Models\Traits\PredefinedValues;
 use AndreaMarelli\ModularForms\Models\Traits\Upload;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
@@ -354,7 +355,7 @@ class Module extends BaseModel
      *
      * @param $form_id
      * @param $data
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws FileNotFoundException
      */
     public static function importModule($form_id, $data)
     {
@@ -390,7 +391,7 @@ class Module extends BaseModel
     }
 
     /**
-     * Save module data
+     * Save module data in a transaction
      *
      * @param Request $request
      * @return array
@@ -398,46 +399,16 @@ class Module extends BaseModel
      */
     public static function updateModule(Request $request): array
     {
-        $model = new static();
-
-        // ### get request ###
+        // ### Get records form request ###
         $records = Payload::decode($request->input('records_json'));
         $form_id = $request->input('form_id');
 
         try {
+            // ### Save all records in a transaction ###
             DB::beginTransaction();
-
-            $records_ids = [];
-
-            // ### Update records ###
-            foreach ($records as $i => $record) {
-                // Ensure empty strings are converted to null
-                foreach ($record as $key => $field) {
-                    if ($field === "") {
-                        $record[$key] = null;
-                    }
-                }
-
-                // Validate data
-                if(!empty($messages = $model::validate($record))){
-                    return static::validationErrorResponse($messages);
-                }
-
-                // Save model
-                $record_id = static::save_record($record);
-
-                if ($record_id !== null) {
-                    $records_ids[] = $record_id;
-                }
-            }
-
-            // ### Delete all records not in $records_ids[] ###
-            $records_ids_to_delete = static::get_records_to_delete($records_ids, $form_id);
-            if (!empty($records_ids_to_delete)) {
-                static::destroy($records_ids_to_delete);
-            }
-
+            static::updateModuleRecords($records, $form_id);
             DB::commit();
+
         } catch (Exception $e) {
             DB::rollback();
             throw $e;
@@ -448,11 +419,54 @@ class Module extends BaseModel
     }
 
     /**
+     * Save module records
+     *
+     * @param $records
+     * @param $form_id
+     * @return array|void
+     * @throws FileNotFoundException
+     */
+    public static function updateModuleRecords($records, $form_id)
+    {
+        $records_ids = [];
+
+        // ### Update records ###
+        foreach ($records as $i => $record) {
+
+            // Ensure empty strings are converted to null
+            foreach ($record as $key => $field) {
+                if ($field === "") {
+                    $record[$key] = null;
+                }
+            }
+
+            // Validate data
+            if(!empty($messages = (new static())::validate($record))){
+                return static::validationErrorResponse($messages);
+            }
+
+            // Save model
+            $record_id = static::save_record($record);
+
+            if ($record_id !== null) {
+                $records_ids[] = $record_id;
+            }
+        }
+
+
+        // ### Delete all records not in $records_ids[] ###
+        $records_ids_to_delete = static::get_records_to_delete($records_ids, $form_id);
+        if (!empty($records_ids_to_delete)) {
+            static::destroy($records_ids_to_delete);
+        }
+    }
+
+    /**
      * Save module records data
      *
      * @param $record
      * @return mixed|null
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws FileNotFoundException
      */
     public static function save_record($record)
     {
@@ -494,7 +508,7 @@ class Module extends BaseModel
      *
      * @param array $options
      * @return bool
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws FileNotFoundException
      */
     public function save(array $options = []): bool
     {

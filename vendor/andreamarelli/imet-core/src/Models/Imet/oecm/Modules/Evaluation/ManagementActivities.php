@@ -13,6 +13,8 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
+    protected static $DEPENDENCY_ON = 'Activity';
+
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';
@@ -49,7 +51,7 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
 
 
     /**
-     * Preload data from C1, C2, C3 & C4
+     * Preload data from C1, C2.2, C3.2 & C4
      *
      * @param $form_id
      * @param null $collection

@@ -6,6 +6,7 @@ use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -19,6 +20,12 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCY_ON = 'Stakeholder';
+    protected static $DEPENDENCIES = [
+        [Modules\Context\AnalysisStakeholderTrendsThreats::class, 'Stakeholder'],
+        [Modules\Evaluation\KeyElements::class, 'Element']
+    ];
 
     public function __construct(array $attributes = [])
     {
@@ -48,13 +55,6 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
         $this->ratingLegend = trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.ratingLegend');
 
         parent::__construct($attributes);
-    }
-
-    public static function getVueData($form_id, $collection = null): array
-    {
-        $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.warning_on_save');
-        return $vue_data;
     }
 
     public static function updateModule(Request $request): array
@@ -101,6 +101,7 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
         $form_id = $empty_record['FormID'];
 
         // inject additional predefined values (first 3 groups) retrieved from CTX
+
         $predefined_values = (new static())->predefined_values;
         $predefined_values['values']['group0'] =
             Modules\Context\AnimalSpecies::getModule($form_id)->pluck('species')
@@ -110,15 +111,14 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
                         : $item;
                 })
                 ->toArray();
-        $predefined_values['values']['group1'] = Modules\Context\VegetalSpecies::getModule($form_id)->pluck('species')->toArray();
+        $predefined_values['values']['group1'] =
+            Modules\Context\VegetalSpecies::getModule($form_id)->pluck('species')->toArray();
         $predefined_values['values']['group2'] =
             Modules\Context\Habitats::getModule($form_id)->pluck('EcosystemType')
                 ->map(function($item){
                     return SelectionList::getList('ImetOECM_Habitats')[$item];
                 })
                 ->toArray();
-
-
 
         if(!empty($records)) {
             // ensure first record has id field (set to null if doesn't)
@@ -188,7 +188,7 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
             : null;
 
         foreach($records as $idx => $record){
-            $records[$idx]['__stakeholder_weight'] = $weights_div[$record['Stakeholder']];
+            $records[$idx]['__stakeholder_weight'] = $weights_div[$record['Stakeholder']] ?? null;
         }
 
         return collect($records)

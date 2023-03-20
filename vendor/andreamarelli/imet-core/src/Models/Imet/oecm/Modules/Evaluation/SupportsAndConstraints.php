@@ -10,11 +10,13 @@ use AndreaMarelli\ImetCore\Models\User\Role;
  */
 class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_supports_and_constaints';
+    protected $table = 'imet_oecm.eval_supports_constraints';
     protected $fixed_rows = true;
     public $titles = [];
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCY_ON = 'Stakeholder';
 
     public function __construct(array $attributes = []) {
 
@@ -47,17 +49,13 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
         $module_records = parent::getModuleRecords($form_id, $collection);
         $empty_record = static::getEmptyRecord($form_id);
 
-        $records = $module_records['records'];
-
         $preLoaded = [
             'field' => 'Stakeholder',
             'values' => Modules\Context\StakeholdersNaturalResources::getStakeholders($form_id)
         ];
-
-        $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);
+        $module_records['records'] = static::arrange_records($preLoaded, $module_records['records'], $empty_record);
 
         $weight = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
-
         foreach($module_records['records'] as $idx => $module_record){
             if(array_key_exists($module_record['Stakeholder'], $weight)){
                 $module_records['records'][$idx]['Weight'] = $weight[$module_record['Stakeholder']];
@@ -65,7 +63,22 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
                 $module_records['records'][$idx]['Weight'] = null;
             }
         }
+
         return $module_records;
+    }
+
+    public static function calculateRanking($form_id): array
+    {
+        $records = static::getModuleRecords($form_id)['records'];
+
+        return collect($records)
+            ->map(function($item){
+                $item['__score'] = $item['Weight'] !== null && $item['ConstraintLevel'] !== null
+                    ? $item['ConstraintLevel'] * $item['Weight']
+                    : null;
+                return $item;
+            })
+            ->toArray();
     }
 
 

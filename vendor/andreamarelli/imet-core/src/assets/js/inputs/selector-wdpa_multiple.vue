@@ -21,18 +21,20 @@
         <!-- Modal -->
         <template v-slot:modal_content>
 
-            <modal_api_search
-                :parent-id=id
-                :search-url=searchUrl
-                :key-min-length=3
-            >
+            <div v-show="displaySearch" >
+
+                <modal_api_search
+                        :parent-id=id
+                        :search-url=searchUrl
+                        :key-min-length=3
+                >
                 <template v-slot:modal_search_results_filters>
                     <i>{{ Locale.getLabel('modular-forms::common.filter_results') }}: </i>&nbsp;&nbsp;&nbsp;&nbsp;
                     {{ Locale.getLabel('imet-core::common.country') }}
                     <select v-model=filterByCountry @change="filterList()" class="field-edit">
                         <option value="null"> - - </option>
                         <option v-for="(label, key) in countries" :value=key>
-                            {{ label }}
+                          {{ label }}
                         </option>
                     </select>
                 </template>
@@ -44,15 +46,45 @@
                     <td>{{ item.iucn_category }}</td>
                 </template>
 
-            </modal_api_search>
+              </modal_api_search>
+
+            </div>
+
+            <div v-show="displayInsert" >
+                <div class="modal-body insert">
+                    <div>
+                        <input type="text" class="field-edit" value="" :id="'selector_item_insert_'+id" />
+                    </div>
+                    <div>
+                        <i>{{ Locale.getLabel('modular-forms::common.be_specific_as_possible') }}</i>
+                    </div>
+                </div>
+            </div>
 
             <div class="modal-footer">
-                <button type="button"
-                        class="btn-nav dark small"
-                        :disabled="selectedValue===null"
-                        v-on:click="confirmSelection" >
-                    {{ Locale.getLabel('modular-forms::common.confirm_select') }}
-                </button>
+                <div>
+                    <button type="button"
+                            v-if="enableFreeText && displaySearch"
+                            class="btn-nav dark small"
+                            v-on:click="enableFreeTextItem" >
+                        {{ Locale.getLabel('modular-forms::common.add_if_not_found') }}
+                    </button>
+                </div>
+                <div>
+                    <button type="button"
+                            class="btn-nav dark small"
+                            v-if=displayInsert
+                            v-on:click="confirmInsert" >
+                        {{ Locale.getLabel('modular-forms::common.add') }}
+                    </button>
+                    <button type="button"
+                            class="btn-nav dark small"
+                            :disabled="selectedValue===null"
+                            v-if=displaySearch
+                            v-on:click="confirmSelection" >
+                        {{ Locale.getLabel('modular-forms::common.confirm_select') }}
+                    </button>
+                </div>
             </div>
 
         </template>
@@ -84,8 +116,23 @@
             }
         }
 
-    }
 
+        .modal-body.insert{
+            font-size: 0.8em;
+            text-align: center;
+            div{
+              margin-bottom: 4px;
+            }
+            input{
+              width: 380px
+            }
+        }
+
+        .modal-footer{
+            justify-content: space-between;
+        }
+
+    }
 
 </style>
 
@@ -119,7 +166,11 @@
             dataObjs : {
                 type: Object,
                 default: null
-            }
+            },
+            enableFreeText: {
+                type: Boolean,
+                default: false,
+            },
         },
 
         data (){
@@ -130,6 +181,8 @@
                 countries: [],
                 filterByCountry: null,
                 selectedValue: null,
+                displaySearch: true,
+                displayInsert: false,
             }
         },
 
@@ -142,7 +195,7 @@
 
         watch: {
             value(value) {
-               this.getPaLabels(value);
+                this.getPaLabels(value);
             }
         },
 
@@ -154,7 +207,6 @@
                 this.inputValuesString = '';
 
                 if (value !==null) {
-
                     window.axios({
                         method: 'POST',
                         url: this.labelsUrl,
@@ -164,7 +216,7 @@
                         },
                     })
                         .then(function (response) {
-                            if(Object.values(response.data).length>0){
+                            if (Object.values(response.data).length > 0) {
                                 Object.values(response.data).forEach(function (item) {
                                     _this.pushItem(item);
                                 });
@@ -172,8 +224,14 @@
                         })
                         .catch(function () {
                             // _this.setErrors();
-                        })
+                        });
                 }
+            },
+
+            afterModalOpen(){
+                this.displayInsert = false;
+                this.displaySearch = true;
+                document.getElementById('selector_item_insert_'+this.id).value = null;
             },
 
             afterSearch(response){
@@ -198,10 +256,24 @@
             },
 
             confirmSelection(){
-                let _this = this;
                 this.pushItem({
                     id: this.selectedValue.wdpa_id,
                     label: this.selectedValue.name,
+                });
+                this.emitValue(this.inputValuesString);
+                this.modalComponent.closeModal();
+            },
+
+            enableFreeTextItem(){
+                this.displaySearch = false;
+                this.displayInsert = true;
+            },
+
+            confirmInsert(){
+                let value = document.getElementById('selector_item_insert_'+this.id).value;
+                this.pushItem({
+                    id: value,
+                    label: value
                 });
                 this.emitValue(this.inputValuesString);
                 this.modalComponent.closeModal();

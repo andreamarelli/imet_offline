@@ -47,14 +47,21 @@ class ProtectedAreaController extends Controller
         if($request->filled('ids')){
             $pas = explode(',', $request->input(['ids']));
             foreach ($pas as $pa){
-                $result[] = [
-                    'id' => $pa,
-                    'label' => ProtectedArea
-                        ::select(['wdpa_id', 'name'])
-                        ->where('wdpa_id', $pa)
-                        ->firstOrFail()
-                        ->name
-                ];
+                if(is_numeric($pa)){
+                    $result[] = [
+                        'id' => $pa,
+                        'label' => ProtectedArea
+                            ::select(['wdpa_id', 'name'])
+                            ->where('wdpa_id', $pa)
+                            ->firstOrFail()
+                            ->name
+                    ];
+                } else {
+                    $result[] = [
+                        'id' => $pa,
+                        'label' => $pa
+                    ];
+                }
             }
         }
         return response()->json($result);

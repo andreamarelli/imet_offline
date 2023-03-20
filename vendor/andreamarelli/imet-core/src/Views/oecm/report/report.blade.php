@@ -288,6 +288,12 @@ if ($item->language != App::getLocale()) {
                 }
 
             },
+            computed: {
+                reportLength: function () {
+
+                    return this.report.length;
+                }
+            },
             watch: {
                 status(value) {
                     let _this = this;

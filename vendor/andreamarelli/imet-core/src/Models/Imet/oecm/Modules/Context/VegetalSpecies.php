@@ -4,14 +4,16 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
 
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
-use AndreaMarelli\ModularForms\Models\Traits\Payload;
-use Illuminate\Http\Request;
 
 class VegetalSpecies extends Modules\Component\ImetModule
 {
     protected $table = 'imet_oecm.context_species_vegetal_presence';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCIES = [
+        [AnalysisStakeholderAccessGovernance::class, 'species', 'Element']
+    ];
 
     public function __construct(array $attributes = []) {
         $this->module_type = 'TABLE';

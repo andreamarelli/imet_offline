@@ -4,8 +4,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
 
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
-use AndreaMarelli\ModularForms\Models\Traits\Payload;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class StakeholdersNaturalResources extends Modules\Component\ImetModule
 {
@@ -13,6 +12,16 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
     protected $fixed_rows = false;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCIES = [
+        [Modules\Context\AnalysisStakeholderAccessGovernance::class, 'Element'],
+        [Modules\Context\AnalysisStakeholderTrendsThreats::class, 'Element'],
+        [Modules\Evaluation\SupportsAndConstraints::class, 'Element'],
+        [Modules\Evaluation\SupportsAndConstraintsIntegration::class, 'Element'],
+        [Modules\Evaluation\CapacityAdequacy::class, 'Element'],
+        [Modules\Evaluation\StaffCompetence::class, 'Element'],
+        [Modules\Evaluation\StakeholderCooperation::class, 'Element'],
+    ];
 
     public function __construct(array $attributes = [])
     {
@@ -34,28 +43,23 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function getVueData($form_id, $collection = null): array
+    /**
+     * Remove all empty records: where "Element" is empty
+     *
+     * @param $records
+     * @param $form_id
+     * @return array|void
+     * @throws FileNotFoundException
+     */
+    public static function updateModuleRecords($records, $form_id)
     {
-        $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('imet-core::oecm_context.StakeholdersNaturalResources.warning_on_save');
-        return $vue_data;
-    }
-
-    public static function updateModule(Request $request): array
-    {
-        // get request
-        $records = Payload::decode($request->input('records_json'));
-
         // Remove all empty records: where "Element" is empty
         foreach ($records as $index => $record){
             if($record['Element']===null || trim($record['Element'])===''){
                 unset($records[$index]);
             }
         }
-
-        // Execute update
-        $request->merge(['records_json' => Payload::encode($records)]);
-        return parent::updateModule($request);
+        return parent::updateModuleRecords($records, $form_id);
     }
 
     /**

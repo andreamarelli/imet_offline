@@ -75,18 +75,22 @@ class OEMCStatisticsService extends StatisticsService
             + ($scores['c3']!==null ? 3 : 0)
             + ($scores['c4']!==null ? 3 : 0);
 
-        $scores['avg_indicator'] = $denominator>0
-            ? (
-                $scores['c1']
-                + ($scores['c2']!==null ? 3 * $scores['c2'] : 0)
-                + ($scores['c3']!==null ? 3 * ($scores['c3']/2+50) : 0)
-                + ($scores['c4']!==null ? 3 * ($scores['c4']+100) : 0)
-            ) / $denominator
+        // numerator
+        $numerator = $scores['c1']
+            + ($scores['c2']!==null ? 3 * $scores['c2'] : 0)
+            + ($scores['c3']!==null ? 3 * ($scores['c3']/2+50) : 0)
+            + ($scores['c4']!==null ? 3 * ($scores['c4']+100) : 0);
+
+
+        $scores['avg_indicator'] = $numerator>0 && $denominator>0
+            ? $numerator / $denominator
             : null;
 
         $scores['avg_indicator'] =  $scores['avg_indicator']!== null
             ? round($scores['avg_indicator'], 2)
             : null;
+
+
         
         return $scores;
     }

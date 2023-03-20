@@ -4,6 +4,9 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
+use Exception;
+use Illuminate\Http\Request;
 
 class Designation extends Modules\Component\ImetModule_Eval
 {
@@ -11,6 +14,11 @@ class Designation extends Modules\Component\ImetModule_Eval
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
+        [Modules\Evaluation\ManagementActivities::class, 'Aspect']
+    ];
 
     public function __construct(array $attributes = []) {
 
@@ -31,7 +39,6 @@ class Designation extends Modules\Component\ImetModule_Eval
 
         parent::__construct($attributes);
     }
-
 
     /**
      * Preload data from CTX 5.1

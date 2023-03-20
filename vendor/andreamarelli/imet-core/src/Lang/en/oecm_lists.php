@@ -105,8 +105,8 @@ return [
 
     'Access' => [
         'no_access' => 'No access',
-        'limited' => 'Limitation of the use and management',
-        'open'      => 'Open (generally use or enjoy of NR including lands)'
+        'limited' => 'Limited access (existence of criteria or rules for use)',
+        'open'      => 'Open access (no criteria or rules for use) '
     ],
 
     'MainThreat' => [

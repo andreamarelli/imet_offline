@@ -18,7 +18,7 @@ class Networks extends Modules\Component\ImetModule
         $this->module_title = trans('imet-core::oecm_context.Networks.title');
         $this->module_fields = [
             ['name' => 'NetworkName',  'type' => 'text-area',   'label' => trans('imet-core::oecm_context.Networks.fields.NetworkName')],
-            ['name' => 'ProtectedAreas',  'type' => 'imet-core::selector-wdpa_multiple',   'label' => trans('imet-core::oecm_context.Networks.fields.ProtectedAreas')],
+            ['name' => 'ProtectedAreas',  'type' => 'imet-core::selector-wdpa_multiple_withFreeText',   'label' => trans('imet-core::oecm_context.Networks.fields.ProtectedAreas')],
         ];
 
         $this->module_groups = [

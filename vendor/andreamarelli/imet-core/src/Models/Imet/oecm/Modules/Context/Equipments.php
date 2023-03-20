@@ -4,12 +4,20 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
 
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
+use Exception;
+use Illuminate\Http\Request;
 
 class Equipments extends Modules\Component\ImetModule
 {
     protected $table = 'imet_oecm.context_equipments';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\EquipmentMaintenance::class, 'Resource'],
+        [Modules\Evaluation\ManagementEquipmentAdequacy::class, 'Resource']
+    ];
 
     public function __construct(array $attributes = []) {
 
@@ -56,4 +64,6 @@ class Equipments extends Modules\Component\ImetModule
         parent::__construct($attributes);
 
     }
+
+
 }
