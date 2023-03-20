@@ -74,8 +74,6 @@ class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
             }
         }
 
-//        dd($adequacy);
-
         $result = [];
         foreach($adequacy as $i=>$v){
             $result[] = $adequacy[$i]['count']>0

@@ -65,7 +65,6 @@ $other_attributes = $other ?? '';
         $fieldName = explode('.', rtrim($v_value, '"'))[1];
         $className = \AndreaMarelli\ModularForms\Helpers\ModuleKey::KeyToClassName($module_key);
         $legend = (new $className())->ratingLegend;
-//    dd($fieldName, $legend);
         $legend = array_key_exists($fieldName, $legend) ? $legend[$fieldName] : [];
         $legend = array_values($legend);
 

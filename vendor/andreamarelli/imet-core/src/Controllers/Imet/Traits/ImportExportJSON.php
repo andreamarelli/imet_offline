@@ -2,7 +2,6 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
 use AndreaMarelli\ImetCore\Models\Country;
 use AndreaMarelli\ImetCore\Models\Imet;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
@@ -230,16 +229,14 @@ trait ImportExportJSON
     /**
      * Export the full IMET form in json
      *
-     * @param int $item
+     * @param Imet\v1\Imet|Imet\v2\Imet|Imet\oecm\Imet $item
      * @param bool $to_file
      * @param bool $download
      * @return BinaryFileResponse|array
      * @throws AuthorizationException
      */
-    public function export(int $item, bool $to_file = true, bool $download = true)
+    public function export($item, bool $to_file = true, bool $download = true)
     {
-        $item = (static::$form_class)::find($item);
-
         $this->authorize('export', $item);
 
         $imet_id = $item->getKey();
@@ -328,6 +325,7 @@ trait ImportExportJSON
                 $json = json_decode($fileContent, True);
             }
 
+
             if($json['Imet']['version'] === Imet\Imet::IMET_V1){
                 $imet = (new Imet\v1\Imet($json['Imet']))->fill($json['Imet']);
             }
@@ -337,7 +335,6 @@ trait ImportExportJSON
             else if($json['Imet']['version'] === Imet\Imet::IMET_OECM){
                 $imet = (new Imet\oecm\Imet($json['Imet']))->fill($json['Imet']);
             }
-
 
             $this->authorize('view', $imet);
 
@@ -357,7 +354,7 @@ trait ImportExportJSON
             DB::commit();
 
             // backup in JSON
-            (new static)->backup($formID);
+            (new static)->backup($formID, $json['Imet']['version']);
 
             $response['modules'] = $modules_imported;
         } catch (Exception $e) {
@@ -421,6 +418,7 @@ trait ImportExportJSON
                 Imet\oecm\Report::import($formID, $json['Report'] ?? null);
             }
         }
+
 
         return [$formID, $modules_imported];
     }

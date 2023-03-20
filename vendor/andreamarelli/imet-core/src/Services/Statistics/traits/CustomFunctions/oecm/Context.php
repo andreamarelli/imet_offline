@@ -68,8 +68,6 @@ trait Context {
     {
         $values = collect(SupportsAndConstraints::calculateRanking($imet_id));
 
-//        dd($values);
-
         $numerator = $values->sum(function ($item){
             return $item['__score'];
         });

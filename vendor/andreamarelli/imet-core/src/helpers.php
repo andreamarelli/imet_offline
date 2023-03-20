@@ -42,8 +42,6 @@ function imet_selection_lists(string $type): array
         || Str::startsWith($type, 'ImetOECM_')) {
         preg_match("/Imet([\w\d]{0,2}|[\w\d]{0,4})\_([\w]+)/", $type, $matches);
 
-
-        //dd($matches);
         if ($matches[2] == "ProtectedArea") {
             $list = \AndreaMarelli\ImetCore\Models\ProtectedArea::selectionList();
         } elseif ($matches[2] == "Country") {

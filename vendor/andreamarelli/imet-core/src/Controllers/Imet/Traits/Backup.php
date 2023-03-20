@@ -2,9 +2,8 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Models\Imet;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ModularForms\Helpers\File\File;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
@@ -20,12 +19,22 @@ trait Backup{
      * Perform IMET backup if necessary (analyze existing ones)
      *
      * @param $item
+     * @param null $version
      */
-    public function backup($item)
+    public function backup($item, $version = null)
     {
         if(App::environment('imetoffline')){
 
-            $form = (new Imet())->find($item);
+            if($version === Imet\Imet::IMET_V1){
+                $form = (new Imet\v1\Imet())->find($item);
+            }
+            else if($version === Imet\Imet::IMET_V2){
+                $form = (new Imet\v2\Imet())->find($item);
+            }
+            else if($version === Imet\Imet::IMET_OECM){
+                $form = (new Imet\oecm\Imet())->find($item);
+            }
+
             $now = Carbon::now();
             $fileName = $this->backup_filename($form, $now);
 
@@ -35,7 +44,7 @@ trait Backup{
 
             // no previous backups exist
             if($num_backups === 0){
-                $this->execute_backup($item, $fileName);
+                $this->execute_backup($form, $fileName);
             }
             // previous backups exist
             else {
@@ -50,7 +59,7 @@ trait Backup{
                     if($num_backups >= $this->MAX_NUM_BACKUPS){
                         Storage::delete( $oldest_backup);
                     }
-                    $this->execute_backup($item, $fileName);
+                    $this->execute_backup($form, $fileName);
                 }
             }
 
