@@ -502,7 +502,7 @@ CREATE TABLE imet_oecm.eval_supports_constraints
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE imet_oecm.eval_supports_and_constraints_integration
+CREATE TABLE imet_oecm.eval_supports_constraints_integration
 (
     id                serial PRIMARY KEY,
     "FormID"          integer,
