@@ -97,6 +97,9 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
         $records = static::getModuleRecords($form_id)['records'];
 
         return collect($records)
+            ->filter(function($item){
+                return !empty($item['Element']);
+            })
             ->map(function($item){
                 $Engagement = !empty($item['Engagement']) ? json_decode($item['Engagement']) : null;
                 $Engagement = is_array($Engagement) ? count($Engagement) : null;

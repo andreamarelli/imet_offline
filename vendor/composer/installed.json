@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/andreamarelli/imet-core.git",
-                "reference": "a50a4befe09a7f2f50972a49ab80b18f74db8efd"
+                "reference": "55af777942b684fa8e4f2e5d549a74f96fd87d1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/a50a4befe09a7f2f50972a49ab80b18f74db8efd",
-                "reference": "a50a4befe09a7f2f50972a49ab80b18f74db8efd",
+                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/55af777942b684fa8e4f2e5d549a74f96fd87d1b",
+                "reference": "55af777942b684fa8e4f2e5d549a74f96fd87d1b",
                 "shasum": ""
             },
             "require": {
@@ -23,7 +23,7 @@
             "require-dev": {
                 "orchestra/testbench": "^6.0"
             },
-            "time": "2023-03-20T22:04:06+00:00",
+            "time": "2023-03-21T10:32:42+00:00",
             "default-branch": true,
             "type": "library",
             "extra": {
@@ -53,7 +53,7 @@
             ],
             "description": "Imet core package",
             "support": {
-                "source": "https://github.com/andreamarelli/imet-core/tree/beta",
+                "source": "https://github.com/andreamarelli/imet-core/tree/master",
                 "issues": "https://github.com/andreamarelli/imet-core/issues"
             },
             "install-path": "../andreamarelli/imet-core"

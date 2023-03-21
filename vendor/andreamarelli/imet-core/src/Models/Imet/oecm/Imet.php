@@ -193,8 +193,9 @@ class Imet extends BaseImetForm
     public static function updateModuleAndForm($item, Request $request): array
     {
         $return = parent::updateModuleAndForm($item, $request);
+
         if ($return['status'] == 'success') {
-            (new Controller())->backup($item);
+            (new Controller())->backup($item, Imet::version);
         }
 
         $user_info = Auth::user()->getInfo();

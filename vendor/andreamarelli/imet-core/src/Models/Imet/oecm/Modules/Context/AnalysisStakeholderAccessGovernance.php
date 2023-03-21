@@ -104,7 +104,11 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
 
         $predefined_values = (new static())->predefined_values;
         $predefined_values['values']['group0'] =
-            Modules\Context\AnimalSpecies::getModule($form_id)->pluck('species')
+            Modules\Context\AnimalSpecies::getModule($form_id)
+                ->filter(function($item){
+                    return !empty($item['species']);
+                })
+                ->pluck('species')
                 ->map(function($item){
                     return Str::contains($item, '|')
                         ? Animal::getScientificName($item)
@@ -114,9 +118,16 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
         $predefined_values['values']['group1'] =
             Modules\Context\VegetalSpecies::getModule($form_id)->pluck('species')->toArray();
         $predefined_values['values']['group2'] =
-            Modules\Context\Habitats::getModule($form_id)->pluck('EcosystemType')
+            Modules\Context\Habitats::getModule($form_id)
+                ->filter(function($item){
+                    return !empty($item['EcosystemType']);
+                })
+                ->pluck('EcosystemType')
                 ->map(function($item){
-                    return SelectionList::getList('ImetOECM_Habitats')[$item];
+                    $labels = SelectionList::getList('ImetOECM_Habitats');
+                    return array_key_exists($item, $labels) ?
+                        $labels[$item]
+                        : null;
                 })
                 ->toArray();
 

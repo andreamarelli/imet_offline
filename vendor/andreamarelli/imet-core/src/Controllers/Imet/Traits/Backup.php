@@ -19,9 +19,9 @@ trait Backup{
      * Perform IMET backup if necessary (analyze existing ones)
      *
      * @param $item
-     * @param null $version
+     * @param string $version
      */
-    public function backup($item, $version = null)
+    public function backup($item, string $version)
     {
         if(App::environment('imetoffline')){
 

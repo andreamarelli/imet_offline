@@ -75,7 +75,10 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
         $form_id = $empty_record['FormID'];
 
         // inject predefined values and replicate for each stakeholder
-        $ctx5_records = Modules\Context\AnalysisStakeholderAccessGovernance::getModule($form_id);
+        $ctx5_records = Modules\Context\AnalysisStakeholderAccessGovernance::getModule($form_id)
+            ->filter(function($item){
+                return !empty($item['Element']);
+            });
 
         $new_records = [];
         foreach ($ctx5_records as $ctx5_record){

@@ -239,8 +239,15 @@ trait ImportExportJSON
     {
         $this->authorize('export', $item);
 
-        $imet_id = $item->getKey();
-        $imet_form = $item
+        if(is_string($item)){
+            $imet_id = $item;
+            $imet = (static::$form_class)::find($imet_id);
+        } else {
+            $imet_id = $item->getKey();
+            $imet = $item;
+        }
+
+        $imet_form = $imet
             ->makeHidden(['FormID', 'UpdateBy', 'protected_area_global_id'])
             ->toArray();
 
@@ -284,7 +291,7 @@ trait ImportExportJSON
         }
 
         if ($to_file) {
-            $fileName = $item->filename('json');
+            $fileName = $imet->filename('json');
             return File::exportToJSON(
                 $fileName,
                 $json,
