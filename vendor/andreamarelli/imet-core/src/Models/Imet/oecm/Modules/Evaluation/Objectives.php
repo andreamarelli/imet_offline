@@ -2,11 +2,9 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
+
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Models\Traits\Payload;
-use Exception;
-use Illuminate\Http\Request;
 
 class Objectives extends Modules\Component\ImetModule_Eval
 {
@@ -42,7 +40,7 @@ class Objectives extends Modules\Component\ImetModule_Eval
     }
 
     /**
-     * Preload data from C4
+     * Preload data from C1, C2.2, C3.2 & C4
      *
      * @param $form_id
      * @param null $collection
@@ -53,26 +51,15 @@ class Objectives extends Modules\Component\ImetModule_Eval
         $module_records = parent::getModuleRecords($form_id, $collection);
         $empty_record = static::getEmptyRecord($form_id);
 
-        $records = $module_records['records'];
-
-        $c4_values = collect(KeyElements::getModuleRecords($form_id)['records'])
-            ->filter(function($item){
-                return $item['IncludeInStatistics'];
-            })
-            ->pluck('Aspect')
-            ->toArray();
-
-        $c_values = array_merge($c4_values);
-
         $preLoaded = [
             'field' => 'Objective',
             'values' => [
                 'group0' => [],
-                'group1' => $c4_values
+                'group1' => static::valuesFromContext($form_id)
             ]
         ];
 
-        $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);
+        $module_records['records'] = static::arrange_records($preLoaded, $module_records['records'], $empty_record);
         return $module_records;
     }
 

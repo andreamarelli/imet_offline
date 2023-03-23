@@ -41,8 +41,8 @@ class AchievedObjectives extends Modules\Component\ImetModule_Eval
     {
         $p6_values = collect(Objectives::getModuleRecords($form_id)['records'])
             ->filter(function($item){
-                return $item['group_key']==='group0' // All objectives of group0 (derived from C4)
-                    || $item['Existence'];           // Only objectives with "Existence" from group1
+                return $item['group_key']==='group0' // All objectives of group0 ("Existing objectives from management plan")
+                    || $item['Existence'];           // Only objectives with "Existence" from group1 (derived form Context: C1, C2.2, C3.2 & C4 )
             })
             ->pluck('Objective')
             ->toArray();

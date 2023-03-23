@@ -2,12 +2,9 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
+
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Helpers\Input\Toggle;
-use AndreaMarelli\ModularForms\Models\Traits\Payload;
-use Exception;
-use Illuminate\Http\Request;
 
 /**
  * @property $titles
@@ -67,7 +64,7 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
             ->toArray();
 
         foreach($module_records['records'] as $idx => $module_record){
-            $module_records['records'][$idx]['Weight'] = $weight[$module_record['Stakeholder']] ?? null;
+            $module_records['records'][$idx]['__weight'] = $weight[$module_record['Stakeholder']] ?? null;
             $module_records['records'][$idx]['__score'] = $ranking[$module_record['Stakeholder']] ?? null;
         }
         return $module_records;

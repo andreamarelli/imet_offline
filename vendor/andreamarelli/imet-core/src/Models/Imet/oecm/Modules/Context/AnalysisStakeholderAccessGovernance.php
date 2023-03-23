@@ -116,7 +116,12 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
                 })
                 ->toArray();
         $predefined_values['values']['group1'] =
-            Modules\Context\VegetalSpecies::getModule($form_id)->pluck('species')->toArray();
+            Modules\Context\VegetalSpecies::getModule($form_id)
+                ->filter(function($item){
+                    return !empty($item['species']);
+                })
+                ->pluck('species')
+                ->toArray();
         $predefined_values['values']['group2'] =
             Modules\Context\Habitats::getModule($form_id)
                 ->filter(function($item){

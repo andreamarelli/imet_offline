@@ -6,6 +6,10 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Component;
 use AndreaMarelli\ImetCore\Models\Imet\Components\Modules\ImetModule_Eval as BaseImetEvalModule;
 use AndreaMarelli\ImetCore\Models\Imet\Components\Upgrade;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Designation;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\KeyElements;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\SupportsAndConstraintsIntegration;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ThreatsIntegration;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use ReflectionException;
 
@@ -43,4 +47,45 @@ class ImetModule_Eval extends BaseImetEvalModule
         static::updateDependencies($records, $form_id);
         return parent::updateModuleRecords($records, $form_id);
     }
+
+
+    /**
+     * Retrieve all the key elements from C1, C2.2, C3.2 & C4
+     *
+     * @param $form_id
+     * @return array
+     */
+    public static function valuesFromContext($form_id): array
+    {
+        $c1_values = collect(Designation::getModuleRecords($form_id)['records'])
+            ->filter(function($item){
+                return $item['IncludeInStatistics'];
+            })
+            ->pluck('Aspect')
+            ->toArray();
+
+        $c2_values = collect(SupportsAndConstraintsIntegration::getModuleRecords($form_id)['records'])
+            ->filter(function($item){
+                return $item['IncludeInStatistics'];
+            })
+            ->pluck('Stakeholder')
+            ->toArray();
+
+        $c3_values = collect(ThreatsIntegration::getModuleRecords($form_id)['records'])
+            ->filter(function($item){
+                return $item['IncludeInStatistics'];
+            })
+            ->pluck('Threat')
+            ->toArray();
+
+        $c4_values = collect(KeyElements::getModuleRecords($form_id)['records'])
+            ->filter(function($item){
+                return $item['IncludeInStatistics'];
+            })
+            ->pluck('Aspect')
+            ->toArray();
+
+        return array_merge($c1_values, $c2_values, $c3_values, $c4_values);
+    }
+
 }

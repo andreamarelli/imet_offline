@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
+
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\User\Role;
 
@@ -61,42 +62,12 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
         $module_records = parent::getModuleRecords($form_id, $collection);
         $empty_record = static::getEmptyRecord($form_id);
 
-        $records = $module_records['records'];
-
-        $c1_values = collect(Designation::getModuleRecords($form_id)['records'])
-            ->filter(function($item){
-                return $item['IncludeInStatistics'];
-            })
-            ->pluck('Aspect')
-            ->toArray();
-
-        $c2_values = collect(SupportsAndConstraintsIntegration::getModuleRecords($form_id)['records'])
-            ->filter(function($item){
-                return $item['IncludeInStatistics'];
-            })
-            ->pluck('Stakeholder')
-            ->toArray();
-
-        $c3_values = collect(ThreatsIntegration::getModuleRecords($form_id)['records'])
-            ->filter(function($item){
-                return $item['IncludeInStatistics'];
-            })
-            ->pluck('Threat')
-            ->toArray();
-
-        $c4_values = collect(KeyElements::getModuleRecords($form_id)['records'])
-            ->filter(function($item){
-                return $item['IncludeInStatistics'];
-            })
-            ->pluck('Aspect')
-            ->toArray();
-
         $preLoaded = [
             'field' => 'Element',
-            'values' => array_merge($c1_values, $c2_values, $c3_values, $c4_values)
+            'values' => static::valuesFromContext($form_id)
         ];
 
-        $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);
+        $module_records['records'] = static::arrange_records($preLoaded, $module_records['records'], $empty_record);
         return $module_records;
     }
 

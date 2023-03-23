@@ -366,7 +366,7 @@ return [
         ],
         'groups' => [
             'group0' => 'Existing objectives from management plan',
-            'group1' => 'Prospective objectives from C4',
+            'group1' => 'Prospective objectives from C1, C2.2, C3.2 & C4',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
