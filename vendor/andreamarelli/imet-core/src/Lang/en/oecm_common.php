@@ -28,15 +28,15 @@ return [
         ],
         'c2' => [
             'C2',
-            'Key elements'
+            'Constraints or supports from stakeholders'
         ],
         'c3' => [
             'C3',
-            'Constraints or supports from stakeholders'
+            'Threats'
         ],
         'c4' => [
             'C4',
-            'Threats'
+            'Key elements'
         ],
         'p1' => [
             'P1',

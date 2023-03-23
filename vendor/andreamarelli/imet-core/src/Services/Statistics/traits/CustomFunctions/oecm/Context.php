@@ -43,12 +43,16 @@ trait Context {
             })
             ->groupBy('group_key')
             ->map(function($group){
-
                 $numerator = $group->sum(function ($item){
-                    return $item['EvaluationScore'] * ($item['IncludeInStatistics'] ? 2 : 1);
+                    $importance = $item['Importance'];
+                    $integration = $item['EvaluationScore'];
+                    $toPrioritize = $item['IncludeInStatistics'];
+                    return $importance * $integration * ($toPrioritize ? 2 : 1);
                 });
                 $denominator = $group->sum(function ($item){
-                    return $item['IncludeInStatistics'] ? 2 : 1;
+                    $importance = $item['Importance'];
+                    $toPrioritize = $item['IncludeInStatistics'];
+                    return $importance * ($toPrioritize ? 2 : 1);
                 });
 
                 return $denominator>0

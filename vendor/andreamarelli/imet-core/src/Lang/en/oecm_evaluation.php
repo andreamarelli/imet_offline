@@ -64,7 +64,7 @@ return [
             'Evaluate the level of integration of 3 to 10 key elements for the management of the OECM (automatically reported from the Context of Intervention because (i) is an important key element of the OECM; (ii) provide an important service to stakeholders; (iii) is rare or in danger of extinction)'
         ],
         'from_group' => 'From category: ',
-        'num_stakeholders' => 'Evaluated by :num stakeholder(s)',
+        'num_stakeholders' => 'Indicated by :num stakeholder(s)',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>P6, I1, PR6</i>',
     ],
 
@@ -164,7 +164,7 @@ return [
         'module_info_Rating' => [
             'Evaluate the level of integration of most important threats in the management of the OECM based on the analysis of the threats calculator at Context of intervention point CTX 5 and automatically reported below . Threats evaluation (automatically reported from CTX 5) To prioritise in management Comments/Explanation'
         ],
-        'stakeholders' => 'evaluated by :num stakeholder(s)'
+        'stakeholders' => 'indicated by :num stakeholder(s)'
     ],
 
     'ThreatsIntegration' => [

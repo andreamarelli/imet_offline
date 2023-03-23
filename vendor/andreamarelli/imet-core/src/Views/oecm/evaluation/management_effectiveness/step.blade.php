@@ -16,12 +16,12 @@ $assessment_step = OEMCStatisticsService::get_assessment($item_id, $step);
 
     @if($step=='context')
 
-        {{-- C11->C12 statistics --}}
+        {{-- Step related statistics --}}
         <div style="margin-bottom: 20px;">
             @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100', 'values' => 'values', 'index' => 'c1'])
-            @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100', 'values' => 'values', 'index' => 'c2'])
+            @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_0', 'values' => 'values', 'index' => 'c2'])
             @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_100', 'values' => 'values', 'index' => 'c3'])
-            @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_0', 'values' => 'values', 'index' => 'c4'])
+            @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100', 'values' => 'values', 'index' => 'c4'])
         </div>
 
 

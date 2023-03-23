@@ -64,22 +64,22 @@ class OEMCStatisticsService extends StatisticsService
 
         $scores = [
             'c1' => static::score_designations($imet_id),
-            'c2' => static::score_key_elements($imet_id),
-            'c3' => static::score_support_contraints($imet_id),
-            'c4' => static::score_threats($imet_id),
+            'c2' => static::score_support_contraints($imet_id),
+            'c3' => static::score_threats($imet_id),
+            'c4' => static::score_key_elements($imet_id)
         ];
 
         // aggregate step score
         $denominator = ($scores['c1']!==null ? 1 : 0)
-            + ($scores['c2']!==null ? 3 : 0)
+            + ($scores['c4']!==null ? 3 : 0)
             + ($scores['c3']!==null ? 3 : 0)
-            + ($scores['c4']!==null ? 3 : 0);
+            + ($scores['c2']!==null ? 3 : 0);
 
         // numerator
         $numerator = $scores['c1']
-            + ($scores['c2']!==null ? 3 * $scores['c2'] : 0)
-            + ($scores['c3']!==null ? 3 * ($scores['c3']/2+50) : 0)
-            + ($scores['c4']!==null ? 3 * ($scores['c4']+100) : 0);
+            + ($scores['c4']!==null ? 3 * $scores['c4'] : 0)
+            + ($scores['c2']!==null ? 3 * ($scores['c2']/2+50) : 0)
+            + ($scores['c3']!==null ? 3 * ($scores['c3']+100) : 0);
 
 
         $scores['avg_indicator'] = $numerator>0 && $denominator>0
@@ -90,8 +90,6 @@ class OEMCStatisticsService extends StatisticsService
             ? round($scores['avg_indicator'], 2)
             : null;
 
-
-        
         return $scores;
     }
 

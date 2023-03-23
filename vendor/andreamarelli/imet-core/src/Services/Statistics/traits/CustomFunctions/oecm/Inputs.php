@@ -67,7 +67,7 @@ trait Inputs
 
     protected static function score_i5($imet_id): ?float
     {
-        $equipment = Equipments::getModule($imet_id)
+        $ctx_adequacy = Equipments::getModule($imet_id)
             ->groupBy('group_key')
             ->map(function($group) {
                 $group_values = $group
@@ -76,32 +76,22 @@ trait Inputs
                 return !empty($group_values)
                     ? static::average($group_values, null)
                     : null;
+            })->toArray();
+
+        $values = ManagementEquipmentAdequacy::getModule($imet_id)
+            ->filter(function($item) use ($ctx_adequacy){
+                $adequacy = $ctx_adequacy[$item['Equipment']];
+                return $adequacy !== null && $item['PresentNeeds']!==null;
+            })
+            ->map(function($item) use ($ctx_adequacy){
+                $adequacy = $ctx_adequacy[$item['Equipment']];
+                $item['__present_needs'] = $item['PresentNeeds'] + 1;
+                $item['__prod'] = $item['__present_needs'] * $adequacy;
+                return $item;
             });
 
-        $equipment_adequacy = ManagementEquipmentAdequacy::getModule($imet_id)
-            ->map(function($record){
-                $record['Adequacy'] = $record['Adequacy']!==null
-                    ? floatval($record['Adequacy'])
-                    : 0;
-                return $record;
-            })
-            ->pluck('Adequacy', 'Equipment');
-
-        $values = $equipment->map(function ($item, $index) use ($equipment_adequacy){
-            $adequacy = $equipment_adequacy[$index] ?? null;
-            $imp_p1 = $adequacy + 1;
-            $eq_imp = $imp_p1 * $item;
-
-            return [
-                'group_key' => $index,
-                'AdequacyLevel' => $item,
-                'imp_p1' => $imp_p1,
-                'eq_imp' => $eq_imp
-            ];
-        });
-
-        $numerator = $values->sum('eq_imp');
-        $denominator = $values->sum('imp_p1');
+        $numerator = $values->sum('__prod');
+        $denominator = $values->sum('__present_needs');
 
         $score = $denominator>0
             ? $numerator / $denominator * 100 / 3
