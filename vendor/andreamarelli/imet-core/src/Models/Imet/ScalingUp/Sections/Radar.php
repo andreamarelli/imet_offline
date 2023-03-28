@@ -81,7 +81,9 @@ class Radar
         $analysis_diagrams_protected_areas['indicators'] = $indicators;
 
         foreach ($radar_average as $k => $item) {
-            $radar_protected_areas['values']['Average'][] = Common::round_number($item / $indicators_count_to_calculate_average[$k]);
+            if(isset( $indicators_count_to_calculate_average[$k])) {
+                $radar_protected_areas['values']['Average'][] = Common::round_number($item / $indicators_count_to_calculate_average[$k]);
+            }
         }
 
         return [

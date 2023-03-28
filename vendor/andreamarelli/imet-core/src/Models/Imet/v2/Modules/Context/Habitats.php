@@ -57,6 +57,33 @@ class Habitats extends Modules\Component\ImetModule
         return parent::updateModule($request);
     }
 
+    public static function upgradeModule($record, $imet_version = null)
+    {
+        // ####  v2.8 -> v2.10 (revised habitat list)  ####
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Forest temperate','forest_temperate_boreal');
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Forest boreal','forest_temperate_boreal');
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Subtropical/tropical moist lowland','forest_moist_lowland');
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Subtropical/tropical moist montane','forest_moist_montane');
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Subtropical/tropical dry','forest_dry');
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Subtropical/tropical swamp','swamp');
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Savanna-moist','savanna_moist');
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Savanna-dry','savanna_dry');
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Shrubland-Subtropical/tropical dry','shrubland_dry_moist');
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Shrubland-Subtropical/tropical moist','shrubland_dry_moist');
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Shrubland-Subtropical/tropical high altitude','shrubland_high_altitude');
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Shrubland temperate','shrubland_temperate_boreal');
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Shrubland boreal','shrubland_temperate_boreal');
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Grassland Temperate','grassland_temperate');
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Grassland subtropical/tropical dry','grassland_dry_moist');
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Wetlands (inland)-Permanent freshwater lakes','wetlands_lakes');
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Desert – Temperate','desert');
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Desert – Cold','desert');
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Desert - Hot','desert');
+        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Plantations','artificial');
+
+        return $record;
+    }
+
     /**
      *  Update 2.7 -> v2.8 (marine pas): merge CTX 4.3.2 into 4.3 ####
      *

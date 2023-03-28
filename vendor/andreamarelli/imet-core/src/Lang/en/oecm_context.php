@@ -377,10 +377,10 @@ return [
         ],
         'ratingLegend' => [
             'Impact' => [
-                '0' => 'No engagement',
-                '1' => 'Low engagement',
-                '2' => 'Medium engagement',
-                '3' => 'High engagement',
+                '0' => 'No impact',
+                '1' => 'Low impact',
+                '2' => 'Medium impact',
+                '3' => 'High impact',
             ],
             'Role' => [
                 '0' => 'No role',

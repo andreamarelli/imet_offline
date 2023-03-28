@@ -102,7 +102,7 @@ if ($item->language != App::getLocale()) {
             <div class="module-body">
                 <imet_charts
                         form_id={{ $item->getKey() }} :labels='@json(\AndreaMarelli\ImetCore\Services\Statistics\StatisticsService::steps_labels())'
-                        :show_histogram="true"></imet_charts>
+                        :show_histogram="true" :version="'v1'"></imet_charts>
                 <table id="global_scores">
                     <tr>
                         <th>@lang('imet-core::common.steps_eval.context')</th>

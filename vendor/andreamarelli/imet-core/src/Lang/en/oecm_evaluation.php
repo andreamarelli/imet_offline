@@ -429,10 +429,10 @@ return [
         ],
         'ratingLegend' => [
             'Adequacy' => [
-                '0' => 'Capacities building to strong improve (0-30% of the needs)',
-                '1' => 'Capacities building to improve (31-60% of the needs)',
-                '2' => 'Capacities building adequate but further improvements required (61-90% of the needs)',
-                '3' => 'Capacities building completely sufficient (91-100% of the needs)',
+                '0' => 'No or very low staff capacities (0-30% of the needs)',
+                '1' => 'Insufficient staff capacities (31-60% of the needs)',
+                '2' => 'Adequate staff capacities but further improvements required (61-90% of the needs)',
+                '3' => 'Completely sufficient staff capacities (91-100% of the needs)',
             ]
         ],
         'module_info_EvaluationQuestion' => [

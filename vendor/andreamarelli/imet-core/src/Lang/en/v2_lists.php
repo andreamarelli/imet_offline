@@ -158,36 +158,30 @@ return [
     ],
 
     'Habitats' => [
-        # Forest
-        'Forest temperate',
-        'Forest boreal',
-        'Subtropical/tropical moist lowland',
-        'Subtropical/tropical moist montane',
-        'Subtropical/tropical dry',
-        'Subtropical/tropical swamp',
-        # Savanna
-        'Savanna-moist',
-        'Savanna-dry',
-        # Shrubland
-        'Shrubland-Subtropical/tropical dry',
-        'Shrubland-Subtropical/tropical moist',
-        'Shrubland-Subtropical/tropical high altitude',
-        'Shrubland temperate',
-        'Shrubland boreal',
-        # Grassland
-        'Grassland Temperate',
-        'Grassland subtropical/tropical high altitude',
-        'Grassland subtropical/tropical dry',
-        # Wetlands
-        'Wetlands (inland)-Permanent freshwater lakes',
-        'Wetlands (inland)',
-        'Wetlands (inland)-Tundra wetlands',
-        # Rocky Areas, Desert
-        'Desert – Temperate',
-        'Desert – Cold',
-        'Desert - Hot',
-        # Artificial
-        'Plantations'
+        'artificial'                => 'Artificial - plantations, gardens, pasturelands',
+        'desert'                    => 'Desert – hot, cold, temperate',
+        'forest_temperate_boreal'   => 'Forest - boreal and temperate',
+        'forest_dry'                => 'Forest - subtropical/tropical dry',
+        'forest_moist_lowland'      => 'Forest - subtropical/tropical moist lowland',
+        'forest_moist_montane'      => 'Forest - subtropical/tropical moist montane',
+        'grassland_dry_moist'       => 'Grassland - subtropical/tropical dry or moist',
+        'grassland_temperate'       => 'Grassland - temperate',
+        'marine_coastal'            => 'Marine - coastal',
+        'marine_coral_reefs'        => 'Marine - coral reefs',
+        'marine_intertidal'         => 'Marine - intertidal',
+        'marine_oceanic'            => 'Marine - oceanic and deep ocean',
+        'marine_pelagic'            => 'Marine - pelagic',
+        'marine_subtidal'           => 'Marine - subtidal',
+        'rocky'                     => 'Rocky areas - mountains, cliffs',
+        'savanna_dry'               => 'Savanna - dry',
+        'savanna_moist'             => 'Savanna - moist',
+        'shrubland_temperate_boreal' => 'Shrubland - boreal and temperate',
+        'shrubland_dry_moist'       => 'Shrubland - Subtropical/tropical dry or moist',
+        'shrubland_high_altitude'   => 'Shrubland - Subtropical/tropical high altitude',
+        'swamp'                     => 'Swamp - subtropical/tropical',
+        'wetlands_lakes'            => 'Wetlands (inland) - lake',
+        'wetlands_rivers'           => 'Wetlands (inland) - rivers, streams, waterfalls',
+        'wetlands_shrub'            => 'Wetlands (inland) - shrub dominated wetlands',
     ],
 
     'EcosystemServicesImportance' => [

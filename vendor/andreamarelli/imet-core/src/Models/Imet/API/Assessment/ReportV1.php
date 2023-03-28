@@ -14,6 +14,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v1\Report;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ReportV1
 {
@@ -123,7 +124,7 @@ class ReportV1
             'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item) {
                 return $item['IncludeInStatistics'];
             })->pluck('Aspect')->map(function ($item) {
-                return Animal::getByTaxonomy($item)->binomial;
+                return Str::contains('|', $item) ? Animal::getByTaxonomy($item)->binomial : $item;
             })->toArray(),
             'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item) {
                 return $item['IncludeInStatistics'];

@@ -10,6 +10,7 @@ use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
 use AndreaMarelli\ImetCore\Models\Animal;
+use Illuminate\Support\Str;
 
 
 class ReportController extends BaseReportController
@@ -52,7 +53,7 @@ class ReportController extends BaseReportController
             'key_elements' => [
                 'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)
                     ->pluck('Aspect')->map(function($item){
-                        return Animal::getByTaxonomy($item)->binomial;
+                        return Str::contains('|', $item) ? Animal::getByTaxonomy($item)->binomial : $item;
                     })->toArray(),
                 'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)
                     ->pluck('Aspect')->toArray(),
