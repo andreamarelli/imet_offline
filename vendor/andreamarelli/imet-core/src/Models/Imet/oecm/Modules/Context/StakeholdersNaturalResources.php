@@ -5,6 +5,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Support\Str;
 
 class StakeholdersNaturalResources extends Modules\Component\ImetModule
 {
@@ -53,8 +54,11 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
      */
     public static function updateModuleRecords($records, $form_id)
     {
-        // Remove all empty records: where "Element" is empty
+
         foreach ($records as $index => $record){
+            // Ensure no "newline" are saved
+            $record['Element'] = Str::replace("\n", '', $record['Element']);
+            // Remove all empty records: where "Element" is empty
             if($record['Element']===null || trim($record['Element'])===''){
                 unset($records[$index]);
             }
@@ -110,6 +114,8 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
                 $sum += $item['GeographicalProximity'] ? 4 : 0;
 
                 $item['__weight'] = round($sum * 100 / 16, 0);
+
+                $item['Element'] = Str::replace("\n", '', $item['Element']);
 
                 return $item;
             })

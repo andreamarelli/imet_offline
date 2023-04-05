@@ -62,6 +62,6 @@ trait Merge
 
         $module_class::updateModule($request);
 
-        return redirect()->route('imet-core::merge_view', ['item' => $destination_form_id]);
+        return redirect()->route($this::ROUTE_PREFIX.'merge_view', ['item' => $destination_form_id]);
     }
 }

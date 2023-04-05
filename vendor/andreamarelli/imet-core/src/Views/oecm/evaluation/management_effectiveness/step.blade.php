@@ -77,14 +77,6 @@ $assessment_step = OEMCStatisticsService::get_assessment($item_id, $step);
         mounted() {
             let _this = this;
             _this.init_properties();
-
-            if (_this.current_step === 'process') {
-                _this.chart = echarts.init(document.getElementById('imet_process_radar'));
-                if (_this.chart !== null) {
-                    _this.chart.setOption(_this.get_radar_options());
-                }
-            }
-
             window.vueBus.$on('refresh_assessment', function () {
                 _this.refresh_values();
             });

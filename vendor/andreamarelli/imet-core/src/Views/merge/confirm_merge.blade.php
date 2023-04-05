@@ -2,6 +2,7 @@
 /** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Imet|\AndreaMarelli\ImetCore\Models\Imet\v2\Imet $source */
 /** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Imet|\AndreaMarelli\ImetCore\Models\Imet\v2\Imet $destination */
 /** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Component\ImetModule|\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule $module */
+/** @var string $route */
 
 $modal_id = 'imet_merge_'.$source->FormID.'_to_'.$destination->FormID.'_'.$module::getShortClassName();
 
@@ -51,7 +52,7 @@ $modal_id = 'imet_merge_'.$source->FormID.'_to_'.$destination->FormID.'_'.$modul
                         class="btn-nav small red btn-sm">
                     {!! AndreaMarelli\ModularForms\Helpers\Template::icon('times-circle', 'white') !!} @uclang('modular-forms::common.cancel')
                 </button>
-                <form action="{{ route('imet-core::merge') }}" method="POST" style="display: inline;">
+                <form action="{{ route($route) }}" method="POST" style="display: inline;">
                     {{ csrf_field() }}
                     <input type="hidden" name="module" value="{{ $module }}">
                     <input type="hidden" name="source_form" value="{{ $source->FormID }}">

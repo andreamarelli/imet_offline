@@ -18,17 +18,23 @@ if($primary_form->version===Imet\Imet::IMET_V1){
         v1\Imet_Eval::$modules,
     ]);
     $imet_class = v1\Imet::class;
+    $merge_route = Controllers\Imet\v1\Controller::ROUTE_PREFIX.'merge';
+    $merge_view_route = Controllers\Imet\v1\Controller::ROUTE_PREFIX.'merge_view';
 } elseif($primary_form->version===Imet\Imet::IMET_V2){
     $all_modules = Module::getModulesList([
         v2\Imet::$modules,
         v2\Imet_Eval::$modules,
     ]);
     $imet_class = v2\Imet::class;
+    $merge_route = Controllers\Imet\v2\Controller::ROUTE_PREFIX.'merge';
+    $merge_view_route = Controllers\Imet\v2\Controller::ROUTE_PREFIX.'merge_view';
 } elseif($primary_form->version===Imet\Imet::IMET_OECM){
     $all_modules = Module::getModulesList([
         oecm\Imet::$modules,
         oecm\Imet_Eval::$modules,
     ]);
+    $merge_route = Controllers\Imet\oecm\Controller::ROUTE_PREFIX.'merge';
+    $merge_view_route = Controllers\Imet\oecm\Controller::ROUTE_PREFIX.'merge_view';
     $imet_class = oecm\Imet::class;
 }
 
@@ -36,11 +42,10 @@ function get_quoted_responsible($form_id, $version){
     if($version === Imet\Imet::IMET_V1 || $version === Imet\Imet::IMET_V2){
         $responsible = Imet\Imet::getResponsibles($form_id, $version);
     } else if($version == Imet\Imet::IMET_OECM){
-        oecm\Imet::getResponsibles($form_id, $version);
+        $responsible = oecm\Imet::getResponsibles($form_id, $version);
     }
     return str_replace('\'', '\\\'', json_encode($responsible));
 }
-
 
 ?>
 
@@ -86,7 +91,7 @@ function get_quoted_responsible($form_id, $version){
                              data-toggle="tooltip"
                              data-placement="top"
                              data-original-title="@uclang('imet-core::common.set_as_destination_form')">
-                            <a href="{{ route('imet-core::merge_view', [$duplicated_form_id]) }}"
+                            <a href="{{ route($merge_view_route, [$duplicated_form_id]) }}"
                                class="btn-nav small yellow"
                             >{!! AndreaMarelli\ModularForms\Helpers\Template::icon('thumbtack', 'white') !!} @uclang('imet-core::common.destination_form')
                             </a>
@@ -134,7 +139,12 @@ function get_quoted_responsible($form_id, $version){
                                      <b class="highlight">{!! AndreaMarelli\ModularForms\Helpers\Template::icon('check-circle') !!}  @lang('modular-forms::common.no_differences')</b>
                                 @else
                                     @include('imet-core::merge.view_module', ['module' => $module, 'formID' => $duplicated_form_id, 'module_class' => $module_class ])
-                                    @include('imet-core::merge.confirm_merge', ['source' => $imet_class::find($duplicated_form_id), 'destination' => $primary_form, 'module' => $module_class ])
+                                    @include('imet-core::merge.confirm_merge', [
+                                        'route' => $merge_route,
+                                        'source' => $imet_class::find($duplicated_form_id),
+                                        'destination' => $primary_form,
+                                        'module' => $module_class
+                                    ])
                                 @endif
                             @else
                                 <small><i>@lang('modular-forms::common.no_data')</i></small>

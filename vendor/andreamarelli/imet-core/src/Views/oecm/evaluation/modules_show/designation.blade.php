@@ -5,10 +5,8 @@
 
 ?>
 
-@include('imet-core::components.module.edit.table_with_nothing_to_evaluate', [
+@include('imet-core::components.module.show.table_with_nothing_to_evaluate', [
     'collection' => $collection,
     'definitions' => $definitions,
     'records' => $records,
 ])
-
-@include('modular-forms::module.edit.script', compact(['collection', 'records', 'definitions']))
