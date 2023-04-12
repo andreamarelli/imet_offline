@@ -78,12 +78,12 @@ $num_cols = count($definitions['fields']);
 @foreach(array_keys($stakeholders)  as $index => $stakeholder)
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title" role="button" @click="switchStakeholder('{{ $stakeholder }}')">
+            <h4 class="card-title" role="button" @click="switchStakeholder('{{ Str::replace("'", "\'", $stakeholder) }}')">
                 {{ $index + 1 }} -
                 {{ $stakeholder }}
             </h4>
         </div>
-        <div v-if="isCurrentStakeholder('{{ $stakeholder }}')">
+        <div v-if="isCurrentStakeholder('{{ Str::replace("'", "\'", $stakeholder) }}')">
             <div class="card-body">
 
 
@@ -135,7 +135,7 @@ $num_cols = count($definitions['fields']);
 
                         {{-- nothing to evaluate --}}
                         <tbody class="{{ $group_key }}"
-                               v-if="doesNotHaveElements('{{ $group_key }}', '{{ $stakeholder }}')">
+                               v-if="doesNotHaveElements('{{ $group_key }}', '{{ Str::replace("'", "\'", $stakeholder) }}')">
                         @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols])
                         </tbody>
 

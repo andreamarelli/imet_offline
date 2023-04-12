@@ -6,6 +6,7 @@
 
 use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderAccessGovernance;
 use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersNaturalResources;
+use Illuminate\Support\Str;
 
 $stakeholders = StakeholdersNaturalResources::calculateWeights($vue_data['form_id']);
 arsort($stakeholders);
@@ -73,12 +74,12 @@ $num_cols = count($definitions['fields']);
 @foreach(array_keys($stakeholders) as $index => $stakeholder)
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title" role="button" @click="switchStakeholder('{{ $stakeholder }}')">
+            <h4 class="card-title" role="button" @click="switchStakeholder('{{ Str::replace("'", "\'", $stakeholder) }}')">
                 {{ $index + 1 }} -
                 {{ $stakeholder }}
             </h4>
         </div>
-        <div v-if="isCurrentStakeholder('{{ $stakeholder }}')">
+        <div v-if="isCurrentStakeholder('{{ Str::replace("'", "\'", $stakeholder) }}')">
             <div class="card-body">
 
                 {{-- groups --}}
@@ -177,7 +178,7 @@ $num_cols = count($definitions['fields']);
                             <tr>
                                 <td colspan="{{ count($definitions['fields']) + 1 }}">
                                     @include('modular-forms::buttons.add_item', [
-                                        'onClick' => "addItem('". $group_key . "', '". $stakeholder . "')"
+                                        'onClick' => "addItem('". $group_key . "', '". Str::replace("'", "\'", $stakeholder)  . "')"
                                     ])
                                 </td>
                             </tr>
