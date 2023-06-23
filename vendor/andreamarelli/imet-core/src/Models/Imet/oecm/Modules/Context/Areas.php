@@ -34,8 +34,9 @@ class Areas extends Modules\Component\ImetModule
                 'type' => 'numeric',
                 'label' => trans('imet-core::oecm_context.Areas.fields.AdministrativeArea')
             ],
-            ['name' => 'WDPAArea', 'type' => 'numeric', 'label' => trans('imet-core::oecm_context.Areas.fields.WDPAArea')],
-            ['name' => 'GISArea', 'type' => 'numeric', 'label' => trans('imet-core::oecm_context.Areas.fields.GISArea')]
+            ['name' => 'WDPAArea',      'type' => 'numeric', 'label' => trans('imet-core::oecm_context.Areas.fields.WDPAArea')],
+            ['name' => 'GISArea',       'type' => 'numeric', 'label' => trans('imet-core::oecm_context.Areas.fields.GISArea')],
+            ['name' => 'StrictConservationArea', 'type' => 'numeric', 'label' => trans('imet-core::oecm_context.Areas.fields.StrictConservationArea')]
         ];
 
         parent::__construct($attributes);

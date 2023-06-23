@@ -21,7 +21,6 @@ class Ranking
         $items_to_calculate = $percent_values = $sum_values = $separated_values_by_pa = [];
         $ranking = ['values' => [], 'legends' => [], 'xAxis' => [], 'wdpa_ids' => [], 'actual_value' => []];
 
-
         // only for process sub-indicators average
         if (isset($indicators['pr15_16'])) {
             $result = static::process_subindicators_for_ranking_protected_areas($form_ids, $type);
@@ -59,7 +58,8 @@ class Ranking
                 }
 
                 if (count($indicators_process_number) > 0) {
-                    $correction_value = Common::ranking_values_correction(Common::values_correction($v, $value), $indicators_divide_length, $indicators_process_number, $v);
+                    $val = Common::values_correction($v, $value);
+                    $correction_value = Common::ranking_values_correction($val, $indicators_divide_length, $indicators_process_number, $v);
                 } else {
                     $correction_value = Common::values_correction($v, $value);
                 }

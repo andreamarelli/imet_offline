@@ -53,7 +53,7 @@ class ReportV2 extends ReportV1
     protected static function get_labels(): array
     {
         $general_info_labels = trans('imet-core::v2_context.GeneralInfo.fields');
-        $steps_eval_labels = trans('imet-core::v2_common.steps_eval');
+        $steps_eval_labels = trans('imet-core::common.steps_eval');
         $mission_labels = Lang::get('imet-core::v2_context.Missions.fields');
         $assessment_labels = Lang::get('imet-core::analysis_report.assessment');
 

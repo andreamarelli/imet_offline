@@ -7,7 +7,7 @@
 <h3>@lang('imet-core::oecm_context.Governance.governance')</h3>
 @foreach($definitions['fields'] as  $idx => $field)
 
-    @if($field['name']==='GovernanceModel' || $field['name']==='AdditionalInfo')
+    @if($field['name']==='GovernanceModel' || $field['name']==='SubGovernanceModel' || $field['name']==='AdditionalInfo')
 
         @component('modular-forms::module.field_container', [
                 'name' => $field['name'],

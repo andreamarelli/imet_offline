@@ -18,7 +18,7 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';
-        $this->module_code = 'PR8';
+        $this->module_code = 'PR9';
         $this->module_title = trans('imet-core::oecm_evaluation.StakeholderCooperation.title');
         $this->module_fields = [
             ['name' => 'Element',           'type' => 'disabled',           'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.Element'), 'other'=>'rows="3"'],
@@ -34,7 +34,7 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
     }
 
     /**
-     * Preload data from CTX 3.1.2
+     * Preload data
      *
      * @param $form_id
      * @param null $collection
@@ -49,12 +49,12 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
 
         $preLoaded = [
             'field' => 'Element',
-            'values' => Modules\Context\StakeholdersNaturalResources::getStakeholders($form_id)
+            'values' => Modules\Context\Stakeholders::getStakeholders($form_id)
         ];
 
         $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);
 
-        $weight = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
+        $weight = Modules\Context\Stakeholders::calculateWeights($form_id);
 
         foreach($module_records['records'] as $idx => $module_record){
             if(array_key_exists($module_record['Element'], $weight)){

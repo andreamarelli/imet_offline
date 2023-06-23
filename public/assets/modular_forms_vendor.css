@@ -8109,6 +8109,9 @@ div.modal {
 .tooltip-inner {
   white-space: pre-wrap; }
 
+.badge {
+  padding: 3px 4px 2px 4px; }
+
 .field-edit.form-daypicker {
   width: 102px;
   display: inline-block; }

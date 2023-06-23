@@ -51,14 +51,14 @@ class CapacityAdequacy extends Modules\Component\ImetModule_Eval
             'field' => 'Member',
             'values' => [
                 'group0' => Modules\Context\ManagementStaff::getModule($form_id)->pluck('Function')->toArray(),
-                'group1' => Modules\Context\StakeholdersNaturalResources::getStakeholders($form_id),
+                'group1' => Modules\Context\Stakeholders::getStakeholders($form_id),
             ]
         ];
 
         $module_records['records'] =  static::arrange_records($preLoaded, $records, $empty_record);
 
         $weighted_staff = Modules\Context\ManagementStaff::calculateWeights($form_id);
-        $weighted_stakeholder = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
+        $weighted_stakeholder = Modules\Context\Stakeholders::calculateWeights($form_id);
 
         foreach($module_records['records'] as $idx => $module_record){
             if($module_record['group_key']==='group0'){

@@ -14,7 +14,7 @@ class LawEnforcementImplementation extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'GROUP_TABLE';
-        $this->module_code = 'PR7';
+        $this->module_code = 'PR8';
         $this->module_title = trans('imet-core::oecm_evaluation.LawEnforcementImplementation.title');
         $this->module_fields = [
             ['name' => 'Element',   'type' => 'text-area',          'label' => trans('imet-core::oecm_evaluation.LawEnforcementImplementation.fields.Element'), 'other'=>'rows="3"'],

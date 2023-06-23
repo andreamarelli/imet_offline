@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ModularForms\Models;
 
+use AndreaMarelli\ModularForms\Exceptions\ValidationException;
 use AndreaMarelli\ModularForms\Helpers\ModuleKey;
 use AndreaMarelli\ModularForms\Helpers\PhpClass;
 use AndreaMarelli\ModularForms\Models\Traits\Payload;
@@ -395,7 +396,7 @@ class Module extends BaseModel
      *
      * @param Request $request
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public static function updateModule(Request $request): array
     {
@@ -409,7 +410,11 @@ class Module extends BaseModel
             static::updateModuleRecords($records, $form_id);
             DB::commit();
 
-        } catch (Exception $e) {
+        } catch (ValidationException $e) {
+            DB::rollback();
+            return static::validationErrorResponse($e->getValidationErrors());
+        }
+         catch (Exception $e) {
             DB::rollback();
             throw $e;
         }
@@ -423,8 +428,8 @@ class Module extends BaseModel
      *
      * @param $records
      * @param $form_id
-     * @return array|void
-     * @throws FileNotFoundException
+     * @return void
+     * @throws FileNotFoundException|ValidationException
      */
     public static function updateModuleRecords($records, $form_id)
     {
@@ -442,7 +447,7 @@ class Module extends BaseModel
 
             // Validate data
             if(!empty($messages = (new static())::validate($record))){
-                return static::validationErrorResponse($messages);
+                throw new ValidationException($messages);
             }
 
             // Save model

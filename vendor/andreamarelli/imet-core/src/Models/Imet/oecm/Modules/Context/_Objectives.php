@@ -4,7 +4,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
 
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 
-class _Objectives extends Modules\Component\ImetModule
+abstract class _Objectives extends Modules\Component\ImetModule
 {
 
     public static $rules = [

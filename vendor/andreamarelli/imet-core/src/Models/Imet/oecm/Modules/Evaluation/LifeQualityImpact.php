@@ -14,7 +14,7 @@ class LifeQualityImpact extends Modules\Component\ImetModule_Eval
 
     public function __construct(array $attributes = []) {
         $this->module_type = 'GROUP_TABLE';
-        $this->module_code = 'O/C2';
+        $this->module_code = 'O/C3';
         $this->module_title = trans('imet-core::oecm_evaluation.LifeQualityImpact.title');
         $this->module_fields = [
             ['name' => 'Element',           'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.LifeQualityImpact.fields.Element')],

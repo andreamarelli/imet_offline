@@ -35,13 +35,15 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
             ['name' => 'Comments',              'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.fields.Comments')],
         ];
 
+        $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.module_info_Rating');
         $this->ratingLegend = trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.ratingLegend');
 
         parent::__construct($attributes);
     }
 
     /**
-     * Preload data from CTX 3.1.2
+     * Preload data
      *
      * @param $form_id
      * @param null $collection
@@ -54,11 +56,11 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
 
         $preLoaded = [
             'field' => 'Stakeholder',
-            'values' => Modules\Context\StakeholdersNaturalResources::getStakeholders($form_id)
+            'values' => Modules\Context\Stakeholders::getStakeholders($form_id)
         ];
         $module_records['records'] = static::arrange_records($preLoaded, $module_records['records'], $empty_record);
 
-        $weight = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
+        $weight = Modules\Context\Stakeholders::calculateWeights($form_id);
         $ranking = collect(SupportsAndConstraints::calculateRanking($form_id))
             ->pluck('__score', 'Stakeholder')
             ->toArray();

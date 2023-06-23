@@ -17,6 +17,8 @@ $vue_data['WDPAArea_ha'] = $vue_data['WDPAArea_ha_full'] = formatNum($vue_data['
 $vue_data['WDPAArea_km2'] = $vue_data['WDPAArea_ha_full'] = formatNum($vue_data['records'][0]['WDPAArea']/100);
 $vue_data['GISArea_ha'] = $vue_data['GISArea_ha_full'] = formatNum($vue_data['records'][0]['GISArea']);
 $vue_data['GISArea_km2'] = $vue_data['GISArea_km2_full'] = formatNum($vue_data['records'][0]['GISArea']/100);
+$vue_data['StrictConservationArea_ha'] = $vue_data['StrictConservationArea_ha_full'] = formatNum($vue_data['records'][0]['StrictConservationArea']);
+$vue_data['StrictConservationArea_km2'] = $vue_data['StrictConservationArea_km2_full'] = formatNum($vue_data['records'][0]['StrictConservationArea']/100);
 
 
 ?>
@@ -101,6 +103,12 @@ $vue_data['GISArea_km2'] = $vue_data['GISArea_km2_full'] = formatNum($vue_data['
                 },
                 GISArea_km2: function(value){
                     this.convert('GISArea', 'km2', value);
+                },
+                StrictConservationArea_ha: function(value){
+                    this.convert('StrictConservationArea', 'ha', value);
+                },
+                StrictConservationArea_km2: function(value){
+                    this.convert('StrictConservationArea', 'km2', value);
                 }
             },
 

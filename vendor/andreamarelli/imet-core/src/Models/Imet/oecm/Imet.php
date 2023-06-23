@@ -4,9 +4,12 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm;
 
 use AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller;
 use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderTrendsThreats;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderIndirectUsers;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholdersObjectives;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewers;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersObjectives;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
@@ -42,8 +45,7 @@ class Imet extends BaseImetForm
             Modules\Context\Objectives2::class,
         ],
         'resources' => [
-            Modules\Context\StakeholdersNaturalResources::class,
-            Modules\Context\ManagementRelativeImportance::class,
+            Modules\Context\ManagementRelativeImportance::class,        // Scale to be reviewed (in module custom view)
             Modules\Context\ManagementStaff::class,
             Modules\Context\ManagementStaffPartners::class,
             Modules\Context\FinancialResources::class,
@@ -55,11 +57,14 @@ class Imet extends BaseImetForm
             Modules\Context\VegetalSpecies::class,
             Modules\Context\Habitats::class,
         ],
-        'access_and_governance' => [
-            Modules\Context\AnalysisStakeholderAccessGovernance::class
+        'stakeholders' => [
+            Modules\Context\Stakeholders::class,        // Formula: DONE
+            StakeholdersObjectives::class,
         ],
-        'trends_and_threats' => [
-            Modules\Context\AnalysisStakeholderTrendsThreats::class
+        'stakeholder_analysis' => [
+            AnalysisStakeholderDirectUsers::class,      // Formula: DONE
+            AnalysisStakeholderIndirectUsers::class,    // Formula: DONE
+            AnalysisStakeholdersObjectives::class
         ],
     ];
 

@@ -10,7 +10,7 @@ export default {
 
     mixins: [
         window.ImetCore.ScalingUp.Mixins.resize,
-        window.ModularForms.Dopa.chart_bar
+        window.ImetCore.Dopa.chart_bar
     ],
 
     methods: {

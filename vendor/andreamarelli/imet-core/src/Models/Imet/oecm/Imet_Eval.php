@@ -9,6 +9,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BoundaryLevel;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetAdequacy;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetSecurization;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\CapacityAdequacy;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\KeyElementsImpact;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\DesignAdequacy;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Designation;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\InformationAvailability;
@@ -24,6 +25,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementGoverna
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementPlan;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\NaturalResourcesMonitoring;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Objectives;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesContext;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesIntrants;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesPlanification;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesProcessus;
@@ -47,16 +49,17 @@ class Imet_Eval extends Imet
             Designation::class,
             SupportsAndConstraints::class,
             SupportsAndConstraintsIntegration::class,
-            Threats::class,
-            ThreatsIntegration::class,
-            KeyElements::class,
+            Threats::class,             // getModuleRecords to be reviewed + histogram
+            ThreatsIntegration::class,  // check ranking
+            KeyElements::class,         // getKeyElementsFromCTX to be reviewed, and check ranking scale
+            ObjectivesContext::class
         ],
         'planning' => [
             RegulationsAdequacy::class,
             DesignAdequacy::class,
             BoundaryLevel::class,
-            ManagementPlan::class,
-            WorkPlan::class,
+            ManagementPlan::class,      // Review formulas
+            WorkPlan::class,          // Review formulas
             Objectives::class,
             ObjectivesPlanification::class
         ],
@@ -75,12 +78,12 @@ class Imet_Eval extends Imet
             AdministrativeManagement::class,
             EquipmentMaintenance::class,
             ManagementActivities::class,
+            NaturalResourcesMonitoring::class,
             LawEnforcementImplementation::class,
             StakeholderCooperation::class,
             AssistanceActivities::class,
             EnvironmentalEducation::class,
             VisitorsManagement::class,
-            NaturalResourcesMonitoring::class,
             ObjectivesProcessus::class,
 
         ],
@@ -90,6 +93,7 @@ class Imet_Eval extends Imet
         ],
         'outcomes' => [
             AchievedObjectives::class,
+            KeyElementsImpact::class,       // No formulas
             LifeQualityImpact::class,
         ],
         'management_effectiveness' => [],

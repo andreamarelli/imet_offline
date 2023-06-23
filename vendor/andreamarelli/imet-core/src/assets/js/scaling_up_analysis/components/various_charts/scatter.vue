@@ -148,7 +148,6 @@ export default {
             this.data.forEach(dato => {
                 legends.push({"name": dato.name});
             })
-
             return {
                 data: legends
                     .sort((a, b) => {
@@ -172,7 +171,17 @@ export default {
                     name: record['name'],
                     symbol: "rect",
                     symbolSize: function (data) {
-                        return Math.sqrt(data[2]) * (9);
+                        if(data[2] <= 33){
+                            return 25;
+                        } else if(data[2] <= 50){
+                            return 35;
+                        } else if(data[2] <= 65){
+                            return 45;
+                        } else if(data[2] <= 90){
+                            return 60;
+                        } else if(data[2] <= 100){
+                            return 70;
+                        }
                     },
                     emphasis: {
                         focus: 'self'

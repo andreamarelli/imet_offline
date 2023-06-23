@@ -20,6 +20,9 @@ class WorkPlan extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::oecm_evaluation.WorkPlan.title');
         $this->module_fields = [
             ['name' => 'PlanExistence',     'type' => 'toggle-yes_no',    'label' => trans('imet-core::oecm_evaluation.WorkPlan.fields.PlanExistence')],
+            ['name' => 'PrintedCopy',           'type' => 'toggle-yes_no',          'label' => trans('imet-core::oecm_evaluation.WorkPlan.fields.PrintedCopy')],
+            ['name' => 'ExplainedToMembers',    'type' => 'toggle-yes_no',          'label' => trans('imet-core::oecm_evaluation.WorkPlan.fields.ExplainedToMembers')],
+            ['name' => 'KnowledgePercentage',   'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_evaluation.WorkPlan.fields.KnowledgePercentage')],
             ['name' => 'PlanUptoDate',     'type' => 'toggle-yes_no',    'label' => trans('imet-core::oecm_evaluation.WorkPlan.fields.PlanUptoDate')],
             ['name' => 'PlanApproved',     'type' => 'toggle-yes_no',    'label' => trans('imet-core::oecm_evaluation.WorkPlan.fields.PlanApproved')],
             ['name' => 'PlanImplemented',     'type' => 'toggle-yes_no',    'label' => trans('imet-core::oecm_evaluation.WorkPlan.fields.PlanImplemented')],

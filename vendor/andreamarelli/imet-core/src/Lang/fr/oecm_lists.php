@@ -14,6 +14,32 @@ return [
         'not_reported'  => 'Non communiqué'
     ],
 
+    'SubGovernanceModel' => [
+        'government' => [
+            'national' => 'Federal or national ministry or agency',
+            'sub_national' => 'Sub-national ministry or agency',
+            'delegated' => 'Government-delegated management',
+            'other' => 'Other'
+        ],
+        'shared' =>  [
+            'transboundary' => 'Transboundary governance',
+            'collaborative' => 'Collaborative governance',
+            'joint' => 'Joint governance',
+            'other' => 'Other',
+        ],
+        'private' =>  [
+            'individual' => 'Individual landowners',
+            'non_profit' => 'Non-profit organisation',
+            'for_profit' => 'For-profit organisations',
+            'other' => 'Other'
+        ],
+        'indigenous' =>  [
+            'indigenous' => 'Indigenous peoples',
+            'local_communities' => 'Local communities',
+            'other' => 'Other'
+        ]
+    ],
+
     'StakeholderType' => [
         'academic'      => 'Académique',
         'confessionnel' => 'Confessionnel',
@@ -54,7 +80,7 @@ return [
 
     'Ownership' => [
         'state'         => 'Etat',
-        'communal'      => 'Communal',
+        'communal'      => 'Communauté',
         'landowners'    => 'Propriétaires fonciers individuels',
         'for_profit'    => 'Organisations à but lucratif',
         'non_profit'    => 'Organisations à but non lucratif',
@@ -65,36 +91,34 @@ return [
     ],
 
     'Habitats' => [
-        'agriculture'   => 'Terres agricoles (terres cultivées et champs de culture)',
-        'caves'         => 'Caves',
-        'coasts'        =>   'Régions côtières (plages, falaises et dunes)',
-        'coral_reefs'   =>   'Récifs coralliens',
-        'desert'        =>   'Déserts (chauds et froids)',
-        'estuaries'     =>   'Estuaires',
-        'forests'       =>   'Forêts (tropicales, tempérées et boréales, naturelles et de plantation)',
-        'freshwater'    =>   'Eau douce (sources, rivières, lacs et étangs)',
-        'grasslands'    =>   'Prairies (savanes, prairie et steppe)',
-        'intertidal'    =>   'Zones intertidales (zone littorale)',
-        'mangroves'     =>   'Forêts de mangroves',
-        'marine'        =>   'Marine (océans et mers)',
-        'mountains'     =>   'Montagnes (hautes, alpines et subalpines)',
-        'scrublands'    =>   'Broussailles',
-        'seagrass'      =>   'Herbiers marins',
-        'tundra'        =>   'Tundra',
-        'villages'      =>   'Villages - Zones urbaines',
-        'wetlands'      =>   'Zones humides (marais, marécages et tourbières)',
-        'woodlands'     =>   'Forêts type miombo',
-        'other'         =>   'Autre habitat',
+        'artificial_water'  => 'Artificiel–Aquatique',
+        'artificial_land'   => 'Artificiel-Terrestre',
+        'caves'             => 'Caves et habitats souterrains (non aquatiques)',
+        'desert'            => 'Déserts',
+        'forest'            => 'Forêt (aussi Mangroves)',
+        'grasslands'        => 'Prairies',
+        'introduced_veget'  => 'Végétation introduite',
+        'marine_coastal'    => 'Marin Côtier/Supratidal',
+        'marine_deep'       => 'Fonds marins profonds (benthiques et démersaux)',
+        'marine_intertidal' => 'Intertidal marin',
+        'marine_neritic'    => 'Néritique marin (également récif corallien)',
+        'marine_oceanic'    => 'Océanique marin',
+        'rocky'             => 'Zones rocheuses (par exemple, falaises intérieures, sommets montagneux)',
+        'savanna'           => 'Savane',
+        'shrubland'         => 'Arbuste',
+        'wetlands'          => 'Zones humides (intérieures)',
+        'other'             => 'Autre',
+        'unknown'           => 'Inconnu',
     ],
 
-    'Engagement' => [
-        'provisioning'  => 'a. Économie d’approvisionnement et de subsistance (nourriture, énergie, matériel, pharmacopée)',
-        'regulation'    => 'b. Protection et restauration (lutte contre la dégradation, plantation d’arbres, contrôle de l’érosion, etc.)',
-        'cultural'      => 'c. Culturel et spirituel',
-        'education'    => 'd. Éducation et tourisme',
-        'enforcement'   => 'e. Application de la loi et réglementation (patrouille et gestion de l’utilisation des ressources naturelles, des valeurs culturelles et autres)',
-        'market_economy' => 'f. Économie de marché'
+    'UsesCategories' => [
+        'provisioning'  => 'Approvisionnement',
+        'cultural'      => 'Culturel',
+        'regulating'    => 'Régulateur',
+        'supporting'    => 'Porteur',
+        'biodiversity'  => 'Biodiversité',
     ],
+
 
     'PopulationStatus' => [
         'scarce'            => 'Scarse',
@@ -107,6 +131,12 @@ return [
         'no_access' => 'Pas d’accès',
         'limited' => 'Accès limité (existence de critères ou de règles d’utilisation)',
         'open'      => 'Accès libre (pas de critères ou de règles d’utilisation)'
+    ],
+
+    'Guidelines' => [
+        'poorly_developed'      => 'Lignes directrices et procédures mal développées',
+        'moderately_developed'  => 'Lignes directrices et procédures modérément développées',
+        'well_developed'        => 'Lignes directrices et procédures bien développées'
     ],
 
     'MainThreat' => [
@@ -122,5 +152,11 @@ return [
         'geological'                => 'Phénomènes géologiques',
         'climate_change'            => 'Changement climatique',
         'other'                     => 'Autres pressions et menaces',
+    ],
+
+    'Reliability' => [
+        'high' => 'Élevé',
+        'medium' => 'Moyen',
+        'poor' => 'Faible',
     ]
 ];

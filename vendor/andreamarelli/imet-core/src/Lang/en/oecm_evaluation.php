@@ -58,10 +58,11 @@ return [
         ],
         'module_subTitle' => 'Key elements animals, plants, habitats (protected, exploited, disappearing, invasive, etc.) and services (provisioning, control, cultural, supporting services)',
         'module_info_EvaluationQuestion' => [
-            'Has the OECM prioritised the key elements its management?'
+            'Has the OECM prioritised the key elements in its management? The assessment should evaluate the need to 
+            prioritise the key elements in the management of the OECM. The assessment uses a ranked list based on analyses from SA1 and SA2.'
         ],
         'module_info_Rating' => [
-            'Evaluate the level of integration of 3 to 10 key elements for the management of the OECM (automatically reported from the Context of Intervention because (i) is an important key element of the OECM; (ii) provide an important service to stakeholders; (iii) is rare or in danger of extinction)'
+            'Evaluate the need to prioritise the key elements in the management of the OECM'
         ],
         'from_group' => 'From category: ',
         'num_stakeholders' => 'Indicated by :num stakeholder(s)',
@@ -110,6 +111,15 @@ return [
                 '2' => 'moderate integration',
                 '3' => 'high integration',
             ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'The assessment evaluates the need to prioritise the minimisation of management constraints or the maximisation 
+            of stakeholder support in the management of the OECM. The assessment uses the ranking list based on the integration 
+            of the stakeholder constraint/conflict (C2.1) or support/compliance scores with the stakeholder involvement 
+            in the management of the OECM values (SA1 of the intervention context).'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the current integration in the management of the stakeholder constraints or support'
         ],
         'ranking' => 'Ranking (C2.1)',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I1, PR6</i>',
@@ -162,7 +172,7 @@ return [
             'Has the OECM clearly identified and integrated the threats that could affect the area’s biodiversity, cultural heritage, or ecosystem services in its management?'
         ],
         'module_info_Rating' => [
-            'Evaluate the level of integration of most important threats in the management of the OECM based on the analysis of the threats calculator at Context of intervention point CTX 5 and automatically reported below . Threats evaluation (automatically reported from CTX 5) To prioritise in management Comments/Explanation'
+            'Evaluate the level of integration of most important threats in the management of the OECM based on the analysis of the threats calculator at Context of intervention point SA 2 and automatically reported below . Threats evaluation (automatically reported from SA 2) To prioritise in management Comments/Explanation'
         ],
         'stakeholders' => 'indicated by :num stakeholder(s)'
     ],
@@ -182,6 +192,13 @@ return [
                 '2' => 'moderate integration',
                 '3' => 'high integration',
             ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'The assessment evaluates the need to prioritise the threats to minimise their effects and impact on the OECM 
+            management. The assessment uses the ranking list based on the threats analysis in SA2 and C3.1.'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the current integration of the threats to the management of the OECM'
         ],
         'ranking' => 'Ranking (C3.1)',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I1, PR6</i>',
@@ -307,6 +324,9 @@ return [
         'title' => 'Management plan',
         'fields' => [
             'PlanExistence' => 'A) Is there a management plan?',
+            'PrintedCopy' => 'Does the management entity have a printed copy?',
+            'ExplainedToMembers' => 'Has the management plan been explained to members?',
+            'KnowledgePercentage' => 'Percentage of members or employees who know the content',
             'PlanUptoDate' => 'Is the management plan up to date?',
             'PlanApproved' => 'Has the management plan been approved?',
             'PlanImplemented' => 'Has the management plan been implemented?',
@@ -314,6 +334,12 @@ return [
             'Comments' => 'Comments / Explanation',
         ],
         'ratingLegend' => [
+            'KnowledgePercentage' => [
+                '0' => 'less than 10%',
+                '1' => '10–50%',
+                '2' => '50%-80%',
+                '3' => 'more than 80%',
+            ],
             'PlanAdequacyScore' => [
                 '0' => 'The clarity and applicability of the vision, mission and objectives are completely inadequate (0-30% of needs)',
                 '1' => 'The clarity and applicability of the vision, mission and objectives are somewhat inadequate (31-60% of needs)',
@@ -334,6 +360,9 @@ return [
         'title' => 'Work plan',
         'fields' => [
             'PlanExistence' => 'A) Is there a workplan? Yes/no',
+            'PrintedCopy' => 'Does the management entity have a printed copy?',
+            'ExplainedToMembers' => 'Has the management plan been explained to members?',
+            'KnowledgePercentage' => 'Percentage of members or employees who know the content',
             'PlanUptoDate' => 'Is the workplan up to date (covering current period)? Yes/no',
             'PlanApproved' => 'Has the workplan been officially approved? Yes/no',
             'PlanImplemented' => 'Has the workplan or monitoring plan being implemented? Yes/no',
@@ -341,6 +370,12 @@ return [
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
+            'KnowledgePercentage' => [
+                '0' => 'less than 10%',
+                '1' => '10–50%',
+                '2' => '50%-80%',
+                '3' => 'more than 80%',
+            ],
             'PlanAdequacyScore' => [
                 '0' => 'The clarity and applicability of activities and expected results are fully inadequate',
                 '1' => 'The clarity and applicability of activities and expected results are somewhat inadequate ',
@@ -365,8 +400,8 @@ return [
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
-            'group0' => 'Existing objectives from management plan',
-            'group1' => 'Prospective objectives from C1, C2.2, C3.2 & C4',
+            'group0' => 'Adequacy of management plan objectives for the key elements',
+            'group1' => 'Prospective objectives for key elements prioritised in management, automatically reported from Management Context',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -382,9 +417,16 @@ return [
             'The goals and objectives of the OECM must be clearly understood. They should be well -defined and worded to facilitate monitoring but also should relate to the key values of OECM (i.e. important species or ecosystems) or to major areas of management activity (e.g. tourism, education).'
         ],
         'module_info_Rating' => [
-            'Evaluate adequacy of the management plan objectives for the key elements of the OECM, based on the analysis of the intervention context, points: CTX1.5, CTX 4, 5, 6, 7 and context of management, points from C 1.1 to C 1.5)'
+            'Evaluate the adequacy of the management plan objectives for the OECM key elements , based on existing objectives from the management plan and Management Context'
         ],
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>O/C1</i>',
+    ],
+
+    'ObjectivesContext' => [
+        'module_info' =>
+            'Establish and describe conservation objectives for Management context of the OECM. The objectives listed below 
+            will be used for improving management, and more specifically for the planning, resource (input) mobilisation, 
+            process phases, and for monitoring management activities of the OECM.'
     ],
 
     'ObjectivesPlanification' => [
@@ -407,16 +449,16 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Do you have sufficient and relevant information supporting your decision -making in managing the OECM?',
+            'Do you have sufficient and relevant information to support the decision–making process of the OECM?',
             'Effective OECM management requires sufficient knowledge and information to inform decision- making. Without information good management is highly unlikely.'
         ],
         'module_info_Rating' => [
-            'Analyse the availability of information to support the management of the key elements of the OECM, based on the analysis of the context of intervention, points CTX 4; 5; 6'
+            'Assess the availability of information necessary to support the management of the OECM key elements , prioritised in management, automatically reported from Management Context'
         ]
     ],
 
     'CapacityAdequacy' => [
-        'title' => 'Capacities of specific or combination of entities/stakeholders in the management and governance',
+        'title' => 'Capacities for management and governance',
         'fields' => [
             'Member' => 'Member',
             'Weight' => 'Involvement',
@@ -424,8 +466,8 @@ return [
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
-            'group0' => 'Composition and staff or members of the OECM',
-            'group1' => 'Stakeholders involved or impacting the use of natural resources'
+            'group0' => 'Composition and staff or members of the Management Entity (automatically reported by CTX 3.1.2)',
+            'group1' => 'Stakeholders involved or impacting the use of natural resources (automatically reported by CTX 5 – Direct users).'
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -436,7 +478,7 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Does the management and governance specific entity or combination of entities have enough capacity to fulfil the management and governance requirements of the OECM?'
+            'Does the entity/entities in charge of management and governance have enough capacity to manage and govern the OECM?'
         ],
         'module_info_Rating' => [
             'Qualified, competent, committed and adequate human resources are central to the success of OECMs.'
@@ -540,7 +582,7 @@ return [
     ],
 
     'StaffCompetence' => [
-        'title' => 'Training and capacity-building programme for the OECM management and governance“ or “Training and capacity building programme',
+        'title' => 'Staff skills/training',
         'fields' => [
             'Member' => 'Criteria – Concept measured – Variable',
             'Weight' => 'Involvement',
@@ -560,17 +602,18 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Are the OECM Management and Governance specific entity or combination of entities implementing an adequate training and capacity-building programme that responds to its/theirs members needs in achieving OECM objectives?',
-            'Qualified, competent and committed workforce central to the success of OECMs.'
+            'Are the OECM Management and Governance specific entity or combination of entities implementing adequate 
+            training and capacity-building programme(s) that responds to their members’ needs in achieving OECM objectives?',
+            'Qualified, competent and committed workforce is central to the success of OECMs'
         ],
         'module_info_Rating' => [
-            'Evaluate the adequacy of capacity-building activities for the OECM Management and Governance specific entity or combination of entities members (identified in CTX 3.1.1 and CTX 3.1.3)'
+            'Evaluate the adequacy of capacity-building activities for the OECM Management and Governance specific entity or combination of entities members (identified in CTX 3.1.2 and CTX 5 – Direct users)'
         ]
 
     ],
 
     'HRmanagementPolitics' => [
-        'title' => 'Human resource management policies and procedures',
+        'title' => 'HR policies and procedures',
         'fields' => [
             'Conditions' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Adequacy of the human resource management policies and procedures ',
@@ -602,11 +645,11 @@ return [
             'Evaluate the adequacy of the provisions of the human resource management policies',
             'Adequacy of the human resource management policies:'
         ],
-        'module_info' => 'Provisions of the human resource management policies of the OECM Management and Governance specific entity or combination of entities (identified in CTX 3.1.1 or CTX 3.1.2):',
+        'module_info' => 'Provisions of the human resource management policies of the OECM Management and Governance specific entity or combination of entities (identified in SA 1 or CTX 3.1.1):',
     ],
 
     'AdministrativeManagement' => [
-        'title' => 'Budget and financial management',
+        'title' => 'Budget and finance',
         'fields' => [
             'Aspect' => 'Criteria - Measured concept – Variables',
             'EvaluationScore' => 'Rating: Set-up of the basic elements of budgetary and financial management',
@@ -639,7 +682,7 @@ return [
     ],
 
     'EquipmentMaintenance' => [
-        'title' => 'Maintenance of infrastructure, equipment and facilities',
+        'title' => 'Maintenance of infrastructure',
         'fields' => [
             'Equipment' => 'Criteria - Measured concept – Variables',
             'EvaluationScore' => 'Rating: Adequacy of maintenance',
@@ -665,7 +708,7 @@ return [
     ],
 
     'ManagementActivities' => [
-        'title' => 'Managing the key elements of the OECM with specific actions',
+        'title' => 'Managing key elements',
         'fields' => [
             'Activity' => 'Criteria - Measured concept – Variable',
             'EvaluationScore' => 'Adequacy of management actions',
@@ -689,12 +732,12 @@ return [
             'To ensure a sustainability management of the key elements of the OECM, stakeholder(s)/management association(s) should evaluate the practices and actions can include conservation/restoration of animal (e.g., bees) and plant species (e.g., pharmacopoeia), managing fire, revegetation work, controlling invasive species, management of cultural resources, threat containment, etc.'
         ],
         'module_info_Rating' => [
-            'Based on the list of the key elements identified in the Intervention context CTX 5 and prioritise in Management analysis C2, evaluate adequacy of related management practices and actions.'
+            'Based on the list of the key elements identified in the Intervention context SA 2 and prioritise in Management analysis C2, evaluate adequacy of related management practices and actions.'
         ]
     ],
 
     'LawEnforcementImplementation' => [
-        'title' => 'Actions in response to illegal activities or resolution of contentious issues',
+        'title' => 'Resolving contentious issues',
         'fields' => [
             'Element' => 'Criteria – Concept measured – Variable',
             'Adequacy' => 'Adequacy',
@@ -745,7 +788,7 @@ return [
     ],
 
     'StakeholderCooperation' => [
-        'title' => 'Cooperation between stakeholders',
+        'title' => 'Stakeholders’ collaboration',
         'fields' => [
             'Element' => 'Criteria – Concept measured – Variable',
             'Weight' => 'Involvement of the stakeholder (0-100)',
@@ -788,7 +831,7 @@ return [
     ],
 
     'AssistanceActivities' => [
-        'title' => 'Benefits for local communities',
+        'title' => 'Benefits to local communities',
         'fields' => [
             'Activity' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Adequacy of activities to provide benefits/assistance',
@@ -844,7 +887,7 @@ return [
     ],
 
     'EnvironmentalEducation' => [
-        'title' => 'Environmental education and public awareness',
+        'title' => 'Environmental education',
         'fields' => [
             'Activity' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Adequacy of the activities of environmental education and public awareness',
@@ -880,7 +923,7 @@ return [
     ],
 
     'VisitorsManagement' => [
-        'title' => 'Management of visitor facilities and services',
+        'title' => 'Tourism management',
         'fields' => [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Adequacy of visitor facilities and services',
@@ -916,7 +959,7 @@ return [
     ],
 
     'NaturalResourcesMonitoring' => [
-        'title' => 'Systems for monitoring and research of the key elements of the OECM',
+        'title' => 'Monitoring and research',
         'fields' => [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Adequacy of monitoring',
@@ -1017,7 +1060,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'To what extent has the OECM achieved the main objectives of their plan of management and governance?',
-            '(Based on the analysis of the context of intervention, point CTX1.5 Vision –Objectives or element Planning, point P6 - Objectives of the OECM)',
+            '(Based on the analysis of the context of intervention, point CTX1.5 Vision – Objectives or elements of Planning, point P6 – Existing objectives of the management plan).',
             'The goals and objectives of an OECM must be clearly understood if management is to be successful based on measurable achievements. '
         ],
         'module_info_Rating' => [
@@ -1025,8 +1068,61 @@ return [
         ]
     ],
 
+    'KeyElementsImpact' => [
+        'title' => 'Effects on key conservation elements',
+        'fields' => [
+            'KeyElement' => 'Key conservation element',
+            'StatusSH' =>   'Status',
+            'TrendSH' =>    'Trend',
+            'EffectSH' =>   'Effect',
+            'ReliabilitySH' =>  'Reliability of information',
+            'CommentsSH' =>     'Comments/Explanation',
+            'StatusER' =>   'Status',
+            'TrendER' =>    'Trend',
+            'EffectER' =>   'Effect',
+            'ReliabilityER' =>  'Reliability of information',
+            'CommentsER' =>     'Comments/Explanation',
+        ],
+        'from_sa' => 'From SA2',
+        'from_external_source' => 'From external source',
+        'groups' => [
+            'group0' => 'Key animal species',
+            'group1' => 'Key plants species',
+            'group2' => 'Key habitats',
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Does the management and governance exert positive or negative effects on the key conservation elements of the OECM?',
+            'One of the main objectives of the OECM is to deliver positive and sustained outcomes for the in-situ conservation 
+            of biodiversity. By comparing the internal assessment of key conservation elements of SA2 with corresponding technical 
+            data of the same landscape or region, allows for a detailed analysis and interpretation of the findings, highlighting 
+            specific observations, discrepancies, areas of alignment, and potential recommendations for modifications or adopting 
+            best practices. The results of the comparison between the internal evaluation and external data on the same key 
+            conservation elements can be provided in the comments section.'
+        ],
+        'module_info_Rating' => [
+            'Report the external data of A) the conditions and B) the trends of the key conservation elements from technical and 
+            scientific studies and monitoring in the same landscape or region.'
+        ],
+        'ratingLegend' => [
+            'StatusSH' => [
+                '-2' => 'Decreasing',
+                '-1' => 'Slightly decreasing',
+                '0' => 'No change',
+                '+1' => 'Slightly increasing',
+                '+2' => 'Increasing',
+            ],
+            'TrendSH' => [
+                '-2' => 'Decreasing',
+                '-1' => 'Slightly decreasing',
+                '0' => 'No change',
+                '+1' => 'Slightly increasing',
+                '+2' => 'Increasing',
+            ]
+        ]
+    ],
+
     'LifeQualityImpact' => [
-        'title' => 'Effects on the quality of life of local stakeholders',
+        'title' => 'Impacts on local communities',
         'fields' => [
             'Element' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Effects',
@@ -1076,7 +1172,7 @@ return [
     ],
 
     'EmpowermentGovernance' => [
-        'title' => 'Empowerment of the stakeholders in the governance of key elements of the OECM',
+        'title' => 'Stakeholders, empowerment',
         'fields' => [
             'Conditions' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Adequacy of stakeholders empowerment',

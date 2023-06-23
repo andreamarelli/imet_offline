@@ -43,7 +43,8 @@ class Threats extends Modules\Component\ImetModule_Eval {
         $module_records = parent::getModuleRecords($form_id, $collection);
 
         // Retrieve num stakeholder by element by threat
-        $threats =  Modules\Context\AnalysisStakeholderTrendsThreats::getNumStakeholdersElementsByThreat($form_id);
+        $threats = [];
+//        $threats =  Modules\Context\AnalysisStakeholderTrendsThreats::getNumStakeholdersElementsByThreat($form_id);
 
         // Inject num stakeholders by elements by threats
         foreach ($module_records['records'] as $index => $record){

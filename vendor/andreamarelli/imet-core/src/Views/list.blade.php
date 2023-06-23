@@ -188,11 +188,11 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                             @include('imet-core::components.buttons.merge', ['form_class' => $form_class])
                         </span>
 
-                    @endcan
+                        {{-- Export --}}
+                        @can('export_button', $form_class)
+                            @include('imet-core::components.buttons.export', ['form_class' => $form_class])
+                        @endcan
 
-                    {{-- Export --}}
-                    @can('export_button', $form_class)
-                        @include('imet-core::components.buttons.export', ['form_class' => $form_class])
                     @endcan
 
                     {{-- Print --}}

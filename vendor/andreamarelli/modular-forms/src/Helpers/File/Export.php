@@ -2,9 +2,7 @@
 
 namespace AndreaMarelli\ModularForms\Helpers\File;
 
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use Spatie\Browsershot\Browsershot;
+use PhpOffice\PhpSpreadsheet;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
@@ -17,7 +15,7 @@ trait Export
      * @param $path
      * @param $data
      * @param bool $download
-     * @return string|\Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @return string|BinaryFileResponse
      */
     public static function exportToJSON($path, $data, bool $download = true)
     {
@@ -37,7 +35,7 @@ trait Export
      *
      * @param $path
      * @param $data
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @return BinaryFileResponse
      */
     public static function exportToCSV($path, $data): BinaryFileResponse
     {
@@ -65,9 +63,9 @@ trait Export
      *
      * @param $path
      * @param $data
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
-     * @throws \PhpOffice\PhpSpreadsheet\Exception
-     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+     * @return BinaryFileResponse
+     * @throws PhpSpreadsheet\Exception
+     * @throws PhpSpreadsheet\Writer\Exception
      */
     public static function exportToXLS($path, $data): BinaryFileResponse
     {
@@ -75,7 +73,7 @@ trait Export
 
         $columns = array_keys($data[0]);
         // Initialize XLS file
-        $objPHPExcel = new Spreadsheet();
+        $objPHPExcel = new PhpSpreadsheet\Spreadsheet();
         $objPHPExcel->setActiveSheetIndex(0);
         // Append keys as first row
         $objPHPExcel->getActiveSheet()->fromArray($columns);
@@ -87,31 +85,8 @@ trait Export
             }
             $objPHPExcel->getActiveSheet()->fromArray($values, null, 'A' . ($r + 2));
         }
-        $objWriter = new Xlsx($objPHPExcel);
+        $objWriter = new PhpSpreadsheet\Writer\Xlsx($objPHPExcel);
         $objWriter->save($path);
-
-        return File::download($path);
-    }
-
-    /**
-     * Generate a PDF file from HTML using Browsershot (Puppeteer)
-     * @param $path
-     * @param $htmlContent
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
-     * @throws \Spatie\Browsershot\Exceptions\CouldNotTakeBrowsershot
-     */
-    public static function exportToPDF($path, $htmlContent): BinaryFileResponse
-    {
-        $path = Storage::disk(File::TEMP_STORAGE)->path('') . $path;
-
-        Browsershot::html($htmlContent)
-            ->emulateMedia('screen')
-            ->showBackground()
-            ->margins('10', '10', '10', '10')
-            ->noSandbox()
-            ->waitUntilNetworkIdle()
-            ->ignoreHttpsErrors()
-            ->save($path);
 
         return File::download($path);
     }
@@ -121,7 +96,7 @@ trait Export
      *
      * @param $path
      * @param $data
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @return BinaryFileResponse
      */
     public static function exportToGeoJSON($path, $data): BinaryFileResponse
     {

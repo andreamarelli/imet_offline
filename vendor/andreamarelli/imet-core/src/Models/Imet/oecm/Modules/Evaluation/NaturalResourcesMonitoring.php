@@ -14,7 +14,7 @@ class NaturalResourcesMonitoring extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';
-        $this->module_code = 'PR12';
+        $this->module_code = 'PR7';
         $this->module_title = trans('imet-core::oecm_evaluation.NaturalResourcesMonitoring.title');
         $this->module_fields = [
             ['name' => 'Aspect',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.NaturalResourcesMonitoring.fields.Aspect')],

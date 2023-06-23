@@ -8,8 +8,8 @@ return [
         'areas'                 => 'Areas',
         'resources'             => 'Ressources humaines, financières et matérielles',
         'key_elements'          => 'Espèces animales et végétales clés',
-        'access_and_governance' => 'Accès et gouvernance des éléments clés - Une analyse des parties prenantes',
-        'trends_and_threats' => 'Tendances et menaces sur les éléments clés - Une analyse des parties prenantes'
+        'stakeholders'          => 'Parties prenantes impliquées dans la gestion ou ayant un impact sur l\'utilisation des ressources naturelles',
+        'stakeholder_analysis'  => 'Analyse des parties prenantes',
     ],
 
 
@@ -84,51 +84,51 @@ return [
         ],
         'pr1' => [
             'PR1',
-            'Programme de formation et de renforcement des capacités'
+            'Compétences/formation du personnel'
         ],
         'pr2' => [
             'PR2',
-            'Politiques et procédures de gestion des ressources humaines'
+            'Politiques et procédures RH'
         ],
         'pr3' => [
             'PR3',
-            'Autonomisation des parties prenantes dans la gouvernance des éléments clés'
+            'Parties prenantes, responsabilisation'
         ],
         'pr4' => [
             'PR4',
-            'Budget et gestion financière'
+            'Budget et finances'
         ],
         'pr5' => [
             'PR5',
-            'Maintenance des infrastructures, des équipements et des installations'
+            'Entretien des infrastructures'
         ],
         'pr6' => [
             'PR6',
-            'Gérer les éléments clés de l’AMCE par des actions spécifiques'
+            'Gestion des éléments clés'
         ],
         'pr7' => [
             'PR7',
-            'Actions en réponse à des activités illégales ou à la résolution de questions litigieuses'
+            'Veille et recherche'
         ],
         'pr8' => [
             'PR8',
-            'Coopération entre les parties prenantes'
+            'Résolution des problèmes litigieux'
         ],
         'pr9' => [
             'PR9',
-            'Avantages pour les communautés locales'
+            'Collaboration des parties prenantes'
         ],
         'pr10' => [
             'PR10',
-            'Éducation à l’environnement et sensibilisation du public'
+            'Avantages pour les communautés locales'
         ],
         'pr11' => [
             'PR11',
-            'Gestion des installations et des services destinés aux visiteurs'
+            'Éducation environnementale'
         ],
         'pr12' => [
             'PR12',
-            'Systèmes de suivi et de recherche des éléments clés'
+            'La gestion du tourisme'
         ],
         'pr1_6' => [
             'PR1-6',
@@ -156,7 +156,11 @@ return [
         ],
         'oc2' => [
             'O/C2',
-            ' Effets sur la qualité de vie des acteurs locaux'
+            'xxx'
+        ],
+        'oc3' => [
+            'O/C3',
+            'Impacts sur les communautés locales'
         ],
     ]
 

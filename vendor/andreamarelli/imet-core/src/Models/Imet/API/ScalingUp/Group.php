@@ -12,7 +12,7 @@ trait Group
      * @param array $parameters
      * @return array
      */
-    public function get_grouping_analysis(array $parameters): array
+    public static function get_grouping_analysis(array $parameters): array
     {
         $labels = [];
         $api = SectionGroup::get_calculation_grouping_analysis($parameters, []);

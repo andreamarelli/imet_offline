@@ -55,7 +55,10 @@ class ReportController extends BaseReportController
             $planning_objectives_list[$record['ShortOrLongTerm']][] = $record['Element'];
         }
 
-        $trend_and_threats = Modules\Context\AnalysisStakeholderTrendsThreats::getModule($form_id)->toArray();
+        // TODO: to be reviewed
+//        $trend_and_threats = Modules\Context\AnalysisStakeholderTrendsThreats::getModule($form_id)->toArray();
+        $trend_and_threats = [];
+
         foreach ($trend_and_threats as $record) {
             if ($record['Status']) {
                 $status[$record['Status']] = trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.ratingLegend.Status')[$record['Status']];

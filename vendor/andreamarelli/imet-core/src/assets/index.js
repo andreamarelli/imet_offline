@@ -6,9 +6,13 @@ window.mixins = {
 };
 
 // Templates
-Vue.component('dopa_chart_bar',                 window.ModularForms.Dopa.chart_bar);
-Vue.component('dopa_indicators_table',          window.ModularForms.Dopa.indicators_table);
-Vue.component('dopa_radar',                     window.ModularForms.Dopa.chart_radar);
+Vue.component('dopa_chart_bar',                 require('./js/templates/dopa/chart_bar.vue').default);
+Vue.component('dopa_indicators_table',          require('./js/templates/dopa/indicators_table.vue').default);
+Vue.component('dopa_radar',                     require('./js/templates/dopa/chart_radar.vue').default);
+window.ImetCore.Dopa = {
+    'chart_bar': require('./js/templates/dopa/chart_bar.vue').default,
+    'chart_doughnut': require('./js/templates/dopa/chart_doughnut.vue').default
+};
 Vue.component('imet_charts',                    require('./js/templates/imet_charts.vue').default);
 Vue.component('imet_encoders_responsibles',     require('./js/templates/imet_encoders_responsibles.vue').default);
 Vue.component('imet_progress_bar',              require('./js/templates/imet_progress_bar.vue').default);

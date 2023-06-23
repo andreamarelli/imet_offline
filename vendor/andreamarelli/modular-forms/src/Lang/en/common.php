@@ -54,6 +54,7 @@ return [
     'no_data'           => 'no data',
     'no_differences'    => 'no differences',
     'data_not_available'=> 'data not available',
+    'validation_error'  => 'validation error',
 
     'page'              => 'page',
     'yes'               => 'yes',
