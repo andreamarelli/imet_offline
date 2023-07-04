@@ -13,7 +13,7 @@
         'andreamarelli/imet-core' => array(
             'pretty_version' => 'dev-beta',
             'version' => 'dev-beta',
-            'reference' => 'b6be16b65d60f2ba76a46e7283d4d1a4846b4932',
+            'reference' => '60cb51aea13ff9af758b6c68ab3715bdfe9692ee',
             'type' => 'library',
             'install_path' => __DIR__ . '/../andreamarelli/imet-core',
             'aliases' => array(),

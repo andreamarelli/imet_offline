@@ -83,7 +83,7 @@ class KeyElements extends Modules\Component\ImetModule_Eval
     public static function getKeyElementsFromCTX($form_id): array
     {
         $direct_users_key_elements = Modules\Context\AnalysisStakeholderDirectUsers::calculateKeyElementsImportances($form_id);
-        $indirect_users_key_elements = Modules\Context\AnalysisStakeholderInDirectUsers::calculateKeyElementsImportances($form_id);
+        $indirect_users_key_elements = Modules\Context\AnalysisStakeholderIndirectUsers::calculateKeyElementsImportances($form_id);
 
         $direct_users_weights = collect(Modules\Context\Stakeholders::calculateWeights($form_id, Modules\Context\Stakeholders::ONLY_DIRECT))
             ->sum();
