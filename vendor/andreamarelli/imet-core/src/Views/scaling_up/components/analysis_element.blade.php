@@ -48,7 +48,7 @@
                                 :raw_values="data_elements.props[tableValue['name']].ranking.raw_values_protected_area"></bar_category_stack>
                             <div class="row mb-1 mt-1" style="font-size: 12px">
                                 <div class="col-sm align-self-center">
-                                   {{ trans("imet-core::analysis_report.ranking_info_indicators") }}
+                                    {{ trans("imet-core::analysis_report.ranking_info_indicators") }}
                                 </div>
                             </div>
                             <div class="row mb-3 mt-1" style="font-size: 12px;">
@@ -115,8 +115,14 @@
                                                :radar_indicators_for_zero_negative="data_elements.props[tableValue['name']].radar.radar_indicators_zero_negative"
                                                :unselect_legends_on_load="true"
                                                :show_legends="true"
+                                               :event_key="'analysis_'+tableValue['name']"
                                                :indicators="data_elements.props[tableValue['name']].radar.indicators"
                                                :values="data_elements.props[tableValue['name']].radar.values"></scaling_radar>
+                                <div class="row mb-1 mt-2" style="font-size: 12px">
+                                    <div class="col-sm align-self-center">
+                                        {{ trans("imet-core::analysis_report.average_protected_areas") }}
+                                    </div>
+                                </div>
                             </template>
                         </container_actions>
                     </div>
@@ -127,6 +133,7 @@
                                            :event_image="'save_entire_block_as_image'">
                             <template slot-scope="data_elements">
                                 <datatable_interact_with_radar class="col-sm"
+                                                               :event_key="'analysis_'+tableValue['name']"
                                                                :values="data_elements.props[tableValue['name']].radar.values"
                                                                :columns="container.props.stores.BaseStore.find_config_by_name(container.props.config.element_diagrams[section], tableValue['name']).columns.slice(0,-1)"></datatable_interact_with_radar>
 

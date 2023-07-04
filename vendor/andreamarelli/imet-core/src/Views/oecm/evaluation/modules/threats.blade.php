@@ -21,14 +21,35 @@
                 },
                 threats_elements(element_id){
                     let index =  this.__get_index(element_id);
-                    let num_stakeholders = this.records[index]['__num_stakeholders_by_elements'];
+
+                    let num_stakeholders = this.records[index]['__num_stakeholders'];
+                    let elements = this.records[index]['__elements'];
+                    let elements_illegal = this.records[index]['__elements_illegal'];
+
                     let label = '';
                     if(num_stakeholders!==null){
-                        label = '<ul style="padding-inline-start: 10px;">';
-                        for (const [key, num] of Object.entries(num_stakeholders)) {
-                            label += '<li><i>' + key + '</i>: '
-                                + Locale.getLabel('imet-core::oecm_evaluation.Threats.stakeholders', {'num': '<b>' + num + '</b>'}) + '</li>';
-                        };
+                        label =
+                            Locale.getLabel('imet-core::oecm_evaluation.Threats.stakeholders', {'num': '<b>' + num_stakeholders + '</b>'})
+                            + '<br />'
+                            + 'Listed elements: <ul>';
+                        let list = '';
+
+                        for (const [_, elem] of Object.entries(elements_illegal)) {
+                            if(elem.length>0){
+                                list += '<b style="color: red;">' + elem.join(', ') + '</b>';
+                            }
+                        }
+                        for (const [_, elem] of Object.entries(elements)) {
+                            if(elem.length>0){
+                                if (list !== ''){
+                                    list += ', ';
+                                }
+                                list += elem.join(', ');
+                            }
+                        }
+                        if (list !== ''){
+                            label += '<li>' + list + '</li>';
+                        }
                         label += '</ul>';
                     }
                     return label;

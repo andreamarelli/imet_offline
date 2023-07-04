@@ -325,8 +325,7 @@ return [
         'fields' => [
             'PlanExistence' => 'A) Existe-t-il un plan de gestion ?',
             'PrintedCopy' => 'L\'entité de gestion dispose-t-elle d\'un exemplaire imprimé ?',
-            'ExplainedToMembers' => 'Le plan de gestion a-t-il été expliqué aux membres ?',
-            'KnowledgePercentage' => 'Pourcentage de membres ou d\'employés connaissant le contenu',
+            'KnowledgePercentage' => 'Pourcentage de participants ou d\'employés à qui le plan a été expliqué',
             'PlanUptoDate' => 'Le plan de gestion est-il à jour ?',
             'PlanApproved' => 'Le plan de gestion a-t-il été approuvé ?',
             'PlanImplemented' => 'Le plan de gestion a-t-il été mis en œuvre ?',
@@ -337,7 +336,7 @@ return [
             'KnowledgePercentage' => [
                 '0' => 'moin de 10%',
                 '1' => '10–50%',
-                '2' => '50%-80%',
+                '2' => '51%-80%',
                 '3' => 'plus que 80%',
             ],
             'PlanAdequacyScore' => [
@@ -361,8 +360,7 @@ return [
         'fields' => [
             'PlanExistence' => 'A) Existe-t-il un plan de travail ? Oui/Non',
             'PrintedCopy' => 'L\'entité de gestion dispose-t-elle d\'un exemplaire imprimé ?',
-            'ExplainedToMembers' => 'Le plan de gestion a-t-il été expliqué aux membres ?',
-            'KnowledgePercentage' => 'Pourcentage de membres ou d\'employés connaissant le contenu',
+            'KnowledgePercentage' => 'Pourcentage de participants ou d\'employés à qui le plan a été expliqué',
             'PlanUptoDate' => 'Le plan de travail est-il à jour (couvrant la période actuelle) ? Oui/Non',
             'PlanApproved' => 'Le plan de travail a-t-il été officiellement approuvé ? Oui/Non',
             'PlanImplemented' => 'Le plan de travail ou de suivi a-t-il été mis en œuvre ? Oui/Non',
@@ -373,7 +371,7 @@ return [
             'KnowledgePercentage' => [
                 '0' => 'moin de 10%',
                 '1' => '10–50%',
-                '2' => '50%-80%',
+                '2' => '51%-80%',
                 '3' => 'plus que 80%',
             ],
             'PlanAdequacyScore' => [
@@ -453,7 +451,7 @@ return [
             'Une gestion efficace de l’AMCE nécessite des connaissances et des informations suffisantes pour éclairer la prise de décision. Sans information, une bonne gestion est hautement improbable'
         ],
         'module_info_Rating' => [
-            'Évaluer la disponibilité des informations nécessaires pour soutenir la gestion des éléments clés de l\'OECM, 
+            'Évaluer la disponibilité des informations nécessaires pour soutenir la gestion des éléments clés de l\'OECM,
             hiérarchisés dans la gestion, automatiquement signalés à partir du contexte de gestion'
         ]
     ],
@@ -608,7 +606,7 @@ return [
             'Une main-d\'œuvre qualifiée, compétente et engagée est essentielle au succès des AMCE'
         ],
         'module_info_Rating' => [
-            'Évaluer l\'adéquation des activités de renforcement des capacités pour l\'entité spécifique de gestion et de gouvernance de l\'AMCE 
+            'Évaluer l\'adéquation des activités de renforcement des capacités pour l\'entité spécifique de gestion et de gouvernance de l\'AMCE
             ou la combinaison d\'entités membres (identifiées dans CTX 3.1.2 et CTX 5 - Utilisateurs directs)'
         ]
     ],
@@ -1084,7 +1082,7 @@ return [
             'ReliabilityER' =>  'Fiabilité des informations',
             'CommentsER' =>     'Commentaires/explications',
         ],
-        'from_sa' => 'De SA2',
+        'from_sa' => 'De parties prenantes',
         'from_external_source' => 'De source externe',
         'groups' => [
             'group0' => 'Principales espèces animales',

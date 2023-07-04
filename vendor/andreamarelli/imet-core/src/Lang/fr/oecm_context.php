@@ -572,6 +572,7 @@ return [
         'fields' => [
             'Element' => 'Critères',
             'Description' => 'Élément spécifique évalué',
+            'Illegal' => 'Illégale',
             'Dependence' => 'Dépendance',
             'Access' => 'Accès',
             'Rivalry' => 'Rivalité',
@@ -634,6 +635,7 @@ return [
         'fields' => [
             'Element' => 'Critères',
             'Description' => 'Élément spécifique évalué',
+            'Illegal' => 'Illégale',
             'Support' => 'Soutien ou contribution',
             'Guidelines' => 'Lignes directrices et procédures',
             'LackOfCollaboration' => 'Manque de collaboration entre les utilisateurs indirects et directs',

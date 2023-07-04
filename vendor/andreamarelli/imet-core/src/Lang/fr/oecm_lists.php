@@ -139,7 +139,7 @@ return [
         'well_developed'        => 'Lignes directrices et procédures bien développées'
     ],
 
-    'MainThreat' => [
+    'Threats' => [
         'commercial_residential'    => 'Commercial et résidentiel',
         'agriculture_aquaculture'   => 'Agriculture et aquaculture',
         'energy_mining'              => 'Énergie et exploitation minière',

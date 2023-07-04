@@ -11,13 +11,16 @@ use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment;
 $assessment_value   = $assessment_value ?? null;
 $additional_classes = $additional_classes ?? null;
 $threats            = $threats ?? false;
+$colspan            = isset($colspan) ? "colspan=".$colspan : "";
+$color_scores       = $color_scores ?? true;
 
-$classes = $threats
+
+$classes =$color_scores ? $threats
     ? Assessment::score_class_threats($assessment_value, $additional_classes)
-    : Assessment::score_class($assessment_value, $additional_classes);
+    : Assessment::score_class($assessment_value, $additional_classes) : '';
 
 ?>
 
-<td {!! $classes !!}>{{  $assessment_label }}
+<td {!! $classes !!} {!! $colspan !!}>{{  $assessment_label }}
     <div>{{ $assessment_value ?? ' - ' }}</div>
 </td>

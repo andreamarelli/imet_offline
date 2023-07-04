@@ -25,6 +25,11 @@ export default {
                 this.chart.setOption(this.radar_options);
 
                 this.chart.on('legendselectchanged', (params) => {
+                    if(this.refresh_average) {
+                        this.radar_options.series[0].data = this.calculateAverage(this.radar_options.series[0].data, params);
+                        this.chart.setOption(this.radar_options);
+                    }
+
                     this.$root.$emit(`radar_data_${this.event_key}`, params);
                 });
                 if (this.unselect_legends_on_load) {

@@ -45,7 +45,7 @@ class OEMCStatisticsService extends StatisticsService
      */
     protected static function get_imet($imet): Imet
     {
-        if(is_int($imet) or is_string($imet)){
+        if (is_int($imet) or is_string($imet)) {
             $imet = Imet::find($imet);
         }
         return $imet;
@@ -70,23 +70,23 @@ class OEMCStatisticsService extends StatisticsService
         ];
 
         // aggregate step score
-        $denominator = ($scores['c1']!==null ? 1 : 0)
-            + ($scores['c4']!==null ? 3 : 0)
-            + ($scores['c3']!==null ? 3 : 0)
-            + ($scores['c2']!==null ? 3 : 0);
+        $denominator = ($scores['c1'] !== null ? 1 : 0)
+            + ($scores['c4'] !== null ? 3 : 0)
+            + ($scores['c3'] !== null ? 3 : 0)
+            + ($scores['c2'] !== null ? 3 : 0);
 
         // numerator
         $numerator = $scores['c1']
-            + ($scores['c4']!==null ? 3 * $scores['c4'] : 0)
-            + ($scores['c2']!==null ? 3 * ($scores['c2']/2+50) : 0)
-            + ($scores['c3']!==null ? 3 * ($scores['c3']+100) : 0);
+            + ($scores['c4'] !== null ? 3 * $scores['c4'] : 0)
+            + ($scores['c2'] !== null ? 3 * ($scores['c2'] / 2 + 50) : 0)
+            + ($scores['c3'] !== null ? 3 * ($scores['c3'] + 100) : 0);
 
 
-        $scores['avg_indicator'] = $numerator>0 && $denominator>0
+        $scores['avg_indicator'] = $numerator > 0 && $denominator > 0
             ? $numerator / $denominator
             : null;
 
-        $scores['avg_indicator'] =  $scores['avg_indicator']!== null
+        $scores['avg_indicator'] = $scores['avg_indicator'] !== null
             ? round($scores['avg_indicator'], 2)
             : null;
 
@@ -175,9 +175,10 @@ class OEMCStatisticsService extends StatisticsService
         $scores['avg_indicator'] = static::average($scores, 1);
 
         // intermediate scores
-        $scores['pr1_6'] = static::average([$scores['pr1'],  $scores['pr2'], $scores['pr3'], $scores['pr4'], $scores['pr5'], $scores['pr6']]);
-        $scores['pr7_9'] = static::average([$scores['pr7'],  $scores['pr8'],  $scores['pr9']]);
-        $scores['pr10_12'] = static::average([$scores['pr10'],  $scores['pr11'],  $scores['pr12']]);
+        $scores['pr1_5'] = static::average([$scores['pr1'], $scores['pr2'], $scores['pr3'], $scores['pr4'], $scores['pr5']]);
+        $scores['pr6_7'] = static::average([$scores['pr6'], $scores['pr7']]);
+        $scores['pr8_10'] = static::average([$scores['pr8'], $scores['pr9'], $scores['pr10'], $scores['pr11'], $scores['pr12']]);
+        $scores['pr11_12'] = static::average([$scores['pr11'], $scores['pr12']]);
 
         return $scores;
     }
@@ -223,13 +224,13 @@ class OEMCStatisticsService extends StatisticsService
 
         // aggregate step score
         $denominator =
-            ($scores['oc1']!==null ? 1 : 0)
-            + ($scores['oc2']!==null ? 1 : 0);
+            ($scores['oc1'] !== null ? 1 : 0)
+            + ($scores['oc2'] !== null ? 1 : 0);
 
         // aggregate step score
-        $scores['avg_indicator'] = $denominator>0
+        $scores['avg_indicator'] = $denominator > 0
             ? ($scores['oc1']
-                + ($scores['oc2']/2+50)) / $denominator
+                + ($scores['oc2'] / 2 + 50)) / $denominator
             : null;
 
         return $scores;

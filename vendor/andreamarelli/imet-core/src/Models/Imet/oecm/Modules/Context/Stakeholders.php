@@ -82,9 +82,10 @@ class Stakeholders extends Modules\Component\ImetModule
      *
      * @param $form_id
      * @param int $mode
+     * @param bool $with_categories
      * @return array
      */
-    public static function getStakeholders($form_id, int $mode = self::ALL_USERS): array
+    public static function getStakeholders($form_id, int $mode = self::ALL_USERS, bool $with_categories = false): array
     {
         $query = static::getModule($form_id);
 
@@ -94,8 +95,13 @@ class Stakeholders extends Modules\Component\ImetModule
             $query = $query->where('DirectUser', '!=', true);
         }
 
+        if($with_categories){
+            $query = $query->pluck('UsesCategories', 'Element');
+        } else {
+            $query = $query->pluck('Element');
+        }
+
         return $query
-            ->pluck('Element')
             ->unique()
             ->toArray();
     }

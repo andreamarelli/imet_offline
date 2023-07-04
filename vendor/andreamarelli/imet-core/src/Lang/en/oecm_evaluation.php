@@ -58,7 +58,7 @@ return [
         ],
         'module_subTitle' => 'Key elements animals, plants, habitats (protected, exploited, disappearing, invasive, etc.) and services (provisioning, control, cultural, supporting services)',
         'module_info_EvaluationQuestion' => [
-            'Has the OECM prioritised the key elements in its management? The assessment should evaluate the need to 
+            'Has the OECM prioritised the key elements in its management? The assessment should evaluate the need to
             prioritise the key elements in the management of the OECM. The assessment uses a ranked list based on analyses from SA1 and SA2.'
         ],
         'module_info_Rating' => [
@@ -113,9 +113,9 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'The assessment evaluates the need to prioritise the minimisation of management constraints or the maximisation 
-            of stakeholder support in the management of the OECM. The assessment uses the ranking list based on the integration 
-            of the stakeholder constraint/conflict (C2.1) or support/compliance scores with the stakeholder involvement 
+            'The assessment evaluates the need to prioritise the minimisation of management constraints or the maximisation
+            of stakeholder support in the management of the OECM. The assessment uses the ranking list based on the integration
+            of the stakeholder constraint/conflict (C2.1) or support/compliance scores with the stakeholder involvement
             in the management of the OECM values (SA1 of the intervention context).'
         ],
         'module_info_Rating' => [
@@ -194,7 +194,7 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'The assessment evaluates the need to prioritise the threats to minimise their effects and impact on the OECM 
+            'The assessment evaluates the need to prioritise the threats to minimise their effects and impact on the OECM
             management. The assessment uses the ranking list based on the threats analysis in SA2 and C3.1.'
         ],
         'module_info_Rating' => [
@@ -325,8 +325,7 @@ return [
         'fields' => [
             'PlanExistence' => 'A) Is there a management plan?',
             'PrintedCopy' => 'Does the management entity have a printed copy?',
-            'ExplainedToMembers' => 'Has the management plan been explained to members?',
-            'KnowledgePercentage' => 'Percentage of members or employees who know the content',
+            'KnowledgePercentage' => 'Percentage of members or employees to whom the plan had been explained',
             'PlanUptoDate' => 'Is the management plan up to date?',
             'PlanApproved' => 'Has the management plan been approved?',
             'PlanImplemented' => 'Has the management plan been implemented?',
@@ -337,7 +336,7 @@ return [
             'KnowledgePercentage' => [
                 '0' => 'less than 10%',
                 '1' => '10–50%',
-                '2' => '50%-80%',
+                '2' => '51%-80%',
                 '3' => 'more than 80%',
             ],
             'PlanAdequacyScore' => [
@@ -361,8 +360,7 @@ return [
         'fields' => [
             'PlanExistence' => 'A) Is there a workplan? Yes/no',
             'PrintedCopy' => 'Does the management entity have a printed copy?',
-            'ExplainedToMembers' => 'Has the management plan been explained to members?',
-            'KnowledgePercentage' => 'Percentage of members or employees who know the content',
+            'KnowledgePercentage' => 'Percentage of members or employees to whom the plan had been explained',
             'PlanUptoDate' => 'Is the workplan up to date (covering current period)? Yes/no',
             'PlanApproved' => 'Has the workplan been officially approved? Yes/no',
             'PlanImplemented' => 'Has the workplan or monitoring plan being implemented? Yes/no',
@@ -373,7 +371,7 @@ return [
             'KnowledgePercentage' => [
                 '0' => 'less than 10%',
                 '1' => '10–50%',
-                '2' => '50%-80%',
+                '2' => '51%-80%',
                 '3' => 'more than 80%',
             ],
             'PlanAdequacyScore' => [
@@ -424,8 +422,8 @@ return [
 
     'ObjectivesContext' => [
         'module_info' =>
-            'Establish and describe conservation objectives for Management context of the OECM. The objectives listed below 
-            will be used for improving management, and more specifically for the planning, resource (input) mobilisation, 
+            'Establish and describe conservation objectives for Management context of the OECM. The objectives listed below
+            will be used for improving management, and more specifically for the planning, resource (input) mobilisation,
             process phases, and for monitoring management activities of the OECM.'
     ],
 
@@ -602,7 +600,7 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Are the OECM Management and Governance specific entity or combination of entities implementing adequate 
+            'Are the OECM Management and Governance specific entity or combination of entities implementing adequate
             training and capacity-building programme(s) that responds to their members’ needs in achieving OECM objectives?',
             'Qualified, competent and committed workforce is central to the success of OECMs'
         ],
@@ -1083,7 +1081,7 @@ return [
             'ReliabilityER' =>  'Reliability of information',
             'CommentsER' =>     'Comments/Explanation',
         ],
-        'from_sa' => 'From SA2',
+        'from_sa' => 'From stakeholders',
         'from_external_source' => 'From external source',
         'groups' => [
             'group0' => 'Key animal species',
@@ -1092,15 +1090,15 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Does the management and governance exert positive or negative effects on the key conservation elements of the OECM?',
-            'One of the main objectives of the OECM is to deliver positive and sustained outcomes for the in-situ conservation 
-            of biodiversity. By comparing the internal assessment of key conservation elements of SA2 with corresponding technical 
-            data of the same landscape or region, allows for a detailed analysis and interpretation of the findings, highlighting 
-            specific observations, discrepancies, areas of alignment, and potential recommendations for modifications or adopting 
-            best practices. The results of the comparison between the internal evaluation and external data on the same key 
+            'One of the main objectives of the OECM is to deliver positive and sustained outcomes for the in-situ conservation
+            of biodiversity. By comparing the internal assessment of key conservation elements of SA2 with corresponding technical
+            data of the same landscape or region, allows for a detailed analysis and interpretation of the findings, highlighting
+            specific observations, discrepancies, areas of alignment, and potential recommendations for modifications or adopting
+            best practices. The results of the comparison between the internal evaluation and external data on the same key
             conservation elements can be provided in the comments section.'
         ],
         'module_info_Rating' => [
-            'Report the external data of A) the conditions and B) the trends of the key conservation elements from technical and 
+            'Report the external data of A) the conditions and B) the trends of the key conservation elements from technical and
             scientific studies and monitoring in the same landscape or region.'
         ],
         'ratingLegend' => [

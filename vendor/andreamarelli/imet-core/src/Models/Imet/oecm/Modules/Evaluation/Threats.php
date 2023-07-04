@@ -28,7 +28,7 @@ class Threats extends Modules\Component\ImetModule_Eval {
 
         $this->predefined_values = [
             'field' => 'Value',
-            'values' => trans('imet-core::oecm_lists.MainThreat')
+            'values' => trans('imet-core::oecm_lists.Threats')
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.Threats.module_info_EvaluationQuestion');
@@ -43,18 +43,31 @@ class Threats extends Modules\Component\ImetModule_Eval {
         $module_records = parent::getModuleRecords($form_id, $collection);
 
         // Retrieve num stakeholder by element by threat
-        $threats = [];
-//        $threats =  Modules\Context\AnalysisStakeholderTrendsThreats::getNumStakeholdersElementsByThreat($form_id);
+        $threats_direct_users = Modules\Context\AnalysisStakeholderDirectUsers::getNumStakeholdersElementsByThreat($form_id);
+        $threats_indirect_users = Modules\Context\AnalysisStakeholderIndirectUsers::getNumStakeholdersElementsByThreat($form_id);
+        $threats = collect($threats_direct_users)
+            ->mergeRecursive(collect($threats_indirect_users))
+            ->toArray();;
 
-        // Inject num stakeholders by elements by threats
+        foreach($threats as $idx => $threat) {
+            $threats[$idx]['num_stakeholders'] = count(array_unique($threat['stakeholders']));
+            unset($threats[$idx]['stakeholders']);
+        }
+
+        // Inject num stakeholders and elements
         foreach ($module_records['records'] as $index => $record){
-            $threat_key = array_search($record['Value'], trans('imet-core::oecm_lists.MainThreat'));
+            $threat_key = array_search($record['Value'], trans('imet-core::oecm_lists.Threats'));
             if(array_key_exists($threat_key, $threats)){
-                $module_records['records'][$index]['__num_stakeholders_by_elements'] = $threats[$threat_key];
+                $module_records['records'][$index]['__num_stakeholders'] = $threats[$threat_key]['num_stakeholders'];
+                $module_records['records'][$index]['__elements'] = $threats[$threat_key]['elements'];
+                $module_records['records'][$index]['__elements_illegal'] = $threats[$threat_key]['elements_illegal'];
             } else {
-                $module_records['records'][$index]['__num_stakeholders_by_elements'] = null;
+                $module_records['records'][$index]['__num_stakeholders'] = null;
+                $module_records['records'][$index]['__elements'] = null;
+                $module_records['records'][$index]['__elements_illegal'] = null;
             }
         }
+
         return $module_records;
     }
 
@@ -85,12 +98,19 @@ class Threats extends Modules\Component\ImetModule_Eval {
                     + ($item['Trend']!=null ? 1 : 0)
                     + ($item['Probability']!=null ? 1 : 0);
 
-                $item['__score'] = $count>0
+                $score = $count>0
                     ? (4 - round(pow($prod, 1/($count)),2))
                     : null;
 
+                $score = $score!==null
+                    ? (0 - $score) * 100 / 3
+                    : null;
+
+                $item['__score'] = $score;
+
                 return $item;
             })
+            ->sortBy('__score')
             ->toArray();
     }
 

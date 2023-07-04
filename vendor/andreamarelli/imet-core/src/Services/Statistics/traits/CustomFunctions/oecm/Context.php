@@ -41,27 +41,21 @@ trait Context {
                 return $record['EvaluationScore'] !== null
                     && intval($record['EvaluationScore']) >= 0;
             })
-            ->groupBy('group_key')
-            ->map(function($group){
-                $numerator = $group->sum(function ($item){
-                    $importance = $item['Importance'];
-                    $integration = $item['EvaluationScore'];
-                    $toPrioritize = $item['IncludeInStatistics'];
-                    return $importance * $integration * ($toPrioritize ? 2 : 1);
-                });
-                $denominator = $group->sum(function ($item){
-                    $importance = $item['Importance'];
-                    $toPrioritize = $item['IncludeInStatistics'];
-                    return $importance * ($toPrioritize ? 2 : 1);
-                });
+            ->map(function($item){
+                $importance = $item['Importance'];
+                $integration = $item['EvaluationScore'];
+                $toPrioritize = $item['IncludeInStatistics'];
+                $item['_numerator'] = $importance * $integration * ($toPrioritize ? 2 : 1);
+                $item['_denominator'] = $importance * ($toPrioritize ? 2 : 1);
+                return $item;
+            });
 
-                return $denominator>0
-                    ? $numerator/$denominator * 100 / 3
-                    : null;
-            })
-            ->toArray();
+        $numerator = $values->sum('_numerator');
+        $denominator = $values->sum('_denominator');
 
-        $score = static::average($values, null);
+        $score = $denominator>0
+            ? $numerator/$denominator * 100 / 3
+            : null;
 
         return $score!== null ?
             round($score, 2)
@@ -95,10 +89,6 @@ trait Context {
             ->toArray();
 
         $score = static::average($values, null);
-
-        $score = $score!== null ?
-            ($score * 100 / 3) -100
-            : null;
 
         return $score!== null ?
             round($score, 2)

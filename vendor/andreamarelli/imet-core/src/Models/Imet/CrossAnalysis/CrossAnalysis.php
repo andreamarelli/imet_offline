@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\CrossAnalysis;
 
 use AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController;
+use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
@@ -82,7 +83,9 @@ class CrossAnalysis extends Model
             for ($i = 0; $i < $array_length; $i++) {
                 for ($k = $i + 1; $k < $array_length; $k++) {
                     if(isset($elements[$item[$i]]) && isset($elements[$item[$k]])) {
-                        $value = abs((double)$elements[$item[$i]]['value'] - (double)$elements[$item[$k]]['value']);
+                        $value_indi1 = Common::values_correction($item[$i] ,$elements[$item[$i]]['value']);
+                        $value_indi2 = Common::values_correction($item[$k] ,$elements[$item[$k]]['value']);
+                        $value = abs((double)$value_indi1 - (double)$value_indi2);
                         if (($value) > static::$threshold) {
                             $error_indicators[$j][$item[$i]] = $elements[$item[$i]];
                             $error_indicators[$j][$item[$k]] = $elements[$item[$k]];

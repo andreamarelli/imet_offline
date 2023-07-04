@@ -7,14 +7,12 @@
 /** @var array $planning_objectives */
 /** @var array $report */
 /** @var array $report_schema */
-/** @var array $dopa_radar */
 /** @var array $general_info */
 /** @var array $vision */
 /** @var array $area */
-/** @var bool $connection */
-/** @var bool $show_api */
 /** @var bool $show_non_wdpa */
 /** @var Array $non_wdpa */
+/** @var Array $governance */
 
 // Force Language
 use Illuminate\Support\Facades\App;
@@ -22,7 +20,7 @@ use Illuminate\Support\Facades\App;
 if ($item->language != App::getLocale()) {
     App::setLocale($item->language);
 }
-
+//dd($report);
 ?>
 
 @extends('layouts.admin')
@@ -34,65 +32,6 @@ if ($item->language != App::getLocale()) {
     <div id="imet_report">
 
         @include('imet-core::components.heading', ['phase' => 'report'])
-
-        @if($show_api)
-            <div class="module-container">
-                <div class="module-header">
-                    <div class="module-title">@lang('imet-core::oecm_report.general_elements')</div>
-                </div>
-                <div class="module-body">
-                    <div id="map" v-if=connection></div>
-                    <div v-else class="dopa_not_available">@lang('imet-core::common.dopa_not_available')</div>
-                    <div style="display: flex;">
-                        @if($connection)
-                            <div id="radar">
-                                <dopa_radar data='@json($dopa_radar)'></dopa_radar>
-                                &copy;Dopa Services
-                            </div>
-                        @endif
-                        <div>
-                            <div>
-                                <div class="strong">@lang('imet-core::oecm_report.country'):</div>
-                                {{ $general_info['Country'] ?? '-' }}
-                            </div>
-                            <div>
-                                <div class="strong">@lang('imet-core::oecm_report.name'):</div>
-                                {{ $general_info['CompleteName'] ?? '-' }}
-                            </div>
-                            <div>
-                                <div class="strong">@lang('imet-core::oecm_report.gazetting'):</div>
-                                {{ $general_info['CreationYear'] ?? '-' }}
-                            </div>
-                            <div>
-                                <div class="strong">@lang('imet-core::oecm_report.surface'):</div>
-                                {{ $area }} [km2]
-                            </div>
-                            <div>
-                                <div class="strong">@lang('imet-core::oecm_report.agency'):</div>
-                                {{ $general_info['Institution'] ?? '-' }}
-                            </div>
-                            <div>
-                                <div class="strong">@lang('imet-core::oecm_report.main_values_protected'):</div>
-                                {{ $general_info['ReferenceTextValues'] ?? '-' }}
-                            </div>
-                            <div>
-                                <div class="strong">@lang('imet-core::oecm_report.vision'):</div>
-                                {{ $vision['LocalVision'] ?? '-' }}
-                            </div>
-                            <div>
-                                <div class="strong">@lang('imet-core::oecm_report.mission'):</div>
-                                {{ $vision['LocalMission'] ?? '-' }}
-                            </div>
-                            <div>
-                                <div class="strong">@lang('imet-core::oecm_report.objectives'):</div>
-                                {{ $vision['LocalObjective'] ?? '-' }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
-
         @include('imet-core::oecm.report.components.non_wdpa', [
             'show_non_wdpa' => $show_non_wdpa,
             'non_wdpa' =>  $non_wdpa
@@ -100,26 +39,157 @@ if ($item->language != App::getLocale()) {
 
         <div class="module-container">
             <div class="module-header">
-                <div class="module-title">@lang('imet-core::oecm_report.management_context')</div>
+                <div class="module-title">@lang('imet-core::oecm_report.key_elements')</div>
             </div>
             <div class="module-body">
-                <h5>@lang('imet-core::oecm_report.key_elements')</h5>
-                <ul>
-                    @foreach($key_elements as $elem)
-                        <li>{{ $elem }}</li>
-                    @endforeach
-                </ul>
+                <h3>1. @lang('imet-core::oecm_context.Governance.management') </h3>
+                <table>
+                    <tr>
+                        <td><b>@lang('imet-core::oecm_context.Governance.fields.GovernanceModel')</b></td>
+                        <td>@lang('imet-core::oecm_lists.GovernanceModel.'.$governance['GovernanceModel'])</td>
+                    </tr>
+                    <tr>
+                        <td><b>@lang('imet-core::oecm_context.Governance.fields.AdditionalInfo')</b></td>
+                        <td>{{ $governance['AdditionalInfo'] }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>@lang('imet-core::oecm_context.Governance.fields.ManagementUnique')</b></td>
+                        <td>@lang('imet-core::oecm_lists.ManagementUnique.'.$governance['ManagementUnique'])</td>
+                    </tr>
+                    <tr>
+                        <td><b>@lang('imet-core::oecm_context.Governance.fields.ManagementList')</b></td>
+                        <td>{{ $governance['ManagementList'] }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>@lang('imet-core::oecm_context.Governance.fields.DateOfCreation')</b></td>
+                        <td>{{ $governance['DateOfCreation'] }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>@lang('imet-core::oecm_context.Governance.fields.OfficialRecognition')</b></td>
+                        <td>{{ $governance['OfficialRecognition'] }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>@lang('imet-core::oecm_context.Governance.fields.SupervisoryInstitution')</b></td>
+                        <td>{{ $governance['SupervisoryInstitution'] }}</td>
+                    </tr>
 
-                @include('imet-core::oecm.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'key_elements_comment'])
+                </table>
+                <h3>2. @lang('imet-core::oecm_report.stakeholder_users_managing_oecm')</h3>
+                <table>
+                    <tr>
+                        <th>
+                            <b>@lang('imet-core::oecm_report.stakeholder_direct_users')</b>
+                        </th>
+                        <th>
+                            <b>@lang('imet-core::oecm_report.stakeholder_indirect_users') </b>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                @foreach($stake_holders['direct'] as $key => $elem)
+                                    <tr>
+                                        <td>
+                                            @if($elem > 1)
+                                                {{$elem}}
+                                            @endif
+                                            {{ $key }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                @foreach($stake_holders['indirect'] as $key => $elem)
+                                    <tr>
+                                        <td>
+                                            @if($elem > 1)
+                                                {{$elem}}
+                                            @endif
+                                            {{ $key }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <h3>3. @lang('imet-core::oecm_report.stakeholders')</h3>
+                <table class="table module-table">
+                    <tr>
+                        <th>
+                            <b>@lang('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Element')</b>
+                        </th>
+                        <th>
+                            <b>@lang('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Description')</b>
+                        </th>
+                    </tr>
+                    @foreach($stake_analysis as $key => $elem)
+                        <tr class="module-table-item">
+                            <td>
+                                {{ $key }}
+                            </td>
+                            <td>
+                                @if($elem !== null)
+                                    {{ join(', ',$elem)}}
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
+                <h3>4. @lang('imet-core::oecm_report.key_biodiversity_elements')</h3>
+                <table>
+                    <tr>
+                        <th>
+                            <b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.fields.KeyElement')</b>
+                        </th>
+                        <th>
+                            <b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.fields.StatusSH') {{strtolower(trans('imet-core::oecm_evaluation.KeyElementsImpact.from_sa'))}}</b>
+                        </th>
+                        <th>
+                            <b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.fields.TrendSH') {{strtolower(trans('imet-core::oecm_evaluation.KeyElementsImpact.from_sa'))}}</b>
+                        </th>
+                        <th>
+                            <b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.fields.StatusSH') {{strtolower(trans('imet-core::oecm_evaluation.KeyElementsImpact.from_external_source'))}}</b>
+                        </th>
+                        <th>
+                            <b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.fields.TrendSH') {{strtolower(trans('imet-core::oecm_evaluation.KeyElementsImpact.from_external_source'))}}</b>
+                        </th>
+                    </tr>
+                    @foreach($key_elements_impacts as $key => $elem)
+                        <tr>
+                            <td>
+                                {{ $elem['KeyElement'] }}
+                            </td>
+                            <td>
+                                {{ $elem['StatusSH'] }}
+                            </td>
+                            <td>
+                                {{ $elem['TrendSH'] }}
+                            </td>
+                            <td>
+                                {{ $elem['StatusER'] }}
+                            </td>
+                            <td>
+                                {{ $elem['TrendER'] }}
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
+
+                @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'key_elements_comment'])
 
             </div>
         </div>
+
         <div class="module-container">
             <div class="module-header">
                 <div class="module-title">@lang('imet-core::oecm_report.evaluation_elements')</div>
             </div>
 
             <div class="module-body">
+
                 <imet_charts
                     form_id={{ $item->getKey() }}  :labels='@json(\AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService::steps_labels())'
                     :show_histogram="true" :version="'oecm'"></imet_charts>
@@ -151,79 +221,70 @@ if ($item->language != App::getLocale()) {
                 <div class="module-title">@lang('imet-core::oecm_report.management_effectiveness')</div>
             </div>
             <div class="module-body">
-                @include('imet-core::v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'analysis'])
+                @include('imet-core::v2.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'analysis'])
                 <h5>@lang('imet-core::oecm_report.characteristics_elements')</h5>
                 <div class="swot">
                     <div>
                         <b>@lang('imet-core::oecm_report.strengths')</b>
-                        @include('imet-core::oecm.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'strengths_swot'])
+                        @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'strengths_swot'])
                     </div>
                     <div>
                         <b>@lang('imet-core::oecm_report.weaknesses')</b>
-                        @include('imet-core::oecm.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'weaknesses_swot'])
+                        @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'weaknesses_swot'])
                     </div>
                     <div>
                         <b>@lang('imet-core::oecm_report.opportunities')</b>
-                        @include('imet-core::oecm.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'opportunities_swot'])
+                        @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'opportunities_swot'])
                     </div>
                     <div>
                         <b>@lang('imet-core::oecm_report.threats')</b>
-                        @include('imet-core::oecm.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'threats_swot'])
+                        @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'threats_swot'])
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="module-container">
             <div class="module-header">
-                <div class="module-title">@lang('imet-core::oecm_report.key_questions')</div>
+                <div class="module-title">@lang('imet-core::oecm_report.general_planning.name')</div>
             </div>
             <div class="module-body">
-                <h5>@lang('imet-core::oecm_report.management_priorities')</h5>
-                @include('imet-core::oecm.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'priorities'])
-                <h5>@lang('imet-core::oecm_report.operating_budget')</h5>
-                @include('imet-core::oecm.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'minimum_budget'])
-                <h5>@lang('imet-core::oecm_report.additional_funding')</h5>
-                @include('imet-core::oecm.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'additional_funding'])
-            </div>
-        </div>
-        <div class="module-container">
-            <div class="module-header">
-                <div class="module-title">@lang('imet-core::oecm_report.general_planning')</div>
-            </div>
-            <div class="module-body">
-                <h5>@lang('imet-core::oecm_report.driving_forces')</h5>
-                <ul>
+                <table>
+                    <tr>
+                        <th><h5>@lang('imet-core::oecm_report.general_planning.priority')</h5></th>
+                        <th><h5>@lang('imet-core::oecm_report.general_planning.category')</h5></th>
+                        <th>
+                            <h5>@lang('imet-core::oecm_report.general_planning.key_elements_service')</h5>
+                        </th>
+                        <th><h5>@lang('imet-core::oecm_report.general_planning.comments')</h5></th>
+                    </tr>
+                    @foreach($key_elements as $key => $elem)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $elem['__group_stakeholders'] ?? 'No category' }}</td>
+                            <td>{{ $elem['Aspect'] }}</td>
+                            <td>{{ $elem['Comments'] }}</td>
+                        </tr>
+                    @endforeach
+                </table>
+                <table>
+                    <tr>
+                        <th>
+                            <h5>@lang('imet-core::oecm_report.driving_forces')</h5>
+                        </th>
+                    </tr>
                     @foreach($main_threats as $elem)
-                        <li>{{ $elem }}</li>
+                        <tr>
+                            <td>{{ $elem['Threat'] }}</td>
+                        </tr>
                     @endforeach
-                </ul>
-                <h5>@lang('imet-core::oecm_report.current_state')</h5>
-                <ul>
-                    @foreach($status as $elem)
-                        <li>{{ $elem }}</li>
-                    @endforeach
-                </ul>
-                <h5>@lang('imet-core::oecm_report.expected_conditions')</h5>
-                <ul>
-                    @foreach($status as $elem)
-                        <li>{{ $elem }}</li>
-                    @endforeach
-                </ul>
-                <h5>@lang('imet-core::oecm_report.proposed_short_objectives')</h5>
-                <ul>
-                    @foreach($planning_objectives['short'] as $elem)
-                        <li>{{ $elem }}</li>
-                    @endforeach
-                </ul>
-                <h5>@lang('imet-core::oecm_report.proposed_long_objectives')</h5>
-                <ul>
-                    @foreach($planning_objectives['long'] as $elem)
-                        <li>{{ $elem }}</li>
-                    @endforeach
-                </ul>
+                </table>
+                <h5>@lang('imet-core::oecm_report.management_priorities')</h5>
+                @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'priorities'])
             </div>
         </div>
         <div class="item">
+
             @include('imet-core::oecm.report.components.planning_roadmap', ['report' => $report, 'action' => $action])
             <div class="row">
                 <div class="col">
@@ -234,6 +295,17 @@ if ($item->language != App::getLocale()) {
                         @include('modular-forms::buttons.delete_item')
                     </span>
                 </div>
+            </div>
+        </div>
+        <div class="module-container mt-5">
+            <div class="module-header">
+                <div class="module-title">@lang('imet-core::oecm_report.key_questions')</div>
+            </div>
+            <div class="module-body">
+                <h5>@lang('imet-core::oecm_report.operating_budget')</h5>
+                @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'minimum_budget'])
+                <h5>@lang('imet-core::oecm_report.additional_funding')</h5>
+                @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'additional_funding'])
             </div>
         </div>
         @if($action==='edit')
@@ -275,18 +347,13 @@ if ($item->language != App::getLocale()) {
                 loading: false,
                 error: false,
                 status: 'idle',
-                connection: {{ $connection ? 'true' : 'false' }},
-                report_map: null,
                 table_input_elems: [0]
             },
             mounted() {
+
                 if (this.report.length > 0) {
                     this.table_input_elems = this.report.map((elem, index) => index);
                 }
-                if (this.connection) {
-                    this.loadMap();
-                }
-
             },
             computed: {
                 reportLength: function () {
@@ -350,62 +417,6 @@ if ($item->language != App::getLocale()) {
                 deleteItem(index) {
                     const key = this.table_input_elems.pop();
                     this.report.splice(key, 1);
-                },
-                loadMap() {
-                    let _this = this;
-                    let biopamaBaseLayer = 'mapbox://styles/jamesdavy/cjw25laqe0y311dqulwkvnfoc';
-                    let mapPolyHostURL = "https://tiles.biopama.org/BIOPAMA_poly";
-                    let mapPaLayer = "2021_July_ACP";
-
-                    this.report_map = new window.mapboxgl.Map({
-                        container: 'map',
-                        style: biopamaBaseLayer,
-                        center: [15, 0],
-                        zoom: 3,
-                        minZoom: 0,
-                        maxZoom: 18
-                    });
-                    this.report_map.on('load', function () {
-                        _this.report_map.addSource("BIOPAMA_Poly", {
-                            "type": 'vector',
-                            "tiles": [mapPolyHostURL + "/{z}/{x}/{y}.pbf"],
-                            "minZoom": 0,
-                            "maxZoom": 12,
-                        });
-                        _this.report_map.addLayer({
-                            "id": "wdpaBase",
-                            "type": "fill",
-                            "source": "BIOPAMA_Poly",
-                            "source-layer": mapPaLayer,
-                            "minzoom": 1,
-                            "paint": {
-                                "fill-color": [
-                                    "match",
-                                    ["get", "MARINE"],
-                                    ["1"],
-                                    "hsla(173, 21%, 51%, 0.1)",
-                                    "hsla(87, 47%, 53%, 0.1)"
-                                ],
-                            }
-                        });
-                        _this.report_map.addLayer({
-                            "id": "wdpaSelected",
-                            "type": "line",
-                            "source": "BIOPAMA_Poly",
-                            "source-layer": mapPaLayer,
-                            "layout": {"visibility": "none"},
-                            "paint": {
-                                "line-color": "#679b95",
-                                "line-width": 2,
-                            },
-                            "transition": {
-                                "duration": 300,
-                                "delay": 0
-                            }
-                        });
-                        _this.report_map.setFilter("wdpaSelected", ['in', 'WDPAID', {{ $item->wdpa_id }}]);
-                        _this.report_map.setLayoutProperty("wdpaSelected", 'visibility', 'visible');
-                    });
                 }
             }
         });

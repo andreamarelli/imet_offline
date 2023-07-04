@@ -19,6 +19,7 @@ return [
     'average_explained' => '* Average calculated based on the set of protected areas participating in the scaling-up exercise',
     'ranking_rescaled_indicators' => 'Ranking of indicators rescaled to 0-100',
     'ranking_info_indicators' => '* The scores in the pop-up are the contribution to the synthetic indicator',
+    'average_protected_areas' => '* Without selected PAs, the scores are the average of all PAs.  With selected PAs, the average scores relate to the selected PAs.',
     'source' => 'Source',
     'download_files' => 'Download',
     'print' => 'print',

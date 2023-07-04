@@ -27,11 +27,11 @@ $vue_data['relative_importance'] = $vue_data['records'][0]['RelativeImportance']
         <div class="row_title">@uclang('imet-core::oecm_context.ManagementRelativeImportance.all_by')</div>
         <div>
             <label for="all_staff">@uclang('imet-core::oecm_context.ManagementRelativeImportance.staff')</label>
-            <input type="radio" id="all_staff" value="-3" v-model="relative_importance">
+            <input type="radio" id="all_staff" value="-2" v-model="relative_importance">
         </div>
         <div>
             <label for="all_stakeholders">@uclang('imet-core::oecm_context.ManagementRelativeImportance.stakeholders')</label>
-            <input type="radio" id="all_stakeholders" value="3" v-model="relative_importance">
+            <input type="radio" id="all_stakeholders" value="2" v-model="relative_importance">
         </div>
     </div>
 </div>

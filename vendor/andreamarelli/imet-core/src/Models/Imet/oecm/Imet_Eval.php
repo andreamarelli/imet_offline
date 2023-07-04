@@ -49,17 +49,18 @@ class Imet_Eval extends Imet
             Designation::class,
             SupportsAndConstraints::class,
             SupportsAndConstraintsIntegration::class,
-            Threats::class,             // getModuleRecords to be reviewed + histogram
-            ThreatsIntegration::class,  // check ranking
-            KeyElements::class,         // getKeyElementsFromCTX to be reviewed, and check ranking scale
+            Threats::class,             // histogram
+                                        //   + score scale from -100 to 0
+            ThreatsIntegration::class,  // sort ranking
+            KeyElements::class,         // Formula: DONE
             ObjectivesContext::class
         ],
         'planning' => [
             RegulationsAdequacy::class,
             DesignAdequacy::class,
             BoundaryLevel::class,
-            ManagementPlan::class,      // Review formulas
-            WorkPlan::class,          // Review formulas
+            ManagementPlan::class,
+            WorkPlan::class,
             Objectives::class,
             ObjectivesPlanification::class
         ],
@@ -93,7 +94,7 @@ class Imet_Eval extends Imet
         ],
         'outcomes' => [
             AchievedObjectives::class,
-            KeyElementsImpact::class,       // No formulas
+            KeyElementsImpact::class,       // No formula yet
             LifeQualityImpact::class,
         ],
         'management_effectiveness' => [],

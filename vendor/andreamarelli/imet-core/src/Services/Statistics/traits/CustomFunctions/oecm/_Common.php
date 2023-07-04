@@ -35,17 +35,16 @@ trait _Common{
 
         if($score_staff!==null && $score_stakeholders!==null){
             $relative_importance = ManagementRelativeImportance::getModuleRecords($imet_id);
+
             $relative_importance = (int) $relative_importance['records'][0]['RelativeImportance'] ?? 0;
-            // -3: All decisions are made by staff
-            // -2: Most decisions are made by staff
+            // -2: All decisions are made by staff
             // -1: Majority of decisions are made by staff
             // 0: There is equal contribution of staff and stakeholders to decision-making
             // 1: Majority of decisions are made by stakeholders
-            // 2: Most decisions are made by stakeholders
-            // 3: All decisions are made by stakeholders
+            // 2: All decisions are made by stakeholders
             $score = (
-                    ($score_staff * (50 - $relative_importance * 16.67)) +
-                    ($score_stakeholders * (50 + $relative_importance * 16.67))
+                    ($score_staff * (50 - $relative_importance * 25)) +
+                    ($score_stakeholders * (50 + $relative_importance * 25))
                 ) / 100;
         } elseif($score_staff===null){
             $score = $score_stakeholders;

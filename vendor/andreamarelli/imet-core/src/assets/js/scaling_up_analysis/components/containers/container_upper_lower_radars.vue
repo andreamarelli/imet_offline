@@ -13,12 +13,14 @@
                                        :values='data_elements.props'
                                        :indicators='indicators'
                                        :event_key="'up_'+index"
+                                       :refresh_average=false
                                        :key="'asd_'+index"></scaling_radar>
                     </div>
                     <div class="row">
                         <div class="col-sm">
-                            <datatable_interact_with_radar
+                           <datatable_interact_with_radar
                                 :values_with_indicators_keys="true"
+                                :refresh_average=false
                                 :values="data_elements.props" :columns="columns"
                                                            :event_key="'up_'+index"></datatable_interact_with_radar>
                         </div>
@@ -75,6 +77,10 @@ export default {
             default: () => {
 
             }
+        },
+        refresh_average: {
+            type: Boolean,
+            default: false
         }
     },
     data: function () {

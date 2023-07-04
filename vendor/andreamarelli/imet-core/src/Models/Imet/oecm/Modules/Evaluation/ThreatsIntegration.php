@@ -37,7 +37,7 @@ class ThreatsIntegration extends Modules\Component\ImetModule_Eval
 
         $this->predefined_values = [
             'field' => 'Threat',
-            'values' => trans('imet-core::oecm_lists.MainThreat')
+            'values' => trans('imet-core::oecm_lists.Threats')
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.ThreatsIntegration.module_info_EvaluationQuestion');

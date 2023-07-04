@@ -1,5 +1,6 @@
 <?php
 
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 
@@ -9,6 +10,16 @@ use Illuminate\Support\Str;
 
 /** @var Array $stakeholders */
 $num_cols = count($definitions['fields']);
+
+//$categories_per_stakeholders = Stakeholders::getStakeholders($vue_data['form_id'], Stakeholders::ALL_USERS, true);
+//$groups_per_category = [
+//    'provisioning'  => ['group0', 'group1', 'group2', 'group3'],
+//    'cultural'      => ['group4', 'group5', 'group6'],
+//    'regulating'    => ['group7', 'group8'],
+//    'supporting'    => ['group9', 'group10'],
+//    'biodiversity'  => ['group11', 'group12', 'group13']
+//];
+//
 
 ?>
 
@@ -78,6 +89,22 @@ $num_cols = count($definitions['fields']);
         <div v-if="isCurrentStakeholder('{{ Str::replace("'", "\'", $stakeholder) }}')">
             <div class="card-body">
 
+{{--                <div v-for="(gg_label, gg_key) in {{ json_encode($definitions['groups']) }}">--}}
+
+{{--                    --}}{{-- category title --}}
+{{--                    <h4 v-if="gg_key==='group0'" style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholders.titles.title0')</h4>--}}
+{{--                    <h4 v-else-if="gg_key==='group4'" style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholders.titles.title1')</h4>--}}
+{{--                    <h4 v-else-if="gg_key==='group7'" style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholders.titles.title2')</h4>--}}
+{{--                    <h4 v-else-if="gg_key==='group9'" style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholders.titles.title3')</h4>--}}
+{{--                    <h4 v-else-if="gg_key==='group11'" style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholders.titles.title4')</h4>--}}
+
+{{--                    --}}{{-- group title --}}
+{{--                    <h5 :class="'highlight group_title_{{ $definitions['module_key'] }}_' + gg_key">@{{ gg_label }}</h5>--}}
+
+{{--                </div>--}}
+
+{{--                ############################################################--}}
+
                 {{-- groups --}}
                 @foreach($definitions['groups'] as $group_key => $group_label)
 
@@ -85,7 +112,7 @@ $num_cols = count($definitions['fields']);
                         if(in_array($group_key, ['group11', 'group12', 'group13'])){
                             $definitions['max_rows'] = 9999;
                         } else {
-                            $definitions['max_rows'] = 3;
+                            $definitions['max_rows'] = 5;
                         }
 
                         $table_id = 'group_table_'.$definitions['module_key'].'_'.$group_key;
@@ -114,7 +141,7 @@ $num_cols = count($definitions['fields']);
                         <thead>
                         <tr>
                             @foreach($definitions['fields'] as $index => $field)
-                                @if(!($index==1 && in_array($group_key, ['group11', 'group12', 'group13'])))
+                                @if(!(($index==1 || $index==2) && in_array($group_key, ['group11', 'group12', 'group13'])))
                                     <th class="text-center">
                                         @if($field['type']!=='hidden')
                                             {{ ucfirst($field['label'] ?? '') }}
@@ -139,7 +166,7 @@ $num_cols = count($definitions['fields']);
                             v-if="isCurrentStakeholder(item['Stakeholder'])">
                             {{--  fields  --}}
                             @foreach($definitions['fields'] as $index => $field)
-                                @if(!($index==1 && in_array($group_key, ['group11', 'group12', 'group13'])))
+                                @if(!(($index==1 || $index==2) && in_array($group_key, ['group11', 'group12', 'group13'])))
                                     <td>
                                         @include('modular-forms::module.edit.field.module-to-vue', [
                                            'definitions' => $definitions,
