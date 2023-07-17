@@ -28,10 +28,7 @@ $dom->filter('h5.group_title_'.$definitions['module_key'].'_group9')->before('<h
 
                 empty_record_with_predefined(group_key) {
                     let empty_record = this.__no_reactive_copy(this.empty_record);
-                    if(group_key==='group5'
-                        || group_key==='group6'){
-                        empty_record['Engagement'] = 'market_economy';
-                    } else if(group_key==='group7'
+                    if(group_key==='group7'
                         || group_key==='group8'
                         || group_key==='group9'
                         || group_key==='group10'

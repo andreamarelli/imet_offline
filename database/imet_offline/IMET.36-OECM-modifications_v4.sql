@@ -22,7 +22,7 @@ ALTER TABLE imet_oecm.context_stakeholders_natural_resources ADD COLUMN IF NOT E
 ALTER TABLE imet_oecm.context_stakeholders_natural_resources ADD COLUMN IF NOT EXISTS "LevelExpertise" numeric;
 
 -- StakeholdersObjectives
-CREATE TABLE imet_oecm.context_stakeholders_objectives
+CREATE TABLE IF NOT EXISTS imet_oecm.context_stakeholders_objectives
 (
     id           serial PRIMARY KEY,
     "FormID"     integer,
@@ -36,7 +36,7 @@ CREATE TABLE imet_oecm.context_stakeholders_objectives
 );
 
 -- AnalysisStakeholder
-CREATE TABLE imet_oecm.context_analysis_stakeholders_direct_users
+CREATE TABLE IF NOT EXISTS imet_oecm.context_analysis_stakeholders_direct_users
 (
     id               serial PRIMARY KEY,
     "FormID"         integer,
@@ -55,7 +55,7 @@ CREATE TABLE imet_oecm.context_analysis_stakeholders_direct_users
     group_key        character varying(50),
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
-CREATE TABLE imet_oecm.context_analysis_stakeholders_indirect_users
+CREATE TABLE IF NOT EXISTS imet_oecm.context_analysis_stakeholders_indirect_users
 (
     id               serial PRIMARY KEY,
     "FormID"         integer,
@@ -74,10 +74,12 @@ CREATE TABLE imet_oecm.context_analysis_stakeholders_indirect_users
     group_key        character varying(50),
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
+ALTER TABLE imet_oecm.context_analysis_stakeholders_direct_users ADD COLUMN IF NOT EXISTS "Illegal" boolean;
+ALTER TABLE imet_oecm.context_analysis_stakeholders_indirect_users ADD COLUMN IF NOT EXISTS "Illegal" boolean;
 
 
 -- AnalysisStakeholdersObjectives
-CREATE TABLE imet_oecm.context_stakeholders_analysis_objectives
+CREATE TABLE IF NOT EXISTS imet_oecm.context_stakeholders_analysis_objectives
 (
     id           serial PRIMARY KEY,
     "FormID"     integer,
@@ -91,7 +93,7 @@ CREATE TABLE imet_oecm.context_stakeholders_analysis_objectives
 );
 
 -- ObjectivesContext
-CREATE TABLE imet_oecm.eval_objectives_context
+CREATE TABLE IF NOT EXISTS imet_oecm.eval_objectives_context
 (
     id           serial PRIMARY KEY,
     "FormID"     integer,
@@ -104,16 +106,19 @@ CREATE TABLE imet_oecm.eval_objectives_context
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-ALTER TABLE imet_oecm.eval_management_plan ADD COLUMN "PrintedCopy" boolean;
-ALTER TABLE imet_oecm.eval_management_plan ADD COLUMN "ExplainedToMembers" boolean;
-ALTER TABLE imet_oecm.eval_management_plan ADD COLUMN "KnowledgePercentage" numeric;
+--  ManagementPlan
+ALTER TABLE imet_oecm.eval_management_plan ADD COLUMN IF NOT EXISTS "PrintedCopy" boolean;
+ALTER TABLE imet_oecm.eval_management_plan ADD COLUMN IF NOT EXISTS "ExplainedToMembers" boolean;
+ALTER TABLE imet_oecm.eval_management_plan DROP COLUMN IF EXISTS "ExplainedToMembers";
+ALTER TABLE imet_oecm.eval_management_plan ADD COLUMN IF NOT EXISTS "KnowledgePercentage" numeric;
 
-ALTER TABLE imet_oecm.eval_work_plan ADD COLUMN "PrintedCopy" boolean;
-ALTER TABLE imet_oecm.eval_work_plan ADD COLUMN "ExplainedToMembers" boolean;
-ALTER TABLE imet_oecm.eval_work_plan ADD COLUMN "KnowledgePercentage" numeric;
+-- WorkPlan
+ALTER TABLE imet_oecm.eval_work_plan ADD COLUMN IF NOT EXISTS "PrintedCopy" boolean;
+ALTER TABLE imet_oecm.eval_work_plan ADD COLUMN IF NOT EXISTS "ExplainedToMembers" boolean;
+ALTER TABLE imet_oecm.eval_work_plan ADD COLUMN IF NOT EXISTS "KnowledgePercentage" numeric;
 
 -- KeyElementsImpact
-CREATE TABLE imet_oecm.eval_key_elements_impact
+CREATE TABLE IF NOT EXISTS imet_oecm.eval_key_elements_impact
 (
     id           serial PRIMARY KEY,
     "FormID"     integer,
@@ -133,5 +138,34 @@ CREATE TABLE imet_oecm.eval_key_elements_impact
     group_key        character varying(50),
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+-- ####  ANALYSIS REPORT  ###
+DO $$
+    BEGIN
+        IF EXISTS(
+            SELECT * FROM information_schema.columns
+                     WHERE table_schema='imet_oecm'
+                       and table_name='imet_report'
+                       and column_name='current_state')
+        THEN
+            ALTER TABLE imet_oecm.imet_report RENAME "current_state" to "proposed_short";
+        END IF;
+    END $$;
+
+DO $$
+    BEGIN
+        IF EXISTS(
+            SELECT * FROM information_schema.columns
+                     WHERE table_schema='imet_oecm'
+                       and table_name='imet_report'
+                       and column_name='expected_conditions')
+        THEN
+            ALTER TABLE imet_oecm.imet_report RENAME "expected_conditions" to "proposed_long";
+        END IF;
+    END $$;
+
+-- ####  clean  ####
+DROP TABLE IF EXISTS imet_oecm.context_analysis_stakeholders_access_governance;
+DROP TABLE IF EXISTS imet_oecm.context_analysis_stakeholders_trends_threats;
 
 COMMIT;
