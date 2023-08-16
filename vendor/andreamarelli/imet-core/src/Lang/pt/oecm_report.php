@@ -36,7 +36,7 @@ return [
     'proposed_long' => 'Proposed long term objectives',
     'possible_roadmap' => 'Possible road map - Management plan midterm and long term',
     'long_term_objectives' => 'Long term Objective – Goals',
-    'outcome' => 'Outcome 1',
+    'outcome' => 'Outcome',
     'annual_multi_annual_targets' => 'Annual or multi-annual targets',
     'intervention' => 'Intervention',
     'activity' => 'Activity',
@@ -58,5 +58,16 @@ return [
     'stakeholder_users_managing_oecm' => 'Stakeholders users and managing the OECM',
     'stakeholder_direct_users' => 'Stakeholders Direct users',
     'stakeholder_indirect_users' => 'Stakeholders Indirect users',
-    'key_biodiversity_elements' => 'Key biodiversity elements of OECM '
+    'biodiversity_elements' => [
+        'title' => 'Key biodiversity elements of OECM',
+        'key_conservation_element' => 'Key conservation element',
+        'effect_estimated_direct_users' => 'Effect estimated by the stakeholders direct users',
+        'effect_estimated_indirect_users' => 'Effect estimated by the management entity or monitoring',
+        'average' => 'Average',
+        'comments' => 'Comments'
+    ],
+    'ecosystem_services' => 'Ecosystem services',
+    'key_biodiversity_elements' => 'Biodiversity key elements',
+    'stakeholders' => 'Ecosystem services and Biodiversity key element identified by the stakeholder for their governance and management',
+    'score' => 'value'
 ];

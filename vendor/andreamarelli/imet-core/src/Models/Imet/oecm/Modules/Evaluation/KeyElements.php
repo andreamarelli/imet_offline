@@ -74,6 +74,7 @@ class KeyElements extends Modules\Component\ImetModule_Eval
                 'group1' => $biodiversity_key_elements,
             ]
         ];
+
         $records = parent::arrange_records($predefined, $records, $empty_record);
 
         // Inject also importance

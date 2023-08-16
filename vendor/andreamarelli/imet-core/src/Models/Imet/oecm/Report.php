@@ -12,6 +12,7 @@ class Report extends BaseReportModel
     protected $table = 'imet_oecm.imet_report';
 
     protected static $report_fields = [
+        'analysis',
         'key_elements_comment',
         'strengths_swot',
         'weaknesses_swot',
@@ -27,81 +28,76 @@ class Report extends BaseReportModel
         'responses',
         'long_term',
         'outcome',
-        'annual_targets',
-        'intervention1',
-        'intervention1_activity',
-        'intervention1_other',
-        'intervention2',
-        'intervention2_activity',
-        'intervention2_other',
-        'intervention3',
-        'intervention3_activity',
-        'intervention3_other',
+        'annual_targets1',
+        'annual_targets1_activity1',
+        'annual_targets1_activity2',
+        'annual_targets2',
+        'annual_targets2_activity1',
+        'annual_targets2_activity2',
+        'annual_targets2_activity3',
+        'annual_targets2_activity4',
+        'annual_targets2_activity5',
+        'outcome2',
         'group_key'
     ];
 
     protected static $boolean_fields = [
-        'long_term_year1',
-        'long_term_year2',
-        'long_term_year3',
-        'long_term_year4',
-        'long_term_year5',
+        'annual_targets1_activity1_year1',
+        'annual_targets1_activity1_year2',
+        'annual_targets1_activity1_year3',
+        'annual_targets1_activity1_year4',
+        'annual_targets1_activity1_year5',
+
+        'annual_targets1_activity2_year1',
+        'annual_targets1_activity2_year2',
+        'annual_targets1_activity2_year3',
+        'annual_targets1_activity2_year4',
+        'annual_targets1_activity2_year5',
+
+        'annual_targets2_activity1_year1',
+        'annual_targets2_activity1_year2',
+        'annual_targets2_activity1_year3',
+        'annual_targets2_activity1_year4',
+        'annual_targets2_activity1_year5',
+
+        'annual_targets2_activity2_year1',
+        'annual_targets2_activity2_year2',
+        'annual_targets2_activity2_year3',
+        'annual_targets2_activity2_year4',
+        'annual_targets2_activity2_year5',
+
+        'annual_targets2_activity3_year1',
+        'annual_targets2_activity3_year2',
+        'annual_targets2_activity3_year3',
+        'annual_targets2_activity3_year4',
+        'annual_targets2_activity3_year5',
+
+        'annual_targets2_activity4_year1',
+        'annual_targets2_activity4_year2',
+        'annual_targets2_activity4_year3',
+        'annual_targets2_activity4_year4',
+        'annual_targets2_activity4_year5',
+
+        'annual_targets2_activity5_year1',
+        'annual_targets2_activity5_year2',
+        'annual_targets2_activity5_year3',
+        'annual_targets2_activity5_year4',
+        'annual_targets2_activity5_year5',
+
         'outcome_year1',
         'outcome_year2',
         'outcome_year3',
         'outcome_year4',
         'outcome_year5',
-        'annual_targets_year1',
-        'annual_targets_year2',
-        'annual_targets_year3',
-        'annual_targets_year4',
-        'annual_targets_year5',
-        'intervention1_year1',
-        'intervention1_year2',
-        'intervention1_year3',
-        'intervention1_year4',
-        'intervention1_year5',
-        'intervention1_activity_year1',
-        'intervention1_activity_year2',
-        'intervention1_activity_year3',
-        'intervention1_activity_year4',
-        'intervention1_activity_year5',
-        'intervention1_other_year1',
-        'intervention1_other_year2',
-        'intervention1_other_year3',
-        'intervention1_other_year4',
-        'intervention1_other_year5',
-        'intervention2_year1',
-        'intervention2_year2',
-        'intervention2_year3',
-        'intervention2_year4',
-        'intervention2_year5',
-        'intervention2_activity_year1',
-        'intervention2_activity_year2',
-        'intervention2_activity_year3',
-        'intervention2_activity_year4',
-        'intervention2_activity_year5',
-        'intervention2_other_year1',
-        'intervention2_other_year2',
-        'intervention2_other_year3',
-        'intervention2_other_year4',
-        'intervention2_other_year5',
-        'intervention3_year1',
-        'intervention3_year2',
-        'intervention3_year3',
-        'intervention3_year4',
-        'intervention3_year5',
-        'intervention3_activity_year1',
-        'intervention3_activity_year2',
-        'intervention3_activity_year3',
-        'intervention3_activity_year4',
-        'intervention3_activity_year5',
-        'intervention3_other_year1',
-        'intervention3_other_year2',
-        'intervention3_other_year3',
-        'intervention3_other_year4',
-        'intervention3_other_year5'
-        ];
+
+        'outcome2_year1',
+        'outcome2_year2',
+        'outcome2_year3',
+        'outcome2_year4',
+        'outcome2_year5',
+
+
+    ];
 
     /**
      * Retrieve report
@@ -118,7 +114,8 @@ class Report extends BaseReportModel
             : $report->toArray();
     }
 
-    public static function getSchema(){
+    public static function getSchema()
+    {
         return array_fill_keys(static::$report_fields, null) + array_fill_keys(static::$boolean_fields, false);
     }
 

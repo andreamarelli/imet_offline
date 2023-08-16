@@ -1,4 +1,5 @@
 <?php
+
 return [
     'general_elements' => 'General elements of the OECM',
     'country' => 'Country',
@@ -27,15 +28,15 @@ return [
     'operating_budget' => 'What is your minimum operating budget to ensure the preservation of the values and importance of your OECM?',
     'additional_funding' => 'In the case of additional funding for the management of the OECM what actions would you like to take and for how much time?',
     'table_of_planning' => 'Table of planning',
-    'previous_state' => 'Previous state (Before -year)',
-    'impacts' => 'Impacts',
-    'responses' => 'Responses',
     'driving_forces' => 'Driving forces /Pressures',
-    'current_state' => 'Current state',
-    'expected_conditions' => 'Expected conditions',
+    'previous_state' => 'Previous state (Before -year) and Driving forces /Pressures',
+    'impacts' => 'Impacts and Current state',
+    'responses' => 'Responses and Expected conditions',
+    'proposed_short' => 'Proposed short term objectives',
+    'proposed_long' => 'Proposed long term objectives',
     'possible_roadmap' => 'Possible road map - Management plan midterm and long term',
     'long_term_objectives' => 'Long term Objective – Goals',
-    'outcome' => 'Outcome 1',
+    'outcome' => 'Outcome',
     'annual_multi_annual_targets' => 'Annual or multi-annual targets',
     'intervention' => 'Intervention',
     'activity' => 'Activity',
@@ -56,5 +57,17 @@ return [
     ],
     'stakeholder_users_managing_oecm' => 'Stakeholders users and managing the OECM',
     'stakeholder_direct_users' => 'Stakeholders Direct users',
-    'stakeholder_indirect_users' => 'Stakeholders Indirect users'
+    'stakeholder_indirect_users' => 'Stakeholders Indirect users',
+    'biodiversity_elements' => [
+        'title' => 'Key biodiversity elements of OECM',
+        'key_conservation_element' => 'Key conservation element',
+        'effect_estimated_direct_users' => 'Effect estimated by the stakeholders direct users',
+        'effect_estimated_indirect_users' => 'Effect estimated by the management entity or monitoring',
+        'average' => 'Average',
+        'comments' => 'Comments'
+    ],
+    'ecosystem_services' => 'Ecosystem services',
+    'key_biodiversity_elements' => 'Biodiversity key elements',
+    'stakeholders' => 'Ecosystem services and Biodiversity key element identified by the stakeholder for their governance and management',
+    'score' => 'value'
 ];
