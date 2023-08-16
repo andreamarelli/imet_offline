@@ -88,6 +88,7 @@ trait CreateAndStoreNonWdpa
             $form_record['Country'] = $records[0]['country'];
             $form_record['version'] = (static::$form_class)::version;
             $request->merge(['records_json' => Payload::encode([$form_record])]);
+
             return static::redirect_to_edit($request);
 
         } catch (\Exception $e) {

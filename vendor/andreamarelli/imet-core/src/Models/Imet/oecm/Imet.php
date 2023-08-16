@@ -4,12 +4,8 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm;
 
 use AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller;
 use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderIndirectUsers;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholdersObjectives;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewers;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersObjectives;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
@@ -59,13 +55,20 @@ class Imet extends BaseImetForm
         ],
         'stakeholders' => [
             Modules\Context\Stakeholders::class,
-            StakeholdersObjectives::class,
+            Modules\Context\StakeholdersObjectives::class,
         ],
         'stakeholder_analysis' => [
-            AnalysisStakeholderDirectUsers::class,
-            AnalysisStakeholderIndirectUsers::class,
-            AnalysisStakeholdersObjectives::class
+            Modules\Context\AnalysisStakeholderDirectUsers::class,
+            Modules\Context\AnalysisStakeholderIndirectUsers::class,
+            Modules\Context\AnalysisStakeholdersObjectives::class
         ],
+        'objectives'            => [
+            Modules\Context\Objectives1::class,
+            Modules\Context\Objectives2::class,
+            Modules\Context\Objectives3::class,
+            Modules\Context\StakeholdersObjectives::class,
+            Modules\Context\AnalysisStakeholdersObjectives::class
+        ]
     ];
 
 

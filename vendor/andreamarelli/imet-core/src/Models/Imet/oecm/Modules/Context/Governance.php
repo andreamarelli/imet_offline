@@ -24,8 +24,7 @@ class Governance extends Modules\Component\ImetModule
 
             ['name' => 'ManagementUnique',  'type' => 'toggle-ImetOECM_ManagementUnique',         'label' => trans('imet-core::oecm_context.Governance.fields.ManagementUnique')],
             ['name' => 'ManagementName',    'type' => 'text-area',      'label' => trans('imet-core::oecm_context.Governance.fields.ManagementName')],
-            ['name' => 'ManagementType',    'type' => 'dropdown-ImetOECM_ManagementType',     'label' => trans('imet-core::oecm_context.Governance.fields.ManagementType')],
-            ['name' => 'ManagementList',    'type' => 'text-area',      'label' => trans('imet-core::oecm_context.Governance.fields.ManagementList')],
+            ['name' => 'ManagementType',    'type' => 'suggestion-ImetOECM_ManagementType',     'label' => trans('imet-core::oecm_context.Governance.fields.ManagementType')],
             ['name' => 'DateOfCreation',    'type' => 'suggestion-ImetOECM_DateOfCreation',     'label' => trans('imet-core::oecm_context.Governance.fields.DateOfCreation')],
             ['name' => 'OfficialRecognition',           'type' => 'toggle-yes_no',      'label' => trans('imet-core::oecm_context.Governance.fields.OfficialRecognition')],
             ['name' => 'SupervisoryInstitution',        'type' => 'text-area',          'label' => trans('imet-core::oecm_context.Governance.fields.SupervisoryInstitution')],

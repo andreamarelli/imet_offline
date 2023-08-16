@@ -15178,6 +15178,12 @@ nav.steps {
         vertical-align: middle; }
         .module-container .module-body .module-table tr.module-table-item td input.field-edit {
           display: inline-block; }
+      .module-container .module-body .module-table tr td .no_data {
+        font-weight: 600;
+        line-height: 1.2em;
+        color: #A3A3A3;
+        font-size: 1.3em;
+        text-align: center; }
       .module-container .module-body .module-table tr td .ofac-table-sum {
         display: inline-block;
         max-width: 350px;

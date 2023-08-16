@@ -34,6 +34,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\SupportsAndConstr
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\StakeholderCooperation;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\SupportsAndConstraintsIntegration;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Threats;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ThreatsBiodiversity;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ThreatsIntegration;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\VisitorsManagement;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkPlan;
@@ -49,6 +50,7 @@ class Imet_Eval extends Imet
             Designation::class,
             SupportsAndConstraints::class,
             SupportsAndConstraintsIntegration::class,
+            ThreatsBiodiversity::class,
             Threats::class,             // histogram
                                         //   + score scale from -100 to 0
             ThreatsIntegration::class,  // sort ranking
@@ -96,6 +98,13 @@ class Imet_Eval extends Imet
             AchievedObjectives::class,
             KeyElementsImpact::class,       // No formula yet
             LifeQualityImpact::class,
+        ],
+        'objectives' => [
+            ObjectivesContext::class,
+            ObjectivesPlanification::class,
+            ObjectivesIntrants::class,
+            ObjectivesProcessus::class,
+
         ],
         'management_effectiveness' => [],
     ];

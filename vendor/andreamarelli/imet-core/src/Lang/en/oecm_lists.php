@@ -54,7 +54,7 @@ return [
 
     'ManagementUnique' => [
         'unique'        => 'A specified entity',
-        'multiple'      => 'An agreed upon combination of entities'
+        'multiple'      => 'An agreed upon combination of stakeholders'
     ],
 
     'ManagementType'=> [
@@ -76,18 +76,6 @@ return [
         'terrestrial'           => 'Terrestrial and/or freshwater',
         'marine_and_coastal'    => 'Marine',
         'mixed'                 => 'Partially marine and terrestrial (or freshwater)',
-    ],
-
-    'Ownership' => [
-        'state'         => 'State',
-        'communal'      => 'Community',
-        'landowners'    => 'Individual landowners',
-        'for_profit'    => 'For-profit organisations',
-        'non_profit'    => 'Non-profit organisations',
-        'joint'         => 'Joint ownership',
-        'multiple'      => 'Multiple ownership',
-        'contested'     => 'Contested',
-        'not_reported'  => 'Not Reported'
     ],
 
     'Habitats' => [
@@ -141,7 +129,7 @@ return [
     'Threats' => [
         'commercial_residential'    => 'Commercial and residential',
         'agriculture_aquaculture'   => 'Agriculture and aquaculture',
-        'energy_mining'              => 'Energy and mining',
+        'energy_mining'             => 'Energy and mining',
         'transport_infrastructure'  => 'Transport and infrastructure',
         'extraction'                => 'Extraction of biological resources',
         'human_disturbance'         => 'Human disturbance / intrusion',
@@ -151,6 +139,7 @@ return [
         'geological'                => 'Geological phenomena',
         'climate_change'            => 'Climate change and effects',
         'other'                     => 'Other pressures and threats',
+        'no_threats'                => 'No threats',
     ],
 
     'Reliability' => [

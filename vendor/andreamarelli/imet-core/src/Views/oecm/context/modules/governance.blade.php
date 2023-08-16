@@ -35,13 +35,7 @@
             $container_directives = '';
             $field_directives = '';
             if($field['name']!=='ManagementUnique'){
-                if($field['name']==='ManagementName' || $field['name']==='ManagementType'){
-                    $container_directives = "v-if='management_unique==\"unique\"'";
-                } elseif($field['name']==='ManagementList'){
-                    $container_directives = "v-if='management_unique==\"multiple\"'";
-                } else {
-                    $container_directives = "v-if='management_unique!==null'";
-                }
+                $container_directives = "v-if='management_unique!==null'";
             } else {
                 $field_directives = '@change=resetManagement';
             }
@@ -107,7 +101,6 @@
                 resetManagement(){
                     this.records[0]['ManagementName'] = null;
                     this.records[0]['ManagementType'] = null;
-                    this.records[0]['ManagementList'] = null;
                     if(this.management_unique === null){
                         this.records[0]['DateOfCreation'] = null;
                         this.records[0]['OfficialRecognition'] = null;

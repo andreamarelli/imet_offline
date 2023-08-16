@@ -77,7 +77,6 @@ return [
             'AdditionalInfo' => 'Informations complémentaires sur le modèle de gouvernance (si nécessaire)',
             'ManagementUnique' => 'Déterminer l’entité en charge de la gestion et de la gouvernance de l’AMCE',
             'ManagementName' => 'Name',
-            'ManagementList' => 'Liste des entités impliquées dans la gestion quotidienne et la gouvernance (ne pas lister les partenaires)',
             'ManagementType' => 'Type',
             'DateOfCreation' => 'Date de création',
             'OfficialRecognition' => 'Reconnaissance officielle : L’organe de gestion a-t-il reçu une reconnaissance officielle de la part des autorités nationales ou régionales ?',
@@ -205,7 +204,7 @@ return [
     ],
 
     'ManagementStaff' => [
-        'title' => 'Composition et personnel de l’entité(s) de gestion (identifé in CTX 1.2).',
+        'title' => 'Composition et personnel de l’entité de gestion (identifé in CTX 1.2).',
         'fields' => [
             'Function' => 'Functions',
             'Number' => 'Nombre',
@@ -213,6 +212,7 @@ return [
             'Female' => 'Femme',
             'Descriptions' => 'Descriptions',
             'AdequateNumber' => 'Nombre adéquat',
+            'Difference' => 'Différence'
         ],
         'module_info' => 'Nombre et catégories de membres de l’organe de gestion de l’AMCE',
         'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>I2, PR1</i>'
@@ -571,7 +571,6 @@ return [
         'title' => 'Analyse par partie prenante - utilisateurs directs',
         'fields' => [
             'Element' => 'Critères',
-            'Description' => 'Élément spécifique évalué',
             'Illegal' => 'Illégale',
             'Dependence' => 'Dépendance',
             'Access' => 'Accès',
@@ -634,7 +633,6 @@ return [
         'title' => 'Analyse des parties prenantes - utilisateurs indirects',
         'fields' => [
             'Element' => 'Critères',
-            'Description' => 'Élément spécifique évalué',
             'Illegal' => 'Illégale',
             'Support' => 'Soutien ou contribution',
             'Guidelines' => 'Lignes directrices et procédures',

@@ -50,12 +50,10 @@ class KeyElementsImpact extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    public static function getModuleRecords($form_id, $collection = null): array
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
-        $module_records = parent::getModuleRecords($form_id, $collection);
-        $empty_record = static::getEmptyRecord($form_id);
+        $form_id = $empty_record['FormID'];
 
-        $records = $module_records['records'];
         $preLoaded = [
             'field' => 'KeyElement',
             'values' => [
@@ -93,8 +91,8 @@ class KeyElementsImpact extends Modules\Component\ImetModule_Eval
                         ->toArray()
             ]
         ];
-        $module_records['records'] =  static::arrange_records($preLoaded, $records, $empty_record);
-        return $module_records;
+
+        return parent::arrange_records($preLoaded, $records, $empty_record);
     }
     
 }

@@ -2,11 +2,14 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
+use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
 use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class KeyElements extends Modules\Component\ImetModule_Eval
 {
@@ -25,7 +28,7 @@ class KeyElements extends Modules\Component\ImetModule_Eval
 
     public function __construct(array $attributes = []) {
 
-        $this->module_type = 'TABLE';
+        $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'C4';
         $this->module_title = trans('imet-core::oecm_evaluation.KeyElements.title');
         $this->module_fields = [
@@ -35,6 +38,9 @@ class KeyElements extends Modules\Component\ImetModule_Eval
             ['name' => 'IncludeInStatistics',   'type' => 'checkbox-boolean',   'label' => trans('imet-core::oecm_evaluation.KeyElements.fields.IncludeInStatistics')],
             ['name' => 'Comments',              'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.KeyElements.fields.Comments')],
         ];
+
+
+        $this->module_groups = trans('imet-core::oecm_evaluation.KeyElements.groups');
 
         $this->module_subTitle = trans('imet-core::oecm_evaluation.KeyElements.module_subTitle');
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.KeyElements.module_info_EvaluationQuestion');
@@ -47,40 +53,46 @@ class KeyElements extends Modules\Component\ImetModule_Eval
     /**
      * Preload data from CTX 5.1
      *
-     * @param $form_id
-     * @param null $collection
+     * @param $predefined_values
+     * @param $records
+     * @param $empty_record
      * @return array
      */
-    public static function getModuleRecords($form_id, $collection = null): array
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
-        $module_records = parent::getModuleRecords($form_id, $collection);
-        $empty_record = static::getEmptyRecord($form_id);
-
-        $records = $module_records['records'];
+        $form_id = $empty_record['FormID'];
 
         // Retrieve key elements (and importance calculation) form CTX
-        $key_elements =  collect(static::getKeyElementsFromCTX($form_id))->keyBy('element');
+        $key_elements =  collect(static::getKeyElementsFromSA($form_id))->keyBy('element');
+        $biodiversity_key_elements =  static::getBiodiversityKeyElementsFromCTX($form_id);
 
-        // Inject key elements
+        // Set predefines values (key elements)
         $predefined = [
             'field' => 'Aspect',
-            'values' => $key_elements->pluck('element')->toArray()
+            'values' => [
+                'group0' => $key_elements->pluck('element')->toArray(),
+                'group1' => $biodiversity_key_elements,
+            ]
         ];
-        $module_records['records'] = static::arrange_records($predefined, $records, $empty_record);
+        $records = parent::arrange_records($predefined, $records, $empty_record);
 
         // Inject also importance
-        foreach ($module_records['records'] as $index => $record){
-            if(array_key_exists($record['Aspect'], $key_elements->toArray())){
-                $module_records['records'][$index]['Importance'] = $key_elements[$record['Aspect']]['importance'];
-                $module_records['records'][$index]['__num_stakeholders'] = $key_elements[$record['Aspect']]['stakeholder_count'];
-                $module_records['records'][$index]['__group_stakeholders'] = $key_elements[$record['Aspect']]['group'];;
+        foreach ($records as $index => $record){
+            if($record['group_key']==='group0' && array_key_exists($record['Aspect'], $key_elements->toArray())){
+                $records[$index]['Importance'] = $key_elements[$record['Aspect']]['importance'];
+                $records[$index]['__num_stakeholders'] = $key_elements[$record['Aspect']]['stakeholder_count'];
+                $records[$index]['__group_stakeholders'] = $key_elements[$record['Aspect']]['group'];;
+            } else {
+                $records[$index]['Importance'] = null;
+                $records[$index]['__num_stakeholders'] = null;
+                $records[$index]['__group_stakeholders'] = null;
             }
         }
 
-        return $module_records;
+        return $records;
     }
 
-    public static function getKeyElementsFromCTX($form_id): array
+    public static function getKeyElementsFromSA($form_id): array
     {
         $direct_users_key_elements = Modules\Context\AnalysisStakeholderDirectUsers::calculateKeyElementsImportances($form_id);
         $indirect_users_key_elements = Modules\Context\AnalysisStakeholderIndirectUsers::calculateKeyElementsImportances($form_id);
@@ -135,33 +147,60 @@ class KeyElements extends Modules\Component\ImetModule_Eval
             ->toArray();
 
         return $importances;
+    }
 
-//        $ctx5_key_elements = Modules\Context\AnalysisStakeholderAccessGovernance::calculateKeyElementsImportances( $form_id);
-//        $ctx6_key_elements = Modules\Context\AnalysisStakeholderTrendsThreats::calculateKeyElementsImportances2($form_id);
-//
-//        $ctx5_key_elements = collect($ctx5_key_elements)->keyBy('element')->toArray();
-//        $ctx6_key_elements = collect($ctx6_key_elements)->keyBy('element')->toArray();
-//
-//        $key_elements = collect();
-//        foreach ($ctx5_key_elements as $key => $ctx5_key_element){
-//            if(array_key_exists($key, $ctx6_key_elements)){
-//                $importance = ($ctx5_key_element['importance'] + (100 - $ctx6_key_elements[$key]['importance'])) / 2;
-//                $stakeholder_count = $ctx6_key_elements[$key]['stakeholder_count'];
-//            }
-//            $key_elements->push([
-//                'element' => $key,
-//                'importance' => isset($importance) ? round($importance, 2): null,
-//                'stakeholder_count' => $stakeholder_count ?? null,
-//                'group' => $ctx5_key_element['group'] ?? null,
-//            ]);
-//        }
-//
-//        return $key_elements
-//            ->sortByDesc('importance')
-//            ->filter(function ($item){
-//                return $item['importance']!==null;
-//            })
-//            ->toArray();
+    public static function getBiodiversityKeyElementsFromCTX($form_id): array
+    {
+        $animals =
+            Modules\Context\AnimalSpecies::getModule($form_id)
+                ->filter(function ($item) {
+                    return !empty($item['species']);
+                })
+                ->pluck('species')
+                ->map(function ($item) {
+                    return Str::contains($item, '|')
+                        ? Animal::getScientificName($item)
+                        : $item;
+                })
+                ->toArray();
+
+        $plants =
+            Modules\Context\VegetalSpecies::getModule($form_id)
+                ->filter(function ($item) {
+                    return !empty($item['species']);
+                })
+                ->pluck('species')
+                ->toArray();
+
+        $habitats =
+            Modules\Context\Habitats::getModule($form_id)
+                ->filter(function ($item) {
+                    return !empty($item['EcosystemType']);
+                })
+                ->pluck('EcosystemType')
+                ->map(function ($item) {
+                    $labels = SelectionList::getList('ImetOECM_Habitats');
+                    return array_key_exists($item, $labels) ?
+                        $labels[$item]
+                        : null;
+                })
+                ->toArray();
+
+        return array_merge($animals, $plants, $habitats);
+    }
+
+    /**
+     * Provide the list of prioritized key elements
+     * @param $form_id
+     * @return array
+     */
+    public static function getPrioritizedElements($form_id): array {
+        return collect(static::getModuleRecords($form_id)['records'])
+            ->filter(function($item){
+                return $item['IncludeInStatistics'];
+            })
+            ->pluck('Aspect')
+            ->toArray();
     }
 
 }

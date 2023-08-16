@@ -167,6 +167,7 @@ return array(
     'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\SupportsAndConstraints' => $vendorDir . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/SupportsAndConstraints.php',
     'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\SupportsAndConstraintsIntegration' => $vendorDir . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/SupportsAndConstraintsIntegration.php',
     'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\Threats' => $vendorDir . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/Threats.php',
+    'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\ThreatsBiodiversity' => $vendorDir . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/ThreatsBiodiversity.php',
     'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\ThreatsIntegration' => $vendorDir . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/ThreatsIntegration.php',
     'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\VisitorsManagement' => $vendorDir . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/VisitorsManagement.php',
     'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\WorkPlan' => $vendorDir . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/WorkPlan.php',

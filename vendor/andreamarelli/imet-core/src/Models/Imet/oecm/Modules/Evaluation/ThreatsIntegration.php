@@ -47,19 +47,21 @@ class ThreatsIntegration extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    public static function getModuleRecords($form_id, $collection = null): array
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
-        $module_records = parent::getModuleRecords($form_id, $collection);
+        $form_id = $empty_record['FormID'];
+
+        $records = parent::arrange_records($predefined_values, $records, $empty_record);
 
         $threats_ranking = collect(Threats::calculateRanking($form_id))
             ->pluck('__score', 'Value')
             ->toArray();
 
-        foreach ($module_records['records'] as $index => $record){
-            $module_records['records'][$index]['__score'] = $threats_ranking[$record['Threat']];
+        foreach ($records as $index => $record){
+            $records[$index]['__score'] = $threats_ranking[$record['Threat']];
         }
 
-        return $module_records;
+        return $records;
     }
 
 }

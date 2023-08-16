@@ -64,7 +64,7 @@ return [
         'module_info_Rating' => [
             'Évaluer la nécessité de prioriser les éléments clés dans la gestion de l\'AMCE'
         ],
-        'from_group' => 'De la catégorie : ',
+        'from_group' => 'De la catégorie',
         'num_stakeholders' => 'Indiqué par :num partie(s) prenante(s)',
         'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>P6, I1, PR6</i>',
     ],
@@ -76,6 +76,10 @@ return [
             'Weight'            => 'Implication de la partie prenante (0-100)',
             'ConstraintLevel'   => 'Niveau de la contrainte/du conflit ou du soutien/de la conformité',
             'Comments'          => 'Commentaires/Explication',
+        ],
+        'groups' => [
+            'group0' => 'Utilisateurs directs',
+            'group1' => 'Utilisateurs indirects',
         ],
         'ratingLegend' => [
             'ConstraintLevel' => [
@@ -104,6 +108,10 @@ return [
             'IncludeInStatistics' => 'À prioriser dans la gestion',
             'Comments'          => 'Commentaires/Explication',
         ],
+        'groups' => [
+            'group0' => 'Utilisateurs directs',
+            'group1' => 'Utilisateurs indirects',
+        ],
         'ratingLegend' => [
             'Intégration' => [
                 '0' => 'pas d’intégration',
@@ -125,8 +133,24 @@ return [
         'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>I1, PR6</i>',
     ],
 
+
+    'ThreatsBiodiversity' => [
+        'title' => 'Analyse des éléments clés de la biodiversité',
+        'fields' => [
+            'Criteria' => 'Critère',
+            'Threats' => 'Menaces',
+            'Note' => 'Note',
+        ],
+        'groups' => [
+            'group0' => 'Animaux',
+            'group1' => 'Végétaux',
+            'group2' => 'Habitats',
+        ],
+        'module_info' => 'Identifier les catégories de menaces affectant l\'élément clé de la biodiversité identifié dans CTX4.1, CTX4.2, CTX4.3'
+    ],
+
     'Threats' => [
-        'title' => 'Calculateur de menaces AMCE',
+        'title' => 'Analyse des menaces AMCE',
         'fields' => [
             'Value' => 'Valeurs',
             'Impact' => 'Impact/ Gravité',

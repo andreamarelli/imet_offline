@@ -10,6 +10,7 @@ return [
         'key_elements'          => 'Key animals and plants species',
         'stakeholders'          => 'Stakeholders involved in management or impacting the use of natural resources',
         'stakeholder_analysis'  => 'Stakeholder analysis',
+        'objectives'            => 'Objectives'
     ],
 
 

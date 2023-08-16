@@ -82,7 +82,6 @@ return [
             'AdditionalInfo' => 'Additional information on governance model (if needed)',
             'ManagementUnique' => 'Determine the entity in charge of the management and governance of the OECM',
             'ManagementName' => 'Name',
-            'ManagementList' => 'List of entities involved in the daily management and governance (do not list partners)',
             'ManagementType' => 'Type',
             'DateOfCreation' => 'Date of creation',
             'OfficialRecognition' => 'Official Recognition: Has the Management Entity received an official recognition from the national or regional authorities?',
@@ -210,7 +209,7 @@ return [
     ],
 
     'ManagementStaff' => [
-        'title' => 'Composition and staff of Management Entity(s) (identified in CTX 1.2).',
+        'title' => 'Composition and staff of Management Entity  (identified in CTX 1.2).',
         'fields' => [
             'Function' => 'Functions',
             'Number' => 'Number',
@@ -218,6 +217,7 @@ return [
             'Female' => 'Female',
             'Descriptions' => 'Descriptions',
             'AdequateNumber' => 'Adequate number',
+            'Difference' => 'Difference'
         ],
         'module_info' => 'Number and categories of members of the OECM Management Entity',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I2, PR1</i>'
@@ -461,9 +461,6 @@ return [
             'group8'  => 'Erosion prevention and maintenance of soil fertility',
             'group9'  => 'Lands (agriculture, livestock, forests)',
             'group10' => 'Habitats for animals and plants',
-            'group11' => 'Animals',
-            'group12' => 'Plants',
-            'group13' => 'Habitats',
         ],
         'groups_descriptions' => [
             'group0' =>
@@ -586,10 +583,7 @@ return [
                         <li>Habitats for pollination: Woodland and vegetation areas provide support for pollinators such as bees, butterflies and
                         hummingbirds which provide an important ecosystem service for agriculture as they help plants to produce fruit, seeds and
                         other reproductive structures. </li>
-                     </ul>',
-            'group11' => '',
-            'group12' => '',
-            'group13' => '',
+                     </ul>'
         ],
         'lists' => [
             'group0' => ['Human food vegetal', 'Human food animal', 'Medicines'],
@@ -616,7 +610,6 @@ return [
         'title' => 'Analysis per stakeholder - Direct Users',
         'fields' => [
             'Element' => 'Criteria',
-            'Description' => 'Specific element assessed',
             'Illegal' => 'Illegal',
             'Dependence' => 'Dependence',
             'Access' => 'Access',
@@ -676,7 +669,6 @@ return [
         'title' => 'Analysis per stakeholder - Indirect Users',
         'fields' => [
             'Element' => 'Criteria',
-            'Description' => 'Specific element assessed',
             'Illegal' => 'Illegal',
             'Support' => 'Support or Contribution',
             'Guidelines' => 'Guidelines and procedures',

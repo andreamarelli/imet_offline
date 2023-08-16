@@ -20,7 +20,7 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
     protected static $DEPENDENCIES = [
         [Modules\Evaluation\KeyElements::class, 'Element']
     ];
-    protected static $USER_MODE = Stakeholders::ONLY_DIRECT;
+    public static $USER_MODE = Stakeholders::ONLY_DIRECT;
 
     public function __construct(array $attributes = [])
     {
@@ -29,7 +29,6 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
         $this->module_title = trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.title');
         $this->module_fields = [
             ['name' => 'Element',       'type' => 'blade-imet-core::oecm.context.fields.AnalysisStakeholdersElement', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Element'), 'other' => 'rows="3"'],
-            ['name' => 'Description',    'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Description')],
             ['name' => 'Illegal',    'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Illegal')],
             ['name' => 'Dependence',    'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Dependence')],
             ['name' => 'Access',        'type' => 'suggestion-ImetOECM_Access', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Access')],
@@ -40,6 +39,7 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
             ['name' => 'Comments',      'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Comments')],
             ['name' => 'Stakeholder',    'type' => 'hidden', 'label' =>''],
         ];
+        $this->max_rows = 5;
 
         $this->module_groups = trans('imet-core::oecm_context.AnalysisStakeholders.groups');
 
@@ -66,8 +66,7 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
     {
         $isEmpty = true;
 
-        if($record['Description']!==null
-            || $record['Dependence']!==null
+        if($record['Dependence']!==null
             || $record['Access']!==null
             || $record['Rivalry']===true
             || $record['Quality']===true
@@ -83,8 +82,7 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
 
     public static function calculateKeyElementImportance($item): ?float
     {
-        if($item['Description']!==null
-            || $item['Dependence']!==null
+        if($item['Dependence']!==null
             || $item['Access']!==null
             || $item['Rivalry']===true
             || $item['Quality']!==null

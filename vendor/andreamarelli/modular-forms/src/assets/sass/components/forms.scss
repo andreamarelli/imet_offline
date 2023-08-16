@@ -632,6 +632,13 @@ nav.steps{
       }
 
       tr td {
+        .no_data{
+          font-weight: 600;
+          line-height: 1.2em;
+          color: $gray-400;
+          font-size: 1.3em;
+          text-align: center;
+        }
         .ofac-table-sum {
           display: inline-block;
           max-width: 350px;

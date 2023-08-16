@@ -54,7 +54,7 @@ return [
 
     'ManagementUnique' => [
         'unique'        => 'Une entité spécifiée',
-        'multiple'      => 'Une combinaison convenue d’entités'
+        'multiple'      => 'Une combinaison convenue de parties prenantes'
     ],
 
     'ManagementType'=> [
@@ -76,18 +76,6 @@ return [
         'terrestrial'           => 'Terrestre et/ou eau douce',
         'marine_and_coastal'    => 'Marine et côtiere ',
         'mixed'                 => 'Partiellement marin et terrestre (ou d’eau douce)',
-    ],
-
-    'Ownership' => [
-        'state'         => 'Etat',
-        'communal'      => 'Communauté',
-        'landowners'    => 'Propriétaires fonciers individuels',
-        'for_profit'    => 'Organisations à but lucratif',
-        'non_profit'    => 'Organisations à but non lucratif',
-        'joint'         => 'Propriété commune',
-        'multiple'      => 'Multipropriété',
-        'contested'     => 'Contesté',
-        'not_reported'  => 'Non signalé'
     ],
 
     'Habitats' => [
@@ -152,6 +140,7 @@ return [
         'geological'                => 'Phénomènes géologiques',
         'climate_change'            => 'Changement climatique',
         'other'                     => 'Autres pressions et menaces',
+        'no_threats'                => 'Pas de menaces',
     ],
 
     'Reliability' => [

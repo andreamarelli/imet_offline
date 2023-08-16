@@ -41,26 +41,24 @@ class Designation extends Modules\Component\ImetModule_Eval
     }
 
     /**
-     * Preload data from CTX 5.1
+     * Preload data
      *
-     * @param $form_id
-     * @param null $collection
+     * @param $predefined_values
+     * @param $records
+     * @param $empty_record
      * @return array
      */
-    public static function getModuleRecords($form_id, $collection = null): array
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
-        $module_records = parent::getModuleRecords($form_id, $collection);
-        $empty_record = static::getEmptyRecord($form_id);
+        $form_id = $empty_record['FormID'];
 
-        $records = $module_records['records'];
         $designations = Modules\Context\SpecialStatus::getModule($form_id)->pluck('Designation')->toArray();
         $preLoaded = [
             'field' => 'Aspect',
             'values' => array_filter($designations)
         ];
 
-        $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);
-        return $module_records;
+        return parent::arrange_records($preLoaded, $records, $empty_record);
     }
 
 }

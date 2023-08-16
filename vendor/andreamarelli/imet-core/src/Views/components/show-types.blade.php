@@ -1,18 +1,23 @@
 <?php
+
+use AndreaMarelli\ImetCore\Models\Animal;
+use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
+use Illuminate\Support\Str;
+
 /** @var String $type */
 /** @var String $value */
 /** @var bool $only_label [optional] */
 
-$value = $value==='' ? null : $value;
+$value = $value === '' ? null : $value;
 $only_label = $only_label ?? false;
 
 ?>
 
-@if(\Illuminate\Support\Str::contains($type, 'selector-wdpa_multiple'))
+@if(Str::contains($type, 'selector-wdpa_multiple'))
     <?php
-        if($value!==null){
-            $values = array_map(function($value) use($type){
-                return \AndreaMarelli\ModularForms\Helpers\Input\SelectionList::getLabel('Imet_ProtectedArea', str_replace('OFAC_', '', $value));
+        if($value !== null){
+            $values = array_map(function ($value) use ($type) {
+                return SelectionList::getLabel('Imet_ProtectedArea', str_replace('OFAC_', '', $value));
             }, explode(',', $value));
             $value = implode(',', $values);
         }
@@ -21,8 +26,17 @@ $only_label = $only_label ?? false;
         {!! $value ?? '&nbsp;' !!}
     </div>
 
+@elseif(Str::contains($type, 'selector-species_animal'))
+    <?php
+        if($value !== null){
+            $value = Animal::getPlainNameByTaxonomy($value);
+        }
+    ?>
+    <div class="field-preview">
+        {!! $value ?? '&nbsp;' !!}
+    </div>
 
-@elseif(\Illuminate\Support\Str::startsWith($type, 'imet-core::rating-'))
+@elseif(Str::startsWith($type, 'imet-core::rating-'))
     <?php
         $ratingType = str_replace('imet-core::rating-', '', $type);
         $ratingType = str_replace('WithNA', '', $ratingType);
@@ -30,7 +44,7 @@ $only_label = $only_label ?? false;
         [$min, $max] = explode('to', $ratingType);
     ?>
     <span ref="ratingOptions" class="rating-container">
-        @if(\Illuminate\Support\Str::contains($type, 'WithNA'))
+        @if(Str::contains($type, 'WithNA'))
             <span class="rating field-edit ratingNa {{ $value=='-99' ? 'active' : '' }}"
             >N/A</span>
         @endif
@@ -39,7 +53,5 @@ $only_label = $only_label ?? false;
             >{{ $i }}</span>
         @endfor
     </span>
-
-
 
 @endif

@@ -29,6 +29,7 @@ if($definitions['module_type']==='GROUP_TABLE'){
 
     {{-- inputs --}}
     <tbody class="{{ $group_key }}">
+    @if(!empty($records))
         @foreach($records as $record)
             <tr class="module-table-item">
                 @foreach($definitions['fields'] as $f_index=>$field)
@@ -41,6 +42,13 @@ if($definitions['module_type']==='GROUP_TABLE'){
                 @endforeach
             </tr>
         @endforeach
+    @else
+        <td colspan="{{ count($definitions['fields']) }}">
+            <div class="no_data">
+                @lang('modular-forms::common.no_data')
+            </div>
+        </td>
+    @endif
     </tbody>
 
 </table>

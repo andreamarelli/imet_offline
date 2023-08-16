@@ -9,128 +9,49 @@ use Illuminate\Support\Str;
 
 abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 {
-    protected static $USER_MODE;
+    public static $USER_MODE;
 
-    /**
-     * Override: Inject predefined values and replicate for each stakeholder
-     *
-     * @param $predefined_values
-     * @param $records
-     * @param $empty_record
-     * @return array
-     */
     protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
         $form_id = $empty_record['FormID'];
 
         // retrieve stakeholders
-        $stakeholders = Stakeholders::getStakeholders($form_id, static::$USER_MODE);
+        $stakeholders = Stakeholders::getStakeholders($form_id, static::$USER_MODE, true);
 
-        // Inject additional predefined values (last 3 groups) retrieved from CTX
-        $predefined_values = (new static())->predefined_values;
-        $predefined_values['values']['group11'] =
-            Modules\Context\AnimalSpecies::getModule($form_id)
-                ->filter(function ($item) {
-                    return !empty($item['species']);
-                })
-                ->pluck('species')
-                ->map(function ($item) {
-                    return Str::contains($item, '|')
-                        ? Animal::getScientificName($item)
-                        : $item;
-                })
-                ->toArray();
-        $predefined_values['values']['group12'] =
-            Modules\Context\VegetalSpecies::getModule($form_id)
-                ->filter(function ($item) {
-                    return !empty($item['species']);
-                })
-                ->pluck('species')
-                ->toArray();
-        $predefined_values['values']['group13'] =
-            Modules\Context\Habitats::getModule($form_id)
-                ->filter(function ($item) {
-                    return !empty($item['EcosystemType']);
-                })
-                ->pluck('EcosystemType')
-                ->map(function ($item) {
-                    $labels = SelectionList::getList('ImetOECM_Habitats');
-                    return array_key_exists($item, $labels) ?
-                        $labels[$item]
-                        : null;
-                })
-                ->toArray();
+        // Add at least a record (empty) for each group (related to selected categories) per stakeholder
+        $groups = array_keys(trans('imet-core::oecm_context.AnalysisStakeholders.groups'));
+        foreach ($stakeholders as $stakeholder => $stakeholder_categories) {
+            $stakeholder_categories = json_decode($stakeholder_categories);
+            $stakeholder_categories = $stakeholder_categories!==null ? $stakeholder_categories : [];
+            foreach ($groups as $group) {
 
-        // Clean records (if nothing from DB)
-        if (!empty($records)) {
-            // ensure first record has id field (set to null if doesn't)
-            if (!array_key_exists((new static())->primaryKey, $records[0])) {
-                $records[0][(new static())->primaryKey] = null;
-            }
-            // ensure records are empty if the first record is empty (no id)
-            if (count($predefined_values['values']) >= 1
-                && count($records) == 1
-                && $records[0][(new static())->primaryKey] == null
-            ) {
-                $records = [];
-            }
-        }
+                if(
+                    in_array('provisioning', $stakeholder_categories) && in_array($group, ['group0', 'group1', 'group2', 'group3']) ||
+                    in_array('cultural', $stakeholder_categories) && in_array($group, ['group4', 'group5', 'group6' ]) ||
+                    in_array('regulating', $stakeholder_categories) && in_array($group, ['group7', 'group8']) ||
+                    in_array('supporting', $stakeholder_categories) && in_array($group, ['group9', 'group10'])
+                ){
 
-        // inject predefined values and replicate for each stakeholder
-        $new_records = [];
-        foreach ($stakeholders as $stakeholder) {
-            foreach ($predefined_values['values'] as $g => $group) {
-                foreach ($group as $predefined_value) {
-                    $new_record = $empty_record;
-                    foreach ($records as $r => $record) {
-                        if ($record['Element'] == $predefined_value
-                            && $record['group_key'] == $g
-                            && $record['Stakeholder'] == $stakeholder) {
-                            $new_record = $record;
-                            unset($records[$r]);
-                            break;
+                    // Find a record for the given stakeholder/group
+                    $found = false;
+                    foreach ($records as $record) {
+                        if ($record['group_key'] === $group
+                            && $record['Stakeholder'] === $stakeholder) {
+                            $found = true;
                         }
                     }
-                    $new_record['Element'] = $predefined_value;
-                    $new_record['group_key'] = $g;
-                    $new_record['Stakeholder'] = $stakeholder;
-                    $new_record['__predefined'] = true;
-                    $new_records[] = $new_record;
-                }
-            }
-        }
-
-        // Add remaining records (without predefined)
-        if (count($records) > 0) {
-            foreach ($records as $r => $record) {
-                $new_record = $record;
-                $new_record['__predefined'] = false;
-                $new_records[] = $record;
-            }
-        }
-
-        // Add at least a record (empty) for each group per stakeholder
-        $groups = array_keys(trans('imet-core::oecm_context.AnalysisStakeholders.groups'));
-        foreach ($stakeholders as $stakeholder) {
-            foreach ($groups as $group) {
-                $found = false;
-                foreach ($new_records as $record) {
-                    if ($record['group_key'] === $group
-                        && $record['Stakeholder'] === $stakeholder) {
-                        $found = true;
+                    // if record not found force an empty one
+                    if (!$found) {
+                        $record = $empty_record;
+                        $record['__predefined'] = false;
+                        $record['group_key'] = $group;
+                        $record['Stakeholder'] = $stakeholder;
+                        $records[] = $record;
                     }
                 }
-                if (!$found) {
-                    $new_record = $empty_record;
-                    $new_record['__predefined'] = false;
-                    $new_record['group_key'] = $group;
-                    $new_record['Stakeholder'] = $stakeholder;
-                    $new_records[] = $new_record;
-                }
             }
         }
-
-        return $new_records;
+        return $records;
     }
 
     abstract static function calculateKeyElementImportance($item): ?float;
@@ -228,15 +149,12 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
                         $threats[$threat]['elements_illegal'][$record['group_key']] = [];
                     }
 
-                    if (in_array($record['group_key'], ['group11', 'group12', 'group13'])) {
-                        $threats[$threat]['elements'][$record['group_key']][] = $record['Element'];
+                    if ($record['Illegal']) {
+                        $threats[$threat]['elements_illegal'][$record['group_key']][] = $record['Description'] ?? $record['Element'];
                     } else {
-                        if ($record['Illegal']) {
-                            $threats[$threat]['elements_illegal'][$record['group_key']][] = $record['Description'] ?? $record['Element'];
-                        } else {
-                            $threats[$threat]['elements'][$record['group_key']][] = $record['Description'] ?? $record['Element'];
-                        }
+                        $threats[$threat]['elements'][$record['group_key']][] = $record['Description'] ?? $record['Element'];
                     }
+
                 }
             }
         }
