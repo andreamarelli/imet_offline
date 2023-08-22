@@ -4,6 +4,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
 use AndreaMarelli\ModularForms\Models\Traits\Payload;
@@ -63,7 +64,7 @@ class KeyElements extends Modules\Component\ImetModule_Eval
         $form_id = $empty_record['FormID'];
 
         // Retrieve key elements (and importance calculation) form CTX
-        $key_elements =  collect(static::getKeyElementsFromSA($form_id))->keyBy('element');
+        $key_elements = collect(static::getKeyElementsFromSA($form_id))->keyBy('element');
         $biodiversity_key_elements =  static::getBiodiversityKeyElementsFromCTX($form_id);
 
         // Set predefines values (key elements)
@@ -71,7 +72,7 @@ class KeyElements extends Modules\Component\ImetModule_Eval
             'field' => 'Aspect',
             'values' => [
                 'group0' => $key_elements->pluck('element')->toArray(),
-                'group1' => $biodiversity_key_elements,
+                'group2' => $biodiversity_key_elements,
             ]
         ];
 
@@ -81,11 +82,13 @@ class KeyElements extends Modules\Component\ImetModule_Eval
         foreach ($records as $index => $record){
             if($record['group_key']==='group0' && array_key_exists($record['Aspect'], $key_elements->toArray())){
                 $records[$index]['Importance'] = $key_elements[$record['Aspect']]['importance'];
-                $records[$index]['__num_stakeholders'] = $key_elements[$record['Aspect']]['stakeholder_count'];
+                $records[$index]['__num_stakeholders_direct'] = $key_elements[$record['Aspect']]['stakeholder_direct_count'];
+                $records[$index]['__num_stakeholders_indirect'] = $key_elements[$record['Aspect']]['stakeholder_indirect_count'];
                 $records[$index]['__group_stakeholders'] = $key_elements[$record['Aspect']]['group'];;
-            } else {
+            } else if($record['group_key']==='group2'){
                 $records[$index]['Importance'] = null;
-                $records[$index]['__num_stakeholders'] = null;
+                $records[$index]['__num_stakeholders_direct'] = null;
+                $records[$index]['__num_stakeholders_indirect'] = null;
                 $records[$index]['__group_stakeholders'] = null;
             }
         }
@@ -102,33 +105,47 @@ class KeyElements extends Modules\Component\ImetModule_Eval
             ->sum();
         $indirect_users_weights = collect(Modules\Context\Stakeholders::calculateWeights($form_id, Modules\Context\Stakeholders::ONLY_INDIRECT))
             ->sum();
-        $users_weight = $direct_users_weights + $indirect_users_weights;
+        $users_weights = $direct_users_weights + $indirect_users_weights;
 
         $direct_users_key_elements = collect($direct_users_key_elements)
             ->map(function($item) use ($direct_users_weights){
-               $item['importance'] = $item['importance'] * $direct_users_weights;
-               return $item;
+                $item['importance'] = $item['importance'] * $direct_users_weights;
+                $item['__type'] = Modules\Context\Stakeholders::ONLY_DIRECT;
+                return $item;
             });
 
         $indirect_users_key_elements = collect($indirect_users_key_elements)
             ->map(function($item) use ($indirect_users_weights){
-               $item['importance'] = $item['importance'] * $indirect_users_weights;
+                $item['importance'] = $item['importance'] * $indirect_users_weights;
+                $item['__type'] = Modules\Context\Stakeholders::ONLY_INDIRECT;
                 return $item;
             });
 
         $all_elements = $direct_users_key_elements->merge($indirect_users_key_elements);
+
         $importances = collect($all_elements)
             ->groupBy('element')
-            ->map(function($group_element) use ($users_weight){
+            ->map(function($group_element) use ($users_weights){
 
                 $importance = $group_element
                         ->map(function($item){
                             return $item['importance'];
                         })
-                        ->sum() / $users_weight;
+                        ->sum() / $users_weights;
                 $importance = round($importance, 1);
 
-                $stakeholder_count = $group_element
+                $stakeholder_direct_count= $group_element
+                    ->filter(function($item){
+                        return $item['__type'] === Modules\Context\Stakeholders::ONLY_DIRECT;
+                    })
+                    ->map(function($item){
+                        return $item['stakeholder_count'];
+                    })
+                    ->sum();
+                $stakeholder_indirect_count= $group_element
+                    ->filter(function($item){
+                        return $item['__type'] === Modules\Context\Stakeholders::ONLY_INDIRECT;
+                    })
                     ->map(function($item){
                         return $item['stakeholder_count'];
                     })
@@ -137,7 +154,8 @@ class KeyElements extends Modules\Component\ImetModule_Eval
                 return [
                     'element' => $group_element[0]['element'],
                     'importance' => $importance,
-                    'stakeholder_count' => $stakeholder_count,
+                    'stakeholder_direct_count' => $stakeholder_direct_count,
+                    'stakeholder_indirect_count' => $stakeholder_indirect_count,
                     'group' => $group_element[0]['group']
                 ];
             })

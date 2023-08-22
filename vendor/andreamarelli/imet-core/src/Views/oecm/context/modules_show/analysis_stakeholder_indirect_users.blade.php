@@ -24,4 +24,5 @@ $current_stakeholder = 'summary';
     'stakeholders' => $stakeholders,
     'key_elements_importance' => $key_elements_importance,
     'current_stakeholder' => $current_stakeholder,
+    'summary_title' => trans('imet-core::oecm_context.AnalysisStakeholders.summary_indirect')
 ])

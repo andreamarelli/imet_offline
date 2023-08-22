@@ -21,4 +21,5 @@ $vue_data['key_elements_importance'] = AnalysisStakeholderIndirectUsers::calcula
     'definitions' => $definitions,
     'vue_data' => $vue_data,
     'stakeholders' => $stakeholders,
+    'summary_title' => trans('imet-core::oecm_context.AnalysisStakeholders.summary_indirect')
 ])

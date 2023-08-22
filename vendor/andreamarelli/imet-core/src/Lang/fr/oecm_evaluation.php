@@ -45,8 +45,8 @@ return [
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
-            'group0' => 'Identifiez les espèces animales (phares, menacées, endémiques, ...) choisies comme espèces clés',
-            'group1' => 'Identifier les espèces végétales (phares, en danger, endémiques, ...) choisies comme espèces clés',
+            'group0' => 'Services écosystémiques',
+            'group1' => 'Éléments clés de la biodiversité',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -65,7 +65,7 @@ return [
             'Évaluer la nécessité de prioriser les éléments clés dans la gestion de l\'AMCE'
         ],
         'from_group' => 'De la catégorie',
-        'num_stakeholders' => 'Indiqué par :num partie(s) prenante(s)',
+        'num_stakeholders' => 'Indiqué par :num_dir partie(s) prenante(s) direct et par :num_ind partie(s) prenante(s) indirect',
         'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>P6, I1, PR6</i>',
     ],
 
@@ -819,24 +819,8 @@ return [
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
-            'group0' => 'Communauté/groupe ou autre',
-            'group1' => 'Gouvernement',
-            'group2' => 'ONG, scientifiques et donateurs',
-            'group3' => 'Opérateurs économiques',
-        ],
-        'predefined_values' => [
-            'group0' => [
-                ''
-            ],
-            'group1' => [
-                ''
-            ],
-            'group2' => [
-                ''
-            ],
-            'group3' => [
-                ''
-            ]
+            'group0' => 'Utilisateurs directs',
+            'group1' => 'Utilisateurs indirects',
         ],
         'ratingLegend' => [
             'Cooperation' => [

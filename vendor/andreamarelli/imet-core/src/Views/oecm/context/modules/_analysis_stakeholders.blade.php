@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 /** @var Collection $collection */
 /** @var Mixed $definitions */
 /** @var Mixed $vue_data */
+/** @var String $summary_title */
 
 /** @var Array $stakeholders */
 $num_cols = count($definitions['fields']);
@@ -23,7 +24,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
 <div class="card" id="module_{{ $definitions['module_key'] }}_summary">
     <div class="card-header">
         <h4 class="card-title" role="button" @click="switchStakeholder('summary')">
-            @lang('imet-core::oecm_context.AnalysisStakeholders.summary')
+            {!! $summary_title !!}
         </h4>
     </div>
     <div>

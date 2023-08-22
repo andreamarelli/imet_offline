@@ -11,7 +11,13 @@ ALTER TABLE imet_oecm.context_analysis_stakeholders_indirect_users DROP COLUMN I
 DELETE FROM imet_oecm.eval_supports_constraints WHERE group_key IS null;
 DELETE FROM imet_oecm.eval_supports_constraints_integration WHERE group_key IS null;
 
-CREATE TABLE imet_oecm.eval_threats_biodiversity
+DELETE FROM imet_oecm.eval_key_elements;
+DELETE FROM imet_oecm.eval_objectives;
+DELETE FROM imet_oecm.eval_information_availability;
+DELETE FROM imet_oecm.eval_management_activities;
+DELETE FROM imet_oecm.eval_stakeholder_cooperation;
+
+CREATE TABLE IF NOt EXISTS imet_oecm.eval_threats_biodiversity
 (
     id              serial PRIMARY KEY,
     "FormID"        integer,

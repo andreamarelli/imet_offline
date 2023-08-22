@@ -104,7 +104,6 @@ return [
         'cultural'      => 'Culturel',
         'regulating'    => 'Régulateur',
         'supporting'    => 'Porteur',
-        'biodiversity'  => 'Biodiversité',
     ],
 
 

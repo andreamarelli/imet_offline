@@ -17,7 +17,7 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
 
     public function __construct(array $attributes = []) {
 
-        $this->module_type = 'TABLE';
+        $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'PR9';
         $this->module_title = trans('imet-core::oecm_evaluation.StakeholderCooperation.title');
         $this->module_fields = [
@@ -26,6 +26,8 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
             ['name' => 'Cooperation',       'type' => 'imet-core::rating-0to3WithNA',  'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.Cooperation')],
             ['name' => 'Comments',          'type' => 'text-area',          'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.Comments')],
         ];
+
+        $this->module_groups = trans('imet-core::oecm_evaluation.StakeholderCooperation.groups');
 
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.StakeholderCooperation.module_info_EvaluationQuestion');
         $this->ratingLegend = trans('imet-core::oecm_evaluation.StakeholderCooperation.ratingLegend');
@@ -47,7 +49,10 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
 
         $preLoaded = [
             'field' => 'Element',
-            'values' => Modules\Context\Stakeholders::getStakeholders($form_id)
+            'values' => [
+                'group0' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_DIRECT),
+                'group1' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_INDIRECT),
+            ]
         ];
 
         $records = parent::arrange_records($preLoaded, $records, $empty_record);

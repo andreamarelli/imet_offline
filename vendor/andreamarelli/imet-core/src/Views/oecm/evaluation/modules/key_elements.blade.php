@@ -35,10 +35,15 @@
                 },
                 percentage_stakeholder_label(element_id){
                     let [group_key, index]  = this.__get_indexes(element_id);
-                    let num = this.records[group_key][index]['__num_stakeholders'];
-                    if(num !== null){
-                        num = parseInt(num);
-                        return Locale.getLabel('imet-core::oecm_evaluation.KeyElements.num_stakeholders', {'num': '<b>' + num + '</b>'})
+                    let num_dir = this.records[group_key][index]['__num_stakeholders_direct'];
+                    let num_ind = this.records[group_key][index]['__num_stakeholders_indirect'];
+                    if(num_dir !== null || num_ind){
+                        num_dir = num_dir !== null ? parseInt(num_dir) : 0;
+                        num_ind = num_ind !== null ? parseInt(num_ind) : 0;
+                        return Locale.getLabel('imet-core::oecm_evaluation.KeyElements.num_stakeholders', {
+                            'num_dir': '<b>' + num_dir + '</b>',
+                            'num_ind': '<b>' + num_ind + '</b>',
+                        })
                     }
                     return '';
                 }

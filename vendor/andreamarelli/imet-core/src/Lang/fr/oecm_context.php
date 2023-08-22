@@ -560,8 +560,8 @@ return [
             'group9' => ['Fourniture de fertilité', 'Fourniture d’eau', 'Fourniture de lutte contre les maladies'],
             'group10' => ['Habitats de pépinière et de nidification', 'Habitats pour la pollinisation']
         ],
-        'summary' => 'Importance des éléments et implication des parties prenantes',
-        'elements_importance' => 'Importance des éléments pour les parties prenantes',
+        'summary_direct' => 'Importance des éléments et implication des parties prenantes (utilisateurs directs)',
+        'summary_indirect' => 'Importance des éléments et implication des parties prenantes (utilisateurs indirects)',
         'involvement_ranking' => 'Implication des parties prenantes',
         'importance' => 'Importance (0-100)',
         'involvement' => 'Implication de la partie prenante (0-100)'
@@ -643,29 +643,29 @@ return [
             'Comments' => 'Note',
         ],
         'module_info' =>
-            '<b>Soutien ou contribution</b>: Actions et efforts déployés par la partie prenante pour gérer et protéger 
-                durablement les écosystèmes ou les espèces. Les domaines de soutien ou de contribution peuvent être l\'un des 
-                suivants: financement, renforcement des capacités et assistance technique, recherche et suivi, application 
+            '<b>Soutien ou contribution</b>: Actions et efforts déployés par la partie prenante pour gérer et protéger
+                durablement les écosystèmes ou les espèces. Les domaines de soutien ou de contribution peuvent être l\'un des
+                suivants: financement, renforcement des capacités et assistance technique, recherche et suivi, application
                 de la loi, politique et plaidoyer, et engagement à long terme.</br >' .
-            '<b>Lignes directrices et procédures</b>: Existence ou développement de lignes directrices et de procédures 
-                claires élaborées par la partie prenante pour assurer une gestion et une gouvernance à long terme et durables 
+            '<b>Lignes directrices et procédures</b>: Existence ou développement de lignes directrices et de procédures
+                claires élaborées par la partie prenante pour assurer une gestion et une gouvernance à long terme et durables
                 de l\'élément clé</br >' .
-            '<b>Manque de collaboration entre les utilisateurs indirects et directs</b>: Absence ou insuffisance de coordination 
-                entre les différents acteurs qui utilisent et bénéficient des services écosystémiques, ce qui pourrait conduire 
+            '<b>Manque de collaboration entre les utilisateurs indirects et directs</b>: Absence ou insuffisance de coordination
+                entre les différents acteurs qui utilisent et bénéficient des services écosystémiques, ce qui pourrait conduire
                 à des conflits et à des pratiques non durables</br >' .
-            '<b>Statut des éléments clés de l\'AMCE</b>: L\'état des éléments clés indique l\'état de la fourniture des services 
-                écosystémiques ou de l\'élément clé de la biodiversité en termes de qualité. Un état très mauvais indique que 
-                le service écosystémique fourni est de mauvaise qualité ou que l\'élément clé de la biodiversité risque sérieusement 
-                de disparaître dans la zone de l\'AMCE. Un très bon état indique que l\'élément clé est de bonne qualité ou 
-                en expansion. Divers facteurs environnementaux tels que le climat et les conditions météorologiques, le 
-                changement d\'utilisation des terres, la pollution et la surexploitation des ressources, la surexploitation 
+            '<b>Statut des éléments clés de l\'AMCE</b>: L\'état des éléments clés indique l\'état de la fourniture des services
+                écosystémiques ou de l\'élément clé de la biodiversité en termes de qualité. Un état très mauvais indique que
+                le service écosystémique fourni est de mauvaise qualité ou que l\'élément clé de la biodiversité risque sérieusement
+                de disparaître dans la zone de l\'AMCE. Un très bon état indique que l\'élément clé est de bonne qualité ou
+                en expansion. Divers facteurs environnementaux tels que le climat et les conditions météorologiques, le
+                changement d\'utilisation des terres, la pollution et la surexploitation des ressources, la surexploitation
                 peuvent affecter l\'état des éléments clés de l\'AMCE.</br >' .
-            '<b>Tendance des éléments clés de l\'AMCE</b>: Les tendances actuelles des éléments clés indiquent le changement 
-                dans la quantité de services écosystémiques fournis ou dans la taille-surface des éléments clés de la biodiversité. 
-                Pour les services écosystémiques, il peut s\'agir de la quantité de services fournis, pour l\'élément clé 
-                de la biodiversité, il peut s\'agir de la taille de la population (espèce), de la superficie (habitats, 
+            '<b>Tendance des éléments clés de l\'AMCE</b>: Les tendances actuelles des éléments clés indiquent le changement
+                dans la quantité de services écosystémiques fournis ou dans la taille-surface des éléments clés de la biodiversité.
+                Pour les services écosystémiques, il peut s\'agir de la quantité de services fournis, pour l\'élément clé
+                de la biodiversité, il peut s\'agir de la taille de la population (espèce), de la superficie (habitats,
                 couverture terrestre) ou de la quantité de production écologique.</br >' .
-            '<b>Menaces</b>: Activités ou processus humains qui ont impacté, impactent ou peuvent impacter l’élément clé 
+            '<b>Menaces</b>: Activités ou processus humains qui ont impacté, impactent ou peuvent impacter l’élément clé
                 de l\'AMCE évalué.</br >',
         'ratingLegend' => [
             'Support' => [
@@ -695,7 +695,7 @@ return [
     'AnalysisStakeholdersObjectives' => [
         'module_info' =>
             'Établir et décrire les objectifs de conservation pour les parties prenantes analyse des éléments clés de l\'AMCE.
-            Les objectifs inscrits ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, 
+            Les objectifs inscrits ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification,
             la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l\'AMCE.'
     ],
 

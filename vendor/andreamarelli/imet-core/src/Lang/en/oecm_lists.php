@@ -104,7 +104,6 @@ return [
         'cultural'      => 'Cultural',
         'regulating'    => 'Regulating',
         'supporting'    => 'Supporting',
-        'biodiversity'  => 'Biodiversity',
     ],
 
     'PopulationStatus' => [

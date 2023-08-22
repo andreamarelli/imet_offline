@@ -5,7 +5,6 @@
 
 $threats = trans('imet-core::oecm_lists.Threats');
 $vue_data['threats'] = $threats;
-
 ?>
 
 <div>
@@ -22,7 +21,7 @@ $vue_data['threats'] = $threats;
                         <div role="progressbar"
                              class="progress-bar progress-bar-striped  progress-bar-negative"
                              :style="'width: ' + Math.abs(threat_stats['{{ $threat_key }}']) + '%; background-color: #87c89b !important;'">
-                            <span v-html="'-' +threat_stats['{{ $threat_key }}']"></span>
+                            <span v-html="threat_stats['{{ $threat_key }}']"></span>
                         </div>
                     </div>
                 </div>
@@ -54,20 +53,20 @@ $vue_data['threats'] = $threats;
                         _this.records.forEach(function(record){
                             if(record['__threat_key'] === key){
                                 let prod = 1
-                                    * (record['Impact']!==null ? 4-record['Impact'] : 1)
-                                    * (record['Extension']!==null ? 4-record['Extension'] : 1)
-                                    * (record['Duration']!==null ? 4-record['Duration'] : 1)
-                                    * (record['Trend']!==null ?(5/2 - record['Trend']*3/4) : 1)
-                                    * (record['Probability']!==null ? 4-record['Probability'] : 1);
-                                let count = 1
-                                    * (record['Impact']!==null ? 1 : 0)
-                                    * (record['Extension']!==null ? 1 : 0)
-                                    * (record['Duration']!==null ? 1 : 0)
-                                    * (record['Trend']!==null ? 1 : 0)
-                                    * (record['Probability']!==null ? 1 : 0);
+                                    * (record['Impact']!==null ? 4-parseInt(record['Impact']) : 1)
+                                    * (record['Extension']!==null ? 4-parseInt(record['Extension']) : 1)
+                                    * (record['Duration']!==null ? 4-parseInt(record['Duration']) : 1)
+                                    * (record['Trend']!==null ?(5/2 - parseInt(record['Trend'])*3/4) : 1)
+                                    * (record['Probability']!==null ? 4-parseInt(record['Probability']) : 1);
+                                let count =
+                                    (record['Impact']!==null ? 1 : 0)
+                                    + (record['Extension']!==null ? 1 : 0)
+                                    + (record['Duration']!==null ? 1 : 0)
+                                    + (record['Trend']!==null ? 1 : 0)
+                                    + (record['Probability']!==null ? 1 : 0);
 
                                 let score = count>0
-                                    ? (4 - Math.pow(prod, 1/count))
+                                    ? (4 - Math.pow(prod, (1/count)))
                                     : null;
 
                                 score = score!==null

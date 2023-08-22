@@ -4,7 +4,8 @@
 /** @var bool $only_label */
 
 $group_stakeholders = $record['__group_stakeholders'];
-$num_stakeholders = $record['__num_stakeholders'];
+$num_stakeholders_direct = $record['__num_stakeholders_direct'];
+$num_stakeholders_indirect = $record['__num_stakeholders_indirect'];
 
 ?>
 
@@ -22,7 +23,10 @@ $num_stakeholders = $record['__num_stakeholders'];
     @endif
     @if($num_stakeholders!==null)
         <div>
-            @lang('imet-core::oecm_evaluation.KeyElements.num_stakeholders', ['num' => '<b>'.$num_stakeholders.'</b>'])
+            @lang('imet-core::oecm_evaluation.KeyElements.num_stakeholders', [
+                'num_dir' => '<b>'.$num_stakeholders_direct.'</b>',
+                'num_ind' => '<b>'.$num_stakeholders_indirect.'</b>'
+                ])
         </div>
     @endif
 </div>

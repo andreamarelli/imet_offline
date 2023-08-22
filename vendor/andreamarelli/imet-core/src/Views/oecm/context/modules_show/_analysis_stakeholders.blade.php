@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 /** @var Array $stakeholders */
 /** @var Array $key_elements_importance */
 /** @var String $current_stakeholder */
+/** @var String $summary_title */
 
 $form_id = $collection[0]['FormID'];
 
@@ -34,7 +35,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
 <div class="card">
     <div class="card-header">
         <h4 class="card-title">
-            @lang('imet-core::oecm_context.AnalysisStakeholders.summary')
+            {!! $summary_title !!}}
         </h4>
     </div>
     <div>

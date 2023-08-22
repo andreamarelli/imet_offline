@@ -21,7 +21,7 @@ class CapacityAdequacy extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::oecm_evaluation.CapacityAdequacy.title');
         $this->module_fields = [
             ['name' => 'Member',        'type' => 'disabled',                   'label' => trans('imet-core::oecm_evaluation.CapacityAdequacy.fields.Member')],
-            ['name' => 'Weight',        'type' => 'disabled',                   'label' => trans('imet-core::oecm_evaluation.CapacityAdequacy.fields.Weight')],
+            ['name' => 'Weight',        'type' => 'hidden',                   'label' => trans('imet-core::oecm_evaluation.CapacityAdequacy.fields.Weight')],
             ['name' => 'Adequacy',      'type' => 'imet-core::rating-0to3',     'label' => trans('imet-core::oecm_evaluation.CapacityAdequacy.fields.Adequacy')],
             ['name' => 'Comments',      'type' => 'text-area',                  'label' => trans('imet-core::oecm_evaluation.CapacityAdequacy.fields.Comments')],
         ];
