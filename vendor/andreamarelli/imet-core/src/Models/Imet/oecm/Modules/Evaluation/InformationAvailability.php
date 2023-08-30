@@ -62,9 +62,16 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
     {
         $form_id = $empty_record['FormID'];
 
+        $key_elements = array_merge(
+            KeyElements::getPrioritizedElements($form_id),
+            Designation::getPrioritizedElements($form_id),
+            SupportsAndConstraintsIntegration::getPrioritizedElements($form_id),
+            ThreatsIntegration::getPrioritizedElements($form_id)
+        );
+
         $preLoaded = [
             'field' => 'Element',
-            'values' => KeyElements::getPrioritizedElements($form_id)
+            'values' => $key_elements
         ];
 
         return parent::arrange_records($preLoaded, $records, $empty_record);

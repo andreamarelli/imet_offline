@@ -231,16 +231,16 @@ input.captcha-input{
 }
 
 .rating-container{
-  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
 }
 .rating {
   min-height: 0;
   min-width: 0;
-  display: inline-block;
   font-weight: bold;
   color: $gray-500;
   border: 1px solid $gray-400;
-  margin-right: 2px;
   height: 22px;
   padding: 0;
   text-align: center;

@@ -65,6 +65,7 @@ return [
             'Évaluer la nécessité de prioriser les éléments clés dans la gestion de l\'AMCE'
         ],
         'from_group' => 'De la catégorie',
+        'key_elements_importance_composition' => 'Importance composition: :imp_dir (de :num_dir partie(s) prenante(s) direct) + :imp_ind (de :num_ind partie(s) prenante(s) indirect)',
         'num_stakeholders' => 'Indiqué par :num_dir partie(s) prenante(s) direct et par :num_ind partie(s) prenante(s) indirect',
         'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>P6, I1, PR6</i>',
     ],
@@ -138,13 +139,50 @@ return [
         'title' => 'Analyse des éléments clés de la biodiversité',
         'fields' => [
             'Criteria' => 'Critère',
-            'Threats' => 'Menaces',
+            'Impact' => 'Impact/ Gravité',
+            'Extension' => 'Échelle/ Étendue',
+            'Duration' => 'Durée/irréversibilité',
+            'Trend' => 'Tendence',
+            'Probability' => 'Probabilité de la menace à l’avenir',
             'Note' => 'Note',
         ],
         'groups' => [
             'group0' => 'Animaux',
             'group1' => 'Végétaux',
             'group2' => 'Habitats',
+        ],
+        'ratingLegend' => [
+            'Impact' => [
+                '0' => 'Peu sévère',
+                '1' => 'Modéré',
+                '2' => 'Fort',
+                '3' => 'Sévère',
+            ],
+            'Extension' => [
+                '0' => 'Localisée <5%',
+                '1' => 'Eparse 5-15%',
+                '2' => 'Largement dispersé 15-50%',
+                '3' => 'Partout >50%',
+            ],
+            'Duration' => [
+                '0' => 'Récente < 5 years',
+                '1' => 'A durée 5-20 years',
+                '2' => 'Dure de plus 20-100 years',
+                '3' => 'Est permanent  >100 years',
+            ],
+            'Trend' => [
+                '-2' => 'En baisse',
+                '-1' => 'Légèrement en baisse',
+                '0' => 'Aucun changement',
+                '1' => 'Légèrement en hausse',
+                '2' => 'En hausse',
+            ],
+            'Probability' => [
+                '0' => 'Très faible',
+                '1' => 'Faible',
+                '2' => 'Moyenne',
+                '3' => 'Elevée',
+            ],
         ],
         'module_info' => 'Identifier les catégories de menaces affectant l\'élément clé de la biodiversité identifié dans CTX4.1, CTX4.2, CTX4.3'
     ],
@@ -198,7 +236,7 @@ return [
         'module_info_Rating' => [
             'Évaluer le niveau d’intégration des menaces les plus importantes dans la gestion de l’AMCE sur la base de l’analyse du calculateur de menaces au point SA 2 du contexte d’intervention et automatiquement rapporté ci-dessous. Évaluation des menaces (rapportée automatiquement à partir du SA 2) Priorité dans la gestion Commentaires/explications'
         ],
-        'stakeholders' => 'Indiqué par :num  Partie prenante(s)'
+        'num_stakeholders' => 'Indiqué par :num_dir partie(s) prenante(s) direct et par :num_ind partie(s) prenante(s) indirect',
     ],
 
     'ThreatsIntegration' => [

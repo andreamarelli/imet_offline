@@ -71,6 +71,9 @@ use Illuminate\Database\Eloquent\Collection;
 
         </div>
 
+        <br />
+        <br />
+
     </div>
 @endforeach
 

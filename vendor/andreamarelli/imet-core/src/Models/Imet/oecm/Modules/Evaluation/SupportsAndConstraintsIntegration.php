@@ -66,17 +66,32 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
 
         $weight = Modules\Context\Stakeholders::calculateWeights($form_id);
         $ranking = collect(SupportsAndConstraints::calculateRanking($form_id))
-            ->pluck('__score', 'Stakeholder')
+            ->pluck('ConstraintLevel', 'Stakeholder')
             ->toArray();
 
         foreach($records as $idx => $record){
             $records[$idx]['__weight'] = $weight[$record['Stakeholder']] ?? null;
-            $records[$idx]['__score'] = $ranking[$record['Stakeholder']] ?? null;
+            $records[$idx]['__score'] = $ranking[$record['Stakeholder']]!==null ? $ranking[$record['Stakeholder']]*100/3 : null;
         }
 
         return collect($records)
             ->sortBy('__score')
             ->values()
+            ->toArray();
+    }
+
+    /**
+     * Provide the list of prioritized key elements
+     * @param $form_id
+     * @return array
+     */
+    public static function getPrioritizedElements($form_id): array
+    {
+        return collect(static::getModuleRecords($form_id)['records'])
+            ->filter(function ($item) {
+                return $item['IncludeInStatistics'];
+            })
+            ->pluck('Stakeholder')
             ->toArray();
     }
 

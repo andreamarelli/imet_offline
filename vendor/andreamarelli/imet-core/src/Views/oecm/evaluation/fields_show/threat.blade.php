@@ -3,20 +3,20 @@
 /** @var String $value */
 /** @var bool $only_label */
 
-$num_stakeholders = $record['__num_stakeholders'];
-$elements = $record['__elements'];
+$count_stakeholders = $record['__count_stakeholders'];
+$elements_legal = $record['__elements_legal'];
 $elements_illegal = $record['__elements_illegal'];
 
 //dd($elements, $elements_illegal);
 
 $list = '';
-if($num_stakeholders!==null){
+if($count_stakeholders!==null){
     foreach ($elements_illegal as $e){
         if(count($e)>0){
             $list .= '<b style="color: red;">'.implode(', ', $e).'</b>';
         }
     }
-    foreach ($elements as $e){
+    foreach ($elements_legal as $e){
         $list = $list !== '' ? $list.', ': '';
         if(count($e)>0){
             $list .= implode(', ', $e);

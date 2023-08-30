@@ -9,6 +9,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
 use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -64,7 +65,7 @@ class KeyElements extends Modules\Component\ImetModule_Eval
         $form_id = $empty_record['FormID'];
 
         // Retrieve key elements (and importance calculation) form CTX
-        $key_elements = collect(static::getKeyElementsFromSA($form_id))->keyBy('element');
+        $key_elements = static::getKeyElementsFromSA($form_id);
         $biodiversity_key_elements =  static::getBiodiversityKeyElementsFromCTX($form_id);
 
         // Set predefines values (key elements)
@@ -72,7 +73,7 @@ class KeyElements extends Modules\Component\ImetModule_Eval
             'field' => 'Aspect',
             'values' => [
                 'group0' => $key_elements->pluck('element')->toArray(),
-                'group2' => $biodiversity_key_elements,
+                'group1' => $biodiversity_key_elements,
             ]
         ];
 
@@ -85,7 +86,7 @@ class KeyElements extends Modules\Component\ImetModule_Eval
                 $records[$index]['__num_stakeholders_direct'] = $key_elements[$record['Aspect']]['stakeholder_direct_count'];
                 $records[$index]['__num_stakeholders_indirect'] = $key_elements[$record['Aspect']]['stakeholder_indirect_count'];
                 $records[$index]['__group_stakeholders'] = $key_elements[$record['Aspect']]['group'];;
-            } else if($record['group_key']==='group2'){
+            } else if($record['group_key']==='group1'){
                 $records[$index]['Importance'] = null;
                 $records[$index]['__num_stakeholders_direct'] = null;
                 $records[$index]['__num_stakeholders_indirect'] = null;
@@ -96,76 +97,11 @@ class KeyElements extends Modules\Component\ImetModule_Eval
         return $records;
     }
 
-    public static function getKeyElementsFromSA($form_id): array
+    public static function getKeyElementsFromSA($form_id): \Illuminate\Support\Collection
     {
-        $direct_users_key_elements = Modules\Context\AnalysisStakeholderDirectUsers::calculateKeyElementsImportances($form_id);
-        $indirect_users_key_elements = Modules\Context\AnalysisStakeholderIndirectUsers::calculateKeyElementsImportances($form_id);
-
-        $direct_users_weights = collect(Modules\Context\Stakeholders::calculateWeights($form_id, Modules\Context\Stakeholders::ONLY_DIRECT))
-            ->sum();
-        $indirect_users_weights = collect(Modules\Context\Stakeholders::calculateWeights($form_id, Modules\Context\Stakeholders::ONLY_INDIRECT))
-            ->sum();
-        $users_weights = $direct_users_weights + $indirect_users_weights;
-
-        $direct_users_key_elements = collect($direct_users_key_elements)
-            ->map(function($item) use ($direct_users_weights){
-                $item['importance'] = $item['importance'] * $direct_users_weights;
-                $item['__type'] = Modules\Context\Stakeholders::ONLY_DIRECT;
-                return $item;
-            });
-
-        $indirect_users_key_elements = collect($indirect_users_key_elements)
-            ->map(function($item) use ($indirect_users_weights){
-                $item['importance'] = $item['importance'] * $indirect_users_weights;
-                $item['__type'] = Modules\Context\Stakeholders::ONLY_INDIRECT;
-                return $item;
-            });
-
-        $all_elements = $direct_users_key_elements->merge($indirect_users_key_elements);
-
-        $importances = collect($all_elements)
-            ->groupBy('element')
-            ->map(function($group_element) use ($users_weights){
-
-                $importance = $group_element
-                        ->map(function($item){
-                            return $item['importance'];
-                        })
-                        ->sum() / $users_weights;
-                $importance = round($importance, 1);
-
-                $stakeholder_direct_count= $group_element
-                    ->filter(function($item){
-                        return $item['__type'] === Modules\Context\Stakeholders::ONLY_DIRECT;
-                    })
-                    ->map(function($item){
-                        return $item['stakeholder_count'];
-                    })
-                    ->sum();
-                $stakeholder_indirect_count= $group_element
-                    ->filter(function($item){
-                        return $item['__type'] === Modules\Context\Stakeholders::ONLY_INDIRECT;
-                    })
-                    ->map(function($item){
-                        return $item['stakeholder_count'];
-                    })
-                    ->sum();
-
-                return [
-                    'element' => $group_element[0]['element'],
-                    'importance' => $importance,
-                    'stakeholder_direct_count' => $stakeholder_direct_count,
-                    'stakeholder_indirect_count' => $stakeholder_indirect_count,
-                    'group' => $group_element[0]['group']
-                ];
-            })
-            ->sortByDesc('importance')
-            ->filter(function ($item){
-                return $item['importance']!==null;
-            })
-            ->toArray();
-
-        return $importances;
+        $keyElementsFromSA = Modules\Context\AnalysisStakeholderDirectUsers::calculateKeyElementsImportances($form_id);
+        return collect($keyElementsFromSA)
+            ->keyBy('element');
     }
 
     public static function getBiodiversityKeyElementsFromCTX($form_id): array

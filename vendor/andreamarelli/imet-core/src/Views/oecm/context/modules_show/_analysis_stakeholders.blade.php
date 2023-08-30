@@ -31,63 +31,6 @@ $stakeholders_categories = Stakeholders::getStakeholders(
 ?>
 
 
-{{-- Stakeholder's summary--}}
-<div class="card">
-    <div class="card-header">
-        <h4 class="card-title">
-            {!! $summary_title !!}}
-        </h4>
-    </div>
-    <div>
-        <div class="card-body" style="display: flex; column-gap: 40px;">
-
-            <div>
-                <h4>@lang('imet-core::oecm_context.AnalysisStakeholders.elements_importance')</h4>
-                <table class="table module-table">
-                    <thead>
-                    <tr>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholders.element')</th>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholders.importance')</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($key_elements_importance as $element)
-                        <tr class="module-table-item">
-                            <td style="text-align: left;">{{ $element['element'] }}</td>
-                            <td style="text-align: left;">{{ $element['importance'] }}</td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
-
-            <div>
-                <h4>@lang('imet-core::oecm_context.AnalysisStakeholders.involvement_ranking')</h4>
-                <table class="table module-table">
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholders.involvement')</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($stakeholders as $stakeholder => $ranking)
-                        <tr class="module-table-item">
-                            <td style="text-align: left;">{{ $stakeholder }}</td>
-                            <td style="text-align: left;">{{ $ranking }}</td>
-                        </tr>
-                    @endforeach
-
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-
 @foreach(array_keys($stakeholders) as $index => $stakeholder)
     <div class="card">
         <div class="card-header">
@@ -141,16 +84,16 @@ $stakeholders_categories = Stakeholders::getStakeholders(
 
                                 {{-- labels  --}}
                                 <thead>
-                                <tr>
-                                    @foreach($definitions['fields'] as $field)
-                                        <th class="text-center">
-                                            @if($field['type']!=='hidden')
-                                                {{ ucfirst($field['label'] ?? '') }}
-                                            @endif
-                                        </th>
-                                    @endforeach
-                                    <th></th>
-                                </tr>
+                                    <tr>
+                                        @foreach($definitions['fields'] as $field)
+                                            <th class="text-center">
+                                                @if($field['type']!=='hidden')
+                                                    {{ ucfirst($field['label'] ?? '') }}
+                                                @endif
+                                            </th>
+                                        @endforeach
+                                        <th></th>
+                                    </tr>
                                 </thead>
 
                                 <tbody class="{{ $group_key }}">
@@ -159,6 +102,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                 @if(!array_key_exists($group_key, $grouped_records))
                                     @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols])
 
+                                {{-- body  --}}
                                 @else
                                     @foreach($stakeholders_records[$stakeholder][$group_key] as $record)
                                         <tr class="module-table-item">

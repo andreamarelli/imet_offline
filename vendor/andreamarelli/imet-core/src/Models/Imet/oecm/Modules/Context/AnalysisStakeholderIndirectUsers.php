@@ -12,14 +12,7 @@ use Illuminate\Http\Request;
 class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
 {
     protected $table = 'imet_oecm.context_analysis_stakeholders_indirect_users';
-    public $titles = [];
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
-
-    protected static $DEPENDENCY_ON = 'Stakeholder';
-    protected static $DEPENDENCIES = [
-        [Modules\Evaluation\KeyElements::class, 'Element']
-    ];
     public static $USER_MODE = Stakeholders::ONLY_INDIRECT;
 
     public function __construct(array $attributes = [])
@@ -29,7 +22,8 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
         $this->module_title = trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.title');
         $this->module_fields = [
             ['name' => 'Element',       'type' => 'blade-imet-core::oecm.context.fields.AnalysisStakeholdersElement', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Element'), 'other' => 'rows="3"'],
-            ['name' => 'Illegal',    'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Illegal')],
+            ['name' => 'Description',    'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Description')],
+            ['name' => 'Illegal',    'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Illegal')],
             ['name' => 'Support',       'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Support')],
             ['name' => 'Guidelines',    'type' => 'suggestion-ImetOECM_Guidelines', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Guidelines')],
             ['name' => 'LackOfCollaboration',  'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.LackOfCollaboration')],
@@ -66,7 +60,8 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
     {
         $isEmpty = true;
 
-        if($record['Support']!==null
+        if($record['Description']!==null
+            || $record['Support']!==null
             || $record['Guidelines']!==null
             || $record['LackOfCollaboration']===true
             || $record['Status']===true

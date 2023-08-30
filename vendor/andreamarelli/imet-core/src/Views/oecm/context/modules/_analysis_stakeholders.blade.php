@@ -7,72 +7,17 @@ use Illuminate\Support\Str;
 /** @var Collection $collection */
 /** @var Mixed $definitions */
 /** @var Mixed $vue_data */
-/** @var String $summary_title */
-
 /** @var Array $stakeholders */
-$num_cols = count($definitions['fields']);
 
+$num_cols = count($definitions['fields']);
+$user_mode = ('AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\\'.$definitions['module_class'])::$USER_MODE;
 $stakeholders_categories = Stakeholders::getStakeholders(
     $vue_data['form_id'],
-    ('AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\\'.$definitions['module_class'])::$USER_MODE,
+    $user_mode,
     true
 );
 
 ?>
-
-{{-- Stakeholder's summary--}}
-<div class="card" id="module_{{ $definitions['module_key'] }}_summary">
-    <div class="card-header">
-        <h4 class="card-title" role="button" @click="switchStakeholder('summary')">
-            {!! $summary_title !!}
-        </h4>
-    </div>
-    <div>
-        <div class="card-body" v-if="isCurrentStakeholder('summary')" style="display: flex; column-gap: 40px;">
-
-            <div>
-                <h4>@lang('imet-core::oecm_context.AnalysisStakeholders.elements_importance')</h4>
-                <table class="table module-table">
-                    <thead>
-                    <tr>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholders.element')</th>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholders.importance')</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr class="module-table-item" v-for="element in key_elements_importance">
-                        <td style="text-align: left;">@{{ element.element }}</td>
-                        <td style="text-align: left;">@{{ element.importance }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div>
-                <h4>@lang('imet-core::oecm_context.AnalysisStakeholders.involvement_ranking')</h4>
-                <table class="table module-table">
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholders.involvement')</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($stakeholders as $stakeholder => $ranking)
-                        <tr class="module-table-item">
-                            <td style="text-align: left;">{{ $stakeholder }}</td>
-                            <td style="text-align: left;">{{ $ranking }}</td>
-                        </tr>
-                    @endforeach
-
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-    </div>
-</div>
-
 
 @foreach(array_keys($stakeholders) as $index => $stakeholder)
     <div class="card">
@@ -267,9 +212,9 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                 },
 
                 saveModuleDoneCallback(data) {
-                    this.key_elements_importance = data.key_elements_importance;
-                    this.current_stakeholder = '{{ $vue_data['current_stakeholder'] }}';
-                    window.ModularForms.Mixins.Animation.scrollPageToAnchor('module_{{ $definitions['module_key'] }}_summary');
+                    this.current_stakeholder = null;
+                    window.ModularForms.Mixins.Animation.scrollPageToAnchor('module_{{ $definitions['module_key'] }}');
+                    module_analysis_stakeholder_summary.refresh_importances(data.key_elements_importance);
                 },
 
             }

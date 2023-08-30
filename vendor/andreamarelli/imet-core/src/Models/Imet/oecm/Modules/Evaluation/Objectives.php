@@ -51,11 +51,18 @@ class Objectives extends Modules\Component\ImetModule_Eval
     {
         $form_id = $empty_record['FormID'];
 
+        $key_elements = array_merge(
+            KeyElements::getPrioritizedElements($form_id),
+            Designation::getPrioritizedElements($form_id),
+            SupportsAndConstraintsIntegration::getPrioritizedElements($form_id),
+            ThreatsIntegration::getPrioritizedElements($form_id)
+        );
+
         $preLoaded = [
             'field' => 'Objective',
             'values' => [
                 'group0' => [],
-                'group1' => KeyElements::getPrioritizedElements($form_id)
+                'group1' => $key_elements
             ]
         ];
 

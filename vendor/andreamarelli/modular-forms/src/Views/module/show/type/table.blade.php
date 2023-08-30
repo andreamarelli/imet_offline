@@ -22,7 +22,11 @@ if($definitions['module_type']==='GROUP_TABLE'){
     <thead>
         <tr>
             @foreach($definitions['fields'] as $f_index=>$field)
-                <th class="text-center">{{ ucfirst($field['label'] ?? '') }}</th>
+                <th class="text-center">
+                    @if($field['type']!=='hidden')
+                        {{ ucfirst($field['label'] ?? '') }}
+                    @endif
+                </th>
             @endforeach
         </tr>
     </thead>

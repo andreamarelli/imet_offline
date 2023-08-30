@@ -93,35 +93,28 @@ $vue_data['threats'] = $threats;
                 threats_elements(element_id){
                     let index =  this.__get_index(element_id);
 
-                    let num_stakeholders = this.records[index]['__num_stakeholders'];
-                    let elements = this.records[index]['__elements'];
-                    let elements_illegal = this.records[index]['__elements_illegal'];
+                    let count_stakeholders_direct = this.records[index]['__count_stakeholders_direct'];
+                    let count_stakeholders_indirect = this.records[index]['__count_stakeholders_indirect'];
+                    let elements_legal = this.records[index]['__elements_legal_list'];
+                    let elements_illegal = this.records[index]['__elements_illegal_list'];
 
                     let label = '';
-                    if(num_stakeholders!==null){
-                        label =
-                            Locale.getLabel('imet-core::oecm_evaluation.Threats.stakeholders', {'num': '<b>' + num_stakeholders + '</b>'})
-                            + '<br />'
-                            + 'Listed elements: <ul>';
+                    if(count_stakeholders_direct!==null || count_stakeholders_indirect!==null){
                         let list = '';
+                        if(elements_illegal.length>0){
+                            list += '<li><b style="color: red;">' + elements_illegal + '</b></li>';
+                        }
+                        if(elements_legal.length>0){
+                            list += '<li>' + elements_legal + '</li>';
+                        }
 
-                        for (const [_, elem] of Object.entries(elements_illegal)) {
-                            if(elem.length>0){
-                                list += '<b style="color: red;">' + elem.join(', ') + '</b>';
-                            }
-                        }
-                        for (const [_, elem] of Object.entries(elements)) {
-                            if(elem.length>0){
-                                if (list !== ''){
-                                    list += ', ';
-                                }
-                                list += elem.join(', ');
-                            }
-                        }
-                        if (list !== ''){
-                            label += '<li>' + list + '</li>';
-                        }
-                        label += '</ul>';
+                        label =
+                            Locale.getLabel('imet-core::oecm_evaluation.Threats.num_stakeholders', {
+                                'num_dir': '<b>' + count_stakeholders_direct + '</b>',
+                                'num_ind': '<b>' + count_stakeholders_indirect + '</b>',
+                            })
+                            + '<br />'
+                            + 'Listed elements: <ul style="padding-inline-start: 20px;">' + list + '</ul>';
                     }
                     return label;
                 }

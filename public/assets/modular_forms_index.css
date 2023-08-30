@@ -2164,16 +2164,16 @@ input.captcha-input {
       cursor: not-allowed; }
 
 .rating-container {
-  white-space: nowrap; }
+  display: flex;
+  justify-content: center;
+  gap: 2px; }
 
 .rating {
   min-height: 0;
   min-width: 0;
-  display: inline-block;
   font-weight: bold;
   color: #737373;
   border: 1px solid #A3A3A3;
-  margin-right: 2px;
   height: 22px;
   padding: 0;
   text-align: center;

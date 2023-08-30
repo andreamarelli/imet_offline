@@ -65,6 +65,7 @@ return [
             'Evaluate the need to prioritise the key elements in the management of the OECM'
         ],
         'from_group' => 'From category',
+        'key_elements_importance_composition' => 'Importance composition: :imp_dir (from :num_dir direct stakeholder(s)) + :imp_ind (from :num_ind indirect stakeholder(s))',
         'num_stakeholders' => 'Indicated by :num_dir direct stakeholder(s) and :num_ind indirect stakeholder(s)',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>P6, I1, PR6</i>',
     ],
@@ -137,13 +138,50 @@ return [
         'title' => 'Analysis of Biodiversity key elements',
         'fields' => [
             'Criteria' => 'Criteria',
-            'Threats' => 'Threats',
+            'Impact' => 'Impact/ Severity',
+            'Extension' => 'Scale/ Extent',
+            'Duration' => 'Duration/ Irreversibility',
+            'Trend' => 'Trend',
+            'Probability' => 'Probability for the threat in future',
             'Note' => 'Note',
         ],
         'groups' => [
             'group0' => 'Animals',
             'group1' => 'Plants',
             'group2' => 'Habitats',
+        ],
+        'ratingLegend' => [
+            'Impact' => [
+                '0' => 'Mild',
+                '1' => 'Moderate',
+                '2' => 'High',
+                '3' => 'Severe',
+            ],
+            'Extension' => [
+                '0' => 'Localised <5%',
+                '1' => 'Sparse 5-15%',
+                '2' => 'Widely dispersed 15-50%',
+                '3' => 'Everywhere >50%',
+            ],
+            'Duration' => [
+                '0' => 'Short term < 5 years',
+                '1' => 'Medium term 5-20 years',
+                '2' => 'Very long term 20-100 years',
+                '3' => 'Permanent >100 years',
+            ],
+            'Trend' => [
+                '-2' => 'Decreasing',
+                '-1' => 'Slightly decreasing',
+                '0' => 'No change',
+                '1' => 'Slightly increasing',
+                '2' => 'Increasing',
+            ],
+            'Probability' => [
+                '0' => 'Very low',
+                '1' => 'Low',
+                '2' => 'Average',
+                '3' => 'High',
+            ],
         ],
         'module_info' => 'Identify the threats categories affecting the Biodiversity key element identified in CTX4.1, CTX4.2, CTX4.3'
     ],
@@ -197,7 +235,7 @@ return [
         'module_info_Rating' => [
             'Evaluate the level of integration of most important threats in the management of the OECM based on the analysis of the threats calculator at Context of intervention point SA 2 and automatically reported below . Threats evaluation (automatically reported from SA 2) To prioritise in management Comments/Explanation'
         ],
-        'stakeholders' => 'indicated by :num stakeholder(s)'
+        'num_stakeholders' => 'Indicated by :num_dir direct stakeholder(s) and :num_ind indirect stakeholder(s)',
     ],
 
     'ThreatsIntegration' => [

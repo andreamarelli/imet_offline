@@ -138,7 +138,6 @@ return [
         'geological'                => 'Geological phenomena',
         'climate_change'            => 'Climate change and effects',
         'other'                     => 'Other pressures and threats',
-        'no_threats'                => 'No threats',
     ],
 
     'Reliability' => [

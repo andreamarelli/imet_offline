@@ -2,13 +2,20 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
 
-use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
-use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
-use Illuminate\Support\Str;
+use AndreaMarelli\ImetCore\Models\User\Role;
 
 abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 {
+    public $titles = [];
+
+    protected static $DEPENDENCY_ON = 'Stakeholder';
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\KeyElements::class, 'Element']
+    ];
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
     public static $USER_MODE;
 
     protected static function arrange_records($predefined_values, $records, $empty_record): array
@@ -56,24 +63,14 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
     abstract static function calculateKeyElementImportance($item): ?float;
 
-    public static function calculateKeyElementsImportances($form_id, $records = null): array
+    public static function calculateKeyElementsImportancesByUserMode($form_id, $weights, $records = null): array
     {
         $records = $records ?? static::getModuleRecords($form_id)['records'];
 
-        $weights = Modules\Context\Stakeholders::calculateWeights($form_id, static::$USER_MODE);
-        $weights_sum = array_sum($weights);
-        $weights_div = $weights_sum > 0 ?
-            collect($weights)
-                ->map(function ($item) use ($weights_sum) {
-                    return $item / $weights_sum;
-                })
-                ->toArray()
-            : null;
-
         return collect($records)
-            ->map(function ($item) use ($weights_div) {
+            ->map(function ($item) use ($weights) {
                 // Retrieve Stakeholders weights
-                $item['__stakeholder_weight'] = $weights_div[$item['Stakeholder']] ?? null;
+                $item['__stakeholder_weight'] = $weights[$item['Stakeholder']] ?? null;
                 // Retrieve weighted importance per each record
                 $item['__weighted_importance'] = static::calculateKeyElementImportance($item);
                 return $item;
@@ -83,6 +80,21 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
             })
             ->groupBy('Element')
             ->map(function ($group_element) {
+
+//                // Retrieve lists of legal & illegal specific elements
+//                $specific_elements_legal = $group_element
+//                    ->filter(function($item){
+//                        return $item['Illegal'] == false;
+//                    })
+//                    ->pluck('Description')
+//                    ->toArray();
+//
+//                $specific_elements_illegal = $group_element
+//                    ->filter(function($item){
+//                        return $item['Illegal'] == true;
+//                    })
+//                    ->pluck('Description')
+//                    ->toArray();
 
                 // Average importance if same stakeholder encode same element multiple times
                 $group_element = $group_element
@@ -115,6 +127,8 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
                 return [
                     'element' => $group_element->first()['Element'],
+//                    'specific_elements_legal' => $specific_elements_legal,
+//                    'specific_elements_illegal' => $specific_elements_illegal,
                     'importance' => round($importance, 1),
                     'stakeholder_count' => $stakeholder_count,
                     'group' => trans('imet-core::oecm_context.AnalysisStakeholders.groups.' . $group_element->first()['group_key'])
@@ -125,40 +139,86 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
             ->toArray();
     }
 
-    public static function getNumStakeholdersElementsByThreat($form_id): array
+    private static function retrieveStakeholdersWeights($form_id): ?array
+    {
+        $weights = Modules\Context\Stakeholders::calculateWeights($form_id, Stakeholders::ALL_USERS);
+        $weights_sum = array_sum($weights);
+        return $weights_sum > 0 ?
+            collect($weights)
+                ->map(function ($item) use ($weights_sum) {
+                    return $item / $weights_sum;
+                })
+                ->toArray()
+            : null;
+    }
+
+    public static function calculateKeyElementsImportances($form_id, $records = null): array
     {
         $records = $records ?? static::getModuleRecords($form_id)['records'];
+        $weights = static::retrieveStakeholdersWeights($form_id);
 
-        $threats = [];
-        foreach ($records as $record) {
-            if ($record['Element'] !== null && $record['Threats'] !== null) {
-                foreach (json_decode($record['Threats']) as $threat) {
-                    if (!array_key_exists($threat, $threats)) {
-                        $threats[$threat] = [
-                            'stakeholders' => [],
-                            'elements' => [],
-                            'elements_illegal' => [],
-                        ];
-                    }
-                    $threats[$threat]['stakeholders'][] = $record['Stakeholder'];
-
-                    if (!array_key_exists($record['group_key'], $threats[$threat]['elements'])) {
-                        $threats[$threat]['elements'][$record['group_key']] = [];
-                    }
-                    if (!array_key_exists($record['group_key'], $threats[$threat]['elements_illegal'])) {
-                        $threats[$threat]['elements_illegal'][$record['group_key']] = [];
-                    }
-
-                    if ($record['Illegal']) {
-                        $threats[$threat]['elements_illegal'][$record['group_key']][] = $record['Description'] ?? $record['Element'];
-                    } else {
-                        $threats[$threat]['elements'][$record['group_key']][] = $record['Description'] ?? $record['Element'];
-                    }
-
-                }
-            }
+        if(static::$USER_MODE === Stakeholders::ONLY_DIRECT){
+            $key_elements_importance_direct = static::calculateKeyElementsImportancesByUserMode($form_id, $weights, $records);
+            $key_elements_importance_indirect = AnalysisStakeholderIndirectUsers::calculateKeyElementsImportancesByUserMode($form_id, $weights);
+        } else {
+            $key_elements_importance_direct = AnalysisStakeholderDirectUsers::calculateKeyElementsImportancesByUserMode($form_id, $weights);
+            $key_elements_importance_indirect = static::calculateKeyElementsImportancesByUserMode($form_id, $weights, $records);
         }
-        return $threats;
+
+        $key_elements_importance_direct = collect($key_elements_importance_direct)
+            ->map(function ($item){
+                $item['importance_direct'] = $item['importance'];
+                $item['stakeholder_direct_count'] = $item['stakeholder_count'];
+                unset($item['importance'], $item['stakeholder_count']);
+               return $item;
+            })
+            ->mapWithKeys(function ($item) {
+                return [$item['element'] => $item];
+            });;
+        $key_elements_importance_indirect = collect($key_elements_importance_indirect)
+            ->map(function ($item){
+                $item['importance_indirect'] = $item['importance'];
+                $item['stakeholder_indirect_count'] = $item['stakeholder_count'];
+                unset($item['importance'], $item['stakeholder_count']);
+               return $item;
+            })
+            ->mapWithKeys(function ($item) {
+                return [$item['element'] => $item];
+            });
+
+        // merge
+        $key_elements_importances = $key_elements_importance_direct;
+        $key_elements_importance_indirect->each(function($item, $key) use($key_elements_importances){
+            $key_elements_importances[$key] = $key_elements_importances->has($key)
+                ? array_merge($key_elements_importances[$key], $item)
+                : $item;
+        });
+
+        // Sum importances & counts
+        $key_elements_importances = $key_elements_importances->map(function ($item){
+            $item['importance_direct'] = $item['importance_direct'] ?? 0;
+            $item['importance_indirect'] = $item['importance_indirect'] ?? 0;
+            $item['stakeholder_direct_count'] = $item['stakeholder_direct_count'] ?? 0;
+            $item['stakeholder_indirect_count'] = $item['stakeholder_indirect_count'] ?? 0;
+
+            $item['importance'] = $item['importance_direct'] + $item['importance_indirect'];
+            $item['stakeholder_count'] = $item['stakeholder_direct_count'] + $item['stakeholder_indirect_count'];
+            return $item;
+        });
+
+        // rescale to 0-100
+        $max_importance = $key_elements_importances->max('importance');
+        $key_elements_importances = $key_elements_importances->map(function ($item) use($max_importance){
+            $item['importance_direct'] = round($item['importance_direct']*100/$max_importance, 1);
+            $item['importance_indirect'] = round($item['importance_indirect']*100/$max_importance, 1);
+            $item['importance'] = round($item['importance']*100/$max_importance, 1);
+            return $item;
+        });
+
+        return collect($key_elements_importances)
+            ->sortByDesc('importance')
+            ->values()
+            ->toArray();
     }
 
     public static function getAnalysisElements($form_id): array
@@ -177,6 +237,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
                 if (!isset($items[$category][$element])) {
                     $items[$category][$element] = ['elements' => []];
                 }
+
                 if ($record['Description'] !== null) {
                     $items[$category][$element]['elements'][] = $record['Description'];
                 }

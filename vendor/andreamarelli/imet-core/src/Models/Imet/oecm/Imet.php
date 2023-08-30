@@ -52,6 +52,7 @@ class Imet extends BaseImetForm
             Modules\Context\AnimalSpecies::class,
             Modules\Context\VegetalSpecies::class,
             Modules\Context\Habitats::class,
+            Modules\Context\Objectives4::class,
         ],
         'stakeholders' => [
             Modules\Context\Stakeholders::class,

@@ -17,7 +17,7 @@ DELETE FROM imet_oecm.eval_information_availability;
 DELETE FROM imet_oecm.eval_management_activities;
 DELETE FROM imet_oecm.eval_stakeholder_cooperation;
 
-CREATE TABLE IF NOt EXISTS imet_oecm.eval_threats_biodiversity
+CREATE TABLE IF NOT EXISTS imet_oecm.eval_threats_biodiversity
 (
     id              serial PRIMARY KEY,
     "FormID"        integer,

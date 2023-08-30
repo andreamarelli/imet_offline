@@ -17,12 +17,16 @@
         <td>@lang('imet-core::oecm_lists.ManagementUnique.'.$governance['ManagementUnique'])</td>
     </tr>
     <tr>
-        <td><b>@lang('imet-core::oecm_context.Governance.fields.ManagementList')</b></td>
-        <td>{{ $governance['ManagementList'] }}</td>
+        <td><b>@lang('imet-core::oecm_context.Governance.fields.ManagementType')</b></td>
+        <td>
+            @lang('imet-core::oecm_lists.ManagementType.'.$governance['ManagementType'])
+        </td>
     </tr>
     <tr>
         <td><b>@lang('imet-core::oecm_context.Governance.fields.DateOfCreation')</b></td>
-        <td>{{ $governance['DateOfCreation'] }}</td>
+        <td>
+            @lang('imet-core::oecm_lists.DateOfCreation.'.$governance['DateOfCreation'])
+        </td>
     </tr>
     <tr>
         <td><b>@lang('imet-core::oecm_context.Governance.fields.OfficialRecognition')</b></td>

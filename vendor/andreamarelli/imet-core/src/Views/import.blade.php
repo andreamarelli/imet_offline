@@ -1,3 +1,17 @@
+<?php
+
+use \AndreaMarelli\ImetCore\Controllers;
+
+/** @var Controllers\Imet\Controller|Controllers\Imet\oecm\Controller $controller */
+
+if($controller === Controllers\Imet\oecm\Controller::class){
+    $route_prefix = Controllers\Imet\oecm\Controller::ROUTE_PREFIX;
+} else {
+    $route_prefix = Controllers\Imet\v2\Controller::ROUTE_PREFIX;
+}
+
+?>
+
 @extends('layouts.admin')
 
 @include('imet-core::components.breadcrumbs_and_page_title')
@@ -12,8 +26,8 @@
         <div class="module-body">
             <br/>
             <multiple-files-upload
-                upload-url="{{ route(\AndreaMarelli\ImetCore\Controllers\Imet\Controller::ROUTE_PREFIX.'upload_json') }}"
-                back-url="{{ route(\AndreaMarelli\ImetCore\Controllers\Imet\Controller::ROUTE_PREFIX.'index') }}"
+                upload-url="{{ route($route_prefix.'upload_json') }}"
+                back-url="{{ route($route_prefix.'index') }}"
             ></multiple-files-upload>
         </div>
     </div>

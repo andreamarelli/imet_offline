@@ -18,19 +18,19 @@
         </div>
         <table>
             <tr>
-                <th><h5>@lang('imet-core::oecm_report.general_planning.priority')</h5></th>
-                <th><h5>@lang('imet-core::oecm_report.general_planning.category')</h5></th>
-                <th>
+                <th style="width:25%"><h5>@lang('imet-core::oecm_report.general_planning.priority')</h5></th>
+                <th style="width:25%"><h5>@lang('imet-core::oecm_report.general_planning.category')</h5></th>
+                <th style="width:25%">
                     <h5>@lang('imet-core::oecm_report.general_planning.key_elements_service')</h5>
                 </th>
-                <th><h5>@lang('imet-core::oecm_report.general_planning.comments')</h5></th>
+                <th style="width:25%"><h5>@lang('imet-core::oecm_report.general_planning.comments')</h5></th>
             </tr>
             @foreach($key_elements_biodiversity as $key => $elem)
                 <tr>
-                    <td>{{ $key + 1 }}</td>
-                    <td>{{ $elem['__group_stakeholders'] ?? 'No category' }}</td>
-                    <td>{{ $elem['Aspect'] }}</td>
-                    <td>{{ $elem['Comments'] }}</td>
+                    <td style="width:25%">{{ $key + 1 }}</td>
+                    <td style="width:25%">{{ $elem['__group_stakeholders'] ?? 'No category' }}</td>
+                    <td style="width:25%">{{ $elem['Aspect'] }}</td>
+                    <td style="width:25%">{{ $elem['Comments'] }}</td>
                 </tr>
             @endforeach
         </table>
@@ -41,52 +41,78 @@
         </div>
         <table>
             <tr>
-                <th><h5>@lang('imet-core::oecm_report.general_planning.priority')</h5></th>
-                <th><h5>@lang('imet-core::oecm_report.general_planning.category')</h5></th>
-                <th>
+                <th style="width:25%"><h5>@lang('imet-core::oecm_report.general_planning.priority')</h5></th>
+                <th style="width:25%"><h5>@lang('imet-core::oecm_report.general_planning.category')</h5></th>
+                <th style="width:25%">
                     <h5>@lang('imet-core::oecm_report.general_planning.key_elements_service')</h5>
                 </th>
-                <th><h5>@lang('imet-core::oecm_report.general_planning.comments')</h5></th>
+                <th style="width:25%"><h5>@lang('imet-core::oecm_report.general_planning.comments')</h5></th>
             </tr>
 
             @foreach($key_elements_ecosystem as $key => $elem)
                 <tr>
-                    <td>{{ $key + 1 }}</td>
-                    <td>{{ $elem['__group_stakeholders'] ?? 'No category' }}</td>
-                    <td>{{ $elem['Aspect'] }}</td>
-                    <td>{{ $elem['Comments'] }}</td>
+                    <td style="width:25%">{{ $key + 1 }}</td>
+                    <td style="width:25%">{{ $elem['__group_stakeholders'] ?? 'No category' }}</td>
+                    <td style="width:25%">{{ $elem['Aspect'] }}</td>
+                    <td style="width:25%">{{ $elem['Comments'] }}</td>
                 </tr>
             @endforeach
         </table>
         <div class="mb-5"></div>
         <table>
             <tr>
-                <th>
+                <th style="width:50%">
                     <h5>@lang('imet-core::oecm_report.driving_forces')</h5>
                 </th>
-                <th>
+                <th style="width:50%">
                     <h5>@lang('imet-core::oecm_report.score')</h5>
                 </th>
             </tr>
             @foreach($main_threats['values'] as $elem)
                 <tr>
-                    <td>{{ $elem['Threat'] }}</td>
+                    <td style="width:50%">{{ $elem['Threat'] }}</td>
                     @if($elem['__score'] !== null)
-                        <td>{{ round($elem['__score'],2) }}</td>
+                        <td style="width:50%">{{ round($elem['__score'],2) }}</td>
                     @else
-                        <td></td>
+                        <td style="width:50%"></td>
                     @endif
                 </tr>
             @endforeach
         </table>
         <div class="row mb-5">
             <div class="col">
-                <imet_bar_chart
-                    :values="{{$main_threats['chart']['values'] }}"
-                    :fields="{{$main_threats['chart']['fields'] }}"
-                    :colors="{{$main_threats['chart']['colors'] }}"
-                    :axis_dimensions_y="{max:0,min:-100}"
-                ></imet_bar_chart>
+
+                <div>
+                    @foreach($main_threats['chart']['values'] as $threat_key => $threat_label)
+                        <div class="histogram-row">
+                            <div class="histogram-row__title text-left">{{ $threat_key }}</div>
+                            <div class="histogram-row__value text-right" style="margin-right: 20px;">
+                                <b v-html="'{{ $threat_label }}' || '-'"></b>
+                            </div>
+                            <div class="histogram-row__progress-bar"  v-if="'{{ $threat_label }}'!=='-'">
+                                <div class="histogram-row__progress-bar__limit-left">-100%</div>
+                                <div class="histogram-row__progress-bar__bar">
+                                    <div class="progress">
+                                        <div role="progressbar"
+                                             class="progress-bar progress-bar-striped  progress-bar-negative"
+                                             :style="'width: ' + Math.abs('{{ $threat_label }}') + '%; background-color: #87c89b !important;'">
+                                            <span v-html="'{{ $threat_label }}'"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="histogram-row__progress-bar__limit-right">0%</div>
+                            </div>
+                        </div>
+
+                    @endforeach
+
+                </div>
+{{--                <imet_bar_chart--}}
+{{--                    :values="{{$main_threats['chart']['values'] }}"--}}
+{{--                    :fields="{{$main_threats['chart']['fields'] }}"--}}
+{{--                    :colors="{{$main_threats['chart']['colors'] }}"--}}
+{{--                    :axis_dimensions_y="{max:0,min:-100}"--}}
+{{--                ></imet_bar_chart>--}}
             </div>
         </div>
 

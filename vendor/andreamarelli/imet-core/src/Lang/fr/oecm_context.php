@@ -172,11 +172,15 @@ return [
     ],
 
     'Objectives2' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation pour  <b>l’aire de l’AMCE</b><br /> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus particulièrement pour les phases de planification, de mobilisation des ressources (intrants), de processus, et pour le suivi des activités de gestion de l’AMCE'
+        'module_info' => 'Établir et décrire les objectifs de conservation pour <b>l’aire de l’AMCE</b><br /> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus particulièrement pour les phases de planification, de mobilisation des ressources (intrants), de processus, et pour le suivi des activités de gestion de l’AMCE'
     ],
 
     'Objectives3' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation pour<b> les ressources humaines et financières/le soutien des partenariats dans la gestion </b>de l’AMCE<br/> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases du processus, et pour le suivi des activités de gestion de l’AMCE'
+        'module_info' => 'Établir et décrire les objectifs de conservation pour <b>les ressources humaines et financières/le soutien des partenariats dans la gestion </b>de l’AMCE<br/> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases du processus, et pour le suivi des activités de gestion de l’AMCE'
+    ],
+
+    'Objectives4' => [
+        'module_info' => 'Établir et décrire les objectifs de conservation pour <b>espèces animales et végétales clés</b> de l’AMCE<br/> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases du processus, et pour le suivi des activités de gestion de l’AMCE'
     ],
 
     'GeographicalLocation' => [
@@ -437,6 +441,7 @@ return [
     ],
 
     'AnalysisStakeholders' => [
+        'analysis' => 'AAnalyse par partie prenante',
         'titles' => [
             'title0' => 'Principaux services d’approvisionnement',
             'title1' => 'Principaux services culturels',
@@ -560,8 +565,7 @@ return [
             'group9' => ['Fourniture de fertilité', 'Fourniture d’eau', 'Fourniture de lutte contre les maladies'],
             'group10' => ['Habitats de pépinière et de nidification', 'Habitats pour la pollinisation']
         ],
-        'summary_direct' => 'Importance des éléments et implication des parties prenantes (utilisateurs directs)',
-        'summary_indirect' => 'Importance des éléments et implication des parties prenantes (utilisateurs indirects)',
+        'summary' => 'Importance des éléments et implication des parties prenantes',
         'involvement_ranking' => 'Implication des parties prenantes',
         'importance' => 'Importance (0-100)',
         'involvement' => 'Implication de la partie prenante (0-100)'
@@ -571,6 +575,7 @@ return [
         'title' => 'Analyse par partie prenante - utilisateurs directs',
         'fields' => [
             'Element' => 'Critères',
+            'Description' => 'Élément spécifique évalué',
             'Illegal' => 'Illégale',
             'Dependence' => 'Dépendance',
             'Access' => 'Accès',
@@ -633,6 +638,7 @@ return [
         'title' => 'Analyse des parties prenantes - utilisateurs indirects',
         'fields' => [
             'Element' => 'Critères',
+            'Description' => 'Élément spécifique évalué',
             'Illegal' => 'Illégale',
             'Support' => 'Soutien ou contribution',
             'Guidelines' => 'Lignes directrices et procédures',

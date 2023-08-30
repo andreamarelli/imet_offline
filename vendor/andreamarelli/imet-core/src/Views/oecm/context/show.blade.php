@@ -1,11 +1,15 @@
 <?php
-/** @var \AndreaMarelli\ImetCore\Models\Imet\oecm\Imet $item */
 
-use \AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\_AnalysisStakeholders;
+use AndreaMarelli\ImetCore\Models\User\Role;
 use Illuminate\Support\Facades\App;
 
+/** @var Imet $item */
+
 // Force Language
-if ($item->language != App::getLocale()) {
+if($item->language != App::getLocale()){
     App::setLocale($item->language);
 }
 
@@ -17,11 +21,12 @@ if ($item->language != App::getLocale()) {
 
 @section('content')
 
-    @include('imet-core::components.heading', ['phase' => 'context'])
+    @include('imet-core::components.heading', ['item' => $item])
+    @include('imet-core::components.phase', ['phase' => 'context'])
 
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [
-        'url' => route(\AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller::ROUTE_PREFIX . 'context_show', ['item' => $item->getKey()]),
+        'url' => route(Controller::ROUTE_PREFIX . 'context_show', ['item' => $item->getKey()]),
         'current_step' => $step,
         'label_prefix' =>  'imet-core::oecm_common.steps.',
         'steps' => array_keys($item::modules())
@@ -29,6 +34,13 @@ if ($item->language != App::getLocale()) {
 
     {{--  Modules (by step) --}}
     <div class="imet_modules">
+
+        @if($step === 'stakeholder_analysis' && Role::hasRequiredAccessLevel(_AnalysisStakeholders::class))
+            @include('imet-core::oecm.context.modules_show.analysis_stakeholder_summary', [
+                'form_id' => $item->getKey()
+            ])
+        @endif
+
         @foreach($item::modules()[$step] as $module)
             @if(Role::hasRequiredAccessLevel($module))
                 @include('modular-forms::module.show.container', [

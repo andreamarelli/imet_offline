@@ -35,6 +35,7 @@ class OEMCStatisticsService extends StatisticsService
     use CustomFunctions\oecm\Inputs;
     use CustomFunctions\oecm\Process;
     use CustomFunctions\oecm\Outputs;
+    use CustomFunctions\oecm\Outcomes;
     use Math;
 
     /**
@@ -86,8 +87,9 @@ class OEMCStatisticsService extends StatisticsService
             ? $numerator / $denominator
             : null;
 
+        // round to 1 decimal
         $scores['avg_indicator'] = $scores['avg_indicator'] !== null
-            ? round($scores['avg_indicator'], 2)
+            ? round($scores['avg_indicator'], 1)
             : null;
 
         return $scores;
@@ -116,6 +118,11 @@ class OEMCStatisticsService extends StatisticsService
         // aggregate step score
         $scores['avg_indicator'] = static::average($scores, 1);
 
+        // round to 1 decimal
+        $scores['avg_indicator'] = $scores['avg_indicator'] !== null
+            ? round($scores['avg_indicator'], 1)
+            : null;
+
         return $scores;
     }
 
@@ -141,6 +148,11 @@ class OEMCStatisticsService extends StatisticsService
         // aggregate step score
         $scores['avg_indicator'] = static::average($scores, 1);
 
+        // round to 1 decimal
+        $scores['avg_indicator'] = $scores['avg_indicator'] !== null
+            ? round($scores['avg_indicator'], 1)
+            : null;
+
         return $scores;
     }
 
@@ -162,12 +174,13 @@ class OEMCStatisticsService extends StatisticsService
             'pr4' => static::score_table($imet_id, AdministrativeManagement::class, 'EvaluationScore', 4),
             'pr5' => static::score_pr5($imet_id),
             'pr6' => static::score_group($imet_id, ManagementActivities::class, 'EvaluationScore', 'group_key'),
-            'pr7' => static::score_group($imet_id, LawEnforcementImplementation::class, 'Adequacy', 'group_key'),
-            'pr8' => static::score_pr8($imet_id),
-            'pr9' => static::score_group($imet_id, AssistanceActivities::class, 'EvaluationScore', 'group_key'),
-            'pr10' => static::score_table($imet_id, EnvironmentalEducation::class, 'EvaluationScore'),
-            'pr11' => static::score_table($imet_id, VisitorsManagement::class, 'EvaluationScore'),
-            'pr12' => static::score_table($imet_id, NaturalResourcesMonitoring::class, 'EvaluationScore'),
+            'pr7' => static::score_table($imet_id, NaturalResourcesMonitoring::class, 'EvaluationScore'),
+            'pr8' => static::score_group($imet_id, LawEnforcementImplementation::class, 'Adequacy', 'group_key'),
+            'pr9' => static::score_pr9($imet_id),
+            'pr10' => static::score_group($imet_id, AssistanceActivities::class, 'EvaluationScore', 'group_key'),
+            'pr11' => static::score_table($imet_id, EnvironmentalEducation::class, 'EvaluationScore'),
+            'pr12' => static::score_table($imet_id, VisitorsManagement::class, 'EvaluationScore'),
+
 
         ];
 
@@ -179,6 +192,11 @@ class OEMCStatisticsService extends StatisticsService
         $scores['pr6_7'] = static::average([$scores['pr6'], $scores['pr7']]);
         $scores['pr8_10'] = static::average([$scores['pr8'], $scores['pr9'], $scores['pr10'], $scores['pr11'], $scores['pr12']]);
         $scores['pr11_12'] = static::average([$scores['pr11'], $scores['pr12']]);
+
+        // round to 1 decimal
+        $scores['avg_indicator'] = $scores['avg_indicator'] !== null
+            ? round($scores['avg_indicator'], 1)
+            : null;
 
         return $scores;
     }
@@ -202,6 +220,11 @@ class OEMCStatisticsService extends StatisticsService
         // aggregate step score
         $scores['avg_indicator'] = static::average($scores, 2);
 
+        // round to 1 decimal
+        $scores['avg_indicator'] = $scores['avg_indicator'] !== null
+            ? round($scores['avg_indicator'], 1)
+            : null;
+
         return $scores;
     }
 
@@ -218,7 +241,7 @@ class OEMCStatisticsService extends StatisticsService
 
         $scores = [
             'oc1' => static::score_table($imet_id, AchievedObjectives::class, 'EvaluationScore'),
-            'oc2' => null,
+            'oc2' => self::score_oc2($imet_id),
             'oc3' => static::score_group($imet_id, LifeQualityImpact::class, 'EvaluationScore', 'group_key'),
         ];
 
@@ -236,6 +259,11 @@ class OEMCStatisticsService extends StatisticsService
         // aggregate step score
         $scores['avg_indicator'] = $denominator > 0
             ? $numerator / $denominator
+            : null;
+
+        // round to 1 decimal
+        $scores['avg_indicator'] = $scores['avg_indicator'] !== null
+            ? round($scores['avg_indicator'], 1)
             : null;
 
         return $scores;
