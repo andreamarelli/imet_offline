@@ -20,6 +20,6 @@
 ])
 
 <div class="text-left text-xs" style="padding: 4px 4px 0 4px;">
-    <div>@uclang('imet-core::oecm_evaluation.KeyElements.from_group')<b v-html="group_label({{ $id }})"></b></div>
+    <div v-html="group_label({{ $id }})"></div>
     <div v-html="percentage_stakeholder_label({{ $id }})"></div>
 </div>

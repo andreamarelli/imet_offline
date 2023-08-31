@@ -33,7 +33,7 @@ class File
     }
 
     /**
-     *  Convert bytes to human readable format
+     *  Convert bytes to human-readable format
      *
      * @param int $bytes size in bytes
      * @param int $precision (optional) number of precision digits
@@ -41,7 +41,7 @@ class File
      *
      * @return string
      */
-    public static function readableBytes(int $bytes, $precision = 2, $fixedUnit = ''): string
+    public static function readableBytes(int $bytes, int $precision = 2, string $fixedUnit = ''): string
     {
         $units = array('B', 'KB', 'MB', 'GB', 'TB');
         $bytes = max($bytes, 0);
@@ -64,7 +64,7 @@ class File
      * @param string $extension [optional] the type of files to list        default: ALL
      * @return  array
      */
-    public static function listFiles(string $dir, $extension = ''): array
+    public static function listFiles(string $dir, string $extension = ''): array
     {
         $files = array();
         if (is_dir($dir)) {
@@ -96,15 +96,13 @@ class File
      *
      * @param $filePath
      * @param null $fileName
-     * @param bool $deleteAfterSend
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @return BinaryFileResponse
      */
-    public static function download($filePath, $fileName = null, $deleteAfterSend = true): BinaryFileResponse
+    public static function download($filePath, $fileName = null): BinaryFileResponse
     {
         $fileName = $fileName ?? basename($filePath);
         return response()
-            ->download($filePath, $fileName)
-            ->deleteFileAfterSend($deleteAfterSend);
+            ->download($filePath, $fileName);
     }
 
 

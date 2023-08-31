@@ -84,13 +84,15 @@ trait Planning
             $record['PlanAdequacyScore'] = intval($record['PlanAdequacyScore']);
 
             $numerator =
-                ($record['PlanExistence'] ? 1 : 0) +
-                ($record['PlanUptoDate'] ? 1 : 0) +
-                ($record['PlanApproved'] ? 1 : 0) +
-                ($record['PlanImplemented'] ? 1 : 0) +
+                ($record['PlanExistence'] ? 4 : 0) +
+                ($record['PrintedCopy'] ? 1 : 0) +
+                ($record['KnowledgePercentage'] ?? 0) +
+                ($record['PlanUptoDate'] ? 2 : 0) +
+                ($record['PlanApproved'] ? 2 : 0) +
+                ($record['PlanImplemented'] ? 2 : 0) +
                 ($record['PlanAdequacyScore'] ?? 0);
 
-            $score = 100 * $numerator / 7;
+            $score = 100 * $numerator / 17;
 
             return $score!== null ?
                 round($score, 2)

@@ -94,6 +94,11 @@
                                                                        :values='data_elements.props'
                                                                        :indicators='container.props.config.performance_diagram.indicators'
                                                                        :data_table="'test'"></scaling_radar>
+                                                        <div class="row mb-1 mt-2" style="font-size: 12px">
+                                                            <div class="col-sm align-self-center">
+                                                                {{ trans("imet-core::analysis_report.average_protected_areas") }}
+                                                            </div>
+                                                        </div>
                                                     </template>
                                                 </container_actions>
                                             </div>

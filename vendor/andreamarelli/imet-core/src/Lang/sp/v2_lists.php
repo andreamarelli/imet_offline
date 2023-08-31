@@ -37,7 +37,7 @@ return [
 
     'OwnershipType' => [
         'state' => 'State',
-        'communal' => 'Communal',
+        'communal' => 'Community',
         'individual_landowners' => 'Individual landowners',
         'for_profit_organizations' => 'For-profit organisations',
         'nonprofit_organizations' => 'Non-profit organisations',

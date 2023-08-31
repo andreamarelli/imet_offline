@@ -499,7 +499,6 @@ class ScalingUpAnalysis extends Model
 
         //radar data
         $ranking = Ranking::ranking_indicators($form_ids, $type, $table_indicators, static::$scaling_id);
-
         //average data
         $averages = AverageContribution::average_contribution_calculations($form_ids, $table_indicators, $type, $colors[$type], $options, 'imet-core::analysis_report.assessment.', $custom_type);
 

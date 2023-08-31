@@ -14,7 +14,8 @@ class Habitats extends Modules\Component\ImetModule
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCIES = [
-        [AnalysisStakeholderAccessGovernance::class, 'species', 'Element']
+        [Modules\Context\AnalysisStakeholderDirectUsers::class, 'Element'],
+        [Modules\Context\AnalysisStakeholderIndirectUsers::class, 'Element'],
     ];
 
     public function __construct(array $attributes = []) {
@@ -23,7 +24,8 @@ class Habitats extends Modules\Component\ImetModule
         $this->module_code = 'CTX 4.3';
         $this->module_title = trans('imet-core::oecm_context.Habitats.title');
         $this->module_fields = [
-            ['name' => 'EcosystemType',             'type' => 'dropdown-ImetOECM_Habitats',   'label' => trans('imet-core::oecm_context.Habitats.fields.EcosystemType')],
+            ['name' => 'EcosystemType', 'type' => 'dropdown-ImetOECM_Habitats',   'label' => trans('imet-core::oecm_context.Habitats.fields.EcosystemType')],
+            ['name' => 'EcosystemDescription', 'type' => 'text-area',   'label' => trans('imet-core::oecm_context.Habitats.fields.EcosystemDescription')],
             ['name' => 'ExploitedSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.Habitats.fields.ExploitedSpecies')],
             ['name' => 'ProtectedSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.Habitats.fields.ProtectedSpecies')],
             ['name' => 'DisappearingSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.Habitats.fields.DisappearingSpecies')],

@@ -7,7 +7,6 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
-use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Report;
 use Illuminate\Http\Request;
 
@@ -26,54 +25,25 @@ class ReportController extends BaseReportController
     protected function __retrieve_report_data($item): array
     {
         $form_id = $item->getKey();
+        $show_non_wdpa = false;
 
-        $api_available = $show_api = false;
-        $dopa_radar = null;
-
-        if (!ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
-            $show_api = true;
-            $api_available = DOPA::apiAvailable();
-            if ($api_available) {
-                $dopa_radar = DOPA::get_wdpa_radarplot($item->wdpa_id, true);
-            }
-        } else {
+        if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
             $show_non_wdpa = true;
             $non_wdpa = ProtectedAreaNonWdpa::find($item->wdpa_id)->toArray();
         }
 
-        $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
-        $vision = Modules\Context\Missions::getModuleRecords($form_id);
+        $governance = Modules\Context\Governance::getModuleRecords($form_id);
         $scores = OEMCStatisticsService::get_scores($form_id, 'ALL');
-
-        $main_threats = [];
-        $status = [];
-        $planning_objectives_list = ['long' => [], 'short' => []];
-
-        $planning_objectives = Modules\Evaluation\ObjectivesPlanification::getModule($form_id)->toArray();
-
-        foreach ($planning_objectives as $record){
-            $planning_objectives_list[$record['ShortOrLongTerm']][] = $record['Element'];
-        }
-
-        $trend_and_threats = Modules\Context\AnalysisStakeholderTrendsThreats::getModule($form_id)->toArray();
-        foreach ($trend_and_threats as $record) {
-            if ($record['Status']) {
-                $status[$record['Status']] = trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.ratingLegend.Status')[$record['Status']];
-            }
-            if ($record['MainThreat']) {
-                $label =  str_replace('"]','', str_replace('["','', $record['MainThreat']));
-                $main_threats[$record['MainThreat']] = trans('imet-core::oecm_lists.MainThreat')[$label] ?? null;
-            }
-        }
+        $key_elements = $this->getKeyElements($form_id);
 
         return [
             'item' => $item,
-            'planning_objectives' => $planning_objectives_list,
-            'main_threats' => $main_threats,
-            'status' => $status,
-            'key_elements' => Modules\Evaluation\KeyElements::getModule($form_id)->filter(function ($item) {
-                return $item['IncludeInStatistics'];
-            })->pluck('Aspect')->toArray(),
+            'main_threats' => $this->getThreats($form_id),
+            'key_elements_biodiversity' => array_values($this->getKeyElementsBiodiversity($key_elements)),
+            'key_elements_ecosystem' => array_values($this->getKeyElementsEcosystems($key_elements)),
+            'key_elements_impacts' => $this->getElementImpacts($form_id),
+            'stake_holders' => $this->getStakeholderDirectIndirect($form_id),
+            'stake_analysis' => $this->getStakeAnalysis($form_id),
             'assessment' => array_merge(
                 $scores,
                 [
@@ -82,15 +52,136 @@ class ReportController extends BaseReportController
             ),
             'report' => Report::getByForm($form_id),
             'report_schema' => Report::getSchema(),
-            'connection' => $api_available,
-            'show_api' => $show_api,
-            'dopa_radar' => $dopa_radar,
             'show_non_wdpa' => $show_non_wdpa ?? false,
             'non_wdpa' => $non_wdpa ?? null,
-            'general_info' => $general_info['records'][0] ?? null,
-            'vision' => $vision['records'][0] ?? null,
+            'governance' => $governance['records'][0] ?? null,
             'area' => Modules\Context\Areas::getArea($form_id)
         ];
+    }
+
+    /**
+     * @param int $form_id
+     * @return array
+     */
+    private function getElementImpacts(int $form_id): array
+    {
+
+        return array_map(function ($item) {
+            $effects = ['EffectSH', 'EffectER'];
+            $item['average'] = "";
+            $total_effect = 0;
+            $total_effect_length = 0;
+            foreach ($effects as $effect) {
+                if ($item[$effect] !== null) {
+                    $total_effect += $item[$effect];
+                    $total_effect_length++;
+                }
+            }
+            if ($total_effect_length > 0) {
+                $item['average'] = $total_effect / $total_effect_length;
+            }
+            return $item;
+
+        },
+            Modules\Evaluation\KeyElementsImpact::getModuleRecords($form_id)['records']);
+    }
+
+    /**
+     * @param int $form_id
+     * @return array[]
+     */
+    private function getStakeholderDirectIndirect(int $form_id): array
+    {
+        $stake_holders = ['direct' => [], 'indirect' => []];
+        $stake_holders['direct'] = (Modules\Context\Stakeholders::calculateWeights($form_id, Modules\Context\Stakeholders::ONLY_DIRECT));
+        $stake_holders['indirect'] = (Modules\Context\Stakeholders::calculateWeights($form_id, Modules\Context\Stakeholders::ONLY_INDIRECT));
+
+        arsort($stake_holders['direct']);
+        arsort($stake_holders['indirect']);
+
+        return $stake_holders;
+    }
+
+    /**
+     * @param int $form_id
+     * @return array[]
+     */
+    private function getStakeAnalysis(int $form_id): array
+    {
+        $direct = Modules\Context\AnalysisStakeholderDirectUsers::getAnalysisElements($form_id);
+        $indirect = Modules\Context\AnalysisStakeholderIndirectUsers::getAnalysisElements($form_id);
+        $items = array_merge($direct, $indirect);
+        $ecosystem = [];
+        foreach ($items as $key => $value) {
+            $ecosystem[$key] = $value;
+        }
+
+        return ['ecosystem_services' => $ecosystem];
+    }
+
+    /**
+     * @param int $form_id
+     * @return array
+     */
+    private function getThreats(int $form_id): array
+    {
+        $fields = [];
+        $trend_and_threats = collect(Modules\Evaluation\ThreatsIntegration::getModuleRecords($form_id)['records'])
+            ->toArray();
+
+        uasort($trend_and_threats, function ($a, $b) {
+
+            if ($a['__score'] == $b['__score']) {
+                return 0;
+            }
+            return ($a['__score'] > $b['__score']) ? -1 : 1;
+        });
+
+        foreach ($trend_and_threats as $k => $value) {
+            if ($value['__score'] !== null && !isset($fields[$value['Threat']])) {
+                $fields[$value['Threat']] = round($value['__score'], 2);
+            } else {
+                $fields[$value['Threat']] = "-";
+            }
+        }
+
+        return ['values' => $trend_and_threats, 'chart' => ['values' => (($fields))]];
+    }
+
+    /**
+     * @param array $values
+     * @return array
+     */
+    private function getKeyElementsEcosystems(array $values): array
+    {
+        return array_filter($values, function ($item) {
+            return  $item['__group_stakeholders'] !== null;
+        });
+    }
+
+    /**
+     * @param array $values
+     * @return array
+     */
+    private function getKeyElementsBiodiversity(array $values): array
+    {
+        return array_filter($values, function ($item) {
+            return  $item['__group_stakeholders'] === null;
+        });
+    }
+
+    /**
+     * @param int $form_id
+     * @param bool $ecosystem
+     * @return array
+     */
+    private function getKeyElements(int $form_id, bool $ecosystem = false): array
+    {
+        return collect(Modules\Evaluation\KeyElements::getModuleRecords($form_id)['records'])
+            ->filter(function ($item) {
+                return $item['IncludeInStatistics'];
+            })
+            ->toArray();
     }
 
     /**

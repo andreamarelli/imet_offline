@@ -17,8 +17,8 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
 
     public function __construct(array $attributes = []) {
 
-        $this->module_type = 'TABLE';
-        $this->module_code = 'PR8';
+        $this->module_type = 'GROUP_TABLE';
+        $this->module_code = 'PR9';
         $this->module_title = trans('imet-core::oecm_evaluation.StakeholderCooperation.title');
         $this->module_fields = [
             ['name' => 'Element',           'type' => 'disabled',           'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.Element'), 'other'=>'rows="3"'],
@@ -27,43 +27,51 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
             ['name' => 'Comments',          'type' => 'text-area',          'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.Comments')],
         ];
 
+        $this->module_groups = trans('imet-core::oecm_evaluation.StakeholderCooperation.groups');
+
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.StakeholderCooperation.module_info_EvaluationQuestion');
         $this->ratingLegend = trans('imet-core::oecm_evaluation.StakeholderCooperation.ratingLegend');
+        $this->module_info_Rating = trans('imet-core::oecm_evaluation.StakeholderCooperation.module_info_Rating');
 
         parent::__construct($attributes);
     }
 
     /**
-     * Preload data from CTX 3.1.2
+     * Preload data + weights
      *
-     * @param $form_id
-     * @param null $collection
+     * @param $predefined_values
+     * @param $records
+     * @param $empty_record
      * @return array
      */
-    public static function getModuleRecords($form_id, $collection = null): array
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
-        $module_records = parent::getModuleRecords($form_id, $collection);
-        $empty_record = static::getEmptyRecord($form_id);
-
-        $records = $module_records['records'];
+        $form_id = $empty_record['FormID'];
 
         $preLoaded = [
             'field' => 'Element',
-            'values' => Modules\Context\StakeholdersNaturalResources::getStakeholders($form_id)
+            'values' => [
+                'group0' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_DIRECT),
+                'group1' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_INDIRECT),
+            ]
         ];
 
-        $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);
+        $records = parent::arrange_records($preLoaded, $records, $empty_record);
 
-        $weight = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
+        $weight = Modules\Context\Stakeholders::calculateWeights($form_id);
 
-        foreach($module_records['records'] as $idx => $module_record){
-            if(array_key_exists($module_record['Element'], $weight)){
-                $module_records['records'][$idx]['Weight'] = $weight[$module_record['Element']];
+        foreach($records as $idx => $record){
+            if(array_key_exists($record['Element'], $weight)){
+                $records[$idx]['Weight'] = $weight[$record['Element']];
             } else {
-                $module_records['records'][$idx]['Weight'] = null;
+                $records[$idx]['Weight'] = null;
             }
         }
-        return $module_records;
+
+        return collect($records)
+            ->sortByDesc('Weight')
+            ->values()
+            ->toArray();
     }
 
     /**

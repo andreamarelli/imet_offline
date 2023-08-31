@@ -14,7 +14,7 @@ trait GeneralInfo
      * @return array
      * @throws \ReflectionException
      */
-    public function get_general_info(array $parameters, string $language = 'en'): array
+    public static function get_general_info(array $parameters, string $language = 'en'): array
     {
         $labels = [
             'network' => trans('imet-core::analysis_report.general_info.network'),

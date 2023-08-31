@@ -25,7 +25,7 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
 
     public function __construct(array $attributes = []) {
 
-        $this->module_type = 'TABLE';
+        $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'C2.2';
         $this->module_title = trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.title');
         $this->module_fields = [
@@ -35,39 +35,64 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
             ['name' => 'Comments',              'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.fields.Comments')],
         ];
 
+        $this->module_groups = trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.groups');
+        $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.module_info_Rating');
         $this->ratingLegend = trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.ratingLegend');
 
         parent::__construct($attributes);
     }
 
     /**
-     * Preload data from CTX 3.1.2
+     * Preload data + scores
      *
-     * @param $form_id
-     * @param null $collection
+     * @param $predefined_values
+     * @param $records
+     * @param $empty_record
      * @return array
      */
-    public static function getModuleRecords($form_id, $collection = null): array
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
-        $module_records = parent::getModuleRecords($form_id, $collection);
-        $empty_record = static::getEmptyRecord($form_id);
-
-        $preLoaded = [
+        $form_id = $empty_record['FormID'];
+        $predefined_values = [
             'field' => 'Stakeholder',
-            'values' => Modules\Context\StakeholdersNaturalResources::getStakeholders($form_id)
+            'values' => [
+                'group0' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_DIRECT),
+                'group1' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_INDIRECT),
+            ]
         ];
-        $module_records['records'] = static::arrange_records($preLoaded, $module_records['records'], $empty_record);
 
-        $weight = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
+        $records  = parent::arrange_records($predefined_values, $records, $empty_record);
+
+        $weight = Modules\Context\Stakeholders::calculateWeights($form_id);
         $ranking = collect(SupportsAndConstraints::calculateRanking($form_id))
-            ->pluck('__score', 'Stakeholder')
+            ->pluck('ConstraintLevel', 'Stakeholder')
             ->toArray();
 
-        foreach($module_records['records'] as $idx => $module_record){
-            $module_records['records'][$idx]['__weight'] = $weight[$module_record['Stakeholder']] ?? null;
-            $module_records['records'][$idx]['__score'] = $ranking[$module_record['Stakeholder']] ?? null;
+        foreach($records as $idx => $record){
+            $records[$idx]['__weight'] = $weight[$record['Stakeholder']] ?? null;
+            $records[$idx]['__score'] = $ranking[$record['Stakeholder']]!==null ? $ranking[$record['Stakeholder']]*100/3 : null;
         }
-        return $module_records;
+
+        return collect($records)
+            ->sortBy('__score')
+            ->values()
+            ->toArray();
+    }
+
+    /**
+     * Provide the list of prioritized key elements
+     * @param $form_id
+     * @return array
+     */
+    public static function getPrioritizedElements($form_id): array
+    {
+        return collect(static::getModuleRecords($form_id)['records'])
+            ->filter(function ($item) {
+                return $item['IncludeInStatistics'];
+            })
+            ->pluck('Stakeholder')
+            ->toArray();
     }
 
 }

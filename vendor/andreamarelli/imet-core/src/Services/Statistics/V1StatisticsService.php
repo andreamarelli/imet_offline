@@ -153,7 +153,6 @@ class V1StatisticsService extends StatisticsService
         $scores['pr14_14'] = static::average([$scores['pr14'],  $scores['pr15']], 1);
         $scores['pr16_17'] = static::average([$scores['pr16'],  $scores['pr17']], 1);
         $scores['pr18_19'] = static::average([$scores['pr18'],  $scores['pr19']], 1);
-
         return $scores;
     }
 

@@ -18,7 +18,7 @@ class SpecialStatus extends Modules\Component\ImetModule
         $this->module_code = 'CTX 1.3';
         $this->module_title = trans('imet-core::oecm_context.SpecialStatus.title');
         $this->module_fields = [
-            ['name' => 'Designation',           'type' => 'suggestion-ImetV2_SpecialDesignation',   'label' => trans('imet-core::oecm_context.SpecialStatus.fields.Designation')],
+            ['name' => 'Designation',           'type' => 'text-area',   'label' => trans('imet-core::oecm_context.SpecialStatus.fields.Designation')],
             ['name' => 'RegistrationDate',      'type' => 'dateMaxToday',   'label' => trans('imet-core::oecm_context.SpecialStatus.fields.RegistrationDate')],
             ['name' => 'Code',                  'type' => 'text-area',   'label' => trans('imet-core::oecm_context.SpecialStatus.fields.Code')],
             ['name' => 'Area',                  'type' => 'numeric',   'label' => trans('imet-core::oecm_context.SpecialStatus.fields.Area')],

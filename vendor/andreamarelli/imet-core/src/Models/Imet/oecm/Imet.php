@@ -4,7 +4,6 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm;
 
 use AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller;
 use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderTrendsThreats;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewers;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
@@ -42,7 +41,6 @@ class Imet extends BaseImetForm
             Modules\Context\Objectives2::class,
         ],
         'resources' => [
-            Modules\Context\StakeholdersNaturalResources::class,
             Modules\Context\ManagementRelativeImportance::class,
             Modules\Context\ManagementStaff::class,
             Modules\Context\ManagementStaffPartners::class,
@@ -54,13 +52,25 @@ class Imet extends BaseImetForm
             Modules\Context\AnimalSpecies::class,
             Modules\Context\VegetalSpecies::class,
             Modules\Context\Habitats::class,
+            Modules\Context\Objectives4::class,
         ],
-        'access_and_governance' => [
-            Modules\Context\AnalysisStakeholderAccessGovernance::class
+        'stakeholders' => [
+            Modules\Context\Stakeholders::class,
+            Modules\Context\StakeholdersObjectives::class,
         ],
-        'trends_and_threats' => [
-            Modules\Context\AnalysisStakeholderTrendsThreats::class
+        'stakeholder_analysis' => [
+            Modules\Context\AnalysisStakeholderDirectUsers::class,
+            Modules\Context\AnalysisStakeholderIndirectUsers::class,
+            Modules\Context\AnalysisStakeholdersObjectives::class
         ],
+        'objectives'            => [
+            Modules\Context\Objectives1::class,
+            Modules\Context\Objectives2::class,
+            Modules\Context\Objectives3::class,
+            Modules\Context\Objectives4::class,
+            Modules\Context\StakeholdersObjectives::class,
+            Modules\Context\AnalysisStakeholdersObjectives::class
+        ]
     ];
 
 

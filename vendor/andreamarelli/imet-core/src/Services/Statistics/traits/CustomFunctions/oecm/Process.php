@@ -42,7 +42,7 @@ trait Process
             : null;
     }
 
-    protected static function score_pr8($imet_id): ?float
+    protected static function score_pr9($imet_id): ?float
     {
         $records = StakeholderCooperation::getModuleRecords($imet_id)['records'];
 

@@ -37,27 +37,51 @@ class ThreatsIntegration extends Modules\Component\ImetModule_Eval
 
         $this->predefined_values = [
             'field' => 'Threat',
-            'values' => trans('imet-core::oecm_lists.MainThreat')
+            'values' => trans('imet-core::oecm_lists.Threats')
         ];
 
+        $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.ThreatsIntegration.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::oecm_evaluation.ThreatsIntegration.module_info_Rating');
         $this->ratingLegend = trans('imet-core::oecm_evaluation.ThreatsIntegration.ratingLegend');
 
         parent::__construct($attributes);
     }
 
-    public static function getModuleRecords($form_id, $collection = null): array
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
-        $module_records = parent::getModuleRecords($form_id, $collection);
+        $form_id = $empty_record['FormID'];
+
+        $records = parent::arrange_records($predefined_values, $records, $empty_record);
 
         $threats_ranking = collect(Threats::calculateRanking($form_id))
             ->pluck('__score', 'Value')
             ->toArray();
 
-        foreach ($module_records['records'] as $index => $record){
-            $module_records['records'][$index]['__score'] = $threats_ranking[$record['Threat']];
+        foreach ($records as $index => $record){
+            $records[$index]['__score'] = $threats_ranking[$record['Threat']];
         }
 
-        return $module_records;
+        $records = collect($records)
+            ->sortBy('__score')
+            ->values()
+            ->toArray();
+
+        return $records;
+    }
+
+    /**
+     * Provide the list of prioritized key elements
+     * @param $form_id
+     * @return array
+     */
+    public static function getPrioritizedElements($form_id): array
+    {
+        return collect(static::getModuleRecords($form_id)['records'])
+            ->filter(function ($item) {
+                return $item['IncludeInStatistics'];
+            })
+            ->pluck('Threat')
+            ->toArray();
     }
 
 }

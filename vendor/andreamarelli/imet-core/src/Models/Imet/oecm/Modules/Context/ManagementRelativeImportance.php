@@ -14,10 +14,10 @@ class ManagementRelativeImportance extends Modules\Component\ImetModule
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'SIMPLE';
-        $this->module_code = 'CTX 3.1.2';
+        $this->module_code = 'CTX 3.1.1';
         $this->module_title = trans('imet-core::oecm_context.ManagementRelativeImportance.title');
         $this->module_fields = [
-            ['name' => 'RelativeImportance',       'type' => 'rating-Minus3to3',   'label' => trans('imet-core::oecm_context.ManagementRelativeImportance.fields.RelativeImportance')],
+            ['name' => 'RelativeImportance',       'type' => 'imet-core::rating-Minus3to3',   'label' => trans('imet-core::oecm_context.ManagementRelativeImportance.fields.RelativeImportance')],
         ];
 
         parent::__construct($attributes);

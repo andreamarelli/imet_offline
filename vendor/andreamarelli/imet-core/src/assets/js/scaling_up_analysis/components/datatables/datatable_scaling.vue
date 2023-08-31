@@ -14,12 +14,10 @@
                 </th>
             </tr>
             <tr v-for="(value, index) in items">
-                <td v-for="(column, idx) in columns" v-html="get_value(value[column.field])"
-                    :class="idx === 0 ?'': score_class(value[column.field])"></td>
-            </tr>
-            <tr v-if="average.length > 0">
-                <td v-for="(column, idx) in columns" v-html="itemLabel(average[0][column.field])"
-                    :class="idx === 0 ?'': score_class(average[0][column.field])"></td>
+                <td v-if="items[index]['name'] != 'Average'" v-for="(column, idx) in columns"
+                    v-html="get_value(value[column.field])"
+                    :class="idx === 0 ?'' : score_class(value[column.field])"></td>
+                <td v-else v-html="get_value(value[column.field])"></td>
             </tr>
         </table>
         <div class="row" style="font-size: 12px">
@@ -77,6 +75,10 @@ export default {
             type: String,
             default: "asc"
         },
+        refresh_average: {
+            type: Boolean,
+            default: true
+        }
     },
     data: function () {
         const Locale = window.Locale;
@@ -90,20 +92,11 @@ export default {
     computed: {
         items() {
             let items = this.list;
-            if (this.average.length === 0 && items.length > 0) {
-                this.average = items.filter(item => {
-                    return item.name === "Average";
-                })
 
-                const averageIndex = items.findIndex((item) => {
-                    return item.name === "Average";
-                });
-
-                if (averageIndex > -1) {
-                    items.splice(averageIndex, 1);
-                }
-            }
             items = this.filterList(items);     // from filter mixin
+            if (this.refresh_average) {
+                items = this.calculateAverage(items); //recalculate average
+            }
             items = this.sortList(items);       // from sorter mixin
             items = this.paginateList(items);   // from paginate mixin
 
@@ -118,8 +111,53 @@ export default {
         })
     },
     methods: {
-        get_value:function (value) {
-            if(value === "-"){
+        calculateAverage: function (items) {
+            const notAverageItems = items.filter((item) => item['name'] !== 'Average')
+            const averageItem = items.find((item) => item['name'] === 'Average');
+            const averageItems = [];
+            if (averageItem && notAverageItems.length > 0) {
+                const averageObj = Object.keys(averageItem).reduce((obj, key) => {
+                    obj[key] = 0;
+                    averageItems[key] = 0;
+                    return obj;
+                }, {});
+
+                notAverageItems.map((o, x) => {
+                    const keys = Object.keys(o);
+                    keys.forEach((v, k) => {
+                        if (v !== 'name') {
+                            if (o[v] !== '-') {
+                                averageObj[v] += o[v]
+                                averageItems[v]++;
+                            }
+                        } else {
+                            averageObj[v] = "Average";
+                        }
+                    })
+                    return o;
+                });
+                const keys = Object.keys(averageObj);
+                keys.forEach((v, k) => {
+                    if (v !== 'name') {
+                        if (averageItems[v] > 0) {
+                            averageObj[v] = parseFloat((averageObj[v] / averageItems[v]).toFixed(1));
+                        } else {
+                            averageObj[v] = '-';
+                        }
+
+                    }
+                })
+                notAverageItems.push(averageObj);
+            }
+
+            if (items.length === 1 && notAverageItems.length === 0) {
+                return items;
+            }
+
+            return notAverageItems;
+        },
+        get_value: function (value) {
+            if (value === "-") {
                 return "";
             }
             return value;
@@ -128,7 +166,7 @@ export default {
             if (value === 'Average') {
                 value = "* " + value;
             }
-            if(value === "-"){
+            if (value === "-") {
                 return "";
             }
             return value;
@@ -136,7 +174,7 @@ export default {
         score_class: function (value, additional_classes = '') {
             let addClass = '';
 
-            if ([null,"-"].includes(value)) {
+            if ([null, "-"].includes(value)) {
                 addClass = 'score_no';
             } else if (value <= -51) {
                 addClass = 'score_danger_alert';

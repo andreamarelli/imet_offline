@@ -311,7 +311,9 @@ trait ImportExportJSON
     {
         $this->authorize('viewAny', static::$form_class);
 
-        return view(static::$form_view_prefix . '.import');
+        return view(static::$form_view_prefix . '.import', [
+            'controller' => static::class
+        ]);
     }
 
     /**

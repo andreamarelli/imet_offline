@@ -48,7 +48,7 @@ if($controller === Controllers\Imet\oecm\Controller::class){
             </a>
             {{-- Import json IMETs --}}
             <a class="btn-nav rounded"
-               href="{{ route(Controllers\Imet\Controller::ROUTE_PREFIX.'import') }}">
+               href="{{ route($route_prefix.'import') }}">
                 {!! Template::icon('file-import', 'white') !!}
                 {{ ucfirst(trans('modular-forms::common.import')) }}
             </a>
@@ -188,11 +188,11 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                             @include('imet-core::components.buttons.merge', ['form_class' => $form_class])
                         </span>
 
-                    @endcan
+                        {{-- Export --}}
+                        @can('export_button', $form_class)
+                            @include('imet-core::components.buttons.export', ['form_class' => $form_class])
+                        @endcan
 
-                    {{-- Export --}}
-                    @can('export_button', $form_class)
-                        @include('imet-core::components.buttons.export', ['form_class' => $form_class])
                     @endcan
 
                     {{-- Print --}}

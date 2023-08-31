@@ -83,10 +83,10 @@ export default {
                             return -1 * dir;
                         }
                     } else {
-                        if (text_a > text_b) {
+                        if (parseInt(text_a, 10) > parseInt(text_b,10)) {
                             return dir;
                         }
-                        if (text_a < text_b) {
+                        if (parseInt(text_a, 10) < parseInt(text_b,10)) {
                             return -1 * dir;
                         }
                     }

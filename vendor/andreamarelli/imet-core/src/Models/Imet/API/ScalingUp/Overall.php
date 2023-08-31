@@ -28,12 +28,12 @@ trait Overall
 
         foreach ($ranking['data']['values']['values'] as $key => $value) {
             foreach ($value as $k => $v) {
-                $indicator = array_keys($ranking['data']['values']['legend'][0], $key)[0];
+                $indicator = array_keys($ranking['data']['values']['legends'], $key)[0];
                 $api[$k]['values'][$indicator] = $v;
             }
         }
 
-        return ['data' => $api, 'labels' => $ranking['data']['values']['legend']];
+        return ['data' => $api, 'labels' => $ranking['data']['values']['legends']];
     }
 
     /**

@@ -98,23 +98,4 @@ class Controller extends __Controller
         return redirect()->route(static::ROUTE_PREFIX.'index');
     }
 
-    /**
-     * Manage "pdf" route
-     *
-     * @param $item
-     * @return \Illuminate\View\View|BinaryFileResponse
-     * @throws AuthorizationException
-     * @throws CouldNotTakeBrowsershot
-     */
-    public function pdf($item): BinaryFileResponse
-    {
-        $imet = (static::$form_class)::find($item);
-        $this->authorize('view', $imet);
-
-        $view = view(static::$form_view_prefix . 'print', [
-            'item' => $imet
-        ]);
-        return File::exportToPDF($imet->filename('pdf'), $view);
-    }
-
 }

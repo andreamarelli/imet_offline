@@ -2,7 +2,9 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
+use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
 use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
@@ -88,7 +90,8 @@ trait CreateAndStoreNonWdpa
             $form_record['Country'] = $records[0]['country'];
             $form_record['version'] = (static::$form_class)::version;
             $request->merge(['records_json' => Payload::encode([$form_record])]);
-            return static::redirect_to_edit($request);
+
+            return static::redirect_to_edit_non_wdpa($request);
 
         } catch (\Exception $e) {
             Session::flash('message', trans('modular-forms::common.saved_error'));
@@ -100,6 +103,30 @@ trait CreateAndStoreNonWdpa
     {
         $form = new static::$form_class();
         $result = $form->store($request);
+
+        if($result['status'] === 'success'){
+            $result['entity_label'] = $form::find($result['entity_id'])->{$form::LABEL};
+            $result['edit_url'] = route(static::ROUTE_PREFIX. 'context_edit', ['item' => $result['entity_id']]);
+        }
+        return $result;
+    }
+
+    private static function redirect_to_edit_non_wdpa($request)
+    {
+        $form = new static::$form_class();
+        $result = $form->store($request);
+
+        $form_id = $form->getKey();
+        $non_wdpa_id = Payload::decode($request->input('records_json'))[0]['wdpa_id'];
+        $non_wdpa = ProtectedAreaNonWdpa::find($non_wdpa_id);
+
+        GeneralInfo::create([
+                                'FormID' => $form_id,
+                                'CompleteName' => $non_wdpa->name,
+                                'Country' => $non_wdpa->country,
+                                'Ownership' => SelectionList::getList('ImetV2_OwnershipType')[$non_wdpa->ownership_type],
+                                'CreationYear' => $non_wdpa->status_year
+                            ]);
 
         if($result['status'] === 'success'){
             $result['entity_label'] = $form::find($result['entity_id'])->{$form::LABEL};

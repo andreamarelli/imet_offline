@@ -14,7 +14,7 @@ class AssistanceActivities extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'GROUP_TABLE';
-        $this->module_code = 'PR9';
+        $this->module_code = 'PR10';
         $this->module_title = trans('imet-core::oecm_evaluation.AssistanceActivities.title');
         $this->module_fields = [
             ['name' => 'Activity',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.AssistanceActivities.fields.Activity')],

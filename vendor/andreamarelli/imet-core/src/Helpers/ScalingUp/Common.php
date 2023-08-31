@@ -38,7 +38,7 @@ class Common
             return 0;
         }
 
-        return number_format(round($val, $round), 1);
+        return (float)number_format(round($val, $round), 1);
     }
 
     /**
@@ -46,15 +46,15 @@ class Common
      * @param int $items_number
      * @return float|int
      */
-    public static function get_average(array $array, int $items_number = 0): float
+    public static function get_average(array $array, int $items_number = 0): ?float
     {
-        array_walk($array, function (&$item, $key) {
+        array_walk($array, function (&$item, $key) use (&$items_number){
             if ((string)$item === "-") {
                 $item = 0;
             }
         });
 
-        return $items_number ? array_sum($array) / $items_number : 0;
+        return $items_number ? array_sum($array) / $items_number : null;
     }
 
     /**
@@ -151,19 +151,23 @@ class Common
      * @param string|null $indicator
      * @return float
      */
-    public static function ranking_values_correction($value, int $length_to_divide, array $process_indicators = [], string $indicator = null): float
+    public static function ranking_values_correction($value, int $length_to_divide, array $process_indicators = [], string $indicator = null)
     {
         if ($value === 0) {
             return 0;
         }
 
         if ((string)$value === "-") {
+
             return $value;
         }
 
         //use it only for process indicators
         if ($indicator && isset($process_indicators[$indicator])) {
             $length_to_divide = array_sum($process_indicators);
+            // dd($length_to_divide, $process_indicators, $value, $indicator);
+           // print_r($process_indicators);
+           // echo $value."_".$length_to_divide."x".static::round_number(($value * $process_indicators[$indicator]) / $length_to_divide, 2)."-\n";
             return static::round_number(($value * $process_indicators[$indicator]) / $length_to_divide, 2);
         }
         //echo $value ."\n";
@@ -210,7 +214,12 @@ class Common
 
             //loop through imet sub indicators to create an average value in order to sort in the ranking
             //and pass the correct value where needed
-            $filtered[$form_id]['avg'] = static::round_number(static::get_average($filtered[$form_id], $number_of_indicators));
+            $average = static::get_average($filtered[$form_id], $number_of_indicators);
+            if($average !== null){
+                $filtered[$form_id]['avg'] = static::round_number($average);
+            } else {
+                $filtered[$form_id]['avg'] = "-";
+            }
             $filtered[$form_id]['indicators_number'] = $number_of_indicators;
         }
 
@@ -310,6 +319,7 @@ class Common
             $assessments[$k]['color'] = $name->color;
             $assessments[$k]['wdpa_id'] = $name->wdpa_id;
             $assessments[$k]['formid'] = (int)$form_id;
+            $assessments[$k]['year'] = (int)$name->Year;
 
             $assessments[$k]['imet_index'] = static::round_number($assessments[$k]['imet_index']);
             foreach ($indicators as $key => $indicator) {

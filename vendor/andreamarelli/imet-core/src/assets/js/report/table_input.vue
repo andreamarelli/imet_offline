@@ -10,17 +10,14 @@
             <div v-else class="field-preview" style="max-width: none; margin-bottom: 10px;">
                 {{ current_report.previous_state }}}
             </div>
-            <h5>{{ Locale.getLabel('imet-core::oecm_report.driving_forces') }}</h5>
-            <editor v-model=current_report.driving_forces v-on:update="current_report.driving_forces = $event"></editor>
             <h5>{{ Locale.getLabel('imet-core::oecm_report.impacts') }}</h5>
             <editor v-model=current_report.impacts v-on:update="current_report.impacts = $event"></editor>
-            <h5>{{ Locale.getLabel('imet-core::oecm_report.current_state') }}</h5>
-            <editor v-model=current_report.current_state v-on:update="current_report.current_state = $event"></editor>
             <h5>{{ Locale.getLabel('imet-core::oecm_report.responses') }}</h5>
             <editor v-model=current_report.responses v-on:update="current_report.responses = $event"></editor>
-            <h5>{{ Locale.getLabel('imet-core::oecm_report.expected_conditions') }}</h5>
-            <editor v-model=current_report.expected_conditions
-                    v-on:update="current_report.expected_conditions = $event"></editor>
+            <h5>{{ Locale.getLabel('imet-core::oecm_report.proposed_short') }} </h5>
+            <editor v-model=current_report.proposed_short v-on:update="current_report.proposed_short = $event"></editor>
+            <h5>{{ Locale.getLabel('imet-core::oecm_report.proposed_long') }}</h5>
+            <editor v-model=current_report.proposed_long v-on:update="current_report.proposed_long = $event"></editor>
         </div>
     </div>
 </template>

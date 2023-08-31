@@ -7,7 +7,7 @@
 <h3>@lang('imet-core::oecm_context.Governance.governance')</h3>
 @foreach($definitions['fields'] as  $idx => $field)
 
-    @if($field['name']==='GovernanceModel' || $field['name']==='AdditionalInfo')
+    @if($field['name']==='GovernanceModel' || $field['name']==='SubGovernanceModel' || $field['name']==='AdditionalInfo')
 
         @component('modular-forms::module.field_container', [
                 'name' => $field['name'],
@@ -27,13 +27,9 @@
 <h3>@lang('imet-core::oecm_context.Governance.management')</h3>
 @foreach($definitions['fields'] as  $idx => $field)
 
-    @if($idx>=2)
+    @if($idx>=3)
 
-        @if($field['name']==='ManagementUnique'
-           || ( $records[0]['ManagementUnique']==='unique' && ($field['name']==='ManagementName' || $field['name']==='ManagementType'))
-           || ( $records[0]['ManagementUnique']==='multiple' && $field['name']==='ManagementList')
-           || ( $records[0]['ManagementUnique']!==null && ($field['name']==='DateOfCreation' || $field['name']==='OfficialRecognition' || $field['name']==='SupervisoryInstitution'))
-           )
+        @if($field['name']==='ManagementUnique' || $records[0]['ManagementUnique']!==null)
 
             @component('modular-forms::module.field_container', [
                     'name' => $field['name'],

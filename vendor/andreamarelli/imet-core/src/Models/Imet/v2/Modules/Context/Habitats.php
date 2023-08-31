@@ -132,7 +132,7 @@ class Habitats extends Modules\Component\ImetModule
                     static::UPDATED_BY => $record[static::UPDATED_BY],
                     'EcosystemType' => $record['CoverType'],
                     'Area' => $record['HistoricalArea'],
-                    'DesiredConservationStatus' => $record['ConservationStatusArea'],
+                    'DesiredConservationStatus' => $record['ConservationStatusArea'] ?? null,
                     'Comments' => $record['Notes']
                 ];
             }

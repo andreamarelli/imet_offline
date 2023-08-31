@@ -1,6 +1,6 @@
 <template>
     <div v-if="data.length">
-        <datatable_scaling :columns="columns" :values="data" :key="data.length">
+        <datatable_scaling :columns="columns" :refresh_average="refresh_average" :values="data" :key="data.length">
         </datatable_scaling>
     </div>
 </template>
@@ -30,6 +30,10 @@ export default {
         values_with_indicators_keys: {
             type: Boolean,
             default: false
+        },
+        refresh_average: {
+            type: Boolean,
+            default: true
         }
     },
     data: function () {
@@ -38,6 +42,7 @@ export default {
         }
     },
     mounted() {
+
         this.sortBy = this.default_order;
         this.$root.$on(`radar_data_${this.event_key}`, (params) => {
             params.selected['lower limit'] = false;
@@ -48,6 +53,7 @@ export default {
         this.parse_data();
     },
     methods: {
+
         parse_data: function (selected = null) {
 
             const values = Object.entries({...this.values});

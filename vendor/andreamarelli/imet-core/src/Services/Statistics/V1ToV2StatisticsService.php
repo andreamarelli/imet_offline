@@ -179,13 +179,12 @@ class V1ToV2StatisticsService extends StatisticsService
         // aggregate step score
         $scores['avg_indicator'] = static::average($scores, 1);
 
-        $scores['pr1_6'] = $scores_v1['pr1_6'];
-        $scores['pr7_10'] = $scores_v1['pr7_10'];
-        $scores['pr11_13'] = $scores_v1['pr11_13'];
-        $scores['pr14_14'] = $scores_v1['pr14_14'];
-        $scores['pr16_17'] = $scores_v1['pr16_17'];
-        $scores['pr18_19'] = 0;
-
+        $scores['pr1_6'] = static::average([$scores['pr1'],  $scores['pr2'], $scores['pr3'], $scores['pr4'], $scores['pr5'], $scores['pr6']]);//$scores_v1['pr1_6'];
+        $scores['pr7_9'] = static::average([$scores['pr7'],  $scores['pr8'], $scores['pr9']]);
+        $scores['pr10_12'] = static::average([$scores['pr10'],  $scores['pr11'], $scores['pr12']]);
+        $scores['pr13_14'] = static::average([$scores['pr13'],  $scores['pr14']]);
+        $scores['pr15_16'] = static::average([$scores['pr15'],  $scores['pr16']]);
+        $scores['pr17_18'] = static::average([$scores['pr17'],  $scores['pr18']]);
 
         return $scores;
     }

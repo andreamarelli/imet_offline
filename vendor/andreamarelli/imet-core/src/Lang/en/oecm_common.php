@@ -7,9 +7,10 @@ return [
         'general_info'          => 'General Information about the OECM',
         'areas'                 => 'Areas',
         'resources'             => 'Human, financial and material resources',
-        'key_elements'          => 'Key animals and plants species',
-        'access_and_governance' => 'Access and Governance of key elements – A stakeholder analysis',
-        'trends_and_threats' => 'Trends and threats on key elements – A stakeholder analysis'
+        'key_elements'          => 'Animals, plants habitats',
+        'stakeholders'          => 'Stakeholders involved in the management or use of natural resources',
+        'stakeholder_analysis'  => 'Stakeholder analysis of ecosystem services',
+        'objectives'            => 'Objectives'
     ],
 
 
@@ -84,51 +85,51 @@ return [
         ],
         'pr1' => [
             'PR1',
-            'Training and capacity-building programme'
+            'Staff skills/training'
         ],
         'pr2' => [
             'PR2',
-            'Human resource management policies and procedures'
+            'HR policies and procedures'
         ],
         'pr3' => [
             'PR3',
-            'Empowerment of the stakeholders in the governance of key elements'
+            'Stakeholders, empowerment'
         ],
         'pr4' => [
             'PR4',
-            'Budget and financial management'
+            'Budget and finance'
         ],
         'pr5' => [
             'PR5',
-            'Maintenance of infrastructure, equipment and facilities'
+            'Maintenance of infrastructure'
         ],
         'pr6' => [
             'PR6',
-            'Managing the key elements of the OECM with specific actions'
+            'Managing key elements'
         ],
         'pr7' => [
             'PR7',
-            'Actions in response to illegal activities or resolution of contentious issues'
+            'Monitoring and research'
         ],
         'pr8' => [
             'PR8',
-            'Cooperation between stakeholders'
+            'Resolving contentious issues'
         ],
         'pr9' => [
             'PR9',
-            'Benefits for local communities'
+            'Stakeholders’ collaboration'
         ],
         'pr10' => [
             'PR10',
-            'Environmental education and public awareness'
+            'Benefits to local communities'
         ],
         'pr11' => [
             'PR11',
-            'Management of visitor facilities and services'
+            'Environmental education'
         ],
         'pr12' => [
             'PR12',
-            'Systems for monitoring and research of the key elements'
+            'Tourism management'
         ],
         'pr1_6' => [
             'PR1-6',
@@ -156,7 +157,11 @@ return [
         ],
         'oc2' => [
             'O/C2',
-            ' Effects on the quality of life of local stakeholders'
+            'Effects on key conservation elements'
+        ],
+        'oc3' => [
+            'O/C3',
+            'Impacts on local communities'
         ],
     ]
 

@@ -8109,6 +8109,9 @@ div.modal {
 .tooltip-inner {
   white-space: pre-wrap; }
 
+.badge {
+  padding: 3px 4px 2px 4px; }
+
 .field-edit.form-daypicker {
   width: 102px;
   display: inline-block; }
@@ -14845,16 +14848,16 @@ input.captcha-input {
       cursor: not-allowed; }
 
 .rating-container {
-  white-space: nowrap; }
+  display: flex;
+  justify-content: center;
+  gap: 2px; }
 
 .rating {
   min-height: 0;
   min-width: 0;
-  display: inline-block;
   font-weight: bold;
   color: #737373;
   border: 1px solid #A3A3A3;
-  margin-right: 2px;
   height: 22px;
   padding: 0;
   text-align: center;
@@ -15175,6 +15178,12 @@ nav.steps {
         vertical-align: middle; }
         .module-container .module-body .module-table tr.module-table-item td input.field-edit {
           display: inline-block; }
+      .module-container .module-body .module-table tr td .no_data {
+        font-weight: 600;
+        line-height: 1.2em;
+        color: #A3A3A3;
+        font-size: 1.3em;
+        text-align: center; }
       .module-container .module-body .module-table tr td .ofac-table-sum {
         display: inline-block;
         max-width: 350px;

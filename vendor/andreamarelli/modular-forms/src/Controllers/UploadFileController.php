@@ -2,10 +2,10 @@
 
 namespace AndreaMarelli\ModularForms\Controllers;
 
-use AndreaMarelli\ModularForms\Controllers\Traits\API;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Models\Module;
 use AndreaMarelli\ModularForms\Models\Traits\Upload;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -23,7 +23,7 @@ class UploadFileController extends Controller
     /**
      * Upload file
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return array
      */
     public static function upload(Request $request): array
@@ -40,8 +40,8 @@ class UploadFileController extends Controller
      * Download file (by hash)
      *
      * @param $hash
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @return BinaryFileResponse
+     * @throws FileNotFoundException
      */
     public static function download($hash): BinaryFileResponse
     {
@@ -50,8 +50,7 @@ class UploadFileController extends Controller
         $disk->put($hash, $file_content);
         $file_path = $disk->path($hash);
         return response()
-            ->download($file_path, $file_name)
-            ->deleteFileAfterSend();
+            ->download($file_path, $file_name);
     }
 
 
