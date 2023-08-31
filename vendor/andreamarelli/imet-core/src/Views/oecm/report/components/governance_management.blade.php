@@ -6,7 +6,9 @@
 <table>
     <tr>
         <td><b>@lang('imet-core::oecm_context.Governance.fields.GovernanceModel')</b></td>
-        <td>@lang('imet-core::oecm_lists.GovernanceModel.'.$governance['GovernanceModel'])</td>
+        <td>
+            {{ $governance['GovernanceModel']!==null ? trans('imet-core::oecm_lists.GovernanceModel.'.$governance['GovernanceModel']) : '' }}
+        </td>
     </tr>
     <tr>
         <td><b>@lang('imet-core::oecm_context.Governance.fields.AdditionalInfo')</b></td>
@@ -14,18 +16,26 @@
     </tr>
     <tr>
         <td><b>@lang('imet-core::oecm_context.Governance.fields.ManagementUnique')</b></td>
-        <td>@lang('imet-core::oecm_lists.ManagementUnique.'.$governance['ManagementUnique'])</td>
+        <td>
+            {{ $governance['ManagementUnique']!==null ? trans('imet-core::oecm_lists.ManagementUnique.'.$governance['ManagementUnique']) : '' }}
+        </td>
     </tr>
     <tr>
         <td><b>@lang('imet-core::oecm_context.Governance.fields.ManagementType')</b></td>
         <td>
-            @lang('imet-core::oecm_lists.ManagementType.'.$governance['ManagementType'])
+            {{ $governance['ManagementType']!==null ? trans('imet-core::oecm_lists.ManagementType.'.$governance['ManagementType']) : '' }}
         </td>
     </tr>
     <tr>
         <td><b>@lang('imet-core::oecm_context.Governance.fields.DateOfCreation')</b></td>
         <td>
-            @lang('imet-core::oecm_lists.DateOfCreation.'.$governance['DateOfCreation'])
+            @if($governance['DateOfCreation']!==null)
+               @if(array_key_exists($governance['DateOfCreation'], \AndreaMarelli\ModularForms\Helpers\Input\SelectionList::getList('ImetOECM_DateOfCreation')))
+                   @lang('imet-core::oecm_lists.DateOfCreation.'.$governance['DateOfCreation'])
+               @else
+                   {{ $governance['DateOfCreation'] }}
+               @endif
+            @endif
         </td>
     </tr>
     <tr>

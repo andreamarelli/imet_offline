@@ -8,7 +8,7 @@ return [
         'areas'                 => 'Areas',
         'resources'             => 'Ressources humaines, financières et matérielles',
         'key_elements'          => 'Espèces animales et végétales clés',
-        'stakeholders'          => 'Parties prenantes impliquées dans la gestion ou ayant un impact sur l\'utilisation des ressources naturelles',
+        'stakeholders'          => 'Parties prenantes impliquées dans la gestion ou l\'utilisation des ressources naturelles',
         'stakeholder_analysis'  => 'Analyse des parties prenantes',
         'objectives'            => 'Objectifs'
     ],

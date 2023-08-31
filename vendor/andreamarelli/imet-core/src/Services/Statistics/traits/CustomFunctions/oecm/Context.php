@@ -64,7 +64,10 @@ trait Context {
 
     protected static function score_support_contraints($imet_id): ?float
     {
-        $values = collect(SupportsAndConstraints::calculateRanking($imet_id));
+        $values = collect(SupportsAndConstraints::calculateRanking($imet_id))
+            ->filter(function ($item) {
+                return $item['__score'] !== null;
+            });
 
         $numerator = $values->sum(function ($item){
             return $item['__score'];

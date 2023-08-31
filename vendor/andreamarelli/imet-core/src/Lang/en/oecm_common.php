@@ -7,9 +7,9 @@ return [
         'general_info'          => 'General Information about the OECM',
         'areas'                 => 'Areas',
         'resources'             => 'Human, financial and material resources',
-        'key_elements'          => 'Key animals and plants species',
-        'stakeholders'          => 'Stakeholders involved in management or impacting the use of natural resources',
-        'stakeholder_analysis'  => 'Stakeholder analysis',
+        'key_elements'          => 'Animals, plants habitats',
+        'stakeholders'          => 'Stakeholders involved in the management or use of natural resources',
+        'stakeholder_analysis'  => 'Stakeholder analysis of ecosystem services',
         'objectives'            => 'Objectives'
     ],
 
