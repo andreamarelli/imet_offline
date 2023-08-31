@@ -5,6 +5,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Services\StakeholdersService;
+use AndreaMarelli\ImetCore\Services\ThreatsService;
 
 class Threats extends Modules\Component\ImetModule_Eval {
 
@@ -19,7 +20,7 @@ class Threats extends Modules\Component\ImetModule_Eval {
         $this->module_code = 'C3.1.2';
         $this->module_title = trans('imet-core::oecm_evaluation.Threats.title');
         $this->module_fields = [
-            ['name' => 'Value',         'type' => 'blade-imet-core::oecm.evaluation.fields.threat', 'label' => trans('imet-core::oecm_evaluation.Threats.fields.Value')],
+            ['name' => 'Value',         'type' => 'disabled', 'label' => trans('imet-core::oecm_evaluation.Threats.fields.Value')],
             ['name' => 'Impact',        'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::oecm_evaluation.Threats.fields.Impact')],
             ['name' => 'Extension',     'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::oecm_evaluation.Threats.fields.Extension')],
             ['name' => 'Duration',      'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::oecm_evaluation.Threats.fields.Duration')],
@@ -81,36 +82,7 @@ class Threats extends Modules\Component\ImetModule_Eval {
     {
         $records = $records ?? static::getModuleRecords($form_id)['records'];
 
-        return collect($records)
-            ->map(function($item){
-
-                $prod = 1
-                    * ($item['Impact']!=null ? 4-$item['Impact'] : 1)
-                    * ($item['Extension']!=null ? 4-$item['Extension'] : 1)
-                    * ($item['Duration']!=null ? 4-$item['Duration'] : 1)
-                    * ($item['Trend']!=null ? (5/2 - $item['Trend']*3/4) : 1)
-                    * ($item['Probability']!=null ? 4-$item['Probability'] : 1);
-
-                $count = ($item['Impact']!=null ? 1 : 0)
-                    + ($item['Extension']!=null ? 1 : 0)
-                    + ($item['Duration']!=null ? 1 : 0)
-                    + ($item['Trend']!=null ? 1 : 0)
-                    + ($item['Probability']!=null ? 1 : 0);
-
-                $score = $count>0
-                    ? (4 - round(pow($prod, 1/($count)),2))
-                    : null;
-
-                $score = $score!==null
-                    ? (0 - $score) * 100 / 3
-                    : null;
-
-                $item['__score'] = $score;
-
-                return $item;
-            })
-            ->sortBy('__score')
-            ->toArray();
+        return ThreatsService::calculateRanking($records);
     }
 
 }

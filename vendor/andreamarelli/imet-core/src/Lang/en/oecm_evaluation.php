@@ -67,6 +67,7 @@ return [
         'from_group' => 'From category',
         'key_elements_importance_composition' => 'Importance composition: :imp_dir (from :num_dir direct stakeholder(s)) + :imp_ind (from :num_ind indirect stakeholder(s))',
         'num_stakeholders' => 'Indicated by :num_dir direct stakeholder(s) and :num_ind indirect stakeholder(s)',
+        'ranking' => 'Ranking',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>P6, I1, PR6</i>',
     ],
 

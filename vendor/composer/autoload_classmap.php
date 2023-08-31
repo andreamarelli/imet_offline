@@ -408,6 +408,7 @@ return array(
     'AndreaMarelli\\ImetCore\\Services\\Statistics\\traits\\CustomFunctions\\oecm\\Process' => $vendorDir . '/andreamarelli/imet-core/src/Services/Statistics/traits/CustomFunctions/oecm/Process.php',
     'AndreaMarelli\\ImetCore\\Services\\Statistics\\traits\\CustomFunctions\\oecm\\_Common' => $vendorDir . '/andreamarelli/imet-core/src/Services/Statistics/traits/CustomFunctions/oecm/_Common.php',
     'AndreaMarelli\\ImetCore\\Services\\Statistics\\traits\\Math' => $vendorDir . '/andreamarelli/imet-core/src/Services/Statistics/traits/Math.php',
+    'AndreaMarelli\\ImetCore\\Services\\ThreatsService' => $vendorDir . '/andreamarelli/imet-core/src/Services/ThreatsService.php',
     'AndreaMarelli\\ModularForms\\Controllers\\Controller' => $vendorDir . '/andreamarelli/modular-forms/src/Controllers/Controller.php',
     'AndreaMarelli\\ModularForms\\Controllers\\FormController' => $vendorDir . '/andreamarelli/modular-forms/src/Controllers/FormController.php',
     'AndreaMarelli\\ModularForms\\Controllers\\Traits\\API' => $vendorDir . '/andreamarelli/modular-forms/src/Controllers/Traits/API.php',

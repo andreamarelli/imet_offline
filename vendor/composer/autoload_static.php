@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit067933ff512cc71373d6c7bb32be4a32
+class ComposerStaticInit22a385fd3509745b7b33f76a7b008834
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -1072,6 +1072,7 @@ class ComposerStaticInit067933ff512cc71373d6c7bb32be4a32
         'AndreaMarelli\\ImetCore\\Services\\Statistics\\traits\\CustomFunctions\\oecm\\Process' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Services/Statistics/traits/CustomFunctions/oecm/Process.php',
         'AndreaMarelli\\ImetCore\\Services\\Statistics\\traits\\CustomFunctions\\oecm\\_Common' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Services/Statistics/traits/CustomFunctions/oecm/_Common.php',
         'AndreaMarelli\\ImetCore\\Services\\Statistics\\traits\\Math' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Services/Statistics/traits/Math.php',
+        'AndreaMarelli\\ImetCore\\Services\\ThreatsService' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Services/ThreatsService.php',
         'AndreaMarelli\\ModularForms\\Controllers\\Controller' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Controllers/Controller.php',
         'AndreaMarelli\\ModularForms\\Controllers\\FormController' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Controllers/FormController.php',
         'AndreaMarelli\\ModularForms\\Controllers\\Traits\\API' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Controllers/Traits/API.php',
@@ -7547,10 +7548,10 @@ class ComposerStaticInit067933ff512cc71373d6c7bb32be4a32
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit067933ff512cc71373d6c7bb32be4a32::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit067933ff512cc71373d6c7bb32be4a32::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit067933ff512cc71373d6c7bb32be4a32::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit067933ff512cc71373d6c7bb32be4a32::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit22a385fd3509745b7b33f76a7b008834::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit22a385fd3509745b7b33f76a7b008834::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit22a385fd3509745b7b33f76a7b008834::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit22a385fd3509745b7b33f76a7b008834::$classMap;
 
         }, null, ClassLoader::class);
     }

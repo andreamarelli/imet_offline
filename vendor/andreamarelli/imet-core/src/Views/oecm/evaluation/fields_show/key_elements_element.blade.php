@@ -21,12 +21,18 @@ $num_stakeholders_indirect = $record['__num_stakeholders_indirect'];
             <b>{!! $group_stakeholders !!}</b>
         </div>
     @endif
-    @if($num_stakeholders_direct!==null || $num_stakeholders_indirect!==null)
-        <div>
-            @lang('imet-core::oecm_evaluation.KeyElements.num_stakeholders', [
-                'num_dir' => '<b>'.$num_stakeholders_direct.'</b>',
-                'num_ind' => '<b>'.$num_stakeholders_indirect.'</b>'
-                ])
-        </div>
+    @if($record['group_key'] === 'group0')
+        @if($num_stakeholders_direct!==null || $num_stakeholders_indirect!==null)
+            <div>
+                @lang('imet-core::oecm_evaluation.KeyElements.num_stakeholders', [
+                    'num_dir' => '<b>'.$num_stakeholders_direct.'</b>',
+                    'num_ind' => '<b>'.$num_stakeholders_indirect.'</b>'
+                    ])
+            </div>
+        @endif
+    @elseif($record['group_key'] === 'group1')
+            <div>
+                <b>@lang('imet-core::oecm_evaluation.KeyElements.ranking')</b>: {{ $record['__score'] }}
+            </div>
     @endif
 </div>

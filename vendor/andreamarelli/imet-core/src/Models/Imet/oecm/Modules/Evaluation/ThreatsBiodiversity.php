@@ -5,6 +5,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ImetCore\Services\ThreatsService;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
 use Illuminate\Support\Str;
 
@@ -89,6 +90,21 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
             ],
         ];
         return parent::arrange_records($predefined_values, $records, $empty_record);
+    }
+
+
+    /**
+     * Calculate threat's ranking
+     *
+     * @param $form_id
+     * @param $records
+     * @return array
+     */
+    public static function calculateRanking($form_id, $records = null): array
+    {
+        $records = $records ?? static::getModuleRecords($form_id)['records'];
+
+        return ThreatsService::calculateRanking($records);
     }
 
 

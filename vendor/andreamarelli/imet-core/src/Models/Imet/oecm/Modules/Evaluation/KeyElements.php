@@ -6,6 +6,7 @@ use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 use AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ImetCore\Services\ThreatsService;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
 use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Exception;
@@ -66,14 +67,14 @@ class KeyElements extends Modules\Component\ImetModule_Eval
 
         // Retrieve key elements (and importance calculation) form CTX
         $key_elements = static::getKeyElementsFromSA($form_id);
-        $biodiversity_key_elements =  static::getBiodiversityKeyElementsFromCTX($form_id);
+        $biodiversity_key_elements =  static::getBiodiversityKeyElements($form_id);
 
         // Set predefines values (key elements)
         $predefined = [
             'field' => 'Aspect',
             'values' => [
                 'group0' => $key_elements->pluck('element')->toArray(),
-                'group1' => $biodiversity_key_elements,
+                'group1' => $biodiversity_key_elements->pluck('Criteria')->toArray(),
             ]
         ];
 
@@ -85,8 +86,14 @@ class KeyElements extends Modules\Component\ImetModule_Eval
                 $records[$index]['Importance'] = $key_elements[$record['Aspect']]['importance'];
                 $records[$index]['__num_stakeholders_direct'] = $key_elements[$record['Aspect']]['stakeholder_direct_count'];
                 $records[$index]['__num_stakeholders_indirect'] = $key_elements[$record['Aspect']]['stakeholder_indirect_count'];
-                $records[$index]['__group_stakeholders'] = $key_elements[$record['Aspect']]['group'];;
+                $records[$index]['__group_stakeholders'] = $key_elements[$record['Aspect']]['group'];
+                $records[$index]['__score'] = null;
+
             } else if($record['group_key']==='group1'){
+                $biodiversity_key_elements = is_array($biodiversity_key_elements)
+                    ? $biodiversity_key_elements
+                    : $biodiversity_key_elements->pluck('__score', 'Criteria')->toArray();
+                $records[$index]['__score'] = $biodiversity_key_elements[$record['Aspect']];
                 $records[$index]['Importance'] = null;
                 $records[$index]['__num_stakeholders_direct'] = null;
                 $records[$index]['__num_stakeholders_indirect'] = null;
@@ -104,44 +111,10 @@ class KeyElements extends Modules\Component\ImetModule_Eval
             ->keyBy('element');
     }
 
-    public static function getBiodiversityKeyElementsFromCTX($form_id): array
+    public static function getBiodiversityKeyElements($form_id): \Illuminate\Support\Collection
     {
-        $animals =
-            Modules\Context\AnimalSpecies::getModule($form_id)
-                ->filter(function ($item) {
-                    return !empty($item['species']);
-                })
-                ->pluck('species')
-                ->map(function ($item) {
-                    return Str::contains($item, '|')
-                        ? Animal::getScientificName($item)
-                        : $item;
-                })
-                ->toArray();
-
-        $plants =
-            Modules\Context\VegetalSpecies::getModule($form_id)
-                ->filter(function ($item) {
-                    return !empty($item['species']);
-                })
-                ->pluck('species')
-                ->toArray();
-
-        $habitats =
-            Modules\Context\Habitats::getModule($form_id)
-                ->filter(function ($item) {
-                    return !empty($item['EcosystemType']);
-                })
-                ->pluck('EcosystemType')
-                ->map(function ($item) {
-                    $labels = SelectionList::getList('ImetOECM_Habitats');
-                    return array_key_exists($item, $labels) ?
-                        $labels[$item]
-                        : null;
-                })
-                ->toArray();
-
-        return array_merge($animals, $plants, $habitats);
+        return collect(ThreatsBiodiversity::calculateRanking($form_id))
+            ->sortBy('_score');
     }
 
     /**

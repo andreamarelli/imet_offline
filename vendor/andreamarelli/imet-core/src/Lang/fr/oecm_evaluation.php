@@ -67,6 +67,7 @@ return [
         'from_group' => 'De la catégorie',
         'key_elements_importance_composition' => 'Importance composition: :imp_dir (de :num_dir partie(s) prenante(s) direct) + :imp_ind (de :num_ind partie(s) prenante(s) indirect)',
         'num_stakeholders' => 'Indiqué par :num_dir partie(s) prenante(s) direct et par :num_ind partie(s) prenante(s) indirect',
+        'ranking' => 'Classement',
         'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>P6, I1, PR6</i>',
     ],
 
