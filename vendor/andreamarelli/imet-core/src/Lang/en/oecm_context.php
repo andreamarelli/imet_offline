@@ -342,7 +342,7 @@ return [
     ],
 
     'Habitats' => [
-        'title' => 'Habitats selected as indicators for the OECM and that will need to be monitored over time',
+        'title' => 'Habitats main categories in the OECM',
         'fields' => [
             'EcosystemType' => 'Habitats types',
             'EcosystemDescription' => 'Description for the specific OECM',
@@ -366,7 +366,7 @@ return [
     ],
 
     'Stakeholders' => [
-        'title' => 'Stakeholders involved in management or impacting in the use of natural resources of the OECM',
+        'title' => 'Stakeholders involved in the management or use of natural resources',
         'fields' => [
             'Element' => 'Stakeholder',
             'GeographicalProximity' => 'Living inside or in proximity to the OECM (less than one hour\'s walk)',
@@ -399,7 +399,7 @@ return [
 
         ],
         'module_info' =>
-            'Identify the stakeholders involved in management or impacting in the use of the natural resources of the OECM<br />
+            'Identify the stakeholders involved in the management or use of the natural resources of the OECM<br />
             <b>Living inside or in proximity to the OECM</b>: Living in or near a conserved area can provide access to important
             ecosystem services but might also require restrictions and regulations.<br />
             <b>Categories of uses or management of OECM’s key elements</b>: Various ways in which stakeholders interact with
@@ -440,13 +440,13 @@ return [
 
     'StakeholdersObjectives' => [
         'module_info' =>
-            'Establish and describe conservation objectives for stakeholders involved in management or impacting in the use of
+            'Establish and describe conservation objectives for stakeholders involved in the management or use of
             natural resources of the OECM. The objectives entered below will be used for improving management, and more specifically
             for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
     ],
 
     'AnalysisStakeholders' => [
-        'analysis' => 'Analysis per stakeholder',
+        'analysis' => 'Stakeholder analysis of ecosystem services',
         'titles' => [
             'title0' => 'Key Provisioning services',
             'title1' => 'Key Cultural services',
@@ -612,7 +612,7 @@ return [
     ],
 
     'AnalysisStakeholderDirectUsers' => [
-        'title' => 'Analysis per stakeholder - Direct Users',
+        'title' => 'Stakeholder analysis of ecosystem services - Direct Users',
         'fields' => [
             'Element' => 'Criteria',
             'Description' => 'Specific element assessed',
@@ -672,7 +672,7 @@ return [
     ],
 
     'AnalysisStakeholderIndirectUsers' => [
-        'title' => 'Analysis per stakeholder - Indirect Users',
+        'title' => 'Stakeholder analysis of ecosystem services - Indirect Users',
         'fields' => [
             'Element' => 'Criteria',
             'Description' => 'Specific element assessed',

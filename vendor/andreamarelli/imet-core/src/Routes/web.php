@@ -38,17 +38,24 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         Route::group(['prefix' => 'v1'], function () {
 
             Route::match(['get', 'post'],'/',      [Imet\Controller::class, 'index'])->name(V1_ROUTE_PREFIX.'index');     // alias
-            Route::match(['get','post'],'export_view',        [v1\Controller::class, 'export_view'])->name(V1_ROUTE_PREFIX.'export_view');
 
+            // import/export
+            Route::match(['get','post'],'export_view',        [v1\Controller::class, 'export_view'])->name(V1_ROUTE_PREFIX.'export_view');
             Route::get('{item}/print',  [v1\Controller::class, 'print']);
             Route::get('{item}/export', [v1\Controller::class, 'export']);
             Route::post('export_batch',        [v1\Controller::class, 'export_batch'])->name(V1_ROUTE_PREFIX.'export_batch');
+            Route::get('import',        [Imet\Controller::class, 'import_view'])->name(V1_ROUTE_PREFIX.'import_view');    // alias
+            Route::post('import',      [Imet\Controller::class, 'import'])->name(V1_ROUTE_PREFIX.'import');    // alias
+            Route::post('ajax/upload', [Imet\Controller::class, 'upload'])->name(V1_ROUTE_PREFIX.'upload_json');    // alias
 
+            // merge
             Route::get('{item}/merge',  [v1\Controller::class, 'merge_view'])->name(V1_ROUTE_PREFIX.'merge_view');
             Route::post('merge',      [v1\Controller::class, 'merge'])->name(V1_ROUTE_PREFIX.'merge');
 
+            // create/destroy
             Route::delete('{item}',     [v1\Controller::class, 'destroy']);
 
+            // edit/show
             Route::group(['prefix' => 'context'], function () {
                 Route::get('{item}/show/{step?}',   [v1\ContextController::class, 'show'])->name(V1_ROUTE_PREFIX.'context_show');
                 Route::get('{item}/edit/{step?}',   [v1\ContextController::class, 'edit'])->name(V1_ROUTE_PREFIX.'context_edit');
@@ -70,20 +77,28 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         Route::group(['prefix' => 'v2'], function () {
 
             Route::match(['get', 'post'],'/',[Imet\Controller::class, 'index'])->name(V2_ROUTE_PREFIX.'index');    // alias
-            Route::match(['get','post'],'export_view',        [v2\Controller::class, 'export_view'])->name(V2_ROUTE_PREFIX.'export_view');
 
+            // import/export
+            Route::match(['get','post'],'export_view',        [v2\Controller::class, 'export_view'])->name(V2_ROUTE_PREFIX.'export_view');
             Route::get('{item}/print',       [v2\Controller::class, 'print']);
             Route::get('{item}/export', [v2\Controller::class, 'export']);
             Route::post('export_batch',        [v2\Controller::class, 'export_batch'])->name(V2_ROUTE_PREFIX.'export_batch');
-            Route::delete('{item}',     [v2\Controller::class, 'destroy']);
+            Route::get('import',        [Imet\Controller::class, 'import_view'])->name(V2_ROUTE_PREFIX.'import_view');    // alias
+            Route::post('import',      [Imet\Controller::class, 'import'])->name(V2_ROUTE_PREFIX.'import');    // alias
+            Route::post('ajax/upload', [Imet\Controller::class, 'upload'])->name(V2_ROUTE_PREFIX.'upload_json');    // alias
+
+            // merge
             Route::get('{item}/merge',  [v2\Controller::class, 'merge_view'])->name(V2_ROUTE_PREFIX.'merge_view');
             Route::post('merge',      [v2\Controller::class, 'merge'])->name(V2_ROUTE_PREFIX.'merge');
 
+            // create/destroy
+            Route::delete('{item}',     [v2\Controller::class, 'destroy']);
             Route::get('create',        [v2\Controller::class, 'create'])->name(V2_ROUTE_PREFIX.'create');
             Route::get('create_non_wdpa',[v2\Controller::class, 'create_non_wdpa'])->name(V2_ROUTE_PREFIX.'create_non_wdpa');
             Route::post('store',        [v2\ContextController::class, 'store']);
             Route::post('prev_years',   [v2\Controller::class, 'retrieve_prev_years'])->name(V2_ROUTE_PREFIX.'retrieve_prev_years');
 
+            // edit/show
             Route::group(['prefix' => 'context'], function () {
                 Route::get('{item}/edit/{step?}',[v2\ContextController::class, 'edit'])->name(V2_ROUTE_PREFIX.'context_edit');
                 Route::get('{item}/show/{step?}',[v2\ContextController::class, 'show'])->name(V2_ROUTE_PREFIX.'context_show');

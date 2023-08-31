@@ -59,10 +59,10 @@ return [
         'module_subTitle' => 'Key elements animals, plants, habitats (protected, exploited, disappearing, invasive, etc.) and services (provisioning, control, cultural, supporting services)',
         'module_info_EvaluationQuestion' => [
             'Has the OECM prioritised the key elements in its management? The assessment should evaluate the need to
-            prioritise the key elements in the management of the OECM. The assessment uses a ranked list based on analyses from SA1 and SA2.'
+            prioritise the key elements in the management and governance of the OECM. The assessment uses a ranking list based on analyses from SA1, SA2 and C3.1.1.'
         ],
         'module_info_Rating' => [
-            'Evaluate the need to prioritise the key elements in the management of the OECM'
+            'Evaluate the need to prioritise the key elements in the management and governance of the OECM'
         ],
         'from_group' => 'From category',
         'key_elements_importance_composition' => 'Importance composition: :imp_dir (from :num_dir direct stakeholder(s)) + :imp_ind (from :num_ind indirect stakeholder(s))',
@@ -135,7 +135,7 @@ return [
     ],
 
     'ThreatsBiodiversity' => [
-        'title' => 'Analysis of Biodiversity key elements',
+        'title' => 'OECM key biodiversity elements threats analysis',
         'fields' => [
             'Criteria' => 'Criteria',
             'Impact' => 'Impact/ Severity',
@@ -183,11 +183,11 @@ return [
                 '3' => 'High',
             ],
         ],
-        'module_info' => 'Identify the threats categories affecting the Biodiversity key element identified in CTX4.1, CTX4.2, CTX4.3'
+        'module_info' => 'Evaluate the level of the threats affecting the biodiversity key element identified in CTX4.1, CTX4.2, CTX4.3'
     ],
 
     'Threats' => [
-        'title' => 'Analysis of OECM threats',
+        'title' => 'OECM threats analysis',
         'fields' => [
             'Value' => 'Values',
             'Impact' => 'Impact/ Severity',
@@ -230,10 +230,10 @@ return [
             ],
         ],
         'module_info_EvaluationQuestion' => [
-            'Has the OECM clearly identified and integrated the threats that could affect the area’s biodiversity, cultural heritage, or ecosystem services in its management?'
+            'Has the OECM clearly identified the threats that could affect the area’s biodiversity, cultural heritage, or ecosystem services in its management?'
         ],
         'module_info_Rating' => [
-            'Evaluate the level of integration of most important threats in the management of the OECM based on the analysis of the threats calculator at Context of intervention point SA 2 and automatically reported below . Threats evaluation (automatically reported from SA 2) To prioritise in management Comments/Explanation'
+            'Evaluate the level of the most important threats in the management of the OECM based on the analysis of the threats calculator at Context of intervention point SA 2 and automatically reported below'
         ],
         'num_stakeholders' => 'Indicated by :num_dir direct stakeholder(s) and :num_ind indirect stakeholder(s)',
     ],
@@ -256,7 +256,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'The assessment evaluates the need to prioritise the threats to minimise their effects and impact on the OECM
-            management. The assessment uses the ranking list based on the threats analysis in SA2 and C3.1.'
+            management. The assessment uses a ranking list based on the threat analysis of SA.2 and C3.1.2'
         ],
         'module_info_Rating' => [
             'Evaluate the current integration of the threats to the management of the OECM'
@@ -526,7 +526,7 @@ return [
         ],
         'groups' => [
             'group0' => 'Composition and staff or members of the Management Entity (automatically reported by CTX 3.1.2)',
-            'group1' => 'Stakeholders involved or impacting the use of natural resources (automatically reported by CTX 5 – Direct users).'
+            'group1' => 'Stakeholders involved in management or use of natural resources (automatically reported by SA.1 and SA.2).'
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -650,7 +650,7 @@ return [
         ],
         'groups' => [
             'group0' => 'Composition and staff or members of the OECM',
-            'group1' => 'Stakeholders involved in management and impacting on the use of natural resources of the OECM'
+            'group1' => 'Stakeholders involved in management and use of natural resources of the OECM'
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -791,7 +791,7 @@ return [
             'To ensure a sustainability management of the key elements of the OECM, stakeholder(s)/management association(s) should evaluate the practices and actions can include conservation/restoration of animal (e.g., bees) and plant species (e.g., pharmacopoeia), managing fire, revegetation work, controlling invasive species, management of cultural resources, threat containment, etc.'
         ],
         'module_info_Rating' => [
-            'Based on the list of the key elements identified in the Intervention context SA 2 and prioritise in Management analysis C2, evaluate adequacy of related management practices and actions.'
+            'Based on the list of the key elements identified in the Intervention context SA 2 and prioritised in Management analysis C1, C2, C3.2 and C4 evaluate adequacy of related management practices and actions.'
         ]
     ],
 
@@ -861,15 +861,18 @@ return [
         'ratingLegend' => [
             'Cooperation' => [
                 'N/A' => 'this element is not related to the management of the OECM',
-                '0' => 'No cooperation',
-                '1' => 'Very little cooperation',
-                '2' => 'Moderate cooperation',
-                '3' => 'Very high cooperation'
+                '0' => 'No cooperation - No stakeholder representation or consultation, no engagement, no consideration of local knowledge and perspectives',
+                '1' => 'Very little cooperation - Stakeholder representation or consultation sporadic, engagement minimal, local knowledge and perspectives poorly considered',
+                '2' => 'Moderate cooperation - Moderate stakeholder representation or consultation, occasional engagement, some consideration of local knowledge and perspectives',
+                '3' => 'Very high cooperation - Well established stakeholder representation or consultation, extensive engagement, full consideration of local knowledge and perspectives'
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Are there actions to improve governance of the key elements in the OECM?',
-            'This step of the analysis evaluates how some or all relevant stakeholders are involved in management of the OECM in four areas: (P) planning; (PM) planning and management (B/A) benefits/assistance (IEC) Information, education and communication for community understanding and engagement.'
+            'Are there measures in place to improve stakeholders cooperation in the governance and management of the OECM?',
+            'The assessment aims to determine the extent to which measures are in place to ensure cooperation and effective stakeholder participation, which contribute to the legitimacy and effectiveness of OECM governance.'
+        ],
+        'module_info_Rating' => [
+            'Assess the extent of stakeholder involvement and participation, engagement and local knowledge and perspectives in OECM governance and management'
         ]
     ],
 
@@ -1137,15 +1140,13 @@ return [
         'module_info_EvaluationQuestion' => [
             'Does the management and governance exert positive or negative effects on the key conservation elements of the OECM?',
             'One of the main objectives of the OECM is to deliver positive and sustained outcomes for the in-situ conservation
-            of biodiversity. By comparing the internal assessment of key conservation elements of SA2 with corresponding technical
-            data of the same landscape or region, allows for a detailed analysis and interpretation of the findings, highlighting
+            of biodiversity. By comparing the assessments of direct users with indirect users and technical data on the same key element, allows for a detailed analysis and interpretation of the findings, highlighting
             specific observations, discrepancies, areas of alignment, and potential recommendations for modifications or adopting
             best practices. The results of the comparison between the internal evaluation and external data on the same key
             conservation elements can be provided in the comments section.'
         ],
         'module_info_Rating' => [
-            'Report the external data of A) the conditions and B) the trends of the key conservation elements from technical and
-            scientific studies and monitoring in the same landscape or region.'
+            'Ensure a dual analysis of A) status and B) trends of key OECM conservation elements from stakeholder and external source data'
         ],
         'ratingLegend' => [
             'StatusSH' => [
@@ -1256,11 +1257,11 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Does the management of the OECM use adequate measures / approaches / tools for ensuring staff motivation?',
-            'For a OECM, motivated staff is essential to achieve success in conservation. Working conditions and staff motivation strongly influence the ability of staff to carry out their work. Managers and leaders must understand that they need to provide a work environment that creates and maintains motivation in the staff to achieve results on conservation',
+            'Does OECM management actively promotes stakeholder empowerment initiatives to ensure greater stakeholder involvement for more effective and impactful implementation of area-based conservation measures?',
+            'Stakeholder empowerment serves as a cornerstone in the management and governance of an OECM, playing a pivotal role in fostering meaningful engagement, shared responsibility and collaborative decision-making among diverse stakeholders. By empowering stakeholders, the OECM seeks to harness their collective knowledge, perspectives and contributions, ultimately leading to more comprehensive, sustainable and effective implementation of area-based conservation measures',
         ],
         'module_info_Rating' => [
-            'Evaluate the adequacy of staff motivation measures / approaches / tools in the OECM',
+            'Evaluate the promotion of stakeholder empowerment initiatives for more comprehensive, sustainable and effective implementation of area-based conservation measures',
         ]
     ],
 ];

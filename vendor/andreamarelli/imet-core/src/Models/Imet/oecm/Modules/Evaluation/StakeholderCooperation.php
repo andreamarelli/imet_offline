@@ -31,6 +31,7 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
 
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.StakeholderCooperation.module_info_EvaluationQuestion');
         $this->ratingLegend = trans('imet-core::oecm_evaluation.StakeholderCooperation.ratingLegend');
+        $this->module_info_Rating = trans('imet-core::oecm_evaluation.StakeholderCooperation.module_info_Rating');
 
         parent::__construct($attributes);
     }

@@ -337,7 +337,7 @@ return [
     ],
 
     'Habitats' => [
-        'title' => 'Habitats sélectionnés comme indicateurs pour l’AMCE et qui devront faire l’objet d’un suivi dans le temps',
+        'title' => 'Principales catégories d’habitats de l’AMCE',
         'fields' => [
             'EcosystemType' => 'Types d’habitats',
             'EcosystemDescription' => 'Description pour l\'AMCE spécifique',
@@ -361,7 +361,7 @@ return [
     ],
 
     'Stakeholders' => [
-        'title' => 'Parties prenantes impliquées dans la gestion ou ayant un impact sur l’utilisation des ressources naturelles de l’AMCE',
+        'title' => 'Parties prenantes impliquées dans la gestion ou l’utilisation des ressources naturelles',
         'fields' => [
             'Element' => 'Partie prenante',
             'GeographicalProximity' => 'Vivant à l’intérieur ou à proximité (moins d\'une heure de marche)',
@@ -395,7 +395,7 @@ return [
 
         ],
         'module_info' =>
-            'Identifier les acteurs impliqués dans la gestion ou impactant dans l\'utilisation des ressources naturelles de l\'AMCE<br />
+            'Identifier les acteurs impliqués dans la gestion ou l\'utilisation des ressources naturelles de l\'AMCE<br />
              <b>Vivant à l’intérieur ou à proximité (moins d\'une heure de marche)</b>: Vivre dans ou à proximité d\'une zone conservée peut donner accès à des
              services écosystémiques, mais peut également nécessiter des restrictions et des réglementations.<br />
              <b>Catégories d\'usages ou de gestion des éléments clés de l\'AMCE</b>: différentes manières dont les parties prenantes interagissent avec
@@ -435,13 +435,13 @@ return [
 
     'StakeholdersObjectives' => [
         'module_info' =>
-            'Établir et décrire des objectifs de conservation pour les parties prenantes impliquées dans la gestion ou ayant un impact sur l\'utilisation des
+            'Établir et décrire des objectifs de conservation pour les parties prenantes impliquées dans la gestion ou l\'utilisation des
              ressources naturelles de l\'AMCE. Les objectifs inscrits ci-dessous serviront à améliorer la gestion, et plus particulièrement
              pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l\'AMCE.'
     ],
 
     'AnalysisStakeholders' => [
-        'analysis' => 'AAnalyse par partie prenante',
+        'analysis' => 'Analyse par partie prenante',
         'titles' => [
             'title0' => 'Principaux services d’approvisionnement',
             'title1' => 'Principaux services culturels',
@@ -572,7 +572,7 @@ return [
     ],
 
     'AnalysisStakeholderDirectUsers' => [
-        'title' => 'Analyse par partie prenante - utilisateurs directs',
+        'title' => 'Analyse des services écosystémiques par les parties prenantes - Utilisateurs Directs',
         'fields' => [
             'Element' => 'Critères',
             'Description' => 'Élément spécifique évalué',
@@ -635,7 +635,7 @@ return [
     ],
 
     'AnalysisStakeholderIndirectUsers' => [
-        'title' => 'Analyse des parties prenantes - utilisateurs indirects',
+        'title' => 'Analyse des services écosystémiques par les parties prenantes - Utilisateurs Indirects',
         'fields' => [
             'Element' => 'Critères',
             'Description' => 'Élément spécifique évalué',

@@ -31,7 +31,9 @@ if ($item->language != App::getLocale()) {
 
     <div id="imet_report">
 
-        @include('imet-core::components.heading', ['phase' => 'report'])
+        @include('imet-core::components.heading', ['item' => $item])
+        @include('imet-core::components.phase', ['phase' => 'report'])
+
         @include('imet-core::oecm.report.components.non_wdpa', [
             'show_non_wdpa' => $show_non_wdpa,
             'non_wdpa' =>  $non_wdpa
