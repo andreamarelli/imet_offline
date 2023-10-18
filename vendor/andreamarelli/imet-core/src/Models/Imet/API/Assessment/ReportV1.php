@@ -2,9 +2,8 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\API\Assessment;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\EvalController;
 use AndreaMarelli\ImetCore\Models\Animal;
-
+use AndreaMarelli\ImetCore\Models\Imet\ImetScores;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
@@ -21,6 +20,15 @@ class ReportV1
     protected static string $report_class = Report::class;
     protected static string $general_info_class = GeneralInfo::class;
     protected static string $areas_class = Areas::class;
+
+    /**
+     * @param int $form_id
+     * @return array
+     */
+    protected static function assessment_scores(int $form_id): array
+    {
+        return V1ToV2StatisticsService::get_scores($form_id, 'ALL');
+    }
 
     /**
      * @param Request $request
@@ -50,10 +58,16 @@ class ReportV1
 
         $labels = static::get_labels();
 
+        $imet = ImetScores::where(['FormID', $form_id])->get()->toArray();
+        if ($imet) {
+            $assessments = $imet['scores'];
+        } else {
+            $assessments = static::assessment_scores($form_id);
+        }
         return [
             'data' => [
                 'key_elements' => static::get_key_elements($form_id),
-                'assessment' => V1ToV2StatisticsService::get_scores($form_id, 'ALL'),
+                'assessment' => $assessments,
                 'report' => $report,
                 'dopa_radar' => $dopa_radar,
                 'dopa_indicators' => $dopa_indicators[0] ?? null,
@@ -89,14 +103,14 @@ class ReportV1
      * @return array
      * @throws \ReflectionException
      */
-    protected static function get_general_info(int $form_id): array
+    protected static function get_general_info(int $form_id): ?array
     {
         $general_info = static::$general_info_class::getVueData($form_id)['records'][0] ?? null;
         if ($general_info) {
             return static::remove_fields($general_info, ['WDPA' => '', 'id' => '', 'FormID' => '', 'UpdateDate' => '', 'UpdateBy' => '']);
         }
 
-        return $general_info;
+        return null;
     }
 
     /**
@@ -104,14 +118,14 @@ class ReportV1
      * @return array
      * @throws \ReflectionException
      */
-    protected static function get_vision(int $form_id): array
+    protected static function get_vision(int $form_id): ?array
     {
         $vision = static::$general_info_class::getVueData($form_id)['records'][0] ?? null;
         if ($vision) {
             return static::remove_fields($vision, ['WDPA' => '', 'id' => '', 'FormID' => '', 'UpdateDate' => '', 'UpdateBy' => '']);
         }
 
-        return $vision;
+        return null;
     }
 
     /**
@@ -169,4 +183,5 @@ class ReportV1
     {
         return array_diff_key($values, $fields_to_extract);
     }
+
 }

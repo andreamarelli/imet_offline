@@ -96,6 +96,14 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
             $Threats = !empty($item['Threats']) ? json_decode($item['Threats']) : null;
             $Threats = is_array($Threats) ? count($Threats) : null;
 
+            $max_score =
+                3 // Support
+                + 2 // Guidelines
+                + 2 // LackOfCollaboration
+                + 2 // Status
+                + 2 // Trend
+                + 12; // Threats
+
             $item['__importance'] = (
                 4 +
                 ($item['Support'] ?? 0) +
@@ -104,7 +112,7 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
                 ($item['Status'] ?? 0) -
                 ($item['Trend'] ?? 0) +
                 ($Threats/3)
-            ) * 100 / 25;
+            ) * 100 / $max_score;
 
             return $item['__importance'] * $item['__stakeholder_weight'];
         } else {

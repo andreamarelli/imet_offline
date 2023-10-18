@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
+use AndreaMarelli\ImetCore\Models\Country;
 use AndreaMarelli\ImetCore\Models\Imet\API\Statistics\GlobalStatistics;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -24,6 +25,13 @@ trait StatisticsApi
         $year = $request->input("year");
         $country = $request->input("country");
         $version = $request->input("version");
+        $region = $request->input("region");
+
+        if($region){
+            $country = Country::getByRegion($region);
+        } else {
+            $country = [$country];
+        }
 
         App::setLocale($lang);
         $slug = str_replace('-', '_', $slug);

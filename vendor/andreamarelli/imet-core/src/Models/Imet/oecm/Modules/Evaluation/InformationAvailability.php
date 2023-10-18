@@ -50,18 +50,8 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
     }
 
 
-    /**
-     * Preload data from C4
-     *
-     * @param $predefined_values
-     * @param $records
-     * @param $empty_record
-     * @return array
-     */
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function getPredefined($form_id = null): array
     {
-        $form_id = $empty_record['FormID'];
-
         $key_elements = array_merge(
             KeyElements::getPrioritizedElements($form_id),
             Designation::getPrioritizedElements($form_id),
@@ -69,12 +59,10 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
             ThreatsIntegration::getPrioritizedElements($form_id)
         );
 
-        $preLoaded = [
+        return [
             'field' => 'Element',
             'values' => $key_elements
         ];
-
-        return parent::arrange_records($preLoaded, $records, $empty_record);
     }
 
 }

@@ -2,7 +2,6 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet\v2;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\EvalController;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportController as BaseReportController;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
@@ -11,7 +10,6 @@ use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
 use Illuminate\Support\Str;
-
 
 
 class ReportController extends BaseReportController
@@ -33,13 +31,13 @@ class ReportController extends BaseReportController
         $api_available = $show_api = false;
         $wdpa_extent = $dopa_radar = $dopa_indicators = null;
 
-        if(!ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)){
+        if (!ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
             $show_api = true;
             $api_available = DOPA::apiAvailable();
-            if($api_available){
+            if ($api_available) {
                 $wdpa_extent = [];
-                $dopa_radar      = DOPA::get_wdpa_radarplot($item->wdpa_id, true);
-                $dopa_indicators =  DOPA::get_wdpa_all_inds($item->wdpa_id);
+                $dopa_radar = DOPA::get_wdpa_radarplot($item->wdpa_id, true);
+                $dopa_indicators = DOPA::get_wdpa_all_inds($item->wdpa_id);
             }
         } else {
             $show_non_wdpa = true;
@@ -49,29 +47,34 @@ class ReportController extends BaseReportController
         $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
         $vision = Modules\Context\Missions::getModuleRecords($form_id);
 
+        $assessments_scores = V2StatisticsService::get_scores($form_id, 'ALL', false);
+        if(is_cache_scores_enabled()) {
+            $this->report_cache_scores($form_id, $assessments_scores);
+        }
+
         return [
             'item' => $item,
             'key_elements' => [
-                'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item){
+                'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item) {
                     return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->map(function($item){
+                })->pluck('Aspect')->map(function ($item) {
                     return Str::contains('|', $item) ? Animal::getByTaxonomy($item)->binomial : $item;
                 })->toArray(),
-                'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item){
+                'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item) {
                     return $item['IncludeInStatistics'];
                 })->pluck('Aspect')->toArray(),
-                'climate_change' => Modules\Evaluation\ImportanceClimateChange::getModule($form_id)->filter(function ($item){
+                'climate_change' => Modules\Evaluation\ImportanceClimateChange::getModule($form_id)->filter(function ($item) {
                     return $item['IncludeInStatistics'];
                 })->pluck('Aspect')->toArray(),
-                'ecosystem_services' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item){
+                'ecosystem_services' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item) {
                     return $item['IncludeInStatistics'];
                 })->pluck('Aspect')->toArray(),
-                'threats' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item){
+                'threats' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item) {
                     return $item['IncludeInStatistics'];
                 })->pluck('Aspect')->toArray(),
             ],
-            'assessment' =>  array_merge(
-                V2StatisticsService::get_scores($form_id, 'ALL'),
+            'assessment' => array_merge(
+                $assessments_scores,
                 [
                     'labels' => V2StatisticsService::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2)
                 ]
@@ -80,7 +83,7 @@ class ReportController extends BaseReportController
             'connection' => $api_available,
             'show_api' => $show_api,
             'wdpa_extent' => $wdpa_extent[0]->extent ?? null,
-            'dopa_radar' =>  $dopa_radar,
+            'dopa_radar' => $dopa_radar,
             'dopa_indicators' => $dopa_indicators[0] ?? null,
             'show_non_wdpa' => $show_non_wdpa ?? false,
             'non_wdpa' => $non_wdpa ?? null,

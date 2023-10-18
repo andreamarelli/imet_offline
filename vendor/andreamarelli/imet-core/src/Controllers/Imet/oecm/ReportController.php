@@ -5,6 +5,7 @@ namespace AndreaMarelli\ImetCore\Controllers\Imet\oecm;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportController as BaseReportController;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Threats;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Report;
@@ -33,12 +34,16 @@ class ReportController extends BaseReportController
         }
 
         $governance = Modules\Context\Governance::getModuleRecords($form_id);
-        $scores = OEMCStatisticsService::get_scores($form_id, 'ALL');
+        $scores = OEMCStatisticsService::get_scores($form_id, 'ALL', false);
+        if(is_cache_scores_enabled()) {
+            $this->report_cache_scores($form_id, $scores);
+        }
         $key_elements = $this->getKeyElements($form_id);
-
+       // dd($this->getBiodiversityThreats($form_id));
         return [
             'item' => $item,
             'main_threats' => $this->getThreats($form_id),
+            'key_elements' => $this->getBiodiversityThreats($form_id),
             'key_elements_biodiversity' => array_values($this->getKeyElementsBiodiversity($key_elements)),
             'key_elements_ecosystem' => array_values($this->getKeyElementsEcosystems($key_elements)),
             'key_elements_impacts' => $this->getElementImpacts($form_id),
@@ -117,6 +122,34 @@ class ReportController extends BaseReportController
         }
 
         return ['ecosystem_services' => $ecosystem];
+    }
+
+    private function getBiodiversityThreats(int $form_id): array{
+        $fields = [];
+        $threats = collect(Modules\Evaluation\KeyElements::getModuleRecords($form_id)['records'])
+            ->toArray();
+
+        uasort($threats, function ($a, $b) {
+
+            if ($a['__score'] == $b['__score']) {
+                return 0;
+            }
+            return ($a['__score'] > $b['__score']) ? -1 : 1;
+        });
+
+        foreach ($threats as $k => $value) {
+            if ($value['__score'] !== null) {
+                if(isset($fields[$value['Aspect']]) && $fields[$value['Aspect']] !== "-"){
+                    $fields[$value['Aspect'].' '.$value['Comments']] = round($value['__score'], 2);
+                } else {
+                    $fields[$value['Aspect']] = round($value['__score'], 2);
+                }
+            } else {
+                $fields[$value['Aspect']] = "-";
+            }
+        }
+
+        return ['values' => $threats, 'chart' => ['values' => (($fields))]];
     }
 
     /**

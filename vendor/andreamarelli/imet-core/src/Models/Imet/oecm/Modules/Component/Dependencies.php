@@ -61,7 +61,7 @@ trait Dependencies{
     }
 
     /**
-     * Compare updated records with existing
+     * Get the list of removed items (to be dropped from the dependencies)
      *
      * @param $records
      * @param $form_id
@@ -137,6 +137,19 @@ trait Dependencies{
                 $dependency_class::dropOrphansDependencyRecords($form_id, $to_be_dropped_from_dependency, $dependency_to);
             }
         }
+    }
+
+    /**
+     * Retrieve the reference list of values from the module to which the current depends on
+     */
+    public static function getReferenceList($form_id, $dependency_field): array
+    {
+        return static::getModule($form_id)
+            ->filter(function ($item) use ($dependency_field){
+                return !empty($item[$dependency_field]);
+            })
+            ->pluck($dependency_field)
+            ->toArray();
     }
 
 

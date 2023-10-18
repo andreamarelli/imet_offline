@@ -96,6 +96,13 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
             $Threats = !empty($item['Threats']) ? json_decode($item['Threats']) : null;
             $Threats = is_array($Threats) ? count($Threats) : null;
 
+            $max_score =
+                3 // Dependence
+                + 2 // Access
+                + 3 // Rivalry
+                + 2 // Quality
+                + 2 // Quantity
+                + 12; // Threats
 
             $item['__importance'] = (
                 4 +
@@ -105,7 +112,7 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
                 ($item['Quality'] ?? 0) -
                 ($item['Quantity'] ?? 0) +
                 ($Threats/3)
-            ) * 100 / 25;
+            ) * 100 / $max_score;
 
             return $item['__importance'] * $item['__stakeholder_weight'];
         } else {

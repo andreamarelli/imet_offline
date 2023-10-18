@@ -21,18 +21,21 @@ const OECM_ROUTE_PREFIX = oecm\Controller::ROUTE_PREFIX;
 
 Route::group(['middleware' => ['setLocale', 'web']], function () {
 
+    Route::view('/welcome', 'imet-core::welcome')->name(IMET_PREFIX.'welcome');
+
     /*
     |--------------------------------------------------------------------------
     | IMET Routes
     |--------------------------------------------------------------------------
     */
-    Route::group(['prefix' => 'admin/imet', 'middleware' => 'auth'], function (){
+    Route::group(['prefix' => 'imet', 'middleware' => 'auth'], function (){
 
         // ####  common routes (v1 & v2) ####
         Route::get('import',        [Imet\Controller::class, 'import_view'])->name(IMET_PREFIX.'import_view');
         Route::post('import',      [Imet\Controller::class, 'import'])->name(IMET_PREFIX.'import');
         Route::post('ajax/upload', [Imet\Controller::class, 'upload'])->name(IMET_PREFIX.'upload_json');
         Route::match(['get', 'post'],'/',      [Imet\Controller::class, 'index'])->name(IMET_PREFIX.'index');
+
 
         // #### IMET Version 1 ####
         Route::group(['prefix' => 'v1'], function () {
@@ -155,6 +158,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::post('protected_areas_labels', [ProtectedAreaController::class, 'get_pairs'])->name('imet-core::labels_pas');
             Route::post('users', [UsersController::class, 'search'])->name('imet-core::search_users');
 
+
         });
 
     });
@@ -165,10 +169,10 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
     | IMET OECM Routes
     |--------------------------------------------------------------------------
     */
-    Route::group(['prefix' => 'admin/oecm', 'middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'oecm', 'middleware' => 'auth'], function () {
 
         Route::match(['get', 'post'],'/',[oecm\Controller::class, 'index'])->name(OECM_ROUTE_PREFIX.'index');
-        
+
         Route::delete('{item}',         [oecm\Controller::class, 'destroy']);
         Route::get('{item}/print',      [oecm\Controller::class, 'print']);
         Route::get('{item}/export',     [oecm\Controller::class, 'export']);

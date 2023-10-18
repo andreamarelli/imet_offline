@@ -33,7 +33,6 @@ class ManagementStaff extends Modules\Component\ImetModule
             ['name' => 'AdequateNumber',  'type' => 'integer',   'label' => trans('imet-core::oecm_context.ManagementStaff.fields.AdequateNumber')]
         ];
 
-
         $this->module_info = trans('imet-core::oecm_context.ManagementStaff.module_info');
 
         parent::__construct($attributes);

@@ -1,10 +1,5 @@
 <?php
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
-use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController;
-use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpBasketController;
-use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
-use AndreaMarelli\ImetCore\Controllers\SpeciesController;
 use AndreaMarelli\ModularForms\Controllers\UploadFileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Redirect;

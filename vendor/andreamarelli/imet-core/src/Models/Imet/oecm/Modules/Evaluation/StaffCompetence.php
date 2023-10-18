@@ -35,26 +35,22 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    /**
-     * Preload data from CTX
-     * @param $predefined_values
-     * @param $records
-     * @param $empty_record
-     * @return array
-     */
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function getPredefined($form_id = null): array
     {
-        $form_id = $empty_record['FormID'];
-        
-        $preLoaded = [
+        return  [
             'field' => 'Member',
             'values' => [
                 'group0' => Modules\Context\ManagementStaff::getModule($form_id)->pluck('Function')->toArray(),
                 'group1' => Modules\Context\Stakeholders::getStakeholders($form_id),
             ]
         ];
+    }
 
-        $records = parent::arrange_records($preLoaded, $records, $empty_record);
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    {
+        $form_id = $empty_record['FormID'];
+
+        $records = parent::arrange_records($predefined_values, $records, $empty_record);
 
         $weighted_staff = Modules\Context\ManagementStaff::calculateWeights($form_id);
         $weighted_stakeholder = Modules\Context\Stakeholders::calculateWeights($form_id);

@@ -9,12 +9,12 @@ $home = $uri === 'admin/imet' || $uri === 'admin/v1' || $uri === 'admin/v2' || s
 
         <ul class="menu-header">
 
-            <li>
-                <a href="{{ url('admin/imet') }}">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('home', '') !!}
-                    @lang('imet-core::common.imet_short')
-                </a>
-            </li>
-            @if(\Illuminate\Support\Str::contains(Route::getCurrentRoute()->uri(), 'oecm'))
+            @if(!\Illuminate\Support\Str::contains(Route::getCurrentRoute()->uri(), 'welcome'))
+                <li>
+                    <a href="{{ url('admin/imet') }}">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('home', '') !!}
+                        @lang('imet-core::common.imet_short')
+                    </a>
+                </li>
                 <li>
                     <a href="{{ route('imet-core::oecm.index') }}">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('home', '') !!}
                         @lang('imet-core::oecm_common.oecm_short')

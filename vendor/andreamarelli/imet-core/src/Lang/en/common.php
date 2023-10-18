@@ -38,7 +38,7 @@ return [
     ],
     'switch_language' => 'Switch current language to',
 
-    'imet' => 'IMET: Integrated Management Effectiveness Tool',
+    'imet' => 'Integrated Management Effectiveness Tool',
     'imet_short'        => 'IMET',
 
     'management'        => 'IMET management',

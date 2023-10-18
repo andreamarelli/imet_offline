@@ -39,14 +39,12 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-
-    protected static function arrange_records_with_predefined($form_id, $records, $empty_record): array
-    {;
-        $predefined_values = static::getPredefined($form_id);
-        $records = static::arrange_records($predefined_values, $records, $empty_record);
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    {
+        $records = parent::arrange_records($predefined_values, $records, $empty_record);
+        $form_id = $empty_record['FormID'];
 
         $new_records = [];
-
         $adequacy = static::calculateEquipmentAdequacy($form_id);
         foreach($predefined_values['values'] as $i => $predefined_value){
             if($adequacy[$i] !== null){
@@ -54,7 +52,6 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
                 $new_records[] = $records[$i];
             }
         }
-
         return $new_records;
     }
 
@@ -75,7 +72,9 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
 
         $result = [];
         foreach($adequacy as $value){
-            $result[] = $value['count']>0 ? round($value['sum']/$value['count'],2) : null;
+            $result[] = $value['count']>0
+                ? round($value['sum']/$value['count'],2)
+                : null;
         }
 
         return $result;

@@ -3,8 +3,7 @@
 
 /** @var \AndreaMarelli\ImetCore\Models\Imet\oecm\Imet $item */
 /** @var array $assessment */
-/** @var array $key_elements_biodiversity */
-/** @var array $key_elements_ecosystem */
+/** @var array $key_elements */
 /** @var array $main_threats */
 /** @var array $report */
 /** @var array $report_schema */

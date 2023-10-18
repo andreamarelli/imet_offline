@@ -10,6 +10,7 @@ use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
 use AndreaMarelli\ModularForms\Helpers\Type\Chars;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -108,14 +109,9 @@ class Imet extends BaseImetForm
     }
 
     /**
-     * Retrieve the IMET assessments list (clean, without statistics):  V1 & v2 merged
-     *
-     * @param Request $request
-     * @param array $relations
-     * @param bool $only_allowed_wdpas
-     * @return mixed
+     * Retrieve the OECM assessments list (clean, without statistics)
      */
-    public static function get_assessments_list(Request $request, array $relations = [], bool $only_allowed_wdpas = false)
+    public static function get_assessments_list(Request $request, array $relations = [], bool $only_allowed_wdpas = false, array $countries = []): Collection
     {
         $allowed_wdpas = $only_allowed_wdpas
             ? Role::allowedWdpas()

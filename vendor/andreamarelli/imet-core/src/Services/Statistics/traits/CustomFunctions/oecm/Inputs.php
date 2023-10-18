@@ -80,7 +80,7 @@ trait Inputs
 
         $values = ManagementEquipmentAdequacy::getModule($imet_id)
             ->filter(function($item) use ($ctx_adequacy){
-                $adequacy = $ctx_adequacy[$item['Equipment']];
+                $adequacy = $ctx_adequacy[$item['Equipment']] ?? null;
                 return $adequacy !== null && $item['PresentNeeds']!==null;
             })
             ->map(function($item) use ($ctx_adequacy){

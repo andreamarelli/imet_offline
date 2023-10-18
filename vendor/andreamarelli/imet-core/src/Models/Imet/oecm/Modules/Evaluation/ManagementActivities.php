@@ -50,25 +50,12 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
         return true;
     }
 
-
-    /**
-     * Preload data from C4
-     *
-     * @param $predefined_values
-     * @param $records
-     * @param $empty_record
-     * @return array
-     */
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function getPredefined($form_id = null): array
     {
-        $form_id = $empty_record['FormID'];
-
-        $preLoaded = [
+        return [
             'field' => 'Activity',
             'values' => KeyElements::getPrioritizedElements($form_id)
         ];
-
-        return parent::arrange_records($preLoaded, $records, $empty_record);
     }
 
 }

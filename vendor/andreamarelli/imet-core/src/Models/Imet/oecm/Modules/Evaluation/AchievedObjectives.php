@@ -19,7 +19,7 @@ class AchievedObjectives extends Modules\Component\ImetModule_Eval
         $this->module_code = 'O/C1';
         $this->module_title = trans('imet-core::oecm_evaluation.AchievedObjectives.title');
         $this->module_fields = [
-            ['name' => 'Objective',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.AchievedObjectives.fields.Objective')],
+            ['name' => 'Objective',  'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.AchievedObjectives.fields.Objective')],
             ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_evaluation.AchievedObjectives.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.AchievedObjectives.fields.Comments')],
         ];
@@ -41,8 +41,8 @@ class AchievedObjectives extends Modules\Component\ImetModule_Eval
     {
         $p6_values = collect(Objectives::getModuleRecords($form_id)['records'])
             ->filter(function($item){
-                return $item['group_key']==='group0' // All objectives of group0 ("Existing objectives from management plan")
-                    || $item['Existence'];           // Only objectives with "Existence" from group1 (derived form Context: C1, C2.2, C3.2 & C4 )
+                return $item['group_key']==='group0' // All objectives of group0 ("Adequacy of management plan objectives for the key elements")
+                    || $item['Existence'];           //  + only objectives with "Existence" from group1 (derived form Context: C1, C2.2, C3.2 & C4 )
             })
             ->pluck('Objective')
             ->toArray();

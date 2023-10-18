@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
+use AndreaMarelli\ImetCore\Models\Imet\ImetScores;
 use Illuminate\Http\Request;
 
 use function view;
@@ -55,7 +56,17 @@ class ReportController extends Controller
         $this->authorize('edit', (static::$form_class)::find($item));
 
         \AndreaMarelli\ImetCore\Models\Imet\v1\Report::updateByForm($item, $request->input('report'));
-        return [ 'status' => 'success' ];
+        return ['status' => 'success'];
+    }
+
+    /**
+     * @param int $form_id
+     * @param array $assessments_scores
+     * @return mixed
+     */
+    public static function report_cache_scores(int $form_id, array $assessments_scores)
+    {
+        return ImetScores::updateOrCreate(['FormID' => $form_id], ['scores' => $assessments_scores]);
     }
 
 }

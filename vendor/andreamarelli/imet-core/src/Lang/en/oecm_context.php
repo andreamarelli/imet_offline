@@ -85,6 +85,8 @@ return [
             'ManagementType' => 'Type',
             'DateOfCreation' => 'Date of creation',
             'OfficialRecognition' => 'Official Recognition: Has the Management Entity received an official recognition from the national or regional authorities?',
+            'OfficialRecognition.0' => 'No',
+            'OfficialRecognition.1' => 'Yes',
             'SupervisoryInstitution' => 'Supervisory Institution (if any)',
             'MemberRepresentativenessLevel' => 'Level of members’ representativeness',
             'AdditionalInformation' => 'Additional information on Management Entity (if needed)',

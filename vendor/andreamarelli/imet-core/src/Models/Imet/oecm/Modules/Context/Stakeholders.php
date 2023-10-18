@@ -86,6 +86,25 @@ class Stakeholders extends Modules\Component\ImetModule
     public const ONLY_INDIRECT = 2;
 
     /**
+     * Override: get the list with direct/indirect
+     */
+    protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
+    {
+        // Get list of values (of reference field) from DB and from updated records and compare
+        $existing_values = static::getModule($form_id)->pluck('DirectUser', 'Element')->toArray();
+        $updated_values = collect($records)->pluck('DirectUser', 'Element')->toArray();
+
+        // Make diff to find out what to drop
+        foreach($updated_values as $elem => $direct){
+            if($direct === $existing_values[$elem]){
+                unset($existing_values[$elem]);
+            }
+        }
+
+        return array_keys($existing_values);
+    }
+
+    /**
      * Retrieve stakeholders' list (grouped or not)
      *
      * @param $form_id
@@ -154,13 +173,21 @@ class Stakeholders extends Modules\Component\ImetModule
                 $UsesCategories = is_array($UsesCategories) ? count($UsesCategories) : null;
 
                 $sum = $item['GeographicalProximity'] ? 4 : 0;
-                $sum += $UsesCategories ?? 0; // max 5
+                $sum += $UsesCategories ?? 0; // max 4
                 $sum += $item['DirectUser'] ? 7 : 0;
                 $sum += $item['LevelEngagement']!==null ? $item['LevelEngagement'] : 0;
                 $sum += $item['LevelInterest']!==null ? $item['LevelInterest'] : 0;
                 $sum += $item['LevelExpertise']!==null ? $item['LevelExpertise'] : 0;
 
-                $item['__weight'] = round($sum * 100 / 25, 0);
+                $max_score =
+                    4 // GeographicalProximity
+                    + 4 // UsesCategories
+                    + 7 // DirectUser
+                    + 3 // LevelEngagement
+                    + 3 // LevelInterest
+                    + 3; // LevelExpertise
+
+                $item['__weight'] = round($sum * 100 / $max_score, 0);
 
                 $item['Element'] = Str::replace("\n", '', $item['Element']);
 

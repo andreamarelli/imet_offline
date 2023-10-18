@@ -16,8 +16,8 @@ class Designation extends Modules\Component\ImetModule_Eval
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCIES = [
-        [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
-        [Modules\Evaluation\ManagementActivities::class, 'Aspect']
+        [Objectives::class, 'Aspect'],
+        [Modules\Evaluation\InformationAvailability::class, 'Aspect']
     ];
 
     public function __construct(array $attributes = []) {
@@ -40,25 +40,12 @@ class Designation extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    /**
-     * Preload data
-     *
-     * @param $predefined_values
-     * @param $records
-     * @param $empty_record
-     * @return array
-     */
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function getPredefined($form_id = null): array
     {
-        $form_id = $empty_record['FormID'];
-
-        $designations = Modules\Context\SpecialStatus::getModule($form_id)->pluck('Designation')->toArray();
-        $preLoaded = [
+        return [
             'field' => 'Aspect',
-            'values' => array_filter($designations)
+            'values' => array_filter(Modules\Context\SpecialStatus::getModule($form_id)->pluck('Designation')->toArray())
         ];
-
-        return parent::arrange_records($preLoaded, $records, $empty_record);
     }
 
     /**
@@ -74,6 +61,24 @@ class Designation extends Modules\Component\ImetModule_Eval
             })
             ->pluck('Aspect')
             ->toArray();
+    }
+
+
+    protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
+    {
+        // Get list of values (of reference field) from DB and from updated records
+        $existing_values = static::getModule($form_id)
+            ->where('IncludeInStatistics', true)
+            ->pluck($dependency_on)
+            ->toArray();
+        $updated_values = collect($records)
+            ->where('IncludeInStatistics', true)
+            ->pluck($dependency_on)
+            ->toArray();
+
+        // Make diff to find out what to drop
+        $to_be_dropped = array_diff($existing_values, $updated_values);
+        return array_values($to_be_dropped);
     }
 
 }

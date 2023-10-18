@@ -19,8 +19,8 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
 
     protected static $DEPENDENCY_ON = 'Stakeholder';
     protected static $DEPENDENCIES = [
-        [Modules\Evaluation\InformationAvailability::class, 'Stakeholder'],
-        [Modules\Evaluation\ManagementActivities::class, 'Stakeholder']
+        [Objectives::class, 'Stakeholder'],
+        [Modules\Evaluation\InformationAvailability::class, 'Stakeholder']
     ];
 
     public function __construct(array $attributes = []) {
@@ -43,26 +43,20 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
         parent::__construct($attributes);
     }
 
-    /**
-     * Preload data + scores
-     *
-     * @param $predefined_values
-     * @param $records
-     * @param $empty_record
-     * @return array
-     */
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
-    {
-        $form_id = $empty_record['FormID'];
-        $predefined_values = [
+    protected static function getPredefined($form_id = null): array {
+        return [
             'field' => 'Stakeholder',
             'values' => [
                 'group0' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_DIRECT),
                 'group1' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_INDIRECT),
             ]
         ];
+    }
 
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    {
         $records  = parent::arrange_records($predefined_values, $records, $empty_record);
+        $form_id = $empty_record['FormID'];
 
         $weight = Modules\Context\Stakeholders::calculateWeights($form_id);
         $ranking = collect(SupportsAndConstraints::calculateRanking($form_id))
@@ -93,6 +87,23 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
             })
             ->pluck('Stakeholder')
             ->toArray();
+    }
+
+    protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
+    {
+        // Get list of values (of reference field) from DB and from updated records
+        $existing_values = static::getModule($form_id)
+            ->where('IncludeInStatistics', true)
+            ->pluck($dependency_on)
+            ->toArray();
+        $updated_values = collect($records)
+            ->where('IncludeInStatistics', true)
+            ->pluck($dependency_on)
+            ->toArray();
+
+        // Make diff to find out what to drop
+        $to_be_dropped = array_diff($existing_values, $updated_values);
+        return array_values($to_be_dropped);
     }
 
 }

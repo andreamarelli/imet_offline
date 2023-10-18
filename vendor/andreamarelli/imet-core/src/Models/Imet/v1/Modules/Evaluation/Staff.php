@@ -40,7 +40,7 @@ class Staff extends Modules\Component\ImetModule_Eval
 
     protected static function getPredefined($form_id = null)
     {
-        $predefined_values = (new static())->predefined_values;
+        $predefined_values = parent::getPredefined($form_id);
 
         if($form_id!==null){
             $collection =  Modules\Context\ManagementStaff::getModule($form_id);
@@ -53,9 +53,8 @@ class Staff extends Modules\Component\ImetModule_Eval
         return $predefined_values;
     }
 
-    protected static function arrange_records_with_predefined($form_id, $records, $empty_record): array
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
-        $predefined_values = static::getPredefined($form_id);
         $new_records = [];
 
         if(count($predefined_values['values'])>1 && count($records)==1){

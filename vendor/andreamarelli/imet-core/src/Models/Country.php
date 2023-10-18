@@ -6,6 +6,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\Locale;
 use AndreaMarelli\ModularForms\Models\Utils\Country as BaseCountry;
 use Illuminate\Database\Eloquent\Collection;
+use AndreaMarelli\ImetCore\Models\Region;
 
 
 /**
@@ -22,6 +23,31 @@ class Country extends BaseCountry
 {
     protected $table = 'imet.imet_countries';
     public $primaryKey = 'iso3';
+    public static $foreign_key = 'region_id';
+
+    /**
+     * Get the region associated with the country.
+     */
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
+    }
+
+    /**
+     * Get country by regions
+     *
+     * @param $region
+     * @return \AndreaMarelli\ModularForms\Models\Utils\Country|\Illuminate\Database\Eloquent\Model|object|null
+     * @throws \Exception
+     */
+    public static function getByRegion($region)
+    {
+        if(strlen($region)==2){
+            return static::where('region_id', $region)->pluck('iso3')->toArray();
+        }else {
+            throw new \Exception('Wrong size for region: '. $region);
+        }
+    }
 
     /**
      * Override: get only allowed countries

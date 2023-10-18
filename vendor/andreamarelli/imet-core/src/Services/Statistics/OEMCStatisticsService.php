@@ -245,7 +245,6 @@ class OEMCStatisticsService extends StatisticsService
             'oc3' => static::score_group($imet_id, LifeQualityImpact::class, 'EvaluationScore', 'group_key'),
         ];
 
-
         // aggregate step score
         $denominator =
             ($scores['oc1'] !== null ? 1 : 0)
@@ -254,7 +253,9 @@ class OEMCStatisticsService extends StatisticsService
 
         $numerator = $scores['oc1']
             + $scores['oc2']
-            + ($scores['oc3'] / 2 + 50);
+            + ($scores['oc3']!==null
+                ? $scores['oc3'] / 2 + 50
+                : 0);
 
         // aggregate step score
         $scores['avg_indicator'] = $denominator > 0

@@ -54,6 +54,24 @@ class Report extends BaseReportModel
         'annual_targets1_activity2_year4',
         'annual_targets1_activity2_year5',
 
+        'annual_targets1_activity3_year1',
+        'annual_targets1_activity3_year2',
+        'annual_targets1_activity3_year3',
+        'annual_targets1_activity3_year4',
+        'annual_targets1_activity3_year5',
+
+        'annual_targets1_activity4_year1',
+        'annual_targets1_activity4_year2',
+        'annual_targets1_activity4_year3',
+        'annual_targets1_activity4_year4',
+        'annual_targets1_activity4_year5',
+
+        'annual_targets1_activity5_year1',
+        'annual_targets1_activity5_year2',
+        'annual_targets1_activity5_year3',
+        'annual_targets1_activity5_year4',
+        'annual_targets1_activity5_year5',
+
         'annual_targets2_activity1_year1',
         'annual_targets2_activity1_year2',
         'annual_targets2_activity1_year3',

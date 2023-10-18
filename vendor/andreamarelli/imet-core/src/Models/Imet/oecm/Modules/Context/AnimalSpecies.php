@@ -14,8 +14,9 @@ class AnimalSpecies extends Modules\Component\ImetModule
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCIES = [
-        [Modules\Context\AnalysisStakeholderDirectUsers::class, 'Element'],
-        [Modules\Context\AnalysisStakeholderIndirectUsers::class, 'Element'],
+        [Modules\Evaluation\ThreatsBiodiversity::class, 'species'],
+        [Modules\Evaluation\KeyElementsImpact::class, 'species'],
+        [Modules\Evaluation\KeyElements::class, 'species']
     ];
 
     public function __construct(array $attributes = [])
@@ -41,7 +42,7 @@ class AnimalSpecies extends Modules\Component\ImetModule
     }
 
     /**
-     * Override: replace values with labels
+     * Override: replace values with scientific names
      * @param $records
      * @param $form_id
      * @param $dependency_on
@@ -59,6 +60,24 @@ class AnimalSpecies extends Modules\Component\ImetModule
         }
 
         return array_values($to_be_dropped);
+    }
+
+    /**
+     * Override: replace values with scientific names
+     */
+    public static function getReferenceList($form_id, $dependency_field): array
+    {
+        return static::getModule($form_id)
+            ->filter(function ($item) use ($dependency_field){
+                return !empty($item['species']);
+            })
+            ->pluck('species')
+            ->map(function ($item) {
+                return Str::contains($item, '|')
+                    ? Animal::getScientificName($item)
+                    : $item;
+            })
+            ->toArray();
     }
 
 }

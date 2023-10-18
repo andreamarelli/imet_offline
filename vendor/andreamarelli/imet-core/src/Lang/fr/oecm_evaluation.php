@@ -457,7 +457,6 @@ return [
             'Objective' => 'Objectif',
             'Existence' => 'Existant dans le plan de gestion',
             'EvaluationScore' => 'Adéquation',
-            'IncludeInPlanning' => 'Ajouter à la planification',
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [

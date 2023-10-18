@@ -62,8 +62,24 @@ class Equipments extends Modules\Component\ImetModule
         $this->ratingLegend = trans('imet-core::oecm_context.Equipments.ratingLegend');
 
         parent::__construct($attributes);
-
     }
+
+    protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
+    {
+        // Get list of values (of reference field) from DB and from updated records
+        $existing_values = static::getModule($form_id)
+            ->whereNotNull('AdequacyLevel')
+            ->pluck('group_key')->unique()->toArray();
+        $updated_values = collect($records)
+            ->whereNotNull('AdequacyLevel')
+            ->pluck('group_key')->unique()->toArray();
+
+        // Make diff to find out what to drop
+        $to_be_dropped = array_diff($existing_values, $updated_values);
+
+        return array_values($to_be_dropped);
+    }
+
 
 
 }

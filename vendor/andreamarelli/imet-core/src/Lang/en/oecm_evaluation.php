@@ -456,7 +456,6 @@ return [
             'Objective' => 'Objective',
             'Existence' => 'Existing in management plan',
             'EvaluationScore' => 'Adequacy',
-            'IncludeInPlanning' => 'To add in planning',
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [

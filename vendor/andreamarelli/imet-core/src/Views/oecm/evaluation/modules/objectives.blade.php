@@ -16,6 +16,7 @@ $first_group = View::make('modular-forms::module.edit.type.group_table', compact
 
 // Second groups: fixed rows
 $definitions['groups'] = array_slice($original_definitions['groups'], 1);
+$definitions['fields'][0]['type'] = 'disabled';
 $definitions['fields'][1]['type'] = $original_definitions['fields'][1]['type'];
 $definitions['fixed_rows'] = true;
 $second_group = View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vue_data', 'definitions']))->render();

@@ -16,6 +16,8 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
+    protected static $DEPENDENCY_ON = 'Criteria';
+
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'GROUP_TABLE';
@@ -43,53 +45,19 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
         parent::__construct($attributes);
     }
 
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    /**
+     * Inject additional predefined values (last 3 groups) retrieved from CTX
+     */
+    protected static function getPredefined($form_id = null): array
     {
-        $form_id = $empty_record['FormID'];
-
-        // Inject additional predefined values (last 3 groups) retrieved from CTX
-        $predefined_values = [
+        return [
             'field' => 'Criteria',
             'values' => [
-
-                // Animals
-                'group0' => Modules\Context\AnimalSpecies::getModule($form_id)
-                    ->filter(function ($item) {
-                        return !empty($item['species']);
-                    })
-                    ->pluck('species')
-                    ->map(function ($item) {
-                        return Str::contains($item, '|')
-                            ? Animal::getScientificName($item)
-                            : $item;
-                    })
-                    ->toArray(),
-
-                // Plants
-                'group1' => Modules\Context\VegetalSpecies::getModule($form_id)
-                    ->filter(function ($item) {
-                        return !empty($item['species']);
-                    })
-                    ->pluck('species')
-                    ->toArray(),
-
-                // Habitats
-                'group2' => Modules\Context\Habitats::getModule($form_id)
-                    ->filter(function ($item) {
-                        return !empty($item['EcosystemType']);
-                    })
-                    ->pluck('EcosystemType')
-                    ->map(function ($item) {
-                        $labels = SelectionList::getList('ImetOECM_Habitats');
-                        return array_key_exists($item, $labels) ?
-                            $labels[$item]
-                            : null;
-                    })
-                    ->toArray(),
-
+                'group0' => Modules\Context\AnimalSpecies::getReferenceList($form_id, 'species'),
+                'group1' => Modules\Context\VegetalSpecies::getReferenceList($form_id, 'species'),
+                'group2' => Modules\Context\Habitats::getReferenceList($form_id, 'EcosystemType')
             ],
         ];
-        return parent::arrange_records($predefined_values, $records, $empty_record);
     }
 
 

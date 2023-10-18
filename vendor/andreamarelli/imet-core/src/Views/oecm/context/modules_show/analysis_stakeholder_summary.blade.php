@@ -22,7 +22,7 @@ $key_elements_importance = AnalysisStakeholderDirectUsers::calculateKeyElementsI
 
         <div>
             <h5>@lang('imet-core::oecm_context.AnalysisStakeholders.elements_importance')</h5>
-            <table class="table module-table">
+            <table class="table module-table summary_table">
                 <thead>
                 <tr>
                     <th>@lang('imet-core::oecm_context.AnalysisStakeholders.element')</th>
@@ -52,7 +52,7 @@ $key_elements_importance = AnalysisStakeholderDirectUsers::calculateKeyElementsI
 
         <div>
             <h5>@lang('imet-core::oecm_context.AnalysisStakeholders.involvement_ranking')</h5>
-            <table class="table module-table">
+            <table class="table module-table summary_table">
                 <thead>
                 <tr>
                     <th></th>
@@ -73,4 +73,13 @@ $key_elements_importance = AnalysisStakeholderDirectUsers::calculateKeyElementsI
 
     </div>
 </div>
+
+@push('scripts')
+    <style>
+        .summary_table th,
+        .summary_table td {
+            background-color: #F5F5F5;
+        }
+    </style>
+@endpush
 

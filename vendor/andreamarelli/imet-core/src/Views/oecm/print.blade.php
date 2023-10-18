@@ -35,7 +35,7 @@ if($item->language != App::getLocale()){
            style="margin-bottom: 20px;">@uclang('modular-forms::common.go_back')</a>
 
         <h2>
-            @lang('imet-core::common.imet')
+            @lang('imet-core::common.imet_short'): @lang('imet-core::common.imet')
         </h2>
 
         <div class="entity-heading">
