@@ -92,7 +92,6 @@ return [
     ],
 
     'steps_eval' => [
-//        'general_info'              => 'Informations générales',
         'context'                   => 'Contexte de gestion',
         'planning'                  => 'Planification',
         'inputs'                    => 'Intrants',
@@ -101,6 +100,7 @@ return [
         'outcomes'                  => 'Effects et Impacts',
         'objectives'                => 'Objectifs',
         'management_effectiveness'  => 'Efficacité de gestion',
+        'cross_analysis'  => 'Analyse croisée',
     ],
 
     'Create' => [

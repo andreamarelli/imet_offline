@@ -11,6 +11,7 @@ use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
 use AndreaMarelli\ImetCore\Controllers\SpeciesController;
 use AndreaMarelli\ImetCore\Controllers\UsersController;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 const IMET_PREFIX = Imet\Controller::ROUTE_PREFIX;
@@ -22,6 +23,14 @@ const OECM_ROUTE_PREFIX = oecm\Controller::ROUTE_PREFIX;
 Route::group(['middleware' => ['setLocale', 'web']], function () {
 
     Route::view('/welcome', 'imet-core::welcome')->name(IMET_PREFIX.'welcome');
+
+    // Old routes: to be kept for the moment rto ensure backwards compatibility
+    Route::get('/{url}', function ($url) {
+        return Redirect::to('imet/');
+    })->where(['url' => 'admin/imet|admin/imet/v1|admin/imet/v2']);
+    Route::get('/{url}', function ($url) {
+        return Redirect::to('oecm/');
+    })->where(['url' => 'admin/oecm']);
 
     /*
     |--------------------------------------------------------------------------

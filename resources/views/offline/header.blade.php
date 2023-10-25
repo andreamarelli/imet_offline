@@ -1,6 +1,6 @@
 <?php
 $uri = \Illuminate\Support\Facades\Route::getCurrentRequest()->path();
-$home = $uri === 'admin/imet' || $uri === 'admin/v1' || $uri === 'admin/v2' || strpos($uri, 'admin/imet/scaling_up') > -1;
+$home = $uri === 'imet' || $uri === 'v1' || $uri === 'v2' || strpos($uri, 'imet/scaling_up') > -1;
 
 ?>
 @if(!\Illuminate\Support\Facades\Auth::guest())
@@ -11,7 +11,7 @@ $home = $uri === 'admin/imet' || $uri === 'admin/v1' || $uri === 'admin/v2' || s
 
             @if(!\Illuminate\Support\Str::contains(Route::getCurrentRoute()->uri(), 'welcome'))
                 <li>
-                    <a href="{{ url('admin/imet') }}">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('home', '') !!}
+                    <a href="{{ route('imet-core::index') }}">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('home', '') !!}
                         @lang('imet-core::common.imet_short')
                     </a>
                 </li>

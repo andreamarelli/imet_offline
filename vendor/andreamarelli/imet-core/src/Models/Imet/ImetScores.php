@@ -41,7 +41,7 @@ class ImetScores extends Model
      *
      * @return $this
      */
-    public function touch()
+    public function touch($attribute = null)
     {
         $this->timestamps = false;
         $this->UpdateDate = $this->freshTimestamp();

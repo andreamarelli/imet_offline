@@ -18,7 +18,7 @@ Route::group(['prefix' => 'api'], function () {
 
         Route::get('assessment/{item}/{step?}', [ApiController::class, 'assessment'])->name('imet_core::api::assessment');
         Route::get('assessment_oecm/{item}/{step?}', [ApiController::class, 'assessment_oecm'])->name('imet_core::api::assessment_oecm');
-        Route::get('{lang}/protected-areas-list', [ApiController::class, 'get_protected_areas_list'])->middleware('auth')->name('imet_core::api::get_protected_areas_list');
+        Route::get('{lang}/protected-areas-list', [ApiController::class, 'get_protected_areas_list'])->name('imet_core::api::get_protected_areas_list');
         Route::get('total-number-of-assessments', [ApiController::class, 'get_total_number_of_assessments'])->name('imet_core::api::statistics.total_number_of_assessments');
         Route::get('pas-rating', [ApiController::class, 'get_pas_rating'])->name('imet_core::api::statistics.pas_rating');
         Route::get('assessments-performed-by-year', [ApiController::class, 'get_assessments_performed_by_year'])->name('imet_core::api::statistics.assessments_performed_by_year');
@@ -30,6 +30,7 @@ Route::group(['prefix' => 'api'], function () {
             Route::get('{lang}/assessment/report/{wdpa_id}/{year?}', [ApiController::class, 'get_assessment_report']);
             Route::get('{lang}/statistics/radar/{wdpa_id}/{year?}', [ApiController::class, 'get_imet_statistics_radar']);
             Route::get('{lang}/details/{key}/{wdpa_id}/{year?}', [ApiController::class, 'get_imet'])->name('imet_core::api::imet_details');
+            Route::get('{lang}/details/{key}/{form_id}/{year?}', [ApiController::class, 'get_imet'])->name('imet_core::api::oecm_details');
 
             Route::group(['prefix' => '{lang}/scaling-up'], function () {
                 Route::get('general-info/{wdpa_id}/{year?}', [ApiController::class, 'get_general_info']);

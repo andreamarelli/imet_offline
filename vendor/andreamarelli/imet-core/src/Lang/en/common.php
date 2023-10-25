@@ -92,7 +92,6 @@ return [
     ],
 
     'steps_eval' => [
-//        'general_info'              => 'General Information',
         'context'                   => 'Management context',
         'planning'                  => 'Planning',
         'inputs'                    => 'Inputs',

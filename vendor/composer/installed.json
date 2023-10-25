@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/andreamarelli/imet-core.git",
-                "reference": "1baab12d30b471157b30429695f7d9cfb287e943"
+                "reference": "b037b7d7f2510f4607477d69072743d3f8788849"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/1baab12d30b471157b30429695f7d9cfb287e943",
-                "reference": "1baab12d30b471157b30429695f7d9cfb287e943",
+                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/b037b7d7f2510f4607477d69072743d3f8788849",
+                "reference": "b037b7d7f2510f4607477d69072743d3f8788849",
                 "shasum": ""
             },
             "require": {
@@ -23,7 +23,7 @@
             "require-dev": {
                 "orchestra/testbench": "^6.0"
             },
-            "time": "2023-10-18T15:16:19+00:00",
+            "time": "2023-10-25T14:30:25+00:00",
             "type": "library",
             "extra": {
                 "laravel": {

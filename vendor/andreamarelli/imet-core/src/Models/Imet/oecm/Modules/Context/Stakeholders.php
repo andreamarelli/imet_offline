@@ -96,7 +96,8 @@ class Stakeholders extends Modules\Component\ImetModule
 
         // Make diff to find out what to drop
         foreach($updated_values as $elem => $direct){
-            if($direct === $existing_values[$elem]){
+            if(array_key_exists($elem, $existing_values)
+                && $direct === $existing_values[$elem]){
                 unset($existing_values[$elem]);
             }
         }
