@@ -29,6 +29,8 @@ return [
     'marine' => 'marine and coastal',
 
     'dopa_not_available' => 'DOPA services not available',
+    'no' => 'No',
+    'yes' => 'Yes',
 
     'languages' => [
         'fr'        => 'French',

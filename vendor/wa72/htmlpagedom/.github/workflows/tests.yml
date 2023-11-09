@@ -3,18 +3,19 @@ name: tests
 on:
   push:
     branches:
-      - 2.x
+      - master
   pull_request:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   php:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        php: [7.4, 8.0, 8.1, 8.2]
+        php: [8.0, 8.1, 8.2]
         dependency-version: [prefer-lowest, prefer-stable]
 
     steps:
@@ -32,4 +33,3 @@ jobs:
 
       - name: run tests
         run: php vendor/bin/phpunit
-

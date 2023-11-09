@@ -18,7 +18,7 @@ return [
     'key_elements' => 'Elementos-chave do OECM',
     'terrestial_marine_habitats' => 'Habitats terrestres e marinhos - cobertura terrestre, mudanças terrestres e ocupação do solo',
     'threats' => 'Ameaças',
-    'management_effectiveness' => 'Análise da eficácia da gestão (análise + análise SWOT)',
+    'management_effectiveness' => 'Análise da eficácia da gestão',
     'characteristics_elements' => 'Elementos característicos do OECM na forma de um exercício SWOT',
     'strengths' => 'Forças',
     'weaknesses' => 'Fraquezas',

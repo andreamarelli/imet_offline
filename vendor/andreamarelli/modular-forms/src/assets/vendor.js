@@ -27,5 +27,5 @@ window.$.fn.select2.defaults.set("theme", "bootstrap");
 // Other packages
 window.AutoNumeric = require('autonumeric');
 window.Base64 = require('js-base64');
-window.CKEditor = require( '@ckeditor/ckeditor5-vue' )
+window.CKEditor = require( '@ckeditor/ckeditor5-vue2' )
 window.ClassicEditor = require( '@ckeditor/ckeditor5-build-classic' )

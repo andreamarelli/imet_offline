@@ -13,18 +13,19 @@
         }
     ],
     "require":{
-        "php":"^7.4|^8.0",
+        "php":"^8.0",
         "ext-dom":"*",
         "ext-libxml":"*",
         "ext-mbstring":"*",
-        "symfony/dom-crawler":"^4.4|^5",
-        "symfony/css-selector":"^4.4|^5"
+        "symfony/dom-crawler":"^6",
+        "symfony/css-selector":"^6"
     },
     "require-dev": {
         "phpunit/phpunit": "^9",
         "wa72/html-pretty-min": "~0.1",
         "mikey179/vfsstream": "^1.6.10",
-        "scrutinizer/ocular": "^1.9"
+        "scrutinizer/ocular": "^1.9",
+        "clean/phpdoc-md": "^0.19.3"
     },
     "suggest": {
         "wa72/html-pretty-min": "Minify or indent HTML documents"
@@ -36,7 +37,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.0-dev"
+            "dev-master": "3.0-dev"
         }
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'general_elements' => 'General elements of the protected area',
+    'general_elements' => 'General elements',
     'country' => 'Country',
     'name' => 'Name',
     'category' => 'Category(ies)',

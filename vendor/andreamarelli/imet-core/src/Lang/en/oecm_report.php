@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'general_elements' => 'General elements of the OECM',
+    'general_elements' => 'General elements',
     'country' => 'Country',
     'name' => 'Name',
     'category' => 'Category(ies)',
@@ -15,10 +15,10 @@ return [
     'objectives' => 'Objectives',
     'evaluation_elements' => 'Evaluation of the OECM management cycle elements',
     'management_context' => 'Management context (key elements of management)',
-    'key_elements' => 'Key elements of OECM',
+    'key_elements' => 'Key elements',
     'terrestial_marine_habitats' => 'Terrestrial and marine habitats - land-cover, land-change and land-take',
     'threats' => 'Threats',
-    'management_effectiveness' => 'Management effectiveness analysis (analysis + swot analysis)',
+    'management_effectiveness' => 'Management effectiveness',
     'characteristics_elements' => 'Characteristic elements of the OECM in the form of a SWOT exercise',
     'strengths' => 'Strengths',
     'weaknesses' => 'Weaknesses',
@@ -59,7 +59,7 @@ return [
     'stakeholder_direct_users' => 'Stakeholders Direct users',
     'stakeholder_indirect_users' => 'Stakeholders Indirect users',
     'biodiversity_elements' => [
-        'title' => 'Key biodiversity elements of OECM',
+        'title' => 'Key biodiversity elements',
         'key_conservation_element' => 'Key conservation element',
         'effect_estimated_direct_users' => 'Effect estimated by the stakeholders direct users',
         'effect_estimated_indirect_users' => 'Effect estimated by the management entity or monitoring',

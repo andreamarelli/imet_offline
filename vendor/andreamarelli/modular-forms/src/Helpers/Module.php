@@ -56,7 +56,7 @@ class Module
     {
         $db_table = (new $moduleClass())->getTable();
         $res = DB::table($db_table)
-            ->select(DB::raw('count(*)'))
+            ->selectRaw('count(*)')
             ->where($field, $value)
             ->first();
         return $res->count > 0;

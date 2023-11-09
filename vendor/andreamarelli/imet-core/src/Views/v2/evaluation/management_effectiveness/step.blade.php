@@ -1,9 +1,11 @@
 <?php
-/** @var String $step */
 
+use AndreaMarelli\ImetCore\Services\Assessment\ImetAssessment;
+
+/** @var String $step */
 /** @var int $item_id */
 
-$assessment_step = \AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService::get_assessment($item_id, $step);
+$assessment_step = ImetAssessment::getAssessment($item_id, $step);
 
 ?>
 

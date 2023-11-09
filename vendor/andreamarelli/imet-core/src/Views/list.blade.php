@@ -78,7 +78,6 @@ if($controller === Controllers\Imet\oecm\Controller::class){
 
     </div>
 
-
     @include('imet-core::components.common_filters', [
         'request' => $request,
         'url' => $index_url,
@@ -188,11 +187,11 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                             @include('imet-core::components.buttons.merge', ['form_class' => $form_class])
                         </span>
 
-                        {{-- Export --}}
-                        @can('export_button', $form_class)
-                            @include('imet-core::components.buttons.export', ['form_class' => $form_class])
-                        @endcan
+                    @endcan
 
+                    {{-- Export --}}
+                    @can('export_button', $form_class)
+                        @include('imet-core::components.buttons.export', ['form_class' => $form_class])
                     @endcan
 
                     {{-- Print --}}

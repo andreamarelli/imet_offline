@@ -11,6 +11,7 @@ Route::middleware(['web', 'auth'])->group(function () {
 
     Route::get('/', function () { return Redirect::to('confirm_user'); });
     Route::view('/welcome', 'imet-core::welcome')->name(Controller::ROUTE_PREFIX.'welcome');
+    Route::get('info', function (){ return phpinfo(); });
 
     // User routes
     Route::get('users/{role_type?}', [UserController::class, 'index'])->name('imet-core::users');

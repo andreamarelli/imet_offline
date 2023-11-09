@@ -29,6 +29,8 @@ return [
     'marine' => 'marítima e costeira',
 
     'dopa_not_available' => 'DOPA serviços não disponíveis',
+    'no' => 'Não',
+    'yes' => 'Sim',
 
     'languages' => [
         'fr'        => 'Francês',

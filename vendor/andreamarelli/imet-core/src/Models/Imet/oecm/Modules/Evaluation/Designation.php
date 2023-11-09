@@ -44,7 +44,9 @@ class Designation extends Modules\Component\ImetModule_Eval
     {
         return [
             'field' => 'Aspect',
-            'values' => array_filter(Modules\Context\SpecialStatus::getModule($form_id)->pluck('Designation')->toArray())
+            'values' => $form_id !== null
+                ? array_filter(Modules\Context\SpecialStatus::getModule($form_id)->pluck('Designation')->toArray())
+                : []
         ];
     }
 

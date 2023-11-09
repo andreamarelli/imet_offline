@@ -92,7 +92,7 @@ class BaseModel extends Model
      */
     public static function getInitialLetters($field)
     {
-        $initials = self::select(DB::raw('distinct lower(substring("'.$field.'",1,1)) as initial'))
+        $initials = self::selectRaw('distinct lower(substring(?, 1, 1)) as initial', [$field])
             ->pluck('initial')
             ->toArray();
         sort($initials);

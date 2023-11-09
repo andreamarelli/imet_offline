@@ -8,7 +8,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesIntervie
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewers;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
+use AndreaMarelli\ImetCore\Services\Scores\OecmScores;
 use AndreaMarelli\ModularForms\Helpers\Type\Chars;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -156,7 +156,7 @@ class Imet extends BaseImetForm
                 ];
 
                 // Add radar
-                $item['assessment_radar'] = OEMCStatisticsService::get_radar_scores($item);
+                $item['assessment_radar'] = OecmScores::get_radar($item, true);
 
                 // Non WDPA
                 if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
@@ -200,14 +200,18 @@ class Imet extends BaseImetForm
     {
         $return = parent::updateModuleAndForm($item, $request);
 
+        // backup to JSON
         if ($return['status'] == 'success') {
             (new Controller())->backup($item, Imet::version);
         }
 
+        // Update encoder UPDATED_AT
         $user_info = Auth::user()->getInfo();
         unset($user_info['country']);
-
         Encoder::touchOnFormUpdate($item, $user_info);
+
+        // Refresh scores
+        OecmScores::refresh_scores($item);
 
         return $return;
     }

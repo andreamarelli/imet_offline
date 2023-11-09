@@ -10,7 +10,7 @@
         <th rowspan="2">
             @lang('imet-core::common.steps_eval.context')
             <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['context']['avg_indicator'], 'badge') !!}>{{ $assessment['context']['avg_indicator'] }}</div>
+                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['context']['avg_indicator'], 'badge') !!}>{{ $assessment['context']['avg_indicator'] }}</div>
             </h4>
         </th>
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c1'], 'assessment_label' => trans('imet-core::v2_common.assessment.c1')[1]])
@@ -42,7 +42,7 @@
         <th>
             @lang('imet-core::common.steps_eval.planning')
             <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['planning']['avg_indicator'], 'badge') !!}>{{ $assessment['planning']['avg_indicator'] }}</div>
+                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['planning']['avg_indicator'], 'badge') !!}>{{ $assessment['planning']['avg_indicator'] }}</div>
             </h4>
         </th>
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['planning']['p1'], 'assessment_label' => trans('imet-core::v2_common.assessment.p1')[1]])
@@ -59,7 +59,7 @@
         <th>
             @lang('imet-core::common.steps_eval.inputs')
             <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['inputs']['avg_indicator'], 'badge') !!}>{{ $assessment['inputs']['avg_indicator'] }}</div>
+                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['inputs']['avg_indicator'], 'badge') !!}>{{ $assessment['inputs']['avg_indicator'] }}</div>
             </h4>
         </th>
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['inputs']['i1'], 'assessment_label' => trans('imet-core::v2_common.assessment.i1')[1]])
@@ -76,7 +76,7 @@
         <th rowspan="7">
             @lang('imet-core::common.steps_eval.process')
             <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['process']['avg_indicator'], 'badge') !!}>{{ $assessment['process']['avg_indicator'] }}</div>
+                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['process']['avg_indicator'], 'badge') !!}>{{ $assessment['process']['avg_indicator'] }}</div>
             </h4>
         </th>
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr1_6'], 'assessment_label' => trans('imet-core::v2_common.assessment.pr1_6')[1]])
@@ -165,7 +165,7 @@
         <th>
             @lang('imet-core::common.steps_eval.outputs')
             <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['outputs']['avg_indicator'], 'badge') !!}>{{ $assessment['outputs']['avg_indicator'] }}</div>
+                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['outputs']['avg_indicator'], 'badge') !!}>{{ $assessment['outputs']['avg_indicator'] }}</div>
             </h4>
         </th>
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['outputs']['op1'], 'assessment_label' => trans('imet-core::v2_common.assessment.op1')[1]])
@@ -180,7 +180,7 @@
         <th>
             @lang('imet-core::common.steps_eval.outcomes')
             <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['outcomes']['avg_indicator'], 'badge') !!}>{{ $assessment['outcomes']['avg_indicator'] }}</div>
+                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['outcomes']['avg_indicator'], 'badge') !!}>{{ $assessment['outcomes']['avg_indicator'] }}</div>
             </h4>
         </th>
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $assessment['outcomes']['oc1'], 'assessment_label' => trans('imet-core::v2_common.assessment.oc1')[1]])

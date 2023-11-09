@@ -27,8 +27,10 @@ return [
 
     'terrestrial' => 'terrestre',
     'marine' => 'marítimo y costero',
-    
+
     'dopa_not_available' => 'Servicios DOPA no disponibles',
+    'no' => 'No',
+    'yes' => 'Sí',
 
     'languages' => [
         'fr'        => 'Francés',

@@ -38,12 +38,16 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
 
     protected static function getPredefined($form_id = null): array
     {
-        return [
-            'field' => 'Element',
-            'values' => [
+        $predefined_values = $form_id!==null
+            ? [
                 'group0' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_DIRECT),
                 'group1' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_INDIRECT),
             ]
+            : [];
+
+        return [
+            'field' => 'Element',
+            'values' => $predefined_values
         ];
     }
 

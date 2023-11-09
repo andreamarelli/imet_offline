@@ -3,10 +3,9 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\API\Assessment;
 
 use AndreaMarelli\ImetCore\Models\Animal;
-use AndreaMarelli\ImetCore\Models\Imet\ImetScores;
+use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
-use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
 use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Report;
@@ -20,15 +19,6 @@ class ReportV1
     protected static string $report_class = Report::class;
     protected static string $general_info_class = GeneralInfo::class;
     protected static string $areas_class = Areas::class;
-
-    /**
-     * @param int $form_id
-     * @return array
-     */
-    protected static function assessment_scores(int $form_id): array
-    {
-        return V1ToV2StatisticsService::get_scores($form_id, 'ALL');
-    }
 
     /**
      * @param Request $request
@@ -58,16 +48,10 @@ class ReportV1
 
         $labels = static::get_labels();
 
-        $imet = ImetScores::where(['FormID', $form_id])->get()->toArray();
-        if ($imet) {
-            $assessments = $imet['scores'];
-        } else {
-            $assessments = static::assessment_scores($form_id);
-        }
         return [
             'data' => [
                 'key_elements' => static::get_key_elements($form_id),
-                'assessment' => $assessments,
+                'assessment' => ImetScores::get_all($form_id),
                 'report' => $report,
                 'dopa_radar' => $dopa_radar,
                 'dopa_indicators' => $dopa_indicators[0] ?? null,

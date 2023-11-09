@@ -3,40 +3,67 @@
 namespace AndreaMarelli\ModularForms\Models;
 
 use Carbon\Carbon;
+use DateInterval;
+use DateTimeInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache as BaseCache;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 
 class Cache{
 
+    private const TTL = 60 * 60 * 24 * 7;
+
     /**
      * Build a cache key from request params
-     *
-     * @param $prefix
-     * @param null $params
-     * @return string
      */
-    public static function buildKey($prefix, $params = null): string
+    public static function buildKey(string $prefix, array $params = null): string
     {
         unset($params['_token']);
 
-        // Build cache key
+        // Prefix
         $prefix = Str::startsWith($prefix, '_') ? $prefix : '_'.$prefix;
-        return $params!==null && !empty($params)
-            ? $prefix.'?' . http_build_query($params)
-            : $prefix;
+
+        // Params
+        $params = http_build_query($params);
+        $params = !empty($params)
+            ? '?'. $params
+            : '';
+
+        return $prefix . $params;
     }
 
+    /**
+     * Encode the key (suitable also for using in URLs)
+     * Convert normal base64 to base64url as specified in RFC 4648: https://www.rfc-editor.org/rfc/rfc4648#page-7
+    */
+    public static function encodeKey(string $key): string
+    {
+        $key = base64_encode($key);
+        return str_replace(
+            array('+', '/'),
+            array('-', '_'),
+            $key);
+    }
+
+    /**
+     * Decode the key encoded with Cache::encodeKey($key)
+     */
+    public static function decodeKey(string $key): string
+    {
+        $key = str_replace(
+            array('-', '_'),
+            array('+', '/'),
+            $key);
+        return base64_decode($key);
+    }
 
     /**
      * Retrieve API result from cache
-     *
-     * @param $cache_key
-     * @return mixed|null
      */
-    public static function get($cache_key)
+    public static function get($cache_key): mixed
     {
         $cache_value = BaseCache::get($cache_key);
         return $cache_value !== null
@@ -46,25 +73,18 @@ class Cache{
 
     /**
      * Store API result in cache
-     *
-     * @param $cache_key
-     * @param $data
-     * @param float|int $ttl (Time To Live - in seconds)
      */
-    public static function put($cache_key, $data, $ttl = 60 * 60 * 24 * 7)
+    public static function put($cache_key, $data, DateTimeInterface|DateInterval|int|null $ttl = self::TTL): void
     {
         BaseCache::put($cache_key, $data, $ttl);
     }
 
     /**
      * Perform cache flush on given key
-     *
-     * @param $key
-     * @return string
      */
-    private static function _flushByKey($key): string
+    public static function flushByKey($key): string
     {
-        $key = str_replace('laravel_cache', '', $key);
+        $key = str_replace(Config::get('cache.prefix'), '', $key);
         if(BaseCache::has($key)){
             BaseCache::forget($key);
         }
@@ -73,21 +93,15 @@ class Cache{
 
     /**
      * Flush cache (key in request)
-     *
-     * @param $request
-     * @return string
      */
     public static function flush(Request $request): string
     {
         $key = $request->get('key');
-        return Cache::_flushByKey($key);
+        return Cache::flushByKey($key);
     }
 
     /**
      * Flush cache: all related to $key
-     *
-     * @param $key
-     * @return string
      */
     public static function flushRelated($key): string
     {
@@ -96,15 +110,13 @@ class Cache{
             ->where('key', 'like', '%' || $key || '%')
             ->get();
         foreach ($keys as $k) {
-            Cache::_flushByKey($k->key);
+            Cache::flushByKey($k->key);
         }
         return $key . ': Cache flushed.';
     }
 
     /**
      * Flush ALL cache
-     *
-     * @return string
      */
     public static function flushExpired(): string
     {
@@ -114,15 +126,13 @@ class Cache{
             ->get();
 
         foreach ($keys as $k) {
-            Cache::_flushByKey($k->key);
+            Cache::flushByKey($k->key);
         }
         return 'All expired cache flushed.';
     }
 
     /**
      * Flush ALL cache
-     *
-     * @return string
      */
     public static function flushAll(): string
     {

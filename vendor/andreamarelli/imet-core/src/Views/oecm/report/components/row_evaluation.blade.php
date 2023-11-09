@@ -6,7 +6,7 @@
 
 /** @var boolean $threats [optional] */
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment;
+use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
 
 $assessment_value   = $assessment_value ?? null;
 $additional_classes = $additional_classes ?? null;
@@ -16,8 +16,8 @@ $color_scores       = $color_scores ?? true;
 
 
 $classes =$color_scores ? $threats
-    ? Assessment::score_class_threats($assessment_value, $additional_classes)
-    : Assessment::score_class($assessment_value, $additional_classes) : '';
+    ? ApiController::score_class_threats($assessment_value, $additional_classes)
+    : ApiController::score_class($assessment_value, $additional_classes) : '';
 
 ?>
 

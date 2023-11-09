@@ -37,12 +37,16 @@ class CapacityAdequacy extends Modules\Component\ImetModule_Eval
 
     protected static function getPredefined($form_id = null): array
     {
-        return [
-            'field' => 'Member',
-            'values' => [
+        $predefined_values = $form_id!==null
+            ? [
                 'group0' => Modules\Context\ManagementStaff::getModule($form_id)->pluck('Function')->toArray(),
                 'group1' => Modules\Context\Stakeholders::getStakeholders($form_id),
             ]
+            : [];
+
+        return [
+            'field' => 'Member',
+            'values' => $predefined_values
         ];
     }
 

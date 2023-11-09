@@ -2,11 +2,8 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\CrossAnalysis;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController;
 use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
-use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use Illuminate\Database\Eloquent\Model;
 
 class CrossAnalysis extends Model
@@ -43,15 +40,14 @@ class CrossAnalysis extends Model
     {
         $filteredArray = [];
         $compareElements = [];
-        foreach (static::$indicators as $key => $indicators) {
+        foreach (static::$indicators as $step_key => $indicators) {
 
-            $results = $item->version==Imet::IMET_V1
-                ? V1ToV2StatisticsService::get_assessment($item->FormID, $key)
-                : V2StatisticsService::get_assessment($item->FormID, $key);
+            $scores = ImetScores::get_step($item, $step_key);
+            $filteredArray = array_merge($filteredArray,
+                array_intersect_key($scores, array_flip(static::$indicators[$step_key]))
+            );
 
-            $filteredArray = array_merge($filteredArray, array_intersect_key((array)$results, array_flip(static::$indicators[$key])));
-
-            foreach ($item::modules()[$key] as $module) {
+            foreach ($item::modules()[$step_key] as $module) {
                 $definitions = $module::getDefinitions($item->FormID);
                 $code = strtolower(str_ireplace(['.', '/'], '', $definitions['module_code']));
                 if (isset($filteredArray[$code])) {
@@ -60,7 +56,7 @@ class CrossAnalysis extends Model
                             'code' => $definitions['module_code'],
                             'value' => $filteredArray[$code],
                             'question' => $definitions['module_info_EvaluationQuestion'][0],
-                            'step' => $key,
+                            'step' => $step_key,
                             'key' => "module_" . $definitions['module_key']];
                     }
                 }

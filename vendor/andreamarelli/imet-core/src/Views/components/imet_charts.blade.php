@@ -2,7 +2,7 @@
 /** @var int $form_id */
 /** @var string $version */
 
-$labels = \AndreaMarelli\ImetCore\Services\Statistics\StatisticsService::steps_labels();
+$labels = \AndreaMarelli\ImetCore\Services\Scores\ImetScores::labels();
 
 ?>
 

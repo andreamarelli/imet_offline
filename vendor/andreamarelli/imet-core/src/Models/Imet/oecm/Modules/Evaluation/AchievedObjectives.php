@@ -39,13 +39,15 @@ class AchievedObjectives extends Modules\Component\ImetModule_Eval
      */
     protected static function getPredefined($form_id = null): array
     {
-        $p6_values = collect(Objectives::getModuleRecords($form_id)['records'])
-            ->filter(function($item){
-                return $item['group_key']==='group0' // All objectives of group0 ("Adequacy of management plan objectives for the key elements")
-                    || $item['Existence'];           //  + only objectives with "Existence" from group1 (derived form Context: C1, C2.2, C3.2 & C4 )
-            })
-            ->pluck('Objective')
-            ->toArray();
+        $p6_values = $form_id!==null
+            ? collect(Objectives::getModuleRecords($form_id)['records'])
+                ->filter(function($item){
+                    return $item['group_key']==='group0' // All objectives of group0 ("Adequacy of management plan objectives for the key elements")
+                        || $item['Existence'];           //  + only objectives with "Existence" from group1 (derived form Context: C1, C2.2, C3.2 & C4 )
+                })
+                ->pluck('Objective')
+                ->toArray()
+            : [] ;
 
         return [
             'field' => 'Objective',

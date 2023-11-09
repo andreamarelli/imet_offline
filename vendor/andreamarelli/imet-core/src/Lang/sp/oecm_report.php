@@ -18,7 +18,7 @@ return [
     'key_elements' => 'Elementos clave del OECM',
     'terrestial_marine_habitats' => 'Hábitats terrestres y marinos - cobertura terrestre, cambios terrestres y ocupación del suelo',
     'threats' => 'Amenazas',
-    'management_effectiveness' => 'Análisis de la efectividad de la gestión (análisis + análisis FODA)',
+    'management_effectiveness' => 'Análisis de la efectividad de la gestión',
     'characteristics_elements' => 'Elementos característicos del OECM en forma de ejercicio FODA',
     'strengths' => 'Fortalezas',
     'weaknesses' => 'Debilidades',

@@ -1,11 +1,11 @@
 <?php
+use AndreaMarelli\ImetCore\Services\Assessment\OecmAssessment;
+use Illuminate\Support\Facades\App;
+
 /** @var String $step */
 /** @var int $item_id */
 
-use \AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
-use \Illuminate\Support\Facades\App;
-
-$assessment_step = OEMCStatisticsService::get_assessment($item_id, $step);
+$assessment_step = OecmAssessment::getAssessment($item_id, $step);
 
 ?>
 
@@ -23,7 +23,6 @@ $assessment_step = OEMCStatisticsService::get_assessment($item_id, $step);
             @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_0', 'values' => 'values', 'index' => 'c3'])
             @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100', 'values' => 'values', 'index' => 'c4'])
         </div>
-
 
     @elseif($step=='outcomes')
 
@@ -84,8 +83,8 @@ $assessment_step = OEMCStatisticsService::get_assessment($item_id, $step);
         },
 
         computed: {
-            local_now(){
-               return Locale.getLocale();
+            local_now() {
+                return Locale.getLocale();
             },
             labels() {
                 let _this = this;
@@ -146,7 +145,7 @@ $assessment_step = OEMCStatisticsService::get_assessment($item_id, $step);
                         _this.step_color = '#FFC000';
                         break;
                     case 'process':
-                        _this.step_indexes =[
+                        _this.step_indexes = [
                             'pr1', 'pr2', 'pr3', 'pr4', 'pr5', 'pr6', 'pr7', 'pr8', 'pr9', 'pr10', 'pr11', 'pr12'
                         ];
                         _this.step_color = '#00B0F0';

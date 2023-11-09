@@ -54,7 +54,9 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
     {
         return [
             'field' => 'Activity',
-            'values' => KeyElements::getPrioritizedElements($form_id)
+            'values' => $form_id !==null
+                ? KeyElements::getPrioritizedElements($form_id)
+                : []
         ];
     }
 

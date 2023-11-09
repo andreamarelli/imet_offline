@@ -1,7 +1,7 @@
 <template>
     <div class="module-container" :id="group_key">
         <div class="module-header">
-            <div class="module-title">{{ Locale.getLabel('imet-core::oecm_report.table_of_planning') }}</div>
+            <div class="module-title" id="ar5">AR.5 {{ Locale.getLabel('imet-core::oecm_report.table_of_planning') }}</div>
         </div>
         <div class="module-body" v-if="current_report">
             <h5>{{ Locale.getLabel('imet-core::oecm_report.previous_state') }}</h5>

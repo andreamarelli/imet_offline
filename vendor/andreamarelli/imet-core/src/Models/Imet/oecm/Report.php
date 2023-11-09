@@ -134,7 +134,7 @@ class Report extends BaseReportModel
 
     public static function getSchema()
     {
-        return array_fill_keys(static::$report_fields, null) + array_fill_keys(static::$boolean_fields, false);
+        return array_fill_keys(static::$report_fields, "") + array_fill_keys(static::$boolean_fields, false);
     }
 
     /**

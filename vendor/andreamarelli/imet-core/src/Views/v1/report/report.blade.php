@@ -1,7 +1,13 @@
 <?php
-/** @var string $action */
 
-/** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Imet $item */
+use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment;
+use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
+use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
+use Illuminate\Support\Facades\App;
+
+/** @var string $action */
+/** @var Imet $item */
 /** @var array $assessment */
 /** @var array $key_elements */
 /** @var array $report */
@@ -17,9 +23,7 @@
 /** @var Array $non_wdpa */
 
 // Force Language
-use Illuminate\Support\Facades\App;
-
-if ($item->language != App::getLocale()) {
+if($item->language != App::getLocale()){
     App::setLocale($item->language);
 }
 
@@ -102,7 +106,7 @@ if ($item->language != App::getLocale()) {
             </div>
             <div class="module-body">
                 <imet_charts
-                        form_id={{ $item->getKey() }} :labels='@json(\AndreaMarelli\ImetCore\Services\Statistics\StatisticsService::steps_labels())'
+                        form_id={{ $item->getKey() }} :labels='@json(ImetScores::labels())'
                         :show_histogram="true" :version="'v1'"></imet_charts>
                 <table id="global_scores">
                     <tr>
@@ -115,13 +119,13 @@ if ($item->language != App::getLocale()) {
                         <th>@lang('imet-core::common.indexes.imet')</th>
                     </tr>
                     <tr>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['context']) !!} >{{ $assessment['global']['context'] }}</td>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['planning']) !!} >{{ $assessment['global']['planning'] }}</td>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['inputs']) !!} >{{ $assessment['global']['inputs'] }}</td>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['process']) !!} >{{ $assessment['global']['process'] }}</td>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['outputs']) !!} >{{ $assessment['global']['outputs'] }}</td>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['outcomes']) !!} >{{ $assessment['global']['outcomes'] }}</td>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['imet_index']) !!} >{{ $assessment['global']['imet_index'] }}</td>
+                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['context']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['context'] }}</td>
+                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['planning']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['planning'] }}</td>
+                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['inputs']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['inputs'] }}</td>
+                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['process']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['process'] }}</td>
+                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['outputs']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['outputs'] }}</td>
+                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['outcomes']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['outcomes'] }}</td>
+                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['imet_index']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['imet_index'] }}</td>
                     </tr>
                 </table>
             </div>

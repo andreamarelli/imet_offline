@@ -21,7 +21,7 @@ $fields = [
 
 @if($show_non_wdpa)
     <div class="module-container">
-        <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.general_elements')</div></div>
+        <div class="module-header"><div class="module-title" id="ar1">AR.1 @lang('imet-core::v2_report.general_elements')</div></div>
         <div class="module-body">
 
             @foreach($fields as $field)

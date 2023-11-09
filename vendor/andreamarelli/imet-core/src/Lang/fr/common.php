@@ -29,6 +29,8 @@ return [
     'marine' => 'maritime et côtier',
 
     'dopa_not_available' => 'Services DOPA non disponibles',
+    'no' => 'Non',
+    'yes' => 'Oui',
 
     'languages' => [
         'fr'        => 'Français',

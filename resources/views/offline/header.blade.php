@@ -1,6 +1,12 @@
 <?php
 $uri = \Illuminate\Support\Facades\Route::getCurrentRequest()->path();
-$home = $uri === 'imet' || $uri === 'v1' || $uri === 'v2' || strpos($uri, 'imet/scaling_up') > -1;
+
+$home = $uri === 'imet'
+    || $uri === 'oecm'
+    || Str::contains($uri, 'imet/scaling_up') > -1;
+
+$welcome = $uri === 'welcome'
+    || $uri === 'confirm_user';
 
 ?>
 @if(!\Illuminate\Support\Facades\Auth::guest())
@@ -8,27 +14,21 @@ $home = $uri === 'imet' || $uri === 'v1' || $uri === 'v2' || strpos($uri, 'imet/
     <div id="imet_header">
 
         <ul class="menu-header">
-
-            @if(!\Illuminate\Support\Str::contains(Route::getCurrentRoute()->uri(), 'welcome'))
+            @if(!$welcome)
                 <li>
-                    <a href="{{ route('imet-core::index') }}">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('home', '') !!}
+                    <a href="{{ route('imet-core::index') }}">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('arrow-circle-right', '') !!}
                         @lang('imet-core::common.imet_short')
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('imet-core::oecm.index') }}">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('home', '') !!}
+                    <a href="{{ route('imet-core::oecm.index') }}">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('arrow-circle-right', '') !!}
                         @lang('imet-core::oecm_common.oecm_short')
                     </a>
                 </li>
             @endif
-
         </ul>
 
         <ul class="menu-header">
-            <li>
-                <a>{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('user-circle', '', '1.2em') !!}
-                    &nbsp;{{ \App\Models\User::find(Auth::id())->getName() }}</a>
-            </li>
             @if($home)
                 <li>
                     <a>{!! \AndreaMarelli\ModularForms\Helpers\Template::flag(strtolower(\Illuminate\Support\Facades\App::getLocale()), '') !!}</a>

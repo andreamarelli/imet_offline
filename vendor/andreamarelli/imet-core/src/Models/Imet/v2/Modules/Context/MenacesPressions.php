@@ -141,7 +141,9 @@ class MenacesPressions extends Modules\Component\ImetModule
         $record = static::replacePredefinedValue($record, 'Value', 'Other: Outros: Aumento da precipitação e mudanças sazonais', 'Aumento da precipitação e mudanças sazonais');
         $record = static::replacePredefinedValue($record, 'Value', 'Otro: Aumento de las precipitaciones y cambios estacionales', 'Aumento de las precipitaciones y cambios estacionales');
         $record = static::replacePredefinedValue($record, 'Value', 'Renewable energies', 'Renewable abiotic energy use');
-        // TODO: "Renewable energies" to "Renewable abiotic energy use" for FR, PT and SP
+        $record = static::replacePredefinedValue($record, 'Value', 'Energies renouvelables', 'Utilisation de l\'énergie abiotique renouvelable');
+        $record = static::replacePredefinedValue($record, 'Value', 'Energias renováveis', 'Uso de energia abiótica renovável');
+        $record = static::replacePredefinedValue($record, 'Value', 'Energías renovables', 'Uso de energía abiótica renovable');
 
         return $record;
     }

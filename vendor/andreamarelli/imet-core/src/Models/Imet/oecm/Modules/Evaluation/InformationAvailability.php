@@ -52,12 +52,14 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
 
     protected static function getPredefined($form_id = null): array
     {
-        $key_elements = array_merge(
-            KeyElements::getPrioritizedElements($form_id),
-            Designation::getPrioritizedElements($form_id),
-            SupportsAndConstraintsIntegration::getPrioritizedElements($form_id),
-            ThreatsIntegration::getPrioritizedElements($form_id)
-        );
+        $key_elements = $form_id!==null
+            ? array_merge(
+                KeyElements::getPrioritizedElements($form_id),
+                Designation::getPrioritizedElements($form_id),
+                SupportsAndConstraintsIntegration::getPrioritizedElements($form_id),
+                ThreatsIntegration::getPrioritizedElements($form_id)
+            )
+            : [];
 
         return [
             'field' => 'Element',

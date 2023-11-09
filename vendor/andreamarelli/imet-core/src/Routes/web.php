@@ -1,6 +1,5 @@
 <?php
 
-use AndreaMarelli\ImetCore\Controllers\DevUsersController;
 use AndreaMarelli\ImetCore\Controllers\Imet;
 use AndreaMarelli\ImetCore\Controllers\Imet\oecm;
 use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController;
@@ -10,7 +9,6 @@ use AndreaMarelli\ImetCore\Controllers\Imet\v2;
 use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
 use AndreaMarelli\ImetCore\Controllers\SpeciesController;
 use AndreaMarelli\ImetCore\Controllers\UsersController;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
@@ -21,8 +19,6 @@ const OECM_ROUTE_PREFIX = oecm\Controller::ROUTE_PREFIX;
 
 
 Route::group(['middleware' => ['setLocale', 'web']], function () {
-
-    Route::view('/welcome', 'imet-core::welcome')->name(IMET_PREFIX.'welcome');
 
     // Old routes: to be kept for the moment rto ensure backwards compatibility
     Route::get('/{url}', function ($url) {
@@ -172,7 +168,6 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
     });
 
-
     /*
     |--------------------------------------------------------------------------
     | IMET OECM Routes
@@ -217,27 +212,6 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         });
 
     });
-
-    /*
-    |--------------------------------------------------------------------------
-    | Management Routes
-    |--------------------------------------------------------------------------
-    */
-    Route::get('users/{role_type?}', [UsersController::class, 'index'])->name('imet-core::users');
-    Route::patch('users', [UsersController::class, 'update_roles'])->name('imet-core::users_update');
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | Development Routes
-    |--------------------------------------------------------------------------
-    */
-    if(App::environment('imetglobal_dev')) {
-
-        Route::get('create_dev_users', [DevUsersController::class, 'create_dev_users'])->name('imet-core::create_dev_users');
-        Route::post('change_user', [DevUsersController::class, 'change_user'])->name('imet-core::change_user');
-
-    }
 
 });
 

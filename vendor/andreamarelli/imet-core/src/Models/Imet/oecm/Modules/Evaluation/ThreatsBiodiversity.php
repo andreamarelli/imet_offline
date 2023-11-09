@@ -50,13 +50,17 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
      */
     protected static function getPredefined($form_id = null): array
     {
-        return [
-            'field' => 'Criteria',
-            'values' => [
+        $predefined_values = $form_id!==null
+            ? [
                 'group0' => Modules\Context\AnimalSpecies::getReferenceList($form_id, 'species'),
                 'group1' => Modules\Context\VegetalSpecies::getReferenceList($form_id, 'species'),
                 'group2' => Modules\Context\Habitats::getReferenceList($form_id, 'EcosystemType')
-            ],
+            ]
+            : [];
+
+        return [
+            'field' => 'Criteria',
+            'values' => $predefined_values
         ];
     }
 

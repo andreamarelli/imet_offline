@@ -4,8 +4,7 @@ namespace AndreaMarelli\ImetCore\Helpers\ScalingUp;
 
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
-use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
-use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 
 class Common
 {
@@ -185,12 +184,8 @@ class Common
     {
         $filtered = [];
 
-        foreach ($form_ids as $key => $form_id) {
-            $version = \AndreaMarelli\ImetCore\Models\Imet\Imet::getVersion($form_id);
-
-            $results[$form_id] = $version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1
-                ? V1ToV2StatisticsService::get_scores($form_id, $type)
-                : V2StatisticsService::get_scores($form_id, $type);
+        foreach ($form_ids as $form_id) {
+            $results[$form_id] = ImetScores::get_step($form_id, $type);
 
             if (count($indicators)) {
                 $filtered[$form_id] = array_intersect_key($results[$form_id], $indicators);
@@ -307,11 +302,7 @@ class Common
         $assessments = [];
         foreach ($form_ids as $k => $form_id) {
 
-            $version = \AndreaMarelli\ImetCore\Models\Imet\Imet::getVersion($form_id);
-
-            $assessments[$k] = $version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1
-                ? V1ToV2StatisticsService::get_scores($form_id, 'global')
-                : V2StatisticsService::get_scores($form_id, 'global');
+            $assessments[$k] = ImetScores::get_radar($form_id);
 
             $name = static::get_pa_name($form_id, $scaling_id);
 

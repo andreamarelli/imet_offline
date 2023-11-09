@@ -10,18 +10,15 @@ use AndreaMarelli\ImetCore\Models\Imet\v1;
 use AndreaMarelli\ImetCore\Models\Imet\v2;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
-use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use AndreaMarelli\ModularForms\Helpers\Type\Chars;
 use AndreaMarelli\ModularForms\Models\Form;
 use Carbon\Carbon;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\hasOne;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\HigherOrderCollectionProxy;
 use Illuminate\Support\Str;
@@ -151,9 +148,7 @@ class Imet extends Form
             ];
 
             // Add radar
-            $item['assessment_radar'] = $item->version===static::IMET_V1
-                ? V1ToV2StatisticsService::get_radar_scores($item)
-                : V2StatisticsService::get_radar_scores($item);
+            $item['assessment_radar'] = ImetScores::get_radar($item, true);
 
             // Non WDPA
             if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
@@ -301,21 +296,6 @@ class Imet extends Form
     {
         $form = static::find($form_id);
         return $form ? $form->version : null;
-    }
-
-    /**
-     * Retrieve the last IMET of the given PA
-     *
-     * @param $wdpa_id
-     * @return array|null
-     */
-    public static function getLast($wdpa_id): ?array
-    {
-        $form = static::select(['FormID as id', 'version'])
-            ->where('wdpa_id', $wdpa_id)
-            ->orderBy('Year', 'DESC')
-            ->first();
-        return $form ? $form->only(['id', 'version']) : null;
     }
 
     /**

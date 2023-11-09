@@ -5,10 +5,9 @@ namespace AndreaMarelli\ImetCore\Controllers\Imet\oecm;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportController as BaseReportController;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Threats;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Report;
+use AndreaMarelli\ImetCore\Services\Scores\OecmScores;
 use Illuminate\Http\Request;
 
 class ReportController extends BaseReportController
@@ -18,12 +17,8 @@ class ReportController extends BaseReportController
 
     /**
      * Retrieve data to populate report view
-     *
-     * @param $item
-     * @return array
-     * @throws \ReflectionException
      */
-    protected function __retrieve_report_data($item): array
+    protected function __retrieve_report_data(Imet $item): array
     {
         $form_id = $item->getKey();
         $show_non_wdpa = false;
@@ -34,25 +29,24 @@ class ReportController extends BaseReportController
         }
 
         $governance = Modules\Context\Governance::getModuleRecords($form_id);
-        $scores = OEMCStatisticsService::get_scores($form_id, 'ALL', false);
-        if(is_cache_scores_enabled()) {
-            $this->report_cache_scores($form_id, $scores);
-        }
         $key_elements = $this->getKeyElements($form_id);
+        $threats = collect(Modules\Evaluation\KeyElements::getModuleRecords($form_id)['records'])
+            ->toArray();
        // dd($this->getBiodiversityThreats($form_id));
         return [
             'item' => $item,
             'main_threats' => $this->getThreats($form_id),
-            'key_elements' => $this->getBiodiversityThreats($form_id),
+            'key_elements_ecosystem_charts' => $this->getBiodiversityThreats($form_id, $threats,true),
+            'key_elements_biodiversity_charts' => $this->getBiodiversityThreats($form_id, $threats,false),
             'key_elements_biodiversity' => array_values($this->getKeyElementsBiodiversity($key_elements)),
             'key_elements_ecosystem' => array_values($this->getKeyElementsEcosystems($key_elements)),
             'key_elements_impacts' => $this->getElementImpacts($form_id),
             'stake_holders' => $this->getStakeholderDirectIndirect($form_id),
             'stake_analysis' => $this->getStakeAnalysis($form_id),
             'assessment' => array_merge(
-                $scores,
+                OecmScores::get_all($form_id),
                 [
-                    'labels' => OEMCStatisticsService::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM)
+                    'labels' => OecmScores::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM)
                 ]
             ),
             'report' => Report::getByForm($form_id),
@@ -124,10 +118,19 @@ class ReportController extends BaseReportController
         return ['ecosystem_services' => $ecosystem];
     }
 
-    private function getBiodiversityThreats(int $form_id): array{
+    private function getBiodiversityThreats(int $form_id, array $threats, bool $ecosystem = false): array{
         $fields = [];
-        $threats = collect(Modules\Evaluation\KeyElements::getModuleRecords($form_id)['records'])
-            ->toArray();
+
+
+        if($ecosystem){
+            $threats = array_filter($threats, function ($item) {
+                return  $item['__group_stakeholders'] !== null;
+            });
+        } else {
+            $threats = array_filter($threats, function ($item) {
+                return  $item['__group_stakeholders'] === null;
+            });
+        }
 
         uasort($threats, function ($a, $b) {
 
