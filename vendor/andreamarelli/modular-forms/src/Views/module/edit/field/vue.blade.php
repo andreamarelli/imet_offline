@@ -18,7 +18,7 @@
 @include('modular-forms::module.edit.field.vue-types', [
         'type' => $type,
         'v_value' => $v_value,
-        'id' => $id,
+        'id' => $id ?? null,
         'class' => $class ?? null,
         'rules' => $rules ?? null,
         'other' => $other ?? null,

@@ -76,6 +76,7 @@ class Cache{
      */
     public static function put($cache_key, $data, DateTimeInterface|DateInterval|int|null $ttl = self::TTL): void
     {
+        Cache::flushByKey($cache_key);
         BaseCache::put($cache_key, $data, $ttl);
     }
 

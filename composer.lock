@@ -66,12 +66,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/andreamarelli/modular-forms.git",
-                "reference": "e3f0173ee6f97114ea91847c2919c46cb465eda3"
+                "reference": "ddb4c15e3c2190e54f4fe7e5d29d4e0c10294ac1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/modular-forms/zipball/e3f0173ee6f97114ea91847c2919c46cb465eda3",
-                "reference": "e3f0173ee6f97114ea91847c2919c46cb465eda3",
+                "url": "https://api.github.com/repos/andreamarelli/modular-forms/zipball/ddb4c15e3c2190e54f4fe7e5d29d4e0c10294ac1",
+                "reference": "ddb4c15e3c2190e54f4fe7e5d29d4e0c10294ac1",
                 "shasum": ""
             },
             "require": {
@@ -115,10 +115,10 @@
             ],
             "description": "A package to build modular data collection forms",
             "support": {
-                "source": "https://github.com/andreamarelli/modular-forms/tree/beta",
+                "source": "https://github.com/andreamarelli/modular-forms/tree/master",
                 "issues": "https://github.com/andreamarelli/modular-forms/issues"
             },
-            "time": "2023-10-23T10:20:06+00:00"
+            "time": "2023-11-09T11:42:17+00:00"
         },
         {
             "name": "brick/math",

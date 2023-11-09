@@ -90,13 +90,15 @@ class BaseModel extends Model
      * @param $field
      * @return mixed
      */
-    public static function getInitialLetters($field)
+    public static function getInitialLetters($field): array
     {
-        $initials = self::selectRaw('distinct lower(substring(?, 1, 1)) as initial', [$field])
+        return self::select(DB::raw('distinct lower(substring(' . $field . ', 1, 1)) as initial'))
             ->pluck('initial')
+            ->unique()
+            ->filter()
+            ->sort()
+            ->values()
             ->toArray();
-        sort($initials);
-        return $initials;
     }
 
     /**

@@ -12,7 +12,7 @@ $table_id = $definitions['module_type']==='GROUP_TABLE'
 
 $tr_record = $definitions['module_type']==='GROUP_TABLE'
     ? 'records[\''.$group_key.'\']'
-    : 'records'
+    : 'records';
 
 ?>
 
@@ -62,7 +62,7 @@ $tr_record = $definitions['module_type']==='GROUP_TABLE'
         </tbody>
 
         @if(!$definitions['fixed_rows'])
-            <tfoot v-if="max_rows==null || records.length < max_rows">
+            <tfoot v-if="max_rows==null ||  {{ $tr_record }}.length < max_rows">
                 {{-- add button --}}
                 <tr>
                     <td colspan="{{ count($definitions['fields']) + 1 }}">
