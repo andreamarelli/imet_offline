@@ -82,13 +82,9 @@ trait Dependencies{
     /**
      * Drop orphans records (where reference field values had been removed form parent) adn propagate to eventual related dependencies
      *
-     * @param $form_id
-     * @param $to_be_dropped
-     * @param null $dependency_on
-     * @return void
      * @throws MissingDependencyConfigurationException
      */
-    public static function dropOrphansDependencyRecords($form_id, $to_be_dropped, $dependency_on = null)
+    public static function dropOrphansDependencyRecords(int $form_id, array $to_be_dropped, string $dependency_on = null): void
     {
         if($dependency_on==null && static::$DEPENDENCY_ON === null){
             throw new MissingDependencyConfigurationException(static::class);

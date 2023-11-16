@@ -28,6 +28,7 @@ Vue.component('selector-user',                  require('./js/inputs/selector-us
 // Report
 Vue.component('table_input',                    require('./js/report/table_input.vue').default);
 Vue.component('roadmap',                    require('./js/report/roadmap.vue').default);
+Vue.component('objectives',                    require('./js/report/objectives.vue').default);
 
 // Components for IMET scaling up
 require('./js/scaling_up_analysis/components.js');

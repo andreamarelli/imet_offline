@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm;
 
 use \AndreaMarelli\ImetCore\Models\Imet\Report as BaseReportModel;
+use AndreaMarelli\ImetCore\Services\Reports\OECM;
 
 class Report extends BaseReportModel
 {
@@ -38,7 +39,8 @@ class Report extends BaseReportModel
         'annual_targets2_activity4',
         'annual_targets2_activity5',
         'outcome2',
-        'group_key'
+        'group_key',
+        'objectives'
     ];
 
     protected static $boolean_fields = [
@@ -127,6 +129,12 @@ class Report extends BaseReportModel
     {
         $report = Report::where('FormID', $form_id)->get();
 
+        //$objectives = OECM::getObjectives($form_id);
+//        foreach($objectives['context'] as $key => $items){
+//            $report[0]['objectives'] = {};
+//        }
+
+        //dd($report, $objectives);
         return $report->isEmpty()
             ? [static::getSchema()]
             : $report->toArray();

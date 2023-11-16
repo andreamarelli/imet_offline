@@ -16,7 +16,7 @@
             </div>
             <div class="row mb-1">
                 <div class="col-6">
-                    <h3>{{ Locale.getLabel('imet-core::oecm_report.long_term_objectives') }}</h3>
+                    <h5>{{ Locale.getLabel('imet-core::oecm_report.long_term_objectives') }}</h5>
                 </div>
                 <div class="col-6">
                     <editor v-model=current_report.long_term v-on:update="current_report.long_term = $event"
@@ -25,7 +25,7 @@
             </div>
             <div class="row mb-1">
                 <div class="col">
-                    <h3>{{ Locale.getLabel('imet-core::oecm_report.outcome') }} 1</h3>
+                    <h5>{{ Locale.getLabel('imet-core::oecm_report.outcome') }} 1</h5>
                 </div>
             </div>
             <div class="row mb-3">
@@ -40,7 +40,7 @@
             </div>
             <div class="row mb-1">
                 <div class="col-6">
-                    <h3>{{ Locale.getLabel('imet-core::oecm_report.annual_multi_annual_targets') }}</h3>
+                    <h5>{{ Locale.getLabel('imet-core::oecm_report.annual_multi_annual_targets') }}</h5>
                 </div>
                 <div class="col-6">
                     <editor v-model=current_report.annual_targets1 v-on:update="current_report.annual_targets1 = $event"
@@ -50,7 +50,7 @@
             <div v-for="activity in this.outcome1_list.length">
                 <div class="row mb-1">
                     <div class="col">
-                        <h5>{{ Locale.getLabel('imet-core::oecm_report.activity') }} {{ activity }}</h5>
+                        <h6>{{ Locale.getLabel('imet-core::oecm_report.activity') }} {{ activity }}</h6>
                     </div>
                 </div>
                 <div class="row mb-1">
@@ -81,7 +81,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <h3>{{ Locale.getLabel('imet-core::oecm_report.outcome') }} 2</h3>
+                    <h5>{{ Locale.getLabel('imet-core::oecm_report.outcome') }} 2</h5>
                 </div>
             </div>
             <div class="row mb-1">
@@ -99,7 +99,7 @@
             </div>
             <div class="row mb-1">
                 <div class="col-6">
-                    <h3>{{ Locale.getLabel('imet-core::oecm_report.annual_multi_annual_targets') }}</h3>
+                    <h5>{{ Locale.getLabel('imet-core::oecm_report.annual_multi_annual_targets') }}</h5>
                 </div>
                 <div class="col-6">
                     <editor v-model=current_report.annual_targets2 v-on:update="current_report.annual_targets2 = $event"
@@ -109,7 +109,7 @@
             <div v-for="activity in this.outcome2_list.length">
                 <div class="row">
                     <div class="col">
-                        <h5>{{ Locale.getLabel('imet-core::oecm_report.activity') }} {{ activity }}</h5>
+                        <h6>{{ Locale.getLabel('imet-core::oecm_report.activity') }} {{ activity }}</h6>
                     </div>
                 </div>
                 <div class="row">
@@ -205,22 +205,6 @@ export default {
             this.current_report.group_key = this.group_key;
             this.outcome_list_add_items(this.outcome2_list);
             this.outcome_list_add_items(this.outcome1_list, 'annual_targets1_activity');
-            // const arr = [3, 4, 5];
-            // let add = 0;
-            // for (const i in arr) {
-            //     for (const key in this.current_report) {
-            //         if (key.startsWith('annual_targets2_activity' + arr[i])) {
-            //             if (this.current_report[key] !== this.default_schema[key]) {
-            //                 add = arr[i];
-            //             }
-            //         }
-            //     }
-            // }
-            // for (let i = 3; i <= add; i++) {
-            //     this.outcome2_list.push(i);
-            // }
-
-
         },
         add_activity_outcome2_item: function () {
             this.outcome2_list.push(this.outcome2_list.length + 1);

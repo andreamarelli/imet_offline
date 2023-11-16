@@ -50,7 +50,7 @@ class Objectives extends Modules\Component\ImetModule_Eval
             : [];
 
         return [
-            'field' => 'Objective',
+            'field' => static::$DEPENDENCY_ON,
             'values' => [
                 'group0' => [],
                 'group1' => $key_elements

@@ -72,7 +72,14 @@ return [
     ],
     'ecosystem_services' => 'Serviços ecossistêmicos',
     'key_biodiversity_elements' => 'Elementos-chave de biodiversidade',
-    'stakeholders' => 'Serviços ecossistêmicos e elemento-chave de biodiversidade identificado pelas partes interessadas para sua governança e gestão',
-    'score' => 'valor'
+    'general_planning_specific_global' =>'Ameaças Específicas e Globais',
+    'general_planning_specific_threats' =>'Ameaças específicas aos elementos chave da biodiversidade',
+    'general_planning_global_threats' =>'Ameaças globais às OECM',
+    'stakeholders' => 'Serviços ecossistêmicos identificados pelas partes interessadas para sua governança e gestão',
+    'score' => 'valor',
+    'swot_analysis' => 'Análise SWOT',
+    'intervention_context' => 'Contexto de Intervenção',
+    'management_evaluation' => 'Avaliação da Gestão',
+    'objectives_title' => 'Lista de objetivos a curto e longo prazo para o elemento'
 ]
     ;

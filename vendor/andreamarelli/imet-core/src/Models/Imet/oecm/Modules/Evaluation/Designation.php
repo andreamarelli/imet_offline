@@ -15,6 +15,7 @@ class Designation extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
+    protected static $DEPENDENCY_ON = 'Aspect';
     protected static $DEPENDENCIES = [
         [Objectives::class, 'Aspect'],
         [Modules\Evaluation\InformationAvailability::class, 'Aspect']
@@ -43,7 +44,7 @@ class Designation extends Modules\Component\ImetModule_Eval
     protected static function getPredefined($form_id = null): array
     {
         return [
-            'field' => 'Aspect',
+            'field' => static::$DEPENDENCY_ON,
             'values' => $form_id !== null
                 ? array_filter(Modules\Context\SpecialStatus::getModule($form_id)->pluck('Designation')->toArray())
                 : []

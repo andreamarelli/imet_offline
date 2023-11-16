@@ -45,7 +45,7 @@ class CapacityAdequacy extends Modules\Component\ImetModule_Eval
             : [];
 
         return [
-            'field' => 'Member',
+            'field' => static::$DEPENDENCY_ON,
             'values' => $predefined_values
         ];
     }

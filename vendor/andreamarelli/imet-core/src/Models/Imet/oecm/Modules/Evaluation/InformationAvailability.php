@@ -62,7 +62,7 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
             : [];
 
         return [
-            'field' => 'Element',
+            'field' => static::$DEPENDENCY_ON,
             'values' => $key_elements
         ];
     }

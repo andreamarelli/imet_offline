@@ -53,7 +53,7 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
     protected static function getPredefined($form_id = null): array
     {
         return [
-            'field' => 'Activity',
+            'field' => static::$DEPENDENCY_ON,
             'values' => $form_id !==null
                 ? KeyElements::getPrioritizedElements($form_id)
                 : []

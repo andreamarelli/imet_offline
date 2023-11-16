@@ -53,7 +53,7 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
             : [];
 
         return [
-            'field' => 'Stakeholder',
+            'field' => static::$DEPENDENCY_ON,
             'values' => $predefined_values
         ];
     }

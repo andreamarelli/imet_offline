@@ -46,7 +46,7 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
             : [];
 
         return [
-            'field' => 'Element',
+            'field' => static::$DEPENDENCY_ON,
             'values' => $predefined_values
         ];
     }

@@ -59,7 +59,9 @@ return [
     'stakeholder_direct_users' => 'Stakeholders Direct users',
     'stakeholder_indirect_users' => 'Stakeholders Indirect users',
     'biodiversity_elements' => [
-        'title' => 'Key biodiversity elements',
+        'title' => 'Threats',
+        'specific_threats' => 'Specific threats on the key biodiversity elements',
+        'global_threats' => 'Global threats on the OECM',
         'key_conservation_element' => 'Key conservation element',
         'effect_estimated_direct_users' => 'Effect estimated by the stakeholders direct users',
         'effect_estimated_indirect_users' => 'Effect estimated by the management entity or monitoring',
@@ -72,6 +74,13 @@ return [
     ],
     'ecosystem_services' => 'Ecosystem services',
     'key_biodiversity_elements' => 'Biodiversity key elements',
+    'general_planning_specific_global' =>'Specific and Global Threats',
+    'general_planning_specific_threats' =>'Specific threats on biodiversity key elements',
+    'general_planning_global_threats' =>'Global threats on the OECM',
     'stakeholders' => 'Ecosystem services identified by the stakeholder for their governance and management',
-    'score' => 'value'
-];
+    'score' => 'value',
+    'swot_analysis' => 'SWOT analysis',
+    'intervention_context' => 'Context of Intervention',
+    'management_evaluation' => 'Management Evaluation',
+    'objectives_title' => 'List of the short- long-term objectives for element'
+ ];

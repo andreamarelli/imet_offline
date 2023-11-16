@@ -61,7 +61,7 @@ class KeyElementsImpact extends Modules\Component\ImetModule_Eval
             : [];
 
         return [
-            'field' => 'KeyElement',
+            'field' => static::$DEPENDENCY_ON,
             'values' => $predefined_values
         ];
     }

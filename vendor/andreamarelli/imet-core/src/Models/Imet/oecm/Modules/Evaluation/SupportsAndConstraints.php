@@ -48,7 +48,7 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
             : [];
 
         return [
-            'field' => 'Stakeholder',
+            'field' => static::$DEPENDENCY_ON,
             'values' => $predefined_values
         ];
     }

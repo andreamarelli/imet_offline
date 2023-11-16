@@ -2,7 +2,7 @@
 /** @var array $stake_analysis */
 ?>
 
-<h3>3. @lang('imet-core::oecm_report.stakeholders')</h3>
+<h4>3. @lang('imet-core::oecm_report.stakeholders')</h4>
 @foreach($stake_analysis as $key => $children)
 
 

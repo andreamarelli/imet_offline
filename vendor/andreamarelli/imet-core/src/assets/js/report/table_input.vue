@@ -1,7 +1,9 @@
 <template>
     <div class="module-container" :id="group_key">
         <div class="module-header">
-            <div class="module-title" id="ar5">AR.5 {{ Locale.getLabel('imet-core::oecm_report.table_of_planning') }}</div>
+            <div class="module-title" id="ar5">AR.5{{ this.label_item() }}
+                {{ Locale.getLabel('imet-core::oecm_report.table_of_planning') }}
+            </div>
         </div>
         <div class="module-body" v-if="current_report">
             <h5>{{ Locale.getLabel('imet-core::oecm_report.previous_state') }}</h5>
@@ -59,7 +61,15 @@ export default {
                 this.current_report = this.report[0];
             }
             this.current_report.group_key = this.group_key;
+        },
+        label_item: function () {
+            if(this.group_key){
+                return '.'+this.group_key;
+            }
+
+            return '';
         }
+
     }
 }
 </script>

@@ -63,7 +63,9 @@ return [
     'stakeholder_direct_users' => 'Utilisateurs directs des parties prenantes',
     'stakeholder_indirect_users' => 'Utilisateurs indirects des parties prenantes',
     'biodiversity_elements' => [
-        'title' => 'Éléments clés de la biodiversité de l\'OECM',
+        'title' => 'Menaces',
+        'specific_threats' => 'Menaces spécifiques sur les éléments clés de la biodiversité',
+        'global_threats' => 'Menaces mondiales sur les OECM',
         'key_conservation_element' => 'Élément clé de conservation',
         'effect_estimated_direct_users' => 'Effet estimé par les utilisateurs directs des parties prenantes',
         'effect_estimated_indirect_users' => 'Effet estimé par l\'entité de gestion ou le suivi',
@@ -72,7 +74,14 @@ return [
     ],
     'ecosystem_services' => 'Services écosystémiques',
     'key_biodiversity_elements' => 'Éléments clés de la biodiversité',
-    'stakeholders' => 'Services écosystémiques et élément clé de la biodiversité identifié par les parties prenantes pour leur gouvernance et leur gestion',
-    'score' => 'valeur'
+    'general_planning_specific_global' =>'Menaces Spécifiques et Mondiales',
+    'general_planning_specific_threats' =>'Menaces spécifiques sur les éléments clés de la biodiversité',
+    'general_planning_global_threats' =>'Menaces mondiales sur les OECM',
+    'stakeholders' => 'Services écosystémiques identifiés par les parties prenantes pour leur gouvernance et leur gestion',
+    'score' => 'valeur',
+    'swot_analysis' => 'Analyse SWOT',
+    'intervention_context' => 'Contexte d’intervention',
+    'management_evaluation' => 'Évaluation de la gestion',
+    'objectives_title' => 'Liste des objectifs à court et long terme pour l’élément'
 ]
 ;
