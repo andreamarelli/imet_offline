@@ -1,15 +1,16 @@
 <template>
     <div class="module-container">
         <div class="module-header">
-            <div class="module-title">{{ Locale.getLabel('imet-core::oecm_report.objectives_title') }}</div>
+            <div class="module-title">{{ Locale.getLabel('imet-core::oecm_report.general_planning.objectives_title') }}</div>
         </div>
         <div class="module-body">
             <div class="row">
-                <div class="col"><h4>{{ Locale.getLabel('imet-core::oecm_report.intervention_context') }}</h4></div>
+                <div class="col"><h4>{{ Locale.getLabel('imet-core::oecm_report.general_planning.intervention_context') }}</h4></div>
+                <div class="col"><h4>{{ Locale.getLabel('imet-core::oecm_report.general_planning.prioritize_in_management') }}</h4></div>
             </div>
             <div v-for="(objective, index) in objectives['context']" class="row mt-3">
                 <div v-html="objective" class="col"></div>
-                <div class="col">
+                <div class="col text-center">
                     <span class="checkbox">
                     <input type="checkbox"
                            :checked="is_checked(index)"
@@ -23,11 +24,12 @@
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col"><h4>{{ Locale.getLabel('imet-core::oecm_report.management_evaluation') }}</h4></div>
+                <div class="col"><h4>{{ Locale.getLabel('imet-core::oecm_report.general_planning.management_evaluation') }}</h4></div>
+                <div class="col"><h4>{{ Locale.getLabel('imet-core::oecm_report.general_planning.prioritize_in_management') }}</h4></div>
             </div>
             <div v-for="(objective, index) in objectives['evaluation']" class="row mt-3">
                 <div v-html="objective" class="col"></div>
-                <div class="col">
+                <div class="col text-center">
                     <span class="checkbox">
                     <input type="checkbox"
                            :checked="is_checked(index)"
@@ -63,7 +65,8 @@ export default {
         }
     },
     mounted: function () {
-        this.checkboxes = JSON.parse(this.report[0]['objectives']);
+        const objectives = JSON.parse(this.report[0]['objectives']);
+        this.checkboxes = Array.isArray(objectives) ? objectives : [];
     },
     data() {
         return {
@@ -82,13 +85,20 @@ export default {
             this.report[0]['objectives'] = JSON.stringify(this.checkboxes);
         },
         is_value_included(id) {
-            return this.checkboxes.some(check => {
-                    return (check.id) === id
-                }
-            )
+            if(this.checkboxes.length) {
+                return this.checkboxes.some(check => {
+                        return (check.id) === id
+                    }
+                )
+            }
+
+            return false;
         },
         is_checked(id) {
-            return this.checkboxes.some(checkbox => (checkbox.id) === id);
+            if(this.checkboxes.length) {
+                return this.checkboxes.some(checkbox => (checkbox.id) === id);
+            }
+            return false;
         },
     }
 }

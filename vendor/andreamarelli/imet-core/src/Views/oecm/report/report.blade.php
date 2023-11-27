@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\App;
 /** @var Array $non_wdpa */
 /** @var Array $governance */
 /** @var Array $stake_analysis */
-//dd(OecmScores::labels());
+
 
 // Force Language
 if ($item->language != App::getLocale()) {
@@ -56,10 +56,10 @@ if ($item->language != App::getLocale()) {
         </div>
         <div class="module-container">
             <div class="module-header">
-                <div class="module-title" id="ar3">AR.3 @lang('imet-core::oecm_report.management_effectiveness')</div>
+                <div class="module-title" id="ar3">AR.3 @lang('imet-core::oecm_report.management_effectiveness.title')</div>
             </div>
             <div class="module-body">
-                <h4>@lang('imet-core::oecm_report.evaluation_elements')</h4>
+                <h4>@lang('imet-core::oecm_report.management_effectiveness.evaluation_elements')</h4>
                 <imet_charts
                     form_id={{ $item->getKey() }}  :labels='@json(ImetScores::labels())'
                     :show_histogram="true" :version="'oecm'"></imet_charts>
@@ -86,28 +86,29 @@ if ($item->language != App::getLocale()) {
                 @include('imet-core::oecm.report.components.table_evaluation', ['assessment' => $assessment])
             </div>
         </div>
+        @include('imet-core::oecm.report.components.objectives', ['report' => $report[0]])
         <div class="module-container">
             <div class="module-header">
-                <div class="module-title">@lang('imet-core::oecm_report.swot_analysis')</div>
+                <div class="module-title">@lang('imet-core::oecm_report.management_effectiveness.swot_analysis')</div>
             </div>
             <div class="module-body">
                 @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'analysis'])
-                <h5>@lang('imet-core::oecm_report.characteristics_elements')</h5>
+                <h5>@lang('imet-core::oecm_report.management_effectiveness.characteristics_elements')</h5>
                 <div class="swot">
                     <div>
-                        <b>@lang('imet-core::oecm_report.strengths')</b>
+                        <b>@lang('imet-core::oecm_report.management_effectiveness.strengths')</b>
                         @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'strengths_swot'])
                     </div>
                     <div>
-                        <b>@lang('imet-core::oecm_report.weaknesses')</b>
+                        <b>@lang('imet-core::oecm_report.management_effectiveness.weaknesses')</b>
                         @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'weaknesses_swot'])
                     </div>
                     <div>
-                        <b>@lang('imet-core::oecm_report.opportunities')</b>
+                        <b>@lang('imet-core::oecm_report.management_effectiveness.opportunities')</b>
                         @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'opportunities_swot'])
                     </div>
                     <div>
-                        <b>@lang('imet-core::oecm_report.threats')</b>
+                        <b>@lang('imet-core::oecm_report.management_effectiveness.threats')</b>
                         @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'threats_swot'])
                     </div>
                 </div>
@@ -121,7 +122,7 @@ if ($item->language != App::getLocale()) {
                 'key_elements_biodiversity' => $key_elements_biodiversity,
                 'key_elements_ecosystem' => $key_elements_ecosystem,
                 'main_threats' => $main_threats])
-        @include('imet-core::oecm.report.components.objectives', ['report' => $report[0]])
+
         <div class="item">
             @include('imet-core::oecm.report.components.planning_roadmap', ['report' => $report[0], 'action' => $action])
             <div class="row">
@@ -143,12 +144,12 @@ if ($item->language != App::getLocale()) {
         </div>
         <div class="module-container mt-5">
             <div class="module-header">
-                <div class="module-title" id="ar6">AR.6 @lang('imet-core::oecm_report.key_questions')</div>
+                <div class="module-title" id="ar6">AR.6 @lang('imet-core::oecm_report.key_questions.title')</div>
             </div>
             <div class="module-body">
-                <h5>@lang('imet-core::oecm_report.operating_budget')</h5>
+                <h5>@lang('imet-core::oecm_report.key_questions.operating_budget')</h5>
                 @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'minimum_budget'])
-                <h5>@lang('imet-core::oecm_report.additional_funding')</h5>
+                <h5>@lang('imet-core::oecm_report.key_questions.additional_funding')</h5>
                 @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'additional_funding'])
             </div>
         </div>

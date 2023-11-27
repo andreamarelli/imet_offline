@@ -97,7 +97,8 @@ class OECM
      * @param string $label
      * @return array
      */
-    private static function getChartValues(array $values, string $label): array{
+    private static function getChartValues(array $values, string $label): array
+    {
         $fields = [];
         uasort($values, function ($a, $b) {
 
@@ -224,6 +225,7 @@ class OECM
      */
     public static function getObjectives(int $form_id): array
     {
+
         $objectives = ['context' => [], 'evaluation' => []];
         $objectives['context'] = array_merge(
             static::objectivesSchema('context', 'obj1', Modules\Context\Objectives1::getModuleRecords($form_id)['records']),
@@ -239,7 +241,6 @@ class OECM
             static::objectivesSchema('evaluation', 'planning', Modules\Evaluation\ObjectivesPlanification::getModuleRecords($form_id)['records']),
             static::objectivesSchema('evaluation', 'process', Modules\Evaluation\ObjectivesProcessus::getModuleRecords($form_id)['records']),
         );
-
         return $objectives;
     }
 
@@ -247,8 +248,9 @@ class OECM
     {
         $elements = [];
         foreach ($items as $key => $item) {
-            $elements[$label . "_" . $index . "_" . $item["id"]] =  $item["Element"];
-
+            if ($item["id"]) {
+                $elements[$label . "_" . $item['ShortOrLongTerm'] . "_" . $index . "_" . $item["id"]] = $item["Element"];
+            }
         }
         return $elements;
     }

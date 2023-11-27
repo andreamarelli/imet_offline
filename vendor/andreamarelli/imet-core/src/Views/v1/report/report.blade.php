@@ -102,7 +102,7 @@ if($item->language != App::getLocale()){
 
         <div class="module-container">
             <div class="module-header">
-                <div class="module-title">@lang('imet-core::v2_report.evaluation_elements')</div>
+                <div class="module-title">@lang('imet-core::v2_report..evaluation_elements')</div>
             </div>
             <div class="module-body">
                 <imet_charts

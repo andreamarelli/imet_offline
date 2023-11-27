@@ -60,12 +60,12 @@
         </table>
         <div class="row ">
             <div class="col text-center mt-4 mb-2">
-                <h4>3. @lang('imet-core::oecm_report.general_planning_specific_global')</h4>
+                <h4>3. @lang('imet-core::oecm_report.general_planning.general_planning_specific_global')</h4>
             </div>
         </div>
         <div class="row ">
             <div class="col text-center mt-4 mb-2">
-                <h5>@lang('imet-core::oecm_report.general_planning_specific_threats')</h5>
+                <h5>@lang('imet-core::oecm_report.general_planning.general_planning_specific_threats')</h5>
             </div>
         </div>
 
@@ -99,7 +99,7 @@
         </div>
         <div class="row ">
             <div class="col text-center mt-4 mb-2">
-                <h5>@lang('imet-core::oecm_report.general_planning_global_threats')</h5>
+                <h5>@lang('imet-core::oecm_report.general_planning.general_planning_global_threats')</h5>
             </div>
         </div>
         <div class="row mb-5">
@@ -129,9 +129,9 @@
                 </div>
             </div>
         </div>
+        @include('imet-core::oecm.report.components.prioritize_objectives', ['report' => $report[0]])
 
-
-        <h5>@lang('imet-core::oecm_report.management_priorities')</h5>
+        <h5>@lang('imet-core::oecm_report.general_planning.management_priorities')</h5>
         @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'priorities'])
     </div>
 </div>

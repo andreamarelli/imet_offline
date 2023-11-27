@@ -6,17 +6,17 @@
         <div class="module-body" v-if="current_report">
             <div class="row">
                 <div class="col-8">
-                    <h4>{{ Locale.getLabel('imet-core::oecm_report.possible_roadmap') }}</h4>
+                    <h4>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.possible_roadmap') }}</h4>
                 </div>
-                <div class="col"><h5>{{ Locale.getLabel('imet-core::oecm_report.year') }}1</h5></div>
-                <div class="col"><h5>{{ Locale.getLabel('imet-core::oecm_report.year') }}2</h5></div>
-                <div class="col"><h5>{{ Locale.getLabel('imet-core::oecm_report.year') }}3</h5></div>
-                <div class="col"><h5>{{ Locale.getLabel('imet-core::oecm_report.year') }}4</h5></div>
-                <div class="col"><h5>{{ Locale.getLabel('imet-core::oecm_report.year') }}5</h5></div>
+                <div class="col"><h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.year') }}1</h5></div>
+                <div class="col"><h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.year') }}2</h5></div>
+                <div class="col"><h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.year') }}3</h5></div>
+                <div class="col"><h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.year') }}4</h5></div>
+                <div class="col"><h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.year') }}5</h5></div>
             </div>
             <div class="row mb-1">
                 <div class="col-6">
-                    <h5>{{ Locale.getLabel('imet-core::oecm_report.long_term_objectives') }}</h5>
+                    <h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.long_term_objectives') }}</h5>
                 </div>
                 <div class="col-6">
                     <editor v-model=current_report.long_term v-on:update="current_report.long_term = $event"
@@ -25,7 +25,7 @@
             </div>
             <div class="row mb-1">
                 <div class="col">
-                    <h5>{{ Locale.getLabel('imet-core::oecm_report.outcome') }} 1</h5>
+                    <h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.outcome') }} 1</h5>
                 </div>
             </div>
             <div class="row mb-3">
@@ -40,7 +40,7 @@
             </div>
             <div class="row mb-1">
                 <div class="col-6">
-                    <h5>{{ Locale.getLabel('imet-core::oecm_report.annual_multi_annual_targets') }}</h5>
+                    <h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.annual_multi_annual_targets') }}</h5>
                 </div>
                 <div class="col-6">
                     <editor v-model=current_report.annual_targets1 v-on:update="current_report.annual_targets1 = $event"
@@ -50,7 +50,7 @@
             <div v-for="activity in this.outcome1_list.length">
                 <div class="row mb-1">
                     <div class="col">
-                        <h6>{{ Locale.getLabel('imet-core::oecm_report.activity') }} {{ activity }}</h6>
+                        <h6>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.activity') }} {{ activity }}</h6>
                     </div>
                 </div>
                 <div class="row mb-1">
@@ -81,7 +81,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <h5>{{ Locale.getLabel('imet-core::oecm_report.outcome') }} 2</h5>
+                    <h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.outcome') }} 2</h5>
                 </div>
             </div>
             <div class="row mb-1">
@@ -99,7 +99,7 @@
             </div>
             <div class="row mb-1">
                 <div class="col-6">
-                    <h5>{{ Locale.getLabel('imet-core::oecm_report.annual_multi_annual_targets') }}</h5>
+                    <h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.annual_multi_annual_targets') }}</h5>
                 </div>
                 <div class="col-6">
                     <editor v-model=current_report.annual_targets2 v-on:update="current_report.annual_targets2 = $event"
@@ -109,7 +109,7 @@
             <div v-for="activity in this.outcome2_list.length">
                 <div class="row">
                     <div class="col">
-                        <h6>{{ Locale.getLabel('imet-core::oecm_report.activity') }} {{ activity }}</h6>
+                        <h6>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.activity') }} {{ activity }}</h6>
                     </div>
                 </div>
                 <div class="row">
