@@ -209,6 +209,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::get('{item}/edit',   [oecm\ReportController::class, 'report'])->name(OECM_ROUTE_PREFIX.'report_edit');
             Route::get('{item}/show',   [oecm\ReportController::class, 'report_show'])->name(OECM_ROUTE_PREFIX.'report_show');
             Route::patch('{item}',      [oecm\ReportController::class, 'report_update'])->name(OECM_ROUTE_PREFIX.'report_update');
+            Route::get('objectives/{form_id}',      [oecm\ReportController::class, 'get_objectives'])->name(OECM_ROUTE_PREFIX.'report_objectives');
         });
 
     });

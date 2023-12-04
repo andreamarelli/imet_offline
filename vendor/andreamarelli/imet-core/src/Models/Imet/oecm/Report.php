@@ -129,12 +129,6 @@ class Report extends BaseReportModel
     {
         $report = Report::where('FormID', $form_id)->get();
 
-        //$objectives = OECM::getObjectives($form_id);
-//        foreach($objectives['context'] as $key => $items){
-//            $report[0]['objectives'] = {};
-//        }
-
-        //dd($report, $objectives);
         return $report->isEmpty()
             ? [static::getSchema()]
             : $report->toArray();

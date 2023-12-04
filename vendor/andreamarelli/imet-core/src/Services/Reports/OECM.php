@@ -5,6 +5,7 @@ namespace AndreaMarelli\ImetCore\Services\Reports;
 
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Component\ImetModule_Eval;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Report;
 
 
 class OECM
@@ -241,6 +242,7 @@ class OECM
             static::objectivesSchema('evaluation', 'planning', Modules\Evaluation\ObjectivesPlanification::getModuleRecords($form_id)['records']),
             static::objectivesSchema('evaluation', 'process', Modules\Evaluation\ObjectivesProcessus::getModuleRecords($form_id)['records']),
         );
+
         return $objectives;
     }
 
@@ -253,5 +255,26 @@ class OECM
             }
         }
         return $elements;
+    }
+
+    public static function get_objectives(int $form_id): array
+    {
+        $objectives = ['context' => [], 'evaluation' => []];
+        $report = Report::getByForm($form_id);
+        if (count($report)) {
+            if($report[0]['objectives']) {
+                $result = json_decode($report[0]['objectives'], true);
+                foreach ($result as $item) {
+                    if (str_contains($item['id'], '_context')) {
+                        $objectives['context'][$item['id']] = $item['value'];
+                    } else {
+                        $objectives['evaluation'][$item['id']] = $item['value'];
+                    }
+                }
+            }else {
+                return [];
+            }
+        }
+        return $objectives;
     }
 }

@@ -7,6 +7,7 @@ use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
 use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use AndreaMarelli\ModularForms\Helpers\Template;
 use Illuminate\Support\Facades\App;
+use AndreaMarelli\ImetCore\Controllers\Imet\oecm;
 
 /** @var string $action */
 /** @var Imet $item */
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\App;
 /** @var Array $governance */
 /** @var Array $stake_analysis */
 
+const REPORT_PREFIX = oecm\Controller::ROUTE_PREFIX;
 
 // Force Language
 if ($item->language != App::getLocale()) {
@@ -56,7 +58,8 @@ if ($item->language != App::getLocale()) {
         </div>
         <div class="module-container">
             <div class="module-header">
-                <div class="module-title" id="ar3">AR.3 @lang('imet-core::oecm_report.management_effectiveness.title')</div>
+                <div class="module-title" id="ar3">
+                    AR.3 @lang('imet-core::oecm_report.management_effectiveness.title')</div>
             </div>
             <div class="module-body">
                 <h4>@lang('imet-core::oecm_report.management_effectiveness.evaluation_elements')</h4>
@@ -191,9 +194,12 @@ if ($item->language != App::getLocale()) {
                 report: @json($report),
                 default_schema: @json($report_schema),
                 loading: false,
+                loading_objectives: false,
+                error_objectives: false,
                 error: false,
                 status: 'idle',
-                table_input_elems: [0]
+                table_input_elems: [0],
+                short_long_objectives: {}
             },
             mounted() {
                 if (this.report.length > 0) {
@@ -206,6 +212,7 @@ if ($item->language != App::getLocale()) {
                     }
                     this.table_input_elems = this.report.map((elem, index) => index);
                 }
+                this.getObjectives();
             },
             computed: {
                 reportLength: function () {
@@ -229,7 +236,7 @@ if ($item->language != App::getLocale()) {
                 }
             },
             methods: {
-                saveReport() {
+                async saveReport() {
                     let _this = this;
                     this.status = 'loading';
                     this.loading = true;
@@ -249,10 +256,13 @@ if ($item->language != App::getLocale()) {
                                 _this.status = 'error';
                             }
                             _this.status = 'saved';
+                            _this.error_objectives = false;
                         })
                         .catch(function (error) {
                             _this.status = 'error';
-                        })
+                        }).finally(async function () {
+                        _this.getObjectives()
+                    })
                 },
                 printReport() {
                     window.print();
@@ -275,6 +285,23 @@ if ($item->language != App::getLocale()) {
                 deleteItem(index) {
                     const key = this.table_input_elems.pop();
                     this.report.splice(key, 1);
+                },
+                getObjectives() {
+                    this.loading_objectives = true;
+                    window.axios({
+                        method: 'get',
+                        url: '{{ route(REPORT_PREFIX.'report_objectives', ['form_id' => $form_id]) }}',
+                        data: {
+                            _token: window.Laravel.csrfToken
+                        }
+                    }).then((response) => {
+                            this.error_objectives = false;
+                            this.short_long_objectives = response.data;
+                        }).catch( (error) => {
+                        this.error_objectives = true;
+                    }).finally(() => {
+                            this.loading_objectives = false;
+                    });
                 }
             }
         });

@@ -58,11 +58,19 @@ class ReportController extends BaseReportController
             'show_non_wdpa' => $show_non_wdpa ?? false,
             'non_wdpa' => $non_wdpa ?? null,
             'governance' => $governance['records'][0] ?? null,
-            'area' => Modules\Context\Areas::getArea($form_id)
+            'area' => Modules\Context\Areas::getArea($form_id),
+            'form_id' => $form_id
         ];
     }
 
-
+    /**
+     * @param int $form_id
+     * @return array[]
+     */
+    public function get_objectives(int $form_id): array
+    {
+        return OECM::get_objectives($form_id);
+    }
 
     /**
      * Manage "report" update route
