@@ -237,6 +237,7 @@ trait ImportExportJSON
      */
     public function export($item, bool $to_file = true, bool $download = true)
     {
+        $this->authorize('export', (static::$form_class)::find($item));
 
         if (is_string($item)) {
             $imet_id = $item;
@@ -245,8 +246,6 @@ trait ImportExportJSON
             $imet_id = $item->getKey();
             $imet = $item;
         }
-
-        $this->authorize('export', $imet);
 
         $imet_form = $imet
             ->makeHidden(['FormID', 'UpdateBy', 'protected_area_global_id'])
