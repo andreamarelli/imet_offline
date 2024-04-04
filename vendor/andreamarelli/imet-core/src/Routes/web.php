@@ -51,6 +51,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::match(['get','post'],'export_view',        [v1\Controller::class, 'export_view'])->name(V1_ROUTE_PREFIX.'export_view');
             Route::get('{item}/print',  [v1\Controller::class, 'print']);
             Route::get('{item}/export', [v1\Controller::class, 'export']);
+            Route::get('{item}/export_no_attachments', [v1\Controller::class, 'export_no_attachments']);
             Route::post('export_batch',        [v1\Controller::class, 'export_batch'])->name(V1_ROUTE_PREFIX.'export_batch');
             Route::get('import',        [Imet\Controller::class, 'import_view'])->name(V1_ROUTE_PREFIX.'import_view');    // alias
             Route::post('import',      [Imet\Controller::class, 'import'])->name(V1_ROUTE_PREFIX.'import');    // alias
@@ -90,6 +91,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::match(['get','post'],'export_view',        [v2\Controller::class, 'export_view'])->name(V2_ROUTE_PREFIX.'export_view');
             Route::get('{item}/print',       [v2\Controller::class, 'print']);
             Route::get('{item}/export', [v2\Controller::class, 'export']);
+            Route::get('{item}/export_no_attachments', [v2\Controller::class, 'export_no_attachments']);
             Route::post('export_batch',        [v2\Controller::class, 'export_batch'])->name(V2_ROUTE_PREFIX.'export_batch');
             Route::get('import',        [Imet\Controller::class, 'import_view'])->name(V2_ROUTE_PREFIX.'import_view');    // alias
             Route::post('import',      [Imet\Controller::class, 'import'])->name(V2_ROUTE_PREFIX.'import');    // alias
@@ -180,6 +182,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         Route::delete('{item}',         [oecm\Controller::class, 'destroy']);
         Route::get('{item}/print',      [oecm\Controller::class, 'print']);
         Route::get('{item}/export',     [oecm\Controller::class, 'export']);
+        Route::get('{item}/export_no_attachments', [oecm\Controller::class, 'export_no_attachments']);
         Route::match(['get','post'],'export_view',        [oecm\Controller::class, 'export_view'])->name(OECM_ROUTE_PREFIX.'export_view');
         Route::post('export_batch',        [oecm\Controller::class, 'export_batch'])->name(OECM_ROUTE_PREFIX.'export_batch');
         Route::get('{item}/merge',  [oecm\Controller::class, 'merge_view'])->name(OECM_ROUTE_PREFIX.'merge_view');

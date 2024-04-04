@@ -47,11 +47,8 @@ abstract class Encoder extends Model
 
     /**
      * Export model
-     *
-     * @param $form_id
-     * @return mixed
      */
-    public static function exportModule($form_id)
+    public static function exportModule($form_id): array
     {
         return static::where('FormID', $form_id)
             ->get()

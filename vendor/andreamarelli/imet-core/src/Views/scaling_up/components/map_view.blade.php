@@ -9,7 +9,7 @@
                                            :event_image="'save_entire_block_as_image'"
                                            :exclude_elements="'{{$exclude_elements}}'">
                             <template slot-scope="data_elements">
-                                <map_view v-if="container.props.show_view" pa="{{$pa_ids}}" :url=url></map_view>
+                                <map_view v-if="container.props.show_view" form_ids="{{ $pa_ids }}" :url=url></map_view>
                             </template>
                         </container_actions>
                     </div>

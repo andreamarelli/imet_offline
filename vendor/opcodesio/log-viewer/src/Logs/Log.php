@@ -4,6 +4,7 @@ namespace Opcodes\LogViewer\Logs;
 
 use Carbon\CarbonInterface;
 use Illuminate\Support\Carbon;
+use Opcodes\LogViewer\Facades\LogViewer;
 use Opcodes\LogViewer\LogLevels\LaravelLogLevel;
 use Opcodes\LogViewer\LogLevels\LevelInterface;
 
@@ -46,7 +47,7 @@ class Log
     public ?int $filePosition;
     public ?int $index;
 
-    public function __construct(string $text, string $fileIdentifier = null, int $filePosition = null, int $index = null)
+    public function __construct(string $text, ?string $fileIdentifier = null, ?int $filePosition = null, ?int $index = null)
     {
         $this->text = rtrim($text);
         $this->fileIdentifier = $fileIdentifier;
@@ -60,14 +61,16 @@ class Log
         unset($matches);
     }
 
-    public static function matches(string $text, int &$timestamp = null, string &$level = null): bool
+    public static function matches(string $text, ?int &$timestamp = null, ?string &$level = null): bool
     {
         $matches = [];
         $result = preg_match(static::$regex, $text, $matches) === 1;
 
         if ($result) {
             try {
-                $timestamp = static::parseDateTime($matches[static::$regexDatetimeKey] ?? null)?->timestamp;
+                $datetime = static::parseDateTime($matches[static::$regexDatetimeKey] ?? null);
+                $timestamp = $datetime?->timestamp;
+
                 $level = $matches[static::$regexLevelKey] ?? '';
             } catch (\Exception $exception) {
                 // not a valid datetime, so we can't match this log. Perhaps it's a different but similar log type.
@@ -104,9 +107,9 @@ class Log
 
     protected function fillMatches(array $matches = []): void
     {
-        $this->datetime = static::parseDatetime($matches[static::$regexDatetimeKey] ?? null)?->tz(
-            config('log-viewer.timezone', config('app.timezone'))
-        );
+        $datetime = static::parseDateTime($matches[static::$regexDatetimeKey] ?? null);
+        $this->datetime = $datetime?->setTimezone(LogViewer::timezone());
+
         $this->level = $matches[static::$regexLevelKey] ?? null;
         $this->message = trim($matches[static::$regexMessageKey] ?? null);
         $this->context = [];

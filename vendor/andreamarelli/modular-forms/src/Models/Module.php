@@ -299,15 +299,14 @@ class Module extends BaseModel
 
     /**
      * Export Module record: for export/import
-     *
-     * @param $form_id
-     * @return array
      */
-    public static function exportModule($form_id): array
+    public static function exportModule($form_id, $exclude_attachments = false): array
     {
         $model               = new static();
         $model::$foreign_key = $model::$foreign_key ?? $model->primaryKey;
-        $fields              = $model::getModuleFieldsNames(['KEYS', 'TIMESTAMPS', 'FILE_BINARY']);
+        $fields              = $exclude_attachments
+            ? $model::getModuleFieldsNames(['KEYS', 'TIMESTAMPS'])
+            : $model::getModuleFieldsNames(['KEYS', 'TIMESTAMPS', 'FILE_BINARY']);
         $collection = $model->select($fields)
             ->where($model::$foreign_key, $form_id)
             ->get()

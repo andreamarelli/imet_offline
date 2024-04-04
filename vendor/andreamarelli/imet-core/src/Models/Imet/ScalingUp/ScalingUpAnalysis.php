@@ -797,7 +797,7 @@ class ScalingUpAnalysis extends Model
      * @param array $form_ids
      * @return array
      */
-    public static function get_array_of_custom_names(array $form_ids): array
+    public static function get_wdpas_by_form_id(array $form_ids): array
     {
         $protected_area = [];
         foreach ($form_ids as $k => $form_id) {

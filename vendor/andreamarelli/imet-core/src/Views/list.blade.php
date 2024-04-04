@@ -191,7 +191,15 @@ if($controller === Controllers\Imet\oecm\Controller::class){
 
                     {{-- Export --}}
                     @can('export_button', $form_class)
-                        @include('imet-core::components.buttons.export', ['form_class' => $form_class])
+                        <span v-if="item.version==='{{ $form_class::IMET_V1 }}'">
+                            @include('imet-core::components.buttons.export', ['version' => $form_class::IMET_V1])
+                        </span>
+                        <span v-else-if="item.version==='{{ $form_class::IMET_V2 }}'">
+                            @include('imet-core::components.buttons.export', ['version' => $form_class::IMET_V2])
+                        </span>
+                        <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'">
+                            @include('imet-core::components.buttons.export', ['version' => $form_class::IMET_OECM])
+                        </span>
                     @endcan
 
                     {{-- Print --}}

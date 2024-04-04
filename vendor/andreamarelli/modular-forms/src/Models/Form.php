@@ -171,11 +171,11 @@ class Form extends BaseModel
      * @param $form_id
      * @return array
      */
-    public static function exportModules($form_id): array
+    public static function exportModules($form_id, $exclude_attachments = false): array
     {
         $array = [];
         foreach (static::allModules() as $module_class) {
-            $array[$module_class::getShortClassName()] = $module_class::exportModule($form_id);
+            $array[$module_class::getShortClassName()] = $module_class::exportModule($form_id, $exclude_attachments);
         }
         return $array;
     }

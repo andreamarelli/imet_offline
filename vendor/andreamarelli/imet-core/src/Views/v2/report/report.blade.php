@@ -461,61 +461,18 @@ if($item->language != App::getLocale()){
 
                 loadMap() {
                     let _this = this;
-                    let biopamaBaseLayer = 'mapbox://styles/jamesdavy/cjw25laqe0y311dqulwkvnfoc';
-                    let mapPolyHostURL = "https://tiles.biopama.org/BIOPAMA_poly";
-                    let mapPaLayer = "2021_July_ACP";
 
                     this.report_map = new window.mapboxgl.Map({
                         container: 'map',
-                        style: biopamaBaseLayer,
-                        center: [15, 0],
-                        zoom: 3,
-                        minZoom: 0,
-                        maxZoom: 18
+                        style: window.BiopamaWDPA.base_layer,
+                        center: [30, 0],
+                        zoom: 4,
+                        minZoom: 2,
+                        maxZoom: 12
                     });
 
                     this.report_map.on('load', function () {
-                        _this.report_map.addSource("BIOPAMA_Poly", {
-                            "type": 'vector',
-                            "tiles": [mapPolyHostURL + "/{z}/{x}/{y}.pbf"],
-                            "minZoom": 0,
-                            "maxZoom": 12,
-                        });
-
-                        _this.report_map.addLayer({
-                            "id": "wdpaBase",
-                            "type": "fill",
-                            "source": "BIOPAMA_Poly",
-                            "source-layer": mapPaLayer,
-                            "minzoom": 1,
-                            "paint": {
-                                "fill-color": [
-                                    "match",
-                                    ["get", "MARINE"],
-                                    ["1"],
-                                    "hsla(173, 21%, 51%, 0.1)",
-                                    "hsla(87, 47%, 53%, 0.1)"
-                                ],
-                            }
-                        });
-
-                        _this.report_map.addLayer({
-                            "id": "wdpaSelected",
-                            "type": "line",
-                            "source": "BIOPAMA_Poly",
-                            "source-layer": mapPaLayer,
-                            "layout": {"visibility": "none"},
-                            "paint": {
-                                "line-color": "#679b95",
-                                "line-width": 2,
-                            },
-                            "transition": {
-                                "duration": 300,
-                                "delay": 0
-                            }
-                        });
-                        _this.report_map.setFilter("wdpaSelected", ['in', 'WDPAID', {{ $item->wdpa_id }}]);
-                        _this.report_map.setLayoutProperty("wdpaSelected", 'visibility', 'visible');
+                        window.BiopamaWDPA.addWdpaLayer(_this.report_map, ' {{ $item->wdpa_id }}');
                     });
                 }
             }
