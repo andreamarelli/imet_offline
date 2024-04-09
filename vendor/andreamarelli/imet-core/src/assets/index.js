@@ -8,7 +8,7 @@ window.mixins = {
 window.BiopamaWDPA = {
     base_layer: 'mapbox://styles/jamesdavy/cjw25laqe0y311dqulwkvnfoc',
 
-    addWdpaLayer: function(map, wdpa_ids, color = null) {
+    addWdpaLayer: function(map, wdpa_ids = null, color = null) {
 
         // Add source: JRC geoserver
         map.addSource("geospatial_jrc", {
@@ -40,11 +40,15 @@ window.BiopamaWDPA = {
             }
         });
 
-        wdpa_ids = wdpa_ids
-            .map(function(item){
-                return parseInt(item)
-            });
-        map.setFilter("biopama_wdpa", ['in', 'wdpaid'].concat(wdpa_ids));
+        // Filter by wdpa_ids
+        if(wdpa_ids !== null) {
+            wdpa_ids = typeof wdpa_ids === 'string' ? wdpa_ids.split(',') : wdpa_ids;
+            wdpa_ids = wdpa_ids
+                .map(function (item) {
+                    return parseInt(item)
+                });
+            map.setFilter("biopama_wdpa", ['in', 'wdpaid'].concat(wdpa_ids));
+        }
     }
 
 };

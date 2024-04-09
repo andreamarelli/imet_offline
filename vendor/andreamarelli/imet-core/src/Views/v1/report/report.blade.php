@@ -467,7 +467,7 @@ if($item->language != App::getLocale()){
                     });
 
                     this.report_map.on('load', function () {
-                        window.BiopamaWDPA.addWdpaLayer(_this.report_map, ' {{ $item->wdpa_id }}');
+                        window.BiopamaWDPA.addWdpaLayer(_this.report_map, '{{ $item->wdpa_id }}');
                     });
                 }
             }

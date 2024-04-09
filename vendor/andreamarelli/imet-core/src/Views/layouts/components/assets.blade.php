@@ -42,8 +42,8 @@ $script_files = $script_files ?? true;
 
 
 <!-- mapbox -->
-@if(Str::contains($current_route_name, 'imet-core::v1_report') ||
-    Str::contains($current_route_name, 'imet-core::v2_report') ||
+@if(Str::contains($current_route_name, 'imet-core::v1.report') ||
+    Str::contains($current_route_name, 'imet-core::v2.report') ||
     Str::contains($current_route_name, 'imet-core::scaling_up'))
         @include('modular-forms::layouts.components.mapbox')
         <script>
