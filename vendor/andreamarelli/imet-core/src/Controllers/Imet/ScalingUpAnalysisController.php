@@ -358,7 +358,7 @@ class ScalingUpAnalysisController extends __Controller
             $this->auth_saved(explode(',', $records->wdpas));
             ModelScalingUpAnalysis::$scaling_id = $id;
 
-            $protected_areas = ModelScalingUpAnalysis::get_array_of_custom_names(explode(',', $records->wdpas));
+            $protected_areas = ModelScalingUpAnalysis::get_wdpas_by_form_id(explode(',', $records->wdpas));
             foreach ($protected_areas as $k => $protected_area) {
                 $areas_names[$k] = $protected_area->name;
             }

@@ -6,12 +6,13 @@ use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
-use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
-use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use AndreaMarelli\ImetCore\Models\Imet\v1;
 use AndreaMarelli\ImetCore\Models\Imet\v2;
+use AndreaMarelli\ImetCore\Models\Region;
+use AndreaMarelli\ImetCore\Models\Country;
 
 class GlobalStatistics
 {
@@ -23,36 +24,34 @@ class GlobalStatistics
      */
     public static function get_pa_average_score_per_iucn_categories(array $form_ids): array
     {
+        $wdpa_ids = [];
         $imet_index_average = [];
-        $list_v2 = v2\Imet::select(['wdpa_id', 'FormID', 'version'])->get();
-        $list_v1 = v1\Imet::select(['wdpa_id', 'FormID', 'version'])->get();
+        $list_v2 = v2\Imet::whereIn('FormID', $form_ids)->select(['wdpa_id', 'FormID', 'version'])->get();
+        $list_v1 = v1\Imet::whereIn('FormID', $form_ids)->select(['wdpa_id', 'FormID', 'version'])->get();
+
         $list = $list_v1->merge($list_v2);
 
-
-
         foreach ($list as $item) {
-            $form_ids[$item['wdpa_id']] = [
+            $wdpa_ids[$item['wdpa_id']] = [
                 'wdpa_id' => $item['wdpa_id'],
-                'imet_index' => $item['version']===Imet::IMET_V1
-                    ? V1ToV2StatisticsService::get_imet_score($item['FormID'])
-                    : V2StatisticsService::get_imet_score($item['FormID'])
+                'imet_index' => ImetScores::get_score($item)
             ];
         }
 
-        $fn = function ($item) use (&$form_ids, &$imet_index_average) {
+        $fn = function ($item) use (&$form_ids, &$imet_index_average, $wdpa_ids) {
             $key = $item['iucn_category'];
             $form_ids[$item['FormID']]['iucn_category'] = $key;
-
 
             if (!isset($imet_index_average[$key])) {
                 $imet_index_average[$key] = [];
             }
-            $imet_index_average[$key][] = $form_ids[$item['wdpa_id']]['imet_index'];
+
+            $imet_index_average[$key][] = $wdpa_ids[$item['wdpa_id']]['imet_index'];
             return $item;
         };
 
         ProtectedArea::select('wdpa_id', 'iucn_category')
-            ->whereIn('wdpa_id', array_keys($form_ids))
+            ->whereIn('wdpa_id', array_keys($wdpa_ids))
             ->get()
             ->map($fn);
 
@@ -72,7 +71,8 @@ class GlobalStatistics
      */
     public static function get_pa_number_per_iucn_categories(array $form_ids): array
     {
-        $list_v1 = Imet::select()->pluck('wdpa_id')
+
+        $list_v1 = Imet::whereIn('FormID', $form_ids)->select()->pluck('wdpa_id')
             ->toArray();
 
         $number_of_pas_per_iucn_categories = ProtectedArea::select(DB::raw('iucn_category'), DB::raw('count("iucn_category") as total'));
@@ -157,6 +157,25 @@ class GlobalStatistics
 
     /**
      * @param array $form_ids
+     * @param string $language
+     * @return array
+     * @throws \Exception
+     */
+    public static function get_number_of_assessments_by_region(array $form_ids, string $language = 'en'): array
+    {
+        $list = [];
+        $regions = Region::select()->get();
+        foreach($regions as $region){
+
+            $countries = Country::getByRegion($region['id']);
+
+            $list[$region['name']] = Imet::select('FormID')->whereIn('Country', $countries)->get()->count();
+        }
+        return ['data' => $list];
+    }
+
+    /**
+     * @param array $form_ids
      * @return array
      */
     public static function get_total_number_of_assessments(array $form_ids): array
@@ -223,37 +242,71 @@ class GlobalStatistics
     /**
      * @param array $form_ids
      * @param string $language
+     * @return array[]
+     */
+    public static function get_global_pas_rating(array $form_ids, string $language = 'en'): array
+    {
+        $api = ['data' => [], 'labels' => []];
+        $list_of_pas_rating = static::get_pas_rating($form_ids, $language, false, true);
+        $sums = []; // To store the sums for each key
+
+        foreach ($list_of_pas_rating['data'] as $item) {
+            foreach ($item as $key => $value) {
+                // Initialize the sum if it doesn't exist
+                if (!isset($sums[$key])) {
+                    $sums[$key] = 0;
+                }
+                // Add the value to the sum
+                $sums[$key] += $value;
+            }
+        }
+
+        $items_length = count($list_of_pas_rating['data']);
+        foreach ($sums as $key => $item) {
+            $sums[$key] = round($item / $items_length, 1);
+            $api['labels'][$key] = $key === "imet_index" ? trans('imet-core::common.indexes.imet') :trans('imet-core::common.steps_eval.'.$key);
+        }
+        $api['data'] = $sums;
+        return $api;
+    }
+
+    /**
+     * @param array $form_ids
+     * @param string $language
+     * @param bool $only_top_rating
+     * @param bool $all_scores
      * @return array
      */
-    public static function get_pas_rating(array $form_ids, string $language = 'en'): array
+    public static function get_pas_rating(array $form_ids, string $language = 'en', bool $only_top_rating = true, bool $all_scores = false): array
     {
         $name = 'name_' . $language;
         $country_fields = 'country:iso3,' . $name;
 
         $i = 0;
-        $list_of_pas_rating_v2 = v2\Imet::with($country_fields);
-        $list_of_pas_rating_v1 = v1\Imet::with($country_fields);
+        $list_of_pas_rating_v2 = v2\Imet::whereIn('FormID', $form_ids)->where('version', 'v2')->with($country_fields);
+        $list_of_pas_rating_v1 = v1\Imet::whereIn('FormID', $form_ids)->where('version', 'v1')->with($country_fields);
 
-        if (count($form_ids) > 0) {
-            $list_of_pas_rating_v2 = $list_of_pas_rating_v2->whereIn('FormID', $form_ids);
-            $list_of_pas_rating_v1 = $list_of_pas_rating_v1->whereIn('FormID', $form_ids);
-        }
         $list_of_pas_rating_v2 = $list_of_pas_rating_v2->get()
-            ->map(function ($item) use ($name, &$i) {
+            ->map(function ($item) use ($name, &$i, $all_scores) {
                 $i++;
-                return static::pas_rating_fields($item, $name, $i);
+                return static::pas_rating_fields($item, $name, $i, $all_scores);
             })->toArray();
         $list_of_pas_rating_v1 = $list_of_pas_rating_v1->get()
-            ->map(function ($item) use ($name, &$i) {
+            ->map(function ($item) use ($name, &$i, $all_scores) {
                 $i++;
-                return static::pas_rating_fields($item, $name, $i);
+                return static::pas_rating_fields($item, $name, $i, $all_scores);
             })->toArray();
 
         $list_of_pas_rating = array_merge($list_of_pas_rating_v1, $list_of_pas_rating_v2);
-        usort($list_of_pas_rating, function ($a, $b) {
-            return $a['imet_index'] < $b['imet_index'];
-        });
-        $list_of_pas_rating = array_slice($list_of_pas_rating, 0, 10);
+        if (!$all_scores) {
+            usort($list_of_pas_rating, function ($a, $b) {
+                return $a['imet_index'] < $b['imet_index'];
+            });
+        }
+        if ($only_top_rating) {
+            $list_of_pas_rating = array_slice($list_of_pas_rating, 0, 10);
+        }
+
         return ['data' => $list_of_pas_rating];
     }
 
@@ -261,11 +314,11 @@ class GlobalStatistics
      * @param Request $request
      * @param string|null $year
      * @param string|null $version
-     * @param string|null $country
+     * @param array|null $country
      * @param string|null $type
      * @return array
      */
-    public static function from_year_get_form_ids(Request $request, string $year = null, string $version = null, string $country = null, string $type = null): array
+    public static function from_year_get_form_ids(Request $request, string $year = null, string $version = null, array $country = null, string $type = null): array
     {
         $form_ids = [];
         $records = null;
@@ -274,20 +327,24 @@ class GlobalStatistics
 
             if ($year !== null) {
                 $records = $records::where('Year', $year);
-            } else if ($version !== null) {
+
+            }
+            if ($version !== null) {
                 $records = $records->where('version', $version);
-            } else if ($country !== null) {
-                $records = $records->where('Country', $country);
+            }
+            if ($country[0] !== null) {
+                $records = $records->whereIn('Country', $country);
             }
             $form_ids = $records->pluck('FormID')->toArray();
         }
 
-        if (count($form_ids) > 0) {
+        if (count($form_ids) > 0 && $type !== null) {
             $form_ids = GeneralInfo::where('Type', $type)
                 ->whereIn('FormID', $form_ids)
                 ->pluck('FormID')
                 ->toArray();
         }
+
         return $form_ids;
     }
 
@@ -295,9 +352,10 @@ class GlobalStatistics
      * @param Imet $item
      * @param string $name
      * @param int $i
+     * @param bool $global_scores
      * @return array
      */
-    public static function pas_rating_fields(Imet $item, string $name, int $i = 1): array
+    public static function pas_rating_fields(Imet $item, string $name, int $i = 1, bool $global_scores = false): array
     {
         $new_item = [];
         $new_item['FormID'] = $item['FormID'];
@@ -312,9 +370,12 @@ class GlobalStatistics
 
         $new_item['country'] = $item->country["$name"];
 
-        $new_item['imet_index'] = $item['version']===Imet::IMET_V1
-            ? V1ToV2StatisticsService::get_imet_score($item['FormID'])
-            : V2StatisticsService::get_imet_score($item['FormID']);
+        if ($global_scores) {
+            $new_item = ImetScores::get_radar($item);
+        } else {
+            $new_item['imet_index'] = ImetScores::get_score($item);
+
+        }
 
         return $new_item;
     }

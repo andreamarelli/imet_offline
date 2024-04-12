@@ -2,12 +2,10 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\API\Assessment;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\EvalController;
 use AndreaMarelli\ImetCore\Models\Animal;
-
+use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
-use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
 use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Report;
@@ -53,7 +51,7 @@ class ReportV1
         return [
             'data' => [
                 'key_elements' => static::get_key_elements($form_id),
-                'assessment' => V1ToV2StatisticsService::get_scores($form_id, 'ALL'),
+                'assessment' => ImetScores::get_all($form_id),
                 'report' => $report,
                 'dopa_radar' => $dopa_radar,
                 'dopa_indicators' => $dopa_indicators[0] ?? null,
@@ -89,14 +87,14 @@ class ReportV1
      * @return array
      * @throws \ReflectionException
      */
-    protected static function get_general_info(int $form_id): array
+    protected static function get_general_info(int $form_id): ?array
     {
         $general_info = static::$general_info_class::getVueData($form_id)['records'][0] ?? null;
         if ($general_info) {
             return static::remove_fields($general_info, ['WDPA' => '', 'id' => '', 'FormID' => '', 'UpdateDate' => '', 'UpdateBy' => '']);
         }
 
-        return $general_info;
+        return null;
     }
 
     /**
@@ -104,14 +102,14 @@ class ReportV1
      * @return array
      * @throws \ReflectionException
      */
-    protected static function get_vision(int $form_id): array
+    protected static function get_vision(int $form_id): ?array
     {
         $vision = static::$general_info_class::getVueData($form_id)['records'][0] ?? null;
         if ($vision) {
             return static::remove_fields($vision, ['WDPA' => '', 'id' => '', 'FormID' => '', 'UpdateDate' => '', 'UpdateBy' => '']);
         }
 
-        return $vision;
+        return null;
     }
 
     /**
@@ -169,4 +167,5 @@ class ReportV1
     {
         return array_diff_key($values, $fields_to_extract);
     }
+
 }

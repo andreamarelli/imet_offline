@@ -2,18 +2,18 @@
 return [
 
     'Create' => [
-        'title' => 'Create a new IMET AMCE (WDPA)',
+        'title' => 'Create a new IMET espace conservé (WDPA)',
         'fields' => [
             'version' => 'version IMET',
             'Year' => 'Année faisant l’objet de l’évaluation',
-            'wdpa_id' => 'AMCE',
+            'wdpa_id' => 'espace conservé',
             'language' => 'langue',
             'pré-remplissage avec les données de l’année précédente ',
         ]
     ],
 
     'CreateNonWdpa' => [
-        'title' => 'Create a new IMET AMCE (non-WDPA)',
+        'title' => 'Create a new IMET espace conservé (non-WDPA)',
         'fields' => [
             'version' => 'version',
             'Year' => 'Année faisant l’objet de l’évaluation',
@@ -43,27 +43,27 @@ return [
     'GeneralInfo' => [
         'title' => 'Données de base',
         'fields' => [
-            'CompleteName' => 'Nom complet de l’AMCE',
-            'UsedName' => 'Nom de l’AMCE dans le site WDPA',
-            'CompleteNameWDPA' => 'Name of the OECM in the WDPA site',
+            'CompleteName' => 'Nom complet de l’espace conservé',
+            'UsedName' => 'Nom de l’espace conservé dans le site WDPA',
+            'CompleteNameWDPA' => 'Name of the conserved area in the WDPA site',
             'WDPA' => 'WDPA',
             'Type' => 'typologie',
             'Country' => 'Pays',
             'CreationYear' => 'Année de création',
             'ReferenceText' => 'Référence à la désignation du texte de publication',
-            'Ownership' => 'Type de propriété de l’AMCE',
+            'Ownership' => 'Type de propriété de l’espace conservé',
             'Importance' => 'Quelles sont les principales valeurs pour lesquelles la zone a été désignée ? (Fournissez une liste puis une brève description)',
         ],
-        'module_info' => '<b>Introduction à la typologie</b>: IMET identifie trois catégories d’aires conservées : (1) Aires protégées terrestres (2) Zone marine et côtière protégée (3) AMCE - Autres mesures de conservation efficaces (AMCE).<br />
-          Cette IMET analyse la gestion d’une AMCE définie comme "une zone géographiquement définie autre qu’une zone protégée", qui est gouverné et géré de manière à obtenir des résultats positifs et durables à long terme pour la conservation in situ de la biodiversité, avec les fonctions et services écosystémiques associés et, le cas échéant, les aspects culturels, spirituels et socio-économiques, et d’autres valeurs pertinentes au niveau local" (CDB, 2018). Les AMCE comprennent les forêts communautaires, les peuples autochtones et les territoires et zones conservés par les communautés (ICCA), les zones marines gérées localement (LMMA),
-            et d’autre typologie de aires differement conservées.<br/>Quelle est la différence entre une aire protégée et une AMCE ? (Source WDPA)
-            Les aires protégées et les AMCE présentent de nombreuses similitudes, telles que l’exigence d’une limite géographiquement définie et d’un engagement à long terme.
+        'module_info' => '<b>Introduction à la typologie</b>: IMET identifie trois catégories d’aires conservées : (1) Aires protégées terrestres (2) Zone marine et côtière protégée (3) Espace conservé.<br />
+          Cette IMET analyse la gestion d’une espace conservé définie comme "une zone géographiquement définie autre qu’une zone protégée", qui est gouverné et géré de manière à obtenir des résultats positifs et durables à long terme pour la conservation in situ de la biodiversité, avec les fonctions et services écosystémiques associés et, le cas échéant, les aspects culturels, spirituels et socio-économiques, et d’autres valeurs pertinentes au niveau local" (CDB, 2018). Les espace conservé comprennent les forêts communautaires, les peuples autochtones et les territoires et zones conservés par les communautés (ICCA), les zones marines gérées localement (LMMA),
+            et d’autre typologie de aires differement conservées.<br/>Quelle est la différence entre une aire protégée et une espace conservé ? (Source WDPA)
+            Les aires protégées et les espaces conservés présentent de nombreuses similitudes, telles que l’exigence d’une limite géographiquement définie et d’un engagement à long terme.
             Mais si les aires protégées sont des lieux désignés pour obtenir des résultats positifs en matière de biodiversité,
-            le terme "AMCE" s’applique aux aires désignées dans n’importe quel but, où des résultats positifs en matière de biodiversité se produisent indépendamment des objectifs de gestion initiaux.
+            le terme "espace conservé" s’applique aux aires désignées dans n’importe quel but, où des résultats positifs en matière de biodiversité se produisent indépendamment des objectifs de gestion initiaux.
             Dans une aire protégée, la conservation doit être l’objectif principal, ou co-primaire.
-            Dans un AMCE, il peut s’agir d’un objectif secondaire ou d’un objectif non explicite.<br/>
-            Les AMCE englobent également des zones qui répondent à la définition d’une aire protégée,
-          dans les cas où l’autorité de gouvernance préfère que la zone soit considérée comme une AMCE.<br/>
+            Dans un espace conservé, il peut s’agir d’un objectif secondaire ou d’un objectif non explicite.<br/>
+            Les espace conservé englobent également des zones qui répondent à la définition d’une aire protégée,
+          dans les cas où l’autorité de gouvernance préfère que la zone soit considérée comme une espace conservé.<br/>
             <strong>Si votre site est une aire protégée, veuillez utiliser l’IMET pour aire protégée</strong>',
     ],
 
@@ -75,7 +75,7 @@ return [
             'GovernanceModel' => 'Modèle de gouvernance',
             'SubGovernanceModel' => 'Sous-modèle de gouvernance',
             'AdditionalInfo' => 'Informations complémentaires sur le modèle de gouvernance (si nécessaire)',
-            'ManagementUnique' => 'Déterminer l’entité en charge de la gestion et de la gouvernance de l’AMCE',
+            'ManagementUnique' => 'Déterminer l’entité en charge de la gestion et de la gouvernance de l’espace conservé',
             'ManagementName' => 'Name',
             'ManagementType' => 'Type',
             'DateOfCreation' => 'Date de création',
@@ -89,10 +89,10 @@ return [
         'management' => 'Entité de gestion',
         'ratingLegend' => [
             'MemberRepresentativenessLevel' => [
-                '0' => 'Less than 30% of the total population of the OECM area',
-                '1' => '30–50% total population of the OECM area',
-                '2' => '51–75% total population of the OECM area',
-                '3' => 'More than 75% of the total population of the OECM area',
+                '0' => 'Less than 30% of the total population of the conserved area',
+                '1' => '30–50% total population of the conserved area',
+                '2' => '51–75% total population of the conserved area',
+                '3' => 'More than 75% of the total population of the conserved area',
             ]
         ]
     ],
@@ -119,11 +119,11 @@ return [
         'title' => 'Appartenance à un réseau de gestion local',
         'fields' => [
             'NetworkName' => 'Name',
-            'ProtectedAreas' => 'Noms d’autres AMCE ou aires protégées au sein du réseau',
+            'ProtectedAreas' => 'Noms d’autres espace conservé ou aires protégées au sein du réseau',
         ],
         'groups' => [
             'group0' => 'Réseau transfrontalier',
-            'group1' => 'Réseau d’un paysage (terrestre et marine AMCE)',
+            'group1' => 'Réseau d’un paysage (terrestre et marine espace conservé)',
             'group2' => 'Autres réseaux',
         ]
     ],
@@ -140,7 +140,7 @@ return [
     ],
 
     'Contexts' => [
-        'title' => 'Références des contextes historiques, politiques, juridiques, institutionnels et socio-économiques de l’AMCE',
+        'title' => 'Références des contextes historiques, politiques, juridiques, institutionnels et socio-économiques de l’espace conservé',
         'fields' => [
             'Context' => 'Contexte ou éléments spécifiques',
             'file' => 'Fichier(s)',
@@ -168,19 +168,19 @@ return [
     ],
 
     'Objectives1' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation pour la gouvernance, les partenariats et la désignation <b>de l’AMCE</b><br /> Les objectifs fournis ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases du processus, et pour le suivi des activités de gestion de l’AMCE'
+        'module_info' => 'Établir et décrire les objectifs de conservation pour la gouvernance, les partenariats et la désignation <b>de l’espace conservé</b><br /> Les objectifs fournis ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases du processus, et pour le suivi des activités de gestion de l’espace conservé'
     ],
 
     'Objectives2' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation pour <b>l’aire de l’AMCE</b><br /> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus particulièrement pour les phases de planification, de mobilisation des ressources (intrants), de processus, et pour le suivi des activités de gestion de l’AMCE'
+        'module_info' => 'Établir et décrire les objectifs de conservation pour <b>l’aire de l’espace conservé</b><br /> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus particulièrement pour les phases de planification, de mobilisation des ressources (intrants), de processus, et pour le suivi des activités de gestion de l’espace conservé'
     ],
 
     'Objectives3' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation pour <b>les ressources humaines et financières/le soutien des partenariats dans la gestion </b>de l’AMCE<br/> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases du processus, et pour le suivi des activités de gestion de l’AMCE'
+        'module_info' => 'Établir et décrire les objectifs de conservation pour <b>les ressources humaines et financières/le soutien des partenariats dans la gestion </b>de l’espace conservé<br/> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases du processus, et pour le suivi des activités de gestion de l’espace conservé'
     ],
 
     'Objectives4' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation pour <b>espèces animales et végétales clés</b> de l’AMCE<br/> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases du processus, et pour le suivi des activités de gestion de l’AMCE'
+        'module_info' => 'Établir et décrire les objectifs de conservation pour <b>espèces animales et végétales clés</b> de l’espace conservé<br/> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases du processus, et pour le suivi des activités de gestion de l’espace conservé'
     ],
 
     'GeographicalLocation' => [
@@ -191,19 +191,19 @@ return [
             'SourceSHP' => 'Source du fichier SIG',
             'Coordinates' => 'Coordonnées géographiques (ligne de base ou point clé dans le parc)',
             'SourceCoords' => 'Source',
-            'AdministrativeLocation' => 'Situation administrative de l’AMCE (province, région, etc.)',
+            'AdministrativeLocation' => 'Situation administrative de l’espace conservé (province, région, etc.)',
         ]
     ],
 
     'Areas' => [
-        'title' => 'Surface de l’AMCE et contexte de conservation',
+        'title' => 'Surface de l’espace conservé et contexte de conservation',
         'fields' => [
             'AdministrativeArea' => 'Surface administrative',
             'WDPAArea' => 'Surface selon WDPA',
-            'GISArea' => 'Surface réelle (SIG du parc ou de l’autorité responsable des AMCE) correspondant au fichier téléchargé',
+            'GISArea' => 'Surface réelle (SIG du parc ou de l’autorité responsable des espace conservé) correspondant au fichier téléchargé',
             'StrictConservationArea' => 'Superficie de la zone de conservation stricte (zone de non-prélèvement, zone centrale) (le cas échéant)',
-            'TerrestrialArea' => 'Surface de l’AMCE terrestre, de la forêt communautaire, des ICCA, autre',
-            'MarineArea' => 'Surface de l’AMCE marine et côtière, des ICCA, des LMMA, autres'
+            'TerrestrialArea' => 'Surface de l’espace conservé terrestre, de la forêt communautaire, des ICCA, autre',
+            'MarineArea' => 'Surface de l’espace conservé marine et côtière, des ICCA, des LMMA, autres'
         ]
     ],
 
@@ -218,7 +218,7 @@ return [
             'AdequateNumber' => 'Nombre adéquat',
             'Difference' => 'Différence'
         ],
-        'module_info' => 'Nombre et catégories de membres de l’organe de gestion de l’AMCE',
+        'module_info' => 'Nombre et catégories de membres de l’organe de gestion de l’espace conservé',
         'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>I2, PR1</i>'
     ],
 
@@ -251,7 +251,7 @@ return [
             'Currency' => 'Devise',
             'TotalAnnualBudgetAvailable' => 'Budget annuel total disponible',
         ],
-        'module_info' => 'Estimation des coûts totaux de gestion de l’AMCE'
+        'module_info' => 'Estimation des coûts totaux de gestion de l’espace conservé'
     ],
 
     'Equipments' => [
@@ -271,7 +271,7 @@ return [
             'group6' => 'Équipement de production d’énergie',
             'group7' => 'Routes et pistes',
             'group8' => 'Voies navigables',
-            'group9' => 'Liens et connexions de l’AMCE avec le monde extérieur'
+            'group9' => 'Liens et connexions de l’espace conservé avec le monde extérieur'
         ],
         'predefined_values' => [
             'group0' => ['Bureaux', 'Centre d’information', 'Bâtiments de service (magazine, etc.)', 'Centre de soins de santé'],
@@ -281,8 +281,8 @@ return [
             'group4' => ['Radios VHF/HF', 'V-SAT', 'Téléphones GSM', 'Connexion Internet'],
             'group5' => ['Ordinateurs de bureau', 'Ordinateurs portables', 'Imprimantes', 'Photocopieurs'],
             'group6' => ['Générateurs d’électricité', 'Installation électrique solaire', 'Installation électrique hydroélectrique', 'Installation électrique éolienne'],
-            'group7' => ['Routes/pistes à l’intérieur de l’AMCE', 'Chemins à l’intérieur de l’AMCE', 'Route le long de la frontière'],
-            'group8' => ['Voies navigables à l’intérieur de l’AMCE'],
+            'group7' => ['Routes/pistes à l’intérieur de l’espace conservé', 'Chemins à l’intérieur de l’espace conservé', 'Route le long de la frontière'],
+            'group8' => ['Voies navigables à l’intérieur de l’espace conservé'],
             'group9' => ['Grandes voies de communication terrestres', 'Voies navigables intérieures et maritimes']
         ],
         'ratingLegend' => [
@@ -337,10 +337,10 @@ return [
     ],
 
     'Habitats' => [
-        'title' => 'Principales catégories d’habitats de l’AMCE',
+        'title' => 'Principales catégories d’habitats de l’espace conservé',
         'fields' => [
             'EcosystemType' => 'Types d’habitats',
-            'EcosystemDescription' => 'Description pour l\'AMCE spécifique',
+            'EcosystemDescription' => 'Description pour l\'espace conservé spécifique',
             'ExploitedSpecies' => 'EXP',
             'ProtectedSpecies' => 'PRT',
             'DisappearingSpecies' => 'DSG',
@@ -365,11 +365,11 @@ return [
         'fields' => [
             'Element' => 'Partie prenante',
             'GeographicalProximity' => 'Vivant à l’intérieur ou à proximité (moins d\'une heure de marche)',
-            'UsesCategories' => 'Catégories d\'usages ou de gestion des éléments clés de l\'AMCE',
-            'DirectUser' => 'Utilisateurs directs des éléments clés de l\'AMCE',
-            'LevelEngagement' => 'Niveau d\'engagement dans la gestion des éléments clés de l\'AMCE',
-            'LevelInterest' => 'Niveau d\'intérêt pour la préservation des éléments clés de l\'AMCE',
-            'LevelExpertise' => 'Niveau d\'expertise dans la gestion des éléments clés de l\'AMCE (y compris les connaissances traditionnelles ou autochtones)',
+            'UsesCategories' => 'Catégories d\'usages ou de gestion des éléments clés de l\'espace conservé',
+            'DirectUser' => 'Utilisateurs directs des éléments clés de l\'espace conservé',
+            'LevelEngagement' => 'Niveau d\'engagement dans la gestion des éléments clés de l\'espace conservé',
+            'LevelInterest' => 'Niveau d\'intérêt pour la préservation des éléments clés de l\'espace conservé',
+            'LevelExpertise' => 'Niveau d\'expertise dans la gestion des éléments clés de l\'espace conservé (y compris les connaissances traditionnelles ou autochtones)',
 
             'Comments' => 'Note',
         ],
@@ -395,20 +395,20 @@ return [
 
         ],
         'module_info' =>
-            'Identifier les acteurs impliqués dans la gestion ou l\'utilisation des ressources naturelles de l\'AMCE<br />
+            'Identifier les acteurs impliqués dans la gestion ou l\'utilisation des ressources naturelles de l\'espace conservé<br />
              <b>Vivant à l’intérieur ou à proximité (moins d\'une heure de marche)</b>: Vivre dans ou à proximité d\'une zone conservée peut donner accès à des
              services écosystémiques, mais peut également nécessiter des restrictions et des réglementations.<br />
-             <b>Catégories d\'usages ou de gestion des éléments clés de l\'AMCE</b>: différentes manières dont les parties prenantes interagissent avec
+             <b>Catégories d\'usages ou de gestion des éléments clés de l\'espace conservé</b>: différentes manières dont les parties prenantes interagissent avec
              animaux, végétaux ou habitats (Biodiversité) et bénéficier de services écosystémiques (Approvisionnement, Culturel, Régulateur,
-                Accompagnement) fourni par l\'AMCE.<br />
-             <b>Utilisateurs directs des éléments clés de l\'AMCE</b>: les utilisateurs directs sont ceux qui bénéficient directement des biens et services
+                Accompagnement) fourni par l\'espace conservé.<br />
+             <b>Utilisateurs directs des éléments clés de l\'espace conservé</b>: les utilisateurs directs sont ceux qui bénéficient directement des biens et services
              fourni par l\'aire conservée.<br />
-             <b>Niveau d\'intérêt pour la préservation des éléments clés de l\'AMCE</b>: Degré d\'intérêt des parties prenantes pour les éléments clés de l\'AMCE
+             <b>Niveau d\'intérêt pour la préservation des éléments clés de l\'espace conservé</b>: Degré d\'intérêt des parties prenantes pour les éléments clés de l\'espace conservé
              la conservation et la protection à long terme, telles que l\'établissement de réglementations d\'utilisation et d\'accès, car elles peuvent influencer
              leur niveau d\'implication et d\'engagement<br />
-             <b>Niveau d\'expertise dans la gestion des éléments clés de l\'AMCE (y compris les connaissances traditionnelles ou autochtones)</b>: Degré à
+             <b>Niveau d\'expertise dans la gestion des éléments clés de l\'espace conservé (y compris les connaissances traditionnelles ou autochtones)</b>: Degré à
              laquelle une partie prenante possède les connaissances, les compétences et l\'expérience nécessaires pour gérer et conserver efficacement certains éléments clés
-             de l\'AMCE. L\'expertise peut provenir de connaissances traditionnelles et indigènes, de pratiques historiques, d\'observations à long terme,
+             de l\'espace conservé. L\'expertise peut provenir de connaissances traditionnelles et indigènes, de pratiques historiques, d\'observations à long terme,
              formations formelles et professionnelles. <br />',
         'ratingLegend' => [
             'LevelEngagement' => [
@@ -418,10 +418,10 @@ return [
                 '3' => 'Engagement important',
             ],
             'LevelInterest' => [
-                '0' => 'Pas d\'intérêt pour la conservation de l\'AMCE',
-                '1' => 'Faible intérêt pour la conservation de l\'AMCE',
-                '2' => 'Intérêt modéré pour la conservation de l\'AMCE',
-                '3' => 'Intérêt important pour la conservation de l\'AMCE',
+                '0' => 'Pas d\'intérêt pour la conservation de l\'espace conservé',
+                '1' => 'Faible intérêt pour la conservation de l\'espace conservé',
+                '2' => 'Intérêt modéré pour la conservation de l\'espace conservé',
+                '3' => 'Intérêt important pour la conservation de l\'espace conservé',
             ],
             'LevelExpertise' => [
                 '0' => 'Aucune expertise dans la gestion des terres et des ressources naturelles',
@@ -436,8 +436,8 @@ return [
     'StakeholdersObjectives' => [
         'module_info' =>
             'Établir et décrire des objectifs de conservation pour les parties prenantes impliquées dans la gestion ou l\'utilisation des
-             ressources naturelles de l\'AMCE. Les objectifs inscrits ci-dessous serviront à améliorer la gestion, et plus particulièrement
-             pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l\'AMCE.'
+             ressources naturelles de l\'espace conservé. Les objectifs inscrits ci-dessous serviront à améliorer la gestion, et plus particulièrement
+             pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l\'espace conservé.'
     ],
 
     'AnalysisStakeholders' => [
@@ -454,13 +454,13 @@ return [
             'group1' => 'Approvisionnement-Eau',
             'group2' => 'Approvisionnement-Matériels',
             'group3' => 'Approvisionnement-Energie',
-            'group4' => 'Tourisme (appréciation esthétique, loisirs, etc.)',
-            'group5' => 'Intellectuel (éducation, savoir traditionnel, etc.)',
-            'group6' => 'Spirituel et/ou emblématique',
-            'group7' => 'Décontamination des polluants de l’air et de l’eau',
-            'group8' => 'Prévention de l’érosion et maintien de la fertilité des sols',
-            'group9' => 'Terres (agriculture, élevage, forêts)',
-            'group10' => 'Habitats pour les animaux et les plants',
+            'group4' => 'Culturel-Tourisme (appréciation esthétique, loisirs, etc.)',
+            'group5' => 'Culturel-Intellectuel (éducation, savoir traditionnel, etc.)',
+            'group6' => 'Culturel-Spirituel et/ou emblématique',
+            'group7' => 'Réglementation-Décontamination des polluants de l’air et de l’eau',
+            'group8' => 'Réglementation-Prévention de l’érosion et maintien de la fertilité des sols',
+            'group9' => 'Réglementation-Terres (agriculture, élevage, forêts)',
+            'group10' => 'Support-Habitats pour les animaux et les plants',
             'group11' => 'Animaux',
             'group12' => 'Plants',
             'group13' => 'Habitats',
@@ -608,7 +608,7 @@ return [
                   biodiversité, etc.)'.
             '<b>Quantité des services écosystémiques</b>: quantité, volume ou taille des services écosystémiques ou des espèces (Exemple:
                   surface d\'une forêt, population d\'espèces, volume de cours d\'eau, etc.).</br >'.
-            '<b>Threads</b>: Human activities or processes that have impacted, are impacting or may impact the OECM’s key element being assessed.</br >',
+            '<b>Threads</b>: Human activities or processes that have impacted, are impacting or may impact the conserved area’s key element being assessed.</br >',
         'ratingLegend' => [
             'Dependence' => [
                 '0' => 'Très faible',
@@ -643,8 +643,8 @@ return [
             'Support' => 'Soutien ou contribution',
             'Guidelines' => 'Lignes directrices et procédures',
             'LackOfCollaboration' => 'Manque de collaboration entre les utilisateurs indirects et directs',
-            'Status' => 'Statut des éléments clés de l\'AMCE',
-            'Trend' => 'Tendance des éléments clés de l\'AMCE',
+            'Status' => 'Statut des éléments clés de l\'espace conservé',
+            'Trend' => 'Tendance des éléments clés de l\'espace conservé',
             'Threats' => 'Menaces',
             'Comments' => 'Note',
         ],
@@ -659,20 +659,20 @@ return [
             '<b>Manque de collaboration entre les utilisateurs indirects et directs</b>: Absence ou insuffisance de coordination
                 entre les différents acteurs qui utilisent et bénéficient des services écosystémiques, ce qui pourrait conduire
                 à des conflits et à des pratiques non durables</br >' .
-            '<b>Statut des éléments clés de l\'AMCE</b>: L\'état des éléments clés indique l\'état de la fourniture des services
+            '<b>Statut des éléments clés de l\'espace conservé</b>: L\'état des éléments clés indique l\'état de la fourniture des services
                 écosystémiques ou de l\'élément clé de la biodiversité en termes de qualité. Un état très mauvais indique que
                 le service écosystémique fourni est de mauvaise qualité ou que l\'élément clé de la biodiversité risque sérieusement
-                de disparaître dans la zone de l\'AMCE. Un très bon état indique que l\'élément clé est de bonne qualité ou
+                de disparaître dans la zone de l\'espace conservé. Un très bon état indique que l\'élément clé est de bonne qualité ou
                 en expansion. Divers facteurs environnementaux tels que le climat et les conditions météorologiques, le
                 changement d\'utilisation des terres, la pollution et la surexploitation des ressources, la surexploitation
-                peuvent affecter l\'état des éléments clés de l\'AMCE.</br >' .
-            '<b>Tendance des éléments clés de l\'AMCE</b>: Les tendances actuelles des éléments clés indiquent le changement
+                peuvent affecter l\'état des éléments clés de l\'espace conservé.</br >' .
+            '<b>Tendance des éléments clés de l\'espace conservé</b>: Les tendances actuelles des éléments clés indiquent le changement
                 dans la quantité de services écosystémiques fournis ou dans la taille-surface des éléments clés de la biodiversité.
                 Pour les services écosystémiques, il peut s\'agir de la quantité de services fournis, pour l\'élément clé
                 de la biodiversité, il peut s\'agir de la taille de la population (espèce), de la superficie (habitats,
                 couverture terrestre) ou de la quantité de production écologique.</br >' .
             '<b>Menaces</b>: Activités ou processus humains qui ont impacté, impactent ou peuvent impacter l’élément clé
-                de l\'AMCE évalué.</br >',
+                de l\'espace conservé évalué.</br >',
         'ratingLegend' => [
             'Support' => [
                 '0' => 'Pas ou très peu d\'appui : La partie prenante n\'apporte pas ou très peu d\'appui dans la gestion et la gouvernance de l\'espèce ou des services écosystémiques.',
@@ -700,9 +700,9 @@ return [
 
     'AnalysisStakeholdersObjectives' => [
         'module_info' =>
-            'Établir et décrire les objectifs de conservation pour les parties prenantes analyse des éléments clés de l\'AMCE.
+            'Établir et décrire les objectifs de conservation pour les parties prenantes analyse des éléments clés de l\'espace conservé.
             Les objectifs inscrits ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification,
-            la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l\'AMCE.'
+            la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l\'espace conservé.'
     ],
 
 ];

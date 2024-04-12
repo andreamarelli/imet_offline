@@ -50,49 +50,20 @@ class KeyElementsImpact extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function getPredefined($form_id = null): array
     {
-        $form_id = $empty_record['FormID'];
-
-        $preLoaded = [
-            'field' => 'KeyElement',
-            'values' => [
-                'group0' =>
-                    Modules\Context\AnimalSpecies::getModule($form_id)
-                        ->filter(function($item){
-                            return !empty($item['species']);
-                        })
-                        ->pluck('species')
-                        ->map(function($item){
-                            return Str::contains($item, '|')
-                                ? Animal::getScientificName($item)
-                                : $item;
-                        })
-                        ->toArray(),
-                'group1' =>
-                    Modules\Context\VegetalSpecies::getModule($form_id)
-                        ->filter(function($item){
-                            return !empty($item['species']);
-                        })
-                        ->pluck('species')
-                        ->toArray(),
-                'group2' =>
-                    Modules\Context\Habitats::getModule($form_id)
-                        ->filter(function($item){
-                            return !empty($item['EcosystemType']);
-                        })
-                        ->pluck('EcosystemType')
-                        ->map(function($item){
-                            $labels = SelectionList::getList('ImetOECM_Habitats');
-                            return array_key_exists($item, $labels) ?
-                                $labels[$item]
-                                : null;
-                        })
-                        ->toArray()
+        $predefined_values = $form_id!==null
+            ? [
+                'group0' => Modules\Context\AnimalSpecies::getReferenceList($form_id, 'species'),
+                'group1' => Modules\Context\VegetalSpecies::getReferenceList($form_id, 'species'),
+                'group2' => Modules\Context\Habitats::getReferenceList($form_id, 'EcosystemType')
             ]
-        ];
+            : [];
 
-        return parent::arrange_records($preLoaded, $records, $empty_record);
+        return [
+            'field' => static::$DEPENDENCY_ON,
+            'values' => $predefined_values
+        ];
     }
     
 }

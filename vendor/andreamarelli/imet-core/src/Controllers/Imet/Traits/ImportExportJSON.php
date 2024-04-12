@@ -53,11 +53,11 @@ trait ImportExportJSON
             $import = new static();
             //and then check if is zip or json
             if (in_array($ext, ['zip'])) {
-                $uploaded_path = Storage::disk(File::TEMP_STORAGE)->path( $uploaded['temp_filename']);
+                $uploaded_path = Storage::disk(File::TEMP_STORAGE)->path($uploaded['temp_filename']);
                 $extractFiles = Zip::extract($uploaded_path);
                 $num_extracted = 0;
                 foreach ($extractFiles as $item) {
-                    if(Str::endsWith($item, '.json') && $num_extracted < 10){
+                    if (Str::endsWith($item, '.json') && $num_extracted < 10) {
                         $json = json_decode(Upload::getUploadFileContent(['temp_filename' => $item]), true);
                         $files[] = $import->import(new Request(), $json, false);
                         Storage::disk(File::TEMP_STORAGE)->delete($item);
@@ -174,7 +174,7 @@ trait ImportExportJSON
 
         //retrieve countries labels and ids in an array for selections
         $countries = Country::all()->sortBy(Country::LABEL)->keyBy('iso3')->toArray();
-        $countries = array_map(function ($item){
+        $countries = array_map(function ($item) {
             return $item['name'];
         }, $countries);
 
@@ -189,17 +189,17 @@ trait ImportExportJSON
         }
 
         return view(static::$form_view_prefix . '.tools.export_csv',
-                    [
-                        'modules' => $modules_final_list,
-                        'imet_keys' => $imet_keys,
-                        'imet_eval_keys' => $imet_eval_keys,
-                        'countries' => $countries,
-                        'years' => $filters['Year'],
-                        'wdpa' => $wdpa_list,
-                        'request' => $request,
-                        'method' => 'GET',
-                        'results' => $results
-                    ]
+            [
+                'modules' => $modules_final_list,
+                'imet_keys' => $imet_keys,
+                'imet_eval_keys' => $imet_eval_keys,
+                'countries' => $countries,
+                'years' => $filters['Year'],
+                'wdpa' => $wdpa_list,
+                'request' => $request,
+                'method' => 'GET',
+                'results' => $results
+            ]
         );
     }
 
@@ -216,7 +216,7 @@ trait ImportExportJSON
 
         $files = [];
         foreach ($imetIds as $imet) {
-            $files[] = $this->export($imet, true, false);
+            $files[] = $this->export($imet, false, true, false);
         }
         $path = $files[0];
         if (count($files) > 1) {
@@ -227,24 +227,20 @@ trait ImportExportJSON
     }
 
     /**
-     * Export the full IMET form in json
+     * Export the IMET form in json
      *
-     * @param Imet\v1\Imet|Imet\v2\Imet|Imet\oecm\Imet $item
-     * @param bool $to_file
-     * @param bool $download
-     * @return BinaryFileResponse|array
      * @throws AuthorizationException
      */
-    public function export($item, bool $to_file = true, bool $download = true)
+    public function export($item, bool $exclude_attachments = false, bool $to_file = true, bool $download = true): BinaryFileResponse|array|string
     {
-        $this->authorize('export', $item);
+        $this->authorize('export', (static::$form_class)::find($item));
 
-        if(is_string($item)){
-            $imet_id = $item;
-            $imet = (static::$form_class)::find($imet_id);
-        } else {
+        if ($item instanceof Imet\Imet) {
             $imet_id = $item->getKey();
             $imet = $item;
+        } else {
+            $imet_id = $item;
+            $imet = (static::$form_class)::find($item);
         }
 
         $imet_form = $imet
@@ -254,39 +250,35 @@ trait ImportExportJSON
         $imet_form['imet_version'] = imet_offline_version();
 
         // #####  IMET V1  #####
-        if($imet_form['version'] === Imet\Imet::IMET_V1){
+        if ($imet_form['version'] === Imet\Imet::IMET_V1) {
             $json = [
                 'Imet' => $imet_form,
                 'Encoders' => Imet\Encoder::exportModule($imet_id),
-                'Context' => Imet\v1\Imet::exportModules($imet_id),
-                'Evaluation' => Imet\v1\Imet_Eval::exportModules($imet_id),
+                'Context' => Imet\v1\Imet::exportModules($imet_id, $exclude_attachments),
+                'Evaluation' => Imet\v1\Imet_Eval::exportModules($imet_id, $exclude_attachments),
                 'Report' => Imet\Report::export($imet_id)
             ];
-        }
-
-        // #####  IMET V2  #####
-        elseif($imet_form['version'] === Imet\Imet::IMET_V2){
+        } // #####  IMET V2  #####
+        elseif ($imet_form['version'] === Imet\Imet::IMET_V2) {
             $json = [
                 'Imet' => $imet_form,
                 'Encoders' => Imet\Encoder::exportModule($imet_id),
-                'Context' => Imet\v2\Imet::exportModules($imet_id),
-                'Evaluation' => Imet\v2\Imet_Eval::exportModules($imet_id),
+                'Context' => Imet\v2\Imet::exportModules($imet_id, $exclude_attachments),
+                'Evaluation' => Imet\v2\Imet_Eval::exportModules($imet_id, $exclude_attachments),
                 'Report' => Imet\Report::export($imet_id)
             ];
-        }
-
-        // #####  IMET OECM  #####
-        elseif($imet_form['version'] === Imet\Imet::IMET_OECM){
+        } // #####  IMET OECM  #####
+        elseif ($imet_form['version'] === Imet\Imet::IMET_OECM) {
             $json = [
                 'Imet' => $imet_form,
                 'Encoders' => Imet\oecm\Encoder::exportModule($imet_id),
-                'Context' => Imet\oecm\Imet::exportModules($imet_id),
-                'Evaluation' => Imet\oecm\Imet_Eval::exportModules($imet_id),
+                'Context' => Imet\oecm\Imet::exportModules($imet_id, $exclude_attachments),
+                'Evaluation' => Imet\oecm\Imet_Eval::exportModules($imet_id, $exclude_attachments),
                 'Report' => Imet\oecm\Report::export($imet_id)
             ];
         }
 
-        if(ProtectedAreaNonWdpa::isNonWdpa($imet_form['wdpa_id'])){
+        if (ProtectedAreaNonWdpa::isNonWdpa($imet_form['wdpa_id'])) {
             $json['NonWdpaProtectedArea'] = ProtectedAreaNonWdpa::export($imet_form['wdpa_id']);
         }
 
@@ -300,6 +292,11 @@ trait ImportExportJSON
         } else {
             return $json;
         }
+    }
+
+    public function export_no_attachments($item, bool $to_file = true, bool $download = true): BinaryFileResponse|array
+    {
+       return $this->export($item, true);
     }
 
     /**
@@ -335,13 +332,11 @@ trait ImportExportJSON
             }
 
 
-            if($json['Imet']['version'] === Imet\Imet::IMET_V1){
+            if ($json['Imet']['version'] === Imet\Imet::IMET_V1) {
                 $imet = (new Imet\v1\Imet($json['Imet']))->fill($json['Imet']);
-            }
-            else if($json['Imet']['version'] === Imet\Imet::IMET_V2){
+            } else if ($json['Imet']['version'] === Imet\Imet::IMET_V2) {
                 $imet = (new Imet\v2\Imet($json['Imet']))->fill($json['Imet']);
-            }
-            else if($json['Imet']['version'] === Imet\Imet::IMET_OECM){
+            } else if ($json['Imet']['version'] === Imet\Imet::IMET_OECM) {
                 $imet = (new Imet\oecm\Imet($json['Imet']))->fill($json['Imet']);
             }
 
@@ -352,7 +347,7 @@ trait ImportExportJSON
             DB::beginTransaction();
 
             // Non-Wdpa protected area
-            if(array_key_exists('NonWdpaProtectedArea', $json)){
+            if (array_key_exists('NonWdpaProtectedArea', $json)) {
                 $wdpa_id = ProtectedAreaNonWdpa::import($json['NonWdpaProtectedArea']);
                 $json['Imet']['wdpa_id'] = $wdpa_id;
             }
@@ -374,7 +369,7 @@ trait ImportExportJSON
             }
         }
 
-        if(!$returnJson){
+        if (!$returnJson) {
             return $response;
         }
 
@@ -401,29 +396,25 @@ trait ImportExportJSON
             $modules_imported['Context'] = Imet\v1\Imet::importModules($json['Context'], $formID, $imet_version);
             $modules_imported['Evaluation'] = Imet\v1\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
             Imet\Encoder::importModule($formID, $json['Encoders'] ?? null);
-            if($with_report){
+            if ($with_report) {
                 Imet\Report::import($formID, $json['Report'] ?? null);
             }
-        }
-
-        // #####  IMET V2  #####
+        } // #####  IMET V2  #####
         elseif ($version === Imet\Imet::IMET_V2) {
             $formID = Imet\v2\Imet::importForm($json['Imet']);
             $modules_imported['Context'] = Imet\v2\Imet::importModules($json['Context'], $formID, $imet_version);
             $modules_imported['Evaluation'] = Imet\v2\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
             Imet\Encoder::importModule($formID, $json['Encoders'] ?? null);
-            if($with_report){
+            if ($with_report) {
                 Imet\Report::import($formID, $json['Report'] ?? null);
             }
-        }
-
-        // #####  IMET OECM  #####
+        } // #####  IMET OECM  #####
         elseif ($version === Imet\Imet::IMET_OECM) {
             $formID = Imet\oecm\Imet::importForm($json['Imet']);
             $modules_imported['Context'] = Imet\oecm\Imet::importModules($json['Context'], $formID, $imet_version);
             $modules_imported['Evaluation'] = Imet\oecm\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
             Imet\oecm\Encoder::importModule($formID, $json['Encoders'] ?? null);
-            if($with_report){
+            if ($with_report) {
                 Imet\oecm\Report::import($formID, $json['Report'] ?? null);
             }
         }

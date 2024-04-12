@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('FILESYSTEM_DISK', 'local'),
 
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ return [
     |
     | Here you may configure as many filesystem "disks" as you wish, and you
     | may even configure multiple disks of the same driver. Defaults have
-    | been setup for each driver as an example of the required options.
+    | been set up for each driver as an example of the required values.
     |
     | Supported Drivers: "local", "ftp", "sftp", "s3"
     |
@@ -33,6 +33,7 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
+            'throw' => false,
         ],
 
         'public' => [
@@ -40,23 +41,27 @@ return [
             'root' => storage_path('app/public'),
             'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
+            'throw' => false,
         ],
 
         'temp' => [
             'driver' => 'local',
             'root' => storage_path('app/temp'),
             'visibility' => 'private',
+            'throw' => false,
         ],
 
         'imet_db_sql' => [
             'driver' => 'local',
             'root' => base_path('vendor/andreamarelli/imet-core/database'),
             'visibility' => 'private',
+            'throw' => false,
         ],
 
         'public_folder' => [
             'driver' => 'local',
-            'root' => public_path()
+            'root' => public_path(),
+            'throw' => false,
         ]
 
 

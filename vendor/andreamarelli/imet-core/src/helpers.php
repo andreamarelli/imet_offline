@@ -5,6 +5,13 @@ use Illuminate\Support\Str;
 
 
 /**
+ * @return mixed
+ */
+function is_cache_scores_enabled(){
+    return env("CACHED_SCORES", false);
+}
+
+/**
  * Check if App::environment is IMET related (ex. imetoffline or imetglobal)
  *
  * @return bool
@@ -33,7 +40,7 @@ function imet_offline_version()
  */
 function imet_selection_lists(string $type): array
 {
-    $list  = [];
+    $list = [];
 
     if (Str::startsWith($type, 'ImetV1')
         || Str::startsWith($type, 'ImetV2')
@@ -50,7 +57,7 @@ function imet_selection_lists(string $type): array
             $list = \AndreaMarelli\ImetCore\Models\Currency::imetV1List();
         } elseif ($matches[1] != "") {
 
-            $list = trans('imet-core::'.strtolower($matches[1]).'_lists.' . $matches[2]);
+            $list = trans('imet-core::' . strtolower($matches[1]) . '_lists.' . $matches[2]);
         }
 
     }

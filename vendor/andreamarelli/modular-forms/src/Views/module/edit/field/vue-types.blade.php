@@ -98,12 +98,12 @@ $other_attributes = $other ?? '';
 @elseif($type==='selector-species_animal')
     <selector-species_animal
             {!! $vue_attributes !!}
-            search-url="ajax/search/species"
+            search-url="/ajax/search/species"
     ></selector-species_animal>
 @elseif($type==='selector-species_animal_withFreeText')
     <selector-species_animal
             {!! $vue_attributes !!}
-            search-url="ajax/search/species"
+            search-url="/ajax/search/species"
             :enable-free-text=true
     ></selector-species_animal>
 

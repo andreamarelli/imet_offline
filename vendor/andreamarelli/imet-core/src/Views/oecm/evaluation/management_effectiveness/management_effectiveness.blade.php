@@ -18,10 +18,12 @@
                 'item_id' => $item_id
             ])
             {{-- step --}}
-            @include('imet-core::oecm.evaluation.management_effectiveness.step', [
-                'item_id' =>$item_id,
-                'step' => $step
-            ])
+            @if($step!=='objectives')
+                @include('imet-core::oecm.evaluation.management_effectiveness.step', [
+                    'item_id' =>$item_id,
+                    'step' => $step
+                ])
+            @endif
         </div>
     </div>
 

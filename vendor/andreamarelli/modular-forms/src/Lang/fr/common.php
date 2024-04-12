@@ -38,6 +38,7 @@ return [
     'xls'               => 'générer XLS',
     'pdf'               => 'générer PDF',
     'export'            => 'exporter',
+    'export_no_attachments' => 'exporter sans attachements',
     'import'            => 'importer',
     'confirm_select'  => 'confirmer la sélection',
     'select_item'       => 'sélectionner un élément',

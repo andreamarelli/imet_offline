@@ -8,8 +8,9 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesIntervie
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewers;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
+use AndreaMarelli\ImetCore\Services\Scores\OecmScores;
 use AndreaMarelli\ModularForms\Helpers\Type\Chars;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -108,14 +109,9 @@ class Imet extends BaseImetForm
     }
 
     /**
-     * Retrieve the IMET assessments list (clean, without statistics):  V1 & v2 merged
-     *
-     * @param Request $request
-     * @param array $relations
-     * @param bool $only_allowed_wdpas
-     * @return mixed
+     * Retrieve the OECM assessments list (clean, without statistics)
      */
-    public static function get_assessments_list(Request $request, array $relations = [], bool $only_allowed_wdpas = false)
+    public static function get_assessments_list(Request $request, array $relations = [], bool $only_allowed_wdpas = false, array $countries = []): Collection
     {
         $allowed_wdpas = $only_allowed_wdpas
             ? Role::allowedWdpas()
@@ -160,7 +156,7 @@ class Imet extends BaseImetForm
                 ];
 
                 // Add radar
-                $item['assessment_radar'] = OEMCStatisticsService::get_radar_scores($item);
+                $item['assessment_radar'] = OecmScores::get_radar($item, true);
 
                 // Non WDPA
                 if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
@@ -204,14 +200,18 @@ class Imet extends BaseImetForm
     {
         $return = parent::updateModuleAndForm($item, $request);
 
+        // backup to JSON
         if ($return['status'] == 'success') {
             (new Controller())->backup($item, Imet::version);
         }
 
+        // Update encoder UPDATED_AT
         $user_info = Auth::user()->getInfo();
         unset($user_info['country']);
-
         Encoder::touchOnFormUpdate($item, $user_info);
+
+        // Refresh scores
+        OecmScores::refresh_scores($item);
 
         return $return;
     }

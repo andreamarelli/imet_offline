@@ -1,6 +1,5 @@
 <?php
 
-use AndreaMarelli\ImetCore\Controllers\DevUsersController;
 use AndreaMarelli\ImetCore\Controllers\Imet;
 use AndreaMarelli\ImetCore\Controllers\Imet\oecm;
 use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController;
@@ -10,7 +9,7 @@ use AndreaMarelli\ImetCore\Controllers\Imet\v2;
 use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
 use AndreaMarelli\ImetCore\Controllers\SpeciesController;
 use AndreaMarelli\ImetCore\Controllers\UsersController;
-use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 const IMET_PREFIX = Imet\Controller::ROUTE_PREFIX;
@@ -21,18 +20,27 @@ const OECM_ROUTE_PREFIX = oecm\Controller::ROUTE_PREFIX;
 
 Route::group(['middleware' => ['setLocale', 'web']], function () {
 
+    // Old routes: to be kept for the moment rto ensure backwards compatibility
+    Route::get('/{url}', function ($url) {
+        return Redirect::to('imet/');
+    })->where(['url' => 'admin/imet|admin/imet/v1|admin/imet/v2']);
+    Route::get('/{url}', function ($url) {
+        return Redirect::to('oecm/');
+    })->where(['url' => 'admin/oecm']);
+
     /*
     |--------------------------------------------------------------------------
     | IMET Routes
     |--------------------------------------------------------------------------
     */
-    Route::group(['prefix' => 'admin/imet', 'middleware' => 'auth'], function (){
+    Route::group(['prefix' => 'imet', 'middleware' => 'auth'], function (){
 
         // ####  common routes (v1 & v2) ####
         Route::get('import',        [Imet\Controller::class, 'import_view'])->name(IMET_PREFIX.'import_view');
         Route::post('import',      [Imet\Controller::class, 'import'])->name(IMET_PREFIX.'import');
         Route::post('ajax/upload', [Imet\Controller::class, 'upload'])->name(IMET_PREFIX.'upload_json');
         Route::match(['get', 'post'],'/',      [Imet\Controller::class, 'index'])->name(IMET_PREFIX.'index');
+
 
         // #### IMET Version 1 ####
         Route::group(['prefix' => 'v1'], function () {
@@ -43,6 +51,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::match(['get','post'],'export_view',        [v1\Controller::class, 'export_view'])->name(V1_ROUTE_PREFIX.'export_view');
             Route::get('{item}/print',  [v1\Controller::class, 'print']);
             Route::get('{item}/export', [v1\Controller::class, 'export']);
+            Route::get('{item}/export_no_attachments', [v1\Controller::class, 'export_no_attachments']);
             Route::post('export_batch',        [v1\Controller::class, 'export_batch'])->name(V1_ROUTE_PREFIX.'export_batch');
             Route::get('import',        [Imet\Controller::class, 'import_view'])->name(V1_ROUTE_PREFIX.'import_view');    // alias
             Route::post('import',      [Imet\Controller::class, 'import'])->name(V1_ROUTE_PREFIX.'import');    // alias
@@ -82,6 +91,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::match(['get','post'],'export_view',        [v2\Controller::class, 'export_view'])->name(V2_ROUTE_PREFIX.'export_view');
             Route::get('{item}/print',       [v2\Controller::class, 'print']);
             Route::get('{item}/export', [v2\Controller::class, 'export']);
+            Route::get('{item}/export_no_attachments', [v2\Controller::class, 'export_no_attachments']);
             Route::post('export_batch',        [v2\Controller::class, 'export_batch'])->name(V2_ROUTE_PREFIX.'export_batch');
             Route::get('import',        [Imet\Controller::class, 'import_view'])->name(V2_ROUTE_PREFIX.'import_view');    // alias
             Route::post('import',      [Imet\Controller::class, 'import'])->name(V2_ROUTE_PREFIX.'import');    // alias
@@ -155,23 +165,24 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::post('protected_areas_labels', [ProtectedAreaController::class, 'get_pairs'])->name('imet-core::labels_pas');
             Route::post('users', [UsersController::class, 'search'])->name('imet-core::search_users');
 
+
         });
 
     });
-
 
     /*
     |--------------------------------------------------------------------------
     | IMET OECM Routes
     |--------------------------------------------------------------------------
     */
-    Route::group(['prefix' => 'admin/oecm', 'middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'oecm', 'middleware' => 'auth'], function () {
 
         Route::match(['get', 'post'],'/',[oecm\Controller::class, 'index'])->name(OECM_ROUTE_PREFIX.'index');
-        
+
         Route::delete('{item}',         [oecm\Controller::class, 'destroy']);
         Route::get('{item}/print',      [oecm\Controller::class, 'print']);
         Route::get('{item}/export',     [oecm\Controller::class, 'export']);
+        Route::get('{item}/export_no_attachments', [oecm\Controller::class, 'export_no_attachments']);
         Route::match(['get','post'],'export_view',        [oecm\Controller::class, 'export_view'])->name(OECM_ROUTE_PREFIX.'export_view');
         Route::post('export_batch',        [oecm\Controller::class, 'export_batch'])->name(OECM_ROUTE_PREFIX.'export_batch');
         Route::get('{item}/merge',  [oecm\Controller::class, 'merge_view'])->name(OECM_ROUTE_PREFIX.'merge_view');
@@ -201,30 +212,10 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::get('{item}/edit',   [oecm\ReportController::class, 'report'])->name(OECM_ROUTE_PREFIX.'report_edit');
             Route::get('{item}/show',   [oecm\ReportController::class, 'report_show'])->name(OECM_ROUTE_PREFIX.'report_show');
             Route::patch('{item}',      [oecm\ReportController::class, 'report_update'])->name(OECM_ROUTE_PREFIX.'report_update');
+            Route::get('objectives/{form_id}',      [oecm\ReportController::class, 'get_objectives'])->name(OECM_ROUTE_PREFIX.'report_objectives');
         });
 
     });
-
-    /*
-    |--------------------------------------------------------------------------
-    | Management Routes
-    |--------------------------------------------------------------------------
-    */
-    Route::get('users/{role_type?}', [UsersController::class, 'index'])->name('imet-core::users');
-    Route::patch('users', [UsersController::class, 'update_roles'])->name('imet-core::users_update');
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | Development Routes
-    |--------------------------------------------------------------------------
-    */
-    if(App::environment('imetglobal_dev')) {
-
-        Route::get('create_dev_users', [DevUsersController::class, 'create_dev_users'])->name('imet-core::create_dev_users');
-        Route::post('change_user', [DevUsersController::class, 'change_user'])->name('imet-core::change_user');
-
-    }
 
 });
 

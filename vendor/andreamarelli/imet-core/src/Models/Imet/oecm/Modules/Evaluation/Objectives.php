@@ -14,7 +14,7 @@ class Objectives extends Modules\Component\ImetModule_Eval
 
     protected static $DEPENDENCY_ON = 'Objective';
     protected static $DEPENDENCIES = [
-        [AchievedObjectives::class, 'Aspect']
+        [AchievedObjectives::class, 'Objective']
     ];
 
     public function __construct(array $attributes = []) {
@@ -26,7 +26,6 @@ class Objectives extends Modules\Component\ImetModule_Eval
             ['name' => 'Objective',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.Objectives.fields.Objective')],
             ['name' => 'Existence',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::oecm_evaluation.Objectives.fields.Existence')],
             ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_evaluation.Objectives.fields.EvaluationScore')],
-            ['name' => 'IncludeInPlanning',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::oecm_evaluation.Objectives.fields.IncludeInPlanning')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.Objectives.fields.Comments')],
         ];
 
@@ -39,34 +38,47 @@ class Objectives extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    /**
-     * Preload data from C4
-     *
-     * @param $predefined_values
-     * @param $records
-     * @param $empty_record
-     * @return array
-     */
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function getPredefined($form_id = null): array
     {
-        $form_id = $empty_record['FormID'];
+        $key_elements = $form_id != null
+            ? array_merge(
+                KeyElements::getPrioritizedElements($form_id),
+                Designation::getPrioritizedElements($form_id),
+                SupportsAndConstraintsIntegration::getPrioritizedElements($form_id),
+                ThreatsIntegration::getPrioritizedElements($form_id)
+            )
+            : [];
 
-        $key_elements = array_merge(
-            KeyElements::getPrioritizedElements($form_id),
-            Designation::getPrioritizedElements($form_id),
-            SupportsAndConstraintsIntegration::getPrioritizedElements($form_id),
-            ThreatsIntegration::getPrioritizedElements($form_id)
-        );
-
-        $preLoaded = [
-            'field' => 'Objective',
+        return [
+            'field' => static::$DEPENDENCY_ON,
             'values' => [
                 'group0' => [],
                 'group1' => $key_elements
             ]
         ];
+    }
 
-        return parent::arrange_records($preLoaded, $records, $empty_record);
+    protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
+    {
+        // Get list of values (of reference field) from DB and from updated records
+        $existing_values = static::getModule($form_id)
+            ->filter(function($item){
+                return $item['group_key']==='group0'
+                    || $item['Existence'];
+            })
+            ->pluck($dependency_on)
+            ->toArray();
+        $updated_values = collect($records)
+            ->filter(function($item){
+                return $item['group_key']==='group0'
+                    || $item['Existence'];
+            })
+            ->pluck($dependency_on)
+            ->toArray();
+
+        // Make diff to find out what to drop
+        $to_be_dropped = array_diff($existing_values, $updated_values);
+        return array_values($to_be_dropped);
     }
 
 }

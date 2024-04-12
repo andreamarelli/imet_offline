@@ -1,15 +1,12 @@
 HtmlPageDom
 ===========
 
-[![Build Status](https://travis-ci.org/wasinger/htmlpagedom.svg?branch=master)](http://travis-ci.org/wasinger/htmlpagedom)
-[![Code Coverage](https://scrutinizer-ci.com/g/wasinger/htmlpagedom/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/wasinger/htmlpagedom/?branch=master)
+![tests](https://github.com/wasinger/htmlpagedom/actions/workflows/tests.yml/badge.svg?branch=master)
 [![Latest Version](http://img.shields.io/packagist/v/wa72/htmlpagedom.svg)](https://packagist.org/packages/wa72/htmlpagedom)
 [![Downloads from Packagist](http://img.shields.io/packagist/dt/wa72/htmlpagedom.svg)](https://packagist.org/packages/wa72/htmlpagedom)
 
-> __Important__: BC break in version 2.0 for compatibility with Symfony 4.3, see [UPGRADE.md](UPGRADE.md).
-
 `Wa72\HtmlPageDom` is a PHP library for easy manipulation of HTML documents using DOM.
-It requires [DomCrawler from Symfony2 components](https://github.com/symfony/DomCrawler) for traversing 
+It requires [DomCrawler from Symfony components](https://github.com/symfony/DomCrawler) for traversing 
 the DOM tree and extends it by adding methods for manipulating the DOM tree of HTML documents.    
 
 It's useful when you need to not just extract information from an HTML file (what DomCrawler does) but
@@ -22,20 +19,30 @@ the modified page.
 -   `HtmlPageCrawler` extends `Symfony\Components\DomCrawler` by adding jQuery inspired, HTML specific 
     DOM *manipulation* functions such as `setInnerHtml($htmltext)`, `before()`, `append()`, `wrap()`, `addClass()` or `css()`.
     It's like jQuery for PHP: simply select elements of an HTML page using CSS selectors and change their 
-    attributes and content.
+    attributes and content. 
+    
+    [API doc for HtmlPageCrawler](doc/HtmlPageCrawler.md)
 
 -   `HtmlPage` represents one complete HTML document and offers convenience functions like `getTitle()`, `setTitle($title)`,
     `setMeta('description', $description)`, `getBody()`. Internally, it uses the `HtmlPageCrawler` class for 
     filtering and manipulating DOM Elements. Since version 1.2, it offers methods for compressing (`minify()`) and
     prettyprinting (`indent()`) the HTML page.
+    
+    [API doc for HtmlPage](doc/HtmlPage.md)
  
 
-Requirements
-------------
+Requirements and Compatibility
+------------------------------
 
--   PHP 7.1+
--   [Symfony\Components\DomCrawler](https://github.com/symfony/DomCrawler)
--   [Symfony\Components\CssSelector](https://github.com/symfony/CssSelector)
+Version 3.x:
+- PHP 8.x
+- [Symfony\Components\DomCrawler](https://github.com/symfony/DomCrawler) 6.x
+- [Symfony\Components\CssSelector](https://github.com/symfony/CssSelector) 6.x
+
+Version 2.x:
+- PHP 7 or 8
+- [Symfony\Components\DomCrawler](https://github.com/symfony/DomCrawler) version 4.x or 5.x
+- [Symfony\Components\CssSelector](https://github.com/symfony/CssSelector) version 4.x or 5.x
 
 
 Installation
@@ -75,6 +82,7 @@ the selected elements using the following jQuery-like manipulation functions:
 To get the modified DOM as HTML code use `html()` (returns innerHTML of the first node in your crawler object)
 or `saveHTML()` (returns combined "outer" HTML code of all elements in the list).
 
+See the full methods documentation in the generated [API doc for HtmlPageCrawler](doc/HtmlPageCrawler.md)
 
 **Example:**
 
@@ -186,6 +194,8 @@ echo $page->indent()->save();
 echo $page->minify()->save();
 ```
 
+See also the generated [API doc for HtmlPage](doc/HtmlPage.md)
+
 Limitations
 -----------
 
@@ -221,5 +231,5 @@ about 5 minutes. After switching to HtmlPageDom the same script doing the same p
 one second (all on the same server). HtmlPageDom is really fast.
 
 
-© 2019 Christoph Singer, Web-Agentur 72. Licensed under the MIT License.
+© 2012-2022 Christoph Singer. Licensed under the MIT License.
 

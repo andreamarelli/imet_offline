@@ -2,6 +2,7 @@
 
 namespace Pine\I18n;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
@@ -13,7 +14,7 @@ class I18nServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         // Publish the assets
         $this->publishes([
@@ -43,11 +44,19 @@ class I18nServiceProvider extends ServiceProvider
      *
      * @return \Illuminate\Support\Collection
      */
-    protected function translations()
+    protected function translations(): Collection
     {
-        $path = is_dir(base_path('lang')) ? base_path('lang') : resource_path('lang');
+        $path = null;
 
-        $translations = collect(File::directories($path))->mapWithKeys(function ($dir) {
+        if (is_dir(base_path('lang'))) {
+            $path = base_path('lang');
+        } elseif (is_dir(resource_path('lang'))) {
+            $path = resource_path('lang');
+        } elseif (is_dir(base_path('vendor/laravel/framework/src/Illuminate/Translation/lang'))) {
+            $path = base_path('vendor/laravel/framework/src/Illuminate/Translation/lang');
+        }
+
+        $translations = is_null($path) ? collect() : collect(File::directories($path))->mapWithKeys(function ($dir) {
             return [
                 basename($dir) => collect($this->getFiles($dir))->flatMap(function ($file) {
                     return [
@@ -57,17 +66,52 @@ class I18nServiceProvider extends ServiceProvider
             ];
         });
 
+        $jsonTranslations = $this->jsonTranslations($path);
+
         $packageTranslations = $this->packageTranslations();
 
-        return $translations->keys()->merge(
-            $packageTranslations->keys()
-        )->unique()->values()->mapWithKeys(function ($locale) use ($translations, $packageTranslations) {
-            return [
-                $locale => $translations->has($locale)
-                    ? $translations->get($locale)->merge($packageTranslations->get($locale))
-                    : $packageTranslations->get($locale)->merge($translations->get(config('app.fallback_locale'))),
-            ];
-        });
+        return $translations->keys()
+                            ->merge($packageTranslations->keys())
+                            ->merge($jsonTranslations->keys())
+                            ->unique()
+                            ->values()
+                            ->mapWithKeys(function ($locale) use ($translations, $jsonTranslations, $packageTranslations) {
+                                $locales = array_unique([
+                                    $locale,
+                                    config('app.fallback_locale'),
+                                ]);
+
+                                /*
+                                 * Laravel docs describe the following behavior:
+                                 *
+                                 * - Package translations may be overridden with app translations:
+                                 *      https://laravel.com/docs/10.x/localization#overriding-package-language-files
+                                 * - Does a JSON translation file redefine a translation key used by a package or a
+                                 *      PHP defined translation, the package defined or PHP defined tarnslation will be
+                                 *      overridden:
+                                 *      https://laravel.com/docs/10.x/localization#using-translation-strings-as-keys
+                                 *          (Paragraph "Key / File conflicts")
+                                 */
+                                $prioritizedTranslations = [
+                                    $packageTranslations,
+                                    $translations,
+                                    $jsonTranslations,
+                                ];
+
+                                $fullTranslations = collect();
+                                foreach ($prioritizedTranslations as $t) {
+                                    foreach ($locales as $l) {
+                                        if ($t->has($l)) {
+                                            $fullTranslations = $fullTranslations->replace($t->get($l));
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                return [
+                                    $locale => $fullTranslations,
+                                ];
+                            });
     }
 
     /**
@@ -96,6 +140,26 @@ class I18nServiceProvider extends ServiceProvider
         }, collect())->map(function ($item) {
             return collect($item);
         });
+    }
+
+    /**
+     * Get the application json translation files.
+     *
+     * @param string $dir Path to the application active lang dir.
+     * @return \Illuminate\Support\Collection
+     */
+    protected function jsonTranslations($dir)
+    {
+        return collect(File::glob($dir . '/*.json'))
+            ->mapWithKeys(function ($path) {
+                return [
+                    basename($path, '.json') => json_decode(
+                        json: file_get_contents($path),
+                        associative: true,
+                        flags: JSON_THROW_ON_ERROR,
+                    ),
+                ];
+            });
     }
 
     /**

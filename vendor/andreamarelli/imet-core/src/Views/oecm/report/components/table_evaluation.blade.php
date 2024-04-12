@@ -8,13 +8,13 @@
     <!-- context -->
     <tr>
         <td colspan="12" style="background-color: #e5e5e5">
-            <h4>@lang('imet-core::common.steps_eval.context')</h4>
+            <h5>@lang('imet-core::common.steps_eval.context')</h5>
         </td>
     </tr>
     <tr>
         <td colspan="12">
             <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['context']['avg_indicator'], '') !!}>{{ $assessment['context']['avg_indicator']  ?? ' - ' }}</div>
+                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['context']['avg_indicator'], '') !!}>{{ $assessment['context']['avg_indicator']  ?? ' - ' }}</div>
             </h4>
         </td>
 
@@ -33,13 +33,13 @@
     <!-- planning -->
     <tr>
         <td colspan="12" style="background-color: #e5e5e5">
-            <h4>@lang('imet-core::common.steps_eval.planning')</h4>
+            <h5>@lang('imet-core::common.steps_eval.planning')</h5>
         </td>
     </tr>
     <tr>
         <td colspan="12">
             <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['planning']['avg_indicator'], '') !!}>{{ $assessment['planning']['avg_indicator']  ?? ' - ' }}</div>
+                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['planning']['avg_indicator'], '') !!}>{{ $assessment['planning']['avg_indicator']  ?? ' - ' }}</div>
             </h4>
         </td>
     </tr>
@@ -56,14 +56,14 @@
     <!-- inputs -->
     <tr>
         <td colspan="12" style="background-color: #e5e5e5">
-            <h4>@lang('imet-core::common.steps_eval.inputs')</h4>
+            <h5>@lang('imet-core::common.steps_eval.inputs')</h5>
         </td>
     </tr>
     <tr>
         <td colspan="12">
-            <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['inputs']['avg_indicator'], '') !!}>{{ $assessment['inputs']['avg_indicator']  ?? ' - ' }}</div>
-            </h4>
+            <h5>
+                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['inputs']['avg_indicator'], '') !!}>{{ $assessment['inputs']['avg_indicator']  ?? ' - ' }}</div>
+            </h5>
         </td>
     </tr>
     <tr>
@@ -79,27 +79,27 @@
     <!-- process -->
     <tr>
         <td colspan="12" style="background-color: #e5e5e5">
-            <h4>@lang('imet-core::common.steps_eval.process')</h4>
+            <h5>@lang('imet-core::common.steps_eval.process')</h5>
         </td>
     </tr>
     <tr>
         <td colspan="12">
-            <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['process']['avg_indicator'], '') !!}>{{ $assessment['process']['avg_indicator'] ?? ' - ' }}</div>
-            </h4>
+            <h5>
+                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['process']['avg_indicator'], '') !!}>{{ $assessment['process']['avg_indicator'] ?? ' - ' }}</div>
+            </h5>
         </td>
     </tr>
     <tr>
-        <td colspan="5"  style="background-color: #e5e5e5">{{  trans('imet-core::oecm_report.pr1_5') }}
+        <td colspan="5" style="background-color: #e5e5e5">{{  trans('imet-core::oecm_report.pr1_5') }}
             <div>{{ $assessment['process']['pr1_5'] ?? ' - ' }}</div>
         </td>
-        <td colspan="2"  style="background-color: #e5e5e5">{{  trans('imet-core::oecm_report.pr6_7') }}
+        <td colspan="2" style="background-color: #e5e5e5">{{  trans('imet-core::oecm_report.pr6_7') }}
             <div>{{ $assessment['process']['pr6_7'] ?? ' - ' }}</div>
         </td>
-        <td colspan="3"  style="background-color: #e5e5e5">{{  trans('imet-core::oecm_report.pr8_10') }}
+        <td colspan="3" style="background-color: #e5e5e5">{{  trans('imet-core::oecm_report.pr8_10') }}
             <div>{{ $assessment['process']['pr8_10'] ?? ' - ' }}</div>
         </td>
-        <td colspan="2"  style="background-color: #e5e5e5">{{  trans('imet-core::oecm_report.pr11_12') }}
+        <td colspan="2" style="background-color: #e5e5e5">{{  trans('imet-core::oecm_report.pr11_12') }}
             <div>{{ $assessment['process']['pr11_12'] ?? ' - ' }}</div>
         </td>
 
@@ -121,14 +121,14 @@
     <!-- outputs -->
     <tr>
         <td colspan="12" style="background-color: #e5e5e5">
-            <h4>@lang('imet-core::common.steps_eval.outputs')</h4>
+            <h5>@lang('imet-core::common.steps_eval.outputs')</h5>
         </td>
     </tr>
     <tr>
         <td colspan="12">
-            <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['outputs']['avg_indicator'], '') !!}>{{ $assessment['outputs']['avg_indicator']  ?? ' - ' }}</div>
-            </h4>
+            <h5>
+                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['outputs']['avg_indicator'], '') !!}>{{ $assessment['outputs']['avg_indicator']  ?? ' - ' }}</div>
+            </h5>
         </td>
     </tr>
     <tr>
@@ -141,14 +141,14 @@
     <!-- outcomes -->
     <tr>
         <td colspan="12" style="background-color: #e5e5e5">
-            <h4>@lang('imet-core::common.steps_eval.outcomes')</h4>
+            <h5>@lang('imet-core::common.steps_eval.outcomes')</h5>
         </td>
     </tr>
-    <tr >
+    <tr>
         <td colspan="12">
-            <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['outcomes']['avg_indicator'], '') !!}>{{ $assessment['outcomes']['avg_indicator']  ?? ' - ' }}</div>
-            </h4>
+            <h5>
+                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['outcomes']['avg_indicator'], '') !!}>{{ $assessment['outcomes']['avg_indicator']  ?? ' - ' }}</div>
+            </h5>
         </td>
     </tr>
     <tr>

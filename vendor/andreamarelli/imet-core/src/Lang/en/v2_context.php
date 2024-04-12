@@ -59,7 +59,7 @@ return [
             'ReferenceTextValues' => 'What is the importance of the protected area and its main values for which it has been designated? (Provide a list and then a brief description)',
         ],
         'module_info' => '<b>Introduction to typology</b>: IMET identifies three categories of protected areas: (1) Terrestrial (2)
-            Marine and Coastal (3) OECM - Other Effective Conservation Measures by Area.<br />In the Governance section (CTX 1.2)
+            Marine and Coastal (3) conserved area.<br />In the Governance section (CTX 1.2)
             you can refine the management and governance typology of these three protected area typologies. If you are analysing a
             Protected and Conserved Areas (PCAs), you can specify the territorial context in CTX 2.4.Protected area (general definition):
             A protected area is a clearly defined geographical space, recognised, dedicated and managed, through legal or other effective means,

@@ -29,6 +29,8 @@ return [
     'marine' => 'marítima e costeira',
 
     'dopa_not_available' => 'DOPA serviços não disponíveis',
+    'no' => 'Não',
+    'yes' => 'Sim',
 
     'languages' => [
         'fr'        => 'Francês',
@@ -92,7 +94,6 @@ return [
     ],
 
     'steps_eval' => [
-        'general_info'              => 'Informacao Geral',
         'context'                   => 'Contexto de Gestão',
         'planning'                  => 'Planeamento',
         'inputs'                    => 'Recursos',
@@ -101,6 +102,7 @@ return [
         'outcomes'                  => 'Resultados',
         'objectives'                => 'Objectivos',
         'management_effectiveness'  => 'Efectividade de Gestão',
+        'cross_analysis'  => 'Análise Cruzada',
     ],
 
     'Create' => [

@@ -2,7 +2,7 @@
 /** @var array $stake_holders */
 ?>
 
-<h3>2. @lang('imet-core::oecm_report.stakeholder_users_managing_oecm')</h3>
+<h4>2. @lang('imet-core::oecm_report.stakeholder_users_managing_oecm')</h4>
 <table>
     <tr>
         <th>

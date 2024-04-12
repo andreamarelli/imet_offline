@@ -27,8 +27,10 @@ return [
 
     'terrestrial' => 'terrestre',
     'marine' => 'marítimo y costero',
-    
+
     'dopa_not_available' => 'Servicios DOPA no disponibles',
+    'no' => 'No',
+    'yes' => 'Sí',
 
     'languages' => [
         'fr'        => 'Francés',
@@ -92,7 +94,6 @@ return [
     ],
 
     'steps_eval' => [
-        'general_info'              => 'Información general',
         'context'                   => 'Contexto de gestión',
         'planning'                  => 'Planificación',
         'inputs'                    => 'Insumos',
@@ -101,6 +102,7 @@ return [
         'outcomes'                  => 'Efectos/impactos',
         'objectives'                => 'Objetivos',
         'management_effectiveness'  => 'Efectividad de manejo',
+        'cross_analysis'  => 'Análisis cruzado',
     ],
 
     'Create' => [

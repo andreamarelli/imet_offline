@@ -27,24 +27,24 @@ $key_elements_importance = AnalysisStakeholderDirectUsers::calculateKeyElementsI
     <div class="module-body">
         <div style="display: flex; column-gap: 40px;">
 
-            <div>
+            <div style="width: 60%;">
                 <h5>@lang('imet-core::oecm_context.AnalysisStakeholders.elements_importance')</h5>
-                <table class="table module-table">
+                <table class="table module-table summary_table">
                     <thead>
                     <tr>
                         <th>@lang('imet-core::oecm_context.AnalysisStakeholders.element')</th>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholders.importance')</th>
+                        <th style="width: 100px;">@lang('imet-core::oecm_context.AnalysisStakeholders.importance')</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr class="module-table-item" v-for="element in key_elements_importance">
                         <td style="text-align: left;">
                             @{{ element.element }}
-                            <div class="text-left text-xs" style="padding: 4px 4px 0 4px;">
+                            <div class="text-left text-xs" style="padding: 4px 4px 0 4px; font-style: italic;">
                                 <div v-html="key_elements_importance_composition(element)"></div>
                             </div>
                         </td>
-                        <td style="text-align: left;">@{{ element.importance }}</td>
+                        <td style="text-align: center;">@{{ element.importance }}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -52,18 +52,18 @@ $key_elements_importance = AnalysisStakeholderDirectUsers::calculateKeyElementsI
 
             <div>
                 <h5>@lang('imet-core::oecm_context.AnalysisStakeholders.involvement_ranking')</h5>
-                <table class="table module-table">
+                <table class="table module-table summary_table">
                     <thead>
                     <tr>
                         <th></th>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholders.involvement')</th>
+                        <th style="width: 200px;">@lang('imet-core::oecm_context.AnalysisStakeholders.involvement')</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($stakeholders as $stakeholder => $ranking)
                         <tr class="module-table-item">
                             <td style="text-align: left;">{{ $stakeholder }}</td>
-                            <td style="text-align: left;">{{ $ranking }}</td>
+                            <td style="text-align: center;">{{ $ranking }}</td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -77,6 +77,14 @@ $key_elements_importance = AnalysisStakeholderDirectUsers::calculateKeyElementsI
 
 
 @push('scripts')
+
+    <style>
+        .summary_table th,
+        .summary_table td {
+            background-color: #F5F5F5;
+        }
+    </style>
+
     <script>
 
         let module_analysis_stakeholder_summary = new Vue({

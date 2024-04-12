@@ -35,26 +35,26 @@ class CapacityAdequacy extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    /**
-     * Preload data
-     * @param $predefined_values
-     * @param $records
-     * @param $empty_record
-     * @return array
-     */
+    protected static function getPredefined($form_id = null): array
+    {
+        $predefined_values = $form_id!==null
+            ? [
+                'group0' => Modules\Context\ManagementStaff::getModule($form_id)->pluck('Function')->toArray(),
+                'group1' => Modules\Context\Stakeholders::getStakeholders($form_id),
+            ]
+            : [];
+
+        return [
+            'field' => static::$DEPENDENCY_ON,
+            'values' => $predefined_values
+        ];
+    }
+
     protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
         $form_id = $empty_record['FormID'];
 
-        $preLoaded = [
-            'field' => 'Member',
-            'values' => [
-                'group0' => Modules\Context\ManagementStaff::getModule($form_id)->pluck('Function')->toArray(),
-                'group1' => Modules\Context\Stakeholders::getStakeholders($form_id),
-            ]
-        ];
-
-        $records = parent::arrange_records($preLoaded, $records, $empty_record);
+        $records = parent::arrange_records($predefined_values, $records, $empty_record);
 
         $weighted_staff = Modules\Context\ManagementStaff::calculateWeights($form_id);
         $weighted_stakeholder = Modules\Context\Stakeholders::calculateWeights($form_id);

@@ -67,7 +67,7 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
 
     protected static function getPredefined($form_id = null)
     {
-        $predefined_values = (new static())->predefined_values;
+        $predefined_values = parent::getPredefined($form_id);
 
         if($form_id!==null){
             $collection = Modules\Context\ManagementStaff::getModule($form_id);

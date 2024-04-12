@@ -50,7 +50,7 @@ if($definitions['module_type']==='GROUP_ACCORDION'){
 </div>
 
 @if(!$definitions['fixed_rows'])
-    <div v-if="max_rows==null || records.length < max_rows" class="module-row">
+    <div v-if="max_rows==null || {{ $accordion_item_record }}.length < max_rows" class="module-row">
         @include('modular-forms::buttons.add_item')
     </div>
 @endif

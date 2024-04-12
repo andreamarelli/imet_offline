@@ -24,8 +24,8 @@
         "webpack-merge": "^5.8.0"
     },
     "dependencies": {
-        "@ckeditor/ckeditor5-build-classic": "^22.0.0",
-        "@ckeditor/ckeditor5-vue": "^1.0.3",
+        "@ckeditor/ckeditor5-build-classic": "^40.0.0",
+        "@ckeditor/ckeditor5-vue2": "^3.0.1",
         "@fortawesome/fontawesome-free": "^5.15.4",
         "@turf/turf": "^5.1.6",
         "autonumeric": "^4.6.0",

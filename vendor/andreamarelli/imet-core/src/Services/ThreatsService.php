@@ -6,12 +6,8 @@ class ThreatsService{
 
     /**
      * Calculate threat's ranking
-     *
-     * @param $form_id
-     * @param $records
-     * @return array
      */
-    public static function calculateRanking($records): array
+    public static function calculateRanking(array $records): array
     {
         return collect($records)
             ->map(function($item){

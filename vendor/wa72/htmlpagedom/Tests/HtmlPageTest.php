@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class HtmlPageTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->root = vfsStream::setup('root');
     }
@@ -90,11 +90,17 @@ END;
 
         $expected =<<<END
 <!DOCTYPE html>
-<html><head><title></title><script>
+<html>
+<head>
+<title></title>
+<script>
 // this will be awesome
 alert('Hello world');
-</script></head><body>
-<h1>Script Test</h1></body></html>
+</script>
+</head>
+<body>
+<h1>Script Test</h1></body>
+</html>
 
 END;
         $this->assertEquals($expected, $newhtml);
@@ -150,7 +156,7 @@ alert('Hello world');
 </head>
 <body>
     <h1>TEST</h1>
-    <p class="">
+    <p>
     asdf jksdlf ajsfk
     <b>jasdf
     jaksfd asdf</b>
@@ -174,7 +180,7 @@ alert('Hello world');
 	</head>
 	<body>
 		<h1>TEST</h1>
-		<p class="">asdf jksdlf ajsfk <b>jasdf jaksfd asdf</b> <a>jasdf jaks</a></p>
+		<p>asdf jksdlf ajsfk <b>jasdf jaksfd asdf</b> <a>jasdf jaks</a></p>
 	</body>
 </html>
 
@@ -315,7 +321,7 @@ END;
     {
         $hp = new HtmlPage('<!DOCTYPE html><html></html>');
         $this->assertInstanceOf('\DOMElement', $hp->getBodyNode());
-        $this->assertEquals('<body></body>', (string) $hp->getBody());    
+        $this->assertEquals('<body></body>', (string) $hp->getBody());
     }
 
     public function testTrimNewlines()
@@ -337,5 +343,28 @@ END;
         $hp = new HtmlPage('<!DOCTYPE html><html><head><title>TEST</title></head></html>');
         $hp->save(vfsStream::url('root/save.html'));
         $this->assertFileExists(vfsStream::url('root/save.html'));
+    }
+
+    public function testEmbeddedScriptWithHtml()
+    {
+        // PHP DOMDocument->loadHTML method tends to "eat" closing tags in html strings within script elements
+        // see https://stackoverflow.com/questions/24575136/domdocument-removes-html-tags-in-javascript-string
+        $html = <<<END
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>test</title>
+</head>
+<body>
+<div>
+    <script>
+        var html = '<b>Status</b><div>' + it_status_text + '</div>';
+    </script>
+</div>
+</body>
+</html>
+END;
+        $hp = new HtmlPage($html);
+        $this->assertEquals($html . "\n", $hp->save());
     }
 }

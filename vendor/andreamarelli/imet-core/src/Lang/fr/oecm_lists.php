@@ -103,7 +103,7 @@ return [
         'provisioning'  => 'Approvisionnement',
         'cultural'      => 'Culturel',
         'regulating'    => 'Régulateur',
-        'supporting'    => 'Porteur',
+        'supporting'    => 'Support',
     ],
 
 

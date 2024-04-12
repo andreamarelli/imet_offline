@@ -1,5 +1,4 @@
-ARG PHP_VERSION=7.4
-FROM php:${PHP_VERSION}-fpm-alpine3.14
+FROM php:8.1-fpm-alpine
 
 # Update
 RUN apk update

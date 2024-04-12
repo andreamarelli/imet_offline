@@ -18,10 +18,12 @@ if($controller === Controllers\Imet\oecm\Controller::class){
     $form_class = Imet\oecm\Imet::class;
     $route_prefix = Controllers\Imet\oecm\Controller::ROUTE_PREFIX;
     $scaling_up_enable = false;
+    $create_title_prefix = 'imet-core::oecm_context.';
 } else {
     $form_class = Imet\Imet::class;
     $route_prefix = Controllers\Imet\v2\Controller::ROUTE_PREFIX;
     $scaling_up_enable = true;
+    $create_title_prefix = 'imet-core::common.';
 }
 
 ?>
@@ -39,12 +41,12 @@ if($controller === Controllers\Imet\oecm\Controller::class){
             <a class="btn-nav rounded"
                href="{{ route($route_prefix.'create') }}">
                 {!! Template::icon('plus-circle', 'white') !!}
-                {{ ucfirst(trans('imet-core::common.Create.title')) }}
+                {{ ucfirst(trans($create_title_prefix.'Create.title')) }}
             </a>
             <a class="btn-nav rounded"
                href="{{ route($route_prefix.'create_non_wdpa') }}">
                 {!! Template::icon('plus-circle', 'white') !!}
-                {{ ucfirst(trans('imet-core::common.CreateNonWdpa.title')) }}
+                {{ ucfirst(trans($create_title_prefix.'CreateNonWdpa.title')) }}
             </a>
             {{-- Import json IMETs --}}
             <a class="btn-nav rounded"
@@ -77,7 +79,6 @@ if($controller === Controllers\Imet\oecm\Controller::class){
         @endcan
 
     </div>
-
 
     @include('imet-core::components.common_filters', [
         'request' => $request,
@@ -135,7 +136,7 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                             <span v-if="item.version==='{{ $form_class::IMET_V2 }}'"
                                   class="badge badge-success">v2</span>
                             <span v-else-if="item.version==='{{ $form_class::IMET_V1 }}'" class="badge badge-secondary">v1</span>
-                            <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'" class="badge badge-info">OECM</span>
+                            <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'" class="badge badge-info">@lang('imet-core::oecm_common.oecm_short')</span>
                         </div>
                         {{-- last update --}}
                         <div>
@@ -188,11 +189,19 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                             @include('imet-core::components.buttons.merge', ['form_class' => $form_class])
                         </span>
 
-                        {{-- Export --}}
-                        @can('export_button', $form_class)
-                            @include('imet-core::components.buttons.export', ['form_class' => $form_class])
-                        @endcan
+                    @endcan
 
+                    {{-- Export --}}
+                    @can('export_button', $form_class)
+                        <span v-if="item.version==='{{ $form_class::IMET_V1 }}'">
+                            @include('imet-core::components.buttons.export', ['version' => $form_class::IMET_V1])
+                        </span>
+                        <span v-else-if="item.version==='{{ $form_class::IMET_V2 }}'">
+                            @include('imet-core::components.buttons.export', ['version' => $form_class::IMET_V2])
+                        </span>
+                        <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'">
+                            @include('imet-core::components.buttons.export', ['version' => $form_class::IMET_OECM])
+                        </span>
                     @endcan
 
                     {{-- Print --}}

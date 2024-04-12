@@ -46,18 +46,16 @@ class PopulateSpecies implements ShouldQueue
      */
     public function __construct()
     {
-        $this->storage_cache = Storage::disk(File::TEMP_STORAGE);
-        $this->storage_csv = Storage::disk('imet_db_sql');
     }
 
     /**
      * Execute the job.
-     *
-     * @return void
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public function handle()
+    public function handle(): void
     {
+        $this->storage_cache = Storage::disk(File::TEMP_STORAGE);
+        $this->storage_csv = Storage::disk('imet_db_sql');
+
         // check common names CSV file exists
         try{
             if(!$this->storage_csv->exists(self::common_names_csv)){
@@ -71,6 +69,7 @@ class PopulateSpecies implements ShouldQueue
         // retrieve common names and countries
         $this->retrieve_common_names();
         $this->countries = Country::all()->pluck('iso3')->toArray();
+
 
         // Execute requests and parse results (per country)
         foreach ($this->countries as $i => $iso3) {

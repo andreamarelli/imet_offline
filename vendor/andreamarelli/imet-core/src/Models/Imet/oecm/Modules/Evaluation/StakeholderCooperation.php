@@ -36,28 +36,25 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    /**
-     * Preload data + weights
-     *
-     * @param $predefined_values
-     * @param $records
-     * @param $empty_record
-     * @return array
-     */
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function getPredefined($form_id = null): array
     {
-        $form_id = $empty_record['FormID'];
-
-        $preLoaded = [
-            'field' => 'Element',
-            'values' => [
+        $predefined_values = $form_id!==null
+            ? [
                 'group0' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_DIRECT),
                 'group1' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_INDIRECT),
             ]
+            : [];
+
+        return [
+            'field' => static::$DEPENDENCY_ON,
+            'values' => $predefined_values
         ];
+    }
 
-        $records = parent::arrange_records($preLoaded, $records, $empty_record);
-
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    {
+        $form_id = $empty_record['FormID'];
+        $records = parent::arrange_records($predefined_values, $records, $empty_record);
         $weight = Modules\Context\Stakeholders::calculateWeights($form_id);
 
         foreach($records as $idx => $record){

@@ -9,7 +9,7 @@
 
     {{-- page title (ribbon) --}}
     @section('admin_page_title')
-        @lang('imet-core::common.imet')
+        @lang('imet-core::common.imet_short'): @lang('imet-core::common.imet')
     @endsection
 
 @endif

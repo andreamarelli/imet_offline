@@ -2,21 +2,21 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-
+use ReflectionException;
 use function view;
 
 
-class ReportController extends Controller
+abstract class ReportController extends Controller
 {
     /**
      * Manage "report" edit route
-     *
-     * @param $item
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException|\ReflectionException
+     * @throws AuthorizationException
      */
-    public function report($item)
+    public function report(int $item): Factory|View
     {
         $imet = (static::$form_class)::find($item);
 
@@ -27,13 +27,10 @@ class ReportController extends Controller
 
     /**
      * Manage "report" edit route
-     *
-     * @param $item
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \ReflectionException
+     * @throws AuthorizationException
+     * @throws ReflectionException
      */
-    public function report_show($item)
+    public function report_show(int $item): Factory|View
     {
         $imet = (static::$form_class)::find($item);
 
@@ -44,18 +41,14 @@ class ReportController extends Controller
 
     /**
      * Manage "report" update route
-     *
-     * @param $item
-     * @param \Illuminate\Http\Request $request
-     * @return string[]
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
-    public function report_update($item, Request $request): array
+    public function report_update(int $item, Request $request): array
     {
         $this->authorize('edit', (static::$form_class)::find($item));
 
         \AndreaMarelli\ImetCore\Models\Imet\v1\Report::updateByForm($item, $request->input('report'));
-        return [ 'status' => 'success' ];
+        return ['status' => 'success'];
     }
 
 }

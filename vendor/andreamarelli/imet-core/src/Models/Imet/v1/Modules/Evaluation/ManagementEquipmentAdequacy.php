@@ -37,9 +37,10 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
 
     }
 
-    protected static function arrange_records_with_predefined($form_id, $records, $empty_record): array
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
-        $predefined_values = static::getPredefined($form_id);
+        $form_id = $empty_record['FormID'];
+
         $new_records = [];
 
         if(count($predefined_values['values'])>1 && count($records)==1){
@@ -58,7 +59,6 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
                 }
             }
             $new_record[$predefined_values['field']] = $predefined_value;
-//            $new_record['__adequacy'] = $predefined_values['additional_values'][$p];
             $new_record['__adequacy'] = $adequacy[$p];
             $new_record['__predefined'] = true;
             $new_records[] = $new_record;

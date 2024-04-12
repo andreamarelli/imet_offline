@@ -1,28 +1,31 @@
 <?php
 /** @var String $mapbox_token */
+/** @var Boolean $script_files */
 
 use \Illuminate\Support\Facades\Route;
 use \Illuminate\Support\Str;
 
 $current_route_name = Route::currentRouteName();
-
+$script_files = $script_files ?? true;
 ?>
 
 {{-- packages --}}
-<script src="{{ asset(mix('modular_forms_vendor.js', 'assets')) }}"></script>
-<link rel="stylesheet" href="{{ asset(mix('modular_forms_vendor.css', 'assets')) }}">
-<script src="{{ asset(mix('modular_forms_index.js', 'assets')) }}"></script>
-<link rel="stylesheet" href="{{ asset(mix('modular_forms_index.css', 'assets')) }}">
-<script src="{{ asset(mix('imet_core_vendor.js', 'assets')) }}"></script>
-<link rel="stylesheet" href="{{ asset(mix('imet_core_vendor.css', 'assets')) }}">
-<script src="{{ asset(mix('imet_core_index.js', 'assets')) }}"></script>
-<link rel="stylesheet" href="{{ asset(mix('imet_core_index.css', 'assets')) }}">
-{{-- vendors --}}
-<script src="{{ asset(mix('vendor.js', 'assets')) }}"></script>
-<link rel="stylesheet" href="{{ asset(mix('vendor.css', 'assets')) }}">
-{{-- local assets --}}
-<script src="{{ asset(mix('index.js', 'assets')) }}"></script>
-<link rel="stylesheet" href="{{ asset(mix('index.css', 'assets')) }}">
+@if($script_files)
+    <script src="{{ asset(mix('modular_forms_vendor.js', 'assets')) }}"></script>
+    <link rel="stylesheet" href="{{ asset(mix('modular_forms_vendor.css', 'assets')) }}">
+    <script src="{{ asset(mix('modular_forms_index.js', 'assets')) }}"></script>
+    <link rel="stylesheet" href="{{ asset(mix('modular_forms_index.css', 'assets')) }}">
+    <script src="{{ asset(mix('imet_core_vendor.js', 'assets')) }}"></script>
+    <link rel="stylesheet" href="{{ asset(mix('imet_core_vendor.css', 'assets')) }}">
+    <script src="{{ asset(mix('imet_core_index.js', 'assets')) }}"></script>
+    <link rel="stylesheet" href="{{ asset(mix('imet_core_index.css', 'assets')) }}">
+    {{-- vendors --}}
+    <script src="{{ asset(mix('vendor.js', 'assets')) }}"></script>
+    <link rel="stylesheet" href="{{ asset(mix('vendor.css', 'assets')) }}">
+    {{-- local assets --}}
+    <script src="{{ asset(mix('index.js', 'assets')) }}"></script>
+    <link rel="stylesheet" href="{{ asset(mix('index.css', 'assets')) }}">
+@endif
 
 <script>
     window.imet_routes = {
@@ -39,8 +42,8 @@ $current_route_name = Route::currentRouteName();
 
 
 <!-- mapbox -->
-@if(Str::contains($current_route_name, 'imet-core::v1_report') ||
-    Str::contains($current_route_name, 'imet-core::v2_report') ||
+@if(Str::contains($current_route_name, 'imet-core::v1.report') ||
+    Str::contains($current_route_name, 'imet-core::v2.report') ||
     Str::contains($current_route_name, 'imet-core::scaling_up'))
         @include('modular-forms::layouts.components.mapbox')
         <script>

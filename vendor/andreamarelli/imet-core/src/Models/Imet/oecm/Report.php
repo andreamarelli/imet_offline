@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm;
 
 use \AndreaMarelli\ImetCore\Models\Imet\Report as BaseReportModel;
+use AndreaMarelli\ImetCore\Services\Reports\OECM;
 
 class Report extends BaseReportModel
 {
@@ -38,7 +39,8 @@ class Report extends BaseReportModel
         'annual_targets2_activity4',
         'annual_targets2_activity5',
         'outcome2',
-        'group_key'
+        'group_key',
+        'objectives'
     ];
 
     protected static $boolean_fields = [
@@ -53,6 +55,24 @@ class Report extends BaseReportModel
         'annual_targets1_activity2_year3',
         'annual_targets1_activity2_year4',
         'annual_targets1_activity2_year5',
+
+        'annual_targets1_activity3_year1',
+        'annual_targets1_activity3_year2',
+        'annual_targets1_activity3_year3',
+        'annual_targets1_activity3_year4',
+        'annual_targets1_activity3_year5',
+
+        'annual_targets1_activity4_year1',
+        'annual_targets1_activity4_year2',
+        'annual_targets1_activity4_year3',
+        'annual_targets1_activity4_year4',
+        'annual_targets1_activity4_year5',
+
+        'annual_targets1_activity5_year1',
+        'annual_targets1_activity5_year2',
+        'annual_targets1_activity5_year3',
+        'annual_targets1_activity5_year4',
+        'annual_targets1_activity5_year5',
 
         'annual_targets2_activity1_year1',
         'annual_targets2_activity1_year2',
@@ -116,7 +136,7 @@ class Report extends BaseReportModel
 
     public static function getSchema()
     {
-        return array_fill_keys(static::$report_fields, null) + array_fill_keys(static::$boolean_fields, false);
+        return array_fill_keys(static::$report_fields, "") + array_fill_keys(static::$boolean_fields, false);
     }
 
     /**

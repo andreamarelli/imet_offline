@@ -14,8 +14,9 @@ class Habitats extends Modules\Component\ImetModule
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCIES = [
-        [Modules\Context\AnalysisStakeholderDirectUsers::class, 'Element'],
-        [Modules\Context\AnalysisStakeholderIndirectUsers::class, 'Element'],
+        [Modules\Evaluation\ThreatsBiodiversity::class, 'EcosystemType'],
+        [Modules\Evaluation\KeyElementsImpact::class, 'EcosystemType'],
+        [Modules\Evaluation\KeyElements::class, 'EcosystemType']
     ];
 
     public function __construct(array $attributes = []) {
@@ -50,16 +51,51 @@ class Habitats extends Modules\Component\ImetModule
      */
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
-        $to_be_dropped = parent::getRecordsToBeDropped($records, $form_id, $dependency_on);
+        // Get list of values (of reference field) from DB and from updated records
+        $existing_values = static::getModule($form_id)
+            ->pluck('EcosystemDescription', 'EcosystemType')
+            ->unique()
+            ->toArray();
+        $updated_values = collect($records)
+            ->pluck('EcosystemDescription', 'EcosystemType')
+            ->unique()
+            ->toArray();
+        $to_be_dropped = array_diff($existing_values, $updated_values);
 
         // ### replace values with labels ###
         $labels =  SelectionList::getList('ImetOECM_Habitats');
-        foreach ($to_be_dropped as $index => $item){
-            if(array_key_exists($item, $labels)){
-                $to_be_dropped[$index] = $labels[$item];
+        $to_be_dropped_new = [];
+        foreach ($to_be_dropped as $type => $description){
+            if(array_key_exists($type, $labels)){
+                $to_be_dropped_new[] = empty($description)
+                    ? $labels[$type]
+                    : $labels[$type] . ' - ' .$description;
             }
+
         }
 
-        return array_values($to_be_dropped);
+        return array_values($to_be_dropped_new);
     }
+
+    /**
+     * Override: replace values with habitat + description
+     */
+    public static function getReferenceList($form_id, $dependency_field): array
+    {
+        return static::getModule($form_id)
+            ->filter(function ($item) {
+                return !empty($item['EcosystemType']);
+            })
+            ->map(function ($item) {
+                $labels = SelectionList::getList('ImetOECM_Habitats');
+                $item['EcosystemType'] = array_key_exists($item['EcosystemType'], $labels) ?
+                    $labels[$item['EcosystemType']]
+                    : null;
+                return empty($item['EcosystemDescription'])
+                    ? $item['EcosystemType']
+                    : $item['EcosystemType'] . ' - ' . $item['EcosystemDescription'];
+            })
+            ->toArray();
+    }
+
 }

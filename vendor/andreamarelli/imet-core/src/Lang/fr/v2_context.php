@@ -58,8 +58,8 @@ return [
             'ReferenceTextValues' => 'Quelle est l’importance de l’aire protégée et les principales valeurs pour lesquelles elle a été désignée? (Fournir une liste, puis une brève description)',
         ],
         'module_info' => '<b>Introduction à la typologie</b>: Introduction à la typologie: IMET identifie trois catégories
-            d’aires protégées: (1) Terrestres (2) Marines et côtières (3) OECM — Autres Mesures de Conservation Efficaces
-            ou AMCE. Dans la section Gouvernance (CTX 1.2), vous pouvez affiner la typologie de gestion et de gouvernance
+            d’aires protégées: (1) Terrestres (2) Marines et côtières (3) Espace conservé. 
+            Dans la section Gouvernance (CTX 1.2), vous pouvez affiner la typologie de gestion et de gouvernance
             de ces trois typologies d’aires protégées. Si vous analysez une aire protégée et conservée (APC), vous pouvez
             préciser le contexte territorial dans le CTX 2.4. Aire protégée (définition générale): Une aire protégée est
             un espace géographique clairement défini, reconnu, dédié et géré, par des moyens légaux ou d’autres moyens efficaces,
@@ -78,7 +78,7 @@ return [
                 historiques et culturelles associées, qui a été réservée par la législation ou par d’autres moyens efficaces,
                 y compris les aspects culturels-traditionnels, de sorte que sa biodiversité marine et/ou côtière bénéficie d’un
                 niveau de protection plus élevé que son environnement» (Convention sur la diversité biologique — CDB)',
-            'oecm' => '(OECM ou AMCE Autres Mesures de Conservation Efficaces ou AMCE) Une zone géographiquement définie autre
+            'oecm' => 'Une zone géographiquement définie autre
                 qu’une aire protégée, qui est régie et gérée de manière à obtenir des résultats positifs et durables à long
                 terme pour la conservation in situ de la biodiversité, avec les fonctions et services écosystémiques associés
                 et, le cas échéant, les valeurs culturelles, spirituelles, socio-économiques et autres valeurs pertinentes au

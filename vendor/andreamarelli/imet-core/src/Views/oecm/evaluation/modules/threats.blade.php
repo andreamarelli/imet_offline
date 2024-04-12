@@ -5,12 +5,27 @@
 
 $threats = trans('imet-core::oecm_lists.Threats');
 $vue_data['threats'] = $threats;
+
+$threats_in_sa2 = collect($vue_data['records'])
+    ->filter(function ($item) {
+        return $item['__count_stakeholders_direct'] !== null
+            || $item['__count_stakeholders_indirect'] !== null;
+    })
+    ->pluck('__threat_key')
+    ->toArray();
+
 ?>
 
 <div>
     @foreach($threats as $threat_key => $threat_label)
         <div class="histogram-row">
-            <div class="histogram-row__title text-left">{{ $threat_label }}</div>
+            <div class="histogram-row__title text-left">
+                @if(in_array($threat_key, $threats_in_sa2))
+                    <b class="highlight">{{ $threat_label }}</b>
+                @else
+                    {{ $threat_label }}
+                @endif
+            </div>
             <div class="histogram-row__value text-right" style="margin-right: 20px;">
                 <b v-html="threat_stats['{{ $threat_key }}'] || '-'"></b>
             </div>

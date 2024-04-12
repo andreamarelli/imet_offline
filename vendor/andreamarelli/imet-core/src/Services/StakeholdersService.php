@@ -10,11 +10,8 @@ class StakeholdersService{
 
     /**
      * Retrieve all the stakeholders records (both direct and indirect)
-     *
-     * @param $form_id
-     * @return array
      */
-    public static function getAllRecords($form_id): array
+    public static function getAllRecords(int $form_id): array
     {
         $stakeholder_direct_records = collect(AnalysisStakeholderDirectUsers::getModuleRecords($form_id)['records'])
             ->map(function($item){
@@ -31,7 +28,6 @@ class StakeholdersService{
 
         return array_merge($stakeholder_direct_records, $stakeholder_indirect_records);
     }
-
 
     public static function keyElementsByThreat($stakeholder_records): array
     {

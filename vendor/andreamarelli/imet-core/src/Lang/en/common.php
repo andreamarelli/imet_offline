@@ -29,6 +29,8 @@ return [
     'marine' => 'marine and coastal',
 
     'dopa_not_available' => 'DOPA services not available',
+    'no' => 'No',
+    'yes' => 'Yes',
 
     'languages' => [
         'fr'        => 'French',
@@ -38,7 +40,7 @@ return [
     ],
     'switch_language' => 'Switch current language to',
 
-    'imet' => 'IMET: Integrated Management Effectiveness Tool',
+    'imet' => 'Integrated Management Effectiveness Tool',
     'imet_short'        => 'IMET',
 
     'management'        => 'IMET management',
@@ -92,7 +94,6 @@ return [
     ],
 
     'steps_eval' => [
-//        'general_info'              => 'General Information',
         'context'                   => 'Management context',
         'planning'                  => 'Planning',
         'inputs'                    => 'Inputs',

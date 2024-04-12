@@ -111,7 +111,7 @@ trait Backup{
             Storage::makeDirectory($this->BACKUP_FOLDER);
         }
 
-        $json = $this->export($form, false, false);
+        $json = $this->export($form, false, false, false);
         $handle = fopen(Storage::path($this->BACKUP_FOLDER) . '/' . $filename, 'w');
         fwrite($handle, json_encode($json));
         fclose($handle);

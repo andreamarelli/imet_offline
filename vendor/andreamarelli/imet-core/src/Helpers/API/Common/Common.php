@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Helpers\API\Common;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet as ImetOecm;
 use ErrorException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -135,6 +136,7 @@ class Common
         $key = "";
         $wdpa_ids = [];
         $query_wdpa_ids = $request->route('wdpa_id', null);
+        $query_form_id = $request->route('form_id', null);
         $query_years = $request->route('year', null);
         $query_key = $request->route('key', null);
 
@@ -144,17 +146,19 @@ class Common
             throw new ErrorException(trans('imet-core::api.error_messages.wdpa_ids_missing'));
         }
 
-        if($query_key && stripos( $query_key, 'imet__'.\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2.'__') > -1){
+        if ($query_key && stripos($query_key, 'imet__' . \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2 . '__') > -1) {
             $key = \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2;
-        } else if($query_key && stripos( $query_key, 'imet__'.\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1.'__') > -1){
+        } else if ($query_key && stripos($query_key, 'imet__' . \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1 . '__') > -1) {
             $key = \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1;
+        } else if ($query_key && stripos($query_key, 'imet__' . \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM . '__') > -1) {
+            $key = \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM;
         }
 
         if ($query_years) {
             $years = explode(',', $query_years);
         }
 
-        return [$wdpa_ids, $years, $key];
+        return [$wdpa_ids, $years, $key, $query_form_id];
     }
 
     /**
@@ -169,15 +173,19 @@ class Common
     {
         $fields = ['FormID', 'Year', 'wdpa_id', 'Country', 'version', 'name'];
         if (count($ids) === 0) {
-            list($ids, $years, $key) = static::get_querystring_values($request);
+            list($ids, $years, $key, $form_id) = static::get_querystring_values($request);
+        }
+
+        // form_id means oecm
+        if($form_id){
+            $ids = $form_id;
         }
 
         $years_size = count($years);
-
         if ($years_size === 0) {
             return static::getRecordsByWdpaID($fields, $ids, $key);
         } else if ($years_size === 1) {
-           return static::getRecordsByWdpaIDAndSingleYear($fields, $ids, $key, $years);
+            return static::getRecordsByWdpaIDAndSingleYear($fields, $ids, $key, $years);
         } else if ($years_size > 1) {
             return static::getRecordByWdpaIdsAndYears($fields, $ids, $key, $years);
         }
@@ -190,10 +198,15 @@ class Common
      * @param string $key
      * @return Collection
      */
-    private static function getRecordsByWdpaID(array $fields,array $ids,string $key) : Collection{
+    private static function getRecordsByWdpaID(array $fields, array $ids, string $key): Collection
+    {
         $ids_size = count($ids);
-        $records = Imet::select($fields)->whereIn('wdpa_id', $ids);
-        if($key){
+        if ($key === Imet::IMET_OECM) {
+            $records = ImetOecm::select($fields)->whereIn('FormID', $ids);
+        } else {
+            $records = Imet::select($fields)->whereIn('wdpa_id', $ids);
+        }
+        if ($key) {
             $records = $records->where(['version' => $key]);
         }
         $records = $records->get();
@@ -208,10 +221,15 @@ class Common
      * @param array $years
      * @return Imet[]|Collection
      */
-    private static function getRecordsByWdpaIDAndSingleYear(array $fields,array $ids,string $key, array $years) : Collection{
+    private static function getRecordsByWdpaIDAndSingleYear(array $fields, array $ids, string $key, array $years): Collection
+    {
         $ids_size = count($ids);
-        $records = Imet::select($fields)->whereIn('wdpa_id', $ids)->where('Year', $years[0]);
-        if($key){
+        if ($key === Imet::IMET_OECM) {
+            $records = ImetOecm::select($fields)->whereIn('FormID', $ids)->where('Year', $years[0]);
+        } else {
+            $records = Imet::select($fields)->whereIn('wdpa_id', $ids)->where('Year', $years[0]);
+        }
+        if ($key) {
             $records = $records->where(['version' => $key]);
         }
         $records = $records->get();
@@ -227,15 +245,19 @@ class Common
      * @return Collection
      * @throws ErrorException
      */
-    private static function getRecordByWdpaIdsAndYears(array $fields,array $ids,string $key, array $years): Collection{
+    private static function getRecordByWdpaIdsAndYears(array $fields, array $ids, string $key, array $years): Collection
+    {
         $ids_size = count($ids);
         $keys_not_match = [];
         $collection = new Collection();
 
         foreach ($ids as $ikey => $id) {
-
-            $record = Imet::select($fields)->where('wdpa_id', $id)->where('Year', $years[$ikey]);
-            if($key){
+            if ($key === Imet::IMET_OECM) {
+                $record = ImetOecm::select($fields)->whereIn('FormID', $id)->where('Year', $years[$ikey]);
+            } else {
+                $record = Imet::select($fields)->where('wdpa_id', $id)->where('Year', $years[$ikey]);
+            }
+            if ($key) {
                 $record = $record->where(['version' => $key]);
             }
             $record = $record->first();
@@ -263,7 +285,7 @@ class Common
      */
     private static function checkIfRequestedPAHaveImetRecords(int $requested, int $exists)
     {
-        if($requested > 0 && $requested < $exists){
+        if ($requested > 0 && $requested < $exists) {
             ApiController::sendAPIError(404, trans('imet-core::api.error_messages.more_than_one_protected_areas_found'));
         }
         if ($requested !== $exists) {

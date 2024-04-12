@@ -11,7 +11,7 @@ return [
 
     'NonWdpaPaDef' => [
         '1' => 'meets IUCN and/or CBD protected area definitions',
-        '0' => 'meets the CBD definition of an OECM',
+        '0' => 'meets the CBD definition of an conserved area',
     ],
 
     'NonWdpaDesignType' => [
@@ -50,8 +50,8 @@ return [
     'PaType' => [
         'terrestrial'           => 'Terrestrial',
         'marine_and_coastal'    => 'Marine and coastal',
-        'oecm_terrestrial'      => 'OECMs (Other effective area-based conservation measures) - Terrestrial',
-        'oecm_marine'           => 'OECMs (Other effective area-based conservation measures) - Marine',
+        'oecm_terrestrial'      => 'Conserved areas - Terrestrial',
+        'oecm_marine'           => 'Conserved areas - Marine',
         'icca_terrestrial'      => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Terrestrial',
         'icca_marine'           => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Marine'
     ],

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'general_elements' => 'Elementos gerais da área protegida',
+    'general_elements' => 'Elementos gerais',
     'country' => 'País',
     'name' => 'Nome',
     'category' => 'Categoria(s)',
