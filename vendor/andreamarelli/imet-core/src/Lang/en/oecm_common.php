@@ -2,7 +2,7 @@
 return [
 
     'oecm' => 'Other Effective Area-Based Conservation Measures',
-    'oecm_short' => 'conserved area',
+    'oecm_short' => 'IMET conserved area',
 
     'steps' => [
         'general_info'          => 'General Information about the conserved area',

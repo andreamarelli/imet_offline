@@ -2,7 +2,7 @@
 return [
 
     'oecm' => 'Autres mesures de conservation efficaces par zone',
-    'oecm_short' => 'espace conservé',
+    'oecm_short' => 'IMET espace conservé',
 
     'steps' => [
         'general_info'          => 'Informations générales sur l’espace conservé',

@@ -44,7 +44,7 @@ class Export extends Command
         $imets = Imet::orderBy('name')->orderBy('Year')->get();
         $this->info($imets->count() . ' IMETS found.');
         foreach ($imets as $imet){
-            (new ImetController())->export($imet, true);
+            (new ImetController())->export($imet, false, true);
             $this->info($imet->name . ' (' . $imet->Year . ') exported.');
             $i++;
         }

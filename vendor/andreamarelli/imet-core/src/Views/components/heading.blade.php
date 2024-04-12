@@ -15,7 +15,7 @@ $last_update = $item->getLastUpdate();
     @elseif($item->version===Imet::IMET_V2)
         &nbsp;<span class="badge badge-success" style="vertical-align: text-top;">v2</span>
     @elseif($item->version===Imet::IMET_OECM)
-        &nbsp;<span class="badge badge-info" style="vertical-align: text-top;">OECM</span>
+        &nbsp;<span class="badge badge-info" style="vertical-align: text-top;">@lang('imet-core::oecm_common.oecm_short')</span>
     @endif
     {{-- ID --}}
     <span style="margin-left: 10px;">

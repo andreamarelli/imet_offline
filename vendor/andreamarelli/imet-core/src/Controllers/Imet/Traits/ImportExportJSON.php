@@ -216,7 +216,7 @@ trait ImportExportJSON
 
         $files = [];
         foreach ($imetIds as $imet) {
-            $files[] = $this->export($imet, true, false);
+            $files[] = $this->export($imet, false, true, false);
         }
         $path = $files[0];
         if (count($files) > 1) {
@@ -231,7 +231,7 @@ trait ImportExportJSON
      *
      * @throws AuthorizationException
      */
-    public function export($item, bool $exclude_attachments = false, bool $to_file = true, bool $download = true): BinaryFileResponse|array
+    public function export($item, bool $exclude_attachments = false, bool $to_file = true, bool $download = true): BinaryFileResponse|array|string
     {
         $this->authorize('export', (static::$form_class)::find($item));
 
