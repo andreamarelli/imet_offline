@@ -1,6 +1,11 @@
 <?php
 return [
 
+    'languages' => [
+        'fr'        => 'French',
+        'en'        => 'English'
+    ],
+
     'ShortOrLongTerm' => [
         'short'     => 'Short term',
         'long'      => 'Long term'

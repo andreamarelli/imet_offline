@@ -9,7 +9,7 @@ return [
     'surface' => 'Surface',
     'agency' => 'Agency',
     'biome' => 'Biome',
-    'main_values_protected' => 'Main values for which the OECMs have been gazetted',
+    'main_values_protected' => 'Main values for which the conserved areas have been gazetted',
     'vision' => 'Vision',
     'mission' => 'Mission',
     'objectives' => 'Objectives',
@@ -20,9 +20,9 @@ return [
 
     'management_effectiveness' => [
         'title' => 'Management effectiveness',
-        'evaluation_elements' => 'Evaluation of the OECM management cycle elements',
+        'evaluation_elements' => 'Evaluation of the conserved area management cycle elements',
         'swot_analysis' => 'SWOT analysis',
-        'characteristics_elements' => 'Characteristic elements of the OECM in the form of a SWOT exercise',
+        'characteristics_elements' => 'Characteristic elements of the conserved area in the form of a SWOT exercise',
         'strengths' => 'Strengths',
         'weaknesses' => 'Weaknesses',
         'opportunities' => 'Opportunities',
@@ -30,8 +30,8 @@ return [
     ],
     'key_questions' => [
         'title' => 'Key questions',
-        'operating_budget' => 'What is your minimum operating budget to ensure the preservation of the values and importance of your OECM?',
-        'additional_funding' => 'In the case of additional funding for the management of the OECM what actions would you like to take and for how much time?',
+        'operating_budget' => 'What is your minimum operating budget to ensure the preservation of the values and importance of your conserved area?',
+        'additional_funding' => 'In the case of additional funding for the management of the conserved area what actions would you like to take and for how much time?',
     ],
     'table_of_planning' => [
         'title' => 'Table of planning',
@@ -63,7 +63,7 @@ return [
         'comments' => 'Comments/Explanation',
         'general_planning_specific_global' => 'Specific and Global Threats',
         'general_planning_specific_threats' => 'Specific threats on biodiversity key elements',
-        'general_planning_global_threats' => 'Global threats on the OECM',
+        'general_planning_global_threats' => 'Global threats on the conserved area',
         'short_term_prioritize' => 'Long and short term objectives prioritised',
         'management_priorities' => 'What are your management/governance priorities?',
         'intervention_context' => 'Context of Intervention',
@@ -71,13 +71,13 @@ return [
         'objectives_title' => 'List of the short- long-term objectives for element',
         'prioritize_in_management' => 'To be prioritize in management'
     ],
-    'stakeholder_users_managing_oecm' => 'Stakeholders users and managing the OECM',
+    'stakeholder_users_managing_oecm' => 'Stakeholders users and managing the conserved area',
     'stakeholder_direct_users' => 'Stakeholders Direct users',
     'stakeholder_indirect_users' => 'Stakeholders Indirect users',
     'biodiversity_elements' => [
         'title' => 'Threats',
         'specific_threats' => 'Specific threats on the key biodiversity elements',
-        'global_threats' => 'Global threats on the OECM',
+        'global_threats' => 'Global threats on the conserved area',
         'key_conservation_element' => 'Key conservation element',
         'effect_estimated_direct_users' => 'Effect estimated by the stakeholders direct users',
         'effect_estimated_indirect_users' => 'Effect estimated by the management entity or monitoring',

@@ -58,7 +58,7 @@ return [
             'ReferenceTextValues' => 'Qual é a importância da área protegida e dos seus principais valores para os quais foi designada? (Fornecer uma lista e depois uma breve descrição).',
         ],
         'module_info' => '<b>Introdução à tipologia</b>: O IMET identifica três categorias de áreas protegidas: (1) Terrestre
-            (2) Marinha e Costeira (3) OECM - Outras Medidas de Conservação Eficazes por Área. Na secção Governança (CTX 1.2)
+            (2) Marinha e Costeira (3) área conservada. Na secção Governança (CTX 1.2)
             pode refinar a tipologia de gestão e governança destas três tipologias de áreas protegidas. Se estiver a analisar
             uma Área Protegida e Conservada (ZPC), pode especificar o contexto territorial no CTX 2.4.Área Protegida (definição geral):
             Uma área protegida é um espaço geográfico claramente definido, reconhecido, dedicado e gerido, através de meios legais ou

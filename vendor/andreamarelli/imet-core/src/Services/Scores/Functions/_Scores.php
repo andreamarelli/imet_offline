@@ -75,7 +75,7 @@ abstract class _Scores
     public static function get_scores(int $imet_id, bool $refresh_cache = false): array
     {
         // Retrieve scores from cache
-        $cache_key = Cache::buildKey(self::CACHE_PREFIX, ['id' => $imet_id]);
+        $cache_key = Cache::buildKey(static::CACHE_PREFIX, ['id' => $imet_id]);
         if (!$refresh_cache && ($cache_value = Cache::get($cache_key)) !== null) {
             $scores = $cache_value;
         }

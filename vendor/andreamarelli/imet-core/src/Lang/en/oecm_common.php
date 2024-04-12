@@ -2,10 +2,10 @@
 return [
 
     'oecm' => 'Other Effective Area-Based Conservation Measures',
-    'oecm_short' => 'OECM',
+    'oecm_short' => 'conserved area',
 
     'steps' => [
-        'general_info'          => 'General Information about the OECM',
+        'general_info'          => 'General Information about the conserved area',
         'areas'                 => 'Areas',
         'resources'             => 'Human, financial and material resources',
         'key_elements'          => 'Animals, plants habitats',
@@ -46,11 +46,11 @@ return [
         ],
         'p2' => [
             'P2',
-            'Design and layout of the OECM'
+            'Design and layout of the conserved area'
         ],
         'p3' => [
             'P3',
-            'Demarcation of the OECM'
+            'Demarcation of the conserved area'
         ],
         'p4' => [
             'P4',
@@ -62,7 +62,7 @@ return [
         ],
         'p6' => [
             'P6',
-            ' Objectives of the OECM'
+            ' Objectives of the conserved area'
         ],
         'i1' => [
             'I1',
@@ -154,7 +154,7 @@ return [
         ],
         'oc1' => [
             'O/C1',
-            'Achievement of long-term objectives of the OECM management and governance'
+            'Achievement of long-term objectives of the conserved area management and governance'
         ],
         'oc2' => [
             'O/C2',

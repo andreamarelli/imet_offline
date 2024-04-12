@@ -13,12 +13,11 @@ use AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller as OecmController;
 
     <div class="welcome_container">
         <a class="welcome_button" href="{{ route(ImetController::ROUTE_PREFIX . 'index') }}">
-            @lang('imet-core::common.imet_short')
+            <div class="title">@lang('imet-core::common.imet_short')</div>
             <div class="description">@lang('imet-core::common.imet')</div>
         </a>
         <a class="welcome_button" href="{{ route(OecmController::ROUTE_PREFIX . 'index') }}">
-            @lang('imet-core::oecm_common.oecm_short')
-            <div class="description">@lang('imet-core::oecm_common.oecm')</div>
+            <div class="title">@lang('imet-core::oecm_common.oecm_short')</div>
         </a>
     </div>
 
@@ -45,6 +44,9 @@ use AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller as OecmController;
             background-color: #737373;
             color: #D4D4D4;
             text-decoration: none;
+        }
+        .welcome_button .title{
+            line-height: 3rem;
         }
         .welcome_button .description{
             margin-top: 30px;

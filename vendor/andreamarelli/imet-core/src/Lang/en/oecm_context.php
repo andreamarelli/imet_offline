@@ -2,18 +2,18 @@
 return [
 
     'Create' => [
-        'title' => 'Create a new IMET OECM (WDPA)',
+        'title' => 'Create a new IMET conserved area (WDPA)',
         'fields' => [
             'version' => 'IMET version',
             'Year' => 'Year subject to evaluation',
-            'wdpa_id' => 'OECM',
+            'wdpa_id' => 'conserved area',
             'language' => 'language',
             'prefill_prev_year' => 'prefill with previous year',
         ]
     ],
 
     'CreateNonWdpa' => [
-        'title' => 'Create a new IMET OECM (non-WDPA)',
+        'title' => 'Create a new IMET conserved area (non-WDPA)',
         'fields' => [
             'version' => 'version',
             'Year' => 'Year subject to evaluation',
@@ -43,32 +43,32 @@ return [
     'GeneralInfo' => [
         'title' => 'Basic data',
         'fields' => [
-            'CompleteName' => 'Full name of the OECM',
-            'UsedName' => 'Name by which OECM is referred to',
-            'CompleteNameWDPA' => 'Name of the OECM in the WDPA site',
+            'CompleteName' => 'Full name of the conserved area',
+            'UsedName' => 'Name by which conserved area is referred to',
+            'CompleteNameWDPA' => 'Name of the conserved area in the WDPA site',
             'WDPA' => 'WDPA',
             'Type' => 'typology',
             'Country' => 'Country',
             'CreationYear' => 'Year created',
             'ReferenceText' => 'Reference to the designation of the gazetting text',
-            'Ownership' => 'OECM ownership type',
+            'Ownership' => 'conserved area ownership type',
             'Importance' => 'What are the main values for which the area has been designated? (Provide a list and then a brief description)',
         ],
         'module_info' => '<b>Introduction to typology</b>: IMET identifies three categories of conserved areas: (1) Terrestrial protected area (2)
-            Marine and Coastal protected area (3) OECM - Other Effective Conservation Measures (OECM).<br />
-            This IMET analyses the management of an OECM defined as “A geographically defined area other than a Protected Area,
+            Marine and Coastal protected area (3) conserved area.<br />
+            This IMET analyses the management of an conserved area defined as “A geographically defined area other than a Protected Area,
             which is governed and managed in ways that achieve positive and sustained long-term outcomes for the in-situ conservation of biodiversity,
             with associated ecosystem functions and services and where applicable, cultural, spiritual, socio–economic,
-            and other locally relevant values” (CBD, 2018). OECMs include community forests,
+            and other locally relevant values” (CBD, 2018). conserved areas include community forests,
             indigenous peoples and community conserved territories and areas (ICCAs), locally managed marine areas (LMMAs),
-            and many other types of conserved areas.<br/> What is the difference between a protected area and an OECM? (Source WDPA)
-            Protected areas and OECMs have many similarities, such as the requirement of a geographically-defined boundary and a long-term commitment.
+            and many other types of conserved areas.<br/> What is the difference between a protected area and an conserved area? (Source WDPA)
+            Protected areas and conserved areas have many similarities, such as the requirement of a geographically-defined boundary and a long-term commitment.
             But while protected areas are places designated to achieve positive biodiversity outcomes,
-            the term ‘OECM’ applies to areas designated for any purpose, where positive biodiversity outcomes occur regardless of the original management objectives.
+            the term ‘conserved area’ applies to areas designated for any purpose, where positive biodiversity outcomes occur regardless of the original management objectives.
             In a protected area, conservation must be the primary, or joint-primary, objective.
-            In an OECM, it may be a secondary objective or not an explicit objective at all.<br/>
-            OECMs also encompass areas that meet the definition of a protected area,
-            in cases where the governance authority prefers the area to be considered an OECM.<br/>
+            In an conserved area, it may be a secondary objective or not an explicit objective at all.<br/>
+            conserved areas also encompass areas that meet the definition of a protected area,
+            in cases where the governance authority prefers the area to be considered an conserved area.<br/>
             <strong>If your site is protected area, please use the IMET for Protected Area</strong>',
     ],
 
@@ -80,7 +80,7 @@ return [
             'GovernanceModel' => 'Governance model',
             'SubGovernanceModel' => 'Sub-governance model',
             'AdditionalInfo' => 'Additional information on governance model (if needed)',
-            'ManagementUnique' => 'Determine the entity in charge of the management and governance of the OECM',
+            'ManagementUnique' => 'Determine the entity in charge of the management and governance of the conserved area',
             'ManagementName' => 'Name',
             'ManagementType' => 'Type',
             'DateOfCreation' => 'Date of creation',
@@ -96,10 +96,10 @@ return [
         'management' => 'Management Entity',
         'ratingLegend' => [
             'MemberRepresentativenessLevel' => [
-                '0' => 'Less than 30% of the total population of the OECM area',
-                '1' => '30–50% total population of the OECM area',
-                '2' => '51–75% total population of the OECM area',
-                '3' => 'More than 75% of the total population of the OECM area',
+                '0' => 'Less than 30% of the total population of the conserved areas',
+                '1' => '30–50% total population of the conserved areas',
+                '2' => '51–75% total population of the conserved areas',
+                '3' => 'More than 75% of the total population of the conserved areas',
             ]
         ]
     ],
@@ -126,11 +126,11 @@ return [
         'title' => 'Membership of a local management network',
         'fields' => [
             'NetworkName' => 'Name',
-            'ProtectedAreas' => 'Names of other OECMs or protected area within the network',
+            'ProtectedAreas' => 'Names of other conserved areas or protected area within the network',
         ],
         'groups' => [
             'group0' => 'Transboundary network',
-            'group1' => 'Landscape network (terrestrial and marine OECMs)',
+            'group1' => 'Landscape network (terrestrial and marine conserved areas)',
             'group2' => 'Other networks',
         ]
     ],
@@ -147,7 +147,7 @@ return [
     ],
 
     'Contexts' => [
-        'title' => 'References of historical, political, legal and institutional and socio-economic contexts of the OECM',
+        'title' => 'References of historical, political, legal and institutional and socio-economic contexts of the conserved area',
         'fields' => [
             'Context' => 'Specific context or elements',
             'file' => 'File(s)',
@@ -175,19 +175,19 @@ return [
     ],
 
     'Objectives1' => [
-        'module_info' => 'Establish and describe conservation objectives for the governance, partnerships and the designation <b>of the OECM</b><br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM'
+        'module_info' => 'Establish and describe conservation objectives for the governance, partnerships and the designation <b>of the conserved area</b><br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the conserved area'
     ],
 
     'Objectives2' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>the area of the OECM</b><br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM'
+        'module_info' => 'Establish and describe conservation objectives for <b>the area of the conserved area</b><br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the conserved area'
     ],
 
     'Objectives3' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>human and financial resources/support from partnerships in managing </b>of the OECM<br/> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM'
+        'module_info' => 'Establish and describe conservation objectives for <b>human and financial resources/support from partnerships in managing </b>of the conserved area<br/> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the conserved area'
     ],
 
     'Objectives4' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>key animals and plant species</b>of the OECM<br/> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM'
+        'module_info' => 'Establish and describe conservation objectives for <b>key animals and plant species</b>of the conserved area<br/> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the conserved area'
     ],
 
     'GeographicalLocation' => [
@@ -198,19 +198,19 @@ return [
             'SourceSHP' => 'Source of GIS file',
             'Coordinates' => 'Geographic coordinates (baseline for or key point in the park)',
             'SourceCoords' => 'Source',
-            'AdministrativeLocation' => 'Administrative location of the OECM (province, region, etc.)',
+            'AdministrativeLocation' => 'Administrative location of the conserved area (province, region, etc.)',
         ]
     ],
 
     'Areas' => [
-        'title' => 'Surface area of the OECM and conservation context',
+        'title' => 'Surface area of the conserved area and conservation context',
         'fields' => [
             'AdministrativeArea' => 'Administrative surface',
             'WDPAArea' => 'Surface according to WDPA',
-            'GISArea' => 'Actual surface (GIS for the park or the authority responsible for OECMs) corresponding to the uploaded file',
+            'GISArea' => 'Actual surface (GIS for the park or the authority responsible for conserved areas) corresponding to the uploaded file',
             'StrictConservationArea' => 'Surface of strict conservation area (no-take zone, core zone) (if any) ',
-            'TerrestrialArea' => 'Surface of Terrestrial OECM, Community Forest, ICCAs, Other',
-            'MarineArea' => 'Surface of Marine and coastal OECM, ICCAs, LMMA, Other'
+            'TerrestrialArea' => 'Surface of Terrestrial conserved area, Community Forest, ICCAs, Other',
+            'MarineArea' => 'Surface of Marine and coastal conserved area, ICCAs, LMMA, Other'
         ]
     ],
 
@@ -225,7 +225,7 @@ return [
             'AdequateNumber' => 'Adequate number',
             'Difference' => 'Difference'
         ],
-        'module_info' => 'Number and categories of members of the OECM Management Entity',
+        'module_info' => 'Number and categories of members of the conserved area Management Entity',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I2, PR1</i>'
     ],
 
@@ -258,7 +258,7 @@ return [
             'Currency' => 'Currency',
             'TotalAnnualBudgetAvailable' => 'Total annual budget available',
         ],
-        'module_info' => 'Estimated total management costs of the OECM '
+        'module_info' => 'Estimated total management costs of the conserved area '
     ],
 
     'Equipments' => [
@@ -278,7 +278,7 @@ return [
             'group6' => 'Power generation equipment',
             'group7' => 'Roads and tracks',
             'group8' => 'Waterways',
-            'group9' => 'Links and connections of the OECM with the outer world'
+            'group9' => 'Links and connections of the conserved area with the outer world'
         ],
         'predefined_values' => [
             'group0' => ['Offices', 'Information centre', 'Service buildings (magazine, etc.)', 'Health care centre'],
@@ -288,8 +288,8 @@ return [
             'group4' => ['VHF/HF radios', 'V-SAT', 'GSM telephones', 'Internet connection'],
             'group5' => ['Desktop computers', 'Laptop computers', 'Printers', 'Photocopiers'],
             'group6' => ['Power generators', 'Solar electric facility', 'Hydropower electric facility', 'Wind electric facility'],
-            'group7' => ['Roads/tracks inside the OECM', 'Paths inside the OECM', 'Road along the border'],
-            'group8' => ['Waterways inside the OECM'],
+            'group7' => ['Roads/tracks inside the conserved area', 'Paths inside the conserved area', 'Road along the border'],
+            'group8' => ['Waterways inside the conserved area'],
             'group9' => ['Major land-based communication routes', 'Inland and maritime waterways']
         ],
         'ratingLegend' => [
@@ -344,10 +344,10 @@ return [
     ],
 
     'Habitats' => [
-        'title' => 'Habitats main categories in the OECM',
+        'title' => 'Habitats main categories in the conserved area',
         'fields' => [
             'EcosystemType' => 'Habitats types',
-            'EcosystemDescription' => 'Description for the specific OECM',
+            'EcosystemDescription' => 'Description for the specific conserved area',
             'ExploitedSpecies' => 'EXP',
             'ProtectedSpecies' => 'PRT',
             'DisappearingSpecies' => 'DSG',
@@ -371,12 +371,12 @@ return [
         'title' => 'Stakeholders involved in the management or use of natural resources',
         'fields' => [
             'Element' => 'Stakeholder',
-            'GeographicalProximity' => 'Living inside or in proximity to the OECM (less than one hour\'s walk)',
-            'UsesCategories' => 'Categories of uses or management of OECM’s key elements',
-            'DirectUser' => 'Direct users of OECM’s key elements',
-            'LevelEngagement' => 'Level of engagement in OECM’s key elements management',
-            'LevelInterest' => 'Level of interest in preserving the OECM’s key elements',
-            'LevelExpertise' => 'Level of expertise in management of the OECM’s key elements (including traditional or indigenous knowledge)',
+            'GeographicalProximity' => 'Living inside or in proximity to the conserved area (less than one hour\'s walk)',
+            'UsesCategories' => 'Categories of uses or management of conserved area’s key elements',
+            'DirectUser' => 'Direct users of conserved area’s key elements',
+            'LevelEngagement' => 'Level of engagement in conserved area’s key elements management',
+            'LevelInterest' => 'Level of interest in preserving the conserved area’s key elements',
+            'LevelExpertise' => 'Level of expertise in management of the conserved area’s key elements (including traditional or indigenous knowledge)',
             'Comments' => 'Note',
         ],
         'titles' => [
@@ -401,20 +401,20 @@ return [
 
         ],
         'module_info' =>
-            'Identify the stakeholders involved in the management or use of the natural resources of the OECM<br />
-            <b>Living inside or in proximity to the OECM</b>: Living in or near a conserved area can provide access to important
+            'Identify the stakeholders involved in the management or use of the natural resources of the conserved area<br />
+            <b>Living inside or in proximity to the conserved area</b>: Living in or near a conserved area can provide access to important
             ecosystem services but might also require restrictions and regulations.<br />
-            <b>Categories of uses or management of OECM’s key elements</b>: Various ways in which stakeholders interact with
+            <b>Categories of uses or management of conserved area’s key elements</b>: Various ways in which stakeholders interact with
             animals, plants or habitats (Biodiversity) and benefit from ecosystem services (Provisioning, Cultural, Regulating,
-            Supporting) provided by the OECM.<br />
-            <b>Direct users of OECM’s key elements</b>: Direct Users are those who directly benefit from the goods and services
+            Supporting) provided by the conserved area.<br />
+            <b>Direct users of conserved area’s key elements</b>: Direct Users are those who directly benefit from the goods and services
             provided by the conserved area.<br />
-            <b>Level of interest in preserving the OECM’s key elements</b>: Degree to which stakeholder is interested in the OECM’s
+            <b>Level of interest in preserving the conserved area’s key elements</b>: Degree to which stakeholder is interested in the conserved area’s
             long-term conservation and protection, such as the establishment of regulations for use and access, as it can influence
             their level of involvement and commitment<br />
-            <b>Level of expertise in management of the OECM’s key elements (including traditional or indigenous knowledge)</b>: Degree to
+            <b>Level of expertise in management of the conserved area’s key elements (including traditional or indigenous knowledge)</b>: Degree to
             which a stakeholder has necessary knowledge, skills, and experience to effectively manage and conserve some key elements
-            of the OECM. Expertise can be from traditional and indigenous knowledge, historical practices, long-term observations,
+            of the conserved area. Expertise can be from traditional and indigenous knowledge, historical practices, long-term observations,
             formal and professional trainings. <br />
             ',
         'ratingLegend' => [
@@ -425,10 +425,10 @@ return [
                 '3' => 'High engagement',
             ],
             'LevelInterest' => [
-                '0' => 'No interest in OECM conservation',
-                '1' => 'Low interest in OECM conservation',
-                '2' => 'Moderate interest in OECM conservation',
-                '3' => 'High interest in OECM conservation',
+                '0' => 'No interest in conserved area conservation',
+                '1' => 'Low interest in conserved area conservation',
+                '2' => 'Moderate interest in conserved area conservation',
+                '3' => 'High interest in conserved area conservation',
             ],
             'LevelExpertise' => [
                 '0' => 'No expertise in managing land and natural resources',
@@ -443,8 +443,8 @@ return [
     'StakeholdersObjectives' => [
         'module_info' =>
             'Establish and describe conservation objectives for stakeholders involved in the management or use of
-            natural resources of the OECM. The objectives entered below will be used for improving management, and more specifically
-            for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
+            natural resources of the conserved area. The objectives entered below will be used for improving management, and more specifically
+            for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the conserved area.'
     ],
 
     'AnalysisStakeholders' => [
@@ -646,7 +646,7 @@ return [
                  biodiverse, etc.).</br >' .
             '<b>Quantity of the ecosystem services</b>: Amount, volume or size of the ecosystem services or the species (Example:
                  surface of a forest, species population, volume of water stream, etc.).</br >' .
-            '<b>Threats</b>: Human activities or processes that have impacted, are impacting or may impact the OECM’s key element
+            '<b>Threats</b>: Human activities or processes that have impacted, are impacting or may impact the conserved area’s key element
                  being assessed.</br >',
         'ratingLegend' => [
             'Dependence' => [
@@ -682,8 +682,8 @@ return [
             'Support' => 'Support or Contribution',
             'Guidelines' => 'Guidelines and procedures',
             'LackOfCollaboration' => 'Lack of collaboration between non-direct and direct users',
-            'Status' => 'Status of OECM’s key elements',
-            'Trend' => 'Trend of OECM’s key elements',
+            'Status' => 'Status of conserved area’s key elements',
+            'Trend' => 'Trend of conserved area’s key elements',
             'Threats' => 'Threats',
             'Comments' => 'Note',
         ],
@@ -696,17 +696,17 @@ return [
             '<b>Lack of collaboration between non-direct and direct users</b>: Absence or insufficient coordination among
                 various stakeholders who use and benefit from ecosystem services, which could lead to conflicts and unsustainable
                 practices</br >' .
-            '<b>Status of OECM’s key elements</b>: Status of the key elements indicates the status of the provision of ecosystem
+            '<b>Status of conserved area’s key elements</b>: Status of the key elements indicates the status of the provision of ecosystem
                 services or key biodiversity element in terms of quality. Very poor status indicates that the ecosystem service
                 being provided is of poor quality or that the key biodiversity element is at serious risk of disappearing
-                in the OECM area. Very good status indicates that the key element is of good quality or expanding. Various
+                in the conserved areas. Very good status indicates that the key element is of good quality or expanding. Various
                 environmental factors such as climate and weather, land use change, pollution, and overexploitation of resources,
-                overexploitation can affect the status of OECM’s key elements.</br >' .
-            '<b>Trend of OECM’s key elements</b>: Current trends of the key elements indicate the change in the quantity of
+                overexploitation can affect the status of conserved area’s key elements.</br >' .
+            '<b>Trend of conserved area’s key elements</b>: Current trends of the key elements indicate the change in the quantity of
                 ecosystem services provision or in the size-surface of key biodiversity elements. For ecosystem services this
                  can be the quantity of services provided, for the key biodiversity element it can be the size of the
                  population (species), the area (habitats, land cover) or the quantity of ecological production.</br >' .
-            '<b>Threats</b>: Human activities or processes that have impacted, are impacting or may impact the OECM’s
+            '<b>Threats</b>: Human activities or processes that have impacted, are impacting or may impact the conserved area’s
                  key element being assessed. </br >',
         'ratingLegend' => [
             'Support' => [
@@ -735,9 +735,9 @@ return [
 
     'AnalysisStakeholdersObjectives' => [
         'module_info' =>
-            'Establish and describe conservation objectives for the stakeholders analysis of the key elements of the OECM.
+            'Establish and describe conservation objectives for the stakeholders analysis of the key elements of the conserved area.
             The objectives entered below will be used for improving management, and more specifically for the planning,
-            resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
+            resource (input) mobilisation, process phases, and for monitoring management activities of the conserved area.'
     ],
 
 ];

@@ -9,7 +9,7 @@ return [
     'surface' => 'Surface',
     'agency' => 'Agence',
     'biome' => 'Biome',
-    'main_values_protected' => 'Principales valeurs pour lesquelles les OECM ont été publiées',
+    'main_values_protected' => 'Principales valeurs pour lesquelles les espaces conservés ont été publiées',
     'vision' => 'Vision',
     'mission' => 'Mission',
     'objectives' => 'Objectifs',
@@ -20,9 +20,9 @@ return [
 
     'management_effectiveness' => [
         'title' => 'Efficacité de la gestion',
-        'evaluation_elements' => 'Évaluation des éléments du cycle de gestion des OECM',
+        'evaluation_elements' => 'Évaluation des éléments du cycle de gestion des espace conservé',
         'swot_analysis' => 'Analyse SWOT',
-        'characteristics_elements' => 'Éléments caractéristiques de l\'OECM sous forme d\'exercice SWOT',
+        'characteristics_elements' => 'Éléments caractéristiques de l\'espace conservé sous forme d\'exercice SWOT',
         'strengths' => 'Forces',
         'weaknesses' => 'Faiblesses',
         'opportunities' => 'Opportunités',
@@ -30,8 +30,8 @@ return [
     ],
     'key_questions' => [
         'title' => 'Questions clés',
-        'operating_budget' => 'Quel est votre budget opérationnel minimum pour assurer la préservation des valeurs et de l\'importance de votre OECM ?',
-        'additional_funding' => 'En cas de financement supplémentaire pour la gestion de l\'OECM, quelles actions aimeriez-vous entreprendre et pour quelle durée ?',
+        'operating_budget' => 'Quel est votre budget opérationnel minimum pour assurer la préservation des valeurs et de l\'importance de votre espace conservé ?',
+        'additional_funding' => 'En cas de financement supplémentaire pour la gestion de l\'espace conservé, quelles actions aimeriez-vous entreprendre et pour quelle durée ?',
     ],
     'table_of_planning' => [
         'title' => 'Tableau de planification',
@@ -64,7 +64,7 @@ return [
         'comments' => 'Commentaires/Explication',
         'general_planning_specific_global' => 'Menaces spécifiques et mondiales',
         'general_planning_specific_threats' => 'Menaces spécifiques sur les éléments clés de la biodiversité',
-        'general_planning_global_threats' => 'Menaces mondiales sur l’OECM',
+        'general_planning_global_threats' => 'Menaces mondiales sur l’espace conservé',
         'short_term_prioritize' => 'Objectifs à court et à long terme priorisés',
         'management_priorities' => 'Quelles sont vos priorités en matière de gestion/gouvernance ?',
         'intervention_context' => 'Contexte d’intervention',
@@ -72,13 +72,13 @@ return [
         'objectives_title' => 'Liste des objectifs à court et à long terme pour l’élément',
         'prioritize_in_management' => 'À prioriser dans la gestion'
     ],
-    'stakeholder_users_managing_oecm' => 'Utilisateurs des parties prenantes et gestion de l’OECM',
+    'stakeholder_users_managing_oecm' => 'Utilisateurs des parties prenantes et gestion de l’espace conservé',
     'stakeholder_direct_users' => 'Utilisateurs directs des parties prenantes',
     'stakeholder_indirect_users' => 'Utilisateurs indirects des parties prenantes',
     'biodiversity_elements' => [
         'title' => 'Menaces',
         'specific_threats' => 'Menaces spécifiques sur les éléments clés de la biodiversité',
-        'global_threats' => 'Menaces mondiales sur l’OECM',
+        'global_threats' => 'Menaces mondiales sur l’espace conservé',
         'key_conservation_element' => 'Élément clé de conservation',
         'effect_estimated_direct_users' => 'Effet estimé par les utilisateurs directs des parties prenantes',
         'effect_estimated_indirect_users' => 'Effet estimé par l’entité de gestion ou la surveillance',
