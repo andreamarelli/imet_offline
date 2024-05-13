@@ -110,14 +110,16 @@ return [
                 'radar' => 'Visualisation radar des systèmes et processus de gestion interne',
                 'ranking' => 'Classement des indicateurs des systèmes et processus de gestion interne',
                 'average_contribution' => 'Valeur moyenne et variabilité des systèmes et processus de gestion interne',
-                'datatable' => 'Tableau de données des systèmes et processus de gestion interne'
+                'datatable' => 'Tableau de données des systèmes et processus de gestion interne',
+                'datatable_average' => 'Systèmes et processus de gestion interne'
             ],
             'process_management_protection_values' => [
                 'title' => 'PR B: Gestion/Protection des valeurs',
                 'radar' => 'Visualisation radar de la gestion/protection des valeurs',
                 'ranking' => 'Classement des indicateurs de la gestion/protection des valeurs',
                 'average_contribution' => 'Valeur moyenne et variabilité de la gestion/protection des valeurs',
-                'datatable' => 'Tableau de données de Gestion/Protection des valeurs'
+                'datatable' => 'Tableau de données de Gestion/Protection des valeurs',
+                'datatable_average' => 'Gestion/Protection des valeurs'
             ],
             'process_stakeholders_relationships' => [
                 'title' => 'PR C: Relations avec les parties prenantes',
@@ -125,24 +127,28 @@ return [
                 'ranking' => 'Classement des indicateurs des relations avec les parties prenantes',
                 'average_contribution' => 'Valeur moyenne et variabilité des relations avec les parties prenantes',
                 'datatable' => 'Tableau de données des relations avec les parties prenantes',
+                'datatable_average' => 'Relations avec les parties prenantes'
             ],
             'process_tourism_management' => [
                 'title' => 'PR D: Gestion du tourisme',
                 'ranking' => 'Classement des indicateurs de la gestion du tourisme',
                 'average_contribution' => 'Valeur moyenne et variabilité de la gestion du tourisme',
                 'datatable' => 'Tableau de données de la gestion du tourisme',
+                'datatable_average' => 'Gestion du tourisme'
             ],
             'process_monitoring_and_research' => [
                 'title' => 'PR E: Suivi et recherche',
                 'ranking' => 'Classement des indicateurs de la surveillance et de la recherche',
                 'average_contribution' => 'Valeur moyenne et variabilité de la surveillance et de la recherche',
                 'datatable' => 'Tableau de données du suivi et de la recherche',
+                'datatable_average' => 'Suivi et recherche'
             ],
             'process_effects_of_climate_change' => [
                 'title' => 'PR F: Gestion des effets du changement climatique et des services écosystémiques',
                 'ranking' => 'Classement des indicateurs de la gestion des effets du changement climatique et des services écosystémiques',
                 'average_contribution' => 'Valeur moyenne et variabilité de la Gestion des effets du changement climatique et des services écosystémiques',
                 'datatable' => 'Tableau de données de la gestion des effets du changement climatique et des services écosystémiques',
+                'datatable_average' => 'Gestion des effets du changement climatique et des services écosystémiques'
             ]
 
         ],

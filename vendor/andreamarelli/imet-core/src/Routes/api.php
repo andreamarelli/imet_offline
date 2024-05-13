@@ -32,6 +32,7 @@ Route::group(['prefix' => 'api'], function () {
             Route::get('{lang}/details/{key}/{wdpa_id}/{year?}', [ApiController::class, 'get_imet'])->name('imet_core::api::imet_details');
             Route::get('{lang}/details/{key}/{form_id}/{year?}', [ApiController::class, 'get_imet'])->name('imet_core::api::oecm_details');
 
+
             Route::group(['prefix' => '{lang}/scaling-up'], function () {
                 Route::get('general-info/{wdpa_id}/{year?}', [ApiController::class, 'get_general_info']);
                 Route::group(['prefix' => 'groups'], function () {

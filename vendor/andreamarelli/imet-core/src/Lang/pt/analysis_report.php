@@ -110,14 +110,16 @@ return [
                 'radar' => 'Visualização por radar dos sistemas e processos de gestão interna',
                 'ranking' => 'Ranking de sistemas e processos de gestão interna',
                 'average_contribution' => 'Contribuição média e variabilidade dos sistemas e processos de gestão interna',
-                'datatable' => 'Tabela de dados dos sistemas e processos de gestão interna'
+                'datatable' => 'Tabela de dados dos sistemas e processos de gestão interna',
+                'datatable_average' => 'Sistemas e processos de gestão interna'
             ],
             'process_management_protection_values' => [
                 'title' => 'PR B: Gestão/Protecção dos valores',
                 'radar' => 'Visualização por radar da Gestão/Protecção dos valores',
                 'ranking' => 'Ranking de Gestão/Protecção dos valores',
                 'average_contribution' => 'Contribuição média e variabilidade da Gestão/Protecção dos valores',
-                'datatable' => 'Quadro de dados de Gestão/Protecção dos valores'
+                'datatable' => 'Quadro de dados de Gestão/Protecção dos valores',
+                'datatable_average' => 'Gestão/Protecção dos valores'
             ],
             'process_stakeholders_relationships' => [
                 'title' => 'PR C: Relações com as partes interessadas',
@@ -125,24 +127,28 @@ return [
                 'ranking' => 'Ranking das relações com as partes interessadas',
                 'average_contribution' => 'Contribuição média e variabilidade das relações com as partes interessadas',
                 'datatable' => 'Quadro de dados das relações com as partes interessadas',
+                'datatable_average' => 'Relações com as partes interessadas'
             ],
             'process_tourism_management' => [
                 'title' => 'PR D: Gestão do turismo',
                 'ranking' => 'Ranking de Gestão Turística',
                 'average_contribution' => 'Contribuição média e variabilidade da gestão do Turismo',
                 'datatable' => 'Quadro de dados da gestão do Turismo',
+                'datatable_average' => 'Gestão do turismo'
             ],
             'process_monitoring_and_research' => [
                 'title' => 'PR E: Monitorização e Investigação',
                 'ranking' => 'Ranking de Monitorização e Investigação',
                 'average_contribution' => 'Contribuição média e variabilidade da Monitorização e Investigação',
                 'datatable' => 'Quadro de dados de Monitorização e Investigação',
+                'datatable_average' => 'Monitorização e Investigação'
             ],
             'process_effects_of_climate_change' => [
                 'title' => 'PR F: Gestão dos efeitos das alterações climáticas e dos serviços ecossistémicos',
                 'ranking' => 'Ranking de Gestão dos efeitos das alterações climáticas e dos serviços ecossistémicos',
                 'average_contribution' => 'Contribuição média e variabilidade da Gestão dos efeitos das alterações climáticas e dos serviços ecossistémicos',
                 'datatable' => 'Quadro de dados da Gestão dos efeitos das alterações climáticas e dos serviços ecossistémicos',
+                'datatable_average' => 'Gestão dos efeitos das alterações climáticas e dos serviços ecossistémicos'
             ]
         ],
         'outputs' => [

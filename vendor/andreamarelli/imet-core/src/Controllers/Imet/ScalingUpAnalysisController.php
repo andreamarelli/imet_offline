@@ -14,6 +14,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\File\Zip;
 use AndreaMarelli\ModularForms\Helpers\HTTP;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
@@ -146,6 +147,7 @@ class ScalingUpAnalysisController extends __Controller
     /**
      * @param Request $request
      * @return array
+     * @throws AuthorizationException
      */
     public function analysis(Request $request): array
     {
@@ -288,6 +290,7 @@ class ScalingUpAnalysisController extends __Controller
         uasort($protected_areas['models'], function ($a, $b) {
             return $a['name'] > $b['name'];
         });
+
         App::setLocale($locale);
         $templates_names = [
             ['name' => "protected_areas", 'title' => trans('imet-core::analysis_report.sections.list_of_names'), 'snapshot_id' => "protected_areas", 'exclude_elements' => '', 'code' => '0'],

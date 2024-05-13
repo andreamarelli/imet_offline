@@ -9,7 +9,7 @@ use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 class Common
 {
 
-    private static $protected_areas_ids = [];
+    private static array $protected_areas_ids = [];
 
     /**
      * @return string
@@ -37,7 +37,7 @@ class Common
             return 0;
         }
 
-        return (float)number_format(round($val, $round), 1);
+        return (float)number_format(round($val, $round), 2);
     }
 
     /**
@@ -47,7 +47,7 @@ class Common
      */
     public static function get_average(array $array, int $items_number = 0): ?float
     {
-        array_walk($array, function (&$item, $key) use (&$items_number){
+        array_walk($array, function (&$item, $key) use (&$items_number) {
             if ((string)$item === "-") {
                 $item = 0;
             }
@@ -95,7 +95,7 @@ class Common
      * @param string $search_with
      * @param string $in_value
      * @param string $add_value
-     * @return mixed|string
+     * @return string
      */
     public static function add_the_indicator_to_the_field(string $search_with, string $in_value, string $add_value): string
     {
@@ -164,13 +164,10 @@ class Common
         //use it only for process indicators
         if ($indicator && isset($process_indicators[$indicator])) {
             $length_to_divide = array_sum($process_indicators);
-            // dd($length_to_divide, $process_indicators, $value, $indicator);
-           // print_r($process_indicators);
-           // echo $value."_".$length_to_divide."x".static::round_number(($value * $process_indicators[$indicator]) / $length_to_divide, 2)."-\n";
             return static::round_number(($value * $process_indicators[$indicator]) / $length_to_divide, 2);
         }
-        //echo $value ."\n";
-        return static::round_number($value / $length_to_divide, 3);
+
+        return static::round_number($value / $length_to_divide, 2);
     }
 
     /**
@@ -191,16 +188,8 @@ class Common
                 $filtered[$form_id] = array_intersect_key($results[$form_id], $indicators);
             }
 
-            if ($filtered[$form_id] && $add_synthetic_indicator) {
-                $filtered[$form_id][$type] = static::round_number($results[$form_id]['avg_indicator']);
-            }
-
-            array_walk($filtered[$form_id], function (&$item, $key) {
-                if ((string)$item !== "") {
-                    $item = $item;
-                } else {
-                    $item = "-";
-                }
+            array_walk($filtered[$form_id], function (&$item) {
+                $item = ((string)$item !== "") ? $item : "-";
             });
 
             $number_of_indicators = count(array_filter($filtered[$form_id], function ($item) {
@@ -210,14 +199,15 @@ class Common
             //loop through imet sub indicators to create an average value in order to sort in the ranking
             //and pass the correct value where needed
             $average = static::get_average($filtered[$form_id], $number_of_indicators);
-            if($average !== null){
-                $filtered[$form_id]['avg'] = static::round_number($average);
-            } else {
-                $filtered[$form_id]['avg'] = "-";
+
+            if ($filtered[$form_id] && $add_synthetic_indicator) {
+                $filtered[$form_id][$type] = static::round_number($results[$form_id]['avg_indicator']);
             }
+
+            $filtered[$form_id]['avg'] = $average !== null ? static::round_number($average) : "-";
             $filtered[$form_id]['indicators_number'] = $number_of_indicators;
         }
-
+        //print_r($filtered);
         return $filtered;
     }
 

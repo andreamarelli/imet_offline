@@ -157,7 +157,6 @@
                                        :name="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'table-scaling'"
                                        :event_image="'save_entire_block_as_image'">
                         <template slot-scope="data_elements">
-
                             <datatable_scaling
                                 :columns="tableValue.columns"
                                 :values="data_elements.props[tableValue['name']].table">

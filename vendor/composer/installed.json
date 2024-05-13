@@ -2,17 +2,17 @@
     "packages": [
         {
             "name": "andreamarelli/imet-core",
-            "version": "dev-master",
-            "version_normalized": "dev-master",
+            "version": "dev-beta",
+            "version_normalized": "dev-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andreamarelli/imet-core.git",
-                "reference": "eb0c199809b6b34abdb9592bc801d203d138a1d4"
+                "reference": "05a9051c6818834b17925c8518b84656e3f98631"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/eb0c199809b6b34abdb9592bc801d203d138a1d4",
-                "reference": "eb0c199809b6b34abdb9592bc801d203d138a1d4",
+                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/05a9051c6818834b17925c8518b84656e3f98631",
+                "reference": "05a9051c6818834b17925c8518b84656e3f98631",
                 "shasum": ""
             },
             "require": {
@@ -23,8 +23,7 @@
             "require-dev": {
                 "orchestra/testbench": "^8.0"
             },
-            "time": "2024-04-12T13:55:22+00:00",
-            "default-branch": true,
+            "time": "2024-05-13T07:47:33+00:00",
             "type": "library",
             "extra": {
                 "laravel": {
@@ -53,7 +52,7 @@
             ],
             "description": "Imet core package",
             "support": {
-                "source": "https://github.com/andreamarelli/imet-core/tree/master",
+                "source": "https://github.com/andreamarelli/imet-core/tree/beta",
                 "issues": "https://github.com/andreamarelli/imet-core/issues"
             },
             "install-path": "../andreamarelli/imet-core"

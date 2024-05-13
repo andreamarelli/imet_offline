@@ -4,7 +4,6 @@ namespace AndreaMarelli\ImetCore\Policies;
 
 use AndreaMarelli\ImetCore\Models\User\Role;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use \ImetUser as User;
 
 
 class RolePolicy
@@ -14,7 +13,7 @@ class RolePolicy
     /**
      * Perform pre-authorization checks
      *
-     * @param \App\Models\User|\ImetUser $user
+     * @param \App\Models\User\User|\ImetUser $user
      * @param string $ability
      * @return void|bool
      */
@@ -29,7 +28,7 @@ class RolePolicy
     /**
      * Determine whether the user can manage Roles
      *
-     * @param \App\Models\User|\ImetUser $user
+     * @param \App\Models\User\User|\ImetUser $user
      * @return bool
      */
     public function manage($user): bool

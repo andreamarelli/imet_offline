@@ -3,9 +3,11 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp;
 
+use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
 use AndreaMarelli\ImetCore\Helpers\API\DOPA\DOPA;
 use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\Country;
+use AndreaMarelli\ImetCore\Models\Imet\API\Comments\Comments;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\AverageContribution;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\DataTable;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Group;
@@ -61,6 +63,7 @@ class ScalingUpAnalysis extends Model
 
         return ['status' => 'success', 'data' => $items];
     }
+
 
     /**
      * get protected area custom names with all the information
@@ -476,6 +479,7 @@ class ScalingUpAnalysis extends Model
      * @param array $table_indicators
      * @param array $options
      * @param string $custom_type
+     * @param string $extra_type_words
      * @return array|array[]
      */
     private static function analysis_diagram_protected_areas(array $form_ids, string $type, array $table_indicators, array $options, string $custom_type, string $extra_type_words = ''): array

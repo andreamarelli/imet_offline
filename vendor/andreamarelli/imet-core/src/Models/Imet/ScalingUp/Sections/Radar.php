@@ -107,7 +107,7 @@ class Radar
      * @param int $scaling_id
      * @return array
      */
-    public static function get_radar_analysis_indicators(array $form_ids, array $table_indicators, string $type = "", string $colors = "", array $options = [], string $label = "", int $scaling_id = 0)
+    public static function get_radar_analysis_indicators(array $form_ids, array $table_indicators, string $type = "", string $colors = "", array $options = [], string $label = "", ?int $scaling_id = 0)
     {
         $response = static::get_radar_analysis_indicators_data($form_ids, $table_indicators, $type, $scaling_id);
 
@@ -134,10 +134,10 @@ class Radar
      * @param bool $width
      * @param array $assessments
      * @param bool $overall
-     * @param int $scaling_id
+     * @param ?int $scaling_id
      * @return array
      */
-    public static function get_radar_indicators(array $form_ids, bool $width = true, array $assessments = [], bool $overall = true, int $scaling_id = 0): array
+    public static function get_radar_indicators(array $form_ids, bool $width = true, array $assessments = [], bool $overall = true, ?int $scaling_id = 0): array
     {
         $start_time = microtime(true);
         $assessments = count($assessments) ? $assessments : Common::get_assessments($form_ids, $scaling_id);

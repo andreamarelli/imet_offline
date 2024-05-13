@@ -76,6 +76,18 @@ class Role extends BaseModel
         ];
     }
 
+    public static function select_all_roles(): array
+    {
+        return [
+            Role::ROLE_ADMINISTRATOR => 'Administrator',
+            Role::ROLE_NATIONAL_AUTHORITY => 'National Authority',
+            Role::ROLE_REGIONAL_AUTHORITY => 'Regional Authority',
+            Role::ROLE_REGIONAL_OBSERVATORY => 'Regional Observatory',
+            Role::ROLE_INTERNATIONAL_INSTITUTIION => 'International Institution',
+            Role::ROLE_DONOR => 'Role Donor',
+            Role::ROLE_ENCODER => 'Role Encoder'
+        ];
+    }
     /**
      * Retrieve roles by user id
      *

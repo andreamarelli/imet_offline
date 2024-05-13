@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f29a29201aab744ca4be3418311a2d52",
+    "content-hash": "2a203f750aca15a76b54f5a97811ee68",
     "packages": [
         {
             "name": "andreamarelli/imet-core",
-            "version": "dev-master",
+            "version": "dev-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andreamarelli/imet-core.git",
-                "reference": "eb0c199809b6b34abdb9592bc801d203d138a1d4"
+                "reference": "05a9051c6818834b17925c8518b84656e3f98631"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/eb0c199809b6b34abdb9592bc801d203d138a1d4",
-                "reference": "eb0c199809b6b34abdb9592bc801d203d138a1d4",
+                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/05a9051c6818834b17925c8518b84656e3f98631",
+                "reference": "05a9051c6818834b17925c8518b84656e3f98631",
                 "shasum": ""
             },
             "require": {
@@ -28,7 +28,6 @@
             "require-dev": {
                 "orchestra/testbench": "^8.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -56,10 +55,10 @@
             ],
             "description": "Imet core package",
             "support": {
-                "source": "https://github.com/andreamarelli/imet-core/tree/master",
+                "source": "https://github.com/andreamarelli/imet-core/tree/beta",
                 "issues": "https://github.com/andreamarelli/imet-core/issues"
             },
-            "time": "2024-04-12T13:55:22+00:00"
+            "time": "2024-05-13T07:47:33+00:00"
         },
         {
             "name": "andreamarelli/modular-forms",

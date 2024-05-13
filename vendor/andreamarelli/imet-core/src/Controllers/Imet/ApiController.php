@@ -18,7 +18,6 @@ use Illuminate\Http\Request;
 use ErrorException;
 use Illuminate\Support\Facades\App;
 use Intervention\Image\Exception\NotFoundException;
-use \ImetUser as User;
 
 
 class ApiController extends Controller
@@ -52,9 +51,9 @@ class ApiController extends Controller
         }
 
         $form_id = $records[0]['FormID'] ?? null;
-        $form = Imet::find($form_id);
+        $form = Imet\Imet::find($form_id);
 
-        if ($form['version'] == Imet::IMET_V1) {
+        if ($form['version'] == Imet\Imet::IMET_V1) {
             $data = ReportV1::get_assessment_report($request, $form);
         } else {
             $data = ReportV2::get_assessment_report($request, $form);
@@ -119,42 +118,42 @@ class ApiController extends Controller
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function get_imet(Request $request, string $lang, string $slug, int $wdpa_id, int $year = null): object
-    {
+            {
 
-        $api = ['data' => [], 'labels' => []];
+                $api = ['data' => [], 'labels' => []];
 
-        $records = $request->attributes->get('records');
+                $records = $request->attributes->get('records');
 
-        $model = ModuleKey::KeyToClassName($slug);
-        $this->authorize('api_details', [$records[0], $model]);
+                $model = ModuleKey::KeyToClassName($slug);
+                //$this->authorize('api_details', [$records[0], $model]);
 
-        if (count($records) > 1) {
-            throw new ErrorException(trans('imet-core::api.error_messages.multiple_records_found'));
-        }
+                if (count($records) > 1) {
+                    throw new ErrorException(trans('imet-core::api.error_messages.multiple_records_found'));
+                }
 
-        $form_id = $records[0]['FormID'] ?? null;
-        if ($form_id === null) {
-            throw new NotFoundException(trans('imet-core::api.error_messages.no_records_found'));
-        }
+                $form_id = $records[0]['FormID'] ?? null;
+                if ($form_id === null) {
+                    throw new NotFoundException(trans('imet-core::api.error_messages.no_records_found'));
+                }
 
-        $items = $model::where('FormID', $form_id)->get()->makeHidden(['UpdateBy', 'UpdateDate', 'id', 'FormID', 'upload', 'hidden', 'file_BYTEA', 'file']);
-        $accepted_fields = [];
+                $items = $model::where('FormID', $form_id)->get()->makeHidden(['UpdateBy', 'UpdateDate', 'id', 'FormID', 'upload', 'hidden', 'file_BYTEA', 'file']);
+                $accepted_fields = [];
 
-        if (count($items) > 0) {
-            foreach ($items as $field) {
-                $filtered_fields = [];
-                foreach ($field->module_fields as $value) {
-                    if (isset($value['type']) && !in_array($value['type'], ['upload', 'hidden', 'file_BYTEA', 'file'])) {
-                        $filtered_fields[$value['name']] = $field[$value['name']];
-                        $api['labels'][$value['name']] = $value['label'];
+                if (count($items) > 0) {
+                    foreach ($items as $field) {
+                        $filtered_fields = [];
+                        foreach ($field->module_fields as $value) {
+                            if (isset($value['type']) && !in_array($value['type'], ['upload', 'hidden', 'file_BYTEA', 'file'])) {
+                                $filtered_fields[$value['name']] = $field[$value['name']];
+                                $api['labels'][$value['name']] = $value['label'];
+                            }
+                        }
+                        $accepted_fields[] = $filtered_fields;
                     }
                 }
-                $accepted_fields[] = $filtered_fields;
+                $api['data'] = ['wdpa_id' => (int)$records[0]['wdpa_id'], 'name' => $records[0]['name'], 'year' => $records[0]['Year'], 'values' => $accepted_fields];
+                return static::sendAPIResponse($api);
             }
-        }
-        $api['data'] = ['wdpa_id' => (int)$records[0]['wdpa_id'], 'name' => $records[0]['name'], 'year' => $records[0]['Year'], 'values' => $accepted_fields];
-        return static::sendAPIResponse($api);
-    }
 
     /**
      * get imet statistics for radar chart use
@@ -165,35 +164,35 @@ class ApiController extends Controller
      * @return object
      */
     public function get_imet_statistics_radar(Request $request, string $lang, int $wdpa_id, int $year = null): object
-    {
-        $api = [];
-        $labels = [];
-        App::setLocale($lang);
-        $records = $request->attributes->get('records');
-        $this->authorize('api_assessment', $records[0]);
-        if (count($records) === 0) {
-            return static::sendAPIResponse([]);
-        }
-        foreach ($records as $record) {
-            $item = array_merge([
-                'wdpa_id' => $record['wdpa_id'],
-                'year' => $record['Year'],
-                'version' => $record['version']
-            ],
-                ImetScores::get_radar($record['FormID'], true)
-            );
-            $api[] = $item;
-        }
+            {
+                $api = [];
+                $labels = [];
+                App::setLocale($lang);
+                $records = $request->attributes->get('records');
+                $this->authorize('api_assessment', $records[0]);
+                if (count($records) === 0) {
+                    return static::sendAPIResponse([]);
+                }
+                foreach ($records as $record) {
+                    $item = array_merge([
+                        'wdpa_id' => $record['wdpa_id'],
+                        'year' => $record['Year'],
+                        'version' => $record['version']
+                    ],
+                        ImetScores::get_radar($record['FormID'], true)
+                    );
+                    $api[] = $item;
+                }
 
-        $assessment_labels = \AndreaMarelli\ImetCore\Services\Scores\ImetScores::labels();
-        foreach ($assessment_labels as $key => $values) {
-            foreach ($values['abbreviations'] as $abb_key => $value) {
-                $labels[$key][$value] = $values['full'][$abb_key];
+                $assessment_labels = \AndreaMarelli\ImetCore\Services\Scores\ImetScores::labels();
+                foreach ($assessment_labels as $key => $values) {
+                    foreach ($values['abbreviations'] as $abb_key => $value) {
+                        $labels[$key][$value] = $values['full'][$abb_key];
+                    }
+                }
+
+                return static::sendAPIResponse(['data' => $api, 'labels' => $labels]);
             }
-        }
-
-        return static::sendAPIResponse(['data' => $api, 'labels' => $labels]);
-    }
 
     /**
      * @param Request $request
@@ -202,56 +201,56 @@ class ApiController extends Controller
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function get_protected_areas_list(Request $request, string $language = 'en'): object
-    {
+            {
 
-        $api = [];
-        $countries = [];
-        $region = $request->input("region");
-        $region_item = [];
-        if ($region) {
-            $countries = Country::getByRegion($region);
-        }
-        $list = Imet\Imet::get_assessments_list($request, ['country'], false, $countries);
-        $hasType = $request->has("type");
-        $type = $request->input("type");
-
-        $list->map(function ($item) {
-            if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
-                $item->wdpa_id = null;
-            }
-            return $item;
-        });
-
-        foreach ($list as $item) {
-            $country_name = "name_" . $language;
-            $region_name = "name";
-            if ($language !== "en") {
-                $region_name .= "_" . $language;
-            }
-            $item['Type'] = GeneralInfo::where('FormID', $item['FormID'])->pluck('Type')->first();
-            if (!$hasType || (!$type && $item['Type'] === null) || $type === $item['Type']) {
-                if ($item->country->region) {
-                    $region_item = [
-                        'id' => $item->country->region->id,
-                        'name' => $item->country->region->$region_name,
-                    ];
+                $api = [];
+                $countries = [];
+                $region = $request->input("region");
+                $region_item = [];
+                if ($region) {
+                    $countries = Country::getByRegion($region);
                 }
-                $api[] = [
-                    'wdpa_id' => $item['wdpa_id'],
-                    'language' => $item['language'],
-                    'name' => $item['name'],
-                    'year' => $item['Year'],
-                    'iso3' => $item['Country'],
-                    'country' => $item->country->$country_name,
-                    'region' => $region_item,
-                    'type' => $item['Type'],
-                    'version' => $item['version']
-                ];
-            }
-        }
+                $list = Imet\Imet::get_assessments_list($request, ['country'], false, $countries);
+                $hasType = $request->has("type");
+                $type = $request->input("type");
 
-        return static::sendAPIResponse(['data' => $api]);
-    }
+                $list->map(function ($item) {
+                    if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
+                        $item->wdpa_id = null;
+                    }
+                    return $item;
+                });
+
+                foreach ($list as $item) {
+                    $country_name = "name_" . $language;
+                    $region_name = "name";
+                    if ($language !== "en") {
+                        $region_name .= "_" . $language;
+                    }
+                    $item['Type'] = GeneralInfo::where('FormID', $item['FormID'])->pluck('Type')->first();
+                    if (!$hasType || (!$type && $item['Type'] === null) || $type === $item['Type']) {
+                        if ($item->country->region) {
+                            $region_item = [
+                                'id' => $item->country->region->id,
+                                'name' => $item->country->region->$region_name,
+                            ];
+                        }
+                        $api[] = [
+                            'wdpa_id' => $item['wdpa_id'],
+                            'language' => $item['language'],
+                            'name' => $item['name'],
+                            'year' => $item['Year'],
+                            'iso3' => $item['Country'],
+                            'country' => $item->country->$country_name,
+                            'region' => $region_item,
+                            'type' => $item['Type'],
+                            'version' => $item['version']
+                        ];
+                    }
+                }
+
+                return static::sendAPIResponse(['data' => $api]);
+            }
 
 
 }

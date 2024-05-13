@@ -106,8 +106,8 @@ export default {
                         "field": "c15"
                     },
                     {
-                        "label": `${window.Locale.getLabel('imet-core::common.steps_eval.context')}`,
-                        "field": "context"
+                        "label": `${window.Locale.getLabel('imet-core::analysis_report.element_diagrams.context.context_value_and_importance.datatable_average')}`,
+                        "field": "avg"
                     }
                 ]
             },
@@ -261,7 +261,7 @@ export default {
                     },
                     {
                         "label": `${window.Locale.getLabel('imet-core::common.steps_eval.process')}`,
-                        "field": "process"
+                        "field": "avg"
                     }
                 ]
             }],
@@ -304,8 +304,8 @@ export default {
                     "field": "pr6"
                 },
                 {
-                    "label": `${window.Locale.getLabel('imet-core::common.steps_eval.process')}`,
-                    "field": "process"
+                    "label": `${window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_internal_management_systems_processes.datatable_average')}`,
+                    "field": "avg"
                 }
             ]
 
@@ -337,8 +337,8 @@ export default {
                     "field": "pr9"
                 },
                 {
-                    "label": `${window.Locale.getLabel('imet-core::common.steps_eval.process')}`,
-                    "field": "process"
+                    "label": `${window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_management_protection_values.datatable_average')}`,
+                    "field": "avg"
                 }
             ]
 
@@ -370,8 +370,8 @@ export default {
                     "field": "pr12"
                 },
                 {
-                    "label": `${window.Locale.getLabel('imet-core::common.steps_eval.process')}`,
-                    "field": "process"
+                    "label": `${window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_stakeholders_relationships.datatable_average')}`,
+                    "field": "avg"
                 }
             ]
         }],
@@ -398,8 +398,8 @@ export default {
                     "field": "pr14"
                 },
                 {
-                    "label": `${window.Locale.getLabel('imet-core::common.steps_eval.process')}`,
-                    "field": "process"
+                    "label": `${window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_tourism_management.datatable_average')}`,
+                    "field": "avg"
                 }
             ]
         }],
@@ -426,8 +426,8 @@ export default {
                     "field": "pr16"
                 },
                 {
-                    "label": `${window.Locale.getLabel('imet-core::common.steps_eval.process')}`,
-                    "field": "process"
+                    "label": `${window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_monitoring_and_research.datatable_average')}`,
+                    "field": "avg"
                 }
             ]
         }],
@@ -439,8 +439,6 @@ export default {
                 ranking: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_effects_of_climate_change.ranking'),
                 average_contribution: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_effects_of_climate_change.average_contribution'),
                 datatable: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_effects_of_climate_change.datatable'),
-
-
             },
             columns: [
                 {
@@ -456,8 +454,8 @@ export default {
                     "field": "pr18"
                 },
                 {
-                    "label": `${window.Locale.getLabel('imet-core::common.steps_eval.process')}`,
-                    "field": "process"
+                    "label": `${window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_effects_of_climate_change.datatable_average')}`,
+                    "field": "avg"
                 }
             ]
         }
@@ -495,7 +493,7 @@ export default {
                         "field": "op4"
                     },
                     {
-                        "label": `${window.Locale.getLabel('imet-core::v2_common.steps_eval.outputs')}`,
+                        "label": `${window.Locale.getLabel('imet-core::common.steps_eval.outputs')}`,
                         "field": "outputs",
                         "extra_label": ``
                     }
