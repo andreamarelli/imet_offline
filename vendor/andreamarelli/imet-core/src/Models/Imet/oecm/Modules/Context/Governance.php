@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 
 class Governance extends Modules\Component\ImetModule
 {
-    protected $table = 'imet_oecm.context_governance';
+    protected $table = 'context_governance';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 

@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class StakeholderCooperation extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_stakeholder_cooperation';
+    protected $table = 'eval_stakeholder_cooperation';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 

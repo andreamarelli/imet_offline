@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class ManagementStaff extends Modules\Component\ImetModule
 {
-    protected $table = 'imet_oecm.context_management_staff';
+    protected $table = 'context_management_staff';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

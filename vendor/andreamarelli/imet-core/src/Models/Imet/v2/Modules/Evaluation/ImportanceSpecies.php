@@ -10,10 +10,17 @@ use Illuminate\Http\Request;
 
 class ImportanceSpecies extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_importance_c13';
+    protected $table = 'eval_importance_c13';
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCY_ON = 'Aspect';
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
+        [Modules\Evaluation\KeyConservationTrend::class, 'Aspect'],
+        [Modules\Evaluation\ManagementActivities::class, 'Aspect'],
+    ];
 
     public function __construct(array $attributes = []) {
 
@@ -43,59 +50,21 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
     }
 
     /**
-     * Preload data from CTX
-     * @param $form_id
-     * @param null $collection
-     * @return array
+     * Prefill from CTX
      */
-    public static function getModuleRecords($form_id, $collection = null): array
+    protected static function getPredefined($form_id = null): array
     {
-
-        $module_records = parent::getModuleRecords($form_id, $collection);
-        $empty_record = static::getEmptyRecord($form_id);
-
-        $records = $module_records['records'];
-        $preLoaded = [
-            'field' => 'Aspect',
-            'values' => [
+        $predefined_values = $form_id!==null
+            ? [
                 'group0' => Modules\Context\AnimalSpecies::getModule($form_id)->pluck('species')->toArray(),
                 'group1' => Modules\Context\VegetalSpecies::getModule($form_id)->pluck('Species')->toArray()
             ]
+            : [];
+
+        return [
+            'field' => static::$DEPENDENCY_ON,
+            'values' => $predefined_values
         ];
-        $module_records['records'] =  static::arrange_records($preLoaded, $records, $empty_record);
-        return $module_records;
-    }
-
-    public static function getVueData($form_id, $collection = null): array
-    {
-        $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('imet-core::v2_evaluation.ImportanceSpecies.warning_on_save');
-        return $vue_data;
-    }
-
-    /**
-     * Check if the required number of items had been selected
-     * @param Request $request
-     * @return array
-     * @throws \Exception
-     */
-    public static function updateModule(Request $request): array
-    {
-        static::forceLanguage($request->input('form_id'));
-
-        $records = Payload::decode($request->input('records_json'));
-        $form_id = $request->input('form_id');
-        $num_valid_records = collect($records)->filter(function($item){
-            return $item['IncludeInStatistics'];
-        })->count();
-
-        static::dropFromDependencies($form_id, $records, [
-            Modules\Evaluation\InformationAvailability::class,
-            Modules\Evaluation\KeyConservationTrend::class,
-            Modules\Evaluation\ManagementActivities::class,
-        ]);
-
-        return parent::updateModule($request);
     }
 
     /**

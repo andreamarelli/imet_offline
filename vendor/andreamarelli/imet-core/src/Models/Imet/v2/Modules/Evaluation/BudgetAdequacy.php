@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class BudgetAdequacy extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_budget_adequacy';
+    protected $table = 'eval_budget_adequacy';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 

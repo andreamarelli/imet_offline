@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models;
 
+use AndreaMarelli\ImetCore\Helpers\Database;
 use AndreaMarelli\ModularForms\Models\Utils\Currency as BaseCurrency;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\App;
@@ -19,8 +20,15 @@ use Illuminate\Support\Facades\Config;
  */
 class Currency extends BaseCurrency
 {
-    protected $table = 'imet.imet_currencies';
+    protected string $schema = Database::COMMON_IMET_SCHEMA;
+    protected $table = 'imet_currencies';
     protected $primaryKey = 'iso';
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        [$this->schema, $this->connection] = Database::getSchemaAndConnection($this->schema);
+    }
 
     /**
      * Override: get locale of IMET form

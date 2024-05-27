@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class Missions extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_missions';
+    protected $table = 'context_missions';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 

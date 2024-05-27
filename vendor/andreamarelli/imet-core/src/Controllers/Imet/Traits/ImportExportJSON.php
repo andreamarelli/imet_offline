@@ -253,19 +253,19 @@ trait ImportExportJSON
         if ($imet_form['version'] === Imet\Imet::IMET_V1) {
             $json = [
                 'Imet' => $imet_form,
-                'Encoders' => Imet\Encoder::exportModule($imet_id),
+                'Encoders' => Imet\v1\Encoder::exportModule($imet_id),
                 'Context' => Imet\v1\Imet::exportModules($imet_id, $exclude_attachments),
                 'Evaluation' => Imet\v1\Imet_Eval::exportModules($imet_id, $exclude_attachments),
-                'Report' => Imet\Report::export($imet_id)
+                'Report' => Imet\v1\Report::export($imet_id)
             ];
         } // #####  IMET V2  #####
         elseif ($imet_form['version'] === Imet\Imet::IMET_V2) {
             $json = [
                 'Imet' => $imet_form,
-                'Encoders' => Imet\Encoder::exportModule($imet_id),
+                'Encoders' => Imet\v2\Encoder::exportModule($imet_id),
                 'Context' => Imet\v2\Imet::exportModules($imet_id, $exclude_attachments),
                 'Evaluation' => Imet\v2\Imet_Eval::exportModules($imet_id, $exclude_attachments),
-                'Report' => Imet\Report::export($imet_id)
+                'Report' => Imet\v2\Report::export($imet_id)
             ];
         } // #####  IMET OECM  #####
         elseif ($imet_form['version'] === Imet\Imet::IMET_OECM) {
@@ -395,18 +395,18 @@ trait ImportExportJSON
             $formID = Imet\v1\Imet::importForm($json['Imet']);
             $modules_imported['Context'] = Imet\v1\Imet::importModules($json['Context'], $formID, $imet_version);
             $modules_imported['Evaluation'] = Imet\v1\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
-            Imet\Encoder::importModule($formID, $json['Encoders'] ?? null);
+            Imet\v1\Encoder::importModule($formID, $json['Encoders'] ?? null);
             if ($with_report) {
-                Imet\Report::import($formID, $json['Report'] ?? null);
+                Imet\v1\Report::import($formID, $json['Report'] ?? null);
             }
         } // #####  IMET V2  #####
         elseif ($version === Imet\Imet::IMET_V2) {
             $formID = Imet\v2\Imet::importForm($json['Imet']);
             $modules_imported['Context'] = Imet\v2\Imet::importModules($json['Context'], $formID, $imet_version);
             $modules_imported['Evaluation'] = Imet\v2\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
-            Imet\Encoder::importModule($formID, $json['Encoders'] ?? null);
+            Imet\v2\Encoder::importModule($formID, $json['Encoders'] ?? null);
             if ($with_report) {
-                Imet\Report::import($formID, $json['Report'] ?? null);
+                Imet\v2\Report::import($formID, $json['Report'] ?? null);
             }
         } // #####  IMET OECM  #####
         elseif ($version === Imet\Imet::IMET_OECM) {

@@ -2,8 +2,9 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v2;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
-use AndreaMarelli\ImetCore\Models\Imet\Encoder;
+use AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller;
+use AndreaMarelli\ImetCore\Helpers\Database;
+use AndreaMarelli\ImetCore\Models\Imet\v2\Encoder;
 use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialAvailableResources;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesBudgetLines;
@@ -20,6 +21,9 @@ use Illuminate\Support\Facades\Auth;
 class Imet extends BaseImetForm
 {
     public const version = 'v2';
+    protected string $schema = Database::IMET_SCHEMA;
+    protected $connection = Database::IMET_CONNECTION;
+    protected $table = 'imet_form';
 
     public static $modules = [
 

@@ -9,9 +9,17 @@ use Illuminate\Http\Request;
 
 class ClimateChange extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_climate_change_changements';
+    protected $table = 'context_climate_change_changements';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\ImportanceClimateChange::class, 'Value'],
+        [Modules\Evaluation\InformationAvailability::class, 'Value'],
+        [Modules\Evaluation\KeyConservationTrend::class, 'Value'],
+        [Modules\Evaluation\ManagementActivities::class, 'Value'],
+        [Modules\Evaluation\ClimateChangeMonitoring::class, 'Value']
+    ];
 
     public function __construct(array $attributes = []) {
 
@@ -42,28 +50,4 @@ class ClimateChange extends Modules\Component\ImetModule
 
     }
 
-    public static function getVueData($form_id, $collection = null): array
-    {
-        $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('imet-core::v2_context.ClimateChange.warning_on_save');
-        return $vue_data;
-    }
-
-    public static function updateModule(Request $request): array
-    {
-        static::forceLanguage($request->input('form_id'));
-
-        $records = Payload::decode($request->input('records_json'));
-        $form_id = $request->input('form_id');
-
-        static::dropFromDependencies($form_id, $records, [
-            Modules\Evaluation\ImportanceClimateChange::class,
-            Modules\Evaluation\InformationAvailability::class,
-            Modules\Evaluation\KeyConservationTrend::class,
-            Modules\Evaluation\ManagementActivities::class,
-            Modules\Evaluation\ClimateChangeMonitoring::class,
-        ]);
-
-        return parent::updateModule($request);
-    }
 }

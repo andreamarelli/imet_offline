@@ -2,10 +2,10 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\Components;
 
+use AndreaMarelli\ImetCore\Models\Imet\Components\BaseModel;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 
-abstract class Encoder extends Model
+abstract class Encoder extends BaseModel
 {
     public const CREATED_AT = 'UpdateDate';
     public const UPDATED_AT = 'UpdateDate';

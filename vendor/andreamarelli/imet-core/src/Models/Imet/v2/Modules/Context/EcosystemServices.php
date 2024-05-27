@@ -9,9 +9,17 @@ use Illuminate\Http\Request;
 
 class EcosystemServices extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_ecosystem_services';
+    protected $table = 'context_ecosystem_services';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\ImportanceEcosystemServices::class, 'Element'],
+        [Modules\Evaluation\InformationAvailability::class, 'Element'],
+        [Modules\Evaluation\KeyConservationTrend::class, 'Element'],
+        [Modules\Evaluation\ManagementActivities::class, 'Element'],
+        [Modules\Evaluation\EcosystemServices::class, 'Element'],
+    ];
 
     public static $groupByCategory = [
         ['group0', 'group1', 'group2'],
@@ -73,7 +81,6 @@ class EcosystemServices extends Modules\Component\ImetModule
     {
         $vue_data = parent::getVueData($form_id, $collection);
         $vue_data['groupByCategory'] = static::$groupByCategory;
-        $vue_data['warning_on_save'] =  trans('imet-core::v2_context.EcosystemServices.warning_on_save');
         return $vue_data;
     }
 
@@ -85,24 +92,6 @@ class EcosystemServices extends Modules\Component\ImetModule
         $record = static::dropIfPredefinedValueObsolete($record, 'Element', 'other - illegal');
 
         return $record;
-    }
-
-    public static function updateModule(Request $request): array
-    {
-        static::forceLanguage($request->input('form_id'));
-
-        $records = Payload::decode($request->input('records_json'));
-        $form_id = $request->input('form_id');
-
-        static::dropFromDependencies($form_id, $records, [
-            Modules\Evaluation\ImportanceEcosystemServices::class,
-            Modules\Evaluation\InformationAvailability::class,
-            Modules\Evaluation\KeyConservationTrend::class,
-            Modules\Evaluation\ManagementActivities::class,
-            Modules\Evaluation\EcosystemServices::class,
-        ]);
-
-        return parent::updateModule($request);
     }
 
     public static function getStats($form_id)

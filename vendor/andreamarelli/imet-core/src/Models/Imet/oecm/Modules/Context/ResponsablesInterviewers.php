@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class ResponsablesInterviewers extends Modules\Component\ImetModule
 {
-    protected $table = 'imet_oecm.context_encoding_responsables_interviewers';
+    protected $table = 'context_encoding_responsables_interviewers';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 

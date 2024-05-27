@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
  */
 class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
 {
-    protected $table = 'imet_oecm.context_analysis_stakeholders_indirect_users';
+    protected $table = 'context_analysis_stakeholders_indirect_users';
 
     public static $USER_MODE = Stakeholders::ONLY_INDIRECT;
 

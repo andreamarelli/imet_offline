@@ -6,7 +6,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class Objectives7 extends _Objectives
 {
-    protected $table = 'imet.context_objectives7';
+    protected $table = 'context_objectives7';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

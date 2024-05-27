@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class StaffCompetence extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_staff_competence';
+    protected $table = 'eval_staff_competence';
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;

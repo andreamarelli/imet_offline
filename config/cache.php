@@ -45,7 +45,7 @@ return [
         'database' => [
             'driver' => 'database',
             'table' => 'cache',
-            'connection' => 'ofac'
+            'connection' => 'offline_public',
         ],
 
         'file' => [

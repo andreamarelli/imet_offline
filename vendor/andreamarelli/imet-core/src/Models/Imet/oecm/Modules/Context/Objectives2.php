@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 
 class Objectives2 extends _Objectives
 {
-    protected $table = 'imet_oecm.context_objectives2';
+    protected $table = 'context_objectives2';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 

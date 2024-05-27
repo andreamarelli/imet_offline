@@ -11,7 +11,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
  */
 class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_supports_constraints_integration';
+    protected $table = 'eval_supports_constraints_integration';
     protected $fixed_rows = true;
     public $titles = [];
 

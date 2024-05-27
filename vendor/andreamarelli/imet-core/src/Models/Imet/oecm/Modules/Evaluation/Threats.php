@@ -9,7 +9,7 @@ use AndreaMarelli\ImetCore\Services\ThreatsService;
 
 class Threats extends Modules\Component\ImetModule_Eval {
 
-    protected $table = 'imet_oecm.eval_threats';
+    protected $table = 'eval_threats';
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;

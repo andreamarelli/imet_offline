@@ -9,7 +9,7 @@ use AndreaMarelli\ImetCore\Services\ThreatsService;
 
 class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
 
-    protected $table = 'imet_oecm.eval_threats_biodiversity';
+    protected $table = 'eval_threats_biodiversity';
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;

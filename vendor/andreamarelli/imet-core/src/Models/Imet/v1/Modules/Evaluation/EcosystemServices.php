@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class EcosystemServices extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_ecosystem_services';
+    protected $table = 'eval_ecosystem_services';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 

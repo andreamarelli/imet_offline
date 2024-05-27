@@ -2,6 +2,8 @@
 
 namespace AndreaMarelli\ImetCore\Models;
 
+use AndreaMarelli\ImetCore\Helpers\Database;
+use AndreaMarelli\ImetCore\Models\Imet\Components\BaseModel;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -10,9 +12,10 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package AndreaMarelli\ImetCore\Models
  */
-class Region extends Model
+class Region extends BaseModel
 {
-    protected $table = 'imet.imet_regions';
+    protected string $schema = Database::COMMON_IMET_SCHEMA;
+    protected $table = 'imet_regions';
     protected $keyType = 'string';
 
 }

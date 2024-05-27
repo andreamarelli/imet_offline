@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class VisitorsManagement extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_visitors_management';
+    protected $table = 'eval_visitors_management';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 

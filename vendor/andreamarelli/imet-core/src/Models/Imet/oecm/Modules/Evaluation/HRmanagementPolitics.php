@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class HRmanagementPolitics extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_hr_management_politics';
+    protected $table = 'eval_hr_management_politics';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 

@@ -17,17 +17,21 @@ class ImetScores
     /**
      * Ensure to return IMET model
      */
-    private static function getAsModel(Imet|ImetV1|ImetV2|int|string $imet): Imet
+    private static function getAsModel(ImetV1|ImetV2|int|string $imet): ImetV1|ImetV2
     {
-        return (is_int($imet) or is_string($imet))
-            ? Imet::find($imet)
-            : $imet;
+        if(is_int($imet) or is_string($imet)) {
+            $imet_model = ImetV2::find($imet);
+            return $imet_model->version===ImetV2::version
+                ? $imet_model
+                : ImetV1::find($imet);
+        }
+        return $imet;
     }
 
     /**
      * Retrieve IMET assessment's scores (all)
      */
-    public static function get_all(Imet|ImetV1|ImetV2|int|string $imet): array
+    public static function get_all(ImetV1|ImetV2|int|string $imet): array
     {
         $imet = static::getAsModel($imet);
         return $imet->version === Imet::IMET_V1
@@ -38,7 +42,7 @@ class ImetScores
     /**
      * Retrieve IMET assessment's radar scores
      */
-    public static function get_radar(Imet|ImetV1|ImetV2|int|string $imet, bool $with_abbreviations = false): array
+    public static function get_radar(ImetV1|ImetV2|int|string $imet, bool $with_abbreviations = false): array
     {
         $imet = static::getAsModel($imet);
         $scores = static::get_all($imet)[_Scores::RADAR_SCORES];
@@ -56,7 +60,7 @@ class ImetScores
     /**
      * Retrieve IMET assessment's given step scores
      */
-    public static function get_step(Imet|ImetV1|ImetV2|int|string $imet, string $step): array
+    public static function get_step(ImetV1|ImetV2|int|string $imet, string $step): array
     {
         return static::get_all($imet)[$step];
     }
@@ -64,7 +68,7 @@ class ImetScores
     /**
      * Retrieve the global IMET assessment score
      */
-    public static function get_score(Imet|ImetV1|ImetV2|int|string $imet): array
+    public static function get_score(ImetV1|ImetV2|int|string $imet): array
     {
         return static::get_radar($imet)['imet_index'];
     }
@@ -72,7 +76,7 @@ class ImetScores
     /**
      * Refresh scores (override cache)
      */
-    public static function refresh_scores(Imet|ImetV1|ImetV2|int|string $imet): array
+    public static function refresh_scores(ImetV1|ImetV2|int|string $imet): array
     {
         $imet = static::getAsModel($imet);
         return $imet->version === Imet::IMET_V1

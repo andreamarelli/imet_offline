@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class EcosystemServicesTendance extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_ecosystem_services_tendance';
+    protected $table = 'context_ecosystem_services_tendance';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

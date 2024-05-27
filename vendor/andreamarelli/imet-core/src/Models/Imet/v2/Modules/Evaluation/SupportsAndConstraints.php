@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_supports_and_constaints';
+    protected $table = 'eval_supports_and_constaints';
 //    protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
@@ -22,11 +22,6 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
             ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-1to3WithNA',   'label' => trans('imet-core::v2_evaluation.SupportsAndConstraints.fields.EvaluationScore')],
             ['name' => 'EvaluationScore2',  'type' => 'imet-core::rating-Minus3to3',   'label' => trans('imet-core::v2_evaluation.SupportsAndConstraints.fields.EvaluationScore2')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.SupportsAndConstraints.fields.Comments')],
-        ];
-
-        $this->predefined_values = [
-            'field' => 'Aspect',
-            'values' => trans('imet-core::v2_evaluation.SupportsAndConstraints.predefined_values')
         ];
 
         $this->module_groups = [

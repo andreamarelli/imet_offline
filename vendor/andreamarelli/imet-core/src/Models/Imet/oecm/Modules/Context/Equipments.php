@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class Equipments extends Modules\Component\ImetModule
 {
-    protected $table = 'imet_oecm.context_equipments';
+    protected $table = 'context_equipments';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

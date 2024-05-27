@@ -2,12 +2,21 @@
 
 namespace AndreaMarelli\ImetCore\Models;
 
+use AndreaMarelli\ImetCore\Helpers\Database;
 use AndreaMarelli\ModularForms\Models\Utils\Animal as BaseAnimal;
 
 class Animal extends BaseAnimal
 {
+    protected string $schema = Database::COMMON_IMET_SCHEMA;
+    protected $connection = Database::COMMON_CONNECTION;
     protected $table = 'species';
     protected $primaryKey = 'id';
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        [$this->schema, $this->connection] = Database::getSchemaAndConnection($this->schema);
+    }
 
     public static function getScientificName($taxonomy): ?string {
         $sciName = null;

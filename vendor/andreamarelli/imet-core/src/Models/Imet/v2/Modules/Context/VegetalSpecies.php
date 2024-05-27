@@ -9,9 +9,16 @@ use Illuminate\Http\Request;
 
 class VegetalSpecies extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_species_vegetal_presence';
+    protected $table = 'context_species_vegetal_presence';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\ImportanceSpecies::class, 'Species'],
+        [Modules\Evaluation\InformationAvailability::class, 'Species'],
+        [Modules\Evaluation\KeyConservationTrend::class, 'Species'],
+        [Modules\Evaluation\ManagementActivities::class, 'Species'],
+    ];
 
     public function __construct(array $attributes = []) {
 
@@ -36,30 +43,6 @@ class VegetalSpecies extends Modules\Component\ImetModule
 
         parent::__construct($attributes);
 
-    }
-
-    public static function getVueData($form_id, $collection = null): array
-    {
-        $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('imet-core::v2_context.VegetalSpecies.warning_on_save');
-        return $vue_data;
-    }
-
-    public static function updateModule(Request $request): array
-    {
-        static::forceLanguage($request->input('form_id'));
-
-        $records = Payload::decode($request->input('records_json'));
-        $form_id = $request->input('form_id');
-
-        static::dropFromDependencies($form_id, $records, [
-            Modules\Evaluation\ImportanceSpecies::class,
-            Modules\Evaluation\InformationAvailability::class,
-            Modules\Evaluation\KeyConservationTrend::class,
-            Modules\Evaluation\ManagementActivities::class,
-        ]);
-
-        return parent::updateModule($request);
     }
 
 }

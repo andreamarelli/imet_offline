@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class LandCover extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_land_cover';
+    protected $table = 'context_land_cover';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

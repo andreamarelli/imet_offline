@@ -8,7 +8,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class ObjectivesContext extends _Objectives
 {
-    protected $table = 'imet_oecm.eval_objectives_context';
+    protected $table = 'eval_objectives_context';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 

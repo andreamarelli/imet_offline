@@ -7,10 +7,12 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class StaffCompetence extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_staff_competence';
+    protected $table = 'eval_staff_competence';
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
+
+    protected static $DEPENDENCY_ON = 'Theme';
 
     public function __construct(array $attributes = []) {
 
@@ -31,7 +33,6 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.StaffCompetence.module_info_EvaluationQuestion');
         $this->module_info_Rating = trans('imet-core::v2_evaluation.StaffCompetence.module_info_Rating');
-        $this->module_info_Rating = trans('imet-core::v2_evaluation.StaffCompetence.module_info_Rating');
         $this->ratingLegend = trans('imet-core::v2_evaluation.StaffCompetence.ratingLegend');
 
         $this->max_rows = 14;
@@ -41,17 +42,29 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
     }
 
     /**
-     * Inject num of current staff from CTX (ManagementStaff)
-     * @param $form_id
-     * @param null $collection
-     * @return array
+     * Prefill from CTX
      */
-    public static function getModuleRecords($form_id, $collection = null): array
+    protected static function getPredefined($form_id = null): array
     {
-        $module_records = parent::getModuleRecords($form_id, $collection);
+        return [
+            'field' => static::$DEPENDENCY_ON,
+            'values' => $form_id !== null
+                ? Modules\Context\ManagementStaff::getModule($form_id)->pluck('Function')->toArray()
+                : []
+        ];
+    }
+
+    /**
+     * Inject num of current staff from CTX (ManagementStaff)
+     */
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    {
+        $records = parent::arrange_records($predefined_values, $records, $empty_record);
+        $form_id = $empty_record['FormID'];
+
         $staff_records = Modules\Context\ManagementStaff::getModule($form_id);
 
-        $module_records['records'] = collect($module_records['records'])
+        return collect($records)
             ->map(function ($item) use ($staff_records){
                 $st = $staff_records
                     ->filter(function ($item_staff) use($item){
@@ -60,21 +73,8 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
                     ->first();
                 $item['__num_staff'] = $st!==null ? intval($st->ActualPermanent) : null;
                 return $item;
-            });
-
-        return $module_records;
-    }
-
-    protected static function getPredefined($form_id = null)
-    {
-        $predefined_values = parent::getPredefined($form_id);
-
-        if($form_id!==null){
-            $collection = Modules\Context\ManagementStaff::getModule($form_id);
-            $predefined_values['values'] = $collection->pluck('Function')->toArray();
-        }
-
-        return $predefined_values;
+            })
+            ->toArray();
     }
 
 }

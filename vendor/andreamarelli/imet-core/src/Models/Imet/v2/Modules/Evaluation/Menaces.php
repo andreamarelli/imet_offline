@@ -9,10 +9,17 @@ use Illuminate\Http\Request;
 
 class Menaces extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_menaces';
+    protected $table = 'eval_menaces';
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCY_ON = 'Aspect';
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
+        [Modules\Evaluation\KeyConservationTrend::class, 'Aspect'],
+        [Modules\Evaluation\ManagementActivities::class, 'Aspect'],
+    ];
 
     public function __construct(array $attributes = []) {
 
@@ -36,19 +43,42 @@ class Menaces extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-
     /**
-     * Preload data from CTX
-     * @param $form_id
-     * @param null $collection
-     * @return array
+     * Prefill from CTX
      */
-    public static function getModuleRecords($form_id, $collection = null): array
+    protected static function getPredefined($form_id = null): array
     {
-        $module_records = parent::getModuleRecords($form_id, $collection);
-        $empty_record = static::getEmptyRecord($form_id);
+        return [
+            'field' => static::$DEPENDENCY_ON,
+            'values' =>  $form_id !== null
+                ? static::getMenacesPressions($form_id)
+                    ->map(function ($item){
+                        return $item['Value'];
+                    })
+                : []
+        ];
+    }
 
-        // retrieve from CTX
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    {
+        $records  = parent::arrange_records($predefined_values, $records, $empty_record);
+        $form_id = $empty_record['FormID'];
+
+        // Inject rankings
+        foreach (static::getMenacesPressions($form_id)->values()->toArray() as $index=>$record){
+            $records[$index]['_rank'] =  -$record['_rank']*100/3.0;
+            $records[$index]['_Impact'] = $record['Impact'];
+            $records[$index]['_Extension'] = $record['Extension'];
+            $records[$index]['_Duration'] = $record['Duration'];
+            $records[$index]['_Trend'] = $record['Trend'];
+            $records[$index]['_Probability'] = $record['Probability'];
+        }
+
+        return $records;
+    }
+
+
+    private static function getMenacesPressions($form_id){
         $ctx_records = Modules\Context\MenacesPressions::getModule($form_id)
             ->map(function ($item){
                 $item['_rank'] = Modules\Context\MenacesPressions::calculateStats(
@@ -68,53 +98,8 @@ class Menaces extends Modules\Component\ImetModule_Eval
                 });
         }
 
-        // Populate predefined with values from CTX
-        $preLoaded = [
-            'field' => 'Aspect',
-            'values' => $ctx_records
-                ->map(function ($item){
-                    return $item['Value'];
-                })
-                ->toArray()
-
-        ];
-        $module_records['records'] =  static::arrange_records($preLoaded, $module_records['records'], $empty_record);
-
-        // Inject also ranking
-        foreach (array_values($ctx_records->toArray()) as $index=>$record){
-            $module_records['records'][$index]['_rank'] =  -$record['_rank']*100/3.0;
-            $module_records['records'][$index]['_Impact'] = $record['Impact'];
-            $module_records['records'][$index]['_Extension'] = $record['Extension'];
-            $module_records['records'][$index]['_Duration'] = $record['Duration'];
-            $module_records['records'][$index]['_Trend'] = $record['Trend'];
-            $module_records['records'][$index]['_Probability'] = $record['Probability'];
-        }
-
-        return $module_records;
-    }
-
-    public static function getVueData($form_id, $collection = null): array
-    {
-        $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('imet-core::v2_evaluation.Menaces.warning_on_save');
-        return $vue_data;
+        return $ctx_records;
     }
 
 
-
-    public static function updateModule(Request $request): array
-    {
-        static::forceLanguage($request->input('form_id'));
-
-        $records = Payload::decode($request->input('records_json'));
-        $form_id = $request->input('form_id');
-
-        static::dropFromDependencies($form_id, $records, [
-            Modules\Evaluation\InformationAvailability::class,
-            Modules\Evaluation\KeyConservationTrend::class,
-            Modules\Evaluation\ManagementActivities::class,
-        ]);
-
-        return parent::updateModule($request);
-    }
 }

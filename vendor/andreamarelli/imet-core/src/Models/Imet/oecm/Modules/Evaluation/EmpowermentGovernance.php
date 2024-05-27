@@ -8,7 +8,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class EmpowermentGovernance extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_empowerment_governance';
+    protected $table = 'eval_empowerment_governance';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 

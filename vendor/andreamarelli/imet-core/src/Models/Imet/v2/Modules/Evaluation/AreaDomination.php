@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class AreaDomination extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_area_domination';
+    protected $table = 'eval_area_domination';
 
     public const MODULE_SCOPE = self::TERRESTRIAL_AND_MARINE;
 

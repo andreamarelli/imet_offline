@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class DesignatedValuesConservationTendency extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_designated_values_conservation_tendency';
+    protected $table = 'eval_designated_values_conservation_tendency';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

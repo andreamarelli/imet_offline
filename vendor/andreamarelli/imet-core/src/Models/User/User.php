@@ -4,20 +4,12 @@ namespace AndreaMarelli\ImetCore\Models\User;
 
 use AndreaMarelli\ImetCore\Models\Country;
 use \AndreaMarelli\ModularForms\Models\User\User as BaseUser;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 
 /**
  * Class User
- *
- * @property string $first_name
- * @property string $last_name
- * @property string $full_name
- * @property string $imet_role
- * @mixin \Illuminate\Database\Eloquent\Model
- * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class User extends BaseUser
 {

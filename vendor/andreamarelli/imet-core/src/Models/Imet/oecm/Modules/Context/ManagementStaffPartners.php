@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 
 class ManagementStaffPartners extends Modules\Component\ImetModule
 {
-    protected $table = 'imet_oecm.context_management_staff_partners';
+    protected $table = 'context_management_staff_partners';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

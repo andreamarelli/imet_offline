@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class Designation extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.designation';
+    protected $table = 'designation';
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;

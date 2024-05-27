@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
  */
 class ThreatsIntegration extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_threats_integration';
+    protected $table = 'eval_threats_integration';
     protected $fixed_rows = true;
     public $titles = [];
 

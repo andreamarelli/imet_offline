@@ -8,7 +8,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 
 class Governance extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_governance';
+    protected $table = 'context_governance';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 

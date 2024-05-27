@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class RegulationsAdequacy extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_regulations_adequacy';
+    protected $table = 'eval_regulations_adequacy';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 

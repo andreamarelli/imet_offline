@@ -8,7 +8,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 
 class SpecialStatus extends Modules\Component\ImetModule
 {
-    protected $table = 'imet_oecm.context_special_status';
+    protected $table = 'context_special_status';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 

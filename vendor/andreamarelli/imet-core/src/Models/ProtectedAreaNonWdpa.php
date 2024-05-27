@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models;
 
+use AndreaMarelli\ImetCore\Helpers\Database;
 use AndreaMarelli\ModularForms\Models\BaseModel;
 
 
@@ -19,6 +20,7 @@ use AndreaMarelli\ModularForms\Models\BaseModel;
  */
 class ProtectedAreaNonWdpa extends BaseModel
 {
+    protected string $schema = Database::COMMON_IMET_SCHEMA;
     protected $table = 'imet.imet_pas_non_wdpa';
 
     public const LABEL = 'name';
@@ -28,6 +30,12 @@ class ProtectedAreaNonWdpa extends BaseModel
     protected $guarded = [];
 
     protected $appends = ['wdpa_id'];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        [$this->schema, $this->connection] = Database::getSchemaAndConnection($this->schema);
+    }
 
     /**
      * Append "wdpa_id" as id alias

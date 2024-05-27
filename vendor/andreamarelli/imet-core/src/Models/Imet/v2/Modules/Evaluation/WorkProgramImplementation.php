@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_work_program_implementation';
+    protected $table = 'eval_work_program_implementation';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 

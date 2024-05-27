@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class Sectors extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_sectors';
+    protected $table = 'context_sectors';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

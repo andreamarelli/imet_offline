@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class LifeQualityImpact extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_life_quality_impact';
+    protected $table = 'eval_life_quality_impact';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

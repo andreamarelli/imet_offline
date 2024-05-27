@@ -10,10 +10,17 @@ use Illuminate\Http\Request;
 
 class ImportanceHabitats extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_importance_c14';
+    protected $table = 'eval_importance_c14';
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCY_ON = 'Aspect';
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
+        [Modules\Evaluation\KeyConservationTrend::class, 'Aspect'],
+        [Modules\Evaluation\ManagementActivities::class, 'Aspect'],
+    ];
 
     public function __construct(array $attributes = []) {
 
@@ -38,53 +45,18 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
     }
 
     /**
-     * Preload data from CTX
-     * @param $form_id
-     * @param null $collection
-     * @return array
+     * Prefill from CTX
      */
-    public static function getModuleRecords($form_id, $collection = null): array
+    protected static function getPredefined($form_id = null): array
     {
+        $predefined_values = $form_id!==null
+            ? Modules\Context\Habitats::getModule($form_id)->pluck('EcosystemType')->toArray()
+            : [];
 
-        $module_records = parent::getModuleRecords($form_id, $collection);
-        $empty_record = static::getEmptyRecord($form_id);
-
-        $records = $module_records['records'];
-        $preLoaded = [
-            'field' => 'Aspect',
-            'values' => Modules\Context\Habitats::getModule($form_id)->pluck('EcosystemType')->toArray()
+        return [
+            'field' => static::$DEPENDENCY_ON,
+            'values' => $predefined_values
         ];
-        $module_records['records'] =  static::arrange_records($preLoaded, $records, $empty_record);
-        return $module_records;
-    }
-
-    public static function getVueData($form_id, $collection = null): array
-    {
-        $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('imet-core::v2_evaluation.ImportanceHabitats.warning_on_save');
-        return $vue_data;
-    }
-
-    /**
-     * Check if the required number of items had been selected
-     * @param Request $request
-     * @return array
-     * @throws \Exception
-     */
-    public static function updateModule(Request $request): array
-    {
-        static::forceLanguage($request->input('form_id'));
-
-        $records = Payload::decode($request->input('records_json'));
-        $form_id = $request->input('form_id');
-
-        static::dropFromDependencies($form_id, $records, [
-            Modules\Evaluation\InformationAvailability::class,
-            Modules\Evaluation\KeyConservationTrend::class,
-            Modules\Evaluation\ManagementActivities::class,
-        ]);
-
-        return parent::updateModule($request);
     }
 
     /**

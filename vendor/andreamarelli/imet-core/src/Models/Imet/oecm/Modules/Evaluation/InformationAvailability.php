@@ -8,7 +8,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class InformationAvailability extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_information_availability';
+    protected $table = 'eval_information_availability';
     protected $fixed_rows = true;
     public $titles = [];
 

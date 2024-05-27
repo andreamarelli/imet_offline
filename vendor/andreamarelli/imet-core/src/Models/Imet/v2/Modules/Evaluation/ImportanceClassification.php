@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class ImportanceClassification extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_importance_c12';
+    protected $table = 'eval_importance_c12';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

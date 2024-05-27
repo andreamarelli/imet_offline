@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class ManagementStaffPartners extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_management_staff_partners';
+    protected $table = 'context_management_staff_partners';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

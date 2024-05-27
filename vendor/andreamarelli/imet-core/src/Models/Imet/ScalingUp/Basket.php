@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp;
 
+use AndreaMarelli\ImetCore\Helpers\Database;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Basket as BasketModel;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +15,8 @@ class Basket extends Model
     public const BASKET_FOLDER = 'basket/';
 
     public $timestamps = false;
-    protected $table = 'imet.scaling_up_basket';
+    protected string $schema = Database::IMET_SCHEMA;
+    protected $table = 'scaling_up_basket';
     protected $fillable = ['item', 'order', 'comment', 'scaling_up_id'];
 
     public static function retrieve_by_scaling_id($id)

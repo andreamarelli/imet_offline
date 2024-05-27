@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class Objectives extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_objectives';
+    protected $table = 'eval_objectives';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 

@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models;
 
+use AndreaMarelli\ImetCore\Helpers\Database;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\Locale;
 use AndreaMarelli\ModularForms\Models\Utils\ProtectedArea as BaseProtectedArea;
@@ -24,9 +25,15 @@ use Illuminate\Support\Str;
  */
 class ProtectedArea extends BaseProtectedArea
 {
-
-    protected $table = 'imet.imet_pas';
+    protected string $schema = Database::COMMON_IMET_SCHEMA;
+    protected $table = 'imet_pas';
     public $primaryKey = 'global_id';
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        [$this->schema, $this->connection] = Database::getSchemaAndConnection($this->schema);
+    }
 
     /**
      * @deprecated

@@ -3,8 +3,8 @@
 namespace AndreaMarelli\ImetCore\Models\Imet;
 
 use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
+use AndreaMarelli\ImetCore\Helpers\Database;
 use AndreaMarelli\ImetCore\Models\Country;
-use AndreaMarelli\ImetCore\Models\Imet\Encoder;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ImetCore\Models\Imet\v1;
 use AndreaMarelli\ImetCore\Models\Imet\v2;
@@ -36,14 +36,14 @@ use function session;
  * @property string $Year
  *
  */
-class Imet extends Form
+abstract class Imet extends Form
 {
     const IMET_V1 = 'v1';
     const IMET_V2 = 'v2';
     const IMET_OECM = 'oecm';
 
-
-    protected $table = 'imet.imet_form';
+    protected string $schema;
+    protected $table = 'imet_form';
     protected $primaryKey = 'FormID';
     public const CREATED_AT = 'UpdateDate';
     public const UPDATED_AT = 'UpdateDate';
@@ -53,6 +53,12 @@ class Imet extends Form
     public static $sortDirection = 'desc';
 
     public static $modules = [];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        [$this->schema, $this->connection] = Database::getSchemaAndConnection($this->schema);
+    }
 
     /**
      * Relation to Country
@@ -278,9 +284,12 @@ class Imet extends Form
         $external = $version === static::IMET_V1
             ? v1\Modules\Context\ResponsablesInterviewees::getNames($form_id)
             : v2\Modules\Context\ResponsablesInterviewees::getNames($form_id);
+        $encoders = $version === static::IMET_V1
+            ? v1\Encoder::getNames($form_id)
+            : v2\Encoder::getNames($form_id);
 
         return [
-            'encoders' => Encoder::getNames($form_id),
+            'encoders' => $encoders,
             'internal' => $internal,
             'external' => $external
         ];
@@ -489,17 +498,12 @@ class Imet extends Form
      */
     public static function foundDuplicates(): array
     {
-        $haveDuplicates = [];
-        static::selectRaw('json_agg("FormID")')
+        return static::select("FormID")
             ->groupBy("Year", "wdpa_id", 'version')
             ->havingRaw('count(*) > ?', [1])
             ->get()
-            ->pluck('json_agg')
-            ->map(function ($item) use (&$haveDuplicates) {
-                $haveDuplicates = array_merge($haveDuplicates, json_decode($item));
-                return $item;
-            });
-        return $haveDuplicates;
+            ->plucK('FormID')
+            ->toArray();
     }
 
     /**

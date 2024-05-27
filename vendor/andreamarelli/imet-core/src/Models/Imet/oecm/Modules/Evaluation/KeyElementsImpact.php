@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 class KeyElementsImpact extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_key_elements_impact';
+    protected $table = 'eval_key_elements_impact';
     protected $fixed_rows = true;
     public $titles = [];
 

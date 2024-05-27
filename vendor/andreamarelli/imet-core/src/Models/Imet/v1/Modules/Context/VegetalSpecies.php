@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class VegetalSpecies extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_species_vegetal_presence';
+    protected $table = 'context_species_vegetal_presence';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

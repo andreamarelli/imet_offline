@@ -23,13 +23,11 @@ function is_imet_environment(): bool
 }
 
 /**
- * Check if App::environment is IMET related (ex. imetoffline or imetglobal)
- *
- * @return bool|string
+ * Return IMET offline version
  */
-function imet_offline_version()
+function imet_offline_version(): string
 {
-    return env('IMET_OFFLINE_VERSION');
+    return config('imet-core.offline_version');
 }
 
 /**

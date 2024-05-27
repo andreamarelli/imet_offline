@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 
 class ManagementRelativeImportance extends Modules\Component\ImetModule
 {
-    protected $table = 'imet_oecm.context_management_relative_importance';
+    protected $table = 'context_management_relative_importance';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

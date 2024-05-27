@@ -2,14 +2,18 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp;
 
-use Illuminate\Database\Eloquent\Model;
+use AndreaMarelli\ImetCore\Helpers\Database;
+use AndreaMarelli\ImetCore\Models\Imet\Components\BaseModel;
 
 
-class ScalingUpWdpa extends Model
+class ScalingUpWdpa extends BaseModel
 {
-    public $timestamps = false;
-    protected $table = 'imet.scaling_up_wdpas';
+
+    protected string $schema = Database::IMET_SCHEMA;
+    protected $table = 'scaling_up_wdpas';
+
     protected $fillable = ['scaling_id', 'FormID', 'name', 'Country', 'wdpa_id', 'color'];
+    public $timestamps = false;
 
     public static function retrieve_by_scaling_id($id)
     {

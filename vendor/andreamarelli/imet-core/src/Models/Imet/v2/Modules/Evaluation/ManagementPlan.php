@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ManagementPlan extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_management_plan';
+    protected $table = 'eval_management_plan';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 

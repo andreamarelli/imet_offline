@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 
 class Contexts extends Modules\Component\ImetModule
 {
-    protected $table = 'imet_oecm.context_contexts';
+    protected $table = 'context_contexts';
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;

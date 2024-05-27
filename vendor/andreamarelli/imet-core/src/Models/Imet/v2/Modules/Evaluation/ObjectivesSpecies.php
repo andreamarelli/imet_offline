@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class ObjectivesSpecies extends _Objectives
 {
-    protected $table = 'imet.eval_objectives_c13';
+    protected $table = 'eval_objectives_c13';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

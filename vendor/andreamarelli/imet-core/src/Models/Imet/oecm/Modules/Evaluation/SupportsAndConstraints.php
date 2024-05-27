@@ -10,7 +10,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
  */
 class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_supports_constraints';
+    protected $table = 'eval_supports_constraints';
     protected $fixed_rows = true;
     public $titles = [];
 

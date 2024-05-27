@@ -2,17 +2,15 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm;
 
-use \AndreaMarelli\ImetCore\Models\Imet\Report as BaseReportModel;
-use AndreaMarelli\ImetCore\Services\Reports\OECM;
+use AndreaMarelli\ImetCore\Helpers\Database;
+use AndreaMarelli\ImetCore\Models\Imet\Components\Report as BaseReport;
 
-class Report extends BaseReportModel
+class Report extends BaseReport
 {
-    /**
-     * @var string[]
-     */
-    protected $table = 'imet_oecm.imet_report';
+    protected string $schema = Database::OECM_SCHEMA;
+    protected $table = 'imet_report';
 
-    protected static $report_fields = [
+    protected static array $report_fields = [
         'analysis',
         'key_elements_comment',
         'strengths_swot',
@@ -115,8 +113,6 @@ class Report extends BaseReportModel
         'outcome2_year3',
         'outcome2_year4',
         'outcome2_year5',
-
-
     ];
 
     /**

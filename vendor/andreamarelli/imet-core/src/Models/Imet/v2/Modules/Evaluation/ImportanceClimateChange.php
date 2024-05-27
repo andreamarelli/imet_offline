@@ -9,10 +9,18 @@ use Illuminate\Http\Request;
 
 class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_importance_c15';
+    protected $table = 'eval_importance_c15';
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCY_ON = 'Aspect';
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
+        [Modules\Evaluation\KeyConservationTrend::class, 'Aspect'],
+        [Modules\Evaluation\ManagementActivities::class, 'Aspect'],
+        [Modules\Evaluation\ClimateChangeMonitoring::class, 'Aspect'],
+    ];
 
     public function __construct(array $attributes = []) {
 
@@ -41,65 +49,36 @@ class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
     }
 
     /**
-     * Preload data from CTX
-     * @param $form_id
-     * @param null $collection
-     * @return array
+     * Prefill from CTX
      */
-    public static function getModuleRecords($form_id, $collection = null): array
+    protected static function getPredefined($form_id = null): array
     {
-        $module_records = parent::getModuleRecords($form_id, $collection);
-        $empty_record = static::getEmptyRecord($form_id);
+        if($form_id!==null){
+            $ctx_records = Modules\Context\ClimateChange::getModule($form_id)
+                ->filter(function ($item){
+                    return $item['Value']!==null;
+                })
+                ->sortBy('Trend');
 
-        $ctx_records = Modules\Context\ClimateChange::getModule($form_id)
-            ->filter(function ($item){
-                return $item['Value']!==null;
-            })
-            ->sortBy('Trend');
-
-        // Filter first 10
-        if(count($ctx_records)>10){
-            $max_allowed_rank = array_values($ctx_records->toArray())[9]['Trend'];
-            $ctx_records = $ctx_records
-                ->filter(function ($item) use ($max_allowed_rank){
-                    return $item['Trend'] <= $max_allowed_rank;
-                });
+            // Filter first 10
+            if(count($ctx_records)>10){
+                $max_allowed_rank = array_values($ctx_records->toArray())[9]['Trend'];
+                $ctx_records = $ctx_records
+                    ->filter(function ($item) use ($max_allowed_rank){
+                        return $item['Trend'] <= $max_allowed_rank;
+                    });
+            }
         }
 
-        $records = $module_records['records'];
-        $preLoaded = [
-            'field' => 'Aspect',
-            'values' => $ctx_records
-                ->map(function ($item){
-                    return $item['Value'];
-                })
+        return [
+            'field' => static::$DEPENDENCY_ON,
+            'values' =>  $form_id !== null
+                ? $ctx_records
+                    ->map(function ($item){
+                        return $item['Value'];
+                    })
+                : []
         ];
-        $module_records['records'] =  static::arrange_records($preLoaded, $records, $empty_record);
-        return $module_records;
-    }
-
-    public static function getVueData($form_id, $collection = null): array
-    {
-        $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('imet-core::v2_evaluation.ImportanceClimateChange.warning_on_save');
-        return $vue_data;
-    }
-
-    public static function updateModule(Request $request): array
-    {
-        static::forceLanguage($request->input('form_id'));
-
-        $records = Payload::decode($request->input('records_json'));
-        $form_id = $request->input('form_id');
-
-        static::dropFromDependencies($form_id, $records, [
-            Modules\Evaluation\InformationAvailability::class,
-            Modules\Evaluation\KeyConservationTrend::class,
-            Modules\Evaluation\ManagementActivities::class,
-            Modules\Evaluation\ClimateChangeMonitoring::class
-        ]);
-
-        return parent::updateModule($request);
     }
 
 }

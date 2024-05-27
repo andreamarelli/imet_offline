@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class SpecialStatus extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_special_status';
+    protected $table = 'context_special_status';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 

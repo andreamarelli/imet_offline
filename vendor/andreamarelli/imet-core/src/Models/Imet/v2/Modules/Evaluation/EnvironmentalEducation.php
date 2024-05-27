@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class EnvironmentalEducation extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_actors_relations';
+    protected $table = 'eval_actors_relations';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 

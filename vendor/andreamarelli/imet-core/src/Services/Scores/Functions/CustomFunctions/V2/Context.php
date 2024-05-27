@@ -83,7 +83,7 @@ trait Context
         $ecosystem_services = EcosystemServices::getModule($imet_id)
             ->map(function ($record){
                 $record['weight'] = (
-                        ($record['Importance'] ?? 0) +
+                        (floatval($record['Importance']) ?? 0) +
                         ($record['ImportanceRegional']!==null ? $record['ImportanceRegional']/3 : 0) +
                         ($record['ImportanceGlobal']!== null ? ((2 - $record['ImportanceGlobal'])/4) : 0)
                     ) / 3;

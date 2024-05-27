@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit2a203f750aca15a76b54f5a97811ee68
+class ComposerStaticInit6ac2a4071d076d8d0d77d1c238a74480
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -693,16 +693,11 @@ class ComposerStaticInit2a203f750aca15a76b54f5a97811ee68
     );
 
     public static $classMap = array (
-        'AndreaMarelli\\ImetCore\\Commands\\ApplySQL' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/ApplySQL.php',
         'AndreaMarelli\\ImetCore\\Commands\\CalculateScores' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/CalculateScores.php',
         'AndreaMarelli\\ImetCore\\Commands\\ConvertSQLite' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/ConvertSQLite.php',
         'AndreaMarelli\\ImetCore\\Commands\\Export' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/Export.php',
-        'AndreaMarelli\\ImetCore\\Commands\\GetSerialNumber' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/GetSerialNumber.php',
         'AndreaMarelli\\ImetCore\\Commands\\Import' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/Import.php',
-        'AndreaMarelli\\ImetCore\\Commands\\InitDB' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/InitDB.php',
-        'AndreaMarelli\\ImetCore\\Commands\\PopulateMetadata' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/PopulateMetadata.php',
         'AndreaMarelli\\ImetCore\\Commands\\PopulateSpecies' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/PopulateSpecies.php',
-        'AndreaMarelli\\ImetCore\\Commands\\SetSerialNumber' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/SetSerialNumber.php',
         'AndreaMarelli\\ImetCore\\Commands\\UpdateOFAC' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/UpdateOFAC.php',
         'AndreaMarelli\\ImetCore\\Commands\\UpdateProtectedAreasAPI' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/UpdateProtectedAreasAPI.php',
         'AndreaMarelli\\ImetCore\\Commands\\UpdateProtectedAreasCSV' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Commands/UpdateProtectedAreasCSV.php',
@@ -744,13 +739,12 @@ class ComposerStaticInit2a203f750aca15a76b54f5a97811ee68
         'AndreaMarelli\\ImetCore\\Helpers\\API\\Common\\Common' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Helpers/API/Common/Common.php',
         'AndreaMarelli\\ImetCore\\Helpers\\API\\DOPA\\DOPA' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Helpers/API/DOPA/DOPA.php',
         'AndreaMarelli\\ImetCore\\Helpers\\API\\DOPA\\Wdpa' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Helpers/API/DOPA/Wdpa.php',
+        'AndreaMarelli\\ImetCore\\Helpers\\Database' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Helpers/Database.php',
         'AndreaMarelli\\ImetCore\\Helpers\\Math' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Helpers/Math.php',
         'AndreaMarelli\\ImetCore\\Helpers\\ModuleKey' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Helpers/ModuleKey.php',
         'AndreaMarelli\\ImetCore\\Helpers\\ScalingUp\\Common' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Helpers/ScalingUp/Common.php',
         'AndreaMarelli\\ImetCore\\Helpers\\Template' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Helpers/Template.php',
-        'AndreaMarelli\\ImetCore\\Jobs\\ApplySQL' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Jobs/ApplySQL.php',
         'AndreaMarelli\\ImetCore\\Jobs\\CalculateScores' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Jobs/CalculateScores.php',
-        'AndreaMarelli\\ImetCore\\Jobs\\PopulateMetadata' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Jobs/PopulateMetadata.php',
         'AndreaMarelli\\ImetCore\\Jobs\\PopulateSpecies' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Jobs/PopulateSpecies.php',
         'AndreaMarelli\\ImetCore\\Jobs\\Utils' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Jobs/Utils.php',
         'AndreaMarelli\\ImetCore\\Models\\Animal' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Animal.php',
@@ -769,15 +763,16 @@ class ComposerStaticInit2a203f750aca15a76b54f5a97811ee68
         'AndreaMarelli\\ImetCore\\Models\\Imet\\API\\ScalingUp\\KeyElements' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/API/ScalingUp/KeyElements.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\API\\ScalingUp\\Overall' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/API/ScalingUp/Overall.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\API\\Statistics\\GlobalStatistics' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/API/Statistics/GlobalStatistics.php',
+        'AndreaMarelli\\ImetCore\\Models\\Imet\\Components\\BaseModel' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/Components/BaseModel.php',
+        'AndreaMarelli\\ImetCore\\Models\\Imet\\Components\\Dependencies' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/Components/Dependencies.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\Components\\Encoder' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/Components/Encoder.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\Components\\Modules\\ImetModule' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/Components/Modules/ImetModule.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\Components\\Modules\\ImetModule_Eval' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/Components/Modules/ImetModule_Eval.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\Components\\Modules\\InjectInView' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/Components/Modules/InjectInView.php',
+        'AndreaMarelli\\ImetCore\\Models\\Imet\\Components\\Report' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/Components/Report.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\Components\\Upgrade' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/Components/Upgrade.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\CrossAnalysis\\CrossAnalysis' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/CrossAnalysis/CrossAnalysis.php',
-        'AndreaMarelli\\ImetCore\\Models\\Imet\\Encoder' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/Encoder.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\Imet' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/Imet.php',
-        'AndreaMarelli\\ImetCore\\Models\\Imet\\Report' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/Report.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\ScalingUp\\Basket' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/ScalingUp/Basket.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\ScalingUp\\ScalingUpAnalysis' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/ScalingUp/ScalingUpAnalysis.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\ScalingUp\\ScalingUpWdpa' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/ScalingUp/ScalingUpWdpa.php',
@@ -790,7 +785,6 @@ class ComposerStaticInit2a203f750aca15a76b54f5a97811ee68
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Encoder' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Encoder.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Imet' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Imet.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Imet_Eval' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Imet_Eval.php',
-        'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Component\\Dependencies' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Component/Dependencies.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Component\\ImetModule' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Component/ImetModule.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Component\\ImetModule_Eval' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Component/ImetModule_Eval.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Context\\AnalysisStakeholderDirectUsers' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Context/AnalysisStakeholderDirectUsers.php',
@@ -864,6 +858,7 @@ class ComposerStaticInit2a203f750aca15a76b54f5a97811ee68
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\WorkPlan' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/WorkPlan.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Modules\\Evaluation\\WorkProgramImplementation' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Modules/Evaluation/WorkProgramImplementation.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\oecm\\Report' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/oecm/Report.php',
+        'AndreaMarelli\\ImetCore\\Models\\Imet\\v1\\Encoder' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v1/Encoder.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v1\\Imet' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v1/Imet.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v1\\Imet_Eval' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v1/Imet_Eval.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v1\\Modules\\Component\\ConvertSQLite' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v1/Modules/Component/ConvertSQLite.php',
@@ -969,6 +964,7 @@ class ComposerStaticInit2a203f750aca15a76b54f5a97811ee68
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v1\\Modules\\Evaluation\\WorkPlan' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v1/Modules/Evaluation/WorkPlan.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v1\\Modules\\Evaluation\\WorkProgramImplementation' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v1/Modules/Evaluation/WorkProgramImplementation.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v1\\Report' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v1/Report.php',
+        'AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Encoder' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v2/Encoder.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Imet' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v2/Imet.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Imet_Eval' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v2/Imet_Eval.php',
         'AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Modules\\Component\\ImetModule' => __DIR__ . '/..' . '/andreamarelli/imet-core/src/Models/Imet/v2/Modules/Component/ImetModule.php',
@@ -8458,10 +8454,10 @@ class ComposerStaticInit2a203f750aca15a76b54f5a97811ee68
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit2a203f750aca15a76b54f5a97811ee68::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit2a203f750aca15a76b54f5a97811ee68::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit2a203f750aca15a76b54f5a97811ee68::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit2a203f750aca15a76b54f5a97811ee68::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit6ac2a4071d076d8d0d77d1c238a74480::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit6ac2a4071d076d8d0d77d1c238a74480::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit6ac2a4071d076d8d0d77d1c238a74480::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit6ac2a4071d076d8d0d77d1c238a74480::$classMap;
 
         }, null, ClassLoader::class);
     }

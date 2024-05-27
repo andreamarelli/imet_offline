@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class Stakeholders extends Modules\Component\ImetModule
 {
-    protected $table = 'imet_oecm.context_stakeholders_natural_resources';
+    protected $table = 'context_stakeholders_natural_resources';
     protected $fixed_rows = false;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;

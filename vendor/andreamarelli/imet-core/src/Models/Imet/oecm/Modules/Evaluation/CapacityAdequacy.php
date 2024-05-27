@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class CapacityAdequacy extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_capacity_adequacy';
+    protected $table = 'eval_capacity_adequacy';
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;

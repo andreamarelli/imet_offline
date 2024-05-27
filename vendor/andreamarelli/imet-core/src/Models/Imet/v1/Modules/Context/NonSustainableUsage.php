@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class NonSustainableUsage extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_non_sustainable_usage';
+    protected $table = 'context_non_sustainable_usage';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

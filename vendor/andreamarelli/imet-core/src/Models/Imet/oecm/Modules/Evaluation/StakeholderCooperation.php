@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class StakeholderCooperation extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_stakeholder_cooperation';
+    protected $table = 'eval_stakeholder_cooperation';
     protected $fixed_rows = true;
     public $titles = [];
 

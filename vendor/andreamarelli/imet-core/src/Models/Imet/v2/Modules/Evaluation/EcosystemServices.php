@@ -7,10 +7,12 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class EcosystemServices extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_ecosystem_services';
+    protected $table = 'eval_ecosystem_services';
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
+
+    protected static $DEPENDENCY_ON = 'Intervention';
 
     public function __construct(array $attributes = []) {
 
@@ -30,24 +32,19 @@ class EcosystemServices extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    public static function getModuleRecords($form_id, $collection = null): array
+    /**
+     * Prefill from CTX
+     */
+    protected static function getPredefined($form_id = null): array
     {
-
-        $module_records = parent::getModuleRecords($form_id, $collection);
-        $empty_record = static::getEmptyRecord($form_id);
-
-        $records = $module_records['records'];
-        $preLoaded = [
-            'field' => 'Intervention',
-            'values' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item){
-                            return $item['IncludeInStatistics'];
-                        })->pluck('Aspect')->toArray(),
+        return [
+            'field' => static::$DEPENDENCY_ON,
+            'values' => $form_id !== null
+                ? Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item){
+                    return $item['IncludeInStatistics'];
+                })->pluck('Aspect')->toArray()
+                : []
         ];
-        $module_records['records'] =  static::arrange_records($preLoaded, $records, $empty_record);
-
-        return $module_records;
     }
-
-
 
 }

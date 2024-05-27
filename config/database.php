@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'ofac'),
+    'default' => env('DB_CONNECTION', 'offline_public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -35,20 +35,31 @@ return [
 
     'connections' => [
 
-        'ofac' => [
-            'driver' => 'pgsql',
-//            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '5433'),
-            'database' => env('DB_DATABASE', 'imetdb'),
-            'username' => env('DB_USERNAME', 'default'),
-            'password' => env('DB_PASSWORD', 'secret'),
-            'charset' => 'utf8',
+        'offline_public' => [
+            'driver' => 'sqlite',
+            'database' => database_path('public.sqlite'),
             'prefix' => '',
-//            'prefix_indexes' => true,
-//            'schema' => 'public',
-//            'sslmode' => 'prefer',
+            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
+
+        'offline_imet' => [
+            'driver' => 'sqlite',
+            'database' => database_path('imet.sqlite'),
+            'prefix' => '',
+            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+        ],
+
+        'offline_oecm' => [
+            'driver' => 'sqlite',
+            'database' => database_path('oecm.sqlite'),
+            'prefix' => '',
+            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+        ],
+
+        // artisan migrate --path=/database/migrations/public --database=offline_public
+        // artisan migrate --path=/database/migrations/imet --database=offline_imet
+        // artisan migrate --path=/database/migrations/oecm --database=offline_oecm
+
 
     ],
 

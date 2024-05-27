@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class BoundaryLevel extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_boundary_level';
+    protected $table = 'eval_boundary_level';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 

@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class ObjectivesMenaces extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_objectives_c3';
+    protected $table = 'eval_objectives_c3';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

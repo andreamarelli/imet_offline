@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class ControlLevel extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_control_level';
+    protected $table = 'context_control_level';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

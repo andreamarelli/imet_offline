@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 
 class VegetalSpecies extends Modules\Component\ImetModule
 {
-    protected $table = 'imet_oecm.context_species_vegetal_presence';
+    protected $table = 'context_species_vegetal_presence';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

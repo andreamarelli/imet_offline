@@ -2,7 +2,8 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v1;
 
-use AndreaMarelli\ImetCore\Models\Imet\Encoder;
+use AndreaMarelli\ImetCore\Helpers\Database;
+use AndreaMarelli\ImetCore\Models\Imet\v1\Encoder;
 use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewers;
@@ -11,6 +12,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Imet extends BaseImetForm
 {
     public const version = 'v1';
+    protected string $schema = Database::IMET_SCHEMA;
+    protected $connection = Database::IMET_CONNECTION;
+    protected $table = 'imet_form';
 
     public static $modules = [
 

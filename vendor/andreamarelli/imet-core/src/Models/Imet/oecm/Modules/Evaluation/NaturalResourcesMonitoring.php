@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class NaturalResourcesMonitoring extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_natural_resources_monitoring';
+    protected $table = 'eval_natural_resources_monitoring';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 

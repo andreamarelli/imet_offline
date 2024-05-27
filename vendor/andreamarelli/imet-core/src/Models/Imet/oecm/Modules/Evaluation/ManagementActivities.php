@@ -8,7 +8,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class ManagementActivities extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_management_activities';
+    protected $table = 'eval_management_activities';
     protected $fixed_rows = true;
     public $titles = [];
 

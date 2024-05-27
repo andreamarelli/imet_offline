@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'andreamarelli/imet-core' => array(
-            'pretty_version' => 'dev-beta',
-            'version' => 'dev-beta',
-            'reference' => '05a9051c6818834b17925c8518b84656e3f98631',
+            'pretty_version' => 'dev-sqlite',
+            'version' => 'dev-sqlite',
+            'reference' => 'f7fe1c9bb117684aff076b68dd0614c1842512dd',
             'type' => 'library',
             'install_path' => __DIR__ . '/../andreamarelli/imet-core',
             'aliases' => array(),

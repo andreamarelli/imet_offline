@@ -8,7 +8,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class KeyElements extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_key_elements';
+    protected $table = 'eval_key_elements';
     protected $fixed_rows = true;
     public $titles = [];
 

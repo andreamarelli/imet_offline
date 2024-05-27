@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class Equipments extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_equipments';
+    protected $table = 'context_equipments';
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;

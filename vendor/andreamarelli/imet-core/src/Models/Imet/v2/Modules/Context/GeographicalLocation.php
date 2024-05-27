@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class GeographicalLocation extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_localization';
+    protected $table = 'context_localization';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 

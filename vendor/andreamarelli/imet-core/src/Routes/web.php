@@ -20,7 +20,7 @@ const OECM_ROUTE_PREFIX = oecm\Controller::ROUTE_PREFIX;
 
 Route::group(['middleware' => ['setLocale', 'web']], function () {
 
-    // Old routes: to be kept for the moment rto ensure backwards compatibility
+    // Old routes: to be kept for the moment to ensure backwards compatibility
     Route::get('/{url}', function ($url) {
         return Redirect::to('imet/');
     })->where(['url' => 'admin/imet|admin/imet/v1|admin/imet/v2']);
@@ -36,16 +36,16 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
     Route::group(['prefix' => 'imet', 'middleware' => 'auth'], function (){
 
         // ####  common routes (v1 & v2) ####
-        Route::get('import',        [Imet\Controller::class, 'import_view'])->name(IMET_PREFIX.'import_view');
-        Route::post('import',      [Imet\Controller::class, 'import'])->name(IMET_PREFIX.'import');
-        Route::post('ajax/upload', [Imet\Controller::class, 'upload'])->name(IMET_PREFIX.'upload_json');
-        Route::match(['get', 'post'],'/',      [Imet\Controller::class, 'index'])->name(IMET_PREFIX.'index');
+        Route::get('import',        [v2\Controller::class, 'import_view'])->name(IMET_PREFIX.'import_view');
+        Route::post('import',      [v2\Controller::class, 'import'])->name(IMET_PREFIX.'import');
+        Route::post('ajax/upload', [v2\Controller::class, 'upload'])->name(IMET_PREFIX.'upload_json');
+        Route::match(['get', 'post'],'/',      [v2\Controller::class, 'index'])->name(IMET_PREFIX.'index');
 
 
         // #### IMET Version 1 ####
         Route::group(['prefix' => 'v1'], function () {
 
-            Route::match(['get', 'post'],'/',      [Imet\Controller::class, 'index'])->name(V1_ROUTE_PREFIX.'index');     // alias
+            Route::match(['get', 'post'],'/',  [v1\Controller::class, 'index'])->name(V1_ROUTE_PREFIX.'index');     // alias
 
             // import/export
             Route::match(['get','post'],'export_view',        [v1\Controller::class, 'export_view'])->name(V1_ROUTE_PREFIX.'export_view');
@@ -53,9 +53,9 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::get('{item}/export', [v1\Controller::class, 'export']);
             Route::get('{item}/export_no_attachments', [v1\Controller::class, 'export_no_attachments']);
             Route::post('export_batch',        [v1\Controller::class, 'export_batch'])->name(V1_ROUTE_PREFIX.'export_batch');
-            Route::get('import',        [Imet\Controller::class, 'import_view'])->name(V1_ROUTE_PREFIX.'import_view');    // alias
-            Route::post('import',      [Imet\Controller::class, 'import'])->name(V1_ROUTE_PREFIX.'import');    // alias
-            Route::post('ajax/upload', [Imet\Controller::class, 'upload'])->name(V1_ROUTE_PREFIX.'upload_json');    // alias
+            Route::get('import',        [v1\Controller::class, 'import_view'])->name(V1_ROUTE_PREFIX.'import_view');    // alias
+            Route::post('import',      [v1\Controller::class, 'import'])->name(V1_ROUTE_PREFIX.'import');    // alias
+            Route::post('ajax/upload', [v1\Controller::class, 'upload'])->name(V1_ROUTE_PREFIX.'upload_json');    // alias
 
             // merge
             Route::get('{item}/merge',  [v1\Controller::class, 'merge_view'])->name(V1_ROUTE_PREFIX.'merge_view');
@@ -85,7 +85,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         // #### IMET Version 2 ####
         Route::group(['prefix' => 'v2'], function () {
 
-            Route::match(['get', 'post'],'/',[Imet\Controller::class, 'index'])->name(V2_ROUTE_PREFIX.'index');    // alias
+            Route::match(['get', 'post'],'/',[v2\Controller::class, 'index'])->name(V2_ROUTE_PREFIX.'index');    // alias
 
             // import/export
             Route::match(['get','post'],'export_view',        [v2\Controller::class, 'export_view'])->name(V2_ROUTE_PREFIX.'export_view');
@@ -93,9 +93,9 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::get('{item}/export', [v2\Controller::class, 'export']);
             Route::get('{item}/export_no_attachments', [v2\Controller::class, 'export_no_attachments']);
             Route::post('export_batch',        [v2\Controller::class, 'export_batch'])->name(V2_ROUTE_PREFIX.'export_batch');
-            Route::get('import',        [Imet\Controller::class, 'import_view'])->name(V2_ROUTE_PREFIX.'import_view');    // alias
-            Route::post('import',      [Imet\Controller::class, 'import'])->name(V2_ROUTE_PREFIX.'import');    // alias
-            Route::post('ajax/upload', [Imet\Controller::class, 'upload'])->name(V2_ROUTE_PREFIX.'upload_json');    // alias
+            Route::get('import',        [v2\Controller::class, 'import_view'])->name(V2_ROUTE_PREFIX.'import_view');    // alias
+            Route::post('import',      [v2\Controller::class, 'import'])->name(V2_ROUTE_PREFIX.'import');    // alias
+            Route::post('ajax/upload', [v2\Controller::class, 'upload'])->name(V2_ROUTE_PREFIX.'upload_json');    // alias
 
             // merge
             Route::get('{item}/merge',  [v2\Controller::class, 'merge_view'])->name(V2_ROUTE_PREFIX.'merge_view');
@@ -149,8 +149,8 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         });
 
         Route::group(['prefix' => 'tools'], function () {
-            Route::get('export_csv', [Imet\Controller::class, 'exportListCSV'])->name('imet-core::csv_list');
-            Route::get('export_csv/{ids}/{module_key}', [Imet\Controller::class, 'exportModuleToCsv'])->name('imet-core::csv');
+            Route::get('export_csv', [v2\Controller::class, 'exportListCSV'])->name('imet-core::csv_list');
+            Route::get('export_csv/{ids}/{module_key}', [v2\Controller::class, 'exportModuleToCsv'])->name('imet-core::csv');
         });
 
         /*

@@ -2,17 +2,17 @@
     "packages": [
         {
             "name": "andreamarelli/imet-core",
-            "version": "dev-beta",
-            "version_normalized": "dev-beta",
+            "version": "dev-sqlite",
+            "version_normalized": "dev-sqlite",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andreamarelli/imet-core.git",
-                "reference": "05a9051c6818834b17925c8518b84656e3f98631"
+                "reference": "f7fe1c9bb117684aff076b68dd0614c1842512dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/05a9051c6818834b17925c8518b84656e3f98631",
-                "reference": "05a9051c6818834b17925c8518b84656e3f98631",
+                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/f7fe1c9bb117684aff076b68dd0614c1842512dd",
+                "reference": "f7fe1c9bb117684aff076b68dd0614c1842512dd",
                 "shasum": ""
             },
             "require": {
@@ -23,7 +23,7 @@
             "require-dev": {
                 "orchestra/testbench": "^8.0"
             },
-            "time": "2024-05-13T07:47:33+00:00",
+            "time": "2024-05-27T19:20:21+00:00",
             "type": "library",
             "extra": {
                 "laravel": {
@@ -52,7 +52,7 @@
             ],
             "description": "Imet core package",
             "support": {
-                "source": "https://github.com/andreamarelli/imet-core/tree/beta",
+                "source": "https://github.com/andreamarelli/imet-core/tree/sqlite",
                 "issues": "https://github.com/andreamarelli/imet-core/issues"
             },
             "install-path": "../andreamarelli/imet-core"

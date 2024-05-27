@@ -8,7 +8,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class Areas extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_areas';
+    protected $table = 'context_areas';
     public $label_width = 5;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;

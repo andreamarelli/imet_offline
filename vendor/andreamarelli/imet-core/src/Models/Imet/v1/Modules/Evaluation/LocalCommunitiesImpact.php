@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class LocalCommunitiesImpact extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_local_communities_impact';
+    protected $table = 'eval_local_communities_impact';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

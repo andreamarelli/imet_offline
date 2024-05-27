@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class Implications extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_implications';
+    protected $table = 'eval_implications';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 

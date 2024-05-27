@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 
 class Networks extends Modules\Component\ImetModule
 {
-    protected $table = 'imet_oecm.context_networks';
+    protected $table = 'context_networks';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 

@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class ClimateChangeImpact extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_climate_change_impact';
+    protected $table = 'eval_climate_change_impact';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

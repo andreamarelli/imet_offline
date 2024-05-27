@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class ObjectivesClimateChange extends _Objectives
 {
-    protected $table = 'imet.eval_objectives_c15';
+    protected $table = 'eval_objectives_c15';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

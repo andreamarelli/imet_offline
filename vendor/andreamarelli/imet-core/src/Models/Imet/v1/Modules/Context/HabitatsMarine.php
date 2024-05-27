@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class HabitatsMarine extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_habitats_marine';
+    protected $table = 'context_habitats_marine';
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;

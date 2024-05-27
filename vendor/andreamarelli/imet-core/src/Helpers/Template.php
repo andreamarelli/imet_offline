@@ -19,8 +19,8 @@ class Template{
         if($iso!=''){
             $country = Country::getByISO($iso);
             $iso = $country->iso2;
-            $label = '&nbsp;'.$country->Name;
-            return BaseTemplate::flag($iso, $country->Name).$label;
+            $label = '&nbsp;'.$country->name;
+            return BaseTemplate::flag($iso, $country->name).$label;
         }
         return '';
     }
@@ -37,7 +37,7 @@ class Template{
         if($iso!=''){
             $country = Country::getByISO($iso);
             $iso = $country->iso2;
-            return BaseTemplate::flag($iso, $country->Name);
+            return BaseTemplate::flag($iso, $country->name);
         }
         return '';
     }

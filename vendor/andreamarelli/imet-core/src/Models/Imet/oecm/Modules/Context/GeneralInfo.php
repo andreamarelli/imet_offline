@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 
 class GeneralInfo extends Modules\Component\ImetModule
 {
-    protected $table = 'imet_oecm.context_general_info';
+    protected $table = 'context_general_info';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 

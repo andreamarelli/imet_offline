@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class Menaces extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_menaces';
+    protected $table = 'eval_menaces';
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;

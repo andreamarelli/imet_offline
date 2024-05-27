@@ -5,6 +5,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp;
 
 use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
 use AndreaMarelli\ImetCore\Helpers\API\DOPA\DOPA;
+use AndreaMarelli\ImetCore\Helpers\Database;
 use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\Country;
 use AndreaMarelli\ImetCore\Models\Imet\API\Comments\Comments;
@@ -27,7 +28,10 @@ use Illuminate\Support\Facades\Config;
 class ScalingUpAnalysis extends Model
 {
     protected static $ttl = 2;
-    protected $table = 'imet.scaling_up';
+
+    protected string $schema = Database::IMET_SCHEMA;
+    protected $table = 'scaling_up';
+
     protected $fillable = ['wdpas'];
     public $timestamps = false;
     public static $scaling_id = null;

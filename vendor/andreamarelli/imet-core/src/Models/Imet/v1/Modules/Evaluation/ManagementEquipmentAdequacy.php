@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_management_equipment_adequacy';
+    protected $table = 'eval_management_equipment_adequacy';
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;

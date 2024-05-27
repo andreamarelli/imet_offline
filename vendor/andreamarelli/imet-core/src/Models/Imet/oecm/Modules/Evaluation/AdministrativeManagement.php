@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class AdministrativeManagement extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_administrative_management';
+    protected $table = 'eval_administrative_management';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
