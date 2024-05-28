@@ -1148,6 +1148,7 @@ class ComposerStaticInit6ac2a4071d076d8d0d77d1c238a74480
         'AndreaMarelli\\ModularForms\\Models\\Utils\\Currency' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Models/Utils/Currency.php',
         'AndreaMarelli\\ModularForms\\Models\\Utils\\ProtectedArea' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/Models/Utils/ProtectedArea.php',
         'AndreaMarelli\\ModularForms\\ServiceProvider' => __DIR__ . '/..' . '/andreamarelli/modular-forms/src/ServiceProvider.php',
+        'App\\Console\\Commands\\MigrateOffline' => __DIR__ . '/../..' . '/app/Console/Commands/MigrateOffline.php',
         'App\\Console\\Commands\\PostUpdate' => __DIR__ . '/../..' . '/app/Console/Commands/PostUpdate.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
