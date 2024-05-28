@@ -1,5 +1,6 @@
 <?php
 
+use AndreaMarelli\ImetCore\Helpers\Database;
 use Illuminate\Support\Str;
 
 return [
@@ -37,29 +38,24 @@ return [
 
         'offline_public' => [
             'driver' => 'sqlite',
-            'database' => database_path('public.sqlite'),
+            'database' => database_path(Database::COMMON_CONNECTION.'.sqlite'),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
         'offline_imet' => [
             'driver' => 'sqlite',
-            'database' => database_path('imet.sqlite'),
+            'database' => database_path(Database::IMET_CONNECTION.'.sqlite'),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
         'offline_oecm' => [
             'driver' => 'sqlite',
-            'database' => database_path('oecm.sqlite'),
+            'database' => database_path(Database::OECM_CONNECTION.'.sqlite'),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
-
-        // artisan migrate --path=/database/migrations/public --database=offline_public
-        // artisan migrate --path=/database/migrations/imet --database=offline_imet
-        // artisan migrate --path=/database/migrations/oecm --database=offline_oecm
-
 
     ],
 

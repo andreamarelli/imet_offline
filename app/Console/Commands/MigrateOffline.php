@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use AndreaMarelli\ImetCore\Helpers\Database;
 use Artisan;
 use Illuminate\Console\Command;
 
@@ -28,7 +29,7 @@ class MigrateOffline extends Command
      */
     public function handle(): int
     {
-        foreach (['public', 'imet', 'oecm'] as $db) {
+        foreach ([Database::COMMON_CONNECTION, Database::IMET_CONNECTION, Database::OECM_CONNECTION] as $db) {
             $db_file = database_path($db.'.sqlite');
             if (!file_exists($db_file)) {
                 fopen($db_file, 'w');
@@ -36,6 +37,7 @@ class MigrateOffline extends Command
         }
 
         Artisan::call('migrate');
+        Artisan::call('imet:populate_species');
 
         return 0;
     }

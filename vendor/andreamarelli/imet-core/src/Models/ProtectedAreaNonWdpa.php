@@ -21,7 +21,7 @@ use AndreaMarelli\ModularForms\Models\BaseModel;
 class ProtectedAreaNonWdpa extends BaseModel
 {
     protected string $schema = Database::COMMON_IMET_SCHEMA;
-    protected $table = 'imet.imet_pas_non_wdpa';
+    protected $table = 'imet_pas_non_wdpa';
 
     public const LABEL = 'name';
 

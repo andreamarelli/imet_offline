@@ -6,10 +6,12 @@ use Illuminate\Support\Str;
 
 class Database
 {
+    // Connections: used as connection + filename for SQLite offline version
     public const COMMON_CONNECTION = 'offline_public';
     public const IMET_CONNECTION = 'offline_imet';
     public const OECM_CONNECTION = 'offline_oecm';
 
+    // Schemas: used as schema for PostGreSQL online version
     public const COMMON_IMET_SCHEMA = 'imet_common';
     public const IMET_SCHEMA = 'imet';
     public const OECM_SCHEMA = 'oecm';
