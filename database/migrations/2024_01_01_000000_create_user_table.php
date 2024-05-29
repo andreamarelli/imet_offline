@@ -1,6 +1,7 @@
 <?php
 
 use AndreaMarelli\ImetCore\Helpers\Database;
+use AndreaMarelli\ImetCore\Models\User\Role;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -28,6 +29,14 @@ return new class extends Migration
             $table->char('country', 3)->nullable();
             $table->string('imet_role', 25)->nullable();
         });
+
+        DB::table('users')
+            ->insert([
+                'id' => 0,
+                'first_name' => 'Offline',
+                'last_name' => 'User',
+                'imet_role' => Role::ROLE_ADMINISTRATOR,
+            ]);
     }
 
     /**

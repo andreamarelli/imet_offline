@@ -1202,11 +1202,6 @@ return new class extends Migration
         ];
 
         foreach ($records as $record) {
-
-            if(count($record) !== count($fields)) {
-                dd($record);
-            }
-
             DB::table('imet_pas')
                 ->insert(array_combine($fields, $record));
         }
