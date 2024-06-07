@@ -290,29 +290,39 @@ class Common
         ];
 
         $assessments = [];
+        $i = 0;
+        $assessments[$i] = ['name' => trans('imet-core::analysis_report.average')];
+        $i++;
         foreach ($form_ids as $k => $form_id) {
 
-            $assessments[$k] = ImetScores::get_radar($form_id);
+            $assessments[$i] = ImetScores::get_radar($form_id);
 
             $name = static::get_pa_name($form_id, $scaling_id);
 
-            $assessments[$k]['name'] = $name->name;
-            $assessments[$k]['color'] = $name->color;
-            $assessments[$k]['wdpa_id'] = $name->wdpa_id;
-            $assessments[$k]['formid'] = (int)$form_id;
-            $assessments[$k]['year'] = (int)$name->Year;
+            $assessments[$i]['name'] = $name->name;
+            $assessments[$i]['color'] = $name->color;
+            $assessments[$i]['wdpa_id'] = $name->wdpa_id;
+            $assessments[$i]['formid'] = (int)$form_id;
+            $assessments[$i]['year'] = (int)$name->Year;
 
-            $assessments[$k]['imet_index'] = static::round_number($assessments[$k]['imet_index']);
+            $assessments[$i]['imet_index'] = static::round_number($assessments[$i]['imet_index']);
             foreach ($indicators as $key => $indicator) {
-                $assessments[$k][$indicator] = static::round_number($assessments[$k][$indicator]);
+                $assessments[$i][$indicator] = static::round_number($assessments[$i][$indicator]);
             }
+            $i++;
         }
-
+        foreach ($indicators as $v => $item) {
+            $assessments[0][$item] = Common::round_number((float)$assessments[$v+1] / count($indicators));
+        }
         uasort($assessments, function ($a, $b) {
             return $b['name'] <=> $a['name'];
         });
 
-        return ['status' => 'success', 'data' => ['assessments' => $assessments]];
+        $assessments_without_average = array_values(array_filter($assessments, function ($value) {
+            return $value['name'] !== trans('imet-core::analysis_report.average');
+        }));
+
+        return ['status' => 'success', 'data' => ['assessments' => $assessments_without_average, 'assessments_average' => $assessments]];
     }
 
     public static function get_pa_name(int $id, int $scaling_id = 0)

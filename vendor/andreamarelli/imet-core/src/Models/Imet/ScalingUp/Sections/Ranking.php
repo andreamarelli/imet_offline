@@ -9,6 +9,7 @@ use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis;
 
 class Ranking
 {
+
     /**
      * @param array $form_ids
      * @param string $type
@@ -47,7 +48,7 @@ class Ranking
             }
 
             foreach ($values as $v => $value) {
-                if ($type === "process" && stripos($v, "_") === true) {
+                if ($type === "process" && stripos($v, "_")) {
                     $name = Common::indicator_label($v, 'imet-core::analysis_report.assessment.', 'imet-core::analysis_report.legends.');
                 } else {
                     $name = Common::indicator_label($v, 'imet-core::analysis_report.assessment.');
@@ -119,16 +120,16 @@ class Ranking
             }, $values, array_keys($values));
         }
 
-        arsort($average_values);
+        arsort($average_values)  ;
         foreach ($ranking['values'] as $ind => $items) {
             $i = 0;
             foreach ($average_values as $k => $vals) {
-                $new_ranking['values'][$ind][$i] = $ranking['values'][$ind][$k] ?? "-99999999";
-                $new_ranking['actual_value'][$ind][$i] = $ranking['actual_value'][$ind][$k] ?? "-99999999";
+                $new_ranking['values'][$ind][$i] = $ranking['values'][$ind][$k] ?? ScalingUpAnalysis::UNDEFINED_VALUE;
+                $new_ranking['actual_value'][$ind][$i] = $ranking['actual_value'][$ind][$k] ?? ScalingUpAnalysis::UNDEFINED_VALUE;
                 $new_ranking['xAxis'][$i] = $ranking['xAxis'][$k];
                 $new_ranking['wdpa_ids'][$i] = $ranking['wdpa_ids'][$k];
                 $reorder_separated_values_by_pa[$i] = $separated_values_by_pa[$k];
-                $reorder_percent_values[$ind][$i] = $percent_values[$ind][$k] ?? "-99999999";
+                $reorder_percent_values[$ind][$i] = $percent_values[$ind][$k] ?? ScalingUpAnalysis::UNDEFINED_VALUE;
                 $i++;
             }
         }

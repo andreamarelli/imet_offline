@@ -303,7 +303,12 @@ class ScalingUpAnalysis extends Model
         $time_start = microtime(true);
         $assessments = [];
         $synthetic_indicators_table = Common::get_assessments($form_ids, static::$scaling_id);
+        //dd($synthetic_indicators_table);
         $assessments['data'] = $synthetic_indicators_table['data'];
+        // filter out and reindex the assessments starting from 0
+
+
+
         $index_ranking = Ranking::get_overall_ranking($form_ids, $assessments);
         $radars = static::get_protected_areas_diagram_compare($form_ids, $assessments, true);
         $averages_six_elements = static::get_averages_of_each_indicator_of_six_elements($form_ids, $assessments, true);
@@ -324,7 +329,7 @@ class ScalingUpAnalysis extends Model
                 'averages_six_elements' => $averages_six_elements['data'],
                 'radar' => $radars['data']['diagrams'],
                 'scatter' => $scatter_plots['data']['scatter'],
-                'assessments' => $assessments['data']['assessments']
+                'assessments' => $assessments['data']['assessments_average']
             ]
         ];
     }
@@ -832,6 +837,8 @@ class ScalingUpAnalysis extends Model
      */
     public static function get_assessments(array $form_ids): array
     {
-        return Common::get_assessments($form_ids, static::$scaling_id);
+        $assessments = Common::get_assessments($form_ids, static::$scaling_id);
+        unset($assessments['data']['assessments']);
+        return $assessments;
     }
 }
