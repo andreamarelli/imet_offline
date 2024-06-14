@@ -12,14 +12,25 @@ class OecmScores
 {
     use Labels;
 
+
     /**
-     * Ensure to return IMET OECM id
+     * Ensure to return IMET model
      */
-    private static function get_as_id(ImetOecm|int|string $imet): int
+    private static function getAsModel(ImetOecm|int|string $imet): Imet
     {
-        return ($imet instanceof ImetOecm)
-            ? $imet->getKey()
-            : (int) $imet;
+        return (is_int($imet) or is_string($imet))
+            ? ImetOecm::find($imet)
+            : $imet;
+    }
+
+    /**
+     * Ensure to return IMET id
+     */
+    private static function getAsId(ImetOecm|int|string $imet): int
+    {
+        return  (is_int($imet) or is_string($imet))
+            ? (int) $imet
+            : $imet->getKey();
     }
 
     /**
@@ -27,7 +38,7 @@ class OecmScores
      */
     public static function get_all(ImetOecm|int|string $imet): array
     {
-        $imet_id = static::get_as_id($imet);
+        $imet_id = static::getAsId($imet);
         return OECMScoresFunctions::get_scores($imet_id);
     }
 
@@ -69,7 +80,7 @@ class OecmScores
      */
     public static function refresh_scores(ImetOecm|int|string $imet): array
     {
-        $imet_id = static::get_as_id($imet);
+        $imet_id = static::getAsId($imet);
         return OECMScoresFunctions::get_scores($imet_id, true);
     }
 

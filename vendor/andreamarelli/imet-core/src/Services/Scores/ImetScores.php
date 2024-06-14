@@ -25,6 +25,16 @@ class ImetScores
     }
 
     /**
+     * Ensure to return IMET id
+     */
+    private static function getAsId(Imet|ImetV1|ImetV2|int|string $imet): int
+    {
+        return  (is_int($imet) or is_string($imet))
+            ? (int) $imet
+            : $imet->getKey();
+    }
+
+    /**
      * Retrieve IMET assessment's scores (all)
      */
     public static function get_all(Imet|ImetV1|ImetV2|int|string $imet): array

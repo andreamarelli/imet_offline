@@ -48,8 +48,8 @@ class CalculateScores implements ShouldQueue
         // OECM
         $OECMs = ImetOECM::select(['FormID'])->get();
         foreach($OECMs as $oecm){
-            OecmScores::refresh_scores($oecm->FormID);
-            Log::info('OECM #' . $oecm->FormID . ' scores updated');
+            OecmScores::refresh_scores($oecm);
+            Log::info('OECM #' . $oecm . ' scores updated');
         }
 
     }

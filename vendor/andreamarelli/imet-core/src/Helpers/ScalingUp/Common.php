@@ -43,7 +43,7 @@ class Common
     /**
      * @param array $array
      * @param int $items_number
-     * @return float|int
+     * @return float|null
      */
     public static function get_average(array $array, int $items_number = 0): ?float
     {
@@ -120,7 +120,7 @@ class Common
     /**
      * @return void
      */
-    public static function reset_areas_ids()
+    public static function reset_areas_ids(): void
     {
         static::$protected_areas_ids = [];
     }
@@ -207,7 +207,7 @@ class Common
             $filtered[$form_id]['avg'] = $average !== null ? static::round_number($average) : "-";
             $filtered[$form_id]['indicators_number'] = $number_of_indicators;
         }
-        //print_r($filtered);
+
         return $filtered;
     }
 
@@ -292,6 +292,7 @@ class Common
         $assessments = [];
         $i = 0;
         $assessments[$i] = ['name' => trans('imet-core::analysis_report.average')];
+        $assessments[$i] = array_merge($assessments[$i], array_fill_keys($indicators, 0));
         $i++;
         foreach ($form_ids as $k => $form_id) {
 
@@ -311,9 +312,19 @@ class Common
             }
             $i++;
         }
-        foreach ($indicators as $v => $item) {
-            $assessments[0][$item] = Common::round_number((float)$assessments[$v+1] / count($indicators));
+
+        foreach ($indicators as $item) {
+            $sum = 0;
+            $count = 0;
+            foreach ($assessments as $key => $assessment) {
+                if ($key > 0) {
+                    $sum += (float)$assessment[$item];
+                    $count++;
+                }
+            }
+            $assessments[0][$item] = static::round_number($sum / $count);
         }
+
         uasort($assessments, function ($a, $b) {
             return $b['name'] <=> $a['name'];
         });
