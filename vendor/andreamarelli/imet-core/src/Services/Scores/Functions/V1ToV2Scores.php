@@ -14,23 +14,23 @@ class V1ToV2Scores extends _Scores
     {
         $scores_v1 = V1Scores::scores_context($imet_id);
         $scores = [
-            'c1' => self::average([
-                    $scores_v1['c12'], $scores_v1['c13'], $scores_v1['c14'], $scores_v1['c15'], $scores_v1['c16']
+            'C1' => self::average([
+                    $scores_v1['C12'], $scores_v1['C13'], $scores_v1['C14'], $scores_v1['C15'], $scores_v1['C16']
                 ]),
-            'c2' => $scores_v1['c2'],
-            'c3' => $scores_v1['c3'],
-            'c11' => $scores_v1['c12'],
-            'c12' => $scores_v1['c13'],
-            'c13' => $scores_v1['c14'],
-            'c14' => $scores_v1['c15'],
-            'c15' => $scores_v1['c16']
+            'C2' => $scores_v1['C2'],
+            'C3' => $scores_v1['C3'],
+            'C11' => $scores_v1['C12'],
+            'C12' => $scores_v1['C13'],
+            'C13' => $scores_v1['C14'],
+            'C14' => $scores_v1['C15'],
+            'C15' => $scores_v1['C16']
         ];
 
         // aggregate step score
-        $sum = ($scores['c1'] ?? 0)
-            + (($scores['c2'] ?? 0) / 2 + 50)
-            + (($scores['c3'] ?? 0) + 100);
-        $count = count(array_filter([$scores['c1'], $scores['c2'], $scores['c3']], function($x) { return $x!==null; }));
+        $sum = ($scores['C1'] ?? 0)
+            + (($scores['C2'] ?? 0) / 2 + 50)
+            + (($scores['C3'] ?? 0) + 100);
+        $count = count(array_filter([$scores['C1'], $scores['C2'], $scores['C3']], function($x) { return $x!==null; }));
         $scores['avg_indicator'] = $count ? round($sum/$count, 1) : null;
 
         return $scores;
@@ -60,21 +60,21 @@ class V1ToV2Scores extends _Scores
         };
 
         $scores = [
-            'p1' => $scores_v1['p1'],
-            'p2' => $scores_v1['p2'],
-            'p3' => $conditional_p3($scores_v1['p3']),
-            'p4' => round($scores_v1['p4'] * 0.92, 2),
-            'p5' => round($scores_v1['p5'] * 0.837, 2),
-            'p6' => $scores_v1['p6'],
+            'P1' => $scores_v1['P1'],
+            'P2' => $scores_v1['P2'],
+            'P3' => $conditional_p3($scores_v1['P3']),
+            'P4' => round($scores_v1['P4'] * 0.92, 2),
+            'P5' => round($scores_v1['P5'] * 0.837, 2),
+            'P6' => $scores_v1['P6'],
         ];
 
         // aggregate step score
-        $sum = (($scores['p1'] ?? 0) / 2 + 50)
-            + (($scores['p2'] ?? 0) / 2 + 50)
-            + ($scores['p3'] ?? 0)
-            + ($scores['p4'] ?? 0)
-            + ($scores['p5'] ?? 0)
-            + ($scores['p6'] ?? 0);
+        $sum = (($scores['P1'] ?? 0) / 2 + 50)
+            + (($scores['P2'] ?? 0) / 2 + 50)
+            + ($scores['P3'] ?? 0)
+            + ($scores['P4'] ?? 0)
+            + ($scores['P5'] ?? 0)
+            + ($scores['P6'] ?? 0);
         $count = count(array_filter($scores, function($x) { return $x!==null; }));
         $scores['avg_indicator'] = $count ? round($sum/$count, 1) : null;
 
@@ -117,11 +117,11 @@ class V1ToV2Scores extends _Scores
         };
 
         $scores = [
-            'i1' => $scores_v1['i1']!==null ? round($scores_v1['i1'] * 0.8, 2) : null,
-            'i2' => $scores_v1['i2']!==null ? round($scores_v1['i2'] * 0.91, 2) : null,
-            'i3' => $scores_v1['i3']!==null ? round($conditional_i3($scores_v1['i3']), 2) : null,
-            'i4' => $scores_v1['i4']!==null ? round($conditional_i4($scores_v1['i4']), 2) : null,
-            'i5' => $scores_v1['i5']!==null ? round($scores_v1['i5'] * 0.893, 2) : null,
+            'I1' => $scores_v1['I1']!==null ? round($scores_v1['I1'] * 0.8, 2) : null,
+            'I2' => $scores_v1['I2']!==null ? round($scores_v1['I2'] * 0.91, 2) : null,
+            'I3' => $scores_v1['I3']!==null ? round($conditional_i3($scores_v1['I3']), 2) : null,
+            'I4' => $scores_v1['I4']!==null ? round($conditional_i4($scores_v1['I4']), 2) : null,
+            'I5' => $scores_v1['I5']!==null ? round($scores_v1['I5'] * 0.893, 2) : null,
         ];
 
         // aggregate step score
@@ -139,35 +139,35 @@ class V1ToV2Scores extends _Scores
     {
         $scores_v1 = V1Scores::scores_process($imet_id);
         $scores = [
-            'pr1' => $scores_v1['pr1'],
-            'pr2' => $scores_v1['pr2'],
-            'pr3' => $scores_v1['pr3'],
-            'pr4' => $scores_v1['pr4'],
-            'pr5' => $scores_v1['pr5'],
-            'pr6' => $scores_v1['pr6']!==null ? round($scores_v1['pr6'] * 0.8, 2) : null,
-            'pr7' => $scores_v1['pr7'],
-            'pr8' => $scores_v1['pr10'],
-            'pr9' => $scores_v1['pr10'],
-            'pr10' => $scores_v1['pr11'],
-            'pr11' => $scores_v1['pr12'],
-            'pr12' => $scores_v1['pr13'],
-            'pr13' => $scores_v1['pr14'],
-            'pr14' => $scores_v1['pr15'],
-            'pr15' => $scores_v1['pr16'],
-            'pr16' => $scores_v1['pr17'],
-            'pr17' => $scores_v1['pr18'],
-            'pr18' => $scores_v1['pr19']
+            'PR1' => $scores_v1['PR1'],
+            'PR2' => $scores_v1['PR2'],
+            'PR3' => $scores_v1['PR3'],
+            'PR4' => $scores_v1['PR4'],
+            'PR5' => $scores_v1['PR5'],
+            'PR6' => $scores_v1['PR6']!==null ? round($scores_v1['PR6'] * 0.8, 2) : null,
+            'PR7' => $scores_v1['PR7'],
+            'PR8' => $scores_v1['PR10'],
+            'PR9' => $scores_v1['PR10'],
+            'PR10' => $scores_v1['PR11'],
+            'PR11' => $scores_v1['PR12'],
+            'PR12' => $scores_v1['PR13'],
+            'PR13' => $scores_v1['PR14'],
+            'PR14' => $scores_v1['PR15'],
+            'PR15' => $scores_v1['PR16'],
+            'PR16' => $scores_v1['PR17'],
+            'PR17' => $scores_v1['PR18'],
+            'PR18' => $scores_v1['PR19']
         ];
 
         // aggregate step score
         $scores['avg_indicator'] = static::average($scores, 1);
 
-        $scores['pr1_6'] = static::average([$scores['pr1'],  $scores['pr2'], $scores['pr3'], $scores['pr4'], $scores['pr5'], $scores['pr6']]);//$scores_v1['pr1_6'];
-        $scores['pr7_9'] = static::average([$scores['pr7'],  $scores['pr8'], $scores['pr9']]);
-        $scores['pr10_12'] = static::average([$scores['pr10'],  $scores['pr11'], $scores['pr12']]);
-        $scores['pr13_14'] = static::average([$scores['pr13'],  $scores['pr14']]);
-        $scores['pr15_16'] = static::average([$scores['pr15'],  $scores['pr16']]);
-        $scores['pr17_18'] = static::average([$scores['pr17'],  $scores['pr18']]);
+        $scores['PRA'] = static::average([$scores['PR1'],  $scores['PR2'], $scores['PR3'], $scores['PR4'], $scores['PR5'], $scores['PR6']]);//$scores_v1['PR1_6'];
+        $scores['PRB'] = static::average([$scores['PR7'],  $scores['PR8'], $scores['PR9']]);
+        $scores['PRC'] = static::average([$scores['PR10'],  $scores['PR11'], $scores['PR12']]);
+        $scores['PRD'] = static::average([$scores['PR13'],  $scores['PR14']]);
+        $scores['PRE'] = static::average([$scores['PR15'],  $scores['PR16']]);
+        $scores['PRF'] = static::average([$scores['PR17'],  $scores['PR18']]);
 
         return $scores;
     }
@@ -179,10 +179,10 @@ class V1ToV2Scores extends _Scores
     {
         $scores_v1 = V1Scores::scores_outputs($imet_id);
         $scores = [
-            'op1' => $scores_v1['r1']!==null ? round($scores_v1['r1'] * 0.76, 2) : null,
-            'op2' => $scores_v1['r2']!==null ? round($scores_v1['r2'] * 0.76, 2) : null,
-            'op3' => V1Scores::score_pr9($imet_id),
-            'op4' => null
+            'OP1' => $scores_v1['R1']!==null ? round($scores_v1['R1'] * 0.76, 2) : null,
+            'OP2' => $scores_v1['R2']!==null ? round($scores_v1['R2'] * 0.76, 2) : null,
+            'OP3' => V1Scores::score_pr9($imet_id),
+            'OP4' => null
         ];
 
         // aggregate step score
@@ -198,14 +198,14 @@ class V1ToV2Scores extends _Scores
     {
         $scores_v1 = V1Scores::scores_outcomes($imet_id);
         $scores = [
-            'oc1' => $scores_v1['ei1']!==null ? round($scores_v1['ei1'] * 0.76, 2) : null,
-            'oc2' => round(((($scores_v1['ei2'] ?? 0) + $scores_v1['ei3'])/2), 2),
-            'oc3' => $scores_v1['ei4'],
+            'OC1' => $scores_v1['EI1']!==null ? round($scores_v1['EI1'] * 0.76, 2) : null,
+            'OC2' => round(((($scores_v1['EI2'] ?? 0) + $scores_v1['EI3'])/2), 2),
+            'OC3' => $scores_v1['EI4'],
         ];
 
-        $sum = ($scores['oc1'] ?? 0)
-            + ($scores['oc2']/2+50 ?? 0)
-            + ($scores['oc3']/2+50 ?? 0);
+        $sum = ($scores['OC1'] ?? 0)
+            + ($scores['OC2']/2+50 ?? 0)
+            + ($scores['OC3']/2+50 ?? 0);
         $count = count(array_filter($scores, function($x) { return $x!==null; }));
         $scores['avg_indicator'] = $count ? round($sum/$count, 1) : null;
 

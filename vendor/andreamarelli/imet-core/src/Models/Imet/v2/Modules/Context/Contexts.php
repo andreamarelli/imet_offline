@@ -31,7 +31,6 @@ class Contexts extends Modules\Component\ImetModule
         ];
 
         parent::__construct($attributes);
-
     }
 
 }

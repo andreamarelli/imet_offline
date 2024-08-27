@@ -1,4 +1,6 @@
-version: '3'
+version: '3.4'
+
+name: 'imet-core'
 
 services:
 
@@ -9,16 +11,14 @@ services:
       args:
         - COMPOSER_GITHUB_TOKEN=${COMPOSER_GITHUB_TOKEN}
         - UID=${UID-}
-    image: imet-core_php
-    container_name: imet-core_php
+    image: ${COMPOSE_PROJECT_NAME}_php
     volumes:
       - ./:/var/www/html
   
   composer:
-    image: imet-core_php
+    image: ${COMPOSE_PROJECT_NAME}_php
     depends_on:
       - php
-    container_name: imet-core_composer
     volumes:
       - ./:/var/www/html
     entrypoint: [ 'composer' ]
@@ -30,7 +30,6 @@ services:
       dockerfile: docker/node/Dockerfile
       args:
         - UID=${UID-}
-    container_name: imet-core_npm
     volumes:
       - ./:/var/www/html
     entrypoint: [ 'npm' ]

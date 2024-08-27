@@ -1,0 +1,8 @@
+@import "../abstracts/all";
+@import "../layout/layout";
+
+header{
+  @media print{
+    display: none;
+  }
+}

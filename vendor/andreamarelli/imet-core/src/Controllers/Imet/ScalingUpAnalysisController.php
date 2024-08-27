@@ -9,16 +9,16 @@ use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScali
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ImetCore\Models\ProtectedArea;
-use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\File\Zip;
 use AndreaMarelli\ModularForms\Helpers\HTTP;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 
 class ScalingUpAnalysisController extends __Controller
@@ -36,91 +36,89 @@ class ScalingUpAnalysisController extends __Controller
 
     private $indicators = [
         'context' => [
-            'c1' => [],
-            'c2' => [],
-            'c3' => []
+            'C1' => [],
+            'C2' => [],
+            'C3' => []
         ],
         'context_value_and_importance' => [
-            'c11' => [],
-            'c12' => [],
-            'c13' => [],
-            'c14' => [],
-            'c15' => []
+            'C11' => [],
+            'C12' => [],
+            'C13' => [],
+            'C14' => [],
+            'C15' => []
         ],
         'planning' => [
-            'p1' => [],
-            'p2' => [],
-            'p3' => [],
-            'p4' => [],
-            'p5' => [],
-            'p6' => []
+            'P1' => [],
+            'P2' => [],
+            'P3' => [],
+            'P4' => [],
+            'P5' => [],
+            'P6' => []
         ],
         'inputs' => [
-            'i1' => [],
-            'i2' => [],
-            'i3' => [],
-            'i4' => [],
-            'i5' => []
+            'I1' => [],
+            'I2' => [],
+            'I3' => [],
+            'I4' => [],
+            'I5' => []
         ],
         'process' => [],
         'process_sub_indicators' => [
-            'pr15_16' => [],
-            'pr10_12' => [],
-            'pr13_14' => [],
-            'pr17_18' => [],
-            'pr1_6' => [],
-            'pr7_9' => [],
+            'PRE' => [],
+            'PRC' => [],
+            'PRD' => [],
+            'PRF' => [],
+            'PRA' => [],
+            'PRB' => [],
         ],
         'process_internal_management' => [
-            'pr1' => [],
-            'pr2' => [],
-            'pr3' => [],
-            'pr4' => [],
-            'pr5' => [],
-            'pr6' => [],
+            'PR1' => [],
+            'PR2' => [],
+            'PR3' => [],
+            'PR4' => [],
+            'PR5' => [],
+            'PR6' => [],
         ],
-        'process_pr7_pr9' => [
-            'pr7' => [],
-            'pr8' => [],
-            'pr9' => []
+        'process_PRB' => [
+            'PR7' => [],
+            'PR8' => [],
+            'PR9' => []
         ],
-        'process_pr10_pr12' => [
-            'pr10' => [],
-            'pr11' => [],
-            'pr12' => []
+        'process_PRC' => [
+            'PR10' => [],
+            'PR11' => [],
+            'PR12' => []
         ],
-        'process_pr13_pr14' => [
-            'pr13' => [],
-            'pr14' => []
+        'process_PRD' => [
+            'PR13' => [],
+            'PR14' => []
         ],
-        'process_pr15_pr16' => [
-            'pr15' => [],
-            'pr16' => []
+        'process_PRE' => [
+            'PR15' => [],
+            'PR16' => []
         ],
-        'process_pr17_pr18' => [
-            'pr17' => [],
-            'pr18' => []
+        'process_PRF' => [
+            'PR17' => [],
+            'PR18' => []
         ],
         'outputs' => [
-            'op1' => [],
-            'op2' => [],
-            'op3' => []
+            'OP1' => [],
+            'OP2' => [],
+            'OP3' => []
         ],
         'outcomes' => [
-            'oc1' => [],
-            'oc2' => [],
-            'oc3' => []
+            'OC1' => [],
+            'OC2' => [],
+            'OC3' => []
         ]
     ];
 
     /**
      * Index route for scaling up
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
-    public function index(Request $request)
+    public function index(Request $request): Application|View|Factory
     {
         HTTP::sanitize($request, self::sanitization_rules);
 
@@ -158,12 +156,13 @@ class ScalingUpAnalysisController extends __Controller
         ModelScalingUpAnalysis::$scaling_id = $request->input(('scaling_id'));
 
         foreach ($parameters as $value) {
-            if(is_array($value)){
+            if (is_array($value)) {
                 $this->authorize('api_scaling_up', (static::$form_class)::find($value['id']));
             } else if ((int)$value > 0) {
                 $this->authorize('api_scaling_up', (static::$form_class)::find($value));
             }
         }
+
         $response = ModelScalingUpAnalysis::$action($parameters);
         App::setLocale($locale);
         return $response;
@@ -216,7 +215,7 @@ class ScalingUpAnalysisController extends __Controller
      * @param null $items
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \ReflectionException
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function report(Request $request, $items = null)
     {
@@ -304,7 +303,6 @@ class ScalingUpAnalysisController extends __Controller
             ['name' => "additional_option_digital_information_per_pa", 'title' => trans('imet-core::analysis_report.sections.eighth'), 'snapshot_id' => "additional_option_digital_information_per_pa", 'exclude_elements' => '', 'code' => '8'],
             ['name' => "digital_information_per_protected_area", 'title' => trans('imet-core::analysis_report.sections.ninth'), 'snapshot_id' => "digital_information_per_protected_area", 'exclude_elements' => '', 'code' => '9'],
         ];
-
 
         return view('imet-core::scaling_up.report', [
             'templates' => $templates_names,

@@ -20,6 +20,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
 use AndreaMarelli\ModularForms\Helpers\Locale;
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
@@ -73,8 +74,7 @@ class ScalingUpAnalysis extends Model
      * get protected area custom names with all the information
      * @param array $form_ids
      * @param bool $show_original_names
-     * @return Imet[]|bool|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|mixed
-     * @throws \ReflectionException
+     * @return array
      */
     public static function get_protected_area(array $form_ids, bool $show_original_names = false): array
     {
@@ -82,12 +82,11 @@ class ScalingUpAnalysis extends Model
         $categories = [];
         foreach ($form_ids as $form_id) {
             $protected_area[$form_id] = Common::protected_areas_duplicate_fixes($form_id, $show_original_names);
-            $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
+            $general_info = Modules\Context\GeneralInfo::getModuleRecords($form_id);
             if ($general_info['records'][0]) {
                 $categories[$form_id] = Common::get_category_of_protected_area($general_info['records'][0]);
             }
         }
-
         return ["models" => $protected_area, "categories" => $categories];
     }
 
@@ -110,15 +109,15 @@ class ScalingUpAnalysis extends Model
         ];
 
         foreach ($form_ids as $form_id) {
-            $general_info_data = Modules\Context\GeneralInfo::getVueData($form_id);
-            $vision_data = Modules\Context\Missions::getModuleRecords($form_id);
+            $general_info_data = Modules\Context\GeneralInfo::getModuleRecords($form_id)['records'];
+            $vision_data = Modules\Context\Missions::getModuleRecords($form_id)['records'];
             $generalElements['total_surface_protected_areas'] += Modules\Context\Areas::getArea($form_id);
 
-            if ($general_info_data['records'][0]) {
-                $general_info = $general_info_data['records'][0];
+            if ($general_info_data[0]) {
+                $general_info = $general_info_data[0];
                 $lang = Locale::lower();
                 $name = "name_" . (trim($lang) === "" ? "en" : $lang);
-                $country_name = Country::getByISO($general_info['Country'])->$name;
+                $country_name = $general_info['Country'] ? Country::getByISO($general_info['Country'])->$name : "";
 
                 //echo $general_info['Country']."-".$country_name."\n";
                 if (!in_array($country_name, $generalElements['countries'])) {
@@ -134,22 +133,22 @@ class ScalingUpAnalysis extends Model
                 }
             }
 
-            if ($vision_data['records'][0]) {
-                $vision = $vision_data['records'][0];
+            if ($vision_data[0]) {
+                $vision = $vision_data[0];
                 if ($vision['LocalMission']) {
-                    $generalElements['local_mission'][] = $general_info_data['records'][0]['CompleteName'];
+                    $generalElements['local_mission'][] = $general_info_data[0]['CompleteName'];
                 }
                 if ($vision['LocalObjective']) {
-                    $generalElements['local_objective'][] = $general_info_data['records'][0]['CompleteName'];
+                    $generalElements['local_objective'][] = $general_info_data[0]['CompleteName'];
                 }
                 if ($vision['LocalVision']) {
-                    $generalElements['local_vision'][] = $general_info_data['records'][0]['CompleteName'];
+                    $generalElements['local_vision'][] = $general_info_data[0]['CompleteName'];
                 }
             }
         }
 
         $generalElements['total_surface_protected_areas'] = Common::round_number($generalElements['total_surface_protected_areas']);
-        $generalElements['network'] = array_flip(array_flip($generalElements['network']));
+
         return ['status' => 'success', 'data' => ['general_info' => $generalElements]];
     }
 
@@ -355,102 +354,102 @@ class ScalingUpAnalysis extends Model
         $table_indicators = [
             'context' => [
                 'main' => [
-                    'c1' => [],
-                    'c2' => [],
-                    'c3' => []
+                    'C1' => [],
+                    'C2' => [],
+                    'C3' => []
                 ],
                 'context_value_and_importance' => [
-                    'c11' => [],
-                    'c12' => [],
-                    'c13' => [],
-                    'c14' => [],
-                    'c15' => []
+                    'C11' => [],
+                    'C12' => [],
+                    'C13' => [],
+                    'C14' => [],
+                    'C15' => []
                 ]
             ],
             'planning' => [
                 'main' => [
-                    'p1' => [],
-                    'p2' => [],
-                    'p3' => [],
-                    'p4' => [],
-                    'p5' => [],
-                    'p6' => []
+                    'P1' => [],
+                    'P2' => [],
+                    'P3' => [],
+                    'P4' => [],
+                    'P5' => [],
+                    'P6' => []
                 ]
             ],
             'inputs' => [
                 'main' => [
-                    'i1' => [],
-                    'i2' => [],
-                    'i3' => [],
-                    'i4' => [],
-                    'i5' => []
+                    'I1' => [],
+                    'I2' => [],
+                    'I3' => [],
+                    'I4' => [],
+                    'I5' => []
                 ]
             ],
             'process' => [
                 'process_sub_indicators' => [
-                    'pr15_16' => [],
-                    'pr10_12' => [],
-                    'pr13_14' => [],
-                    'pr17_18' => [],
-                    'pr1_6' => [],
-                    'pr7_9' => [],
+                    'PRE' => [],
+                    'PRC' => [],
+                    'PRD' => [],
+                    'PRF' => [],
+                    'PRA' => [],
+                    'PRB' => [],
                 ]
             ],
-            'process_pr1_pr6' => [
+            'process_PRA' => [
                 'process_internal_management' => [
-                    'pr1' => [],
-                    'pr2' => [],
-                    'pr3' => [],
-                    'pr4' => [],
-                    'pr5' => [],
-                    'pr6' => [],
+                    'PR1' => [],
+                    'PR2' => [],
+                    'PR3' => [],
+                    'PR4' => [],
+                    'PR5' => [],
+                    'PR6' => [],
                 ]
             ],
-            'process_pr7_pr9' => [
+            'process_PRB' => [
                 'process_management_protection_values' => [
-                    'pr7' => [],
-                    'pr8' => [],
-                    'pr9' => []
+                    'PR7' => [],
+                    'PR8' => [],
+                    'PR9' => []
                 ]
             ],
-            'process_pr10_pr12' => [
+            'process_PRC' => [
                 'process_stakeholders_relationships' => [
-                    'pr10' => [],
-                    'pr11' => [],
-                    'pr12' => []
+                    'PR10' => [],
+                    'PR11' => [],
+                    'PR12' => []
                 ]
             ],
-            'process_pr13_pr14' => [
+            'process_PRD' => [
                 'process_tourism_management' => [
-                    'pr13' => [],
-                    'pr14' => []
+                    'PR13' => [],
+                    'PR14' => []
                 ]
             ],
-            'process_pr15_pr16' => [
+            'process_PRE' => [
                 'process_monitoring_and_research' => [
-                    'pr15' => [],
-                    'pr16' => []
+                    'PR15' => [],
+                    'PR16' => []
                 ]
             ],
-            'process_pr17_pr18' => [
+            'process_PRF' => [
                 'process_effects_of_climate_change' => [
-                    'pr17' => [],
-                    'pr18' => []
+                    'PR17' => [],
+                    'PR18' => []
                 ]
             ],
             'outputs' => [
                 'main' => [
-                    'op1' => [],
-                    'op2' => [],
-                    'op3' => [],
-                    'op4' => []
+                    'OP1' => [],
+                    'OP2' => [],
+                    'OP3' => [],
+                    'OP4' => []
                 ]
             ],
             'outcomes' => [
                 'main' => [
-                    'oc1' => [],
-                    'oc2' => [],
-                    'oc3' => []
+                    'OC1' => [],
+                    'OC2' => [],
+                    'OC3' => []
                 ]
             ]
         ];

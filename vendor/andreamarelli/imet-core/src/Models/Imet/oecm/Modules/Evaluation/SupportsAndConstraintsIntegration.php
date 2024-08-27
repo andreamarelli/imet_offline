@@ -30,7 +30,7 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
         $this->module_title = trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.title');
         $this->module_fields = [
             ['name' => 'Stakeholder',       'type' => 'blade-imet-core::oecm.evaluation.fields.support_integration_stakeholder_with_ranking',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.fields.Stakeholder')],
-            ['name' => 'Integration',       'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.fields.Integration')],
+            ['name' => 'Integration',       'type' => 'rating-0to3',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.fields.Integration')],
             ['name' => 'IncludeInStatistics',   'type' => 'checkbox-boolean',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.fields.IncludeInStatistics')],
             ['name' => 'Comments',              'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.fields.Comments')],
         ];
@@ -43,7 +43,7 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
         parent::__construct($attributes);
     }
 
-    protected static function getPredefined($form_id = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
         $predefined_values = $form_id!==null
             ? [

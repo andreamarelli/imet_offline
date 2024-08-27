@@ -1,0 +1,368 @@
+@import "../abstracts/all";
+
+// #######################################################
+// ######################  heading  ######################
+// #######################################################
+
+.entity-heading{
+    font-size: 1.6em;
+    font-weight: bold;
+    margin-bottom: 30px;
+    line-height: 35px;
+
+    .id, .name, .subtitle, .location{
+        display: inline-block;
+    }
+    .id{
+        @apply text-gray-500;
+        margin-right: 10px;
+        //@apply border border-gray-400;
+        padding: 2px 5px;
+    }
+    .name{
+        font-size: 1.3em;
+    }
+    .subtitle{
+        @apply text-gray-500;
+        font-style: italic;
+    }
+    .location{
+        @apply text-gray-500;
+        margin-left: 10px;
+    }
+}
+
+.entity-heading-medium {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    line-height: 30px;
+}
+
+// #######################################################
+// #######################  steps  #######################
+// #######################################################
+
+nav.steps{
+    display: flex;
+    margin-bottom: 30px;
+    clear: both;
+    a.step {
+        @apply text-gray-800;
+        @apply bg-gray-50;
+        flex-grow: 1;
+        font-weight: 600;
+        display: inline-block;
+        text-align: center;
+        padding: 20px 5px;
+        @apply border-y border-l border-gray-200;
+        overflow-wrap: anywhere;
+        min-width: 90px;
+        @include transition(background-color);
+        &:last-child {
+            @apply border-r border-gray-200;
+        }
+        &:hover{
+            text-decoration: none;
+            @apply bg-gray-300;
+            &.selected {
+                @apply bg-primary-900;
+            }
+        }
+        &.selected{
+            @apply bg-primary-900;
+            @apply border-primary-900;
+            position: relative;
+            @apply text-white;
+            &:after{
+                content:'';
+                height: 0;
+                width: 0;
+                display: inline-block;
+                position: absolute;
+                left: 50%;
+                bottom: -8px;
+                border-top: 8px solid;
+                @apply border-primary-900;
+                margin-left: -13px;
+                border-right: 13px solid transparent;
+                border-left: 13px solid transparent;
+            }
+        }
+    }
+}
+
+// ######################################################
+// #################   scroll buttons   #################
+// ######################################################
+
+.scrollButtons{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    div {
+        text-align: center;
+        @apply bg-primary-900;
+        @apply text-white;
+        cursor: pointer;
+        padding: 3px 8px;
+        font-size: 0.9rem;
+        @include selector_border-radius-vertical(5px);
+        &.standalone{
+            font-size: 1.1rem;
+            padding: 8px 12px;
+            margin-top: 5px;
+            border-radius: 5px;
+        }
+        &.highlight{
+            @apply bg-primary-500;
+            @apply text-black;
+        }
+        &.error{
+            @apply bg-contextual-danger;
+            @apply text-black;
+        }
+        &.scrollToTop, &.scrollToBottom{
+            font-size: 1.2rem;
+        }
+        &:hover {
+            @apply bg-primary-500;
+            @apply text-black;
+        }
+    }
+
+    // ### Collapsible ###
+    &.collapsible{
+        // Hidden
+        right: 0;
+        div{
+            @apply text-2xs;
+            &.scrollToTop, &.scrollToBottom{
+                text-align: left;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+            &.scrollSpacer{
+                height: 40px;
+            }
+            &.scrollToAnchor{
+                @apply text-primary-900;
+                height: 5px;
+                display: none;
+            }
+        }
+        // Visible
+        &:hover {
+            div {
+                @apply text-base;
+                &.scrollToTop, &.scrollToBottom{
+                    text-align: center;
+                }
+                &.scrollSpacer{
+                    display: none;
+                }
+                &.scrollToAnchor{
+                    @apply text-white;
+                    height: auto;
+                    display: block;
+                }
+            }
+        }
+    }
+
+}
+
+// #######################################################
+// ##############  module container & bars  ##############
+// #######################################################
+
+.module-container {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+    &.validation-error{
+        border: 1px solid;
+        @apply border-contextual-danger;
+        .module-header > div{
+            @apply bg-contextual-danger;
+        }
+    }
+
+    // #####  header  #####
+    .module-header{
+        margin: 0;
+        border: 0;
+        display: flex;
+        flex-direction: row;
+
+        font-weight: bold;
+        font-size: 1.4em;
+        @apply text-gray-800;
+        @apply bg-gray-400;
+        -webkit-print-color-adjust: exact;
+
+        .module-code,
+        .module-title,
+        .module-info{
+            padding: 10px 15px;
+            &.module-code{
+                @apply text-gray-200;
+                @apply bg-primary-900;
+            }
+            &.module-title{
+                flex: 1;
+            }
+        }
+    }
+
+    // #####  body  #####
+    .module-body {
+        padding: 5px 15px 10px 15px;
+        @apply border border-gray-200;
+        @apply bg-gray-200;
+
+        .module-log {
+            margin: 0 0 10px;
+            font-size: 0.8em;
+        }
+
+        .no-data,
+        .no_data {
+            @apply text-2xl text-gray-400 font-bold;
+            text-align: center;
+            margin: 40px 0 40px 0;
+            text-transform: uppercase;
+        }
+
+        .module-row {
+            display: flex;
+            margin-bottom: 8px;
+            .module-row__label {
+                width: 25%;
+                text-align: right;
+                margin-right: 15px;
+                label {
+                    font-weight: bold;
+                    margin: 0;
+                }
+            }
+            .module-row__input {
+                flex-grow: 1;
+            }
+        }
+
+        .module-table{
+            margin: 0 0 15px 0;
+            thead tr th,
+            tbody tr td{
+                border: 0;
+                @apply border-b border-solid  border-gray-300;
+            }
+            tr.module-table-item td{
+                text-align: center;
+                vertical-align: top;
+                padding: 6px 2px;
+                &:first-of-type{
+                    padding-left: 0;
+                }
+                &:last-of-type{
+                    padding-right: 0;
+                }
+            }
+            tfoot td{
+                padding-top: 10px ;
+            }
+        }
+
+    }
+
+    // #####  bars  #####
+    .module-bar{
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 7px 8px;
+        @apply text-sm;
+
+        .icon{
+            padding: 0 8px 0 0;
+        }
+        .message{
+            flex: 1;
+            font-weight: bold;
+        }
+
+        &.info-bar{
+            @apply bg-contextual-light-info;
+            @apply text-contextual-primary;
+            align-items: flex-start;
+            .message{
+                font-weight: normal;
+            }
+        }
+        &.info-black-bar{
+            @apply bg-contextual-light-info;
+            @apply text-gray-800;
+            .blue {
+                @apply text-contextual-primary;
+            }
+        }
+        &.save-bar{
+            @apply bg-contextual-light-info;
+            @apply text-contextual-primary;
+        }
+        &.saved-bar{
+            @apply bg-contextual-light-success;
+            @apply text-contextual-success;
+        }
+        &.error-bar{
+            @apply bg-contextual-light-danger;
+            @apply text-contextual-danger;
+            ul.errors{
+                font-weight: normal;
+                margin: 5px 0 0 0;
+                li{
+                    list-style-position: inside;
+                }
+            }
+        }
+        &.module_subTitle{
+            @apply bg-gray-200;
+            .message{
+                font-weight: bold;
+                font-size: 1.1em;
+            }
+        }
+
+    }
+
+}
+
+
+// ######################################################
+// ###################  global errors ###################
+// ######################################################
+
+.module-errors{
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    @apply bg-contextual-light-danger;
+    @apply text-contextual-danger;
+    .title{
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        div:first-child {
+            margin-right: 20px;
+        }
+    }
+    ul.errors{
+        font-weight: normal;
+        margin: 5px 0 0 0;
+        @apply text-black;
+        padding-inline-start: 40px;
+    }
+}

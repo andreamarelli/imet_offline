@@ -17,7 +17,7 @@ class ManagementRelativeImportance extends Modules\Component\ImetModule
         $this->module_code = 'CTX 3.1.1';
         $this->module_title = trans('imet-core::oecm_context.ManagementRelativeImportance.title');
         $this->module_fields = [
-            ['name' => 'RelativeImportance',       'type' => 'imet-core::rating-Minus3to3',   'label' => trans('imet-core::oecm_context.ManagementRelativeImportance.fields.RelativeImportance')],
+            ['name' => 'RelativeImportance',       'type' => 'rating-Minus3to3',   'label' => trans('imet-core::oecm_context.ManagementRelativeImportance.fields.RelativeImportance')],
         ];
 
         parent::__construct($attributes);

@@ -168,7 +168,7 @@ final class WrapperRunner implements RunnerInterface
         $this->printer->printFeedback(
             $worker->progressFile,
             $worker->unexpectedOutputFile,
-            $this->teamcityFiles,
+            $worker->teamcityFile ?? null,
         );
         $worker->reset();
     }
@@ -345,6 +345,10 @@ final class WrapperRunner implements RunnerInterface
         }
 
         $testSuite = (new LogMerger())->merge($this->junitFiles);
+        if ($testSuite === null) {
+            return;
+        }
+
         (new Writer())->write(
             $testSuite,
             $this->options->configuration->logfileJunit(),

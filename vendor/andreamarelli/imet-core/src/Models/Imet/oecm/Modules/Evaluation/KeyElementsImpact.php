@@ -25,13 +25,13 @@ class KeyElementsImpact extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::oecm_evaluation.KeyElementsImpact.title');
         $this->module_fields = [
             ['name' => 'KeyElement',    'type' => 'disabled',      'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.KeyElement')],
-            ['name' => 'StatusSH',      'type' => 'imet-core::rating-Minus2to2',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.StatusSH')],
-            ['name' => 'TrendSH',       'type' => 'imet-core::rating-Minus2to2',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.TrendSH')],
+            ['name' => 'StatusSH',      'type' => 'rating-Minus2to2',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.StatusSH')],
+            ['name' => 'TrendSH',       'type' => 'rating-Minus2to2',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.TrendSH')],
             ['name' => 'EffectSH',      'type' => 'disabled',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.EffectSH')],
             ['name' => 'ReliabilitySH', 'type' => 'dropdown-ImetOECM_Reliability',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.ReliabilitySH')],
             ['name' => 'CommentsSH',    'type' => 'text-area',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.CommentsSH')],
-            ['name' => 'StatusER',      'type' => 'imet-core::rating-Minus2to2',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.StatusER')],
-            ['name' => 'TrendER',       'type' => 'imet-core::rating-Minus2to2',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.TrendER')],
+            ['name' => 'StatusER',      'type' => 'rating-Minus2to2',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.StatusER')],
+            ['name' => 'TrendER',       'type' => 'rating-Minus2to2',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.TrendER')],
             ['name' => 'EffectER',      'type' => 'disabled',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.EffectER')],
             ['name' => 'ReliabilityER', 'type' => 'dropdown-ImetOECM_Reliability',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.ReliabilityER')],
             ['name' => 'CommentsER',    'type' => 'text-area',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.CommentsER')],
@@ -50,7 +50,7 @@ class KeyElementsImpact extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    protected static function getPredefined($form_id = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
         $predefined_values = $form_id!==null
             ? [

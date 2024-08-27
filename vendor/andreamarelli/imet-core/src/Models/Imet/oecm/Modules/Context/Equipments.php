@@ -26,7 +26,7 @@ class Equipments extends Modules\Component\ImetModule
         $this->module_title = trans('imet-core::oecm_context.Equipments.title');
         $this->module_fields = [
             ['name' => 'Resource',  'type' => 'text-area',   'label' => trans('imet-core::oecm_context.Equipments.fields.Resource')],
-            ['name' => 'AdequacyLevel',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_context.Equipments.fields.AdequacyLevel')],
+            ['name' => 'AdequacyLevel',  'type' => 'rating-0to3',   'label' => trans('imet-core::oecm_context.Equipments.fields.AdequacyLevel')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::oecm_context.Equipments.fields.Comments')],
         ];
 

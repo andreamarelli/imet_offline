@@ -340,77 +340,23 @@ return [
         'negative_positive' => ' - échelle (min: -100, max: 100)',
         'zero_negative' => ' - échelle (min: -100, max: 0)'
     ],
-    'assessment' => [
-        'ctx101' => 'Responsabilité de remplir le formulaire: L’équipe de direction et les partenaires et le soutien externe pour l’analyse et l’évaluation de la gestion',
-        'ctx102' => 'Responsabilité de remplir le formulaire: Équipe de direction et partenaires et soutien externe pour l’analyse et l’évaluation de la gestion',
-        'c11' => 'Désignations spéciales',
-        'c12' => 'Espèces clés',
-        'c13' => 'Habitats terrestres et marins',
-        'c14' => 'Le changement climatique',
-        'c15' => 'Les services écosystémiques',
-        'c1' => 'Valeur et importance',
-        'c2' => 'Contraintes externes ou soutien',
-        'c3' => 'Menaces',
-        'p1' => 'Adéquation des dispositions légales et réglementaires',
-        'p2' => 'Conception et aménagement de l’aire protégée',
-        'p3' => 'Délimitation de l’aire protégée',
-        'p4' => 'Plan de gestion',
-        'p5' => 'Plan de travail/action',
-        'p6' => 'Objectifs de l’aire protégée',
-        'i1' => 'Informations de base',
-        'i2' => 'Personnel',
-        'i3' => 'Budget actuel',
-        'i4' => 'Sécurisation du budget',
-        'i5' => 'Infrastructures, équipements et installations',
-        'pr1' => 'Programme et formation des capacités du personnel',
-        'pr2' => 'Politiques et procédures de gestion des ressources humaines',
-        'pr3' => 'Analyser le degré de motivation du personnel (aptitude au travail)',
-        'pr4' => 'Orientation de la gestion de l’aire protégée',
-        'pr5' => 'Budget et gestion financière',
-        'pr6' => 'Entretien des infrastructures, des équipements et des installations',
-        'pr7' => 'Gérer les valeurs et les éléments clés de l’aire protégée par des actions spécifiques',
-        'pr8' => 'Gestion des patrouilles de rangers (application de la loi)',
-        'pr9' => 'Renseignement/enquêtes/développement de cas/gestion des accusations (application de la loi)',
-        'pr10' => 'Coopération avec les parties prenantes',
-        'pr11' => 'Avantages/assistance appropriés pour les communautés locales',
-        'pr12' => 'Éducation environnementale et sensibilisation du public',
-        'pr13' => 'Gestion des installations et des services destinés aux visiteurs',
-        'pr14' => 'Gestion de l’impact des visiteurs',
-        'pr15' => 'Systèmes de suivi / monitoring des valeurs et des aspects d’importance de l’aire protégée',
-        'pr16' => 'Recherche et biomonitoring',
-        'pr17' => 'Gestion des effets du changement climatique',
-        'pr18' => 'Services écosystémiques',
-        'op1' => 'Mise en œuvre du plan de travail/action',
-        'op2' => 'Résultats atteints',
-        'op3' => 'Domination de la aire protégée',
-        'op4' => 'Application de la loi dans l’AMP',
-        'oc1' => 'Atteinte des objectifs de conservation à long terme',
-        'oc2' => 'Conditions et tendances des principaux éléments de conservation de l’aire protégée',
-        'oc3' => 'Effets et impacts des interventions sur la qualité de vie des acteurs locaux',
-        'pr1_6' => 'Systèmes et processus de gestion interne',
-        'pr7_9' => 'Gestion/Protection des valeurs',
-        'pr10_12' => 'Les relations avec les parties prenantes',
-        'pr13_14' => 'Gestion du tourisme',
-        'pr15_16' => 'Suivi et recherche',
-        'pr17_18' => 'Gestion des effets du changement climatique et des services écosystémiques'
-    ],
     'legends' => [
-        'pr1_6' => [
+        'PRA' => [
             'PR A'
         ],
-        'pr7_9' => [
+        'PRB' => [
             'PR B'
         ],
-        'pr10_12' => [
+        'PRC' => [
             'PR C'
         ],
-        'pr13_14' => [
+        'PRD' => [
             'PR D'
         ],
-        'pr15_16' => [
+        'PRE' => [
             'PR E'
         ],
-        'pr17_18' => [
+        'PRF' => [
             'PR F'
         ]
     ],
@@ -482,12 +428,12 @@ return [
             'overall' => [
                 'intro' => 'Six sous-éléments du processus',
                 'info' => ''],
-            'pr1_pr6' => ['intro' => 'PR A: Systèmes et processus de gestion interne', 'info' => ''],
-            'pr7_pr9' => ['intro' => 'PR B: Gestion/Protection des valeurs', 'info' => ''],
-            'pr10_pr12' => ['intro' => 'PR C: Relations avec les parties prenantes', 'info' => ''],
-            'pr13_pr14' => ['intro' => 'PR D: Gestion du tourisme', 'info' => ''],
-            'pr15_pr16' => ['intro' => 'PR E: Suivi et recherche', 'info' => ''],
-            'pr17_pr18' => ['intro' => 'PR F: Gestion des effets du changement climatique et des services écosystémiques', 'info' => ''],
+            'PRA' => ['intro' => 'PR A: Systèmes et processus de gestion interne', 'info' => ''],
+            'PRB' => ['intro' => 'PR B: Gestion/Protection des valeurs', 'info' => ''],
+            'PRC' => ['intro' => 'PR C: Relations avec les parties prenantes', 'info' => ''],
+            'PRD' => ['intro' => 'PR D: Gestion du tourisme', 'info' => ''],
+            'PRE' => ['intro' => 'PR E: Suivi et recherche', 'info' => ''],
+            'PRF' => ['intro' => 'PR F: Gestion des effets du changement climatique et des services écosystémiques', 'info' => ''],
         ],
         'outputs' => [
             'main' => [

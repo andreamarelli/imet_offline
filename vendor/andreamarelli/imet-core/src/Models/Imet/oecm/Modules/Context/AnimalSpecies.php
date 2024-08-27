@@ -26,7 +26,7 @@ class AnimalSpecies extends Modules\Component\ImetModule
         $this->module_code = 'CTX 4.1';
         $this->module_title = trans('imet-core::oecm_context.AnimalSpecies.title');
         $this->module_fields = [
-            ['name' => 'species', 'type' => 'imet-core::selector-species_animal_withFreeText', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.SpeciesID')],
+            ['name' => 'species', 'type' => 'selector-species_animal-withInsert', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.SpeciesID')],
             ['name' => 'ExploitedSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.ExploitedSpecies')],
             ['name' => 'ProtectedSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.ProtectedSpecies')],
             ['name' => 'DisappearingSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.DisappearingSpecies')],

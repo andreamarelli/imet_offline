@@ -21,7 +21,7 @@ class OecmAssessment
             : $imet;
     }
 
-    public static function getAssessment(ImetOecm|int|string $imet, $step = _Scores::RADAR_SCORES): array
+    public static function getAssessment(ImetOecm|int|string $imet, $step = _Scores::RADAR_SCORES, $with_labels = true): array
     {
         $imet = static::getAsModel($imet);
         $scores = $step === _Scores::ALL_SCORES
@@ -31,17 +31,19 @@ class OecmAssessment
                     ? OecmScores::get_radar($imet)
                     : OecmScores::get_step($imet, $step)
             );
-        return array_merge(
-            [
-                'formid' => $imet->getKey(),
-                'wdpa_id' => $imet->wdpa_id,
-                'iso3' => $imet->Country,
-                'name' => $imet->name,
-                'version' => $imet->version,
-                'labels' => static::get_indicators_labels($imet->version),
-            ],
-            $scores
-        );
+
+        $result = [
+            'form_id' => $imet->getKey(),
+            'wdpa_id' => $imet->wdpa_id,
+            'iso3' => $imet->Country,
+            'name' => $imet->name,
+            'version' => $imet->version,
+            'scores' => $scores
+        ];
+
+        return $with_labels
+            ? array_merge($result, ['labels' => static::get_scores_labels($imet->version)])
+            : $result;
     }
 
 }

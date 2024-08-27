@@ -8,12 +8,12 @@
         }
     ],
     "require": {
-        "php": ">=8.1",
+        "php": ">=8.2",
         "ext-json": "*",
-        "andreamarelli/modular-forms": "dev-master"
+        "andreamarelli/modular-forms": "dev-vue3"
     },
     "require-dev": {
-        "orchestra/testbench": "^8.0"
+        "orchestra/testbench": "^9.0"
     },
     "repositories": {
         "andreamarelli/modular-forms": {
@@ -38,5 +38,12 @@
                 "ImetUser": "AndreaMarelli\\ImetCore\\Models\\User"
             }
         }
-    }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }

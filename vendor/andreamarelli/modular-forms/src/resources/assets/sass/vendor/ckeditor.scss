@@ -1,0 +1,18 @@
+@import "../components/forms.input";
+
+.ck.ck-editor {
+    @include field-size;
+    max-width: 800px;
+}
+
+.ck-editor__editable_inline{
+    padding: 0 20px !important;
+
+    p, h2, li{
+        @include field-base;
+    }
+    h2 {
+        @apply text-sm font-bold;
+    }
+}
+

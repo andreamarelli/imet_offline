@@ -28,7 +28,7 @@ class Designation extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::oecm_evaluation.Designation.title');
         $this->module_fields = [
             ['name' => 'Aspect',  'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.Designation.fields.Aspect')],
-            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_evaluation.Designation.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'rating-0to3',   'label' => trans('imet-core::oecm_evaluation.Designation.fields.EvaluationScore')],
             ['name' => 'SignificativeClassification',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::oecm_evaluation.Designation.fields.SignificativeClassification')],
             ['name' => 'IncludeInStatistics',   'type' => 'checkbox-boolean',   'label' => trans('imet-core::oecm_evaluation.Designation.fields.IncludeInStatistics')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.Designation.fields.Comments')],
@@ -41,7 +41,7 @@ class Designation extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    protected static function getPredefined($form_id = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
         return [
             'field' => static::$DEPENDENCY_ON,

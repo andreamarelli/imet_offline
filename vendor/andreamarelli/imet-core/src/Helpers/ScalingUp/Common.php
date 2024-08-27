@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Helpers\ScalingUp;
 
+use AndreaMarelli\ImetCore\Models\Imet\Imet as ImetAlias;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
@@ -132,11 +133,11 @@ class Common
      */
     public static function values_correction(string $indicator, $value)
     {
-        if ($indicator === "c3") {
+        if ($indicator === 'C3') {
             if ($value < 0 && !is_string($value)) {
                 return static::round_number((100 + $value), 3);
             }
-        } else if (in_array($indicator, ["c2", "oc2", "oc3"])) {
+        } else if (in_array($indicator, ['C2', 'OC2', 'OC3'])) {
             return static::round_number(50 + ((float)$value / 2), 3);
         }
 
@@ -216,7 +217,7 @@ class Common
      * if names are duplicate add the year
      * @param int $form_id
      * @param bool $show_original_names
-     * @return \AndreaMarelli\ImetCore\Models\Imet\v2\Imet[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|null
+     * @return Imet[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|null
      */
     public static function protected_areas_duplicate_fixes(int $form_id, bool $show_original_names = false)
     {
@@ -252,28 +253,6 @@ class Common
     }
 
     /**
-     * get protected area custom names with all the information
-     * @param array $form_ids
-     * @param bool $show_original_names
-     * @return Imet[]|bool|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|mixed
-     * @throws \ReflectionException
-     */
-    public static function get_protected_area(array $form_ids, bool $show_original_names = false): array
-    {
-        $protected_area = [];
-        $categories = [];
-        foreach ($form_ids as $form_id) {
-            $protected_area[$form_id] = static::protected_areas_duplicate_fixes($form_id, $show_original_names);
-            $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
-            if ($general_info['records'][0]) {
-                $categories[$form_id] = Common::get_category_of_protected_area($general_info['records'][0]);
-            }
-        }
-
-        return ["models" => $protected_area, "categories" => $categories];
-    }
-
-    /**
      * @param array $form_ids
      * @param int $scaling_id
      * @return array|array[]
@@ -299,7 +278,7 @@ class Common
             $assessments[$k]['name'] = $name->name;
             $assessments[$k]['color'] = $name->color;
             $assessments[$k]['wdpa_id'] = $name->wdpa_id;
-            $assessments[$k]['formid'] = (int)$form_id;
+            $assessments[$k]['form_id'] = (int)$form_id;
             $assessments[$k]['year'] = (int)$name->Year;
 
             $assessments[$k]['imet_index'] = static::round_number($assessments[$k]['imet_index']);
@@ -330,82 +309,83 @@ class Common
      */
     public static function get_labels_by_indicator($indicator): array
     {
+        $labels =  ImetScores::indicators_labels(ImetAlias::IMET_V2);
         $indicators = [
             'management_context' => [
-                'c1' => 'C1: ' . trans('imet-core::analysis_report.assessment.c1'),
-                'c2' => 'C2: ' . trans('imet-core::analysis_report.assessment.c2'),
-                'c3' => 'C3: ' . trans('imet-core::analysis_report.assessment.c3')
+                'C1' => 'C1: ' . $labels['C1'],
+                'C2' => 'C2: ' . $labels['C2'],
+                'C3' => 'C3: ' . $labels['C3']
             ],
             'value_and_importance_sub_indicators' => [
-                'c11' => 'C1.1: ' . trans('imet-core::analysis_report.assessment.c11'),
-                'c12' => 'C1.2: ' . trans('imet-core::analysis_report.assessment.c12'),
-                'c13' => 'C1.3: ' . trans('imet-core::analysis_report.assessment.c13'),
-                'c14' => 'C1.4: ' . trans('imet-core::analysis_report.assessment.c14'),
-                'c15' => 'C1.5: ' . trans('imet-core::analysis_report.assessment.c15')
+                'C11' => 'C1.1: ' . $labels['C11'],
+                'C12' => 'C1.2: ' . $labels['C12'],
+                'C13' => 'C1.3: ' . $labels['C13'],
+                'C14' => 'C1.4: ' . $labels['C14'],
+                'C15' => 'C1.5: ' . $labels['C15']
             ],
             'planning' => [
-                'p1' => 'P1: ' . trans('imet-core::analysis_report.assessment.p1'),
-                'p2' => 'P2: ' . trans('imet-core::analysis_report.assessment.p2'),
-                'p3' => 'P3: ' . trans('imet-core::analysis_report.assessment.p3'),
-                'p4' => 'P4: ' . trans('imet-core::analysis_report.assessment.p4'),
-                'p5' => 'P5: ' . trans('imet-core::analysis_report.assessment.p5'),
-                'p6' => 'P6: ' . trans('imet-core::analysis_report.assessment.p6')
+                'P1' => 'P1: ' . $labels['P1'],
+                'P2' => 'P2: ' . $labels['P2'],
+                'P3' => 'P3: ' . $labels['P3'],
+                'P4' => 'P4: ' . $labels['P4'],
+                'P5' => 'P5: ' . $labels['P5'],
+                'P6' => 'P6: ' . $labels['P6']
             ],
             'inputs' => [
-                'i1' => 'I1: ' . trans('imet-core::analysis_report.assessment.i1'),
-                'i2' => 'I2: ' . trans('imet-core::analysis_report.assessment.i2'),
-                'i3' => 'I3: ' . trans('imet-core::analysis_report.assessment.i3'),
-                'i4' => 'I4: ' . trans('imet-core::analysis_report.assessment.i4'),
-                'i5' => 'I5: ' . trans('imet-core::analysis_report.assessment.i5')
+                'I1' => 'I1: ' . $labels['I1'],
+                'I2' => 'I2: ' . $labels['I2'],
+                'I3' => 'I3: ' . $labels['I3'],
+                'I4' => 'I4: ' . $labels['I4'],
+                'I5' => 'I5: ' . $labels['I5']
             ],
             'outputs' => [
-                'op1' => 'O/P1: ' . trans('imet-core::analysis_report.assessment.op1'),
-                'op2' => 'O/P2: ' . trans('imet-core::analysis_report.assessment.op2'),
-                'op3' => 'O/P3: ' . trans('imet-core::analysis_report.assessment.op3'),
-                'op4' => 'O/P4: ' . trans('imet-core::analysis_report.assessment.op4')
+                'OP1' => 'O/P1: ' . $labels['OP1'],
+                'OP2' => 'O/P2: ' . $labels['OP2'],
+                'OP3' => 'O/P3: ' . $labels['OP3'],
+                'OP4' => 'O/P4: ' . $labels['OP4']
             ],
             'outcomes' => [
-                'oc1' => 'O/C1: ' . trans('imet-core::analysis_report.assessment.oc1'),
-                'oc2' => 'O/C2: ' . trans('imet-core::analysis_report.assessment.oc2'),
-                'oc3' => 'O/C3: ' . trans('imet-core::analysis_report.assessment.oc3'),
+                'OC1' => 'O/C1: ' . $labels['OC1'],
+                'OC2' => 'O/C2: ' . $labels['OC2'],
+                'OC3' => 'O/C3: ' . $labels['OC3'],
             ],
             'process' => [
-                'pr15_16' => 'PR A: ' . trans('imet-core::analysis_report.assessment.pr15_16'),
-                'pr10_12' => 'PR B: ' . trans('imet-core::analysis_report.assessment.pr10_12'),
-                'pr13_14' => 'PR C: ' . trans('imet-core::analysis_report.assessment.pr13_14'),
-                'pr17_18' => 'PR D: ' . trans('imet-core::analysis_report.assessment.pr17_18'),
-                'pr1_6' => 'PR E: ' . trans('imet-core::analysis_report.assessment.pr1_6'),
-                'pr7_9' => 'PR F: ' . trans('imet-core::analysis_report.assessment.pr7_9')
+                'PRA' => 'PR A: ' . $labels['PRA'],
+                'PRB' => 'PR B: ' . $labels['PRB'],
+                'PRC' => 'PR C: ' . $labels['PRC'],
+                'PRD' => 'PR D: ' . $labels['PRD'],
+                'PRE' => 'PR E: ' . $labels['PRE'],
+                'PRF' => 'PR F: ' . $labels['PRF']
             ],
             'process_internal_management_indicators' => [
-                'pr1' => 'PR1: ' . trans('imet-core::analysis_report.assessment.pr1'),
-                'pr2' => 'PR2: ' . trans('imet-core::analysis_report.assessment.pr2'),
-                'pr3' => 'PR3: ' . trans('imet-core::analysis_report.assessment.pr3'),
-                'pr4' => 'PR4: ' . trans('imet-core::analysis_report.assessment.pr4'),
-                'pr5' => 'PR5: ' . trans('imet-core::analysis_report.assessment.pr5'),
-                'pr6' => 'PR6: ' . trans('imet-core::analysis_report.assessment.pr6')
+                'PR1' => 'PR1: ' . $labels['PR1'],
+                'PR2' => 'PR2: ' . $labels['PR2'],
+                'PR3' => 'PR3: ' . $labels['PR3'],
+                'PR4' => 'PR4: ' . $labels['PR4'],
+                'PR5' => 'PR5: ' . $labels['PR5'],
+                'PR6' => 'PR6: ' . $labels['PR6']
             ],
             'process_management_protection_indicators' => [
-                'pr7' => 'PR7: ' . trans('imet-core::analysis_report.assessment.pr7'),
-                'pr8' => 'PR8: ' . trans('imet-core::analysis_report.assessment.pr8'),
-                'pr9' => 'PR9: ' . trans('imet-core::analysis_report.assessment.pr9')
+                'PR7' => 'PR7: ' . $labels['PR7'],
+                'PR8' => 'PR8: ' . $labels['PR8'],
+                'PR9' => 'PR9: ' . $labels['PR9']
             ],
             'process_stakeholders_relationships_indicators' => [
-                'pr10' => 'PR10: ' . trans('imet-core::analysis_report.assessment.pr10'),
-                'pr11' => 'PR11: ' . trans('imet-core::analysis_report.assessment.pr11'),
-                'pr12' => 'PR12: ' . trans('imet-core::analysis_report.assessment.pr12')
+                'PR10' => 'PR10: ' . $labels['PR10'],
+                'PR11' => 'PR11: ' . $labels['PR11'],
+                'PR12' => 'PR12: ' . $labels['PR12']
             ],
             'process_tourism_management_indicators' => [
-                'pr13' => 'PR13: ' . trans('imet-core::analysis_report.assessment.pr13'),
-                'pr14' => 'PR14: ' . trans('imet-core::analysis_report.assessment.pr14'),
+                'PR13' => 'PR13: ' . $labels['PR13'],
+                'PR14' => 'PR14: ' . $labels['PR14'],
             ],
             'process_monitoring_and_research_indicators' => [
-                'pr15' => 'PR15: ' . trans('imet-core::analysis_report.assessment.pr15'),
-                'pr16' => 'PR16: ' . trans('imet-core::analysis_report.assessment.pr16'),
+                'PR15' => 'PR15: ' . $labels['PR15'],
+                'PR16' => 'PR16: ' . $labels['PR16'],
             ],
             'process_effects_of_climate_change_indicators' => [
-                'pr17' => 'PR17: ' . trans('imet-core::analysis_report.assessment.pr17'),
-                'pr18' => 'PR18: ' . trans('imet-core::analysis_report.assessment.pr18'),
+                'PR17' => 'PR17: ' . $labels['PR17'],
+                'PR18' => 'PR18: ' . $labels['PR18'],
             ]
         ];
 

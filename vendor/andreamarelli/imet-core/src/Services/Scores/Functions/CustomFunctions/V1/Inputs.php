@@ -2,7 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions\V1;
 
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Equipments;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ManagementStaff;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\BudgetAdequacy;

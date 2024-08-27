@@ -2,8 +2,6 @@
 
 return [
 
-    'admin_page'    =>  'administration panel',
-
     'add_item'          => 'add item',
     'add_entity'        => 'add entity',
     'add'               => 'add',
@@ -45,7 +43,7 @@ return [
 
     'search'            => "search",
     'search_item'       => "search item",
-    'type_at_least'     => 'Type at least :num_chars characters in order to get the list of corresponding results',
+    'search_key_min_length'     => 'Type at least :num_chars characters in order to get the list of corresponding results',
     'initial'     => 'initial',
     'filters'           => 'filters',
     'filter_results'    => 'filter results',
@@ -62,11 +60,8 @@ return [
     'no'                => 'no',
 
     'form' => [
-        'preload'               => 'Load data from previous years',
-        'previous_years'        => 'Data from previous years',
 
         'not_available'         => 'Data not available',
-        'available_years'       => 'Available years',
         'available_tooltip'     => 'Check if data is not available',
 
         'applicable'            => 'Not applicable indicator',
@@ -77,10 +72,6 @@ return [
         'error' => 'some information in this form are incorrect or lacking',
 
         'encoding'              => 'encoding',
-        'validation'            => 'validation',
-        'validated_by'          => 'validated by',
-        'nothing_to_validate'   => 'Nothing to validate',
-        'already_validated'     => 'Indicator already validated',
     ],
 
 

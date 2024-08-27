@@ -17,7 +17,7 @@ class ManagementGovernance extends Modules\Component\ImetModule_Eval
         $this->module_code = 'O/P2';
         $this->module_title = trans('imet-core::oecm_evaluation.ManagementGovernance.title');
         $this->module_fields = [
-            ['name' => 'Patrol',            'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_evaluation.ManagementGovernance.fields.Patrol')],
+            ['name' => 'Patrol',            'type' => 'rating-0to3',   'label' => trans('imet-core::oecm_evaluation.ManagementGovernance.fields.Patrol')],
             ['name' => 'Comments',          'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.ManagementGovernance.fields.Comments')],
         ];
 

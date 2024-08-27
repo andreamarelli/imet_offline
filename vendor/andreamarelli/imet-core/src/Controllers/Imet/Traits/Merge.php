@@ -3,7 +3,6 @@
 namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
 use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
-use AndreaMarelli\ImetCore\Models\Imet;
 use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;

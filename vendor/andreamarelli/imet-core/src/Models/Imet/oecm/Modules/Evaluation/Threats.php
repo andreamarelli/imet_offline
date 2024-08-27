@@ -21,11 +21,11 @@ class Threats extends Modules\Component\ImetModule_Eval {
         $this->module_title = trans('imet-core::oecm_evaluation.Threats.title');
         $this->module_fields = [
             ['name' => 'Value',         'type' => 'disabled', 'label' => trans('imet-core::oecm_evaluation.Threats.fields.Value')],
-            ['name' => 'Impact',        'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::oecm_evaluation.Threats.fields.Impact')],
-            ['name' => 'Extension',     'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::oecm_evaluation.Threats.fields.Extension')],
-            ['name' => 'Duration',      'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::oecm_evaluation.Threats.fields.Duration')],
-            ['name' => 'Trend',         'type' => 'imet-core::rating-Minus2to2',   'label' => trans('imet-core::oecm_evaluation.Threats.fields.Trend')],
-            ['name' => 'Probability',   'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::oecm_evaluation.Threats.fields.Probability')],
+            ['name' => 'Impact',        'type' => 'rating-0to3',        'label' => trans('imet-core::oecm_evaluation.Threats.fields.Impact')],
+            ['name' => 'Extension',     'type' => 'rating-0to3',        'label' => trans('imet-core::oecm_evaluation.Threats.fields.Extension')],
+            ['name' => 'Duration',      'type' => 'rating-0to3',        'label' => trans('imet-core::oecm_evaluation.Threats.fields.Duration')],
+            ['name' => 'Trend',         'type' => 'rating-Minus2to2',   'label' => trans('imet-core::oecm_evaluation.Threats.fields.Trend')],
+            ['name' => 'Probability',   'type' => 'rating-0to3',        'label' => trans('imet-core::oecm_evaluation.Threats.fields.Probability')],
         ];
 
         $this->predefined_values = [

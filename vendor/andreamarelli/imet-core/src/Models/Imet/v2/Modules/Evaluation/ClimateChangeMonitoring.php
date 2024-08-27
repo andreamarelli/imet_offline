@@ -21,7 +21,7 @@ class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::v2_evaluation.ClimateChangeMonitoring.title');
         $this->module_fields = [
             ['name' => 'Program',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.fields.Program')],
-            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.fields.Comments')],
         ];
 
@@ -40,7 +40,7 @@ class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
     /**
      * Prefill from CTX
      */
-    protected static function getPredefined($form_id = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
         $predefined_values = $form_id !== null
             ? array_merge(

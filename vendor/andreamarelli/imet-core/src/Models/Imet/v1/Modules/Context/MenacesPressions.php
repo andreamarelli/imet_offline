@@ -11,7 +11,7 @@ class MenacesPressions extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public static $groupByCategory = [
+    public static $groupsByCategory = [
             ['group0'],
             ['group1', 'group2', 'group3', 'group4', 'group5'],
             ['group6'],
@@ -106,11 +106,11 @@ class MenacesPressions extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function getDefinitions($form_id = null): array
+    public static function getVueData($form_id, $records, $definitions): array
     {
-        $definitions = parent::getDefinitions($form_id);
-        $definitions['groupByCategory'] = static::$groupByCategory;
-        return $definitions;
+        $vue_data = parent::getVueData($form_id, $records, $definitions);
+        $vue_data['groupsByCategory'] = static::$groupsByCategory;
+        return $vue_data;
     }
 
     public static function getStats($form_id)
@@ -137,7 +137,7 @@ class MenacesPressions extends Modules\Component\ImetModule
         // ### category stats ###
         $category_stats = [];
         $valuesByCategory = [];
-        foreach (static::$groupByCategory as $index=>$groups){
+        foreach (static::$groupsByCategory as $index=>$groups){
             $valuesByCategory[$index] = [];
             foreach ($groups as $group){
                 $valuesByCategory[$index][] = array_key_exists($group, $group_stats) ? $group_stats[$group] : null;

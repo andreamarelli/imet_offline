@@ -2,87 +2,71 @@
 
 namespace AndreaMarelli\ModularForms\Helpers\Input;
 
-use AndreaMarelli\ModularForms\Helpers\DOM;
 
 class DropDownVue
 {
-
-    private static function __initialize($id, $value, $list, $tagAttributes = ''): array
-    {
-        if (is_string($list)) {
-            $list = SelectionList::getList(SelectionList::getListType($list));
-        }
-
-        $value         = rtrim($value);
-        $tagAttributes = DOM::addClass($tagAttributes, 'field-edit');
-        $tagAttributes .= ' v-model="selectedValue" id="' . $id . '" name="' . $id . '" ';
-
-        return [$id, $value, $list, $tagAttributes];
-    }
-
     /**
-     * @param $id
-     * @param $value
-     * @param $component
-     * @return string
+     * Create a vue based dropdown
+     *
+     * @throws \Exception
      */
-    private static function __vue_component_container($id, $value, $component): string
+    public static function simple($id, $value, $list, string $tagAttributes = ''): string
     {
-        return '<div id="' . $id . '">
-                    ' . $component . '
+        $list = DropDown::prepare_list($list);
+
+        return '<div id="dropdown_simple_' . $id . '">
+                    <dropdown v-model="selectedValue"
+                        :data-values=options
+                        ' . $tagAttributes .'
+                    ></dropdown>
+                    <input type="hidden" name="'.$id.'" id="'.$id.'" value="' . $value . '" >
                 </div>
                 <script>
                      new Vue({
-                        el: "#' . $id . '",
+                        el: "#dropdown_simple_' . $id . '",
                         data: {
-                            selectedValue: "' . $value . '"
+                            selectedValue: "' . $value . '",
+                            options: \''. json_encode($list) . '\'
+                        },
+                        watch: {
+                            selectedValue(value){
+                                document.querySelector("#' . $id . '").value = value;
+                                document.querySelector("#' . $id  . '").dispatchEvent(new Event("change"));
+                            }
                         }
                     });
                 </script>';
     }
 
     /**
-     * @param $id
-     * @param $value
-     * @param $list
-     * @param string $tagAttributes
-     * @param bool $container
-     * @return string
+     * Create a vue based dropdown where the available options depend on a related dropdown selection
      */
-    public static function simple($id, $value, $list, $tagAttributes = '', $container = true): string
+    public static function related($id, $value, $related_id, $structure, string $tagAttributes = ''): string
     {
-        list($id, $value, $list, $tagAttributes) = static::__initialize($id, $value, $list, $tagAttributes);
-        $vue_component = ' <dropdown-simple
-                                data-values="' . htmlspecialchars(json_encode($list), ENT_QUOTES) . '"
-                                ' . $tagAttributes . '
-                             ></dropdown-simple>';
-
-        if ($container) {
-            return static::__vue_component_container('select2_simple_' . $id, $value, $vue_component);
-        } else {
-            return $vue_component;
-        }
-    }
-
-    /**
-     * @param $id
-     * @param $value
-     * @param $related_id
-     * @param $structure
-     * @param string $tagAttributes
-     * @return string
-     */
-    public static function related($id, $value, $related_id, $structure, $tagAttributes = ''): string
-    {
-        list($id, $value, $_, $tagAttributes) = static::__initialize($id, $value, [], $tagAttributes);
-
-        $vue_component = '<dropdown-related
-                            data-structure="' . htmlspecialchars(json_encode($structure), ENT_QUOTES) . '"
-                            related-id="' . $related_id . '"
-                            ' . $tagAttributes . '
-                          ></dropdown-related>';
-
-        return static::__vue_component_container('select2_related_' . $id, $value, $vue_component);
+        return '<div id="dropdown_related_' . $id . '">
+                   <dropdown-related
+                        v-model=selectedValue
+                        :input-value=selectedValue
+                        :data-structure=options
+                        related-id="' . $related_id .'"
+                        ' . $tagAttributes .'
+                    ></dropdown-related>
+                    <input type="hidden" name="'.$id.'" id="'.$id.'" value="' . $value . '" >
+                </div>
+                <script>
+                     new Vue({
+                        el: "#dropdown_related_' . $id . '",
+                        data: {
+                            selectedValue: "' . $value . '",
+                            options: '. json_encode($structure) . '
+                        },
+                        watch: {
+                            selectedValue(value){
+                                document.querySelector("#' . $id . '").value = value;
+                            }
+                        }
+                    })
+                </script>';
     }
 
 }

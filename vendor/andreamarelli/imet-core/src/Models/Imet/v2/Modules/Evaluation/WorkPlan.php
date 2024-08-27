@@ -23,8 +23,8 @@ class WorkPlan extends Modules\Component\ImetModule_Eval
             ['name' => 'PlanUptoDate',     'type' => 'toggle-yes_no',    'label' => trans('imet-core::v2_evaluation.WorkPlan.fields.PlanUptoDate')],
             ['name' => 'PlanApproved',     'type' => 'toggle-yes_no',    'label' => trans('imet-core::v2_evaluation.WorkPlan.fields.PlanApproved')],
             ['name' => 'PlanImplemented',     'type' => 'toggle-yes_no',    'label' => trans('imet-core::v2_evaluation.WorkPlan.fields.PlanImplemented')],
-            ['name' => 'VisionAdequacy',     'type' => 'imet-core::rating-0to3',    'label' => trans('imet-core::v2_evaluation.WorkPlan.fields.VisionAdequacy')],
-            ['name' => 'PlanAdequacyScore',     'type' => 'imet-core::rating-0to3',    'label' => trans('imet-core::v2_evaluation.WorkPlan.fields.PlanAdequacyScore')],
+            ['name' => 'VisionAdequacy',     'type' => 'rating-0to3',    'label' => trans('imet-core::v2_evaluation.WorkPlan.fields.VisionAdequacy')],
+            ['name' => 'PlanAdequacyScore',     'type' => 'rating-0to3',    'label' => trans('imet-core::v2_evaluation.WorkPlan.fields.PlanAdequacyScore')],
             ['name' => 'Comments',              'type' => 'text-area',           'label' => trans('imet-core::v2_evaluation.WorkPlan.fields.Comments')],
         ];
 

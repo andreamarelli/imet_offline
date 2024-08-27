@@ -52,12 +52,9 @@ class EvalController extends BaseEvalController
     /**
      * Override edit route
      *
-     * @param $item
-     * @param null $step
-     * @return Application|Factory|View
      * @throws AuthorizationException
      */
-    public function edit($item, $step = null)
+    public function edit($item, $step = null): Application|View|Factory
     {
         $imet = (static::$form_class)::find($item);
         $this->authorize('view', $imet);
@@ -66,6 +63,7 @@ class EvalController extends BaseEvalController
         list($warnings, $classes) = $this->get_cross_analysis($imet);
 
         return view(static::$form_view_prefix . '.edit', [
+            'controller' => static::class,
             'item' => $imet,
             'step' => $step,
             'warnings' => $warnings,
@@ -76,12 +74,9 @@ class EvalController extends BaseEvalController
     /**
      * Override show route
      *
-     * @param $item
-     * @param null $step
-     * @return Application|Factory|View
      * @throws AuthorizationException
      */
-    public function show($item, $step = null)
+    public function show($item, $step = null): Application|View|Factory
     {
         $imet = (static::$form_class)::find($item);
         $this->authorize('view', $imet);
@@ -90,6 +85,7 @@ class EvalController extends BaseEvalController
         list($warnings, $classes) = $this->get_cross_analysis($imet);
 
         return view(static::$form_view_prefix . '.show', [
+            'controller' => static::class,
             'item' => $imet,
             'step' => $step,
             'warnings' => $warnings,

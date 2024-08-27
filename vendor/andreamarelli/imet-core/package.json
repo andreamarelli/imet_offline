@@ -1,32 +1,12 @@
 {
     "name": "imet-core",
     "version": "1.0.0",
-    "scripts": {
-        "dev": "webpack --mode development --config webpack.dev.js",
-        "watch": "webpack --mode development --config webpack.dev.js --watch",
-        "prod": "webpack --mode production --config webpack.prod.js",
-        "build_all": "webpack --mode development --config webpack.dev.js && webpack --mode production --config webpack.prod.js"
-    },
-    "devDependencies": {
-        "copy-webpack-plugin": "^10.2.4",
-        "css-loader": "^5.2.7",
-        "file-loader": "^6.2.0",
-        "mini-css-extract-plugin": "^2.6.0",
-        "node-sass": "^6.0.0",
-        "sass-loader": "^12.6.0",
-        "source-map-loader": "^3.0.1",
-        "style-loader": "^3.3.1",
-        "url-loader": "^4.1.1",
-        "vue-loader": "^15.9.8",
-        "vue-template-compiler": "^2.6.14",
-        "webpack": "^5.70.0",
-        "webpack-cli": "^4.9.2",
-        "webpack-merge": "^5.8.0"
-    },
     "dependencies": {
-        "echarts": "^5.4.2",
-        "html-to-image": "1.6.1",
+        "echarts": "^5.5.1",
+        "html-to-image": "1.11.1",
+        "mapbox-gl": "^3.1.2",
         "vue-swatches": "^2.1.1",
-        "vue2-dropzone": "3.6.0"
+        "dropzone-vue3": "1.0.2",
+        "modular-forms": "file:./vendor/andreamarelli/modular-forms"
     }
 }

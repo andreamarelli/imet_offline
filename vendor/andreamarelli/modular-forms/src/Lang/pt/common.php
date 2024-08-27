@@ -2,8 +2,6 @@
 
 return [
 
-    'admin_page'    =>  'painel de administração',
-
     'add_item'          => 'adicionar item',
     'add_entity'        => 'adicionar entidade',
     'add'               => 'adicionar',
@@ -45,7 +43,7 @@ return [
 
     'search'            => "pesquisa",
     'search_item'       => "item de pesquisa",
-    'type_at_least'     => 'Escreva pelo menos :num_chars caracteres para obter a lista dos resultados correspondentes',
+    'search_key_min_length'     => 'Escreva pelo menos :num_chars caracteres para obter a lista dos resultados correspondentes',
     'initial'     => 'inicial',
     'filters'           => 'filtros',
     'filter_results'    => 'resultados do filtro',
@@ -61,11 +59,8 @@ return [
     'no'                => 'não',
 
     'form' => [
-        'preload'               => 'Carregar dados de anos anteriores',
-        'previous_years'        => 'Dados de anos anteriores',
 
         'not_available'         => 'Dados não disponíveis',
-        'available_years'       => 'Anos disponíveis',
         'available_tooltip'     => 'Marque a caixa se os dados não estiverem disponíveis',
 
         'applicable'            => 'Indicador não aplicável',
@@ -76,10 +71,6 @@ return [
         'error' => 'algumas informações contidas neste formulário estão incorrectas ou em falta',
 
         'encoding' => 'codificação',
-        'validation' => 'validação',
-        'validated_by'        => 'validar por',
-        'nothing_to_validate' => 'Nada para validar',
-        'already_validated' => 'Indicador já validado.',
     ],
 
     'upload' => [

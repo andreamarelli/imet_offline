@@ -1,0 +1,33 @@
+@import "../abstracts/all";
+
+.functional_buttons,
+.functional_selection_buttons{
+    text-align: right;
+    margin-bottom: 25px;
+}
+
+.filters-grid{
+    display: grid;
+    grid-template-columns: 250px auto;
+    row-gap: 15px;
+    column-gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+    label, .label{
+        text-transform: capitalize;
+        text-align: right;
+        font-weight: bold;
+    }
+}
+
+#item_list_table{
+    a.btn,
+    button.btn{
+        margin: 2px 0;
+    }
+    .updated_by{
+        font-size: 0.9em;
+        line-height: 1.3em;
+        margin-top: 3px;
+    }
+}

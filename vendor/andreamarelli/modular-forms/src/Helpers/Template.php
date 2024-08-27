@@ -21,13 +21,13 @@ class Template
      */
     public static function icon($icon, $color = '', $size = '', $other = ''): string
     {
-        $color = $color ?? '';
+        $color = $color!='' ? 'text-'.$color : '';
         $size  = $size != '' ? 'style="font-size: ' . $size . '"' : '';
         return '<span class="fas fa-fw fa-' . $icon . ' ' . $other . ' ' . $color . '" ' . $size . ' ></span>';
     }
 
     /**
-     * Return a flag (lipis/flag-icon-css) tag
+     * Return a flag (lipis/flag-icons) tag
      *
      * @param $iso2
      * @param string $tooltip
@@ -38,8 +38,8 @@ class Template
         $iso2    = strtolower($iso2);
         $iso2    = ($iso2 == 'en') ? 'gb' : $iso2;
         $iso2    = ($iso2 == 'sp') ? 'es' : $iso2;
-        $tooltip = $tooltip != '' ? ' data-toggle="tooltip" data-placement="top" title="' . $tooltip . '"' : '';
-        return '<span ' . $tooltip . ' class="flag-icon flag-icon-' . $iso2 . '"></span>';
+        $tooltip = $tooltip != '' ? '<tooltip>'.$tooltip.'</tooltip>' : '';
+        return '<span  class="fi fi-' . $iso2 . '"></span>' . $tooltip;
     }
 
     /**

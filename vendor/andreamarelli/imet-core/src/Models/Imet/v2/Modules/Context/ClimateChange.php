@@ -29,7 +29,7 @@ class ClimateChange extends Modules\Component\ImetModule
         $this->module_fields = [
             ['name' => 'Value',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.ClimateChange.fields.Value')],
             ['name' => 'Description',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.ClimateChange.fields.Description')],
-            ['name' => 'Trend',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::v2_context.ClimateChange.fields.Trend')],
+            ['name' => 'Trend',  'type' => 'rating-0to3',   'label' => trans('imet-core::v2_context.ClimateChange.fields.Trend')],
             ['name' => 'Notes',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.ClimateChange.fields.Notes')],
         ];
 

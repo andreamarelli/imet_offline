@@ -1,0 +1,95 @@
+@import "../components/forms.input";
+@import "~/vue-select/dist/vue-select.css";
+
+
+
+// ##############################
+// ########  vue-select  ########
+// ##############################
+
+.v-select{
+
+  @apply text-xs;
+  @include field-size;
+
+  &.vs--single{
+    .vs__dropdown-toggle {
+      .vs__selected-options {
+        .vs__selected { // applied to single
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  .vs__dropdown-toggle{
+    @include field-base;
+    padding: 4px 7px;
+
+    .vs__selected-options{
+      padding: 0;
+      .vs__selected{ // applied to multiple
+        padding: 0 4px;
+        margin: 1px 5px 1px 0;
+          button.vs__deselect{
+              transform: scale(0.9);
+          }
+      }
+      .vs__search{
+        padding: 0;
+        margin: 0;
+      }
+    }
+    .vs__actions{
+      padding: 0;
+      .vs__clear{
+        margin-right: 5px;
+        @apply fill-contextual-danger;
+        line-height: 0.9em;
+      }
+      .vs__open-indicator{
+        transform: scale(0.8);
+        cursor: pointer;
+      }
+    }
+  }
+
+  &.vs--open{
+      .vs__dropdown-toggle{
+          .vs__actions{
+              .vs__open-indicator{
+                  transform: rotate(180deg) scale(0.8);
+              }
+          }
+      }
+  }
+
+  .vs__dropdown-menu{
+    padding-bottom: 0;
+    width: fit-content;
+    > li.vs__dropdown-option{
+      margin: 0;
+      padding-left: 15px;
+      &:hover,
+      &.vs__dropdown-option--selected{
+        @apply bg-primary-300;
+      }
+      &.vs__dropdown-option--highlight{
+        @apply bg-primary-800;
+        @apply text-white;
+      }
+    }
+  }
+
+}
+
+.v-select.vs--single{
+  .vs__dropdown-toggle{
+    .vs__selected-options{
+      .vs__selected{
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
+}

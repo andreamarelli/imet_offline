@@ -23,11 +23,11 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
         $this->module_title = trans('imet-core::oecm_evaluation.ThreatsBiodiversity.title');
         $this->module_fields = [
             ['name' => 'Criteria',      'type' => 'disabled',                       'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Criteria')],
-            ['name' => 'Impact',        'type' => 'imet-core::rating-0to3',         'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Impact')],
-            ['name' => 'Extension',     'type' => 'imet-core::rating-0to3',         'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Extension')],
-            ['name' => 'Duration',      'type' => 'imet-core::rating-0to3',         'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Duration')],
-            ['name' => 'Trend',         'type' => 'imet-core::rating-Minus2to2',    'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Trend')],
-            ['name' => 'Probability',   'type' => 'imet-core::rating-0to3',         'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Probability')],
+            ['name' => 'Impact',        'type' => 'rating-0to3',         'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Impact')],
+            ['name' => 'Extension',     'type' => 'rating-0to3',         'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Extension')],
+            ['name' => 'Duration',      'type' => 'rating-0to3',         'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Duration')],
+            ['name' => 'Trend',         'type' => 'rating-Minus2to2',    'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Trend')],
+            ['name' => 'Probability',   'type' => 'rating-0to3',         'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Probability')],
             ['name' => 'Note',          'type' => 'text-area',                      'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Note')],
         ];
 
@@ -46,7 +46,7 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
     /**
      * Inject additional predefined values (last 3 groups) retrieved from CTX
      */
-    protected static function getPredefined($form_id = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
         $predefined_values = $form_id!==null
             ? [

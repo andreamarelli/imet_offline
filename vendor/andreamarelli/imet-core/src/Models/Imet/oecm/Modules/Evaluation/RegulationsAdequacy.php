@@ -18,7 +18,7 @@ class RegulationsAdequacy extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::oecm_evaluation.RegulationsAdequacy.title');
         $this->module_fields = [
             ['name' => 'Regulation',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.RegulationsAdequacy.fields.Regulation')],
-            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3WithNA',   'label' => trans('imet-core::oecm_evaluation.RegulationsAdequacy.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'rating-0to3WithNA',   'label' => trans('imet-core::oecm_evaluation.RegulationsAdequacy.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.RegulationsAdequacy.fields.Comments')],
         ];
 

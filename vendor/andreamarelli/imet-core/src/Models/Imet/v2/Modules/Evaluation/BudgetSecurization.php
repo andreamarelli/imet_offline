@@ -17,8 +17,8 @@ class BudgetSecurization extends Modules\Component\ImetModule_Eval
         $this->module_code = 'I4';
         $this->module_title = trans('imet-core::v2_evaluation.BudgetSecurization.title');
         $this->module_fields = [
-            ['name' => 'Percentage',        'type' => 'imet-core::rating-0to5',   'label' => trans('imet-core::v2_evaluation.BudgetSecurization.fields.Percentage')],
-            ['name' => 'EvaluationScore',   'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::v2_evaluation.BudgetSecurization.fields.EvaluationScore')],
+            ['name' => 'Percentage',        'type' => 'rating-0to5',   'label' => trans('imet-core::v2_evaluation.BudgetSecurization.fields.Percentage')],
+            ['name' => 'EvaluationScore',   'type' => 'rating-0to3',   'label' => trans('imet-core::v2_evaluation.BudgetSecurization.fields.EvaluationScore')],
             ['name' => 'Comments',          'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.BudgetSecurization.fields.Comments')],
         ];
 

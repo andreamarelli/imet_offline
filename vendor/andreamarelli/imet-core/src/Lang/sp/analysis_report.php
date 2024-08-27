@@ -340,77 +340,23 @@ return [
         'negative_positive' => ' - escala (mínimo: -100, máximo: 100)',
         'zero_negative' => ' - escala (mínimo: -100, máximo: 0)'
     ],
-    'assessment' => [
-        'ctx101' => 'Responsabilidad de rellenar el formulario: Equipo directivo y socios y apoyo externo para el análisis y la evaluación de la gestión',
-        'ctx102' => 'Responsabilidad de la cumplimentación del formulario: Equipo directivo y socios y apoyo externo para el análisis y la evaluación de la gestión',
-        'c11' => 'Designaciones especiales',
-        'c12' => 'Especies clave',
-        'c13' => 'Hábitats terrestres y marinos',
-        'c14' => 'El cambio climático',
-        'c15' => 'Servicios de los ecosistemas',
-        'c1' => 'Valor e importancia',
-        'c2' => 'Limitaciones o apoyos externos',
-        'c3' => 'Amenazas',
-        'p1' => 'Adecuación de las disposiciones legales y reglamentarias',
-        'p2' => 'Diseño y disposición de la zona protegida',
-        'p3' => 'Demarcación de la zona protegida',
-        'p4' => 'Plan de gestión',
-        'p5' => 'Plan de trabajo/acción',
-        'p6' => 'Objetivos de la zona protegida',
-        'i1' => 'Información básica',
-        'i2' => 'Personal',
-        'i3' => 'Presupuesto actual',
-        'i4' => 'Asegurar el presupuesto',
-        'i5' => 'Infraestructura, equipamiento e instalaciones',
-        'pr1' => 'Programa de capacidades y formación del personal',
-        'pr2' => 'Políticas y procedimientos de gestión de recursos humanos',
-        'pr3' => 'Analizar el grado de motivación del personal (adecuación al puesto)',
-        'pr4' => 'Orientación de la gestión del área protegida',
-        'pr5' => 'Gestión presupuestaria y financiera',
-        'pr6' => 'Mantenimiento de infraestructuras, equipos e instalaciones',
-        'pr7' => 'Gestionar los valores y elementos clave del área protegida con acciones específicas',
-        'pr8' => 'Gestión de las patrullas de guardabosques (aplicación de la ley)',
-        'pr9' => 'Inteligencia/investigaciones/desarrollo de casos/gestión de acusaciones (Fuerzas de seguridad)',
-        'pr10' => 'Cooperación con las partes interesadas',
-        'pr11' => 'Beneficios/ayuda adecuados para las comunidades locales',
-        'pr12' => 'Educación ambiental y sensibilización del público',
-        'pr13' => 'Gestión de las instalaciones y servicios de los visitantes',
-        'pr14' => 'Gestión del impacto de los visitantes',
-        'pr15' => 'Sistemas de vigilancia de los recursos naturales y culturales',
-        'pr16' => 'Investigación y biomonitorización',
-        'pr17' => 'Gestión de los efectos del cambio climático',
-        'pr18' => 'Servicios de los ecosistemas',
-        'op1' => 'Ejecución del plan de trabajo/acción',
-        'op2' => 'Resultados anuales - objetivos - logros',
-        'op3' => 'Dominio de la zona',
-        'op4' => 'Aplicación de la ley en la AMP',
-        'oc1' => 'Consecución de los objetivos de conservación a largo plazo de la gestión',
-        'oc2' => 'Condiciones y tendencias de los elementos clave de conservación del área protegida',
-        'oc3' => 'Efectos y resultados para los interesados en la calidad de vida',
-        'pr1_6' => 'Sistemas y procesos internos de gestión',
-        'pr7_9' => 'Gestión/Protección de los valores',
-        'pr10_12' => 'Relaciones con las partes interesadas',
-        'pr13_14' => 'Gestión del turismo',
-        'pr15_16' => 'Seguimiento e investigación',
-        'pr17_18' => 'Gestión de los efectos del cambio climático y de los servicios de los ecosistemas'
-    ],
     'legends' => [
-        'pr1_6' => [
+        'PRA' => [
             'PR A'
         ],
-        'pr7_9' => [
+        'PRB' => [
             'PR B'
         ],
-        'pr10_12' => [
+        'PRC' => [
             'PR C'
         ],
-        'pr13_14' => [
+        'PRD' => [
             'PR D'
         ],
-        'pr15_16' => [
+        'PRE' => [
             'PR E'
         ],
-        'pr17_18' => [
+        'PRF' => [
             'PR F'
         ]
     ],
@@ -482,12 +428,12 @@ return [
             'overall' => [
                 'intro' => 'Seis subelementos del proceso',
                 'info' => ''],
-            'pr1_pr6' => ['intro' => 'PR A: Sistemas y procesos de gestión interna', 'info' => ''],
-            'pr7_pr9' => ['intro' => 'PR B: Gestión/Protección de los valores', 'info' => ''],
-            'pr10_pr12' => ['intro' => 'PR C: Relaciones con las partes interesadas', 'info' => ''],
-            'pr13_pr14' => ['intro' => 'PR D: Gestión del turismo', 'info' => ''],
-            'pr15_pr16' => ['intro' => 'PR E: Seguimiento e investigación', 'info' => ''],
-            'pr17_pr18' => ['intro' => 'PR F: Gestión de los efectos del cambio climático y de los servicios de los ecosistemas', 'info' => ''],
+            'PRA' => ['intro' => 'PR A: Sistemas y procesos de gestión interna', 'info' => ''],
+            'PRB' => ['intro' => 'PR B: Gestión/Protección de los valores', 'info' => ''],
+            'PRC' => ['intro' => 'PR C: Relaciones con las partes interesadas', 'info' => ''],
+            'PRD' => ['intro' => 'PR D: Gestión del turismo', 'info' => ''],
+            'PRE' => ['intro' => 'PR E: Seguimiento e investigación', 'info' => ''],
+            'PRF' => ['intro' => 'PR F: Gestión de los efectos del cambio climático y de los servicios de los ecosistemas', 'info' => ''],
         ],
         'outputs' => [
             'main' => [

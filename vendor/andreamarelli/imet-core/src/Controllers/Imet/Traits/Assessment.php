@@ -11,23 +11,19 @@ use function response;
 
 trait Assessment
 {
-
-    public static function assessment($item, string $step = _Scores::RADAR_SCORES): JsonResponse
+    public static function scores($item): JsonResponse
     {
-        $stats = ImetAssessment::getAssessment($item, $step);
-
+        $stats = ImetAssessment::getAssessment($item, _Scores::ALL_SCORES, false);
         return response()->json($stats);
     }
 
-    public static function assessment_oecm($item, string $step = _Scores::RADAR_SCORES): JsonResponse
+    public static function scores_oecm($item): JsonResponse
     {
-        $stats = OecmAssessment::getAssessment($item, $step);
-
+        $stats = OecmAssessment::getAssessment($item, _Scores::ALL_SCORES, false);
         return response()->json($stats);
     }
 
-
-    public static function score_class($value, $additional_classes=''): string
+    public static function score_class($value): string
     {
         if($value===null){
             $class = 'score_no';
@@ -44,10 +40,10 @@ trait Assessment
         } else {
             $class = 'score_success';
         }
-        return 'class="'.$class.' '.$additional_classes.'"';
+        return $class;
     }
 
-    public static function score_class_threats($value, $additional_classes=''): string
+    public static function score_class_threats($value): string
     {
         if($value===null){
             $class = 'score_no';
@@ -60,7 +56,7 @@ trait Assessment
         } else {
             $class = 'score_success';
         }
-        return 'class="'.$class.' '.$additional_classes.'"';
+        return $class;
     }
 
 }

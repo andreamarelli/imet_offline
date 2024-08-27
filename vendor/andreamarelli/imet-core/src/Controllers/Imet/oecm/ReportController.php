@@ -47,12 +47,8 @@ class ReportController extends BaseReportController
             'stake_holders' => OECM::getStakeholderDirectIndirect($form_id),
             'stake_analysis' => OECM::getStakeAnalysis($form_id),
             'objectives' => OECM::getObjectives($form_id),
-            'assessment' => array_merge(
-                OecmScores::get_all($form_id),
-                [
-                    'labels' => OecmScores::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM)
-                ]
-            ),
+            'scores' => OecmScores::get_all($form_id),
+            'labels' => OecmScores::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM),
             'report' => Report::getByForm($form_id),
             'report_schema' => Report::getSchema(),
             'show_non_wdpa' => $show_non_wdpa ?? false,

@@ -26,7 +26,7 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
         $this->module_fields = [
             ['name' => 'Stakeholder',       'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraints.fields.Stakeholder')],
             ['name' => 'Weight',            'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraints.fields.Weight')],
-            ['name' => 'ConstraintLevel',   'type' => 'imet-core::rating-Minus3to3',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraints.fields.ConstraintLevel')],
+            ['name' => 'ConstraintLevel',   'type' => 'rating-Minus3to3',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraints.fields.ConstraintLevel')],
             ['name' => 'Comments',           'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraints.fields.Comments')],
         ];
 
@@ -38,7 +38,7 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    protected static function getPredefined($form_id = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
         $predefined_values = $form_id!==null
             ? [

@@ -132,11 +132,11 @@ class OECM
 
         if ($ecosystem) {
             $threats = array_filter($threats, function ($item) {
-                return $item['__group_stakeholders'] !== null;
+                return array_key_exists('__group_stakeholders', $item) && $item['__group_stakeholders'] !== null;
             });
         } else {
             $threats = array_filter($threats, function ($item) {
-                return $item['__group_stakeholders'] === null;
+                return array_key_exists('__group_stakeholders', $item) && $item['__group_stakeholders'] === null;
             });
         }
 
@@ -261,7 +261,8 @@ class OECM
     {
         $objectives = ['context' => [], 'evaluation' => []];
         $report = Report::getByForm($form_id);
-        if (count($report)) {
+
+        if (count($report) && array_key_exists('objectives', $report[0])) {
             if($report[0]['objectives']) {
                 $result = json_decode($report[0]['objectives'], true);
                 foreach ($result as $item) {

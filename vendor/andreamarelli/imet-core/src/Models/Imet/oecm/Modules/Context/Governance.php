@@ -28,7 +28,7 @@ class Governance extends Modules\Component\ImetModule
             ['name' => 'DateOfCreation',    'type' => 'suggestion-ImetOECM_DateOfCreation',     'label' => trans('imet-core::oecm_context.Governance.fields.DateOfCreation')],
             ['name' => 'OfficialRecognition',           'type' => 'toggle-yes_no',      'label' => trans('imet-core::oecm_context.Governance.fields.OfficialRecognition')],
             ['name' => 'SupervisoryInstitution',        'type' => 'text-area',          'label' => trans('imet-core::oecm_context.Governance.fields.SupervisoryInstitution')],
-            ['name' => 'MemberRepresentativenessLevel', 'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::oecm_context.Governance.fields.MemberRepresentativenessLevel')],
+            ['name' => 'MemberRepresentativenessLevel', 'type' => 'rating-0to3',        'label' => trans('imet-core::oecm_context.Governance.fields.MemberRepresentativenessLevel')],
             ['name' => 'AdditionalInformation',         'type' => 'text-area',          'label' => trans('imet-core::oecm_context.Governance.fields.AdditionalInformation')],
         ];
 

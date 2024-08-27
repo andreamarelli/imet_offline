@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ModularForms\Helpers;
 
+use AndreaMarelli\ModularForms\Enums\ModuleViewModes;
 use Illuminate\Support\Str;
 
 
@@ -65,20 +66,12 @@ class ModuleKey
 
     /**
      * Return view for the given module
-     *
-     * @param $module_key
-     * @param null $view_type (null, or 'show')
-     * @return string|null
      */
-    public static function KeyToView($module_key, $view_type = null): ?string
+    public static function KeyToView($module_key, $view_mode = null): ?string
     {
-        $path = $view_type == 'show'
-            ? 'modules_show'
-            : 'modules';
-
         // Standard view location
         $view = 'admin.' . $module_key;
-        $view = Str::replaceLast(self::separator, '.' . $path . '.', $view);
+        $view = Str::replaceLast(self::separator, '.' . $view_mode . '.modules.', $view);
         $view = str_replace(self::separator, '.', $view);
         if(view()->exists($view)){
             return $view;
@@ -86,7 +79,7 @@ class ModuleKey
 
         // Custom view location (try to retrieve from helper function)
         if(function_exists('get_custom_model_view_by_key')){
-            $view = get_custom_model_view_by_key($module_key, $view_type);
+            $view = get_custom_model_view_by_key($module_key, $view_mode);
             if(view()->exists($view)){
                 return $view;
             }

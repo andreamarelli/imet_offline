@@ -20,8 +20,8 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
         $this->module_code = 'I1';
         $this->module_title = trans('imet-core::v2_evaluation.InformationAvailability.title');
         $this->module_fields = [
-            ['name' => 'Element',  'type' => 'blade-imet-core::v2.evaluation.fields.show_species',   'label' => trans('imet-core::v2_evaluation.InformationAvailability.fields.Element')],
-            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::v2_evaluation.InformationAvailability.fields.EvaluationScore')],
+            ['name' => 'Element',  'type' => 'blade-imet-core::v2.evaluation.fields.key_element',   'label' => trans('imet-core::v2_evaluation.InformationAvailability.fields.Element')],
+            ['name' => 'EvaluationScore',  'type' => 'rating-0to3',   'label' => trans('imet-core::v2_evaluation.InformationAvailability.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.InformationAvailability.fields.Comments')],
         ];
 
@@ -45,7 +45,7 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
     /**
      * Prefill from CTX
      */
-    protected static function getPredefined($form_id = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
         return [
             'field' => static::$DEPENDENCY_ON,

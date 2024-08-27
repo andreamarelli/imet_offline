@@ -3,106 +3,38 @@
 namespace AndreaMarelli\ModularForms\Helpers\Input;
 
 
+use Illuminate\Support\Facades\App;
+
 class Input{
 
     /**
      * Input's label
-     *
-     * @param $name
-     * @param $label
-     * @param string $class
-     * @return mixed
      */
-    public static function label($name, $label, $class=''): string
+    public static function label(string $name, string $label, string $class = ''): string
     {
         return '<label for="'.$name.'" class="'.$class.'">'.ucfirst($label).'</label>';
     }
 
     /**
      * Hidden Field
-     *
-     * @param $name
-     * @param $value
-     * @return mixed
      */
-    public static function hidden($name, $value): string
+    public static function hidden(string $name, ?string $value): string
     {
         return '<input type="hidden" name="'.$name.'" value="'.$value.'" />';
     }
 
     /**
      * Text Field
-     *
-     * @param $name
-     * @param $value
-     * @param string $class
-     * @return mixed
      */
-    public static function text($name, $value, $class='field-edit'): string
+    public static function text(string $name, ?string $value, string $class='field-edit'): string
     {
         return '<input type="text" name="'.$name.'" value="'.$value.'" class="'.$class.'" />';
     }
 
-
-    /**
-     * Single radio button
-     *
-     * @param $name
-     * @param $value
-     * @param $label
-     * @param bool $checked
-     * @param bool $inline
-     * @return string
-     */
-    public static function radio($name, $value, $label, bool $checked, $inline=true): string
-    {
-        $input = '<input name="'.$name.'" type="radio" value="'.$value.'" '.( $checked ? 'checked="checked"' : '').' />'.$label;
-
-        if($inline){
-            return '<label class="radio-inline">'.$input.'</label>';
-        } else {
-            return '<div class="radio">
-                        <label>'.$input.'</label>
-                    </div>';
-        }
-    }
-
-    /**
-     * Radio button list
-     *
-     * @param $id
-     * @param $selectedValue
-     * @param mixed $list could be an array containing the value/label pairs OR the key of the list to retrieve
-     * @param bool $inline
-     * @return string
-     * @throws \Exception
-     */
-    public static function radioGroup($id, $selectedValue=null, $list=null, $inline=true): string
-    {
-        $out = '';
-        $list = $list===null ? $id : $list;
-        if(is_string($list)){
-            $list = SelectionList::getList($list);
-        }
-
-        foreach ($list as $value=>$label){
-            $checked = $selectedValue===$value;
-            $out .= Input::radio($id, $value, $label, $checked, $inline);
-        }
-        return $out;
-    }
-
     /**
      * Single checkbox
-     *
-     * @param $name
-     * @param $value
-     * @param $label
-     * @param bool $checked
-     * @param bool $inline
-     * @return string
      */
-    public static function checkbox($name, $value, $label, bool $checked, $inline=true): string
+    public static function checkbox(string $name, ?string $value, string $label, bool $checked, bool $inline = true): string
     {
         $input = '<input name="'.$name.'" id="'.$name.'" type="checkbox" value="'.$value.'" '.( $checked ? 'checked="checked"' : '').' />';
 
@@ -117,16 +49,9 @@ class Input{
     }
 
     /**
-     * Checbox list
-     *
-     * @param $id
-     * @param $selectedValues
-     * @param string $list
-     * @param bool $inline
-     * @return string
-     * @throws \Exception
+     * Checkbox list
      */
-    public static function checkboxGroup($id, $selectedValues=[], $list=null, $inline=true): string
+    public static function checkboxGroup(string $id, array $selectedValues = [], string|array $list = null, bool $inline = true): string
     {
         $out = '';
         $list = $list===null ? $id : $list;
@@ -144,15 +69,13 @@ class Input{
     }
 
     /**
-     * @param $id
-     * @param $request_parameters
-     * @return array
+     * Retrieve checkboxGroup selected items form request parameter
      */
-    public static function checkBoxSelectedFromRequest($id, $request_parameters): array
+    public static function checkBoxSelectedFromRequest(string $id, array $request_parameters): array
     {
         $selected = [];
         foreach ($request_parameters as $key => $index){
-            if(substr( $key, 0, strlen($id) ) === $id){
+            if(str_starts_with($key, $id)){
                 $selected[] = $index;
             }
         }
@@ -160,22 +83,24 @@ class Input{
     }
 
     /**
-     * Date picker with day granularity (base on bootstrap-datepicker)
-     *
-     * @param string $name
-     * @param string|null $value
-     * @param bool $disableJavascript
-     * @param string $class
-     * @return string
+     * Date picker (based on air-datepicker)
      */
-    public static function dayPicker(string $name, ?string $value, $disableJavascript = false, $class = 'field-edit'): string
+    public static function dayPicker(string $name, ?string $value, bool $disableJavascript = false, string $class = 'field-edit'): string
     {
-        $out = '<input type="text" name="'.$name.'" id="'.$name.'" value="'.$value.'" class="'.$class.' form-daypicker" />';
+        $out = '<input readonly type="text" name="'.$name.'" id="'.$name.'" class="'.$class.'" />';
+
         if(!$disableJavascript){
             $out .= '<script>
-                        $(function() {
-                            window.ModularForms.Mixins.Input.dayPicker($(\'input#'.$name.'\'));
-                        });
+                        (function() {
+                            new window.ModularFormsVendor.AirDatepicker("#' . $name . '", {
+                                locale: window.ModularFormsVendor.AirDatepicker.locale["' . App::getLocale().'"],
+                                autoClose: true,
+                                toggleSelected: false,
+                                buttons: ["clear"],
+                                dateFormat: "yyyy-MM-dd",
+                                ' . (!empty($value) ?  'selectedDates: ["' . $value. '"]' : '') . '
+                            })
+                        })();
                     </script>';
         }
 
@@ -183,12 +108,9 @@ class Input{
     }
 
     /**
-     * @param $id
-     * @param $value
-     * @param array $options
-     * @return string
+     * Slider
      */
-    public static function slider($id, $value, $options=[]): string
+    public static function slider(string $id, ?string $value, $options=[]): string
     {
         $defaultOptions = array(
             "min" => 0,
@@ -203,14 +125,16 @@ class Input{
                         max="'.$options['max'].'"
                         step="'.$options['step'].'"
                         value="'.$value.'"
+                        name="'.$id.'"
                         id="'.$id.'">
                     <span class="range-slider__value"></span>
                 </div>
                 <script>
                     let slider = document.getElementById("'.$id.'");
-                    let slider__value =slider.nextElementSibling;
+                    let slider__value = slider.nextElementSibling;
                     slider__value.innerHTML = slider.value;
                     slider.oninput = function() {
+                        slider.value = this.value;
                         slider__value.innerHTML = this.value;
                     }
                 </script>';

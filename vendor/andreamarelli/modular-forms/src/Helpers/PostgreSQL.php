@@ -5,18 +5,17 @@ namespace AndreaMarelli\ModularForms\Helpers;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class PostgreSQL
 {
     /**
      * Return the list of columns for the given table
-     * @param $table
-     * @return array
      */
-    public static function getColumns($table)
+    public static function getColumns($table): array
     {
         $schema = 'public';
-        if(\Illuminate\Support\Str::contains($table, '.')){
+        if(Str::contains($table, '.')){
             [$schema, $table] = explode('.', $table);
         }
         return DB::table('information_schema.columns')
@@ -32,8 +31,6 @@ class PostgreSQL
 
     /**
      * Return the database column names
-     *
-     * @return \Illuminate\Support\Collection
      */
     public static function getAllColumns(): Collection
     {
@@ -48,11 +45,7 @@ class PostgreSQL
     }
 
     /**
-     * Search teh database for specific column names
-     *
-     * @param $search
-     * @param string $operator
-     * @return \Illuminate\Support\Collection
+     * Search the database for specific column names
      */
     public static function searchColumns($search, string $operator = '='): Collection
     {
@@ -67,4 +60,17 @@ class PostgreSQL
             ->get();
     }
 
+    /**
+     * Return the list of tables for the given schema
+     */
+    public static function getTablesBySchema($schema): array
+    {
+        return DB::table('information_schema.columns')
+            ->select('table_name')
+            ->where('table_schema', $schema)
+            ->get()
+            ->pluck('table_name')
+            ->unique()
+            ->toArray();
+    }
 }

@@ -16,8 +16,8 @@ class Radar
         $indicators = [];
         $upperLimit = [];
         $lowerLimit = [];
-        $radar_negative_indicators = ["c2", "oc2", "oc3"];
-        $radar_zero_negative_indicators = ["c3"];
+        $radar_negative_indicators = ['C2', 'OC2', 'OC3'];
+        $radar_zero_negative_indicators = ['C3'];
         $radar_indicators_for_negative = [];
         $radar_indicators_zero_negative = [];
         $radar_average = [];

@@ -5,14 +5,13 @@ namespace AndreaMarelli\ModularForms\Helpers;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Models\Module;
 use Exception;
-use Intervention\Image\Facades\Image;
-use Imagick;
 use Illuminate\Support\Facades\Storage;
+use Imagick;
+use Intervention\Image\ImageManager;
 
 class Thumbnail {
 
     public const THUMB_PATH = 'thumbnails/';
-    public const THUMB_FORMAT = 'jpg';
     public const THUMB_MAX_WIDTH = 130;
 
     /**
@@ -23,7 +22,7 @@ class Thumbnail {
      */
     private static function path($hash): string
     {
-        return static::THUMB_PATH.$hash.'.'.static::THUMB_FORMAT;
+        return static::THUMB_PATH.$hash.'.jpg';
     }
 
     /**
@@ -94,21 +93,23 @@ class Thumbnail {
     private static function generate($source_file_path, $thumbnail_filename, int $height = null, int $width = null): string
     {
         $source_file_path = Storage::disk(File::TEMP_STORAGE)->path($source_file_path);
+        $thumbnail_path = Storage::disk(File::PUBLIC_STORAGE)->path($thumbnail_filename);
         $quality = 70;
         $media_type = File::getMediaType($source_file_path);
 
         // #########  Images  #########
         if($media_type == 'image') {
-            $thumbnail = Image::make($source_file_path);
+            $thumbnail = ImageManager::imagick()->read($source_file_path);
             if($height!==null && $width!==null){
                 $thumbnail->resize($width, $height);
-            } elseif($height===null || $width===null){
-                $thumbnail->resize($width, $height, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
+            } elseif($height===null){
+                $thumbnail->scale(height: $height);
+            } elseif($width===null){
+                $thumbnail->scale(width: $width);
             }
-            $thumbnail->encode(static::THUMB_FORMAT, $quality);
-            Storage::disk(File::PUBLIC_STORAGE)->put($thumbnail_filename, $thumbnail);
+            $thumbnail
+                ->toJpeg($quality)
+                ->save($thumbnail_path);
         }
 
         // #########  PDFs  #########

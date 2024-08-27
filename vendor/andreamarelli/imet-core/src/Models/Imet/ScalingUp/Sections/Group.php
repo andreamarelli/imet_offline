@@ -62,7 +62,7 @@ class Group
             foreach ($assessments['data']['assessments'] as $assessment) {
                 foreach ($parameters as $form) {
 
-                    if ($form['id'] === $assessment['formid']) {
+                    if ($form['id'] === $assessment['form_id']) {
 
                         $indicator[$indi][$form['group']][] = $assessment[$indi];
                     }

@@ -21,8 +21,8 @@ class AreaDominationMPA extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::v2_evaluation.AreaDominationMPA.title');
         $this->module_fields = [
             ['name' => 'Activity',                      'type' => 'text-area',              'label' => trans('imet-core::v2_evaluation.AreaDominationMPA.fields.Activity')],
-            ['name' => 'Patrol',                        'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::v2_evaluation.AreaDominationMPA.fields.Patrol')],
-            ['name' => 'RapidIntervention',             'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::v2_evaluation.AreaDominationMPA.fields.RapidIntervention')],
+            ['name' => 'Patrol',                        'type' => 'rating-0to3', 'label' => trans('imet-core::v2_evaluation.AreaDominationMPA.fields.Patrol')],
+            ['name' => 'RapidIntervention',             'type' => 'rating-0to3', 'label' => trans('imet-core::v2_evaluation.AreaDominationMPA.fields.RapidIntervention')],
             ['name' => 'DetectionRemoteSensing',        'type' => 'toggle-yes_no',          'label' => trans('imet-core::v2_evaluation.AreaDominationMPA.fields.DetectionRemoteSensing')],
             ['name' => 'SpecialMeansRapidIntervention', 'type' => 'toggle-yes_no',          'label' => trans('imet-core::v2_evaluation.AreaDominationMPA.fields.SpecialMeansRapidIntervention')],
         ];

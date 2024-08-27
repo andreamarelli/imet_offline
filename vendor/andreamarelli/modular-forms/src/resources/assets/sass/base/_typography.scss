@@ -1,0 +1,57 @@
+//   ######  Font sizes (not included in tailwind)  ######
+.text-2xs{
+    font-size: 0.7rem;
+    line-height: 0.8em;
+}
+
+//  ######  Text & paragraphs  ######
+.highlight{
+    @apply text-primary-800;
+}
+.strong{
+    @apply text-primary-800 font-bold;
+}
+.error{
+  font-weight: bold;
+  @apply text-red-600;
+}
+
+//   ######  Titles  ######
+h1, h2, h3, h4, h5 {
+  @apply text-gray-800;
+}
+h1{
+  @apply text-5xl;
+}
+h2{
+  @apply text-4xl;
+}
+h3{
+  @apply text-3xl;
+    margin: 30px 0 15px 0;
+}
+h4{
+  @apply text-2xl;
+  margin: 25px 0 17px 0;
+}
+h5{
+  @apply text-xl;
+  margin: 20px 0 10px 0;
+}
+h6{
+  @apply text-lg;
+  margin: 15px 0 5px 0;
+}
+
+//   ######  Links  ######
+a{
+  font-weight: bold;
+  @apply text-primary-600;
+}
+
+//   ######  Lists  ######
+ul {
+  list-style: disc;
+}
+
+

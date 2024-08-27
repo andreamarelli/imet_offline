@@ -9,27 +9,6 @@ class Toggle
     /**
      * @param $id
      * @param $value
-     * @param $component
-     * @return string
-     */
-    private static function __vue_component_container($id, $value, $component): string
-    {
-        return '<div id="' . $id . '">
-                    ' . $component . '
-                </div>
-                <script>
-                     new Vue({
-                        el: "#' . $id . '",
-                        data: {
-                            inputValue: "' . $value . '"
-                        }
-                    });
-                </script>';
-    }
-
-    /**
-     * @param $id
-     * @param $value
      * @param $list
      * @param string $tagAttributes
      * @return string
@@ -41,16 +20,13 @@ class Toggle
             $list = SelectionList::getList(SelectionList::getListType($list));
         }
 
-        $value         = rtrim($value);
-        $tagAttributes .= ' v-model="inputValue" id="' . $id . '" ';
+        $tagAttributes .= ' v-value="' . rtrim($value) . '" id="' . $id . '" ';
 
-        $vue_component =
+        return
             '<toggle
                 data-values="' . htmlspecialchars(json_encode($list), ENT_QUOTES) . '"
                 ' . $tagAttributes . '
             ></toggle>';
-
-        return static::__vue_component_container('toggle_' . $id, $value, $vue_component);
     }
 
 }

@@ -28,8 +28,8 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
         $this->module_code = 'C1.2';
         $this->module_title = trans('imet-core::v2_evaluation.ImportanceSpecies.title');
         $this->module_fields = [
-            ['name' => 'Aspect',  'type' => 'blade-imet-core::v2.evaluation.fields.show_species',      'label' => trans('imet-core::v2_evaluation.ImportanceSpecies.fields.Aspect')],
-            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::v2_evaluation.ImportanceSpecies.fields.EvaluationScore')],
+            ['name' => 'Aspect',  'type' => 'blade-imet-core::v2.evaluation.fields.key_element',      'label' => trans('imet-core::v2_evaluation.ImportanceSpecies.fields.Aspect')],
+            ['name' => 'EvaluationScore',  'type' => 'rating-0to3',   'label' => trans('imet-core::v2_evaluation.ImportanceSpecies.fields.EvaluationScore')],
             ['name' => 'SignificativeSpecies',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_evaluation.ImportanceSpecies.fields.SignificativeSpecies')],
             ['name' => 'IncludeInStatistics',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_evaluation.ImportanceSpecies.fields.IncludeInStatistics')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ImportanceSpecies.fields.Comments')],
@@ -52,7 +52,7 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
     /**
      * Prefill from CTX
      */
-    protected static function getPredefined($form_id = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
         $predefined_values = $form_id!==null
             ? [

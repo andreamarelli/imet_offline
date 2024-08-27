@@ -17,15 +17,15 @@ abstract class ProtectedArea extends BaseModel
 
     /**
      * Scope a query by search key
-     *
-     * @param Builder $query
-     * @param string|null $searchKey
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeLike(Builder $query, ?string $searchKey = null): Builder
     {
+        $like_operator = $this->getConnection()->getDriverName() == 'sqlite'
+            ? 'LIKE'
+            : '~~*'; // PostgreSQL case insensitive
+
         if($searchKey!==null && $searchKey!==''){
-            $query = $query->where('name', '~~*', '%' . $searchKey . '%');
+            $query = $query->where('name', $like_operator, '%' . $searchKey . '%');
             if(is_numeric($searchKey)){
                 $query =  $query->orWhere('wdpa_id', $searchKey);
             }
@@ -35,9 +35,6 @@ abstract class ProtectedArea extends BaseModel
 
     /**
      * Get by WDPA id
-     *
-     * @param string $wdpa
-     * @return \AndreaMarelli\ModularForms\Models\Utils\ProtectedArea
      */
     public static function getByWdpa(string $wdpa): ProtectedArea
     {

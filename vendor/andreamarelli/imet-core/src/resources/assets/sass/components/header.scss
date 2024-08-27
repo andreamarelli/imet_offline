@@ -1,0 +1,16 @@
+.language_selector {
+  padding: 10px 0 20px 30px;
+
+  li {
+    text-align: left;
+    white-space: nowrap;
+
+    &:first-of-type {
+      padding: 0 15px 0 25px;
+    }
+
+    a {
+      padding: 8px 30px;
+    }
+  }
+}

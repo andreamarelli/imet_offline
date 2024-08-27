@@ -17,8 +17,8 @@ class GovernanceLeadership extends Modules\Component\ImetModule_Eval
         $this->module_code = 'PR4';
         $this->module_title = trans('imet-core::v2_evaluation.GovernanceLeadership.title');
         $this->module_fields = [
-            ['name' => 'EvaluationScoreGovernace',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::v2_evaluation.GovernanceLeadership.fields.EvaluationScoreGovernace')],
-            ['name' => 'EvaluationScoreLeadership',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::v2_evaluation.GovernanceLeadership.fields.EvaluationScoreLeadership')],
+            ['name' => 'EvaluationScoreGovernace',  'type' => 'rating-0to3',   'label' => trans('imet-core::v2_evaluation.GovernanceLeadership.fields.EvaluationScoreGovernace')],
+            ['name' => 'EvaluationScoreLeadership',  'type' => 'rating-0to3',   'label' => trans('imet-core::v2_evaluation.GovernanceLeadership.fields.EvaluationScoreLeadership')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.GovernanceLeadership.fields.Comments')],
         ];
 

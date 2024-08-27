@@ -20,7 +20,7 @@ class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
         $this->module_fields = [
             ['name' => 'Equipment',         'type' => 'text-area',                'label' => trans('imet-core::v2_evaluation.EquipmentMaintenance.fields.Equipment')],
             ['name' => 'AdequacyLevel',     'type' => 'disabled',             'label' => trans('imet-core::v2_evaluation.EquipmentMaintenance.fields.AdequacyLevel')],
-            ['name' => 'EvaluationScore',   'type' => 'imet-core::rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.EquipmentMaintenance.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',   'type' => 'rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.EquipmentMaintenance.fields.EvaluationScore')],
             ['name' => 'Comments',          'type' => 'text-area',                'label' => trans('imet-core::v2_evaluation.EquipmentMaintenance.fields.Comments')],
         ];
 
@@ -75,6 +75,12 @@ class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
             $result[] = $adequacy[$i]['count']>0
                 ? round($adequacy[$i]['sum']/$adequacy[$i]['count'],2)
                 : null;
+        }
+
+        foreach ($result as $i=>$r){
+            if($r!==null){
+                $result[$i] = round($r, 2);
+            }
         }
 
         return $result;

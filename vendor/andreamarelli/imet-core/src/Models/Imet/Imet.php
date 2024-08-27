@@ -427,6 +427,14 @@ abstract class Imet extends Form
             if (array_key_exists($module_class::getShortClassName(), $records)) {
                 $modules_imported[] = $module_class::getShortClassName();
                 foreach ($records[$module_class::getShortClassName()] as $record) {
+
+                    if(Str::contains($module_class, "\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Contexts")
+                        || Str::contains($module_class, "\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\GeographicalLocation")
+                    ){
+
+                        dd($module_class, $record);
+                    }
+
                     $module_class::importModule($formID, $record);
                 }
             }

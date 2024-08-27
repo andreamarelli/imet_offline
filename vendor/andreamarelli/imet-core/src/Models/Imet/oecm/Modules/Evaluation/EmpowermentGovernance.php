@@ -19,7 +19,7 @@ class EmpowermentGovernance extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::oecm_evaluation.EmpowermentGovernance.title');
         $this->module_fields = [
             ['name' => 'Conditions',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.fields.Conditions')],
-            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3WithNA',   'label' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'rating-0to3WithNA',   'label' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.fields.Comments')],
         ];
 

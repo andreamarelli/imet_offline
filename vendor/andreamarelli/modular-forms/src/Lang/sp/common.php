@@ -2,8 +2,6 @@
 
 return [
 
-    'admin_page'    =>  'panel de administración',
-
     'add_item'          => 'añadir elemento',
     'add_entity'        => 'añadir entidad',
     'add'               => 'añadir',
@@ -45,7 +43,7 @@ return [
 
     'search'            => "buscar",
     'search_item'       => "buscar elemento",
-    'type_at_least'     => 'Escriba al menos :num_chars para obtener la lista de resultados correspondientes',
+    'search_key_min_length'     => 'Escriba al menos :num_chars para obtener la lista de resultados correspondientes',
     'initial'     => 'inicial',
     'filters'           => 'filtros',
     'filter_results'    => 'filtrar resultados',
@@ -61,11 +59,8 @@ return [
     'no'                => 'no',
 
     'form' => [
-        'preload'               => 'Cargar datos de años anteriores',
-        'previous_years'        => 'Datos de años anteriores',
 
         'not_available'         => 'Informacion no disponible',
-        'available_years'       => 'Años disponibles',
         'available_tooltip'     => 'Marque la casilla si los datos no están disponibles',
 
         'applicable'            => 'Indicador no aplicable',
@@ -76,10 +71,6 @@ return [
         'error' => 'algunos datos de este formulario son incorrectos o insuficientes',
 
         'encoding' => 'codificacion',
-        'validation' => 'validación',
-        'validated_by'        => 'validar por',
-        'nothing_to_validate' => 'Nada que validar',
-        'already_validated' => 'Indicador ya validado.',
     ],
 
 

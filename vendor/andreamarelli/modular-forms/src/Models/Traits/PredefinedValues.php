@@ -3,18 +3,17 @@
 namespace AndreaMarelli\ModularForms\Models\Traits;
 
 
+use Illuminate\Support\Str;
+
 trait PredefinedValues {
 
-    protected $predefined_values = null;
+    protected ?array $predefined_values = null;
 
 
     /**
      * Get predefined_values
-     *
-     * @param null $form_id     // only for custom extend purposes (ex. IMET)
-     * @return null
      */
-    protected static function getPredefined($form_id = null)
+    protected static function getPredefined($form_id = null): ?array
     {
         return (new static())->predefined_values;
     }
@@ -22,26 +21,15 @@ trait PredefinedValues {
 
     /**
      * Re-organize records according to predefined_values
-     *
-     * @param $form_id
-     * @param $records
-     * @param $empty_record
-     * @return array
      */
     protected static function arrange_records_with_predefined($form_id, $records, $empty_record): array
     {
         $predefined_values = static::getPredefined($form_id);
-        $records = static::arrange_records($predefined_values, $records, $empty_record);
-        return $records;
+        return static::arrange_records($predefined_values, $records, $empty_record);
     }
 
     /**
      * Re-organize records
-     *
-     * @param $predefined_values
-     * @param $records
-     * @param $empty_record
-     * @return array
      */
     protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
@@ -94,7 +82,7 @@ trait PredefinedValues {
             }
 
             // For GROUP_TABLE and GROUP_ACCORDION
-            elseif($module_type=='GROUP_TABLE' || $module_type=='GROUP_ACCORDION'){
+            elseif(Str::contains($module_type, 'GROUP_')){
                 foreach($predefined_values['values'] as $g => $group){
                     if(count($group)>0){
                         foreach($group as $p => $predefined_value){

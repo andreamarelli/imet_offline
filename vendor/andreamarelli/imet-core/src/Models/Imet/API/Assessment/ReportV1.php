@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\API\Assessment;
 
 use AndreaMarelli\ImetCore\Models\Animal;
+use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
@@ -51,7 +52,8 @@ class ReportV1
         return [
             'data' => [
                 'key_elements' => static::get_key_elements($form_id),
-                'assessment' => ImetScores::get_all($form_id),
+                'scores' => ImetScores::get_all($form_id),
+                'labels' => ImetScores::indicators_labels(Imet::IMET_V1),
                 'report' => $report,
                 'dopa_radar' => $dopa_radar,
                 'dopa_indicators' => $dopa_indicators[0] ?? null,
@@ -89,7 +91,7 @@ class ReportV1
      */
     protected static function get_general_info(int $form_id): ?array
     {
-        $general_info = static::$general_info_class::getVueData($form_id)['records'][0] ?? null;
+        $general_info = static::$general_info_class::getModuleRecords($form_id)[][0] ?? null;
         if ($general_info) {
             return static::remove_fields($general_info, ['WDPA' => '', 'id' => '', 'FormID' => '', 'UpdateDate' => '', 'UpdateBy' => '']);
         }
@@ -104,7 +106,7 @@ class ReportV1
      */
     protected static function get_vision(int $form_id): ?array
     {
-        $vision = static::$general_info_class::getVueData($form_id)['records'][0] ?? null;
+        $vision = static::$general_info_class::getModuleRecords($form_id)[0] ?? null;
         if ($vision) {
             return static::remove_fields($vision, ['WDPA' => '', 'id' => '', 'FormID' => '', 'UpdateDate' => '', 'UpdateBy' => '']);
         }
@@ -163,7 +165,7 @@ class ReportV1
      * @param array $fields_to_extract
      * @return array
      */
-    protected static function remove_fields(array $values, array $fields_to_extract = ['name' => '', 'iso3' => '', 'formid' => '', 'wdpa_id' => '', 'year' => '', 'version' => '']): array
+    protected static function remove_fields(array $values, array $fields_to_extract = ['name' => '', 'iso3' => '', 'form_id' => '', 'wdpa_id' => '', 'year' => '', 'version' => '']): array
     {
         return array_diff_key($values, $fields_to_extract);
     }

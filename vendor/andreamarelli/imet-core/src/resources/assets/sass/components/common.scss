@@ -1,0 +1,39 @@
+@import "@modular-forms/sass/abstracts/_colors.scss";
+@import "@modular-forms/sass/base/_typography.scss";
+
+.btn-circle {
+  padding: 13px 18px;
+  border-radius: 60px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.badge{
+  display: inline-block;
+  padding: 0.3em 0.4em;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  @apply text-2xs;
+
+  &.badge-pill{
+    padding-right: 0.6em;
+    padding-left: 0.6em;
+    border-radius: 10rem;
+  }
+  &.badge-success{
+    @apply text-white bg-green-600;
+  }
+  &.badge-primary{
+    @apply text-white bg-blue-600;
+  }
+  &.badge-secondary{
+    @apply text-white bg-gray-500;
+  }
+  &.badge-info{
+    @apply text-white bg-cyan-600;
+  }
+
+}

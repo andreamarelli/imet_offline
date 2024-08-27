@@ -4,6 +4,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Component;
 
 
 use AndreaMarelli\ImetCore\Helpers\Database;
+use AndreaMarelli\ImetCore\Models\Imet\Components\Dependencies;
 use AndreaMarelli\ImetCore\Models\Imet\Components\Modules\ImetModule_Eval as BaseImetEvalModule;
 use AndreaMarelli\ImetCore\Models\Imet\Components\Upgrade;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
@@ -11,6 +12,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
 class ImetModule_Eval extends BaseImetEvalModule
 {
     use Upgrade;
+    use Dependencies;
 
     public const MODULE_SCOPE = null;
 

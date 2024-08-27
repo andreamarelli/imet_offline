@@ -1,0 +1,85 @@
+
+// #########  Imet name in lists  ########
+.imet_name {
+  display: flex;
+  flex-direction: column;
+
+  .imet_pa_name {
+    font-size: 1.1em;
+    flex-grow: 1;
+  }
+}
+
+// #########  Histograms  #########
+.histogram-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  .histogram-row__code {
+    width: 45px;
+  }
+
+  .histogram-row__title {
+    width: 35%;
+    min-width: 300px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .histogram-row__title.short{
+    width: 20%;
+  }
+
+  .histogram-row__value {
+    width: 55px;
+  }
+
+  .histogram-row__progress-bar {
+    flex-grow: 1;
+  }
+}
+
+.progress_bar_label,
+.progress_bar,
+.progress_bar_container {
+  padding: 0;
+}
+
+.progress_bar_limits {
+  font-size: 10px;
+  padding: 0 3px 0 0;
+  text-align: right;
+}
+
+.progress_bar_limits_left {
+  font-size: 10px;
+  padding: 0 0 0 3px;
+  text-align: left;
+}
+
+.progress {
+  margin: 2px 0;
+  vertical-align: bottom;
+  @apply bg-gray-100;
+}
+
+.synthetic_indicator {
+  font-size: 1.2em;
+}
+
+// #########  OECM stakeholders summary tables  #########
+.summary_table{
+  width: auto;
+  background-color: #F5F5F5;
+  th,
+  td{
+
+    padding: 10px;
+  }
+}
+
+
+// #########  Scaling Up  #########
+.list-head{
+  @apply bg-gray-300 font-bold text-xl px-4 py-2 border-y border-dashed border-gray-400;
+}

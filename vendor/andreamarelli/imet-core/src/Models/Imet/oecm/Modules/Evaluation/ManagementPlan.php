@@ -21,11 +21,11 @@ class ManagementPlan extends Modules\Component\ImetModule_Eval
         $this->module_fields = [
             ['name' => 'PlanExistence',         'type' => 'toggle-yes_no',          'label' => trans('imet-core::oecm_evaluation.ManagementPlan.fields.PlanExistence')],
             ['name' => 'PrintedCopy',           'type' => 'toggle-yes_no',          'label' => trans('imet-core::oecm_evaluation.ManagementPlan.fields.PrintedCopy')],
-            ['name' => 'KnowledgePercentage',   'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_evaluation.ManagementPlan.fields.KnowledgePercentage')],
+            ['name' => 'KnowledgePercentage',   'type' => 'rating-0to3', 'label' => trans('imet-core::oecm_evaluation.ManagementPlan.fields.KnowledgePercentage')],
             ['name' => 'PlanUptoDate',     'type' => 'toggle-yes_no',    'label' => trans('imet-core::oecm_evaluation.ManagementPlan.fields.PlanUptoDate')],
             ['name' => 'PlanApproved',     'type' => 'toggle-yes_no',    'label' => trans('imet-core::oecm_evaluation.ManagementPlan.fields.PlanApproved')],
             ['name' => 'PlanImplemented',     'type' => 'toggle-yes_no',    'label' => trans('imet-core::oecm_evaluation.ManagementPlan.fields.PlanImplemented')],
-            ['name' => 'PlanAdequacyScore',     'type' => 'imet-core::rating-0to3',    'label' => trans('imet-core::oecm_evaluation.ManagementPlan.fields.PlanAdequacyScore')],
+            ['name' => 'PlanAdequacyScore',     'type' => 'rating-0to3',    'label' => trans('imet-core::oecm_evaluation.ManagementPlan.fields.PlanAdequacyScore')],
             ['name' => 'Comments',              'type' => 'text-area',           'label' => trans('imet-core::oecm_evaluation.ManagementPlan.fields.Comments')],
         ];
 

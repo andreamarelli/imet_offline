@@ -35,6 +35,8 @@ use function trans;
 
 trait ImportExportJSON
 {
+    use Upload;
+
     /**
      * Upload file
      *
@@ -49,23 +51,23 @@ trait ImportExportJSON
         $files = [];
         try {
             //upload file
-            $uploaded = Upload::uploadFile($file);
+            $uploaded = static::uploadFile($file);
             $import = new static();
             //and then check if is zip or json
-            if (in_array($ext, ['zip'])) {
+            if ($ext == 'zip') {
                 $uploaded_path = Storage::disk(File::TEMP_STORAGE)->path($uploaded['temp_filename']);
                 $extractFiles = Zip::extract($uploaded_path);
                 $num_extracted = 0;
                 foreach ($extractFiles as $item) {
                     if (Str::endsWith($item, '.json') && $num_extracted < 10) {
-                        $json = json_decode(Upload::getUploadFileContent(['temp_filename' => $item]), true);
+                        $json = json_decode(static::getUploadFileContent(['temp_filename' => $item]), true);
                         $files[] = $import->import(new Request(), $json, false);
                         Storage::disk(File::TEMP_STORAGE)->delete($item);
                         $num_extracted++;
                     }
                 }
             } else {
-                $json = json_decode(Upload::getUploadFileContent($uploaded), true);
+                $json = json_decode(static::getUploadFileContent($uploaded), true);
                 $files[] = $import->import(new Request(), $json, false);
                 Storage::disk(File::TEMP_STORAGE)->delete($uploaded['temp_filename']);
             }
@@ -102,6 +104,7 @@ trait ImportExportJSON
         $countries = $full_list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
 
         return view(static::$form_view_prefix . '.export', [
+            'controller' => static::class,
             'route_prefix' => static::ROUTE_PREFIX,
             'list' => $filtered_list,
             'request' => $request,
@@ -143,9 +146,6 @@ trait ImportExportJSON
 
     /**
      * return modules list for export
-     *
-     * @param Request $request
-     * @return Application|Factory|View
      */
     public function exportListCSV(Request $request): View
     {
@@ -327,10 +327,9 @@ trait ImportExportJSON
     {
         try {
             if ($json === null) {
-                $fileContent = Upload::getUploadFileContent($request->get('json_file'));
+                $fileContent = static::getUploadFileContent($request->get('json_file'));
                 $json = json_decode($fileContent, True);
             }
-
 
             if ($json['Imet']['version'] === Imet\Imet::IMET_V1) {
                 $imet = (new Imet\v1\Imet($json['Imet']))->fill($json['Imet']);
@@ -339,8 +338,6 @@ trait ImportExportJSON
             } else if ($json['Imet']['version'] === Imet\Imet::IMET_OECM) {
                 $imet = (new Imet\oecm\Imet($json['Imet']))->fill($json['Imet']);
             }
-
-            $this->authorize('view', $imet);
 
             $response = ['status' => 'success', 'modules' => []];
 

@@ -1,4 +1,4 @@
-FROM php:8.1-fpm-alpine
+FROM php:8.2-fpm-alpine
 
 # Update
 RUN apk update
@@ -21,6 +21,9 @@ RUN install-php-extensions \
     imagick \
     pdo_pgsql \
     zip
+
+# Set INI file
+RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 
 WORKDIR /var/www/html
 

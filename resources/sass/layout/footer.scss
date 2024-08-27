@@ -1,0 +1,11 @@
+#imet_footer {
+    display: flex;
+    @apply bg-gray-100;
+    justify-content: space-evenly;
+    padding: 8px;
+    @apply text-sm;
+    .version{
+        font-weight: bold;
+        @apply text-primary-600;
+    }
+}

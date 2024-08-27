@@ -24,8 +24,15 @@ class Areas extends Modules\Component\ImetModule
                 'type' => 'numeric',
                 'label' => trans('imet-core::v2_context.Areas.fields.AdministrativeArea')
             ],
-            ['name' => 'WDPAArea', 'type' => 'numeric', 'label' => trans('imet-core::v2_context.Areas.fields.WDPAArea')],
-            ['name' => 'GISArea', 'type' => 'numeric', 'label' => trans('imet-core::v2_context.Areas.fields.GISArea')],
+            [
+                'name' => 'WDPAArea',
+                'type' => 'numeric',
+                'label' => trans('imet-core::v2_context.Areas.fields.WDPAArea')],
+            [
+                'name' => 'GISArea',
+                'type' => 'numeric',
+                'label' => trans('imet-core::v2_context.Areas.fields.GISArea')
+            ],
             [
                 'name' => 'BoundaryLength',
                 'type' => 'numeric',
@@ -61,7 +68,11 @@ class Areas extends Modules\Component\ImetModule
                 'type' => 'numeric',
                 'label' => trans('imet-core::v2_context.Areas.fields.PercentageLandscapeNetwork')
             ],
-            ['name' => 'Index', 'type' => 'text-area', 'label' => trans('imet-core::v2_context.Areas.fields.Index')],
+            [
+                'name' => 'Index',
+                'type' => 'text-area',
+                'label' => trans('imet-core::v2_context.Areas.fields.Index')
+            ],
         ];
 
         $this->module_common_fields = [

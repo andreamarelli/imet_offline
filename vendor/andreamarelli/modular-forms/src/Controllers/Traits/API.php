@@ -14,19 +14,18 @@ trait API {
 
     /**
      * Send a successful JSON API response
-     *
-     * @param $data
-     * @param Request|null $request
-     * @param int $code
-     * @return \Illuminate\Http\JsonResponse
      */
-    public static function sendAPIResponse($data, Request $request = null, int $code = 200): JsonResponse
+    public static function sendAPIResponse($data, Request $request = null, int $code = 200, array $additional_data = null): JsonResponse
     {
         $body = [
             'status' => $code,
-            'request_params' => $request ? $request->all() : null,
+            'request_params' => $request?->all(),
             'records' => $data
         ];
+
+        if($additional_data!==null){
+            $body = array_merge($body, $additional_data);
+        }
 
         $response = response()->json($body);
         $response->header('Content-Type', 'application/json');
@@ -36,11 +35,8 @@ trait API {
 
     /**
      * Send an error on API
-     *
-     * @param $error_code
-     * @param array $message
      */
-    public static function sendAPIError($error_code, $message = null)
+    public static function sendAPIError($error_code, $message = null): void
     {
         abort($error_code, $message);
     }

@@ -4,5 +4,7 @@
 
 composer.phar
 composer.lock
+package-lock.json
 /vendor/
 /node_modules/
+

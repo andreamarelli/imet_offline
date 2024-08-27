@@ -61,9 +61,6 @@ class UsersController extends __Controller
 
     /**
      * Manage "search" route
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
      */
     public function search(Request $request): JsonResponse
     {
@@ -71,9 +68,7 @@ class UsersController extends __Controller
             ? User::searchByKey($request->input('search_key'))
             : collect();
 
-        return response()->json([
-                                    'records' => $list->toArray()
-                                ]);
+        return static::sendAPIResponse($list->toArray());
     }
 
     /**

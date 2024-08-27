@@ -18,7 +18,7 @@ class NaturalResourcesMonitoring extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::v2_evaluation.NaturalResourcesMonitoring.title');
         $this->module_fields = [
             ['name' => 'Aspect',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.NaturalResourcesMonitoring.fields.Aspect')],
-            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.NaturalResourcesMonitoring.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.NaturalResourcesMonitoring.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.NaturalResourcesMonitoring.fields.Comments')],
         ];
 

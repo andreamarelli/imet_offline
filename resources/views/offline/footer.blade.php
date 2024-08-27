@@ -1,5 +1,8 @@
-<section class="footer_ribbon imet">
-    IMET Offline Tool
-    &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
-    version: <b class="primary-600">{{ imet_offline_version() }}
+<section id="imet_footer">
+    <div>
+        IMET Offline Tool
+    </div>
+    <div>
+        version: <span class="version">{{ imet_offline_version() }}</span>
+    </div>
 </section>

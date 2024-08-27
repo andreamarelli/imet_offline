@@ -74,10 +74,8 @@ class ImetModule extends Module
 
     /**
      * Override: Get predefined_values according to form language
-     * @param null $form_id
-     * @return null
      */
-    protected static function getPredefined($form_id = null)
+    protected static function getPredefined($form_id = null): ?array
     {
         static::forceLanguage($form_id);
         return parent::getPredefined($form_id);
@@ -86,11 +84,10 @@ class ImetModule extends Module
 
     /**
      * Override: Check for "warning_on_save" labels
-     * @throws ReflectionException
      */
-    public static function getVueData($form_id, $collection = null): array
+    public static function getVueData($form_id, $records, $definitions): array
     {
-        $vue_data = parent::getVueData($form_id, $collection);
+        $vue_data = parent::getVueData($form_id, $records, $definitions);
         return static::warningOnSave($vue_data);
     }
 

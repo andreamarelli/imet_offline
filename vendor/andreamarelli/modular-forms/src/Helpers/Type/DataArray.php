@@ -5,39 +5,22 @@ namespace AndreaMarelli\ModularForms\Helpers\Type;
 class DataArray {
 
     /**
-     * Checking whether the given array is zero-indexed and sequential
-     *
-     * @param array $arr
-     * @return bool
+     * Checking whether the given array is sequential
      */
     public static function isSequential(array $arr): bool
     {
-        if (DataArray::hasStringKey($arr)) return false;
-        return array() === $arr
-                || array_keys($arr) === range(0, count($arr) - 1);
+        return array_is_list($arr);
     }
 
     /**
-     * Checking whether the given array is associative array
+     * Checking whether the given array is associative
      *
      * @param array $arr
      * @return bool
      */
     public static function isAssociative(array $arr): bool
     {
-        return !DataArray::isSequential($arr);
+        return !array_is_list($arr);
     }
-
-    /**
-     * Check whether the array has string keys
-     *
-     * @param array $arr
-     * @return bool
-     */
-    public static function hasStringKey(array $arr): bool
-    {
-        return count(array_filter(array_keys($arr), 'is_string')) > 0;
-    }
-
 
 }

@@ -22,7 +22,7 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
         $this->module_fields = [
             ['name' => 'Equipment',     'type' => 'blade-imet-core::oecm.evaluation.fields.management_equipment_adequacy',          'label' => trans('imet-core::oecm_evaluation.ManagementEquipmentAdequacy.fields.Equipment')],
             ['name' => 'Adequacy',      'type' => 'blade-imet-core::oecm.evaluation.fields.management_equipment_adequacy_score', 'label' => trans('imet-core::oecm_evaluation.ManagementEquipmentAdequacy.fields.Adequacy')],
-            ['name' => 'PresentNeeds',  'type' => 'imet-core::rating-0to2', 'label' => trans('imet-core::oecm_evaluation.ManagementEquipmentAdequacy.fields.PresentNeeds')],
+            ['name' => 'PresentNeeds',  'type' => 'rating-0to2', 'label' => trans('imet-core::oecm_evaluation.ManagementEquipmentAdequacy.fields.PresentNeeds')],
             ['name' => 'Comments',      'type' => 'text-area',              'label' => trans('imet-core::oecm_evaluation.ManagementEquipmentAdequacy.fields.Comments')],
         ];
 

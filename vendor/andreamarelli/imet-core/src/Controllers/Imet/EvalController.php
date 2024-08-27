@@ -13,12 +13,9 @@ class EvalController extends __Controller
     /**
      * Override edit route
      *
-     * @param $item
-     * @param null $step
-     * @return Application|Factory|View
      * @throws AuthorizationException
      */
-    public function edit($item, $step = null)
+    public function edit($item, $step = null): Application|View|Factory
     {
         $imet = (static::$form_class)::find($item);
         $this->authorize('view', $imet);
@@ -26,6 +23,7 @@ class EvalController extends __Controller
         $step = $step == null ? 'context' : $step;
 
         return view(static::$form_view_prefix . '.edit', [
+            'controller' => static::class,
             'item' => $imet,
             'step' => $step
         ]);
@@ -34,12 +32,9 @@ class EvalController extends __Controller
     /**
      * Override show route
      *
-     * @param $item
-     * @param null $step
-     * @return Application|Factory|View
      * @throws AuthorizationException
      */
-    public function show($item, $step = null)
+    public function show($item, $step = null): Application|View|Factory
     {
         $imet = (static::$form_class)::find($item);
         $this->authorize('view', $imet);
@@ -47,6 +42,7 @@ class EvalController extends __Controller
         $step = $step == null ? 'context' : $step;
 
         return view(static::$form_view_prefix . '.show', [
+            'controller' => static::class,
             'item' => $imet,
             'step' => $step
         ]);

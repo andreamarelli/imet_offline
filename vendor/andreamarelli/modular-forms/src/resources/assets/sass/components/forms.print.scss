@@ -1,0 +1,53 @@
+@import "../abstracts/all";
+
+
+@media print {
+  .print_body{
+    transform: scale(0.7);
+    transform-origin: 50% 0;
+  }
+  .table td, .table th {
+    background-color: transparent !important;
+  }
+  .accordion-item-header,
+  .accordion-item-body,
+  .progress{
+    @apply bg-gray-50 #{!important};
+  }
+  .field-preview,
+  .checkbox label::before{
+    @apply bg-white #{!important};
+  }
+  input[type="checkbox"]:checked + label::before {
+    @apply bg-primary-800 #{!important};
+  }
+  .btn.act-btn-active{
+    @apply bg-primary-800 #{!important};
+  }
+  .rating.active{
+    @apply text-white;
+    @apply bg-primary-800 #{!important};
+  }
+  .module-container{
+    .module-header{
+      @apply bg-gray-500 #{!important};
+    }
+    .module-body{
+      @apply bg-gray-200 #{!important};
+    }
+    .module_accordion{
+      .card-header,
+      .card-body{
+        @apply bg-gray-50 #{!important};
+      }
+    }
+  }
+  .module-bar.info-bar,
+  .module-bar.info-black-bar{
+    @apply bg-contextual-light-info #{!important};
+  }
+  .module-bar.module_subTitle{
+    @apply bg-gray-200 #{!important};
+  }
+}
+

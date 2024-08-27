@@ -1,0 +1,175 @@
+@import "../abstracts/all";
+
+/*  #########  Flat buttons  ########  */
+
+.btn-nav{
+  font-weight: normal;
+  font-size: 0.8rem;
+  @apply bg-primary-600;
+  @apply text-white;
+  padding: 5px 10px;
+  display: inline-block;
+  border: 1px solid;
+  @apply border-primary-600;
+  border-radius: 0.2rem;
+  @include transition();
+
+  // Sizes
+  &.small{
+    font-size: 0.7rem;
+    padding: 0 8px;
+    line-height: 2em;
+  }
+  &.big{
+    font-size: 1rem;
+    padding: 10px 20px;
+    letter-spacing: .5px;
+    i{
+      margin-right: 10px;
+    }
+  }
+
+  // Colors
+  &, &.basic{
+    &.tag, &:hover{
+      @apply bg-white;
+      @apply text-primary-600;
+      text-decoration: none;
+      .fas{
+        @apply text-primary-600;
+      }
+    }
+  }
+  &.dark,
+  &.active{
+    @apply bg-primary-900;
+    @apply border-primary-900;
+    &.tag, &:hover{
+      @apply text-primary-900;
+      @apply bg-white;
+      .fas{
+        @apply text-primary-900;
+      }
+    }
+  }
+  &.light{
+    @apply text-gray-800;
+    @apply bg-primary-300;
+    @apply border-primary-300;
+    &.tag, &:hover{
+      @apply text-primary-500;
+      @apply bg-white;
+      .fas{
+        @apply text-primary-300;
+      }
+    }
+  }
+  &.red{
+    @apply bg-red-600;
+    @apply border-red-400;
+    &.tag, &:hover{
+      @apply text-red-400;
+      @apply bg-white;
+      .fas{
+        @apply text-red-400;
+      }
+    }
+  }
+  &.blue{
+    @apply bg-blue-600;
+    @apply border-blue-400;
+    &.tag, &:hover{
+      @apply text-blue-400;
+      @apply bg-white;
+      .fas{
+        @apply text-blue-400;
+      }
+    }
+  }
+  &.yellow{
+    @apply text-gray-800;
+    background-color: #ffc107;
+    border-color: #ffc107;
+    &.tag, &:hover{
+      @apply bg-white;
+      color: darken(#ffc107, 30%);
+      .fas{
+        color: darken(#ffc107, 30%);
+      }
+    }
+  }
+  &.gray{
+    @apply bg-gray-300;
+    @apply border-gray-300;
+    @apply text-gray-700;
+    &.tag, &:hover{
+      @apply bg-white;
+      @apply text-gray-700;
+      .fas{
+        @apply text-gray-700;
+      }
+    }
+  }
+  &.active-disabled{
+    @apply text-white;
+    @apply bg-primary-900;
+    @apply border-primary-900;
+    pointer-events: none;
+    &.tag, &:hover{
+      @apply text-white;
+      @apply bg-primary-900;
+      @apply border-primary-900;
+      cursor: not-allowed;
+      .fas{
+        @apply text-white;
+      }
+    }
+  }
+  &:disabled,
+  &.disabled{
+    @apply bg-gray-300;
+    @apply border-gray-300;
+    pointer-events: none;
+    &.tag, &:hover{
+      @apply text-white;
+      @apply bg-gray-300;
+      cursor: not-allowed;
+      .fas{
+        @apply text-white;
+      }
+    }
+  }
+
+  // Variations
+  &.rounded{
+    border-radius: 50px !important;
+  }
+  &.tag{
+    font-weight: bold;
+    background-color: transparent;
+    &:hover{
+      background-color: transparent;
+      @apply text-gray-800;
+      @apply border-gray-800;
+    }
+    .fas{
+      @apply text-gray-800;
+    }
+  }
+}
+
+/*  #########  Buttons group  ########  */
+.btn-nav-group{
+    display: flex;
+    .btn-nav{
+        border-radius: 0;
+        &:first-of-type{
+            border-bottom-left-radius: 0.2rem;
+            border-top-left-radius: 0.2rem;
+        }
+        &:last-of-type{
+            border-bottom-right-radius: 0.2rem;
+            border-top-right-radius: 0.2rem;
+        }
+    }
+}

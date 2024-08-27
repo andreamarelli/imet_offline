@@ -51,10 +51,6 @@ return [
         'proposed_long_objectives' => 'Proposed long term objectives',
         'proposed_short_objectives' => 'Proposed short term objectives',
     ],
-    'pr1_5' => 'Internal management systems and processes',
-    'pr6_7' => 'Management / Protection of the values',
-    'pr8_10' => 'Stakeholder relations',
-    'pr11_12' => 'Tourism / Monitoring - Research',
     'general_planning' => [
         'name' => 'General planning',
         'priority' => 'Priority',

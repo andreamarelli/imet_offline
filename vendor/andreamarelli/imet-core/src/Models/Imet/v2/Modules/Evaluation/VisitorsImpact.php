@@ -18,7 +18,7 @@ class VisitorsImpact extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::v2_evaluation.VisitorsImpact.title');
         $this->module_fields = [
             ['name' => 'Impact',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.VisitorsImpact.fields.Impact')],
-            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.VisitorsImpact.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.VisitorsImpact.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.VisitorsImpact.fields.Comments')],
         ];
 

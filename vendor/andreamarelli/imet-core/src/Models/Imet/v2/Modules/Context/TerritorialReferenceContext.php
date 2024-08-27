@@ -27,15 +27,15 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
             ['name' => 'BenefitSocioEconomicAspects',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.BenefitSocioEconomicAspects')],
             ['name' => 'SpillOverKm2',  'type' => 'numeric',   'label' => ''],
             ['name' => 'SpillOverKm',  'type' => 'numeric',   'label' => ''],
-            ['name' => 'SpillOverEvalPredatory0_500', 'type' => 'imet-core::rating-Minus2to0', 'label' => trans('imet-core::v2_context.TerritorialReferenceContext.info.spill_over_variation')],
-            ['name' => 'SpillOverEvalPredatory500_1000', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalPredatory200_3000', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalComposition0_500', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalComposition500_1000', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalComposition200_3000', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalDistance0_500', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalDistance500_1000', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalDistance200_3000', 'type' => 'imet-core::rating-Minus2to0', 'label' => '']
+            ['name' => 'SpillOverEvalPredatory0_500', 'type' => 'rating-Minus2to0', 'label' => trans('imet-core::v2_context.TerritorialReferenceContext.info.spill_over_variation')],
+            ['name' => 'SpillOverEvalPredatory500_1000', 'type' => 'rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalPredatory200_3000', 'type' => 'rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalComposition0_500', 'type' => 'rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalComposition500_1000', 'type' => 'rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalComposition200_3000', 'type' => 'rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalDistance0_500', 'type' => 'rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalDistance500_1000', 'type' => 'rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalDistance200_3000', 'type' => 'rating-Minus2to0', 'label' => '']
         ];
 
         $this->module_info = trans('imet-core::v2_context.TerritorialReferenceContext.module_info');

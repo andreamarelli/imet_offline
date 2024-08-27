@@ -1,0 +1,135 @@
+
+// #################################################
+// ##############  Foreground colors  ##############
+// #################################################
+
+.text-primary-50{ @apply text-green-50; }
+.text-primary-100{ @apply text-green-100; }
+.text-primary-200{ @apply text-green-200; }
+.text-primary-300{ @apply text-green-300; }
+.text-primary-400{ @apply text-green-400; }
+.text-primary-500{ @apply text-green-500; }
+.text-primary-600{ @apply text-green-600; }
+.text-primary-700{ @apply text-green-700; }
+.text-primary-800{ @apply text-green-800; }
+.text-primary-900{ @apply text-green-900; }
+
+.text-contextual-primary{ @apply text-blue-600; }
+.text-contextual-info{ @apply text-cyan-400; }
+.text-contextual-success{ @apply text-green-600; }
+.text-contextual-warning{ @apply text-orange-400; }
+.text-contextual-danger{ @apply text-red-400; }
+
+.text-contextual-light-primary{ @apply text-blue-200; }
+.text-contextual-light-info{ @apply text-blue-50; }
+.text-contextual-light-success{ @apply text-green-200; }
+.text-contextual-light-warning{ @apply text-orange-200; }
+.text-contextual-light-danger{ @apply text-red-100; }
+
+
+// #################################################
+// ##############  Background colors  ##############
+// #################################################
+
+.bg-primary-50{ @apply bg-green-50; }
+.bg-primary-100{ @apply bg-green-100; }
+.bg-primary-200{ @apply bg-green-200; }
+.bg-primary-300{ @apply bg-green-300; }
+.bg-primary-400{ @apply bg-green-400; }
+.bg-primary-500{ @apply bg-green-500; }
+.bg-primary-600{ @apply bg-green-600; }
+.bg-primary-700{ @apply bg-green-700; }
+.bg-primary-800{ @apply bg-green-800; }
+.bg-primary-900{ @apply bg-green-900; }
+
+.bg-contextual-primary{ @apply bg-blue-600; }
+.bg-contextual-info{ @apply bg-cyan-400; }
+.bg-contextual-success{ @apply bg-green-600; }
+.bg-contextual-warning{ @apply bg-orange-400; }
+.bg-contextual-danger{ @apply bg-red-400; }
+
+.bg-contextual-light-primary{ @apply bg-blue-200; }
+.bg-contextual-light-info{ @apply bg-blue-50; }
+.bg-contextual-light-success{ @apply bg-green-200; }
+.bg-contextual-light-warning{ @apply bg-orange-200; }
+.bg-contextual-light-danger{ @apply bg-red-100; }
+
+
+
+// #################################################
+// ################  Border colors  ################
+// #################################################
+
+.border-primary-50{ @apply border-green-50; }
+.border-primary-100{ @apply border-green-100; }
+.border-primary-200{ @apply border-green-200; }
+.border-primary-300{ @apply border-green-300; }
+.border-primary-400{ @apply border-green-400; }
+.border-primary-500{ @apply border-green-500; }
+.border-primary-600{ @apply border-green-600; }
+.border-primary-700{ @apply border-green-700; }
+.border-primary-800{ @apply border-green-800; }
+.border-primary-900{ @apply border-green-900; }
+
+.border-contextual-primary{ @apply border-blue-600; }
+.border-contextual-info{ @apply border-cyan-400; }
+.border-contextual-success{ @apply border-green-600; }
+.border-contextual-warning{ @apply border-orange-400; }
+.border-contextual-danger{ @apply border-red-400; }
+
+.border-contextual-light-primary{ @apply border-blue-200; }
+.border-contextual-light-info{ @apply border-blue-50; }
+.border-contextual-light-success{ @apply border-green-200; }
+.border-contextual-light-warning{ @apply border-orange-200; }
+.border-contextual-light-danger{ @apply border-red-100; }
+
+
+// #################################################
+// ##########  SVG: Stroke & fill colors  ##########
+// #################################################
+
+.stroke-primary-50{ @apply stroke-green-50; }
+.stroke-primary-100{ @apply stroke-green-100; }
+.stroke-primary-200{ @apply stroke-green-200; }
+.stroke-primary-300{ @apply stroke-green-300; }
+.stroke-primary-400{ @apply stroke-green-400; }
+.stroke-primary-500{ @apply stroke-green-500; }
+.stroke-primary-600{ @apply stroke-green-600; }
+.stroke-primary-700{ @apply stroke-green-700; }
+.stroke-primary-800{ @apply stroke-green-800; }
+.stroke-primary-900{ @apply stroke-green-900; }
+
+.stroke-contextual-primary{ @apply stroke-blue-600; }
+.stroke-contextual-info{ @apply stroke-cyan-400; }
+.stroke-contextual-success{ @apply stroke-green-600; }
+.stroke-contextual-warning{ @apply stroke-orange-400; }
+.stroke-contextual-danger{ @apply stroke-red-400; }
+
+.stroke-contextual-light-primary{ @apply stroke-blue-200; }
+.stroke-contextual-light-info{ @apply stroke-blue-50; }
+.stroke-contextual-light-success{ @apply stroke-green-200; }
+.stroke-contextual-light-warning{ @apply stroke-orange-200; }
+.stroke-contextual-light-danger{ @apply stroke-red-100; }
+
+.fill-primary-50{ @apply fill-green-50; }
+.fill-primary-100{ @apply fill-green-100; }
+.fill-primary-200{ @apply fill-green-200; }
+.fill-primary-300{ @apply fill-green-300; }
+.fill-primary-400{ @apply fill-green-400; }
+.fill-primary-500{ @apply fill-green-500; }
+.fill-primary-600{ @apply fill-green-600; }
+.fill-primary-700{ @apply fill-green-700; }
+.fill-primary-800{ @apply fill-green-800; }
+.fill-primary-900{ @apply fill-green-900; }
+
+.fill-contextual-primary{ @apply fill-blue-600; }
+.fill-contextual-info{ @apply fill-cyan-400; }
+.fill-contextual-success{ @apply fill-green-600; }
+.fill-contextual-warning{ @apply fill-orange-400; }
+.fill-contextual-danger{ @apply fill-red-400; }
+
+.fill-contextual-light-primary{ @apply fill-blue-200; }
+.fill-contextual-light-info{ @apply fill-blue-50; }
+.fill-contextual-light-success{ @apply fill-green-200; }
+.fill-contextual-light-warning{ @apply fill-orange-200; }
+.fill-contextual-light-danger{ @apply fill-red-100; }

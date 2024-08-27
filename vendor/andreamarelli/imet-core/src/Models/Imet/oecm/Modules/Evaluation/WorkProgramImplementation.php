@@ -21,7 +21,7 @@ class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
             ['name' => 'Category', 'type' => 'text-area', 'label' => trans('imet-core::oecm_evaluation.WorkProgramImplementation.fields.Category')],
             ['name' => 'Activity', 'type' => 'text-area', 'label' => trans('imet-core::oecm_evaluation.WorkProgramImplementation.fields.Activity')],
             ['name' => 'TargetedActivity', 'type' => 'text-area', 'label' => trans('imet-core::oecm_evaluation.WorkProgramImplementation.fields.TargetedActivity')],
-            ['name' => 'EvaluationScore', 'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_evaluation.WorkProgramImplementation.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore', 'type' => 'rating-0to3', 'label' => trans('imet-core::oecm_evaluation.WorkProgramImplementation.fields.EvaluationScore')],
             ['name' => 'Comments', 'type' => 'text-area', 'label' => trans('imet-core::oecm_evaluation.WorkProgramImplementation.fields.Comments')],
         ];
 

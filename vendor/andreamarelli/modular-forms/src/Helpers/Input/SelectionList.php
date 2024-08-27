@@ -39,7 +39,7 @@ class SelectionList
             if(!empty($list)){
 
                 // Transpose sequential arrays to associative (same key/value)
-                if (!is_string($list) && DataArray::isSequential($list)) {
+                if (!is_string($list) && array_is_list($list)) {
                     $list = array_combine($list, $list);
                 }
 

@@ -13,9 +13,6 @@ class SpeciesController extends Controller
 {
     /**
      * Search Species by key
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
      */
     public static function search(Request $request): JsonResponse
     {
@@ -53,10 +50,9 @@ class SpeciesController extends Controller
                 ->toArray();
         }
 
-        return response()->json([
-                                    'records' => $species->toArray(),
-                                    'classes' => array_keys($ordersByClass),
-                                    'orders' => $ordersByClass
-                                ]);
+        return static::sendAPIResponse($species->toArray(), null, 200, [
+            'classes' => array_keys($ordersByClass),
+            'orders' => $ordersByClass
+        ]);
     }
 }

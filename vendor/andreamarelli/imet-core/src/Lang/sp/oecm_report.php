@@ -51,11 +51,6 @@ return [
         'proposed_long_objectives' => 'Objetivos a largo plazo propuestos',
         'proposed_short_objectives' => 'Objetivos a corto plazo propuestos',
     ],
-
-    'pr1_5' => 'Sistemas y procesos internos de gestión',
-    'pr6_7' => 'Gestión/Protección de los valores',
-    'pr8_10' => 'Relaciones con las partes interesadas',
-    'pr11_12' => 'Turismo/Seguimiento - Investigación',
     'general_planning' => [
         'name' => 'Planificación general',
         'priority' => 'Prioridad',

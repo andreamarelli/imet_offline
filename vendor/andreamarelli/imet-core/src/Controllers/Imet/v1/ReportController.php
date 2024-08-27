@@ -42,7 +42,7 @@ class ReportController extends BaseReportController
             $non_wdpa = ProtectedAreaNonWdpa::find($item->wdpa_id)->toArray();
         }
 
-        $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
+        $general_info = Modules\Context\GeneralInfo::getModuleRecords($form_id);
         $vision = Modules\Context\Missions::getModuleRecords($form_id);
         return [
             'item' => $item,
@@ -58,12 +58,8 @@ class ReportController extends BaseReportController
                 'ecosystem_services' => array_values(Modules\Evaluation\ImportanceEcosystemServices::getPredefined()['values']),
                 'threats' => array_values(Modules\Evaluation\Menaces::getPredefined()['values'])
             ],
-            'assessment' => array_merge(
-                ImetScores::get_all($item),
-                [
-                    'labels' => ImetScores::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1)
-                ]
-            ),
+            'scores' => ImetScores::get_all($item),
+            'labels' => ImetScores::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1),
             'report' => \AndreaMarelli\ImetCore\Models\Imet\v1\Report::getByForm($form_id),
             'connection' => $api_available,
             'show_api' => $show_api,
@@ -72,7 +68,7 @@ class ReportController extends BaseReportController
             'dopa_indicators' => $dopa_indicators[0] ?? null,
             'show_non_wdpa' => $show_non_wdpa ?? false,
             'non_wdpa' => $non_wdpa ?? null,
-            'general_info' => $general_info['records'][0] ?? null,
+            'general_info' => $general_info[0] ?? null,
             'vision' => $vision['records'][0] ?? null,
             'area' => Modules\Context\Areas::getArea($form_id)
         ];

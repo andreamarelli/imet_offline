@@ -1,0 +1,60 @@
+@import "../abstracts/all";
+
+// ALL tables
+table {
+    margin: 15px 0;
+    border-collapse: collapse;
+    width: 100%;
+    td.center {
+        text-align: center;
+    }
+    td.italic {
+        font-style: italic;
+    }
+}
+
+
+table.striped{
+    > thead,
+    > tbody {
+        > tr{
+            > th,
+            > td{
+                padding: 10px;
+            }
+        }
+    }
+    > thead > tr > th,
+    > tbody > tr > th,
+    > thead > tr.head > td,
+    > tbody > tr.head > td{
+        font-weight: 700;
+        text-align: center;
+        @apply text-gray-800;
+        @apply bg-gray-200;
+        @apply border-r border-gray-200;
+        text-transform: capitalize;
+        &:first-child {
+            border-radius: 5px 0 0 0;
+        }
+        &:last-child {
+            border-right: none;
+            border-radius: 0 5px 0 0;
+        }
+    }
+    > tbody {
+        > tr {
+            > td {
+                position: relative;
+                font-size: .9em;
+                @apply border border-gray-200;
+            }
+            &:nth-child(odd) {
+                @apply bg-gray-50;
+            }
+            &:nth-child(even) {
+                @apply bg-white;
+            }
+        }
+    }
+}

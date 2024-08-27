@@ -22,8 +22,8 @@ class BoundaryLevel extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::oecm_evaluation.BoundaryLevel.title');
 
         $this->module_fields =[
-            ['name' => 'Boundaries',    'type' => 'imet-core::rating-0to6',         'label' => trans('imet-core::oecm_evaluation.BoundaryLevel.fields.Boundaries')],
-            ['name' => 'Adequacy',      'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_evaluation.BoundaryLevel.fields.Adequacy')],
+            ['name' => 'Boundaries',    'type' => 'rating-0to6',         'label' => trans('imet-core::oecm_evaluation.BoundaryLevel.fields.Boundaries')],
+            ['name' => 'Adequacy',      'type' => 'rating-0to3',   'label' => trans('imet-core::oecm_evaluation.BoundaryLevel.fields.Adequacy')],
             ['name' => 'Comments',      'type' => 'text-area',                      'label' => trans('imet-core::oecm_evaluation.BoundaryLevel.fields.Comments')],
         ];
 

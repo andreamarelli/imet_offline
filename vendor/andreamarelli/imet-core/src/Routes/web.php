@@ -71,8 +71,8 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
                 Route::patch('{item}',              [v1\ContextController::class, 'update']);
             });
             Route::group(['prefix' => 'evaluation'], function () {
-                Route::get('{item}/show/{step?}',   [v1\EvalController::class, 'show'])->name(V1_ROUTE_PREFIX.'eval_show');
-                Route::get('{item}/edit/{step?}',   [v1\EvalController::class, 'edit'])->name(V1_ROUTE_PREFIX.'eval_edit');
+                Route::get('{item}/show/{step?}',   [v1\EvalController::class, 'show'])->name(V1_ROUTE_PREFIX.'evaluation_show');
+                Route::get('{item}/edit/{step?}',   [v1\EvalController::class, 'edit'])->name(V1_ROUTE_PREFIX.'evaluation_edit');
                 Route::patch('{item}',              [v1\EvalController::class, 'update']);
             });
             Route::group(['prefix' => 'report'], function () {
@@ -115,8 +115,8 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
                 Route::patch('{item}',           [v2\ContextController::class, 'update']);
             });
             Route::group(['prefix' => 'evaluation'], function () {
-                Route::get('{item}/edit/{step?}',[v2\EvalController::class, 'edit'])->name(V2_ROUTE_PREFIX.'eval_edit');
-                Route::get('{item}/show/{step?}',[v2\EvalController::class, 'show'])->name(V2_ROUTE_PREFIX.'eval_show');
+                Route::get('{item}/edit/{step?}',[v2\EvalController::class, 'edit'])->name(V2_ROUTE_PREFIX.'evaluation_edit');
+                Route::get('{item}/show/{step?}',[v2\EvalController::class, 'show'])->name(V2_ROUTE_PREFIX.'evaluation_show');
                 Route::get('{item}/print',       [v2\EvalController::class, 'print']);
                 Route::patch('{item}',           [v2\EvalController::class, 'update']);
             });
@@ -153,19 +153,21 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::get('export_csv/{ids}/{module_key}', [v2\Controller::class, 'exportModuleToCsv'])->name('imet-core::csv');
         });
 
-        /*
-        |--------------------------------------------------------------------------
-        | API Routes - for internal use ONLY
-        |--------------------------------------------------------------------------
-        */
-        Route::group(['prefix' => 'api', 'middleware' => 'auth'], function () {
+        // ###### Selectors ######
+        Route::group(['prefix' => 'selector'], function () {
 
-            Route::post('species', [SpeciesController::class, 'search'])->name('imet-core::search_species');
-            Route::post('protected_areas', [ProtectedAreaController::class, 'search'])->name('imet-core::search_pas');
-            Route::post('protected_areas_labels', [ProtectedAreaController::class, 'get_pairs'])->name('imet-core::labels_pas');
-            Route::post('users', [UsersController::class, 'search'])->name('imet-core::search_users');
+            Route::group(['prefix' => 'animal'], function () {
+                Route::post('search', [SpeciesController::class, 'search'])->name('selector.animal.search');
+            });
 
+            Route::group(['prefix' => 'pas'], function () {
+                Route::post('search', [ProtectedAreaController::class, 'search'])->name('imet-core::selector.pas.search');
+                Route::post('labels', [ProtectedAreaController::class, 'get_labels'])->name('imet-core::selector.pas.labels');
+            });
 
+            Route::group(['prefix' => 'users'], function () {
+                Route::post('search', [UsersController::class, 'search'])->name('imet-core::selector.users.search');
+            });
         });
 
     });
@@ -203,8 +205,8 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::get('{item}/print_sa',           [oecm\ContextController::class, 'print_sa'])->name(OECM_ROUTE_PREFIX.'print_sa');
         });
         Route::group(['prefix' => 'evaluation'], function () {
-            Route::get('{item}/edit/{step?}',   [oecm\EvalController::class, 'edit'])->name(OECM_ROUTE_PREFIX.'eval_edit');
-            Route::get('{item}/show/{step?}',   [oecm\EvalController::class, 'show'])->name(OECM_ROUTE_PREFIX.'eval_show');
+            Route::get('{item}/edit/{step?}',   [oecm\EvalController::class, 'edit'])->name(OECM_ROUTE_PREFIX.'evaluation_edit');
+            Route::get('{item}/show/{step?}',   [oecm\EvalController::class, 'show'])->name(OECM_ROUTE_PREFIX.'evaluation_show');
             Route::get('{item}/print',          [oecm\EvalController::class, 'print']);
             Route::patch('{item}',              [oecm\EvalController::class, 'update']);
         });

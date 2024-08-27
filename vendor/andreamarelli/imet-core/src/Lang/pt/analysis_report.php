@@ -339,77 +339,23 @@ return [
         'negative_positive' => ' - escala (mín: -100, máx: 100)',
         'zero_negative' => ' - escala (mín: -100, máx: 0)'
     ],
-    'assessment' => [
-        'ctx101' => 'Responsabilidade pelo preenchimento do formulário: Equipa de gestão e parceiros e apoio externo para análise e avaliação da gestão',
-        'ctx102' => 'Responsabilidade pelo preenchimento do formulário: Equipa de gestão e parceiros e apoio externo para análise e avaliação da gestão',
-        'c11' => 'Designações Especiais',
-        'c12' => 'Espécies Chave',
-        'c13' => 'Habitats terrestres e marinhos',
-        'c14' => 'Alterações Climáticas',
-        'c15' => 'Serviços de ecossistema',
-        'c1' => 'Valor e Importância',
-        'c2' => 'Restrições ou apoios externos',
-        'c3' => 'Ameaças',
-        'p1' => 'Adequação das disposições legais e regulamentares',
-        'p2' => 'Concepção e disposição da área protegida',
-        'p3' => 'Demarcação da área protegida',
-        'p4' => 'Plano de gestão',
-        'p5' => 'Plano de trabalho/acção',
-        'p6' => 'Objectivos da área protegida',
-        'i1' => 'Informação básica',
-        'i2' => 'Pessoal',
-        'i3' => 'Orçamento actua',
-        'i4' => 'Assegurar o orçamento',
-        'i5' => 'Infra-estruturas, equipamento e instalações',
-        'pr1' => 'Programa de capacidades de pessoal e formação',
-        'pr2' => 'Políticas e procedimentos de gestão de recursos humanos',
-        'pr3' => 'Analisar o grau de motivação do pessoal (adequação ao trabalho)',
-        'pr4' => 'Orientação da gestão da área protegida',
-        'pr5' => 'Orçamento e gestão financeira',
-        'pr6' => 'Manutenção de infra-estruturas, equipamento e instalações',
-        'pr7' => 'Gestão dos valores e elementos-chave da área protegida com acções específicas',
-        'pr8' => 'Gestão de patrulhas de ronda (aplicação da lei)',
-        'pr9' => 'Inteligência/investigações/Desenvolvimento de casos/gestão de cobranças (Aplicação da lei)',
-        'pr10' => 'Cooperação com as partes interessadas',
-        'pr11' => 'Benefícios/assistência apropriados para as comunidades locais',
-        'pr12' => 'Educação ambiental e sensibilização do público',
-        'pr13' => 'Gestão de instalações e serviços de visitantes',
-        'pr14' => 'Gestão do impacto dos visitantes',
-        'pr15' => 'Sistemas de monitorização dos recursos naturais e culturais',
-        'pr16' => 'Investigação e biomonitorização',
-        'pr17' => 'Gestão dos efeitos das alterações climáticas',
-        'pr18' => 'Serviços de ecossistema',
-        'op1' => 'Implementação do plano de trabalho/acção',
-        'op2' => 'Anual outputs - targets - achievement',
-        'op3' => 'Domínio da área',
-        'op4' => 'Aplicação da lei em MPA',
-        'oc1' => 'Realização dos objectivos de conservação a longo prazo da gestão',
-        'oc2' => 'Condições e tendências dos elementos-chave de conservação da área protegida',
-        'oc3' => 'Efeitos e resultados para as partes interessadas na qualidade de vida',
-        'pr1_6' => 'Sistemas e processos de gestão interna',
-        'pr7_9' => 'Gestão/Protecção dos valores',
-        'pr10_12' => 'Relações com as partes interessadas',
-        'pr13_14' => 'Gestão do turismo',
-        'pr15_16' => 'Monitorização e Investigação',
-        'pr17_18' => 'Gestão dos efeitos das alterações climáticas e dos serviços ecossistémicos'
-    ],
     'legends' => [
-        'pr1_6' => [
+        'PRA' => [
             'PR A'
         ],
-        'pr7_9' => [
+        'PRB' => [
             'PR B'
         ],
-        'pr10_12' => [
+        'PRC' => [
             'PR C'
         ],
-        'pr13_14' => [
+        'PRD' => [
             'PR D'
         ],
-        'pr15_16' => [
+        'PRE' => [
             'PR E'
         ],
-        'pr17_18' => [
+        'PRF' => [
             'PR F'
         ]
     ],
@@ -481,12 +427,12 @@ return [
             'overall' => [
                 'intro' => 'Six Sub Elements of the Process',
                 'info' => ''],
-            'pr1_pr6' => ['intro' => 'PR A: Sistemas e processos de gestão interna', 'info' => ''],
-            'pr7_pr9' => ['intro' => 'PR B: Gestão/Protecção dos valores', 'info' => ''],
-            'pr10_pr12' => ['intro' => 'PR C: Relações com as partes interessadas', 'info' => ''],
-            'pr13_pr14' => ['intro' => 'PR D: Gestão turística', 'info' => ''],
-            'pr15_pr16' => ['intro' => 'PR E: Monitorização e Investigação', 'info' => ''],
-            'pr17_pr18' => ['intro' => 'PR F: Gestão dos efeitos das alterações climáticas e dos serviços ecossistémicos', 'info' => ''],
+            'PRA' => ['intro' => 'PR A: Sistemas e processos de gestão interna', 'info' => ''],
+            'PRB' => ['intro' => 'PR B: Gestão/Protecção dos valores', 'info' => ''],
+            'PRC' => ['intro' => 'PR C: Relações com as partes interessadas', 'info' => ''],
+            'PRD' => ['intro' => 'PR D: Gestão turística', 'info' => ''],
+            'PRE' => ['intro' => 'PR E: Monitorização e Investigação', 'info' => ''],
+            'PRF' => ['intro' => 'PR F: Gestão dos efeitos das alterações climáticas e dos serviços ecossistémicos', 'info' => ''],
         ],
         'outputs' => [
             'main' => [

@@ -1,0 +1,18 @@
+@import "../abstracts/all";
+
+body.flex-col{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  > main {
+    flex-grow: 1;
+    width: 100%;
+    > section.content{
+      padding: 30px 0 40px 0;
+      width: 100%;
+      margin: 0 auto;
+      min-width: 850px;
+      max-width: 85vw;
+    }
+  }
+}

@@ -2,8 +2,6 @@
 
 return [
 
-    'admin_page'    =>  'panneau d\'administration',
-
     'add_item'          => 'ajouter un élément',
     'add_entity'        => 'ajouter une entité',
     'add'               => 'ajouter',
@@ -45,7 +43,7 @@ return [
 
     'search'            => "rechercher",
     'search_item'       => "rechercher un élément",
-    'type_at_least'   => 'Entrer un mot clé d\'au moins :num_chars lettres pour obtenir la liste des résultats correspondants',
+    'search_key_min_length'   => 'Entrer un mot clé d\'au moins :num_chars lettres pour obtenir la liste des résultats correspondants',
     'initial'     => 'initiale',
     'filters'           => 'Critères de recherche',
     'filter_results'    => 'filtrer les résultats',
@@ -55,17 +53,15 @@ return [
     'no_data'           => 'aucune donnée',
     'no_differences'    => 'aucune différence',
     'data_not_available'=> 'données non disponibles',
+    'validation_error'  => 'erreur de validation',
 
     'page'              => 'page',
     'yes'               => 'oui',
     'no'                => 'non',
 
     'form' => [
-        'preload'               => 'Charger les données des années précédentes',
-        'previous_years'        => 'Données des années précédentes',
 
         'not_available'         => 'Données non disponibles',
-        'available_years'       => 'Années disponibles',
         'available_tooltip'     => 'Cochez la case si les données sont non disponibles',
 
         'applicable'            => 'Indicateur non applicable',
@@ -76,10 +72,6 @@ return [
         'error' => 'ce formulaire contient des informations incorrectes ou manquantes',
 
         'encoding' => 'encodage',
-        'validation' => 'validation',
-        'validated_by'        => 'valider par',
-        'nothing_to_validate' => 'Rien à valider',
-        'already_validated' => 'Indicateur déjà validé.',
     ],
 
 

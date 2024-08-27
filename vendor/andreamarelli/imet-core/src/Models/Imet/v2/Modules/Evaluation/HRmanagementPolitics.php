@@ -18,7 +18,7 @@ class HRmanagementPolitics extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::v2_evaluation.HRmanagementPolitics.title');
         $this->module_fields = [
             ['name' => 'Conditions',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.HRmanagementPolitics.fields.Conditions'), 'other'=>'rows="2"'],
-            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.HRmanagementPolitics.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.HRmanagementPolitics.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.HRmanagementPolitics.fields.Comments')],
         ];
 

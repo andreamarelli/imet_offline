@@ -74,15 +74,15 @@ class AverageContribution
     public static function average_contribution_calculations(array $form_ids, array $table_indicators, string $type = "", string $colors = "", array $options = [], string $label = "", string $origType = ''): array
     {
         $data = [$type => []];
-        $radar_negative_indicators = ["c2", "oc2", "oc3"];
-        $radar_zero_negative_indicators = ["c3"];
+        $radar_negative_indicators = ['C2', 'OC2', 'OC3'];
+        $radar_zero_negative_indicators = ['C3'];
         $legends_match = [
-            'pr1_pr6' => 'pr1_6',
-            'pr7_pr9' => 'pr7_9',
-            'pr10_pr12' => 'pr10_12',
-            'pr13_pr14' => 'pr13_14',
-            'pr15_pr16' => 'pr15_16',
-            'pr17_pr18' => 'pr17_18'
+            'PRA' => 'PRA',
+            'PRB' => 'PRB',
+            'PRC' => 'PRC',
+            'PRD' => 'PRD',
+            'PRE' => 'PRE',
+            'PRF' => 'PRF'
         ];
 
         $filtered = Common::filtered_indicators_and_round_values($form_ids, $type, $table_indicators);

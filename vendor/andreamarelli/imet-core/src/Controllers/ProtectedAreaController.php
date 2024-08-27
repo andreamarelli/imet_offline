@@ -13,9 +13,6 @@ class ProtectedAreaController extends Controller
 
     /**
      * Search by search string or country
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
      */
     public static function search(Request $request): JsonResponse
     {
@@ -25,46 +22,35 @@ class ProtectedAreaController extends Controller
                 $request->input('search_key'),
                 $request->input('country'));
         }
-        return response()->json(
-            [
-                'records' => $list->toArray(),
-                'countries' => $list->pluck('country_name', 'country')
-                    ->sort()
-                    ->toArray()
-            ]
-        );
+
+        return static::sendAPIResponse($list->toArray(), null, 200, [
+            'countries' => $list->pluck('country_name', 'country')
+                ->sort()
+                ->toArray()
+        ]);
     }
 
     /**
      *  Get list of pairs of id/label as JSON
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
      */
-    public static function get_pairs(Request $request): JsonResponse
+    public static function get_labels(Request $request): JsonResponse
     {
-        $result = [];
-        if($request->filled('ids')){
-            $pas = explode(',', $request->input(['ids']));
-            foreach ($pas as $pa){
-                if(is_numeric($pa)){
-                    $result[] = [
-                        'id' => $pa,
-                        'label' => ProtectedArea
-                            ::select(['wdpa_id', 'name'])
-                            ->where('wdpa_id', $pa)
-                            ->firstOrFail()
-                            ->name
-                    ];
-                } else {
-                    $result[] = [
-                        'id' => $pa,
-                        'label' => $pa
-                    ];
-                }
-            }
+        $pairs = [];
+
+        if($request->filled('id')){
+
+            // Retrieve IDs list: can be comma separated string or json array
+            $ids = $request->input(['id']);
+            $pas = json_validate($ids)
+                ? json_decode($ids)
+                : explode(',', $ids);
+
+            $pairs = ProtectedArea::select(['wdpa_id', 'name'])
+                ->whereIn('wdpa_id', $pas)
+                ->get();
         }
-        return response()->json($result);
+
+        return static::sendAPIResponse($pairs);
     }
 
 }

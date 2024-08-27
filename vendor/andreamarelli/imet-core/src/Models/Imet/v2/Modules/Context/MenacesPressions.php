@@ -20,7 +20,7 @@ class MenacesPressions extends Modules\Component\ImetModule
         [Modules\Evaluation\ManagementActivities::class, 'Value'],
     ];
 
-    public static $groupByCategory = [
+    public static $groupsByCategory = [
             ['group0'],
             ['group1', 'group2', 'group3', 'group4', 'group5'],
             ['group6'],
@@ -43,11 +43,11 @@ class MenacesPressions extends Modules\Component\ImetModule
         $this->module_title = trans('imet-core::v2_context.MenacesPressions.title');
         $this->module_fields = [
             ['name' => 'Value',         'type' => 'text-area',               'label' => trans('imet-core::v2_context.MenacesPressions.fields.Value')],
-            ['name' => 'Impact',        'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Impact')],
-            ['name' => 'Extension',     'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Extension')],
-            ['name' => 'Duration',      'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Duration')],
-            ['name' => 'Trend',         'type' => 'imet-core::rating-Minus2to2',   'label' => trans('imet-core::v2_context.MenacesPressions.fields.Trend')],
-            ['name' => 'Probability',   'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Probability')],
+            ['name' => 'Impact',        'type' => 'rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Impact')],
+            ['name' => 'Extension',     'type' => 'rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Extension')],
+            ['name' => 'Duration',      'type' => 'rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Duration')],
+            ['name' => 'Trend',         'type' => 'rating-Minus2to2',   'label' => trans('imet-core::v2_context.MenacesPressions.fields.Trend')],
+            ['name' => 'Probability',   'type' => 'rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Probability')],
         ];
 
         $this->module_groups = [
@@ -116,10 +116,10 @@ class MenacesPressions extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function getVueData($form_id, $collection = null): array
+    public static function getVueData($form_id, $records, $definitions): array
     {
-        $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['groupByCategory'] = static::$groupByCategory;
+        $vue_data = parent::getVueData($form_id, $records, $definitions);
+        $vue_data['groupsByCategory'] = static::$groupsByCategory;
         return $vue_data;
     }
 
@@ -162,7 +162,7 @@ class MenacesPressions extends Modules\Component\ImetModule
         // ### category stats ###
         $category_stats = [];
         $valuesByCategory = [];
-        foreach (static::$groupByCategory as $index=>$groups){
+        foreach (static::$groupsByCategory as $index=>$groups){
             $valuesByCategory[$index] = [];
             foreach ($groups as $group){
                 $valuesByCategory[$index][] = array_key_exists($group, $group_stats) ? $group_stats[$group] : null;
@@ -174,9 +174,8 @@ class MenacesPressions extends Modules\Component\ImetModule
         }
 
         return [
-            'row_stats' => $row_stats,
-            'group_stats' => $group_stats,
-            'category_stats' => $category_stats,
+            'rowStats' => $row_stats,
+            'categoryStats' => $category_stats,
         ];
     }
 

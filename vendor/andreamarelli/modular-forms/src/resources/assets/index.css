@@ -1,0 +1,15 @@
+@import "./sass/vendor/tailwind.scss";
+
+/* stylesheets */
+@import "./sass/abstracts/_all.scss";
+@import "./sass/base/_all.scss";
+@import "./sass/components/_all.scss";
+@import "./sass/layout/_all.scss";
+
+/* vendor override */
+@import "./sass/vendor/air-datepicker.scss";
+@import "./sass/vendor/ckeditor.scss";
+@import "./sass/vendor/floating-ui.scss";
+@import "./sass/vendor/fontawesome.scss";
+@import "./sass/vendor/vue-select.scss";
+

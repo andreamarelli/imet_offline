@@ -1,5 +1,10 @@
 <?php
-$uri = \Illuminate\Support\Facades\Route::getCurrentRequest()->path();
+use AndreaMarelli\ModularForms\Helpers\Template;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
+
+$uri = Route::getCurrentRequest()->path();
 
 $home = $uri === 'imet'
     || $uri === 'oecm'
@@ -16,12 +21,12 @@ $welcome = $uri === 'welcome'
         <ul class="menu-header">
             @if(!$welcome)
                 <li>
-                    <a href="{{ route('imet-core::index') }}">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('arrow-circle-right', '') !!}
+                    <a href="{{ route('imet-core::index') }}">{!! Template::icon('arrow-circle-right', '') !!}
                         @lang('imet-core::common.imet_short')
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('imet-core::oecm.index') }}">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('arrow-circle-right', '') !!}
+                    <a href="{{ route('imet-core::oecm.index') }}">{!! Template::icon('arrow-circle-right', '') !!}
                         @lang('imet-core::oecm_common.oecm_short')
                     </a>
                 </li>
@@ -31,13 +36,13 @@ $welcome = $uri === 'welcome'
         <ul class="menu-header">
             @if($home)
                 <li>
-                    <a>{!! \AndreaMarelli\ModularForms\Helpers\Template::flag(strtolower(\Illuminate\Support\Facades\App::getLocale()), '') !!}</a>
+                    <a>{!! Template::flag(strtolower(App::getLocale()), '') !!}</a>
                     <ul class="language_selector">
                         <li>@lang('imet-core::common.switch_language'):</li>
                         @foreach(trans('imet-core::common.languages') as $lang=>$label)
                             <li>
                                 <a href="{{ url()->current() }}?lang={{ $lang }}">
-                                    {!! \AndreaMarelli\ModularForms\Helpers\Template::flag($lang, '') !!}
+                                    {!! Template::flag($lang, '') !!}
                                     {{ ucfirst($label) }}
                                 </a>
                             </li>
@@ -45,7 +50,9 @@ $welcome = $uri === 'welcome'
                     </ul>
                 </li>
             @endif
-
+{{--            <li>--}}
+{{--                <a href="{{ route('settings') }}" >{!! Template::icon('gear') !!}</a>--}}
+{{--            </li>--}}
         </ul>
 
     </div>

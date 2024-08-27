@@ -86,7 +86,7 @@ class Module
                     $value = ' value="'.$average_value.'"';
                 }
                 $textToAdd .= '<td class="text-center">
-                                  <input type="text" disabled="disabled" '.$value.' ' . $v_model . ' class="field-disabled input-number field-edit text-center"/>
+                                  <input type="text" disabled="disabled" '.$value.' ' . $v_model . ' class="field-disabled field-numeric field-edit text-center"/>
                                </td>';
             } else {
                 $textToAdd .= '<td></td>';
@@ -99,16 +99,10 @@ class Module
 
     /**
      * Inject in blade-generated DOM an additional title for the given GROUPs
-     *
-     * @param $view
-     * @param $module_key
-     * @param $beforeGroup
-     * @param $title
-     * @return mixed
      */
-    public static function injectGroupTitle($view, $module_key, $beforeGroup, $title)
+    public static function injectGroupTitle($view, $module_key, $beforeGroup, $title): string
     {
-        $searchFor = '<h5 class="highlight group_title_' . $module_key . '_' . $beforeGroup . '">';
+        $searchFor = '<h5 class="highlight group_title_' . $module_key . '_' . $beforeGroup . '"';
         $textToAdd = '<h3>' . $title . '</h3>';
         return str_replace($searchFor, $textToAdd . $searchFor, $view);
     }
@@ -133,22 +127,4 @@ class Module
 
         return $count > 0 ? round($sum / $count , 2) : 0;
     }
-
-    /**
-     * @param array $records
-     * @return array
-     */
-    public static function createRecordsArrayByGroup(array $records){
-        $new_records = [];
-        foreach ($records as $i => $record) {
-            $group_key = $record['group_key'];
-
-            if (!isset($new_records[$group_key])) {
-                $new_records[$group_key] = [];
-            }
-            $new_records[$group_key][] = $record;
-        }
-        return $new_records;
-    }
-
 }

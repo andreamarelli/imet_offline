@@ -1,0 +1,87 @@
+@import "../abstracts/colors";
+
+[role=dialog] {
+
+    display: inline-block;
+
+    .dialog-anchor{
+        cursor: pointer;
+
+        .dontOpenDialog{
+            cursor: default;
+        }
+    }
+
+    .dialog-overlay{
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        @apply bg-gray-800/75;
+        backdrop-filter: blur(2px);
+        z-index: 1;
+
+        &.visible {
+            display: block;
+        }
+
+        .dialog-content{
+            display: none;
+            position: fixed;
+            top: 50vh;
+            left: 50vw;
+            transform: translate(-50%,-50%);
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+
+            &.visible {
+                display: block;
+            }
+
+            .with_header_and_footer{
+                display: flex;
+                flex-direction: column;
+
+                min-width: 400px;
+                max-width: 800px;
+                width: 100vw;
+
+                .header,
+                .footer{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    .dialog-title {
+                        font-weight: bold;
+                    }
+                    .spacer {
+                        flex-grow: 1;
+                    }
+                }
+
+                .header{
+                    @apply border-b border-gray-50;
+                    padding-bottom: 5px;
+                    font-weight: bold;
+                }
+                .body{
+                    padding: 0 5px;
+                }
+                .footer{
+                    column-gap: 5px;
+                    align-items: center;
+                    padding-top: 5px;
+                    @apply border-t border-gray-50;
+                }
+
+
+            }
+
+        }
+
+    }
+
+}

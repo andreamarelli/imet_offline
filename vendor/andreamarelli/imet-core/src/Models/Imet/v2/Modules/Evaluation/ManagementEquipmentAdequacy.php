@@ -20,7 +20,7 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
         $this->module_fields = [
             ['name' => 'Equipment',  'type' => 'blade-imet-core::v2.evaluation.fields.management_equipment_adequacy_equipment',   'label' => trans('imet-core::v2_evaluation.ManagementEquipmentAdequacy.fields.Equipment')],
             ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::v2.evaluation.fields.management_equipment_adequacy_evaluationscore',   'label' => trans('imet-core::v2_evaluation.ManagementEquipmentAdequacy.fields.EvaluationScore')],
-            ['name' => 'Importance',  'type' => 'imet-core::rating-0to2',   'label' => trans('imet-core::v2_evaluation.ManagementEquipmentAdequacy.fields.Importance')],
+            ['name' => 'Importance',  'type' => 'rating-0to2',   'label' => trans('imet-core::v2_evaluation.ManagementEquipmentAdequacy.fields.Importance')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ManagementEquipmentAdequacy.fields.Comments')],
         ];
 

@@ -41,8 +41,11 @@ class ServiceProvider extends BaseServiceProvider
         ]);
 
         // Views
-        $this->loadViewsFrom(static::BASE_PATH . 'src/Views', 'imet-core');
-        $this->publishes([static::BASE_PATH . 'src/Views' => resource_path('views/vendor/imet-core')], 'views');
+        $this->loadViewsFrom(static::BASE_PATH . 'src/resources/views', 'imet-core');
+        $this->publishes([
+            static::BASE_PATH . 'src/resources/views/vendor/modular-forms' =>
+                resource_path('views/vendor/modular-forms') // Override ModularForms views
+        ], 'imet-core');
 
         // Routes
         Route::group($this->routeConfiguration('web'), function (){
@@ -53,7 +56,9 @@ class ServiceProvider extends BaseServiceProvider
         });
 
         // Config
-        $this->publishes([static::BASE_PATH . 'config/config.php' => config_path('imet-core.php')], 'config');
+        $this->publishes([
+            static::BASE_PATH . 'config/config.php' => config_path('imet-core.php')
+        ], 'imet-core');
 
         //Lang
         $this->loadTranslationsFrom(static::BASE_PATH . 'src/Lang', 'imet-core');

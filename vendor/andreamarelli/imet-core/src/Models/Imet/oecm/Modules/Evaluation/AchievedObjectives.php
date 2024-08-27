@@ -20,7 +20,7 @@ class AchievedObjectives extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::oecm_evaluation.AchievedObjectives.title');
         $this->module_fields = [
             ['name' => 'Objective',  'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.AchievedObjectives.fields.Objective')],
-            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_evaluation.AchievedObjectives.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'rating-0to3',   'label' => trans('imet-core::oecm_evaluation.AchievedObjectives.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.AchievedObjectives.fields.Comments')],
         ];
 
@@ -37,7 +37,7 @@ class AchievedObjectives extends Modules\Component\ImetModule_Eval
      * @param $form_id
      * @return array
      */
-    protected static function getPredefined($form_id = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
         $p6_values = $form_id!==null
             ? collect(Objectives::getModuleRecords($form_id)['records'])

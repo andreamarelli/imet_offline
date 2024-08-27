@@ -38,14 +38,14 @@ class Imet extends BaseImetForm
             Modules\Context\Contexts::class,
             Modules\Context\Objectives1::class
         ],
-        'areas'                 => [
+        'areas' => [
             Modules\Context\GeographicalLocation::class,
             Modules\Context\Areas::class,
             Modules\Context\Sectors::class,
             Modules\Context\TerritorialReferenceContext::class,
             Modules\Context\Objectives2::class,
         ],
-        'resources'             => [
+        'resources' => [
             Modules\Context\ManagementStaff::class,
             Modules\Context\ManagementStaffPartners::class,
             Modules\Context\ManagementStaffCommunities::class,
@@ -56,25 +56,25 @@ class Imet extends BaseImetForm
             Modules\Context\Equipments::class,
             Modules\Context\Objectives3::class,
         ],
-        'key_elements'          => [
+        'key_elements' => [
             Modules\Context\AnimalSpecies::class,
             Modules\Context\VegetalSpecies::class,
             Modules\Context\Habitats::class,
             Modules\Context\Objectives4::class,
         ],
-        'threats'               => [
+        'threats'  => [
             Modules\Context\MenacesPressions::class,
             Modules\Context\Objectives5::class,
         ],
-        'climate'               => [
+        'climate'  => [
             Modules\Context\ClimateChange::class,
             Modules\Context\Objectives6::class,
         ],
-        'ecosystem_services'    => [
+        'ecosystem_services' => [
             Modules\Context\EcosystemServices::class,
             Modules\Context\Objectives7::class,
         ],
-        'objectives'            => [
+        'objectives' => [
             Modules\Context\Objectives1::class,
             Modules\Context\Objectives2::class,
             Modules\Context\Objectives3::class,

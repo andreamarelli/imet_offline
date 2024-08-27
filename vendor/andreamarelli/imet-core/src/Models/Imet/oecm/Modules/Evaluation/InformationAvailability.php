@@ -23,7 +23,7 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::oecm_evaluation.InformationAvailability.title');
         $this->module_fields = [
             ['name' => 'Element',           'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.InformationAvailability.fields.Element')],
-            ['name' => 'EvaluationScore',   'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_evaluation.InformationAvailability.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',   'type' => 'rating-0to3',   'label' => trans('imet-core::oecm_evaluation.InformationAvailability.fields.EvaluationScore')],
             ['name' => 'Comments',          'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.InformationAvailability.fields.Comments')],
         ];
 
@@ -50,7 +50,7 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
     }
 
 
-    protected static function getPredefined($form_id = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
         $key_elements = $form_id!==null
             ? array_merge(

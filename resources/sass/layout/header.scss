@@ -1,0 +1,98 @@
+@import "@modular-forms/sass/abstracts/_mixins.scss";
+
+#imet_header {
+    display: flex;
+    @apply bg-gray-100;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+ul.menu-header{
+    padding-inline-start: 0;
+    font-weight: normal;
+    margin-bottom: 0;
+    > li {
+        display: inline-block;
+        position: relative;
+        > a {
+            display: inline-block;
+            padding: 10px 0 10px 0;
+            margin: 0 10px -1px;
+            @apply text-gray-600;
+        }
+        &:first-child > a {
+            margin-left: 0;
+        }
+        &:last-child {
+            > a {
+                margin-right: 0;
+            }
+            ul {
+                left: auto;
+                right: -10px;
+                text-align: right;
+            }
+        }
+        &.selected {
+            > a {
+                font-weight: bold;
+            }
+        }
+        &:hover {
+            > a {
+                text-decoration: none;
+                @apply text-primary-800;
+            }
+            ul {
+                display: block;
+                background-color: rgba(255, 255, 255, 1);
+            }
+        }
+        ul {
+            list-style: none;
+            z-index: 3;
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: -60px;
+            padding: 10px 0 10px 30px;
+            background-color: rgba(255, 255, 255, 0);
+            text-align: left;
+            @include transition(background-color);
+            min-width: 100%;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, .15);
+            &:before {
+                content: "";
+                position: absolute;
+                left: 30px;
+                top: 0;
+                bottom: 0;
+                border-left: 1px solid #efeded;
+            }
+            li {
+                white-space: nowrap;
+                a {
+                    padding: 10px 30px;
+                    display: block;
+                    @include transition(background-color);
+                    &:hover {
+                        background-color: #efeded;
+                        text-decoration: none;
+                        @apply text-primary-800;
+                    }
+                }
+                &.selected {
+                    position: relative;
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        left: -1px;
+                        top: 11px;
+                        bottom: 11px;
+                        @apply border-l border-primary-600;
+                    }
+                }
+            }
+        }
+    }
+}

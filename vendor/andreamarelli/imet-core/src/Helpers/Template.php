@@ -37,7 +37,7 @@ class Template{
         if($iso!=''){
             $country = Country::getByISO($iso);
             $iso = $country->iso2;
-            return BaseTemplate::flag($iso, $country->name);
+            return BaseTemplate::flag($iso);
         }
         return '';
     }
@@ -50,15 +50,10 @@ class Template{
      */
     public static function module_scope($scope): string
     {
-        $common_attributes = 'data-toggle="tooltip" data-placement="top"';
-        if($scope === ImetModule::TERRESTRIAL_AND_MARINE){
-            return '<img src="/assets/images/tree.png" '.$common_attributes.' data-original-title="' . ucfirst(trans('imet-core::common.terrestrial')) . '" />
-                        <img src="/assets/images/fish.png" '.$common_attributes.' data-original-title="' . ucfirst(trans('imet-core::common.marine')) . '" />';
-        } elseif ($scope === ImetModule::TERRESTRIAL){
-            return '<img src="/assets/images/tree.png" '.$common_attributes.' data-original-title="' . ucfirst(trans('imet-core::common.terrestrial')) . '" />';
-        } elseif ($scope === ImetModule::MARINE){
-            return '<img src="/assets/images/fish.png" '.$common_attributes.' data-original-title="' . ucfirst(trans('imet-core::common.marine')) . '" />';
+        if($scope !== null){
+            return "<scope-icon scope='" . $scope . "'></scope-icon>";
         }
+
         return '';
     }
 

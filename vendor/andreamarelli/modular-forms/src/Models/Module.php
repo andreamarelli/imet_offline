@@ -34,7 +34,6 @@ class Module extends BaseModel
     public static $foreign_key = null;
     protected $fixed_rows = false;
     protected $enable_not_applicable = false;
-    protected $enable_preload = false;
     protected $max_rows = null;
 
     /**
@@ -62,7 +61,7 @@ class Module extends BaseModel
         }
 
         // Add hidden field for group (only for GROUP_TABLE and GROUP_ACCORDION)
-        if ($this->module_type == 'GROUP_TABLE' || $this->module_type == 'GROUP_ACCORDION') {
+        if (Str::contains($this->module_type, 'GROUP_')) {
             $this->module_fields[] = ['name' => static::$group_key_field, 'type' => 'hidden'];
         }
 
@@ -203,10 +202,9 @@ class Module extends BaseModel
             'group_key_field' => static::$group_key_field,
             'predefined_values' => static::getPredefined($form_id), // From Predefined trait
             'enable_not_applicable' => $model->enable_not_applicable,
-            'enable_preload' => $model->enable_preload,
             'fixed_rows' => $model->fixed_rows,
             'max_rows' => $model->max_rows,
-            'accordion_title_field' => ($model->module_type === 'ACCORDION' || $model->module_type === 'GROUP_ACCORDION')
+            'accordion_title_field' => Str::contains($model->module_type, 'ACCORDION')
                 ? $model->module_fields[0]['name'] : null,
             'label_width' => $model->label_width,
             'primary_key' => $model->getKeyName(),
@@ -268,17 +266,9 @@ class Module extends BaseModel
 
     /**
      * Generate the array of data needed by the Vue.JS module's controller
-     *
-     * @param $form_id
-     * @param $collection
-     * @return array
-     * @throws \ReflectionException
      */
-    public static function getVueData($form_id, $collection = null): array
+    public static function getVueData($form_id, $records, $definitions): array
     {
-        $definitions    = static::getDefinitions($form_id);
-        $module_records = static::getModuleRecords($form_id, $collection);
-
         return [
             'module_key' => $definitions['module_key'],
             'module_type' => $definitions['module_type'],
@@ -288,12 +278,13 @@ class Module extends BaseModel
             'predefined_values' => $definitions['predefined_values'],
             'max_rows' => $definitions['max_rows'],
             'accordion_title_field' => $definitions['accordion_title_field'],
-            'empty_record' => $module_records['empty_record'],
-            'records' => $module_records['records'],
-            'last_update' => $module_records['last_update'],
+            'empty_record' => $records['empty_record'],
+            'records' => $records['records'],
+            'last_update' => $records['last_update'],
             'action' => $form_id !== null ? 'update' : 'store',
             'form_id' => $form_id,
-            'enable_not_applicable' => $definitions['enable_not_applicable']
+            'enable_not_applicable' => $definitions['enable_not_applicable'],
+            'warning_on_save' => null
         ];
     }
 
@@ -668,7 +659,9 @@ class Module extends BaseModel
                 $errors = [
                     'key' => ModuleKey::ClassNameToKey(static::class),
                     'step' => $step ?? '',
-                    'title' => (new static())->module_title,
+                    'title' => (new static())->module_code!==null
+                        ? (new static())->module_code . ' - ' . (new static())->module_title
+                        : (new static())->module_title,
                     'messages' => $messages
                 ];
             }
