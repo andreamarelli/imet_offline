@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/andreamarelli/imet-core.git",
-                "reference": "ae52f4fc64c4d4cd680de3f9cde7efa79289c53a"
+                "reference": "e157d26d2ffbf832d87f96c76850cf4e93577edc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/ae52f4fc64c4d4cd680de3f9cde7efa79289c53a",
-                "reference": "ae52f4fc64c4d4cd680de3f9cde7efa79289c53a",
+                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/e157d26d2ffbf832d87f96c76850cf4e93577edc",
+                "reference": "e157d26d2ffbf832d87f96c76850cf4e93577edc",
                 "shasum": ""
             },
             "require": {
@@ -23,7 +23,7 @@
             "require-dev": {
                 "orchestra/testbench": "^9.0"
             },
-            "time": "2024-08-27T05:02:59+00:00",
+            "time": "2024-08-29T12:58:27+00:00",
             "type": "library",
             "extra": {
                 "laravel": {
@@ -579,17 +579,17 @@
         },
         {
             "name": "composer/pcre",
-            "version": "3.3.0",
-            "version_normalized": "3.3.0.0",
+            "version": "3.3.1",
+            "version_normalized": "3.3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/pcre.git",
-                "reference": "1637e067347a0c40bbb1e3cd786b20dcab556a81"
+                "reference": "63aaeac21d7e775ff9bc9d45021e1745c97521c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/pcre/zipball/1637e067347a0c40bbb1e3cd786b20dcab556a81",
-                "reference": "1637e067347a0c40bbb1e3cd786b20dcab556a81",
+                "url": "https://api.github.com/repos/composer/pcre/zipball/63aaeac21d7e775ff9bc9d45021e1745c97521c4",
+                "reference": "63aaeac21d7e775ff9bc9d45021e1745c97521c4",
                 "shasum": ""
             },
             "require": {
@@ -603,7 +603,7 @@
                 "phpstan/phpstan-strict-rules": "^1.1",
                 "phpunit/phpunit": "^8 || ^9"
             },
-            "time": "2024-08-19T19:43:53+00:00",
+            "time": "2024-08-27T18:44:43+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -641,7 +641,7 @@
             ],
             "support": {
                 "issues": "https://github.com/composer/pcre/issues",
-                "source": "https://github.com/composer/pcre/tree/3.3.0"
+                "source": "https://github.com/composer/pcre/tree/3.3.1"
             },
             "funding": [
                 {
@@ -4788,17 +4788,17 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.29.1",
-            "version_normalized": "1.29.1.0",
+            "version": "1.30.0",
+            "version_normalized": "1.30.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "fcaefacf2d5c417e928405b71b400d4ce10daaf4"
+                "reference": "5ceb0e384997db59f38774bf79c2a6134252c08f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/fcaefacf2d5c417e928405b71b400d4ce10daaf4",
-                "reference": "fcaefacf2d5c417e928405b71b400d4ce10daaf4",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/5ceb0e384997db59f38774bf79c2a6134252c08f",
+                "reference": "5ceb0e384997db59f38774bf79c2a6134252c08f",
                 "shasum": ""
             },
             "require": {
@@ -4815,7 +4815,7 @@
                 "phpunit/phpunit": "^9.5",
                 "symfony/process": "^5.2"
             },
-            "time": "2024-05-31T08:52:43+00:00",
+            "time": "2024-08-29T09:54:52+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -4832,7 +4832,7 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.29.1"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.30.0"
             },
             "install-path": "../phpstan/phpdoc-parser"
         },

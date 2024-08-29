@@ -18,8 +18,14 @@ function is_cache_scores_enabled(){
  */
 function is_imet_environment(): bool
 {
-    return App::environment('imetoffline')
-        || App::environment('imetglobal');
+    return Str::contains(App::environment(), 'imet')
+        || Str::contains(App::environment(), 'builder');
+}
+
+function is_offline_environment(): bool
+{
+    return Str::contains(App::environment(), 'offline')
+        || Str::contains(App::environment(), 'builder');
 }
 
 /**

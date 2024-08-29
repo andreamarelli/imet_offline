@@ -2,8 +2,6 @@
 
 namespace   AndreaMarelli\ImetCore\Helpers;
 
-use Illuminate\Support\Str;
-
 class Database
 {
     // Connections: used as connection + filename for SQLite offline version
@@ -22,7 +20,7 @@ class Database
      */
     static public function getSchemaAndConnection($requested_schema = null): array
     {
-        $is_offline = Str::contains(config('app.env'),'offline');
+        $is_offline = is_offline_environment();
 
         // Set Connection
         if($is_offline){
