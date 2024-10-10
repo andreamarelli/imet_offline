@@ -8,7 +8,7 @@
 
     @foreach($children as $category => $elem)
 
-        <table class="max-w-6xl">
+        <table class="max-w-full">
             <tr>
                 <th colspan="2">
                     <h5>{{ trans('imet-core::oecm_context.AnalysisStakeholders.groups.'.$category) }}</h5>

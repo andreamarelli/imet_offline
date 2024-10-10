@@ -39,9 +39,9 @@ class Radar
             foreach ($values as $v => $value) {
                 if ($v !== "avg") {
                     if ($type === "process" && stripos($v, "_") === true) {
-                        $name = Common::indicator_label($v, 'imet-core::analysis_report.assessment.', 'imet-core::analysis_report.legends.');
+                        $name = Common::get_all_indicator_labels_cached()[$v]." ".trans('imet-core::analysis_report.legends.'.$v);
                     } else {
-                        $name = Common::indicator_label($v, 'imet-core::analysis_report.assessment.');
+                        $name = Common::get_all_indicator_labels_cached()[$v];
                     }
 
                     $indicators[$i] = $name;
@@ -104,10 +104,10 @@ class Radar
      * @param string $colors
      * @param array $options
      * @param string $label
-     * @param int $scaling_id
+     * @param int|null $scaling_id
      * @return array
      */
-    public static function get_radar_analysis_indicators(array $form_ids, array $table_indicators, string $type = "", string $colors = "", array $options = [], string $label = "", ?int $scaling_id = 0)
+    public static function get_radar_analysis_indicators(array $form_ids, array $table_indicators, string $type = "", string $colors = "", array $options = [], string $label = "", ?int $scaling_id = 0): array
     {
         $response = static::get_radar_analysis_indicators_data($form_ids, $table_indicators, $type, $scaling_id);
 
@@ -242,13 +242,13 @@ class Radar
 
             $protected_areas[$j] = Modules\Context\MenacesPressions::getStats($form_id);
             if (count($indicators) === 0) {
-                foreach ($protected_areas[$j]['category_stats'] as $c => $value) {
+                foreach ($protected_areas[$j]['categoryStats'] as $c => $value) {
                     $name = trans('imet-core::v2_context.MenacesPressions.categories.title' . ($c + 1), []);
                     array_unshift($indicators, $name);
 
                 }
             }
-            foreach ($protected_areas[$j]['category_stats'] as $k => $protected_area) {
+            foreach ($protected_areas[$j]['categoryStats'] as $k => $protected_area) {
                 if ($protected_area === "") {
                     $value = "-";
                 } else {

@@ -1,10 +1,10 @@
 <div class="module-body bg-white border-0">
-    <div v-for="(value, index) in data.props.values" class="container" :id="'{{$name}}-forest-cover-'+index">
+    <div v-for="(value, index) in data.props" class="container" :id="'{{$name}}-forest-cover-'+index">
 
         <container_actions :data="value" :name="'{{$name}}-forest-cover-'+index"
                            :event_image="'save_entire_block_as_image'"
                            :exclude_elements="'{{$exclude_elements}}'">
-            <template slot-scope="data_elements">
+            <template v-slot:default="data_elements">
                 <div v-for="(value, idx) in data_elements.props">
                     <div class="module-body bg-white border-0">
                         <dopa_indicators_table

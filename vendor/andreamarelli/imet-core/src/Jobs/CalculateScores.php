@@ -8,7 +8,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Models\Imet\v2\Imet as ImetV2;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet as ImetOECM;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
@@ -39,7 +39,7 @@ class CalculateScores implements ShouldQueue
     public function handle(): void
     {
         // IMETs
-        $IMETs = Imet::select(['FormID', 'version'])->get();
+        $IMETs = ImetV2::select(['FormID', 'version'])->get();
         foreach($IMETs as $imet){
             ImetScores::refresh_scores($imet);
             Log::info('IMET #' . $imet . ' scores updated');

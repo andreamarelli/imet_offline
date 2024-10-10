@@ -41,20 +41,20 @@ $form_class = Imet::class;
 @section('functional-selection-buttons')
 
     <div id="cloud">
-        <label-cloud
-                :cookie-name="'analysis'"
-                url="{{ route('imet-core::scaling_up_report', ['items' => "__items__"]) }}"
-                :label-scaling-up="'Scaling up analysis'"
-                :label-remove-all="'@lang('imet-core::analysis_report.remove_all')'"
-                :source-of-data="'cookie'"
-        ></label-cloud>
-    </div>
-    <action-button-cookie
-            :class-name="'btn-nav'"
+        <label_cloud
             :cookie-name="'analysis'"
-            :event="'update_cloud_tags'"
-            :label="'@lang('imet-core::analysis_report.add_choices')'"
-    ></action-button-cookie>
+            url="{{ route('imet-core::scaling_up_report', ['items' => "__items__"]) }}"
+            :label-scaling-up="'Scaling up analysis'"
+            :label-remove-all="'@lang('imet-core::analysis_report.remove_all')'"
+            :source-of-data="'cookie'"
+        ></label_cloud>
+    </div>
+    <action_button_cookie
+        :class-name="'btn-nav mr-2'"
+        :cookie-name="'analysis'"
+        :event="'update_cloud_tags'"
+        :label="'@lang('imet-core::analysis_report.add_choices')'"
+    ></action_button_cookie>
     <button class="btn-nav" @click="add_all()">@lang('imet-core::analysis_report.add_all')</button>
 
 @endsection
@@ -65,6 +65,7 @@ $form_class = Imet::class;
         <input type='checkbox'
                class="ml-1 vue-checkboxes"
                @click="check_all()"
+               :checked="are_checked_all"
                v-model="are_checked_all">
     </th>
     <th class="text-center width60px">@lang('imet-core::common.id')</th>
@@ -80,9 +81,9 @@ $form_class = Imet::class;
         <tr>
             <td class="text-center">
                 <input type="checkbox"
-                       :checked="is_checked('{{ $item->FormID }}')"
+                       :checked="is_checked({{ (int)$item->FormID }})"
                        :data-name='"{{ $item->name }}"'
-                       @click="selectValueByIdAndValue({{ $item->FormID }}, '{!! str_replace("'", "\'", $item->name) !!}')"
+                       @click="selectValueByIdAndValue({{ (int)$item->FormID }}, '{!! str_replace("'", "\'", $item->name) !!}')"
                        class="vue-checkboxes"
                        :value="{{ $item->FormID }}">
             </td>
@@ -133,15 +134,15 @@ $form_class = Imet::class;
 
             <td class="align-baseline">
                 <imet_encoders_responsibles
-                        :items='@json($item->encoders_responsibles)'
+                    :items='@json($item->encoders_responsibles)'
                 ></imet_encoders_responsibles>
             </td>
             <td>
                 @if(!empty(array_filter($item->assessment_radar, fn ($item) => !is_null($item))))
                     <imet_radar
-                            style="margin: 0 auto;"
-                            :width=150 :height=150
-                            :values='@json($item->assessment_radar)'
+                        style="margin: 0 auto;"
+                        :width=150 :height=150
+                        :values='@json($item->assessment_radar)'
                     ></imet_radar>
                 @endif
             </td>
@@ -151,31 +152,17 @@ $form_class = Imet::class;
 
 <!-- scripts -->
 @section('scripts')
-    <script>
-        new Vue({
-            el: '#page-container',
-
-            data: {
-                list: @json($list)
-            },
-
-            mixins: [
-                window.ModularForms.MixinsVue.checkboxes
-            ],
-
-            methods: {
-                
-                add_all() {
-                    this.list.forEach(function (item) {
-                        this.selectValueByIdAndValue(item.FormID, item.name);
-                    }, this);
-
-                    this.$root.$emit('store_cookie_and_value', 'analysis', JSON.stringify(this.checkboxes));
-                    this.$root.$emit('add_cloud_tags');
+    <script type="module">
+        const list = @json($list);
+        (new window.ImetCore.Apps.ScalingList({
+            checkboxes: [],
+            listItems: list.map(item => {
+                return {
+                    id: item.FormID,
+                    value: item.name
                 }
-
-            }
-
-        });
+            }),
+            are_checked_all: false
+        })).mount('#page-container');
     </script>
 @endsection

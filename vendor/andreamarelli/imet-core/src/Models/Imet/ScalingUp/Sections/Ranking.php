@@ -47,9 +47,10 @@ class Ranking
             }
             foreach ($values as $v => $value) {
                 if ($type === "process" && stripos($v, "_")) {
-                    $name = Common::indicator_label($v, 'imet-core::analysis_report.assessment.', 'imet-core::analysis_report.legends.');
+                    $name = Common::get_all_indicator_labels_cached()[$v]." _".trans('imet-core::analysis_report.legends.'.$v);
                 } else {
-                    $name = Common::indicator_label($v, 'imet-core::analysis_report.assessment.');
+                    $name = Common::get_all_indicator_labels_cached()[$v];
+//                    indicator_label($v, 'imet-core::analysis_report.assessment.');
                 }
                 $indicators_process_number = [];
                 if (isset($indicators_numbers[$id])) {
@@ -209,7 +210,7 @@ class Ranking
             $protected_areas[$j] = Modules\Context\MenacesPressions::getStats($form_id);
             $wdpa_id = $pa->wdpa_id;
 
-            foreach ($protected_areas[$j]['category_stats'] as $k => $protected_area) {
+            foreach ($protected_areas[$j]['categoryStats'] as $k => $protected_area) {
                 if (!isset($sum_values[$j])) {
                     $sum_values[$j] = 0;
                 }

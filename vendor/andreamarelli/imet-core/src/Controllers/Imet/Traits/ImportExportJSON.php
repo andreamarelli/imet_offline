@@ -27,7 +27,6 @@ use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 use Throwable;
-use function imet_offline_version;
 use function report;
 use function response;
 use function trans;
@@ -247,7 +246,10 @@ trait ImportExportJSON
             ->makeHidden(['FormID', 'UpdateBy', 'protected_area_global_id'])
             ->toArray();
 
-        $imet_form['imet_version'] = imet_offline_version();
+
+        $imet_form['imet_version'] = function_exists('imet_offline_tool_version')
+            ? imet_offline_tool_version()
+            : 'online';
 
         // #####  IMET V1  #####
         if ($imet_form['version'] === Imet\Imet::IMET_V1) {

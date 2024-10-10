@@ -10,6 +10,7 @@ class Group
     /**
      * @param array $parameters
      * @param array $assessments
+     * @param int $scaling_id
      * @return array
      */
     public static function get_calculation_grouping_analysis(array $parameters, array $assessments = [], int $scaling_id = 0): array

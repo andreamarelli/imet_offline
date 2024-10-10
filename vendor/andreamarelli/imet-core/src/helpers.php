@@ -3,14 +3,6 @@
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 
-
-/**
- * @return mixed
- */
-function is_cache_scores_enabled(){
-    return env("CACHED_SCORES", false);
-}
-
 /**
  * Check if App::environment is IMET related (ex. imetoffline or imetglobal)
  *
@@ -26,14 +18,6 @@ function is_offline_environment(): bool
 {
     return Str::contains(App::environment(), 'offline')
         || Str::contains(App::environment(), 'builder');
-}
-
-/**
- * Return IMET offline version
- */
-function imet_offline_version(): string
-{
-    return config('imet-core.offline_version');
 }
 
 /**

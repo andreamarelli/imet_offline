@@ -28,6 +28,8 @@ return new class extends Migration
             $table->json('country_distribution')->nullable();
             $table->integer('last_update_by')->nullable();
             $table->string('last_update_date', 30)->nullable();
+
+            $table->unique(['order', 'family', 'genus', 'species']);
         });
     }
 

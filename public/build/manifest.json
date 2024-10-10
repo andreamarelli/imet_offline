@@ -3,26 +3,26 @@
     "file": "assets/dropzone-BRDZ0r50.css",
     "src": "_dropzone-!~{004}~.js"
   },
-  "_dropzone-ZV8SMygf.js": {
-    "file": "assets/dropzone-ZV8SMygf.js",
+  "_dropzone-CmDhQMhp.js": {
+    "file": "assets/dropzone-CmDhQMhp.js",
     "name": "dropzone",
     "imports": [
-      "_vue-BOXF9t5B.js"
+      "_vue-Bldgvu64.js"
     ],
     "css": [
       "assets/dropzone-BRDZ0r50.css"
     ]
   },
-  "_echarts-Cjqa5bG4.js": {
-    "file": "assets/echarts-Cjqa5bG4.js",
+  "_echarts-EaDxQI3p.js": {
+    "file": "assets/echarts-EaDxQI3p.js",
     "name": "echarts"
   },
   "_mapbox-B5Yj7lio.js": {
     "file": "assets/mapbox-B5Yj7lio.js",
     "name": "mapbox"
   },
-  "_vue-BOXF9t5B.js": {
-    "file": "assets/vue-BOXF9t5B.js",
+  "_vue-Bldgvu64.js": {
+    "file": "assets/vue-Bldgvu64.js",
     "name": "vue"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf": {
@@ -2210,18 +2210,18 @@
     "src": "node_modules/flag-icons/flags/4x3/zw.svg"
   },
   "resources/index.js": {
-    "file": "assets/index-DAl439yL.js",
+    "file": "assets/index-Djiqzazr.js",
     "name": "index",
     "src": "resources/index.js",
     "isEntry": true,
     "imports": [
-      "_vue-BOXF9t5B.js",
-      "_dropzone-ZV8SMygf.js",
+      "_vue-Bldgvu64.js",
+      "_dropzone-CmDhQMhp.js",
       "_mapbox-B5Yj7lio.js",
-      "_echarts-Cjqa5bG4.js"
+      "_echarts-EaDxQI3p.js"
     ],
     "css": [
-      "assets/index-DCs4tq82.css"
+      "assets/index-IhAeoc2K.css"
     ],
     "assets": [
       "assets/iucn_red_list-Bn3APVvg.png",

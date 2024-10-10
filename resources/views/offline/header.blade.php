@@ -3,6 +3,7 @@ use AndreaMarelli\ModularForms\Helpers\Template;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
+use App\Helpers\SoftwareUpdater;
 
 $uri = Route::getCurrentRequest()->path();
 
@@ -11,7 +12,9 @@ $home = $uri === 'imet'
     || Str::contains($uri, 'imet/scaling_up') > -1;
 
 $welcome = $uri === 'welcome'
-    || $uri === 'confirm_user';
+    || $uri === 'confirm_user'
+    || Str::contains($uri, 'update/done');
+
 
 ?>
 @if(!\Illuminate\Support\Facades\Auth::guest())
@@ -34,7 +37,28 @@ $welcome = $uri === 'welcome'
         </ul>
 
         <ul class="menu-header">
+
+            @if(!$welcome)
+
+                <!-- New release -->
+                @if(SoftwareUpdater::isNewVersionAvailable())
+                    <li>
+                        <a href="{{ route('update') }}" class="!text-green-600">
+                            {!! Template::icon('star') !!} @lang('offline.update.new_version_available')
+                        </a>
+                    </li>
+                @endif
+
+                <!-- Settings -->
+                <li>
+                    <a href="{{ route('settings') }}" >{!! Template::icon('gear') !!}</a>
+                </li>
+
+            @endif
+
             @if($home)
+
+                <!-- Language selector -->
                 <li>
                     <a>{!! Template::flag(strtolower(App::getLocale()), '') !!}</a>
                     <ul class="language_selector">
@@ -49,10 +73,9 @@ $welcome = $uri === 'welcome'
                         @endforeach
                     </ul>
                 </li>
+
             @endif
-{{--            <li>--}}
-{{--                <a href="{{ route('settings') }}" >{!! Template::icon('gear') !!}</a>--}}
-{{--            </li>--}}
+
         </ul>
 
     </div>

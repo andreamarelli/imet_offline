@@ -72,7 +72,7 @@ trait Process {
             })
             ->map(function($record){
                 $record['eval'] =
-                    $record['EvaluationScore']==='-99'
+                    $record['EvaluationScore']===-99
                         ? null
                         : $record['EvaluationScore'];
                 return $record;

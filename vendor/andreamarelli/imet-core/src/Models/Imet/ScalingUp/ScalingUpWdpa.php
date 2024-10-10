@@ -10,6 +10,7 @@ class ScalingUpWdpa extends BaseModel
 {
 
     protected string $schema = Database::IMET_SCHEMA;
+    protected $connection = Database::IMET_CONNECTION;
     protected $table = 'scaling_up_wdpas';
 
     protected $fillable = ['scaling_id', 'FormID', 'name', 'Country', 'wdpa_id', 'color'];

@@ -20,6 +20,8 @@ Route::group(['prefix' => 'api'], function () {
         Route::get('{lang}/protected-areas-list', [ApiController::class, 'get_protected_areas_list'])->name('imet_core::api::get_protected_areas_list');
         Route::get('total-number-of-assessments', [ApiController::class, 'get_total_number_of_assessments'])->name('imet_core::api::statistics.total_number_of_assessments');
         Route::get('pas-rating', [ApiController::class, 'get_pas_rating'])->name('imet_core::api::statistics.pas_rating');
+        Route::get('label-indicators/{indicator}', [ApiController::class, 'get_labels_by_indicator'])->name('imet_core::api::all_indicator_labels');
+
         Route::get('assessments-performed-by-year', [ApiController::class, 'get_assessments_performed_by_year'])->name('imet_core::api::statistics.assessments_performed_by_year');
         Route::get('assessments-performed-by-country', [ApiController::class, 'get_assessments_performed_by_country'])->name('imet_core::api::statistics.assessments_performed_by_country');
         Route::get('{lang}/global-statistics/{slug}/{year?}', [ApiController::class, 'get_global_statistics'])->name('imet_core::api::statistics.global');

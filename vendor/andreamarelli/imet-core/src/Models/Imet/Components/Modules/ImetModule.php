@@ -41,7 +41,7 @@ class ImetModule extends Module
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        [$this->schema, $this->connection] = Database::getSchemaAndConnection($this->schema);
+        [$this->table, $this->connection] = Database::getTableAndConnection($this->table,$this->schema);
     }
 
     /**

@@ -1,17 +1,18 @@
 <container_section :id="'{{$name}}'" :title="'{{$title}}'" :code="'{{$code}}'"
-                   :guidance="'imet-core::analysis_report.guidance.grouping'">
-    <template slot-scope="container">
+                   :info_label="'imet-core::analysis_report.guidance.grouping'">
+    <template v-slot:default="container">
 
         <container
             :loaded_at_once="container.props.show_view"
             :url=url
             :parameters="'{{$pa_ids}}'"
             :func="'get_assessments'">
-            <template slot-scope="data">
-                <div v-for="(value, index) in data.props.values" :id="'{{$name}}-'+index">
+            <template v-slot:default="data">
+                <div v-for="(value, index) in data.props" :id="'{{$name}}-'+index">
                     <datatable_scaling
                         :columns="container.props.config.evaluation_of_protected_area_management_cycle.columns"
-                        :values="value">
+                        :values="Object.values(value)"
+                        :default_order="'name'">
                     </datatable_scaling>
                 </div>
             </template>
@@ -22,57 +23,58 @@
             :url=url
             :parameters="'{{$pa_ids}}'"
             :func="'get_protected_area_with_countries'">
-            <template slot-scope="data">
-
-                <div v-if="Object.entries(data.props.values).length > 0">
-                    <grouping id="exclude" :values="data.props.values" :number_of_drop_zones="3">
-                        <template>
-
+            <template v-slot:default="data">
+                <div v-if="Object.entries(data.props).length > 0">
+                    <grouping id="exclude" :values="data.props" :number_of_drop_zones="3">
+                        <template v-slot:default="params">
                             <container
                                 :url=url
                                 :event-parameters="true"
                                 :lazy_load_parameters=true
                                 :func="'get_grouping_analysis'"
-                                :on_load="false">
-                                <template slot-scope="values">
+                                :on_load="false"
+                                :trigger_incoming_data="params.trigger_incoming_data"
+                            >
+                                <template v-slot:default="values">
                                     <container_actions :data="values.props" :name="'render_image'"
                                                        :event_image="'save_entire_block_as_image'"
                                                        :exclude_elements="'{{$exclude_elements}}'">
-                                        <template slot-scope="data_elements">
-                                            <div>
-                                                <div v-if="container.props.stores.BaseStore.is_visible(data_elements.props.values.radar)"
-                                                         :name="'grouping'">
-                                                        <scaling_radar :width=1128 :height=700
-                                                                       :event_key="'grouping'"
-                                                                       :single="false"
-                                                                       :unselect_legends_on_load="false"
-                                                                       :show_legends="true"
-                                                                       :values='data_elements.props.values.radar'
-                                                                       :indicators='container.props.config.indicators'></scaling_radar>
-                                                </div>
+                                        <template v-slot:default="data_elements">
+                                            <div
+                                                v-if="container.props.stores.BaseStore.is_visible(data_elements.props.radar)"
+                                                :name="'grouping'" class="mb-3">
+                                                <scaling_radar :width="1128" :height="700"
+                                                               :event_key="'grouping'"
+                                                               :single="false"
+                                                               :unselect_legends_on_load="false"
+                                                               :show_legends="true"
+                                                               :values='data_elements.props.radar'
+                                                               :indicators='container.props.config.indicators'></scaling_radar>
+                                                <datatable_interact_with_radar
+                                                    :default_order="'name'"
+                                                    :event_key="'grouping'"
+                                                    :values_with_indicators_keys="true"
+                                                    :values="data_elements.props.radar"
+                                                    :columns="container.props.config.group_analysis_on_demand.columns"></datatable_interact_with_radar>
+                                            </div>
+                                            <div
+                                                v-if="container.props.stores.BaseStore.is_visible(data_elements.props.scatter)"
+                                                :name="'grouping'" class="mb-3">
+                                                <scatter
+                                                    :label_axis_y="'@lang('imet-core::common.steps_eval.context') , @lang('imet-core::common.steps_eval.planning'), @lang('imet-core::common.steps_eval.inputs')'"
+                                                    :label_axis_x="'@lang('imet-core::common.steps_eval.process')'"
+                                                    :label_axis_y2="'@lang('imet-core::common.steps_eval.outcomes'), @lang('imet-core::common.steps_eval.outputs')'"
+                                                    :label_axis_y2_show="false"
+                                                    :values='data_elements.props.scatter'
+                                                ></scatter>
+                                            </div>
 
-                                                <div v-if="container.props.stores.BaseStore.is_visible(data_elements.props.values.scatter)"
-                                                     :name="'grouping'">
-                                                        <scatter
-                                                            :label_axis_y="'@lang('imet-core::common.steps_eval.context') , @lang('imet-core::common.steps_eval.planning'), @lang('imet-core::common.steps_eval.inputs')'"
-                                                            :label_axis_x="'@lang('imet-core::common.steps_eval.process')'"
-                                                            :label_axis_y2="'@lang('imet-core::common.steps_eval.outcomes'), @lang('imet-core::common.steps_eval.outputs')'"
-                                                            :label_axis_y2_show="false"
-                                                            :values='data_elements.props.values.scatter'
-                                                        ></scatter>
-                                                </div>
-                                                <div v-if="container.props.stores.BaseStore.is_visible(data_elements.props.values.radar)">
-                                                        <datatable_interact_with_radar
-                                                            :event_key="'grouping'"
-                                                            :values_with_indicators_keys="true"
-                                                            :values="data_elements.props.values.radar"
-                                                            :columns="container.props.config.group_analysis_on_demand.columns"></datatable_interact_with_radar>
-                                                </div>
-                                                <div v-if="container.props.stores.BaseStore.is_visible(data_elements.props.values.scatter)">
-                                                        <datatable_interact_with_scatter
-                                                            :values="data_elements.props.values.scatter"
-                                                            :columns="container.props.config.group_analysis_on_demand.scatter_columns"></datatable_interact_with_scatter>
-                                                </div>
+                                            <div
+                                                v-if="container.props.stores.BaseStore.is_visible(data_elements.props.scatter)">
+                                                <datatable_interact_with_scatter
+                                                    :default_order="'name'"
+                                                    :values="data_elements.props.scatter"
+                                                    :columns="container.props.config.group_analysis_on_demand.scatter_columns"></datatable_interact_with_scatter>
                                             </div>
                                         </template>
                                     </container_actions>
@@ -82,7 +84,7 @@
                     </grouping>
                 </div>
             </template>
-    </container>
+        </container>
 
     </template>
 </container_section>

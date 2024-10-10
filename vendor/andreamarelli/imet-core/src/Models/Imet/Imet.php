@@ -57,7 +57,7 @@ abstract class Imet extends Form
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        [$this->schema, $this->connection] = Database::getSchemaAndConnection($this->schema);
+        [$this->table, $this->connection] = Database::getTableAndConnection($this->table,$this->schema);
     }
 
     /**
@@ -507,7 +507,7 @@ abstract class Imet extends Form
     public static function foundDuplicates(): array
     {
         return static::select("FormID")
-            ->groupBy("Year", "wdpa_id", 'version')
+            ->groupBy("FormID", "Year", "wdpa_id", 'version')
             ->havingRaw('count(*) > ?', [1])
             ->get()
             ->plucK('FormID')

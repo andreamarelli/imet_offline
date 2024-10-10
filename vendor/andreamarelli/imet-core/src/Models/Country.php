@@ -6,6 +6,7 @@ use AndreaMarelli\ImetCore\Helpers\Database;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\Locale;
 use AndreaMarelli\ModularForms\Models\Utils\Country as BaseCountry;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use AndreaMarelli\ImetCore\Models\Region;
 use Illuminate\Support\Facades\App;
@@ -31,7 +32,7 @@ class Country extends BaseCountry
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        [$this->schema, $this->connection] = Database::getSchemaAndConnection($this->schema);
+        [$this->table, $this->connection] = Database::getTableAndConnection($this->table,$this->schema);
     }
 
     /**
@@ -44,17 +45,14 @@ class Country extends BaseCountry
 
     /**
      * Get country by regions
-     *
-     * @param $region
-     * @return \AndreaMarelli\ModularForms\Models\Utils\Country|\Illuminate\Database\Eloquent\Model|object|null
-     * @throws \Exception
+     * @throws Exception
      */
-    public static function getByRegion($region)
+    public static function getByRegion($region): array
     {
         if(strlen($region)==2){
             return static::where('region_id', $region)->pluck('iso3')->toArray();
         }else {
-            throw new \Exception('Wrong size for region: '. $region);
+            throw new Exception('Wrong size for region: '. $region);
         }
     }
 

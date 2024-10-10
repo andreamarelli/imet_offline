@@ -1,67 +1,62 @@
-<template>
-    <div
+<template v-slot>
+   <div
         :id="item.id"
         :class="'item_class'" class="default-zone-element"
-        draggable
+        draggable="true"
         @drop="onDrop($event, item)"
-        @dragstart='start_drag($event, item)'
-        @dragover='drag_over($event, item)'
-
+        @dragstart='startDrag($event, item)'
+        @dragover='dragOver($event, item)'
     >
         <i class="fa-solid fa-grip-vertical mr-2 cursor-grab"></i>
         <slot></slot>
         <span >{{ item.name }}</span>
-        <i v-if="is_removable" class="fa fa-times ml-2" aria-hidden="true" @click='remove_item(item.id)'></i>
-
+        <i v-if="is_removable" class="fa fa-times ml-2" aria-hidden="true" @click='removeItem(evt, item.id)'></i>
     </div>
 </template>
+<script setup>
+import { inject } from 'vue';
 
-<script>
-export default {
-    name: "draggable_item",
-    props: {
-        item: {
-            type: Object,
-            default: () => {
-                return {};
-            }
-        },
-        is_removable: {
-            type: Boolean,
-            default: true
-        },
-        item_class: {
-            type: String,
-            default: 'default-zone-element'
-        },
-        remove_event: {
-            type: String,
-            default: 'remove-element'
-        }
+const emitter = inject('emitter');
+const props = defineProps({
+    item: {
+        type: Object,
+        default: () => ({})
     },
-    mounted() {
+    is_removable: {
+        type: Boolean,
+        default: true
     },
-    data: function () {
-        return {}
+    item_class: {
+        type: String,
+        default: 'default-zone-element'
     },
-    methods: {
-        onDrop(evt, item) {
-            this.$root.$emit('drop-item-area', evt, item);
-        },
-        drag_over: function (evt, item) {
-            this.$root.$emit('drag-over', evt, item);
-        },
-        start_drag: function (evt, item) {
-            this.$root.$emit('drag-element', evt, item);
-        },
-        drag_end: function (evt, item) {
-            this.$root.$emit('drag-end', evt, item);
-        },
-        remove_item: function (item) {
-            this.$root.$emit(this.remove_event, item);
-        }
+    remove_event: {
+        type: String,
+        default: 'remove-element'
     }
-}
+});
+
+const emit = defineEmits(['drop-item-area', 'drag-over', 'drag-element', 'drag-end', 'remove-element']);
+
+const onDrop = (evt, item) => {
+    const itemID = evt.dataTransfer.getData('itemID');
+
+    emit('drop-item-area', evt, itemID);
+};
+
+const dragOver = (evt, item) => {
+    emit('drag-over', evt, item);
+};
+
+const startDrag = (evt, item) => {
+    evt.dataTransfer.effectAllowed = 'move';
+    evt.dataTransfer.setData('itemID', item.id);
+    emit('drag-element', evt, item);
+};
+
+const removeItem = (evt, item) => {
+    emit(props.remove_event, evt, item);
+};
 </script>
 
 <style scoped>

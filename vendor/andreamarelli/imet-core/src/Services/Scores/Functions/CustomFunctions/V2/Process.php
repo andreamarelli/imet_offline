@@ -85,10 +85,10 @@ trait Process
 
         $values = $records
             ->map(function($record){
-                $record['numerator'] = $record['EvaluationScore']==="-99" || $record['EvaluationScore']===null
+                $record['numerator'] = $record['EvaluationScore']===-99 || $record['EvaluationScore']===null
                     ? null
                     : intval($record['EvaluationScore']) * $record['AdequacyLevel'];
-                $record['denominator'] = $record['EvaluationScore']==="-99" || $record['EvaluationScore']===null
+                $record['denominator'] = $record['EvaluationScore']===-99 || $record['EvaluationScore']===null
                     ? null
                     : $record['AdequacyLevel'];
                 $record['denominator'] = $record['denominator'] ?? 0;
@@ -142,7 +142,7 @@ trait Process
         $values = $records
             ->sortBy("Element")
             ->map(function($record){
-                $record['score'] = $record['Cooperation'] === "-99" ? 0 : $record['Cooperation'];
+                $record['score'] = $record['Cooperation'] === -99 ? 0 : $record['Cooperation'];
                 $record['weight'] =
                     ($record['MPInvolvement'] ?? 0) +
                     ($record['BAInvolvement'] ?? 0) +
@@ -187,7 +187,7 @@ trait Process
     {
         $records = EcosystemServices::getModule($imet_id);
         $scores = $records->map(function($record) {
-            return $record['EvaluationScore'] === "-99" ? null : $record['EvaluationScore'];
+            return $record['EvaluationScore'] === -99 ? null : $record['EvaluationScore'];
         });
 
         $score = $scores->isNotEmpty()

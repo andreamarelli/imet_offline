@@ -2,58 +2,38 @@
 
 namespace AndreaMarelli\ModularForms\Helpers\API\ProtectedPlanet;
 
+use AndreaMarelli\ModularForms\Exceptions\MissingAPITokenException;
 use AndreaMarelli\ModularForms\Helpers\API\API;
+use Illuminate\Support\Facades\Config;
 
 
 class ProtectedPlanet
 {
-    public const URL_PREFIX = 'https://api.protectedplanet.net/v3/';
     public const WEBSITE_URL = 'https://www.protectedplanet.net/';
+    private const API_URL = 'https://api.protectedplanet.net/v3/';
 
     /**
      * Execute request to API
-     *
-     * @param $url
-     * @param array $params
-     * @return object
+     * @throws MissingAPITokenException
      */
     private static function request($url, array $params = []): object
     {
-        $params = array_merge($params, [
-            'token' => config('modular-forms.protected_planet_api_key')
-        ]);
+        // Get API key
+        $token = Config::get('PROTECTED_PLANET_API_KEY');
+        if($token === null){
+            throw new MissingAPITokenException('Protected Planet');
+        }
+        $params = array_merge($params, ['token' => $token]);
+
         return API::execute_api_request($url, $params);
     }
 
     /**
-     * @param $country
-     * @return object
+     * Execute API request: retrieve protected areas by given country
      */
-    public static function get_country($country): object
+    public static function getByCountry(string $country, int $page = 1, int $per_page = 50): object
     {
-        return self::request(self::URL_PREFIX . 'countries/' .$country);
-    }
-
-    /**
-     * @param $protected_area
-     * @return object
-     */
-    public static function get_protected_area($protected_area): object
-    {
-        return self::request(self::URL_PREFIX . 'protected_areas/' .$protected_area);
-    }
-
-    /**
-     * Retrieve protected areas by given country
-     *
-     * @param string $country
-     * @param int $page
-     * @param int $per_page
-     * @return object
-     */
-    public static function get_by_country(string $country, int $page = 1, int $per_page = 50): object
-    {
-        return self::request(self::URL_PREFIX . 'protected_areas/search', [
+        return self::request(self::API_URL . 'protected_areas/search', [
             'country' => $country,
             'page' => $page,
             'per_page' => 50

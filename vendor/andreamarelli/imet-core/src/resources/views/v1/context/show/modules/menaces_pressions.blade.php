@@ -19,7 +19,7 @@ foreach (MenacesPressions::$groupsByCategory as $i => $category) {
                 <h3>' . ($i + 1) . '. ' . trans('imet-core::v1_context.MenacesPressions.categories.title' . ($i + 1)) . '</h3>
             </div>
             <div class="module-row__input">
-                <input type="text" disabled="disabled" value="' . $stats['category_stats'][$i] . '"
+                <input type="text" disabled="disabled" value="' . $stats['categoryStats'][$i] . '"
                     class="field-disabled field-edit field-numeric text-center" style="font-style: bold; margin-top: 20px;"/>
             </div>
         </div>';

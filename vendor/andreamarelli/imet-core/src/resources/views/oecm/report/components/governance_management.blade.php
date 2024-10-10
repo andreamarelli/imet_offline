@@ -8,7 +8,7 @@ $official_recognition = $governance['OfficialRecognition'] === 1 ? trans('imet-c
 ?>
 
 <h4>1. @lang('imet-core::oecm_context.Governance.management') </h4>
-<table class="max-w-6xl">
+<table class="max-w-full m-auto">
     <tr>
         <td style="text-align: left;"><b>@lang('imet-core::oecm_context.Governance.fields.ManagementName')</b></td>
         <td  style="text-align: left;">

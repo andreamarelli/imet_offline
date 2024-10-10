@@ -12,13 +12,13 @@ class Database
     // Schemas: used as schema for PostGreSQL online version
     public const COMMON_IMET_SCHEMA = 'imet_common';
     public const IMET_SCHEMA = 'imet';
-    public const OECM_SCHEMA = 'oecm';
+    public const OECM_SCHEMA = 'imet_oecm';
 
     /**
-     * Get schema and connection according to the environment (offline or online)
+     * Get connection and table according to the environment (offline or online)
      * Use different databases (SQLITE) for offline version and different schemas for online version (PostGreSQL)
      */
-    static public function getSchemaAndConnection($requested_schema = null): array
+    static public function getTableAndConnection($requested_table, $requested_schema = null): array
     {
         $is_offline = is_offline_environment();
 
@@ -42,6 +42,11 @@ class Database
                     ? static::COMMON_IMET_SCHEMA . '.'
                     : $requested_schema . '.');
 
-        return [$schema, $connection];
+        // Set Table
+        $table = $is_offline
+            ? $requested_table
+            : $schema . $requested_table;
+
+        return [$table, $connection];
     }
 }

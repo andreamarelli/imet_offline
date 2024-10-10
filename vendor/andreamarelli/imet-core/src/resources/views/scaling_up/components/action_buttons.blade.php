@@ -4,6 +4,3 @@
         <editor></editor>
     </p>
 @endif
-<container :loaded_at_once="false">
-    <html_to_image :element="'{{$id}}'" :exclude_elements="'{{$exclude_elements}}'"></html_to_image>
-</container>

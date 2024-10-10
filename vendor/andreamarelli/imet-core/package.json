@@ -5,7 +5,7 @@
         "echarts": "^5.5.1",
         "html-to-image": "1.11.1",
         "mapbox-gl": "^3.1.2",
-        "vue-swatches": "^2.1.1",
+        "vue3-colorpicker": "^2.3.0",
         "dropzone-vue3": "1.0.2",
         "modular-forms": "file:./vendor/andreamarelli/modular-forms"
     }

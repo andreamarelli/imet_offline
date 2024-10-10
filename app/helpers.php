@@ -1,19 +1,29 @@
 <?php
 
+use AndreaMarelli\ImetCore\Helpers\ModuleKey;
+use App\Helpers\SoftwareUpdater;
+use App\Models\Country;
 use Illuminate\Support\Str;
 
 
+function imet_offline_tool_version(): ?string
+{
+    return SoftwareUpdater::getCurrentVersion();
+}
+
+function is_dev_environment(): bool
+{
+    return Str::contains(strtolower(App::environment()), 'dev');
+}
+
 /**
  * Return ClassName from module key
- *
- * @param $module_key
- * @return string
  */
 function get_custom_model_class_by_key($module_key): ?string
 {
     // IMET namespace
-    if (class_exists(\AndreaMarelli\ImetCore\Helpers\ModuleKey::class)) {
-        $module_class = \AndreaMarelli\ImetCore\Helpers\ModuleKey::KeyToClassName($module_key);
+    if (class_exists(ModuleKey::class)) {
+        $module_class = ModuleKey::KeyToClassName($module_key);
         if ($module_class !== null) {
             return $module_class;
         }
@@ -24,16 +34,12 @@ function get_custom_model_class_by_key($module_key): ?string
 
 /**
  * Return view from module key
- *
- * @param $module_key
- * @param null $view_type
- * @return string|null
  */
 function get_custom_model_view_by_key($module_key, $view_type = null): ?string
 {
     // IMET views
-    if (\Illuminate\Support\Str::startsWith($module_key, 'imet')) {
-        $view = \AndreaMarelli\ImetCore\Helpers\ModuleKey::KeyToView($module_key, $view_type);
+    if (Str::startsWith($module_key, 'imet')) {
+        $view = ModuleKey::KeyToView($module_key, $view_type);
         if ($view !== null) {
             return $view;
         }
@@ -47,10 +53,7 @@ function get_custom_model_view_by_key($module_key, $view_type = null): ?string
  * Retrieve a list
  * Custom helper function used by AndreaMarelli\ModularForms\Helpers\Input::getList() to retrieve custom lists
  *
- * NOTE: Avoid to call this directly. Use instead AndreaMarelli\ModularForms\Helpers\Input::getList()
- *
- * @param string $type
- * @return array
+ * NOTE: Do not call this directly. Use instead AndreaMarelli\ModularForms\Helpers\Input::getList()
  */
 function get_custom_list(string $type): array
 {
@@ -59,7 +62,7 @@ function get_custom_list(string $type): array
     if(empty($list)){
 
         if ($type == "Country") {
-            $list = \App\Models\Country::selectionList();
+            $list = Country::selectionList();
         }
 
     }

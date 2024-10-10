@@ -4,11 +4,13 @@ namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
 use AndreaMarelli\ImetCore\Controllers\__Controller;
 use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
+use AndreaMarelli\ImetCore\Models\Imet\Imet as ImetAlias;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Basket;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\File\Zip;
 use AndreaMarelli\ModularForms\Helpers\HTTP;
@@ -280,9 +282,11 @@ class ScalingUpAnalysisController extends __Controller
         $custom_names = array_map(function ($v) {
             return $v->name;
         }, $custom_items);
+
         $custom_colors = array_map(function ($v) {
             return $v->color;
         }, $custom_items);
+
 
         $protected_areas_names = implode(', ', $custom_names);
 
@@ -291,6 +295,7 @@ class ScalingUpAnalysisController extends __Controller
         });
 
         App::setLocale($locale);
+        $labels = ImetScores::indicators_labels(ImetAlias::IMET_V2);
         $templates_names = [
             ['name' => "protected_areas", 'title' => trans('imet-core::analysis_report.sections.list_of_names'), 'snapshot_id' => "protected_areas", 'exclude_elements' => '', 'code' => '0'],
             ['name' => "map_view", 'title' => trans('imet-core::analysis_report.sections.first'), 'snapshot_id' => "map_view", 'exclude_elements' => '', 'code' => '1'],
@@ -304,8 +309,9 @@ class ScalingUpAnalysisController extends __Controller
             ['name' => "digital_information_per_protected_area", 'title' => trans('imet-core::analysis_report.sections.ninth'), 'snapshot_id' => "digital_information_per_protected_area", 'exclude_elements' => '', 'code' => '9'],
         ];
 
-        return view('imet-core::scaling_up.report', [
+        return view(static::$form_view_prefix .'scaling_up.report', [
             'templates' => $templates_names,
+            'labels' => $labels,
             'pa_ids' => $pa_ids,
             'protected_areas_names' => $protected_areas_names,
             'scaling_up_id' => $scaling_up_id,
@@ -355,6 +361,7 @@ class ScalingUpAnalysisController extends __Controller
     {
         $areas_names_concat = "";
         $records = ModelScalingUpAnalysis::where('id', $id)->first();
+        $labels = ImetScores::indicators_labels(ImetAlias::IMET_V2);
         if ($records) {
             $this->auth_saved(explode(',', $records->wdpas));
             ModelScalingUpAnalysis::$scaling_id = $id;
@@ -369,8 +376,9 @@ class ScalingUpAnalysisController extends __Controller
             $areas_names_concat = implode(', ', $areas_names);
         }
 
-        return view('imet-core::scaling_up.preview_template', [
+        return view(static::$form_view_prefix .'scaling_up.preview_template', [
             "scaling_up_id" => $id,
+            'labels' => $labels,
             'protected_areas' => $areas_names_concat
         ]);
     }

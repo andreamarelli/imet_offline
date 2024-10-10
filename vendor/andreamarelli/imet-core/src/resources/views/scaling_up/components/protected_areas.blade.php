@@ -1,12 +1,12 @@
 <container_section :id="'{{$name}}'" :title="'{{$title}}'" :code="'{{$code}}'"
-                   :guidance="'imet-core::analysis_report.guidance.list_of_pas'">
-    <template slot-scope="container">
+                   :info_label="'imet-core::analysis_report.guidance.list_of_pas'">
+    <template v-slot:default="container">
         <div id="{{$name}}-image">
             <container_actions :data="container.props" :name="'{{$name}}-image'"
                                :show_comments="false"
                                :event_image="'save_entire_block_as_image'"
                                :exclude_elements="'{{$exclude_elements}}'">
-                <template>
+                <template v-slot:default>
                     <table id="short_names" class="table module-table table-bordered">
 
                         <thead>
@@ -21,7 +21,6 @@
 
                         @foreach($custom_items as $key => $pa)
                             <tr class="module-table-item">
-                                {{--  fields  --}}
 
                                 <td class="text-center width90px border">{{ $protected_areas['models'][$pa->FormID]->name }}
                                 </td>

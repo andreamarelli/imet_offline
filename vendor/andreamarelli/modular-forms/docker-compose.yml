@@ -1,36 +1,15 @@
-version: '3.4'
-
 name: 'modular-forms'
 
 services:
 
-  php:
+  composer:
     build:
       context: .
-      dockerfile: docker/php/Dockerfile
+      dockerfile: docker/php.dockerfile
       args:
-        - COMPOSER_GITHUB_TOKEN=${COMPOSER_GITHUB_TOKEN}
-        - UID=${UID-}
-    image: ${COMPOSE_PROJECT_NAME}_php
-    volumes:
-      - ./:/var/www/html
-
-  composer:
-    image: ${COMPOSE_PROJECT_NAME}_php
-    depends_on:
-      - php
+          - COMPOSER_GITHUB_TOKEN=${COMPOSER_GITHUB_TOKEN}
+          - UID=${UID-}
     volumes:
       - ./:/var/www/html
     entrypoint: [ 'composer' ]
     # docker-compose run --rm composer ______
-
-  npm:
-      build:
-          context: .
-          dockerfile: docker/node/Dockerfile
-          args:
-              - UID=${UID-}
-      volumes:
-          - ./:/var/www/html
-      entrypoint: [ 'npm' ]
-      # docker-compose run --rm npm ______

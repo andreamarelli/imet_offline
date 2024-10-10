@@ -1,46 +1,45 @@
 <template>
     <div>
-        <v-swatches v-model="color"
-                    show-fallback
-                    fallback-input-type="color"
-            popover-x="left"
-            shapes="circles"
-       />
-        <input type="hidden" slot="trigger" :value="getColor()" :name="`color-${text_box_name}`" :id="`color-${text_box_name}`" class="field-edit" readonly>
+        <ColorPicker
+                    v-model:pureColor="color"
+                    @pureColorChange="onChange"
+                    shape="circle"
+                    format="hex"
+                    :disableFields="true"
+                    :defaultColors="predefinedColors"
+       ></ColorPicker>
+    <input type="hidden" :value="colorValue" :name="`color-${text_box_name}`" :id="`color-${text_box_name}`" class="field-edit" readonly>
     </div>
 </template>
+<script setup>
+import { ref, onMounted } from 'vue';
+import { ColorPicker } from "vue3-colorpicker";
+import "vue3-colorpicker/style.css";
+const props = defineProps({
+  text_box_name: {
+    type: String,
+    default: () => ''
+  },
+  default_color: {
+    type: String,
+    default: () => '#59c7f9'
+  },
+});
 
-<script>
-import VSwatches from "~/vue-swatches"
+const color = ref('#F64272');
+const colorValue = ref('');
+const predefinedColors = ['#F64272', '#F6648B', '#F493A7', '#F891A6', '#FFCCD5'];
 
-import "vue-swatches/dist/vue-swatches.css"
+onMounted(() => {
+  color.value = props.default_color;
+  colorValue.value = getColor();
+});
 
-export default {
-    name: "color_picker",
-    components: {VSwatches},
-    props: {
-        text_box_name: {
-            type: Number,
-            default: () => {
-            }
-        },
-        default_color: {
-            type: String,
-            default: () => '#59c7f9'
-        },
-    },
-    data() {
-        return {
-            color: '',
-        }
-    },
-    mounted() {
-        this.color = this.default_color
-    },
-    methods: {
-        getColor() {
-            return this.color;
-        }
-    }
+function getColor () {
+  return color.value;
+};
+
+function onChange(newColor) {
+  colorValue.value = getColor();
 }
 </script>

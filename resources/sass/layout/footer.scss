@@ -5,7 +5,9 @@
     padding: 8px;
     @apply text-sm;
     .version{
-        font-weight: bold;
-        @apply text-primary-600;
+        @apply font-bold text-primary-600 mr-2;
+    }
+    .channel{
+        @apply font-bold text-red-600;
     }
 }

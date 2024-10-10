@@ -13,9 +13,6 @@ class API
 
     /**
      * Execute the HTTP request
-     * @param $url
-     * @param $params
-     * @return \Illuminate\Http\Client\Response
      */
     public static function execute_request($url, $params = null): Response
     {
@@ -26,10 +23,6 @@ class API
 
     /**
      * Execute a request to the given API endpoint
-     *
-     * @param $url
-     * @param $params
-     * @return object
      */
     public static function execute_api_request($url, $params): object
     {
@@ -54,9 +47,6 @@ class API
 
     /**
      * Ensure that the data structure is in JSON format
-     *
-     * @param $data
-     * @return object - json_decoded data structure
      */
     private static function ensureIsJson($data): object
     {

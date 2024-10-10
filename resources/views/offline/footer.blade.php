@@ -1,8 +1,13 @@
+<?php
+use App\Helpers\SoftwareUpdater;
+?>
 <section id="imet_footer">
     <div>
-        IMET Offline Tool
+        <span class="mr-4 font-bold">IMET Offline Tool</span>
+        Version: <span class="version">{{ SoftwareUpdater::getCurrentVersion() }}</span>
+        @if(SoftwareUpdater::isBetaChannel())
+            Channel: <span class="channel">BETA</span>
+        @endif
     </div>
-    <div>
-        version: <span class="version">{{ imet_offline_version() }}</span>
-    </div>
+
 </section>

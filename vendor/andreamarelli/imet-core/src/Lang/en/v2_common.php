@@ -27,7 +27,7 @@ return [
 
         'PRA' => 'Internal management systems and processes',
         'PRB' => 'Management / Protection of the values',
-        'PRC' => 'Stakeh older relations',
+        'PRC' => 'Stakeholder relations',
         'PRD' => 'Tourism management',
         'PRE' => 'Monitoring and Research',
         'PRF' => 'Management of the effects of climate change and ecosystem services',

@@ -13,3 +13,6 @@ window.OfflineImet = {}
 
 import SettingsApp from "./js/SettingsApp.js";
 window.OfflineImet.SettingsApp = SettingsApp;
+
+import PaUpdate from "./js/PaUpdate.js";
+window.OfflineImet.PaUpdate = PaUpdate;

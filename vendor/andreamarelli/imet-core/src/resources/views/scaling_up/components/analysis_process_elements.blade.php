@@ -8,7 +8,7 @@
     :parent_class_name="''"
     :items="{{json_encode($custom_names)}}"
     :func="'analysis_per_element_of_the_management_cycle'">
-    <template slot-scope="data">
+    <template v-slot:default="data">
         @include('imet-core::scaling_up.components.analysis_element', ['name' => $name, 'dontShowTitle' => true])
     </template>
 </container_analysis_management_cycle>
@@ -22,7 +22,7 @@
     :parent_class_name="''"
     :items="{{json_encode($custom_names)}}"
     :func="'analysis_per_element_of_the_management_cycle'">
-    <template slot-scope="data">
+    <template v-slot:default="data">
         @include('imet-core::scaling_up.components.analysis_element', ['name' => $name, 'dontShowTitle' => true])
     </template>
 </container_analysis_management_cycle>
@@ -36,7 +36,7 @@
     :parent_class_name="''"
     :items="{{json_encode($custom_names)}}"
     :func="'analysis_per_element_of_the_management_cycle'">
-    <template slot-scope="data">
+    <template v-slot:default="data">
         @include('imet-core::scaling_up.components.analysis_element', ['name' => $name, 'dontShowTitle' => true])
     </template>
 </container_analysis_management_cycle>
@@ -50,7 +50,7 @@
     :parent_class_name="''"
     :items="{{json_encode($custom_names)}}"
     :func="'analysis_per_element_of_the_management_cycle'">
-    <template slot-scope="data">
+    <template v-slot:default="data">
         @include('imet-core::scaling_up.components.analysis_element', ['name' => $name, 'dontShowTitle' => true])
     </template>
 </container_analysis_management_cycle>
@@ -64,7 +64,7 @@
     :parent_class_name="''"
     :items="{{json_encode($custom_names)}}"
     :func="'analysis_per_element_of_the_management_cycle'">
-    <template slot-scope="data">
+    <template v-slot:default="data">
         @include('imet-core::scaling_up.components.analysis_element', ['name' => $name, 'dontShowTitle' => true])
     </template>
 </container_analysis_management_cycle>
@@ -78,7 +78,7 @@
     :parent_class_name="''"
     :items="{{json_encode($custom_names)}}"
     :func="'analysis_per_element_of_the_management_cycle'">
-    <template slot-scope="data">
+    <template v-slot:default="data">
         @include('imet-core::scaling_up.components.analysis_element', ['name' => $name, 'dontShowTitle' => true])
     </template>
 </container_analysis_management_cycle>
@@ -92,7 +92,7 @@
     :parent_class_name="''"
     :items="{{json_encode($custom_names)}}"
     :func="'analysis_per_element_of_the_management_cycle'">
-    <template slot-scope="data">
+    <template v-slot:default="data">
         @include('imet-core::scaling_up.components.analysis_element', ['name' => $name, 'dontShowTitle' => true])
     </template>
 </container_analysis_management_cycle>

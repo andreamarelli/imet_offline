@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('proxy_port')->nullable();
             $table->string('proxy_user')->nullable();
             $table->string('proxy_password')->nullable();
+            $table->string('protected_planet_api_key')->nullable();
             $table->timestamps();
         });
 

@@ -1,59 +1,52 @@
 <template>
-  <button :class="className" v-on:click="action">
-    {{ label }}
-  </button>
+    <button :class="className" v-on:click="action">
+        {{ label }}
+    </button>
 </template>
 
-<script>
-export default {
-  name: "action-button.vue",
-  props: {
+
+<script setup>
+import {inject, onMounted, ref} from "vue";
+
+const props = defineProps({
     event: {
-      type: String,
-      default: '',
+        type: String,
+        default: '',
     },
     className: {
-      type: String,
-      default: 'btn-nav float-left'
+        type: String,
+        default: 'btn-nav float-left'
     },
     label: {
-      type: String,
-      default: 'Submit'
+        type: String,
+        default: 'Submit'
     }
-  },
-  data() {
-    const Locale = window.Locale;
-    return {
-      Locale: Locale,
-      isEnabled: false,
-      data: []
-    };
-  },
-  mounted: function () {
-    this.$root.$on('actionData', (data) => {
-      this.eventFunction(data);
-    })
-  },
-  methods: {
-    eventFunction: function(value){
-      this.data = value;
-      this.isEnabled = true;
-    },
-    resetValues: function(){
-      this.isEnabled = false;
-      this.data = [];
-    },
-    action: function () {
-      if (this.event) {
-        this.$root.$emit(this.event);
-        this.resetValues();
-      }
+});
 
-    }
-  }
+const data = ref([]);
+const isEnabled = ref(false);
+const emitter = inject('emitter');
+
+onMounted(() => {
+       emitter.on('actionData', (data) => {
+            eventFunction(data);
+        })
+})
+
+function eventFunction(value) {
+    data.value = value;
+    isEnabled.value = true;
 }
+function resetValues() {
+    isEnabled.value = false;
+    data.value = [];
+}
+function action() {
+    if (props.event) {
+        emitter.emit(props.event);
+        resetValues();
+    }
+
+}
+
 </script>
-
-<style scoped>
-
-</style>

@@ -70,7 +70,7 @@ class Areas extends Modules\Component\ImetModule
             ],
             [
                 'name' => 'Index',
-                'type' => 'text-area',
+                'type' => 'numeric',
                 'label' => trans('imet-core::v2_context.Areas.fields.Index')
             ],
         ];

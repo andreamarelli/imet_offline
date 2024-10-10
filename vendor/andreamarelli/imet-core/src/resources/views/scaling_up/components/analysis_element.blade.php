@@ -1,5 +1,4 @@
-
-<div class="max-w-5xl m-auto" v-for="(value, index) in data.props"  :id="'{{$name}}-'+index">
+<div class="max-w-full m-auto" v-for="(value, index) in data.props" :id="'{{$name}}-'+index">
 
     <div v-for="(section_data, section) in value" :id="'{{$name}}-'+section">
 
@@ -13,16 +12,16 @@
                     <div class="sub-title" v-html="tableValue['menu']['title']"></div>
                 </div> <?php } else { ?>
 
-                <?php
+                    <?php
                 } ?>
                 <div>
-                    <guidance :text="'imet-core::analysis_report.guidance.context.'+tableValue['key']"/>
+                    <guidance :text="'imet-core::analysis_report.guidance.context.'+tableValue['key']"></guidance>
                 </div>
             </div>
             <div class=" horizontal mt-1">
                 <div class="sub-title {{ $sub_class ?? '' }}" :id="'menu-ranking-'+section+'-'+tableValue['name']">
                     <span v-html="tableValue['menu']['ranking']"></span>
-                    <button class="btn-nav small blue">
+                    <button class="btn-nav small blue ml-1">
                         <span class="fas fa-fw fa-info-circle"></span>
                     </button>
                     <tooltip>
@@ -34,7 +33,7 @@
                 <container_actions :data="section_data"
                                    :name="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'category-stack'"
                                    :event_image="'save_entire_block_as_image'">
-                    <template slot-scope="data_elements">
+                    <template v-slot:default="data_elements">
                         <bar_category_stack
                             :axis_dimensions_y="{max:100}"
                             :title="tableValue['menu']['ranking']"
@@ -48,21 +47,19 @@
                             :raw_values="data_elements.props[tableValue['name']].ranking.raw_values_protected_area"></bar_category_stack>
                         <div style="font-size: 12px">
 
-                                {{ trans("imet-core::analysis_report.ranking_info_indicators") }}
+                            {{ trans("imet-core::analysis_report.ranking_info_indicators") }}
                         </div>
                         <div style="font-size: 12px;" v-if="tableValue['key'] =='overall_scores'">
                             * {{ trans("imet-core::analysis_report.ranking_rescaled_indicators") }}
                         </div>
                     </template>
-
                 </container_actions>
-
             </div>
             <div class="horizontal mt-1">
                 <div class="sub-title {{ $sub_class ?? '' }}"
                      :id="'menu-average-contribution-'+section+'-'+tableValue['name']">
                     <span v-html="tableValue['menu']['average_contribution']"></span>
-                    <button class="btn-nav small blue">
+                    <button class="btn-nav small blue ml-1">
                         <span class="fas fa-fw fa-info-circle"></span>
                     </button>
                     <tooltip>
@@ -74,7 +71,7 @@
                 <container_actions :data="section_data"
                                    :name="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'bar-error'"
                                    :event_image="'save_entire_block_as_image'">
-                    <template slot-scope="data_elements">
+                    <template v-slot:default="data_elements">
                         <imet_bar_error
                             :title="tableValue['menu']['average_contribution']"
                             :axis_dimensions_x="{max:100}"
@@ -88,12 +85,11 @@
                 </container_actions>
             </div>
             <div v-if="tableValue['menu']['radar'] !== ''">
-
                 <div class="horizontal">
                     <div class="sub-title {{ $sub_class ?? '' }}"
                          :id="'menu-radar-'+section+'-'+tableValue['name']">
                         <span v-html="tableValue['menu']['radar']"></span>
-                        <button class="btn-nav small blue">
+                        <button class="btn-nav small blue ml-1">
                             <span class="fas fa-fw fa-info-circle"></span>
                         </button>
                         <tooltip>
@@ -106,7 +102,7 @@
                     <container_actions :data="section_data"
                                        :name="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'scaling-radar'"
                                        :event_image="'save_entire_block_as_image'">
-                        <template slot-scope="data_elements">
+                        <template v-slot:default="data_elements">
                             <scaling_radar class="sm" :height=750
                                            :title="tableValue['menu']['radar']"
                                            :single="false"
@@ -117,7 +113,7 @@
                                            :event_key="'analysis_'+tableValue['name']"
                                            :indicators="data_elements.props[tableValue['name']].radar.indicators"
                                            :values="data_elements.props[tableValue['name']].radar.values"></scaling_radar>
-                            <div  style="font-size: 12px">
+                            <div style="font-size: 12px">
                                 {{ trans("imet-core::analysis_report.average_protected_areas") }}
                             </div>
                         </template>
@@ -128,12 +124,12 @@
                     <container_actions :data="section_data"
                                        :name="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'scaling-datatable-radar'"
                                        :event_image="'save_entire_block_as_image'">
-                        <template slot-scope="data_elements">
+                        <template v-slot:default="data_elements">
                             <datatable_interact_with_radar class="col-sm"
                                                            :event_key="'analysis_'+tableValue['name']"
                                                            :values="data_elements.props[tableValue['name']].radar.values"
-                                                           :columns="container.props.stores.BaseStore.find_config_by_name(container.props.config.element_diagrams[section], tableValue['name']).columns.slice(0,-1)"></datatable_interact_with_radar>
-
+                                                           :columns="container.props.stores.BaseStore.find_config_by_name(container.props.config.element_diagrams[section], tableValue['name']).columns.slice(0,-1)">
+                            </datatable_interact_with_radar>
                         </template>
                     </container_actions>
                 </div>
@@ -142,7 +138,7 @@
                 <div class="sub-title {{ $sub_class ?? '' }}"
                      :id="'menu-datatable-'+section+'-'+tableValue['name']">
                     <span v-html="tableValue['menu']['datatable']"></span>
-                    <button class="btn-nav small blue">
+                    <button class="btn-nav small blue ml-1">
                         <span class="fas fa-fw fa-info-circle"></span>
                     </button>
                     <tooltip>
@@ -154,7 +150,7 @@
                 <container_actions :data="section_data"
                                    :name="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'table-scaling'"
                                    :event_image="'save_entire_block_as_image'">
-                    <template slot-scope="data_elements">
+                    <template v-slot:default="data_elements">
 
                         <datatable_scaling
                             :columns="tableValue.columns"

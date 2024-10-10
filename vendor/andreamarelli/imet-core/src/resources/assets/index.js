@@ -17,7 +17,7 @@ window.ImetCore.Components = {};
 // ############################################
 import mapboxgl from '~/mapbox-gl';
 window.mapboxgl = mapboxgl;
-window.mapboxgl.accessToken = import.meta.env.MAPBOX_ACCESS_TOKEN;
+window.mapboxgl.accessToken = window.accessToken;
 
 import BiopamaWDPA from "./js/helpers/biopamaWDPA.js";
 window.ImetCore.Helpers.BiopamaWDPA = BiopamaWDPA;
@@ -39,6 +39,15 @@ window.ImetCore.Apps.Module = ModuleImet;
 
 import AssessmentScores from "./js/apps/AssessmentScores.js";
 window.ImetCore.Apps.AssessmentScores = AssessmentScores;
+
+import ScalingList from "./js/scaling_up_analysis/ScalingList.js";
+window.ImetCore.Apps.ScalingList = ScalingList;
+
+import Report from "./js/scaling_up_analysis/Report.js";
+window.ImetCore.Apps.Report = Report;
+
+import Preview from "./js/scaling_up_analysis/Preview.js";
+window.ImetCore.Apps.Preview = Preview;
 
 
 // ############################################

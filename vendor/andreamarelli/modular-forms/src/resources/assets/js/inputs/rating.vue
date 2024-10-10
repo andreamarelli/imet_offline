@@ -8,7 +8,7 @@
                       v-on:click="updateRating(item['value'])"
                       v-on:mouseover=setHover
                       v-on:mouseout=setHover
-                      v-bind:class="[item['value']==='-99' ? 'ratingNa' : 'ratingNum', setActive(item['value'])]"
+                      v-bind:class="[isNA(item['value']) ? 'ratingNa' : 'ratingNum', setActive(item['value'])]"
                       v-bind:rate="item['value']"
                 >{{ item['label'] }}</span>
 
@@ -66,15 +66,19 @@ import {computed, ref} from "vue";
         return list
     }
 
+    function isNA(value){
+        return value === '-99' || value === -99;
+    }
+
     function setActive(value){
         let applyClass = __applyClass(value, inputValue.value);
         return (applyClass) ? 'active' : '';
     }
 
     function __applyClass(localValue, globalValue){
-        if(localValue!=='-99' && parseFloat(localValue) <= parseFloat(globalValue)){
+        if(!isNA(localValue) && parseFloat(localValue) <= parseFloat(globalValue)){
             return true
-        } else if(localValue==='-99' && globalValue==='-99'){
+        } else if(isNA(localValue) && isNA(globalValue)){
             return true
         }
         return false;

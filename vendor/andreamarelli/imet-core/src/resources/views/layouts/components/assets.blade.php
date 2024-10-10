@@ -32,13 +32,13 @@ $routes = [
 </script>
 
 {{-- mapbox --}}
-{{--@push('scripts')--}}
-{{--    @if(Str::contains($current_route_name, 'report') || Str::contains($current_route_name, 'scaling_up'))--}}
-{{--        <script>--}}
-{{--            window.mapboxgl.accessToken = '{{ Env::getOrFail('MAPBOX_ACCESS_TOKEN') }}';--}}
-{{--        </script>--}}
-{{--    @endif--}}
-{{--@endpush--}}
+@push('scripts')
+   @if(Str::contains($current_route_name, 'report') || Str::contains($current_route_name, 'scaling_up'))
+        <script>
+                window.accessToken = '{{ Env::getOrFail('MAPBOX_ACCESS_TOKEN') }}';
+        </script>
+    @endif
+@endpush
 
 
 

@@ -24,18 +24,20 @@ class AverageContribution
         $data = [];
         foreach ($form_ids as $j => $form_id) {
             $protected_areas[$j] = Modules\Context\MenacesPressions::getStats($form_id);
+
             if (count($indicators) === 0) {
-                foreach ($protected_areas[$j]['category_stats'] as $c => $value) {
+
+                foreach ($protected_areas[$j]['categoryStats'] as $c => $value) {
                     $name = trans('imet-core::v2_context.MenacesPressions.categories.title' . ($c + 1), []);
                     array_unshift($indicators, $name);
                     $indicators_average_contribution[] = $name;
                 }
             }
-            foreach ($protected_areas[$j]['category_stats'] as $k => $protected_area) {
+            foreach ($protected_areas[$j]['categoryStats'] as $k => $protected_area) {
                 if ($protected_area === "") {
                     $value = "-";
                 } else {
-                    $value = Common::round_number((-1 * (double)$protected_area));
+                    $value = Common::round_number((-1 * (float)$protected_area));
                 }
                 $data[$k][] = $valuesIndicators[$k][] = $value;
             }
@@ -53,7 +55,7 @@ class AverageContribution
 
         if (array_key_exists('data', $average_contribution)) {
             usort($average_contribution['data']['Average'], function ($a, $b) {
-                return -($a['value'] <=> $b['value']);
+                return - ($a['value'] <=> $b['value']);
             });
         }
 
@@ -77,12 +79,12 @@ class AverageContribution
         $radar_negative_indicators = ['C2', 'OC2', 'OC3'];
         $radar_zero_negative_indicators = ['C3'];
         $legends_match = [
-            'PRA' => 'PRA',
-            'PRB' => 'PRB',
-            'PRC' => 'PRC',
-            'PRD' => 'PRD',
-            'PRE' => 'PRE',
-            'PRF' => 'PRF'
+            'process_PRA' => 'PRA',
+            'process_PRB' => 'PRB',
+            'process_PRC' => 'PRC',
+            'process_PRD' => 'PRD',
+            'process_PRE' => 'PRE',
+            'process_PRF' => 'PRF'
         ];
 
         $filtered = Common::filtered_indicators_and_round_values($form_ids, $type, $table_indicators);
@@ -111,8 +113,7 @@ class AverageContribution
         $average_contribution['options'] = count($options) ? $options : null;
         if (strpos($origType, "_") !== false) {
             $name = explode("_", $origType);
-            $legend_name = trans('imet-core::analysis_report.assessment.' . $legends_match[$name[1] . "_" . $name[2]]);
-
+            $legend_name = trans('imet-core::analysis_report.assessment.' . $legends_match[$origType]);
         } else {
             $legend_name = trans('imet-core::common.steps_eval.' . $origType);
         }
@@ -147,7 +148,7 @@ class AverageContribution
                 });
                 $percentile_10 = Common::round_number(Common::get_percentile($values, 10));
                 $percentile_90 = Common::round_number(Common::get_percentile($values, 90));
-                $average_value = count($values) ? Common::round_number(array_sum($values) / count($values)) : 0;//check
+                $average_value = count($values) ? Common::round_number(array_sum($values) / count($values)) : 0; //check
                 $average[] = $average_value;
                 $average_contribution = self::getAverage_contribution($average_value, $percentile_10, $percentile_90, $v, $colors, $average_contribution, $i, $index, $label, $type);
             }
@@ -184,9 +185,9 @@ class AverageContribution
             $average_contribution['data']['Average'][$i]["indicator"] = trans($label . ($v), []);
         } else {
             if ($type === "process" && stripos($v, "_") === true) {
-                $average_contribution['data']['Average'][$i]["indicator"] = Common::indicator_label($v, $label, 'imet-core::analysis_report.legends.');
+                $average_contribution['data']['Average'][$i]["indicator"] = Common::get_all_indicator_labels_cached()[$v] . " " . trans('imet-core::analysis_report.legends.' . $v); //Common::indicator_label($v, $label, 'imet-core::analysis_report.legends.');
             } else {
-                $average_contribution['data']['Average'][$i]["indicator"] = Common::indicator_label($v, $label);
+                $average_contribution['data']['Average'][$i]["indicator"] = Common::get_all_indicator_labels_cached()[$v]; //Common::indicator_label($v, $label);
             }
         }
         return $average_contribution;

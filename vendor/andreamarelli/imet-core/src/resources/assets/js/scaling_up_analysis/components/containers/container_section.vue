@@ -5,77 +5,76 @@
                 {{ code }}
             </div>
             <div class="module-title" @click="toggle_view()">
-                      <span class="fas fa-fw carrot"
-                            :class="{'fa-caret-up': !data.show_view,'fa-caret-down':data.show_view}"></span> {{ title }}
+                <span class="fas fa-fw carrot"
+                    :class="{ 'fa-caret-up': !data.show_view, 'fa-caret-down': data.show_view }"></span> {{ title }}
             </div>
         </div>
-        <guidance :text="guidance" v-show=data.show_view ></guidance>
+        <guidance :label="props.info_label" v-show="data.show_view" ></guidance>
         <div class="module-body bg-white scaling_up_module_container_body" v-show=data.show_view>
             <slot :props="data">
             </slot>
             <div class="text-right mt-3">
-                <div class="btn-nav red" @click="toggle_view()" v-html="stores.BaseStore.localization('imet-core::analysis_report.close')">
+                <div class="btn-nav red" @click="toggle_view()"
+                    v-html="stores.BaseStore.localization('imet-core::analysis_report.close')">
                 </div>
             </div>
         </div>
     </div>
 </template>
 
-<script>
-import container_event from "./container_event.vue";
+<script setup>
+import { defineProps, inject, onMounted, ref } from 'vue';
 
-export default {
-    name: "container_section",
-    inject: ['stores', 'config'],
-    mixins: [
-        container_event
-    ],
-    provide: {
-        state:
-            {
-                image_src: '',
-                comment: null
-            }
+const stores = inject('stores');
+const config = inject('config');
+const emitter = inject('emitter');
+
+const props = defineProps({
+    name: {
+        type: String,
+        default: ''
     },
-    props: {
-        name: {
-            type: String,
-            default: ''
-        },
-        title: {
-            type: String,
-            default: ''
-        },
-        code: {
-            type: String,
-            default: ''
-        },
-        guidance: {
-            type: String,
-            default: ''
-        }
+    title: {
+        type: String,
+        default: ''
     },
-    data: function () {
-        return {
-            data: {
-                values: {},
-                show_view: false,
-                loaded_once: false,
-                config: this.config,
-                stores: this.stores
-            }
-        }
+    code: {
+        type: String,
+        default: ''
     },
-    methods: {
-        code_is_visible() {
-            return this.code.length;
-        },
-        toggle_view: async function () {
-            this.data.show_view = !this.data.show_view;
-        },
-        is_visible: function (values) {
-            return Object.keys(values).length;
-        }
+    info_label: {
+        type: String,
+        default: ''
+    },
+    event_name: {
+        type: String,
+        default: ''
     }
+});
+
+const data = ref({
+    values: {},
+    show_view: false,
+    loaded_once: false,
+    config: config,
+    stores: stores
+});
+
+onMounted(() => {
+    emitter.on(props.event_name, () => {
+        data.value.show_view = true;
+    });
+});
+
+function code_is_visible() {
+    return props.code.length;
+}
+
+async function toggle_view() {
+    data.value.show_view = !data.value.show_view;
+}
+
+function is_visible(values) {
+    return Object.keys(values).length;
 }
 </script>

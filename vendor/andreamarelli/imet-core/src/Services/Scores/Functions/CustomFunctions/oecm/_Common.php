@@ -13,7 +13,7 @@ trait _Common{
             ->filter(function ($record){
                 return $record['Weight'] !== null
                     && $record['Adequacy'] !== null
-                    && $record['Adequacy'] !== '-99';
+                    && $record['Adequacy'] !== -99;
             });
 
         $scores = $values->groupBy('group_key')

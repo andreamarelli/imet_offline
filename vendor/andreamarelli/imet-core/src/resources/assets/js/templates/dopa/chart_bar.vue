@@ -1,4 +1,123 @@
 <template>
+    <div>
+        <div ref="barRef" class='bar'></div>
+    </div>
+</template>
+
+<script setup>
+import { ref, watch, onMounted } from 'vue';
+import * as echarts from 'echarts';
+
+const props = defineProps({
+    title: {
+        type: String,
+        default: null
+    },
+    indicators: {
+        type: Array,
+        default: () => []
+    },
+    api_data: {
+        type: Object,
+        default: () => null
+    },
+});
+
+const barRef = ref(null);
+
+const defaultOptions = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'line',
+            lineStyle: {
+                opacity: 0.5
+            }
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '3%',
+        bottom: '2%',
+        top: '2%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: []
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ]
+};
+
+const setOptions = () => {
+    let options = { ...defaultOptions };
+
+    if (props.title != null) {
+        options.title = {
+            text: props.title,
+            left: 'center'
+        };
+        options.grid.top = '12%';
+    }
+
+    options.color = [];
+    options.legend = {
+        data: [],
+        top: 'bottom'
+    };
+    options.grid.bottom = '12%';
+    props.indicators.forEach(item => {
+        options.color.push(item.color);
+        options.legend.data.push(item.label);
+    });
+
+    options.xAxis[0].data = [];
+
+    let data = readData();
+    options.series = props.indicators.map((_, index) => ({
+        type: 'bar',
+        name: _.label,
+        data: data[index]
+    }));
+
+    return options;
+};
+
+const readData = () => {
+    return props.indicators.map(item => [props.api_data[item.field]]);
+};
+
+const drawChart = () => {
+    if (props.api_data !== null) {
+        let options = setOptions();
+        let canvas_container = barRef.value;
+        ({options});
+        echarts.init(canvas_container).setOption(options);
+    }
+};
+
+watch(() => props.api_data, drawChart);
+
+onMounted(() => {
+    if (props.api_data !== null) {
+        drawChart();
+    }
+});
+</script>
+
+<style lang="scss" scoped>
+.bar {
+    min-height: 200px;
+    min-width: 200px;
+}
+</style>
+<!-- <template>
 
     <div>
         <div class='bar'></div>
@@ -144,4 +263,4 @@
         }
 
     }
-</script>
+</script> -->

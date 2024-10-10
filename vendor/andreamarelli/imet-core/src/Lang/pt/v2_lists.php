@@ -185,7 +185,7 @@ return [
     ],
 
     'EcosystemServicesImportance' => [
-        '_' => null,        // need to force string keys
+        'null' => null,        // need to force string keys
         '0' => 'Local',
         '1' => 'Maior',
     ]

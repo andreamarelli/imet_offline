@@ -31,12 +31,19 @@ class ScalingUpAnalysis extends Model
     protected static $ttl = 2;
 
     protected string $schema = Database::IMET_SCHEMA;
+    protected $connection = Database::IMET_CONNECTION;
     protected $table = 'scaling_up';
 
     protected $fillable = ['wdpas'];
     public $timestamps = false;
     public static $scaling_id = null;
     public const UNDEFINED_VALUE = -99999999;
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        [$this->table, $this->connection] = Database::getTableAndConnection($this->table,$this->schema);
+    }
 
     /**
      * @param string $wdpas
@@ -457,9 +464,10 @@ class ScalingUpAnalysis extends Model
         $origType = $type;
         $extra_type_words = '';
         if (str_contains($type, "process")) {
+            // dd($type);
             $name = explode("_", $type);
             if (count($name) > 1) {
-                $extra_type_words = $name[1] . "_" . $name[2] ?? '';
+                $extra_type_words = $name[0] . "_" . $name[1] ?? '';
             }
             $origType = $name[0];
         }

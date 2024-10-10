@@ -72,6 +72,6 @@ export default class BaseStore {
     }
 
     localization(value) {
-        return window.Locale.getLabel(value);
+        return window.ModularForms.Helpers.Locale.getLabel(value);
     }
 }

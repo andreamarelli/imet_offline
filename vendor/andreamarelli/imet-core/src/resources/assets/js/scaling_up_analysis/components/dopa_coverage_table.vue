@@ -6,7 +6,7 @@
       {{ title }}
     </div>
 
-    <div v-for="item in indicators">
+    <div v-for="item in indicators" :key="item.id">
       <div class="content">
         <span>{{ item.label }}</span>
         <span class="number" :style="{ color: item.color }">{{ getValue(item)| pretty_number(2) }}</span>

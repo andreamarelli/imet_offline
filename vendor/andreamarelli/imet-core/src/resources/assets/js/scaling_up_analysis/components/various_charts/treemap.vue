@@ -1,79 +1,71 @@
 <template>
-  <div class="treemap" :style="'width:' + width +'; height: '+ height+';'"></div>
+    <div ref="chartContainer" class="treemap" :style="'width:' + width + '; height: ' + height + ';'"></div>
 </template>
 
-<script>
+<script setup>
+import { ref, onMounted, computed, inject } from "vue";
+import * as echarts from "~/echarts";
+import { useResize } from "../../composables/resize";
 
-export default {
-  name: "treemap",
-  mixins: [
-      window.ImetCore.ScalingUp.Mixins.resize
-  ],
-  props: {
+const emitter = inject('emitter');
+const chartContainer = ref(null);
+
+const props = defineProps({
     width: {
-      type: String,
-      default: '100%'
+        type: String,
+        default: '100%'
     },
     height: {
-      type: String,
-      default: '500px'
+        type: String,
+        default: '500px'
     },
     values: {
-      type: [Array, Object],
-      default: () => {
-      }
+        type: [Array, Object],
+        default: () => {
+        }
     },
     title: {
-      type: String,
-      default: ''
+        type: String,
+        default: ''
     }
 
-  },
-  computed: {
-    bar_options() {
-      return {
+});
 
+const bar_options = computed(() => {
+    return {
         title: {
-          text: this.title,
-          left: 'center'
+            text: props.title,
+            left: 'center'
         },
-
-
         series: [{
-          type: 'treemap',
-          data: this.data_fix()
+            type: 'treemap',
+            data: data_fix()
         }]
-      }
     }
-  },
-  watch: {
-    values: {
-      deep: true,
-      handler() {
-        this.draw_chart();
-      }
+});
+
+const { initResize } = useResize({
+    emitter
+});
+
+onMounted(() => {
+    draw_chart();
+});
+
+function data_fix() {
+    return props.values.map(item => {
+        return { name: item.label, value: item.area, itemStyle: { color: item.color } };
+    })
+}
+
+function draw_chart() {
+    if (Object.keys(props.values).length > 0) {
+        if (chartContainer.value.clientWidth > 0 && chartContainer.value.clientHeight > 0) {
+            let echartObject = echarts.init(chartContainer.value);
+            echartObject.setOption(bar_options.value);
+
+            initResize(echartObject);
+        }
     }
-  },
-  mounted() {
-    //this.data_fix();
-    this.draw_chart();
-  },
-  methods: {
-    data_fix: function () {
-      return this.values.map(item => {
-        return {name: item.label, value: item.area, itemStyle: {color: item.color}};
-      })
-    },
-    draw_chart() {
-      if (Object.keys(this.values).length > 0) {
-        this.chart = window.ImetCoreVendor.echarts.init(this.$el);
-        this.chart.setOption(this.bar_options);
-      }
-    }
-  }
 }
 </script>
-
-<style scoped>
-
-</style>

@@ -1,70 +1,60 @@
 <template>
-    <div :class="className" style="min-height: 50px;">
-        <div class="standalone js-smallMenu" id="smallMenu" v-if="list_names.length > 1">
-            <div :class="is_selected(idx)" v-for="(item, idx) in list_names" v-html="item"
-                 @click="scroll_to_section(idx)">
+    <div class="smallMenu" style="min-height: 80px;">
+        <div class="standalone js-smallMenu" id="smallMenu" v-if="listNames.length > 1">
+            <div :class="{ active: isSelected(idx) }" v-for="(item, idx) in listNames" v-html="item"
+                @click="scrollToSection(idx)" :key="idx">
             </div>
         </div>
     </div>
 </template>
 
-<script>
-export default {
-    name: "small_menu",
-    props: {
-        items: {
-            type: [Object, Array],
-            default: () => {
-                return {};
-            }
-        },
-        exclude: {
-            type: String,
-            default: ''
-        },
-        ids: {
-            type: String,
-            default: ''
-        },
-        className: {
-            type: String,
-            default: 'smallMenu'
-        }
-    },
-    data: function () {
-        return {
-            list_names: [],
-            excluded_items: [],
-            selection: null
-        }
-    },
-    mounted() {
+<script setup>
+import { ref, onMounted, computed } from 'vue';
 
-        this.list_items();
+const props = defineProps({
+    items: {
+        type: [Object, Array],
+        default: () => ({}),
     },
-    methods: {
-        list_items: function () {
-            this.exclude_items();
-            const object_entries = Object.entries(this.items);
-            if (object_entries.length > 0) {
-                object_entries.forEach((item, index) => {
-                    if (!this.excluded_items.includes(item[0])) {
-                        this.list_names.unshift(item[0])
-                    }
-                })
+    exclude: {
+        type: String,
+        default: '',
+    },
+    ids: {
+        type: String,
+        default: '',
+    },
+    root_dir: {
+        type: String,
+        default: '',
+    },
+});
+
+const listNames = ref([]);
+const selection = ref(null);
+
+const excludedItems = props.exclude.split(',');
+
+const listItems = () => {
+    const objectEntries = Object.entries(props.items);
+    if (objectEntries.length > 0) {
+        objectEntries.forEach((item) => {
+            if (!excludedItems.includes(item[0])) {
+                listNames.value.unshift(item[0]);
             }
-        },
-        exclude_items: function () {
-            this.excluded_items = this.exclude.split(',');
-        },
-        scroll_to_section: function (idx) {
-            const element = document.getElementById(this.ids + idx);
-            element.scrollIntoView({behavior: "smooth"});
-            this.selection = idx;
-        },
-        is_selected: function (index) {
-            return this.selection === index ? 'active' : '';
-        }
+        });
     }
-}
+};
+
+const scrollToSection = (idx) => {
+    const element = document.getElementById(props.ids + idx);
+    element?.scrollIntoView({ behavior: "smooth" });
+    selection.value = idx;
+};
+
+const isSelected = (index) => selection.value === index;
+
+onMounted(() => {
+    listItems();
+});
 </script>

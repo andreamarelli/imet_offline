@@ -37,7 +37,6 @@ class MigrateOffline extends Command
         }
 
         Artisan::call('migrate');
-        Artisan::call('imet:populate_species');
 
         return 0;
     }

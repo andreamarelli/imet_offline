@@ -13,7 +13,7 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'modular-forms');
+
     }
 
     /**
@@ -29,9 +29,6 @@ class ServiceProvider extends BaseServiceProvider
 
         // Routes
         $this->loadRoutesFrom(__DIR__.'/Routes/web.php');
-
-        // Config
-        $this->publishes([__DIR__.'/../config/config.php' => config_path('modular-forms.php')], 'config');
 
         //Lang
         $this->loadTranslationsFrom(__DIR__.'/Lang', 'modular-forms');

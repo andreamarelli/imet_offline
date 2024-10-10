@@ -20,10 +20,10 @@ trait Process
 
         $values = $records
             ->map(function($record){
-                $record['numerator'] = $record['EvaluationScore']==="-99" || $record['EvaluationScore']===null
+                $record['numerator'] = $record['EvaluationScore']===-99 || $record['EvaluationScore']===null
                     ? null
                     : intval($record['EvaluationScore']) * $record['AdequacyLevel'];
-                $record['denominator'] = $record['EvaluationScore']==="-99" || $record['EvaluationScore']===null
+                $record['denominator'] = $record['EvaluationScore']===-99 || $record['EvaluationScore']===null
                     ? null
                     : $record['AdequacyLevel'];
                 $record['denominator'] = $record['denominator'] ?? 0;
@@ -50,7 +50,7 @@ trait Process
             ->filter(function ($record){
                 return $record['Weight'] !== null
                     && $record['Cooperation'] !== null
-                    && $record['Cooperation'] !== '-99';
+                    && $record['Cooperation'] !== -99;
             });
 
         $numerator = $values->sum(function ($item){

@@ -5,6 +5,7 @@ if (Session::has('lists')) {
     Session::forget('lists');
 }
 
+
 ?>
 <!DOCTYPE html>
 <html lang="{{ App::getLocale() }}">

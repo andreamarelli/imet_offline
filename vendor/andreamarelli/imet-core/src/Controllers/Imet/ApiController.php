@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
+use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
 use AndreaMarelli\ImetCore\Models\Country;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV1;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV2;
@@ -252,5 +253,10 @@ class ApiController extends Controller
                 return static::sendAPIResponse(['data' => $api]);
             }
 
-
+    public function get_labels_by_indicator(Request $request, string $indicator): object
+    {
+        $api = ['data' => [], 'labels' => []];
+        $api['data'] = Common::get_labels_by_indicator($indicator);
+        return static::sendAPIResponse($api);
+    }
 }

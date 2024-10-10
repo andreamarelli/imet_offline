@@ -1,85 +1,60 @@
 <template>
     <div v-if="data.length">
-        <datatable_scaling :columns="columns" :refresh_average="refresh_average" :values="data" :key="data.length">
+        <datatable_scaling :columns="columns" :default_order="default_order" :refresh_average="refresh_average" :values="data" :key="data.length">
         </datatable_scaling>
     </div>
 </template>
 
-<script>
+<script setup>
+import {ref, onMounted, inject} from 'vue';
+import {useList} from './composables/list'
 
-import datatable_scaling from "./datatable_scaling.vue";
+const emitter = inject('emitter');
+const data = ref([]);
 
-export default {
-    name: "datatable_interact_with_radar",
-    components: {datatable_scaling},
-    props: {
-        values: {
-            type: [Array, Object],
-            default: () => {
-            }
-        },
-        columns: {
-            type: Array,
-            default: () => {
-            }
-        },
-        event_key: {
-            type: String,
-            default: ''
-        },
-        values_with_indicators_keys: {
-            type: Boolean,
-            default: false
-        },
-        refresh_average: {
-            type: Boolean,
-            default: true
+const props = defineProps({
+    values: {
+        type: [Array, Object],
+        default: () => {
         }
     },
-    data: function () {
-        return {
-            data: [],
+    columns: {
+        type: Array,
+        default: () => {
         }
     },
-    mounted() {
-
-        this.sortBy = this.default_order;
-        this.$root.$on(`radar_data_${this.event_key}`, (params) => {
-            params.selected['lower limit'] = false;
-            params.selected['upper limit'] = false;
-            this.parse_data(params.selected);
-        });
-
-        this.parse_data();
+    event_key: {
+        type: String,
+        default: ''
     },
-    methods: {
+    values_with_indicators_keys: {
+        type: Boolean,
+        default: false
+    },
+    refresh_average: {
+        type: Boolean,
+        default: true
+    },
+    default_order: {
+        type: String,
+        default: null
+    },
+    default_order_dir: {
+        type: String,
+        default: "asc"
+    },
+});
 
-        parse_data: function (selected = null) {
+const { parse_data } = useList({sortBy: props.default_order});
 
-            const values = Object.entries({...this.values});
-            const data = [];
-            values.forEach((value, idx) => {
-                if ((selected !== null && selected[value[0]]) || (selected === null && value[1]?.legend_selected)) {
-                    const item = {};
-                    this.columns.forEach((column, idx) => {
-                        if (!["color", "name"].includes(column['field'])) {
-                            if (this.values_with_indicators_keys) {
-                                item[column['field']] = value[1][column['field']];
-                            } else {
-                                item[column['field']] = value[1][idx - 1];
-                            }
-                        }
-                    })
-                    data.push({
-                        name: value[0],
-                        ...item,
-                        color: value[1]['color']
-                    })
-                }
-            });
-            this.data = data;
-        }
-    }
+onMounted(() => {
+    emitter.on(`radar_data_${props.event_key}`, (params) => {
+        params.selected['lower limit'] = false;
+        params.selected['upper limit'] = false;
 
-}
+        data.value = parse_data(params.selected, props.values, props.columns, props.values_with_indicators_keys);
+    });
+    data.value = parse_data(null, props.values, props.columns, props.values_with_indicators_keys);
+});
+
 </script>

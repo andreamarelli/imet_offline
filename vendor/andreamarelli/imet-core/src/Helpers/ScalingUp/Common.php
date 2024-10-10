@@ -6,6 +6,7 @@ use AndreaMarelli\ImetCore\Models\Imet\Imet as ImetAlias;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
+use Illuminate\Support\Facades\Cache;
 
 class Common
 {
@@ -303,6 +304,18 @@ class Common
         return static::protected_areas_duplicate_fixes($id, true);
     }
 
+    public static function get_all_indicator_labels_cached()
+    {
+        $cache_key = 'all_labels_indicator';
+        if (($cache_value = Cache::get($cache_key)) !== null) {
+            return $cache_value;
+        }
+
+        $labels = ImetScores::indicators_labels(ImetAlias::IMET_V2);
+        Cache::put($cache_key, $labels, 30*60*60*24);
+        return $labels;
+    }
+
     /**
      * @param $indicator
      * @return string[]
@@ -388,7 +401,6 @@ class Common
                 'PR18' => 'PR18: ' . $labels['PR18'],
             ]
         ];
-
         return $indicators[$indicator];
     }
 
