@@ -24,8 +24,13 @@ return new class extends Migration
             $data[] = array_combine($header, $row);
         }
 
+        // Split the data into chunks
+        $data = array_chunk($data, 100);
+
         // Upsert data into the database
-        Animal::upsert($data, ['order', 'family', 'genus', 'species'], SpeciesUpdater::MIGRATION_ATTRIBUTES);
+        foreach ($data as $chunk) {
+            Animal::upsert($chunk, ['order', 'family', 'genus', 'species'], SpeciesUpdater::MIGRATION_ATTRIBUTES);
+        }
     }
 
     /**

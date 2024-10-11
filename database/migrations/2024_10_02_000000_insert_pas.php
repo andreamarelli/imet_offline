@@ -24,8 +24,14 @@ return new class extends Migration
             $data[] = array_combine($header, $row);
         }
 
+        // Split the data into chunks
+        $data = array_chunk($data, 100);
+
         // Upsert data into the database
-        ProtectedArea::upsert($data, ['global_id'], ProtectedAreaUpdater::MIGRATION_ATTRIBUTES);
+        foreach ($data as $chunk) {
+            ProtectedArea::upsert($chunk, ['global_id'], ProtectedAreaUpdater::MIGRATION_ATTRIBUTES);
+        }
+
     }
 
     /**
