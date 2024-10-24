@@ -1,4 +1,6 @@
-@import "../abstracts/all";
+@use "../abstracts/colors";
+@use "../abstracts/mixins";
+@use "sass:color";
 
 /*  #########  Flat buttons  ########  */
 
@@ -12,7 +14,7 @@
   border: 1px solid;
   @apply border-primary-600;
   border-radius: 0.2rem;
-  @include transition();
+  @include mixins.transition();
 
   // Sizes
   &.small{
@@ -92,9 +94,9 @@
     border-color: #ffc107;
     &.tag, &:hover{
       @apply bg-white;
-      color: darken(#ffc107, 30%);
-      .fas{
-        color: darken(#ffc107, 30%);
+        color: color.adjust(#ffc107, $lightness: 30%);
+        .fas{
+            color: color.adjust(#ffc107, $lightness: -30%);
       }
     }
   }

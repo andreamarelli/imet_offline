@@ -12,12 +12,12 @@ $scroll_buttons = [
 ?>
 
 <div class="scrollButtons mb-5">
-    <div onclick="window.ModularForms.Mixins.Animation.scrollPageTo(0)"
+    <div onclick="window.ModularForms.Helpers.Animation.scrollPageTo(0)"
          class="scrollToTop">{!! AndreaMarelli\ModularForms\Helpers\Template::icon('arrow-up') !!}</div>
     @foreach($scroll_buttons as $anchor => $label)
-        <div onclick="window.ModularForms.Mixins.Animation.scrollPageToAnchor('{{ $anchor }}')">{{ $label }}</div>
+        <div onclick="window.ModularForms.Helpers.Animation.scrollPageToAnchor('{{ $anchor }}')">{{ $label }}</div>
     @endforeach
-    <div onclick="window.ModularForms.Mixins.Animation.scrollPageTo(document.body.scrollHeight)"
+    <div onclick="window.ModularForms.Helpers.Animation.scrollPageTo(document.body.scrollHeight)"
          class="scrollToBottom mb-5">{!! AndreaMarelli\ModularForms\Helpers\Template::icon('arrow-down') !!}</div>
 </div>
 

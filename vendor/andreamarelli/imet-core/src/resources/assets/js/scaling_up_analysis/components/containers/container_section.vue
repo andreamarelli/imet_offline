@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { defineProps, inject, onMounted, ref } from 'vue';
+import { inject, onMounted, ref } from 'vue';
 
 const stores = inject('stores');
 const config = inject('config');

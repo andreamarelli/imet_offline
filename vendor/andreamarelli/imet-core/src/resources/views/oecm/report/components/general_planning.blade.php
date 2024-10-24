@@ -123,6 +123,6 @@
         </div>
 
         <h5>@lang('imet-core::oecm_report.general_planning.management_priorities')</h5>
-        @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'priorities'])
+        <report-editor v-model="report.priorities" :action="'{{ $action }}'"></report-editor>
     </div>
 </div>

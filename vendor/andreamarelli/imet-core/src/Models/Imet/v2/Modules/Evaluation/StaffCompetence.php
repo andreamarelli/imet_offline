@@ -54,27 +54,4 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
         ];
     }
 
-    /**
-     * Inject num of current staff from CTX (ManagementStaff)
-     */
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
-    {
-        $records = parent::arrange_records($predefined_values, $records, $empty_record);
-        $form_id = $empty_record['FormID'];
-
-        $staff_records = Modules\Context\ManagementStaff::getModule($form_id);
-
-        return collect($records)
-            ->map(function ($item) use ($staff_records){
-                $st = $staff_records
-                    ->filter(function ($item_staff) use($item){
-                        return $item_staff['Function']===$item['Theme'];
-                    })
-                    ->first();
-                $item['__num_staff'] = $st!==null ? intval($st->ActualPermanent) : null;
-                return $item;
-            })
-            ->toArray();
-    }
-
 }

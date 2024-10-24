@@ -1,7 +1,7 @@
 @extends('modular-forms::layouts.forms')
 
 @section('content')
-    <div class="container">
+    <div class="container title-page">
         <strong>Scaling up analysis report ({{ $protected_areas }})</strong>
 
     </div>
@@ -31,7 +31,15 @@
                 visibility: hidden;
             }
 
-            .content div {
+            #imet_header {
+                display: none;
+            }
+
+            .title-page {
+                display: none;
+            }
+
+            .content div.img-fluid {
                 page-break-after: always;
                 margin-top: 5px;
             }

@@ -1,5 +1,4 @@
-@import "../abstracts/colors";
-@import "~/air-datepicker/air-datepicker.css";
+@use "../abstracts/colors";
 
 .air-datepicker-cell.-current- {
   @apply text-primary-500;

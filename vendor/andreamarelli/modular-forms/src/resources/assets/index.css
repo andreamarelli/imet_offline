@@ -1,15 +1,36 @@
 @import "./sass/vendor/tailwind.scss";
 
 /* stylesheets */
-@import "./sass/abstracts/_all.scss";
-@import "./sass/base/_all.scss";
-@import "./sass/components/_all.scss";
-@import "./sass/layout/_all.scss";
+@import "./sass/abstracts/_colors.scss";
+@import "./sass/abstracts/_fonts.scss";
+@import "./sass/abstracts/_mixins.scss";
+@import "./sass/base/_reset.scss";
+@import "./sass/base/_typography.scss";
+@import "./sass/components/main.scss";
+@import "./sass/components/accordions.scss";
+@import "./sass/components/dialog.scss";
+@import "./sass/components/tables.scss";
+@import "./sass/components/buttons.scss";
+@import "./sass/components/forms.module.scss";
+@import "./sass/components/forms.input.scss";
+@import "./sass/components/forms.list.scss";
+@import "./sass/components/forms.print.scss";
+@import "./sass/layout/_layout.scss";
+@import "./sass/layout/_header.scss";
+@import "./sass/layout/_footer.scss";
+
+/* vendor */
+@import "~/air-datepicker/air-datepicker.css";
+@import "~/@fortawesome/fontawesome-free/css/fontawesome.css";
+@import "~/@fortawesome/fontawesome-free/css/regular.css";
+@import "~/@fortawesome/fontawesome-free/css/solid.css";
+@import "~/@fortawesome/fontawesome-free/css/brands.css";
+@import "~/vue-select/dist/vue-select.css";
 
 /* vendor override */
 @import "./sass/vendor/air-datepicker.scss";
 @import "./sass/vendor/ckeditor.scss";
 @import "./sass/vendor/floating-ui.scss";
-@import "./sass/vendor/fontawesome.scss";
 @import "./sass/vendor/vue-select.scss";
+
 

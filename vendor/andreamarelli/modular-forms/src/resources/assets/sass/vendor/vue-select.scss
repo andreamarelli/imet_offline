@@ -1,7 +1,4 @@
-@import "../components/forms.input";
-@import "~/vue-select/dist/vue-select.css";
-
-
+@use "../components/forms.input" as input;
 
 // ##############################
 // ########  vue-select  ########
@@ -10,7 +7,7 @@
 .v-select{
 
   @apply text-xs;
-  @include field-size;
+  @include input.field-size;
 
   &.vs--single{
     .vs__dropdown-toggle {
@@ -23,7 +20,7 @@
   }
 
   .vs__dropdown-toggle{
-    @include field-base;
+    @include input.field-base;
     padding: 4px 7px;
 
     .vs__selected-options{

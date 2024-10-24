@@ -6,7 +6,7 @@
 
 <script setup>
 import { ref, watch, onMounted } from 'vue';
-import * as echarts from 'echarts';
+import * as echarts from "~/echarts";
 
 const props = defineProps({
     title: {

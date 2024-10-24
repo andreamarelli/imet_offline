@@ -30,6 +30,8 @@ class Sectors extends Modules\Component\ImetModule
             ['name' => 'Observations',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.Sectors.fields.Observations')],
         ];
 
+        $this->module_info = trans('imet-core::v2_context.Sectors.module_info');
+
         parent::__construct($attributes);
     }
 

@@ -81,7 +81,7 @@ class ImetAssessment
      */
     public static function getAssessmentByCountry($country, bool $with_scores = true): array
     {
-        return Imet::select(['FormID', 'wdpa_id', 'Country', 'Year', 'name', 'language', 'version'])
+        return ImetV2::select(['FormID', 'wdpa_id', 'Country', 'Year', 'name', 'language', 'version'])
             ->where('Country', $country)
             ->orderBy('Year', 'DESC')
             ->get()

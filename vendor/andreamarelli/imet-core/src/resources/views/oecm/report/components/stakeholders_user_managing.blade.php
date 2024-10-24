@@ -4,7 +4,7 @@
 
 <h4>2. @lang('imet-core::oecm_report.stakeholder_users_managing_oecm')</h4>
 
-<table class="max-w-6xl">
+<table class="max-w-12xl">
     <tr>
         <th>
             <b>@lang('imet-core::oecm_report.stakeholder_direct_users')</b>

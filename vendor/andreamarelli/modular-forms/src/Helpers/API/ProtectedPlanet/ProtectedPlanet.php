@@ -7,16 +7,16 @@ use AndreaMarelli\ModularForms\Helpers\API\API;
 use Illuminate\Support\Facades\Config;
 
 
-class ProtectedPlanet
+class ProtectedPlanet extends API
 {
     public const WEBSITE_URL = 'https://www.protectedplanet.net/';
     private const API_URL = 'https://api.protectedplanet.net/v3/';
 
     /**
-     * Execute request to API
+     * Override: add API token to the request parameters
      * @throws MissingAPITokenException
      */
-    private static function request($url, array $params = []): object
+    public static function request($url, $params, $method = self::METHOD_GET, bool $no_cache = false): object
     {
         // Get API key
         $token = Config::get('PROTECTED_PLANET_API_KEY');
@@ -25,7 +25,7 @@ class ProtectedPlanet
         }
         $params = array_merge($params, ['token' => $token]);
 
-        return API::execute_api_request($url, $params);
+        return parent::request($url, $params, $method, $no_cache);
     }
 
     /**

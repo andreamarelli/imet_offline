@@ -30,12 +30,12 @@ import colorPicker from './tools/color_picker.vue';
 import basket from './components/basket.vue';
 import guidance from './components/guidance.vue';
 import smallMenu from './components/menus/small_menu.vue';
-import tooltip from 'modular-forms/src/resources/assets/js/templates/tooltip.vue';
+import tooltip from '@modular-forms/js/templates/tooltip.vue';
 import dopaIndicatorsTable from '../templates/dopa/indicators_table.vue';
 import checkboxesList from './components/checkboxes_list.vue';
 import application from './components/app.vue';
 
-import mitt from 'mitt';
+import mitt from "~/mitt";
 
 export default class Report {
 

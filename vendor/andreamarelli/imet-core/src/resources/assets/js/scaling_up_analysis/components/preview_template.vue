@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div :class="classDiv" v-for="(item, idx) in items" :id="'image-content' + idx" :key="idx">
+        <div class="img-fluid" v-for="(item, idx) in items" :id="'image-content' + idx" :key="idx">
             <div>
                 <img @load="imageLoaded(idx)" :src="item" :id="idx" />
             </div>
@@ -19,7 +19,6 @@ const props = defineProps({
 });
 
 const items = ref([]);
-const classDiv = ref('');
 const pixelsPage = ref(0);
 const images = ref([]);
 

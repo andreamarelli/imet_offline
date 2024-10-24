@@ -38,7 +38,7 @@
                 @if($threat_label!=='-')
                     <imet_score_bar
                         :value={{ $threat_label }}
-                        color="#87c89b"
+                        color="#FF0000"
                         :min=-100
                         :max=0
                     ></imet_score_bar>

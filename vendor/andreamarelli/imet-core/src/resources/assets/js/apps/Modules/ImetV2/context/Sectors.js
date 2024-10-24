@@ -23,9 +23,9 @@ export default class Sectors extends ModuleImet {
         });
         const average_time = computed(() => {
             let result = [];
-            let area = getPaArea();
             setup_obj.records.forEach(function (item, index) {
                 let UnderControlPatrolManDay = item['UnderControlPatrolManDay'];
+                let area = item['UnderControlArea'];
                 if(isValid(area) && isValid(UnderControlPatrolManDay) && UnderControlPatrolManDay>0){
                     result[index] = (parseFloat(UnderControlPatrolManDay) / parseFloat(area)).toFixed(2);
                 } else {

@@ -51,7 +51,7 @@
 </template>
 
 <script setup>
-import { defineProps, inject, onMounted, ref, computed, reactive } from 'vue';
+import { inject, onMounted, ref, computed, reactive } from 'vue';
 import { useList } from './composables/list'
 
 const props = defineProps({

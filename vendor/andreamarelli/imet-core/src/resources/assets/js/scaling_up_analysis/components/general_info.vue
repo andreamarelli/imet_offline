@@ -99,7 +99,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, inject, defineProps } from 'vue';
+import { ref, reactive, onMounted, inject } from 'vue';
 
 const stores = inject('stores');
 

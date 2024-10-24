@@ -64,18 +64,6 @@ use Illuminate\Support\Facades\Blade;
 
         </div>
 
-
-        <!-- TODO: to be removed -->
-        <b>RECORDS</b>
-        <div class="text-sm" v-for="item in Object.entries(records)">
-            <div><b>@{{ item[0] }}</b>: @{{ item[1] }}</div>
-        </div>
-        <b>BACKUP</b>
-        <div class="text-sm" v-for="item in Object.entries(records_backup)">
-            <div><b>@{{ item[0] }}</b>: @{{ item[1] }}</div>
-        </div>
-
-
     </div>
 
     {!! Blade::renderComponent(new $action_bar_view($controller, $definitions, $vueData['records'], $formId, $noData, $mode)) !!}

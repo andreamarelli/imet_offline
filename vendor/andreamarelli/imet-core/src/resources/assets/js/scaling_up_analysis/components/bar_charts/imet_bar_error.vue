@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, inject, onMounted, computed } from 'vue';
+import { ref, inject, onMounted, computed } from 'vue';
 import * as echarts from "~/echarts";
 import { useResize } from "../../composables/resize";
 import { common } from "./common/commonProps";

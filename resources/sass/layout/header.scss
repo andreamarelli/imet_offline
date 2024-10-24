@@ -1,4 +1,4 @@
-@import "@modular-forms/sass/abstracts/_mixins.scss";
+@use "@modular-forms/sass/abstracts/_mixins" as mixins;
 
 #imet_header {
     display: flex;
@@ -58,7 +58,7 @@ ul.menu-header{
             padding: 10px 0 10px 30px;
             background-color: rgba(255, 255, 255, 0);
             text-align: left;
-            @include transition(background-color);
+            @include mixins.transition(background-color);
             min-width: 100%;
             box-shadow: 0 5px 10px rgba(0, 0, 0, .15);
             &:before {
@@ -74,7 +74,7 @@ ul.menu-header{
                 a {
                     padding: 10px 30px;
                     display: block;
-                    @include transition(background-color);
+                    @include mixins.transition(background-color);
                     &:hover {
                         background-color: #efeded;
                         text-decoration: none;

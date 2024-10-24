@@ -1,5 +1,5 @@
 import {ref, onMounted} from 'vue';
-import * as htmlToImage from 'html-to-image';
+import * as htmlToImage from '~/html-to-image';
 
 export function useHtmlToImage(props, emit) {
     const randomElement = ref('');
@@ -39,7 +39,6 @@ export function useHtmlToImage(props, emit) {
         htmlToImage.toPng(element, {
             canvasWidth: element.clientWidth ?? size,
             filter: (node) => {
-                console.log({node});
                 const classNames = node?.className;
                 const id = node?.id;
                 if (typeof classNames !== 'string') {

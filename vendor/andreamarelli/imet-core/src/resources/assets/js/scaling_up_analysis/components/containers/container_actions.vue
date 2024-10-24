@@ -25,7 +25,7 @@
 
 <script setup>
 import html_to_image from "../../tools/html_to_image.vue";
-import { onMounted, watch, inject, defineProps, ref, reactive } from "vue";
+import { onMounted, watch, inject, ref, reactive } from "vue";
 
 const stores = inject('stores');
 const emitter = inject('emitter')

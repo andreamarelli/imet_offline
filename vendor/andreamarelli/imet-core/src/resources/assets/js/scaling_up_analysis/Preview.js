@@ -2,7 +2,7 @@ import {createApp, ref, provide} from "vue";
 import previewTemplate from "./components/preview_template.vue";
 import application from './components/app.vue';
 
-import mitt from 'mitt';
+import mitt from "~/mitt";
 
 export default class Preview {
 

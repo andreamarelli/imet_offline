@@ -1,7 +1,8 @@
-@import "../abstracts/all";
+@use "../abstracts/colors";
+@use "../abstracts/fonts";
 
 @mixin field-base{
-    font-family: $secondary-font;
+    font-family: fonts.$secondary-font;
     @apply text-xs;
     @apply text-gray-800;
     @apply bg-white;

@@ -1,4 +1,4 @@
-@import "../abstracts/all";
+@use "../abstracts/fonts";
 
 html, body {
   font-size: 100%;
@@ -7,7 +7,7 @@ html, body {
 }
 
 body {
-  font-family: $primary-font;
+  font-family: fonts.$primary-font;
   @apply text-base;
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;

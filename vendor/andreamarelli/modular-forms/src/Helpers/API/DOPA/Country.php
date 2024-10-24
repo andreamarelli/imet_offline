@@ -13,7 +13,7 @@ trait Country{
      */
     public static function get_country_pa_stats($country = null)
     {
-        return self::request(self::URL_PREFIX.'d6dopa40/administrative_units/get_country_pa_stats', [
+        return self::request(self::API_URL.'d6dopa40/administrative_units/get_country_pa_stats', [
             'format' => 'json',
             'a_iso3' => $country
         ]);
@@ -28,7 +28,7 @@ trait Country{
      */
     public static function get_country_redlist_th_list($country)
     {
-        return self::request(self::URL_PREFIX.'d6dopa40/species/get_country_redlist_th_list', [
+        return self::request(self::API_URL.'d6dopa40/species/get_country_redlist_th_list', [
             'format' => 'json',
             'a_iso3' => $country,
         ]);
@@ -36,7 +36,7 @@ trait Country{
 
     public static function get_country_species_total($country = null)
     {
-        return self::request(self::URL_PREFIX.'d6dopa40/species/get_country_species_total', [
+        return self::request(self::API_URL.'d6dopa40/species/get_country_species_total', [
             'format' => 'json',
             'a_iso3' => $country
         ]);
@@ -44,7 +44,7 @@ trait Country{
 
     public static function get_country_threatened_animals($country = null)
     {
-        return self::request(self::URL_PREFIX.'d6dopa40/species/get_country_threatened_animals', [
+        return self::request(self::API_URL.'d6dopa40/species/get_country_threatened_animals', [
             'format' => 'json',
             'a_iso3' => $country
         ]);
@@ -52,7 +52,7 @@ trait Country{
 
     public static function get_country_endemics_threatened_vertebrates($country = null)
     {
-        return self::request(self::URL_PREFIX.'d6dopa40/species/get_country_endemics_threatened_vertebrates', [
+        return self::request(self::API_URL.'d6dopa40/species/get_country_endemics_threatened_vertebrates', [
             'format' => 'json',
             'a_iso3' => $country
         ]);
@@ -64,12 +64,12 @@ trait Country{
         if ($country!==null) {
             $params['a_iso3'] = $country;
         }
-        return self::request(self::URL_PREFIX . 'd6dopa40/administrative_units/get_country_all_inds?', $params);
+        return self::request(self::API_URL . 'd6dopa40/administrative_units/get_country_all_inds?', $params);
     }
 
     public static function get_country_pa_normalized_indicator($country = null)
     {
-        return self::request(self::URL_PREFIX.'d6dopa40/administrative_units/get_country_pa_normalized_indicator', [
+        return self::request(self::API_URL.'d6dopa40/administrative_units/get_country_pa_normalized_indicator', [
             'format' => 'json',
             'iso' => $country,
             'indicator' => 'agri_ind_pa'
@@ -78,7 +78,7 @@ trait Country{
 
     public static function get_country_pa_normalized_indicator_marine($country)
     {
-        return self::request(self::URL_PREFIX . 'd6dopa40/administrative_units/get_country_pa_normalized_indicator', [
+        return self::request(self::API_URL . 'd6dopa40/administrative_units/get_country_pa_normalized_indicator', [
             'format' => 'json',
             'indicator' => 'mhdi',
             'iso' => $country,
@@ -87,7 +87,7 @@ trait Country{
 
     public static function get_country_ecoregions_stats($country)
     {
-        return self::request(self::URL_PREFIX . 'd6dopa40/administrative_units/get_country_ecoregions_stats', [
+        return self::request(self::API_URL . 'd6dopa40/administrative_units/get_country_ecoregions_stats', [
             'format' => 'json',
             'a_iso3' => $country,
         ]);
@@ -95,7 +95,7 @@ trait Country{
 
     public static function get_country_lc_copernicus($country)
     {
-        return self::request(self::URL_PREFIX . 'd6dopa40/landcover/get_country_lc_copernicus', [
+        return self::request(self::API_URL . 'd6dopa40/landcover/get_country_lc_copernicus', [
             'format' => 'json',
             'iso' => 'iso3',
             'country' => $country,
@@ -106,7 +106,7 @@ trait Country{
 
     public static function get_country_lcc_esa($country)
     {
-        return self::request(self::URL_PREFIX . 'd6dopa40/landcover/get_country_lcc_esa', [
+        return self::request(self::API_URL . 'd6dopa40/landcover/get_country_lcc_esa', [
             'format' => 'json',
             'iso' => 'iso3',
             'country' => $country,

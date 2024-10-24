@@ -210,6 +210,15 @@ return [
             'Source' => 'Fonte',
             'Observations' => 'Observacoes',
         ],
+        'module_info' => 'Patrulhamento: Para uma gestão eficaz, alguns estudos e diretrizes de gestão de parques sugerem uma média de 1-4
+            dias de patrulha por quilômetro quadrado por ano. Isso significa que para cada quilômetro quadrado de área protegida,
+            os guardas florestais devem, idealmente, passar entre 1 a 4 dias patrulhando a cada ano.<br />Maior intensidade em áreas de alta
+            ameaça: Em áreas com alta pressão de caça furtiva ou biodiversidade significativa, a taxa recomendada pode aumentar
+            para 5-10 dias de patrulha por quilômetro quadrado por ano ou até mais (Parque Nacional Kruger, África do Sul: Devido a
+            intensas ameaças de caça furtiva de rinocerontes, partes do Kruger experimentam intensidades de patrulha de 10 dias de patrulha por
+            quilômetro quadrado por ano ou mais). Menor intensidade em áreas de menor risco: Em contraste, regiões com riscos menores ou
+            onde as ameaças à vida selvagem são mínimas podem exigir menos patrulhas, possivelmente menos de 1 dia de patrulha por
+            quilômetro quadrado por ano.',
         'area_percentage' => '% da area',
         'average_time' => 'Patrulhamento médio * d * km² do setor',
     ],

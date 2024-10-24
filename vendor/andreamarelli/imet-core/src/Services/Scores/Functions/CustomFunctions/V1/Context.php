@@ -23,6 +23,9 @@ trait Context
             });
 
         $numerator = $values->sum(function ($item){
+            $item['SignificativeClassification'] = is_string($item['SignificativeClassification'])
+                ? (boolval($item['SignificativeClassification']) ? 1 : 0)
+                : $item['SignificativeClassification'];
             return (1 + 2 * $item['SignificativeClassification']) * $item['EvaluationScore'];
         });
         $denominator = $values->sum(function ($item){
@@ -54,9 +57,15 @@ trait Context
             });
 
         $numerator = $values->sum(function ($item){
+            $item['SignificativeSpecies'] = is_string($item['SignificativeSpecies'])
+                ? (boolval($item['SignificativeSpecies']) ? 1 : 0)
+                : $item['SignificativeSpecies'];
             return (1 + 2 * $item['SignificativeSpecies']) * $item['EvaluationScore'];
         });
         $denominator = $values->sum(function ($item){
+            $item['SignificativeSpecies'] = is_string($item['SignificativeSpecies'])
+                ? (boolval($item['SignificativeSpecies']) ? 1 : 0)
+                : $item['SignificativeSpecies'];
             return (1 + 2 * $item['SignificativeSpecies']);
         });
 

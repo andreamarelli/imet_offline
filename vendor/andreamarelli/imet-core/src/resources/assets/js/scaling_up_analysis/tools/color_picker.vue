@@ -13,8 +13,8 @@
 </template>
 <script setup>
 import { ref, onMounted } from 'vue';
-import { ColorPicker } from "vue3-colorpicker";
-import "vue3-colorpicker/style.css";
+import { ColorPicker } from "~/vue3-colorpicker";
+import "~/vue3-colorpicker/style.css";
 const props = defineProps({
   text_box_name: {
     type: String,

@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { onMounted, watch, inject, defineProps, ref } from "vue";
+import { onMounted, watch, inject, ref } from "vue";
 import { useAjax } from "../../composables/ajax";
 import { commonProps } from "./common/props";
 

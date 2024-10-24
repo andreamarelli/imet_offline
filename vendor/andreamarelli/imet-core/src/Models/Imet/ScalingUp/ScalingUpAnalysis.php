@@ -698,7 +698,7 @@ class ScalingUpAnalysis extends Model
         if ($api_available) {
             foreach ($form_ids as $key => $form_id) {
                 $protected_area = ScalingUpWdpa::getCustomNames($form_id, static::$scaling_id);
-                $areas = DOPA::get_wdpa_ecoregions($protected_area['wdpa_id']);
+                $areas = DOPA::get_wdpa_ecoregions($protected_area['wdpa_id'])->records;
                 $dopa_pa_ecoregions_stats[$protected_area['name']] = array_filter($areas, function ($value) {
                     return !$value->marine;
                 });
@@ -723,7 +723,7 @@ class ScalingUpAnalysis extends Model
         if ($api_available) {
             foreach ($form_ids as $key => $form_id) {
                 $protected_area = ScalingUpWdpa::getCustomNames($form_id, static::$scaling_id);
-                $area = DOPA::get_wdpa_ecoregions($protected_area['wdpa_id']);
+                $area = DOPA::get_wdpa_ecoregions($protected_area['wdpa_id'])->records;
                 $dopa_pa_ecoregions_stats[$protected_area['name']] = array_filter($area, function ($value) {
                     return $value->marine;
                 });
@@ -749,7 +749,7 @@ class ScalingUpAnalysis extends Model
         if ($api_available) {
             foreach ($form_ids as $key => $form_id) {
                 $protected_area = ScalingUpWdpa::getCustomNames($form_id, static::$scaling_id);
-                $dopa_stats[$protected_area['name']] = DOPA::get_wdpa_copernicus($protected_area['wdpa_id']);
+                $dopa_stats[$protected_area['name']] = DOPA::get_wdpa_copernicus($protected_area['wdpa_id'])->records;
             }
         } else {
             return ['status' => false];
@@ -797,7 +797,7 @@ class ScalingUpAnalysis extends Model
                 $country = Country::getByISO($protected_area['Country']);
                 $country_name = $country->name_en;
                 if (!isset($dopa_stats[$country_name])) {
-                    $dopa_stats[$country_name] = DOPA::get_country_all_inds($protected_area['Country']);
+                    $dopa_stats[$country_name] = DOPA::get_country_all_inds($protected_area['Country'])->records;
                 }
             }
         } else {
@@ -834,7 +834,7 @@ class ScalingUpAnalysis extends Model
                 }
             }
             return $i;
-        }, DOPA::get_de_wdpa_all_inds($wdpa_id));
+        }, DOPA::get_de_wdpa_all_inds($wdpa_id)->records);
     }
 
     /**

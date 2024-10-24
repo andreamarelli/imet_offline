@@ -13,9 +13,9 @@ trait Wdpa
    * @param $wdpa
    * @return array
    */
-    public static function get_wdpa_copernicus($wdpa)
+    public static function get_wdpa_copernicus($wdpa): object
     {
-         return self::request(self::URL_PREFIX . 'd6dopa/dopa_41/get_de_wdpa_lc_copernicus', [
+         return self::request(self::API_URL . 'd6dopa/dopa_41/get_de_wdpa_lc_copernicus', [
             'format' => 'json',
             'wdpaid' => $wdpa,
             'agg' => 2
@@ -28,9 +28,9 @@ trait Wdpa
      * @param $wdpa
      * @return array
      */
-    public static function get_de_wdpa_all_inds($wdpa)
+    public static function get_de_wdpa_all_inds($wdpa): object
     {
-        return self::request(self::URL_PREFIX . 'd6dopa/dopa_41/get_de_wdpa_all_inds', [
+        return self::request(self::API_URL . 'd6dopa/dopa_41/get_de_wdpa_all_inds', [
             'format' => 'json',
             'wdpaid' => $wdpa
         ]);

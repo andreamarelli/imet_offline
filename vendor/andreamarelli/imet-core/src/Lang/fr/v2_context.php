@@ -214,7 +214,16 @@ return [
             'Source' => 'Source',
             'Observations' => 'Observations',
         ],
-        'area_percentage'               => '% de la surface',
+        'module_info' => 'Patrouilles : pour une gestion efficace, certaines études et directives de gestion des parcs suggèrent une moyenne de 1 à 4
+            jours de patrouille par kilomètre carré par an. Cela signifie que pour chaque kilomètre carré de zone protégée,
+            les gardes devraient idéalement passer entre 1 et 4 jours de patrouille par an.<br />Intensité plus élevée dans les
+            zones à forte menace : dans les zones à forte pression de braconnage ou à biodiversité importante, le taux recommandé peut augmenter
+            à 5 à 10 jours de patrouille par kilomètre carré par an ou même plus (Parc national Kruger, Afrique du Sud : en
+            raison des menaces intenses de braconnage des rhinocéros, certaines parties du Kruger connaissent des intensités de patrouille de 10
+            jours de patrouille par kilomètre carré par an ou plus). Intensité plus faible dans les zones à faible risque : en revanche, les régions à faible risque ou
+            où les menaces pour la faune sont minimes peuvent nécessiter moins de patrouilles, éventuellement moins d\'un jour de patrouille par
+            kilomètre carré par an.',
+            'area_percentage'               => '% de la surface',
         'average_time'                  => 'Patrouille moyenne * j * Km² de secteur'
     ],
 

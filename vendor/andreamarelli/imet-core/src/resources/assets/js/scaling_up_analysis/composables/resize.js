@@ -34,5 +34,5 @@ export function useResize(component_data) {
         window.removeEventListener('resize', handleResize);
     });
 
-    return { initResize, save_data };
+    return { initResize, save_data, handleResize };
 }

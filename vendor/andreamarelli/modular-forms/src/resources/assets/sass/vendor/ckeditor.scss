@@ -1,7 +1,7 @@
-@import "../components/forms.input";
+@use "../components/forms.input" as input;
 
 .ck.ck-editor {
-    @include field-size;
+    @include input.field-size;
     max-width: 800px;
 }
 
@@ -9,7 +9,7 @@
     padding: 0 20px !important;
 
     p, h2, li{
-        @include field-base;
+        @include input.field-base;
     }
     h2 {
         @apply text-sm font-bold;

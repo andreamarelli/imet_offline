@@ -4,7 +4,7 @@ import LabelCloud from "./components/label-cloud.vue";
 import imetEncodersResponsibles from "../templates/imet_encoders_responsibles.vue";
 import imetRadar from "../templates/imet_radar.vue";
 import actionButton from "./components/action-button.vue";
-import mitt from 'mitt';
+import mitt from "~/mitt";
 
 export default class ScalingList {
 

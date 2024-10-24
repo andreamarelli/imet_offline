@@ -6,7 +6,7 @@
 
 <script setup>
 
-import { provide, defineProps } from 'vue';
+import { provide } from 'vue';
 
 import LocalStore from './../stores/local.storage.store';
 import basket_store from './../stores/basket.store';
