@@ -74,7 +74,7 @@ export default class Module {
         return this.createApp(options, input_data);
     }
 
-    setupApp(props, input_data) {
+    setupApp(props, input_data, custom_methods = {}) {
 
         const moduleContainer = document.querySelector('#module_' + props.module_key);
         const emitter = mitt()
@@ -107,7 +107,8 @@ export default class Module {
             group_key_field: unref(props.group_key_field),
             accordion_title_field: unref(props.accordion_title_field),
             records: unref(records),
-            empty_record: unref(empty_record)
+            empty_record: unref(empty_record),
+            custom_methods: custom_methods
         });
         const {refreshDataStatus, isNotApplicable, isNotAvailable, toggleDataStatus} = useDataStatus({
             enable_not_applicable: props.enable_not_applicable,
@@ -144,8 +145,11 @@ export default class Module {
         // Watch for changes in records
         watch(records, (value) => {
             syncCommonFields(value);
-            if (status.value !== 'init' && status.value !== 'changed'){
-                status.value = 'changed';
+            if (status.value !== 'init'){
+                if(status.value !== 'changed') {
+                    status.value = 'changed';
+                    emitter.emit('moduleIsChanged', {module_key: props.module_key});
+                }
                 emitter.emit('moduleChanged', { module_key: props.module_key, records: value });
             }
         });

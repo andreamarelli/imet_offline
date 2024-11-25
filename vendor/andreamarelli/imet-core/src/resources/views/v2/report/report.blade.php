@@ -220,7 +220,8 @@ if ($item->language != App::getLocale()) {
                     </div>
                     <div>
                         <b>@lang('imet-core::v2_report.opportunities')</b>
-                        <report-editor v-model="report.opportunities_swot" :action="'{{ $action }}'"></report-editor>
+                        <report-editor v-model="report.opportunities_swot"
+                            :action="'{{ $action }}'"></report-editor>
                     </div>
                     <div>
                         <b>@lang('imet-core::v2_report.threats')</b>
@@ -293,6 +294,11 @@ if ($item->language != App::getLocale()) {
 @endsection
 
 @push('scripts')
+    <style>
+        .module-body ul {
+            padding-left: 15px !important;
+        }
+    </style>
     <script type="module">
         const app = (new window.ImetCore.Apps.Analysis({
             report: @json($report),
@@ -391,6 +397,5 @@ if ($item->language != App::getLocale()) {
         }));
 
         app.mount('#imet_report');
-
     </script>
 @endpush

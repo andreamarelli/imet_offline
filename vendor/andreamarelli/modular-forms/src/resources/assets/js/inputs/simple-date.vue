@@ -80,14 +80,14 @@
 
         if(props.dateType === 'day'){
             options.dateFormat = "yyyy-MM-dd";
-            if(inputValue.value !== null){
+            if(typeof inputValue.value !== 'undefined' && inputValue.value !== null){
                 options.selectedDates = [inputValue.value];
             }
         } else if(props.dateType === 'year'){
             options.dateFormat = "yyyy";
             options.view = "years";
             options.minView = "years";
-            if(inputValue.value !== null) {
+            if(typeof inputValue.value !== 'undefined' && inputValue.value !== null) {
                 options.selectedDates = [inputValue.value + '-01-01'];
             }
         }

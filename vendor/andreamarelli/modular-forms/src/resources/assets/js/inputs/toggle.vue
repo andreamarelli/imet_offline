@@ -65,6 +65,7 @@
     function isSelected(value){
         return value!==null
             && inputValue.value!==null
+            && typeof inputValue.value !== 'undefined'
             && value.toString() === inputValue.value.toString();
     }
 

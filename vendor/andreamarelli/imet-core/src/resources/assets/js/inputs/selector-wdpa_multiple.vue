@@ -26,7 +26,7 @@
         <!-- api search - result items -->
         <template v-slot:selector-api-search-result-item="{ item }">
             <td><span class="result_left"><b>{{ item.name }}</b></span></td>
-            <td><a v-if="item.wdpa_id!==null" target="_blank" href="https://www.protectedplanet.net/'+item.wdpa_id+'">{{ item.wdpa_id }}</a></td>
+            <td><a v-if="item.wdpa_id!==null" target="_blank" :href="'https://www.protectedplanet.net/'+item.wdpa_id">{{ item.wdpa_id }}</a></td>
             <td>{{ item.country_name }}</td>
             <td>{{ item.iucn_category }}</td>
         </template>

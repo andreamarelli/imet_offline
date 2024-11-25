@@ -14,8 +14,20 @@ export default class Analysis {
 
         const options = {
             name: 'Analysis',
-            setup() {
-                return _this.setupApp(input_data);
+            props: {
+                report: Object,
+                scores: Object,
+                labels: Object,
+                version: [String, Number],
+                api_data: Object,
+                connection: Boolean,
+                wdpa_id: [String, Number],
+                status: String,
+                dopa_indicators: Object,
+                url: String
+            },
+            setup(props) {
+                return _this.setupApp(props);
             }
         }
 

@@ -8,7 +8,8 @@ use Illuminate\View\View;
 class Custom extends Component
 {
     public function __construct(
-        public array $definitions
+        public array $definitions,
+        public int $formId
     ) {}
 
     public function render(): View

@@ -36,7 +36,7 @@
 
                         <!-- Search by key -->
                         <i>{{ Locale.getLabel('modular-forms::common.search_item') }}: </i>
-                        <input type="text" class="field-edit dialog_search_by_key" autofocus
+                        <input type="text" class="field-edit dialog_search_by_key"
                                v-model="searchKey"
                                v-on:keydown.enter.prevent="applySearch"
                         />
@@ -277,7 +277,7 @@
     // components, injections & expose
     const dialogComponent = ref(null);
     const selectorComponent_AfterSearch = inject('afterSearch', null);
-    const selectorComponent_AfterLabelRetrieve = inject('AfterLabelRetrieve', null);
+    const selectorComponent_AfterLabelRetrieve = inject('afterLabelRetrieve', null);
     const selectorComponent_SetLabel = inject('setLabel', null);
     const selectorComponent_SetValue = inject('setValue', null);
     // const selectorComponent_setSelectedValue = inject('setSelectedValue', null);
@@ -354,7 +354,7 @@
         })
             .then((response) => response.json())
             .then(function(data){
-                // Check if a custom "afterSearch" is defined in parent component
+                // Check if a custom "afterLabelRetrieve" is defined in parent component
                 if(typeof selectorComponent_AfterLabelRetrieve === "function"){
                     selectorComponent_AfterLabelRetrieve(data.records);
                 }
@@ -563,7 +563,7 @@
                 applyAndClose();
             }
         } else {
-            setError(Locale.getLabel('common.validation_error'))
+            setError(Locale.getLabel('modular-forms::common.validation_error'))
         }
 
     }

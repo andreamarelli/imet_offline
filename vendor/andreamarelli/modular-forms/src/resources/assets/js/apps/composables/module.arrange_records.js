@@ -1,4 +1,4 @@
-import {toRaw, unref} from "vue";
+import {toRaw, unref, inject} from "vue";
 
 export function useArrangeRecords(component_data) {
 
@@ -8,11 +8,18 @@ export function useArrangeRecords(component_data) {
     const accordion_title_field = component_data.accordion_title_field;
     const records = unref(component_data.records);
     const empty_record = unref(component_data.empty_record);
+    const custom_methods = component_data.custom_methods;
 
     function accordionTitle(index){
         let group_key = records[index][group_key_field] || null
-        let title = toRaw(records[index][accordion_title_field]) || '';
         let title_index = indexInGroup(index, group_key) + 1;
+        // Check if a custom "accordionTitle" is defined in parent APP
+        let title = null
+        if(typeof custom_methods.accordionTitle === "function"){
+            title = custom_methods.accordionTitle(records, index, accordion_title_field);
+        } else {
+            title = toRaw(records[index][accordion_title_field]) || '';
+        }
         return title_index + ' - ' + title;
     }
 

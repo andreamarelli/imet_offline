@@ -116,7 +116,20 @@ export default class OECMAnalysis extends Analysis {
     }
 
     createApp(options, input_data) {
-
+        options.props = {
+            ...options.props,
+            default_schema: Object,
+            loading: Boolean,
+            loading_objectives: Boolean,
+            error_objectives: Boolean,
+            error: Boolean,
+            status: String,
+            table_input_elems: Array,
+            short_long_objectives: Object,
+            labels: Object,
+            version: String,
+            objectives_url: String
+        }
         return super.createApp(options, input_data)
     }
 }

@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Blade;
         {{--  Actions: not applicable / not available / other (custom) --}}
         <div class="flex justify-end">
             {!! Blade::renderComponent(new $not_applicable_view($definitions)) !!}
-            {!! Blade::renderComponent(new $custom_action_view($definitions)) !!}
+            {!! Blade::renderComponent(new $custom_action_view($definitions, $formId)) !!}
         </div>
 
         {{-- not applicable --}}

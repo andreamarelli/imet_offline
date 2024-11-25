@@ -1,21 +1,13 @@
 {
-  "../packages/imet-core/src/resources/assets/images/fish.png": {
-    "file": "assets/fish-PuECKpUO.png",
-    "src": "../packages/imet-core/src/resources/assets/images/fish.png"
-  },
-  "../packages/imet-core/src/resources/assets/images/tree.png": {
-    "file": "assets/tree-1D_APfEu.png",
-    "src": "../packages/imet-core/src/resources/assets/images/tree.png"
-  },
   "_dropzone-!~{004}~.js": {
     "file": "assets/dropzone-EAB3FWmp.css",
     "src": "_dropzone-!~{004}~.js"
   },
-  "_dropzone-C8hpOl0G.js": {
-    "file": "assets/dropzone-C8hpOl0G.js",
+  "_dropzone-CNduCgSz.js": {
+    "file": "assets/dropzone-CNduCgSz.js",
     "name": "dropzone",
     "imports": [
-      "_vue-Dq8g2AwM.js"
+      "_vue-CftvIENP.js"
     ],
     "css": [
       "assets/dropzone-EAB3FWmp.css"
@@ -25,36 +17,36 @@
     "file": "assets/echarts-Bf8QDmg4.js",
     "name": "echarts"
   },
-  "_mapbox-BMcF0oVF.js": {
-    "file": "assets/mapbox-BMcF0oVF.js",
+  "_mapbox-BJtTVmXE.js": {
+    "file": "assets/mapbox-BJtTVmXE.js",
     "name": "mapbox"
   },
-  "_vue-Dq8g2AwM.js": {
-    "file": "assets/vue-Dq8g2AwM.js",
+  "_vue-CftvIENP.js": {
+    "file": "assets/vue-CftvIENP.js",
     "name": "vue"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf": {
-    "file": "assets/fa-brands-400-Dur5g48u.ttf",
+    "file": "assets/fa-brands-400-CArp7j8S.ttf",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
-    "file": "assets/fa-brands-400-O7nZalfM.woff2",
+    "file": "assets/fa-brands-400-BU4mH_I_.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf": {
-    "file": "assets/fa-regular-400-Bf3rG5Nx.ttf",
+    "file": "assets/fa-regular-400-D4OwLFL7.ttf",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2": {
-    "file": "assets/fa-regular-400-DgEfZSYE.woff2",
+    "file": "assets/fa-regular-400-Cy4iLbxs.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf": {
-    "file": "assets/fa-solid-900-BV3CbEM2.ttf",
+    "file": "assets/fa-solid-900-BAw_JAW6.ttf",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": {
-    "file": "assets/fa-solid-900-DOQJEhcS.woff2",
+    "file": "assets/fa-solid-900-CcrrL0x0.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
   },
   "node_modules/flag-icons/flags/1x1/ad.svg": {
@@ -2218,18 +2210,18 @@
     "src": "node_modules/flag-icons/flags/4x3/zw.svg"
   },
   "resources/index.js": {
-    "file": "assets/index-BOUS8f0u.js",
+    "file": "assets/index-B2Uj7aaf.js",
     "name": "index",
     "src": "resources/index.js",
     "isEntry": true,
     "imports": [
-      "_vue-Dq8g2AwM.js",
-      "_dropzone-C8hpOl0G.js",
-      "_mapbox-BMcF0oVF.js",
+      "_vue-CftvIENP.js",
+      "_dropzone-CNduCgSz.js",
+      "_mapbox-BJtTVmXE.js",
       "_echarts-Bf8QDmg4.js"
     ],
     "css": [
-      "assets/index-B-ICHu-W.css"
+      "assets/index-cyO95Cxc.css"
     ],
     "assets": [
       "assets/iucn_red_list-Bn3APVvg.png",
@@ -2241,12 +2233,12 @@
       "assets/montserrat-v10-latin_latin-ext-regular-rHSMJb-e.woff",
       "assets/montserrat-v10-latin_latin-ext-700-DzaJgkkf.woff2",
       "assets/montserrat-v10-latin_latin-ext-700-Bu2O4j_G.woff",
-      "assets/fa-regular-400-DgEfZSYE.woff2",
-      "assets/fa-regular-400-Bf3rG5Nx.ttf",
-      "assets/fa-solid-900-DOQJEhcS.woff2",
-      "assets/fa-solid-900-BV3CbEM2.ttf",
-      "assets/fa-brands-400-O7nZalfM.woff2",
-      "assets/fa-brands-400-Dur5g48u.ttf",
+      "assets/fa-regular-400-Cy4iLbxs.woff2",
+      "assets/fa-regular-400-D4OwLFL7.ttf",
+      "assets/fa-solid-900-CcrrL0x0.woff2",
+      "assets/fa-solid-900-BAw_JAW6.ttf",
+      "assets/fa-brands-400-BU4mH_I_.woff2",
+      "assets/fa-brands-400-CArp7j8S.ttf",
       "assets/xx-zm_JmrXl.svg",
       "assets/xx-DHLZWhOc.svg",
       "assets/ad-BOo-tPI4.svg",
@@ -2788,6 +2780,14 @@
       "assets/xk-F5dDvX79.svg",
       "assets/xk-B6uU6dIH.svg"
     ]
+  },
+  "vendor/andreamarelli/imet-core/src/resources/assets/images/fish.png": {
+    "file": "assets/fish-PuECKpUO.png",
+    "src": "vendor/andreamarelli/imet-core/src/resources/assets/images/fish.png"
+  },
+  "vendor/andreamarelli/imet-core/src/resources/assets/images/tree.png": {
+    "file": "assets/tree-1D_APfEu.png",
+    "src": "vendor/andreamarelli/imet-core/src/resources/assets/images/tree.png"
   },
   "vendor/andreamarelli/modular-forms/src/resources/assets/fonts/montserrat-v10-latin_latin-ext-700.woff": {
     "file": "assets/montserrat-v10-latin_latin-ext-700-Bu2O4j_G.woff",
