@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '8d34f26755f9f41c6cb515304ef0f83da227790a',
+        'reference' => '8cc1f6ba3f95877b9b48b1d5e37d6868fb251f2c',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'andreamarelli/imet-core' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'eb0c199809b6b34abdb9592bc801d203d138a1d4',
+            'reference' => '8917e55925a7f7af95fa631311aa4b675cad6442',
             'type' => 'library',
             'install_path' => __DIR__ . '/../andreamarelli/imet-core',
             'aliases' => array(
@@ -24,7 +24,7 @@
         'andreamarelli/modular-forms' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'eb545763f96d6515d8fe4aa0b6d5e778465c3061',
+            'reference' => '2a4c3ab7d55635673b98b065fee4d0319483e787',
             'type' => 'library',
             'install_path' => __DIR__ . '/../andreamarelli/modular-forms',
             'aliases' => array(
@@ -530,7 +530,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '8d34f26755f9f41c6cb515304ef0f83da227790a',
+            'reference' => '8cc1f6ba3f95877b9b48b1d5e37d6868fb251f2c',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

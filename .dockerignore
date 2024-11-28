@@ -1,0 +1,21 @@
+# git
+.git/
+
+# laravel folders
+app/
+bootstrap/
+config/
+database/
+public/
+resources/
+route/
+storage/
+test/
+
+# vendors
+node_modules/
+vendor/
+
+# data folders
+docker/db/backups/
+docker/nginx/logs/

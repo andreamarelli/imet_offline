@@ -633,8 +633,8 @@ class Module extends BaseModel
                 && (($field !== $foreign_key && $foreign_key !== null) || $foreign_key === null)  // ignore foreign_key (form id) if exist
                 && $field !== static::$group_key_field                                            // ignore group_key
                 && isset($record[$field]) && $record[$field] !== null                             // exist in record & is not null
-                && (static::getPredefined($record[$foreign_key])===null ||
-                    $field != static::getPredefined($record[$foreign_key])['field'])      // ignore predefined values
+                && (($predefined = static::getPredefined($record[$foreign_key])) === null ||
+                $field != $predefined['field'])      // ignore predefined values
                 && !(static::fieldTypeByName(
                         $field
                     ) === 'checkbox-boolean' && $record[$field] === false) // ignore false values for checkbox-boolean

@@ -48,6 +48,8 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
      */
     protected static function getPredefined($form_id = null): array
     {
+        parent::getPredefined($form_id);
+
         $predefined_values = $form_id!==null
             ? [
                 'group0' => Modules\Context\AnimalSpecies::getReferenceList($form_id, 'species'),

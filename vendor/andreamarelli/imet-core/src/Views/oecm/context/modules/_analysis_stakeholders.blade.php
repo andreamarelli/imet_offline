@@ -123,7 +123,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                     </tbody>
 
                                     {{-- add button --}}
-                                    <tfoot v-if="numItemPerGroupAndStakeholder('{{ $group_key }}', '{{ $stakeholder }}') < {{ $definitions['max_rows'] }}">
+                                    <tfoot v-if="numItemPerGroupAndStakeholder('{{ $group_key }}', '{{ Str::replace("'", "\'", $stakeholder) }}') < {{ $definitions['max_rows'] }}">
                                         <tr>
                                             <td colspan="{{ count($definitions['fields']) + 1 }}">
                                                 @include('modular-forms::buttons.add_item', [
