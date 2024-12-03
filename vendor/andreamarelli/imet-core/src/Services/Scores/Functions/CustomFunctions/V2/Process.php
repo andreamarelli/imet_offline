@@ -26,8 +26,25 @@ trait Process
 
         $values = $records
             ->map(function($record) use ($staff_weights){
-                $record['eval_score'] = $record['EvaluationScore']!==null ? $record['EvaluationScore'] : $staff_weights[$record['Theme']]['ratio03'];
-                $record['weight'] = $record['EvaluationScore']===null ? $staff_weights[$record['Theme']]['w_avg'] : 1;
+                if ($record['EvaluationScore'] !== null) {
+                    $eval_score = $record['EvaluationScore'];
+                } else if (isset($staff_weights[$record['Theme']])) {
+                    $eval_score = $staff_weights[$record['Theme']]['ratio03'];
+                } else {
+                    $eval_score = 0;
+                }
+
+                $weight = 1;
+                $record['eval_score'] = $eval_score;
+                if ($record['EvaluationScore'] === null) {
+                    if (isset($staff_weights[$record['Theme']])) {
+                        $weight = $staff_weights[$record['Theme']]['w_avg'];
+                    }
+                }
+
+
+                $record['eval_score'] = $eval_score;
+                $record['weight'] = $weight;
                 return $record;
             });
 
