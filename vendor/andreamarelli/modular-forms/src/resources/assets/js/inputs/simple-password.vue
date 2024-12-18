@@ -8,12 +8,6 @@
                class="field-edit"
                autocomplete="off"
         />
-        <tooltip
-            v-if=tooltipEnabled
-            :anchor-elem-id=id
-        >
-            {{ inputValue }}
-        </tooltip>
     </span>
 
 </template>

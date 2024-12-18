@@ -19,7 +19,7 @@ class Cache{
     /**
      * Build a cache key from request params
      */
-    public static function buildKey(string $prefix, array $params = null): string
+    public static function buildKey(string $prefix, array $params = []): string
     {
         unset($params['_token']);
 
@@ -27,9 +27,8 @@ class Cache{
         $prefix = Str::startsWith($prefix, '_') ? $prefix : '_'.$prefix;
 
         // Params
-        $params = http_build_query($params);
         $params = !empty($params)
-            ? '?'. $params
+            ? '?'. http_build_query($params)
             : '';
 
         return $prefix . $params;

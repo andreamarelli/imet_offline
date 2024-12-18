@@ -3,8 +3,7 @@
 namespace App\Helpers;
 
 use AndreaMarelli\ModularForms\Helpers\File\File;
-use Illuminate\Support\Env;
-use Illuminate\Support\Facades\App;
+use Exception;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -77,7 +76,7 @@ class SoftwareUpdater
         $latestVersion = static::getLatestReleases($forceApi)[0] ?? null;
 
         // Compare versions
-        if (version_compare($latestVersion['tag_name'], $currentVersion) === 1) {
+        if ($latestVersion && version_compare($latestVersion['tag_name'], $currentVersion) === 1) {
             return true;
         }
         return false;
@@ -122,15 +121,27 @@ class SoftwareUpdater
     /**
      * Retrieve releases from GitHub API
      */
-    private static function retrieveReleasesFromGithub($forceApi = false): array
+    private static function retrieveReleasesFromGithub($forceApi = false): ?array
     {
+        $url = self::GITHUB_API_URL . '/releases';
         $cacheFile = date("Y-m-d"). '_github_releases.json';
+        $apiResult = null;
 
         // Retrieve from API
         if($forceApi || !Storage::disk(File::TEMP_STORAGE)->exists($cacheFile)){
-            $apiResult = Http::get(self::GITHUB_API_URL . '/releases')->json();
-            Storage::disk(File::TEMP_STORAGE)->put($cacheFile, json_encode($apiResult));
-            Log::info('New releases retrieved from GitHub API.');
+            try {
+                $apiRequest = Http::timeout(10)->get($url);
+            } catch (Exception $e) {
+                Log::error('Cannot retrieved releases from GitHub API ('. get_class($e) .'). (URL: ' . $url . ')');
+                return null;
+            }
+            if($apiRequest->successful()) {
+                $apiResult = $apiRequest->json();
+                Storage::disk(File::TEMP_STORAGE)->put($cacheFile, json_encode($apiResult));
+                Log::info('New releases retrieved from GitHub API.');
+            } elseif($apiRequest->failed()) {
+                Log::error('Cannot retrieved releases from GitHub API. (Code: ' . $apiRequest->status() . ' - URL: ' . $url . ')');
+            }
         }
 
         // Retrieve from cache (same day)

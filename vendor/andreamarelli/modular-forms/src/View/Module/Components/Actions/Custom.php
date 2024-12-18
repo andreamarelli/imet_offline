@@ -9,7 +9,7 @@ class Custom extends Component
 {
     public function __construct(
         public array $definitions,
-        public int $formId
+        public ?int $formId
     ) {}
 
     public function render(): View
