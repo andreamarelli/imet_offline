@@ -158,7 +158,7 @@ return [
         ],
         'oc2' => [
             'O/C2',
-            'xxx'
+            'Effects on key conservation elements'
         ],
         'oc3' => [
             'O/C3',

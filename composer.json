@@ -9,8 +9,8 @@
     "license": "MIT",
     "require": {
         "php": ">=8.1",
-        "andreamarelli/imet-core": "dev-master",
-        "andreamarelli/modular-forms": "dev-master",
+        "andreamarelli/imet-core": "dev-legacy",
+        "andreamarelli/modular-forms": "dev-legacy",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^10.0",
         "laravel/ui": "^4.0",

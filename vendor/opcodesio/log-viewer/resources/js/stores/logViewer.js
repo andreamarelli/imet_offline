@@ -102,6 +102,17 @@ export const useLogViewerStore = defineStore({
     isInViewport() {
       return (index) => this.pixelsAboveFold(index) > -this.tableRowHeight;
     },
+
+    perPageOptions() {
+      const baseOptions = window.LogViewer.per_page_options || [10, 25, 50, 100, 250, 500];
+
+      if (! baseOptions.includes(this.resultsPerPage)) {
+        baseOptions.push(this.resultsPerPage);
+        baseOptions.sort((a, b) => a - b);
+      }
+
+      return baseOptions;
+    },
   },
 
   actions: {
@@ -234,11 +245,14 @@ export const useLogViewerStore = defineStore({
 
           if (!silently) {
             nextTick(() => {
+              document.dispatchEvent(new Event('logsPageLoaded'));
               this.reset();
               if (data.expandAutomatically) {
                 this.stacksOpen.push(0);
               }
             });
+          } else {
+            document.dispatchEvent(new Event('logsPageLoadedSilently'));
           }
 
           if (this.hasMoreResults) {

@@ -1,9 +1,12 @@
+# Development/Envirnoment
 .idea/
-*.DS_Store
-
 .env
-
+composer
 composer.phar
 composer.lock
+package-lock.json
+sbom-*.xml
+
+# Modules & Libraries
 /vendor/
 /node_modules/

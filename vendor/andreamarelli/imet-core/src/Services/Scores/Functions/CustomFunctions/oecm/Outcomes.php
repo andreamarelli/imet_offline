@@ -10,18 +10,16 @@ trait Outcomes
 
     protected static function score_oc2(int $imet_id): ?float
     {
-        $records = KeyElementsImpact::getModule($imet_id)
+        return KeyElementsImpact::getModule($imet_id)
             ->filter(function($item){
-                return $item['EffectSH']!==null
-                    && $item['ReliabilitySH']!==null
-                    && $item['EffectER']!==null
-                    && $item['ReliabilityER']!==null;
-            });
-
-        return collect($records)
+                return ($item['EffectSH']!==null && $item['ReliabilitySH']!==null)
+                    || ($item['EffectER']!==null && $item['ReliabilityER']!==null);
+            })
             ->map(function ($item){
 
-                if($item['ReliabilitySH']==='high'){
+                if($item['ReliabilitySH']===null){
+                    $reliabilitySH = 0;
+                } else if($item['ReliabilitySH']==='high'){
                     $reliabilitySH = 3;
                 } else if($item['ReliabilitySH']==='medium'){
                     $reliabilitySH = 2;
@@ -29,7 +27,9 @@ trait Outcomes
                     $reliabilitySH = 1;
                 }
 
-                if($item['ReliabilityER']==='high'){
+                if($item['ReliabilityER']===null){
+                    $reliabilityER = 0;
+                } else if($item['ReliabilityER']==='high'){
                     $reliabilityER = 3;
                 } else if($item['ReliabilityER']==='medium'){
                     $reliabilityER = 2;

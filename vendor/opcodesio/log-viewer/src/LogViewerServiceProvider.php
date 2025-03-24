@@ -39,7 +39,7 @@ class LogViewerServiceProvider extends ServiceProvider
 
         if (! $this->app->bound(LogTypeRegistrar::class)) {
             $this->app->singleton(LogTypeRegistrar::class, function () {
-                return new LogTypeRegistrar();
+                return new LogTypeRegistrar;
             });
         }
     }
@@ -95,16 +95,14 @@ class LogViewerServiceProvider extends ServiceProvider
             $this->loadRoutesFrom(self::basePath('/routes/api.php'));
         });
 
-        if (! config('log-viewer.api_only', false)) {
-            Route::group([
-                'domain' => config('log-viewer.route_domain', null),
-                'prefix' => config('log-viewer.route_path'),
-                'namespace' => 'Opcodes\LogViewer\Http\Controllers',
-                'middleware' => config('log-viewer.middleware', null),
-            ], function () {
-                $this->loadRoutesFrom(self::basePath('/routes/web.php'));
-            });
-        }
+        Route::group([
+            'domain' => config('log-viewer.route_domain', null),
+            'prefix' => config('log-viewer.route_path'),
+            'namespace' => 'Opcodes\LogViewer\Http\Controllers',
+            'middleware' => config('log-viewer.middleware', null),
+        ], function () {
+            $this->loadRoutesFrom(self::basePath('/routes/web.php'));
+        });
     }
 
     protected function registerResources()
