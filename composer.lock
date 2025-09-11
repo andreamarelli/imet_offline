@@ -65,13 +65,13 @@
             "version": "dev-legacy",
             "source": {
                 "type": "git",
-                "url": "https://github.com/andreamarelli/modular-forms.git",
-                "reference": "2a4c3ab7d55635673b98b065fee4d0319483e787"
+                "url": "git@github.com:andreamarelli/modular-forms.git",
+                "reference": "80a23df163b484916b3bf05e981e6d6554a1df23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/modular-forms/zipball/2a4c3ab7d55635673b98b065fee4d0319483e787",
-                "reference": "2a4c3ab7d55635673b98b065fee4d0319483e787",
+                "url": "https://api.github.com/repos/andreamarelli/modular-forms/zipball/80a23df163b484916b3bf05e981e6d6554a1df23",
+                "reference": "80a23df163b484916b3bf05e981e6d6554a1df23",
                 "shasum": ""
             },
             "require": {
@@ -117,7 +117,7 @@
                 "source": "https://github.com/andreamarelli/modular-forms/tree/legacy",
                 "issues": "https://github.com/andreamarelli/modular-forms/issues"
             },
-            "time": "2024-11-28T14:48:21+00:00"
+            "time": "2025-09-11T06:48:47+00:00"
         },
         {
             "name": "brick/math",

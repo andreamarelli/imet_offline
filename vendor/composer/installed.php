@@ -22,7 +22,7 @@
         'andreamarelli/modular-forms' => array(
             'pretty_version' => 'dev-legacy',
             'version' => 'dev-legacy',
-            'reference' => '2a4c3ab7d55635673b98b065fee4d0319483e787',
+            'reference' => '80a23df163b484916b3bf05e981e6d6554a1df23',
             'type' => 'library',
             'install_path' => __DIR__ . '/../andreamarelli/modular-forms',
             'aliases' => array(),

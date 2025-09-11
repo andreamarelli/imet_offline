@@ -6,6 +6,7 @@ use AndreaMarelli\ModularForms\Models\Cache;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 class API
 {
@@ -41,7 +42,7 @@ class API
 
         // Execute request to API
         $response = API::execute_request($url, $params);
-        if($response->successful()){
+        if(static::isSuccess($response)){
             // store in cache
             $response_data = static::ensureIsJson($response->json());
             Cache::put($cache_key, $response_data, static::CACHE_TTL);
@@ -50,6 +51,21 @@ class API
             return (object) ['error' => 'Request to '.$url.' failed'];
         }
 
+    }
+
+    /**
+     * Check if the response is successful
+     */
+    private static function isSuccess($response): bool
+    {
+        $content_type = Str::lower($response->header('Content-Type'));
+        $content = Str::lower($response->body());
+
+        return $response->successful() // status code 200-299
+            &&  ($content_type === 'application/json' // content type is json
+                || (Str::contains($content_type, 'text/plain')
+                    && !Str::contains($content, 'error')) // content type is plain text without error
+            );
     }
 
     /**
