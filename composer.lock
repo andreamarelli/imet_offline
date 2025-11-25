@@ -11,13 +11,13 @@
             "version": "dev-legacy",
             "source": {
                 "type": "git",
-                "url": "https://github.com/andreamarelli/imet-core.git",
-                "reference": "7487e7ff638cecc9f6f8b8645b40a0a6b413de03"
+                "url": "git@github.com:andreamarelli/imet-core.git",
+                "reference": "2b0b7619ef6071eacb777811c245c86e35e73b51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/7487e7ff638cecc9f6f8b8645b40a0a6b413de03",
-                "reference": "7487e7ff638cecc9f6f8b8645b40a0a6b413de03",
+                "url": "https://api.github.com/repos/andreamarelli/imet-core/zipball/2b0b7619ef6071eacb777811c245c86e35e73b51",
+                "reference": "2b0b7619ef6071eacb777811c245c86e35e73b51",
                 "shasum": ""
             },
             "require": {
@@ -58,7 +58,7 @@
                 "source": "https://github.com/andreamarelli/imet-core/tree/legacy",
                 "issues": "https://github.com/andreamarelli/imet-core/issues"
             },
-            "time": "2025-03-24T10:38:54+00:00"
+            "time": "2025-11-25T09:48:26+00:00"
         },
         {
             "name": "andreamarelli/modular-forms",
@@ -9908,6 +9908,6 @@
     "platform": {
         "php": ">=8.1"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }

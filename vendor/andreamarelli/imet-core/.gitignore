@@ -5,7 +5,9 @@ composer
 composer.phar
 composer.lock
 package-lock.json
-sbom-*.xml
+sbom-*.xm
+dev/
+docker/
 
 # Modules & Libraries
 /vendor/

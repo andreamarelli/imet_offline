@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '8cc1f6ba3f95877b9b48b1d5e37d6868fb251f2c',
+        'reference' => 'f9077dce86d1ad1880e22f8dc97211cd19689725',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'andreamarelli/imet-core' => array(
             'pretty_version' => 'dev-legacy',
             'version' => 'dev-legacy',
-            'reference' => '7487e7ff638cecc9f6f8b8645b40a0a6b413de03',
+            'reference' => '2b0b7619ef6071eacb777811c245c86e35e73b51',
             'type' => 'library',
             'install_path' => __DIR__ . '/../andreamarelli/imet-core',
             'aliases' => array(),
@@ -526,7 +526,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '8cc1f6ba3f95877b9b48b1d5e37d6868fb251f2c',
+            'reference' => 'f9077dce86d1ad1880e22f8dc97211cd19689725',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

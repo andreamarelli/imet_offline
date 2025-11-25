@@ -6,6 +6,7 @@ use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class UpdateProtectedAreasCSV extends Command
 {
@@ -36,23 +37,24 @@ class UpdateProtectedAreasCSV extends Command
     private $multiple_countries_pas = [];
 
     private $all_countries_worldwide = false;
+    private const ONLY_INSERT = false;
 
     /**
      * Protected Planet CSV columns
      */
     private const CSV_COLS = [
         'TYPE' => 0,
-        'WDPAID' => 1,
-        'WDPA_PID' => 2,
-        'PA_DEF' => 3,
-        'NAME' => 4,
-        'ORIG_NAME' => 5,
+        'SITE_ID' => 1,
+        'SITE_PID' => 2,
+        'SITE_TYPE' => 3,
+        'NAME_ENG' => 4,
+        'NAME' => 5,
         'DESIG' => 6,
         'DESIG_ENG' => 7,
         'DESIG_TYPE' => 8,
         'IUCN_CAT' => 9,
         'INT_CRIT' => 10,
-        'MARINE' => 11,
+        'REALM' => 11,
         'REP_M_AREA' => 12,
         'GIS_M_AREA' => 13,
         'REP_AREA' => 14,
@@ -62,16 +64,19 @@ class UpdateProtectedAreasCSV extends Command
         'STATUS' => 18,
         'STATUS_YR' => 19,
         'GOV_TYPE' => 20,
-        'OWN_TYPE' => 21,
-        'MANG_AUTH' => 22,
-        'MANG_PLAN' => 23,
-        'VERIF' => 24,
-        'METADATAID' => 25,
-        'SUB_LOC' => 26,
-        'PARENT_ISO3' => 27,
-        'ISO3' => 28,
-        'SUPP_INFO' => 29,
-        'CONS_OBJ' => 30
+        'GOVSUBTYPE' => 21,
+        'OWN_TYPE' => 22,
+        'OWNSUBTYPE' => 23,
+        'MANG_AUTH' => 24,
+        'MANG_PLAN' => 25,
+        'VERIF' => 26,
+        'METADATAID' => 27,
+        'PRNT_ISO3' => 28,
+        'ISO3' => 29,
+        'SUPP_INFO' => 30,
+        'CONS_OBJ' => 31,
+        'INLND_WTRS' => 32,
+        'OECM_ASMT' => 33,
     ];
 
 
@@ -110,8 +115,11 @@ class UpdateProtectedAreasCSV extends Command
         }
 
         // Retrieve protected areas from DB
-        $pas_db = ProtectedArea::all();
-        $pas_db = $pas_db->keyBy('wdpa_id');  // keyed by wdpa
+        $pas_db = [];
+        if(!static::ONLY_INSERT) {
+            $pas_db = ProtectedArea::all();
+            $pas_db = $pas_db->keyBy('wdpa_id');  // keyed by wdpa
+        }
 
         // Retrieve protected areas from CSV
         $pas_csv = [];
@@ -132,17 +140,17 @@ class UpdateProtectedAreasCSV extends Command
                 if($this->all_countries_worldwide || in_array($row_data[static::CSV_COLS['ISO3']], $countries)){
 
                     // Skip if multi-country PA had been already parsed
-                    if(in_array($row_data[static::CSV_COLS['WDPAID']], $this->multiple_countries_pas)){
+                    if(in_array($row_data[static::CSV_COLS['SITE_ID']], $this->multiple_countries_pas)){
                         continue;
                     }
 
-                    $pa = $pas_db[$row_data[static::CSV_COLS['WDPAID']]] ?? null;
+                    $pa = $pas_db[$row_data[static::CSV_COLS['SITE_ID']]] ?? null;
                     $attributes = $this->set_attributes($row_data);
 
                     // Not found: INSERT
                     if($pa===null){
                         $this->count_add++;
-                        $attributes['global_id'] = 'www_' . $row_data[static::CSV_COLS['WDPAID']];
+                        $attributes['global_id'] = 'www_' . $row_data[static::CSV_COLS['SITE_ID']];
                         $this->sql_query .= $this->insert_sql($attributes).PHP_EOL;
                     } else {
                         $pa->fill($attributes);
@@ -203,14 +211,15 @@ class UpdateProtectedAreasCSV extends Command
                 $countries .= $c . ';';
             }
             $countries = rtrim($countries, ';');
-            $this->multiple_countries_pas[] = $csv_data[static::CSV_COLS['WDPAID']];
+            $this->multiple_countries_pas[] = $csv_data[static::CSV_COLS['SITE_ID']];
         } else {
             $countries = $csv_data[static::CSV_COLS['ISO3']];
         }
+        $name = Str::replace('​', '', $csv_data[static::CSV_COLS['NAME']]);
         return [
             'country' => $countries,
-            'wdpa_id' => $csv_data[static::CSV_COLS['WDPAID']],
-            'name' => $csv_data[static::CSV_COLS['ORIG_NAME']],
+            'wdpa_id' => $csv_data[static::CSV_COLS['SITE_ID']],
+            'name' => $name,
             'iucn_category' => $csv_data[static::CSV_COLS['IUCN_CAT']],
             'area' => (float) $csv_data[static::CSV_COLS['REP_AREA']]
         ];
