@@ -64,6 +64,14 @@ class Objectives extends Modules\Component\ImetModule_Eval
         return static::$cache_predefined_values;
     }
 
+    /**
+     * Override
+     */
+    public static function upgradeModule($record, $imet_version = null): array
+    {
+        // ####  v2.12 -> v2.13 ####
+        return self::dropField($record, 'IncludeInPlanning');
+    }
 
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
